@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner — Build Your Custom Trip — TravelUp Global</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --st-primary: #0284c7;
+            --st-primary-hover: #0369a1;
+            --st-orange: #ef4444;
+            --st-bg: #f1f5f9;
+            --st-card: #ffffff;
+            --st-border: #cbd5e1;
+            --st-text: #0f172a;
+            --st-text-muted: #64748b;
+            --st-green: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--st-bg);
+            color: var(--st-text);
+            line-height: 1.5;
+        }
+
+        /* Top Brand Navigation */
+        .top-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--st-border);
+            padding: 0.65rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .container {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo-img {
+            height: 44px;
+            width: auto;
+            display: block;
+        }
+
+        .main-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .main-menu a {
+            color: var(--st-text-muted);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .main-menu a.active, .main-menu a:hover {
+            color: var(--st-primary);
+        }
+
+        /* Search Filter Box (Origin, Destination, Dates) */
+        .search-strip {
+            background: #ffffff;
+            border: 1px solid var(--st-border);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0 1.25rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) auto;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        .search-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .search-field label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--st-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .search-field select, .search-field input {
+            padding: 0.55rem 0.75rem;
+            border: 1px solid var(--st-border);
+            border-radius: 6px;
+            font-size: 0.925rem;
+            font-weight: 600;
+            color: var(--st-text);
+            background: #f8fafc;
+            outline: none;
+        }
+
+        .search-field select:focus, .search-field input:focus {
+            border-color: var(--st-primary);
+            background: #ffffff;
+        }
+
+        /* PCB Builder Card */
+        .pcb-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--st-border);
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        /* Top Action Bar */
+        .pcb-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid var(--st-border);
+            background: #ffffff;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .all-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #f8fafc;
+            border: 1px solid var(--st-border);
+            color: var(--st-text);
+            padding: 0.5rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            border-color: var(--st-primary);
+            color: var(--st-primary);
+            background: #f0f9ff;
+        }
+
+        .action-btn .material-icons {
+            font-size: 18px;
+        }
+
+        .btn-quote {
+            background: #0284c7;
+            color: white;
+            border-color: #0284c7;
+        }
+
+        .btn-quote:hover {
+            background: #0369a1;
+            color: white;
+        }
+
+        .btn-checkout {
+            background: var(--st-green);
+            color: white;
+            border-color: var(--st-green);
+        }
+
+        .btn-checkout:hover {
+            background: #059669;
+            color: white;
+        }
+
+        /* Sticky Metrics & Price Bar */
+        .pcb-top-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.75rem;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--st-border);
+            flex-wrap: wrap;
+            gap: 1.25rem;
+        }
+
+        .pcb-title-area h1 {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--st-text);
+            margin-bottom: 0.35rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .custom-check {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.825rem;
+            font-weight: 700;
+            color: var(--st-text-muted);
+            cursor: pointer;
+        }
+
+        .custom-check input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--st-primary);
+            cursor: pointer;
+        }
+
+        .price-stats-wrap {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-box {
+            background: #ffffff;
+            border: 1px solid var(--st-border);
+            border-radius: 6px;
+            padding: 0.5rem 1.25rem;
+            text-align: right;
+            min-width: 140px;
+        }
+
+        .stat-box .amount {
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--st-primary);
+            line-height: 1.1;
+        }
+
+        .stat-box .label {
+            font-size: 0.725rem;
+            font-weight: 800;
+            color: var(--st-text-muted);
+            text-transform: uppercase;
+        }
+
+        .stat-box.person-box .amount {
+            color: var(--st-green);
+        }
+
+        /* Component Rows (c-item) */
+        .pcb-content {
+            padding: 1.5rem 1.75rem;
+        }
+
+        .content-label {
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 0.825rem;
+            font-weight: 900;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin: 1.5rem 0 0.75rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-left: 4px solid var(--st-primary);
+        }
+
+        .content-label:first-child {
+            margin-top: 0;
+        }
+
+        .c-item {
+            display: flex;
+            align-items: center;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--st-border);
+            border-radius: 6px;
+            margin-bottom: 0.65rem;
+            background: #ffffff;
+            transition: all 0.2s;
+            gap: 1.25rem;
+        }
+
+        .c-item:hover {
+            border-color: #94a3b8;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        .c-item .img {
+            width: 52px;
+            height: 52px;
+            border-radius: 6px;
+            background: #f8fafc;
+            border: 1px solid var(--st-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .c-item .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .c-item .img .material-icons {
+            font-size: 26px;
+            color: #94a3b8;
+        }
+
+        .c-item .details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .c-item .component-name {
+            font-size: 0.925rem;
+            font-weight: 800;
+            color: var(--st-text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .c-item .mark {
+            background: #fee2e2;
+            color: #dc2626;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 0.15rem 0.45rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .c-item .product-name {
+            font-size: 0.825rem;
+            color: var(--st-text-muted);
+            margin-top: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .c-item .product-name.configured {
+            color: var(--st-primary);
+            font-weight: 700;
+        }
+
+        .c-item .item-price {
+            min-width: 110px;
+            text-align: right;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--st-text);
+        }
+
+        .c-item .actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-choose {
+            background: transparent;
+            border: 1px solid var(--st-primary);
+            color: var(--st-primary);
+            font-size: 0.825rem;
+            font-weight: 700;
+            padding: 0.45rem 1.15rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-choose:hover {
+            background: var(--st-primary);
+            color: white;
+        }
+
+        .btn-remove {
+            background: transparent;
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 0.35rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-remove:hover {
+            background: #fee2e2;
+        }
+
+        /* Applied Scenarios Banner */
+        .applied-scenarios-bar {
+            margin-top: 1.5rem;
+            padding: 1rem 1.25rem;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 6px;
+        }
+
+        .applied-scenarios-bar h4 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #166534;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .scenario-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .scen-tag {
+            background: #ffffff;
+            border: 1px solid #86efac;
+            color: #15803d;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1.5rem;
+        }
+
+        .modal-box {
+            background: #ffffff;
+            border-radius: 8px;
+            max-width: 820px;
+            width: 100%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--st-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+        }
+
+        .modal-header h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--st-text);
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--st-text-muted);
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        /* 40-Seat Interactive Bus Matrix (Scenario 3) */
+        .bus-seat-layout {
+            background: #f8fafc;
+            border: 2px dashed var(--st-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            max-width: 420px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .bus-driver-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--st-border);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--st-text-muted);
+        }
+
+        .seat-row-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 30px 1fr 1fr;
+            gap: 0.65rem;
+            align-items: center;
+        }
+
+        .seat-btn {
+            background: #ffffff;
+            border: 1px solid var(--st-border);
+            border-radius: 4px;
+            padding: 0.5rem 0.25rem;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .seat-btn.female {
+            border-color: #f472b6;
+            background: #fdf2f8;
+            color: #be185d;
+        }
+
+        .seat-btn.selected {
+            background: var(--st-primary);
+            color: white;
+            border-color: var(--st-primary);
+        }
+
+        .seat-btn.booked {
+            background: #e2e8f0;
+            color: #94a3b8;
+            cursor: not-allowed;
+            border-color: #cbd5e1;
+        }
+
+        .aisle-gap {
+            text-align: center;
+            color: #cbd5e1;
+            font-size: 0.7rem;
+        }
+
+        .select-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--st-border);
+            border-radius: 6px;
+            padding: 0.85rem 1rem;
+            transition: all 0.2s;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .select-card:hover {
+            border-color: var(--st-primary);
+            background: #f8fafc;
+        }
+
+        .select-card-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .select-card-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid var(--st-border);
+        }
+
+        .select-card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--st-text);
+        }
+
+        .select-card-sub {
+            font-size: 0.8rem;
+            color: var(--st-text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .select-card-price {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--st-primary);
+            min-width: 90px;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .search-strip {
+                grid-template-columns: 1fr;
+            }
+            .pcb-head, .pcb-top-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .c-item {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+            .c-item .item-price {
+                text-align: left;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-navbar">
+        <div class="container nav-inner">
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="TravelUp Global" class="brand-logo-img">
+                </a>
+                <nav class="main-menu">
+                    <a href="index.html">Home</a>
+                    <a href="travel-planner.html" class="active">Travel Planner</a>
+                </nav>
+            </div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--st-text-muted);">
+                DIU CSE Lab Project • Roll 39, 34, 36
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Origin, Destination & Date Search Strip -->
+        <div class="search-strip">
+            <div class="search-field">
+                <label>Origin (কোথা থেকে)</label>
+                <select id="origin-select" onchange="onRouteChanged()">
+                    <option value="Dhaka" selected>Dhaka (ঢাকা)</option>
+                    <option value="Chittagong">Chittagong (চট্টগ্রাম)</option>
+                    <option value="Sylhet">Sylhet (সিলেট)</option>
+                    <option value="Rajshahi">Rajshahi (রাজশাহী)</option>
+                </select>
+            </div>
+            <div class="search-field">
+                <label>Destination (কোথায় যাবে)</label>
+                <select id="destination-select" onchange="onRouteChanged()">
+                    <option value="coxsbazar" selected>Cox's Bazar (কক্সবাজার)</option>
+                    <option value="sajek">Sajek Valley (সাজেক ভ্যালি)</option>
+                    <option value="sreemangal">Sreemangal (শ্রীমঙ্গল)</option>
+                    <option value="tetulia">Tetulia, Panchagarh (তেঁতুলিয়া)</option>
+                    <option value="jaflong">Sylhet & Jaflong (জাফলং)</option>
+                    <option value="saintmartin">Saint Martin's Island (সেন্টমার্টিন)</option>
+                </select>
+            </div>
+            <div class="search-field">
+                <label>Departure Date</label>
+                <input type="date" id="dept-date" value="2026-11-15">
+            </div>
+            <div class="search-field">
+                <label>Return Date</label>
+                <input type="date" id="ret-date" value="2026-11-18">
+            </div>
+            <div class="search-field">
+                <label>Travelers</label>
+                <input type="number" id="traveler-count" value="4" min="1" max="50" onchange="recalculateTotals()">
+            </div>
+        </div>
+
+        <!-- PCB Builder Container -->
+        <div class="pcb-container">
+
+            <!-- PCB Head (Logo & Actions) -->
+            <div class="pcb-head">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <img src="images/logo.png" alt="TravelUp Global" style="height: 38px;">
+                </div>
+                <div class="all-actions">
+                    <button class="action-btn" onclick="openShareModal()">
+                        <i class="material-icons">share</i>
+                        <span>Scenario 12: Split-Bill Link</span>
+                    </button>
+                    <button class="action-btn" onclick="window.print()">
+                        <i class="material-icons">print</i>
+                        <span>Print Itinerary</span>
+                    </button>
+                    <button class="action-btn btn-quote" onclick="openQuoteModal()">
+                        <i class="material-icons">receipt_long</i>
+                        <span>Scenario 11: Get B2B Quote</span>
+                    </button>
+                    <button class="action-btn btn-checkout" onclick="confirmTourBooking()">
+                        <i class="material-icons">shopping_cart_checkout</i>
+                        <span>Confirm & Book</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PCB Top Content (Title, Checkboxes & Price Bar) -->
+            <div class="pcb-top-content">
+                <div class="pcb-title-area">
+                    <h1>Travel Planner — Build Your Custom Travel Blueprint</h1>
+                    <div class="checkbox-group">
+                        <!-- Scenario 4: Skip Transport Toggle -->
+                        <label class="custom-check" style="color: var(--st-orange);">
+                            <input type="checkbox" id="skip-transport-check" onchange="toggleSkipTransport()">
+                            <span>[✓] Skip Transport (Self-Drive / Scenario 4)</span>
+                        </label>
+                        <label class="custom-check">
+                            <input type="checkbox" id="hide-unconfigured" onchange="toggleHideUnconfigured()">
+                            <span>Hide Unconfigured Components</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Right Stats -->
+                <div class="price-stats-wrap">
+                    <div class="stat-box person-box">
+                        <div class="amount" id="per-person-amount">0৳</div>
+                        <div class="label">Per Person (Scenario 5)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="amount" id="total-amount">0৳</div>
+                        <div class="label" id="items-count-label">0 Components</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Component Slots (Star Tech Style) -->
+            <div class="pcb-content">
+
+                <!-- 1. LONG-HAUL INTERMODAL TRANSIT -->
+                <div class="content-label">1. Long-Haul Intermodal Transit (বাস / ট্রেন / ফ্লাইট)</div>
+
+                <!-- Bus / Transit Component -->
+                <div class="c-item" id="slot-transport">
+                    <div class="img">
+                        <span class="material-icons">directions_bus</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Intermodal Transit / Bus Coach / Flight</span>
+                            <span class="mark" id="transit-mark">Required</span>
+                        </div>
+                        <div class="product-name" id="val-transport">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-transport">0৳</div>
+                    <div class="actions" id="action-transport">
+                        <button class="btn-choose" onclick="openPicker('transport')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- 2. LOCAL GROUND TRANSIT & TERMINAL SHUTTLES -->
+                <div class="content-label">2. Local Ground Transit & Terminal Shuttles (অটো / মাইক্রো / চান্দের গাড়ি)</div>
+
+                <!-- Local Transport Slot -->
+                <div class="c-item" id="slot-localtransit">
+                    <div class="img">
+                        <span class="material-icons">airport_shuttle</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Connecting Ground Shuttle / Chander Gari / Auto</span>
+                        </div>
+                        <div class="product-name" id="val-localtransit">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-localtransit">0৳</div>
+                    <div class="actions" id="action-localtransit">
+                        <button class="btn-choose" onclick="openPicker('localtransit')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- 3. HOTELS & ACCOMMODATIONS -->
+                <div class="content-label">3. Resort, Hotels & Bedding (আবাসন, বেডিং ও ফ্রেশ-আপ)</div>
+
+                <!-- Hotel Slot -->
+                <div class="c-item" id="slot-lodging">
+                    <div class="img">
+                        <span class="material-icons">hotel</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Resort Room & Bedding Allocation</span>
+                            <span class="mark">Required</span>
+                        </div>
+                        <div class="product-name" id="val-lodging">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-lodging">0৳</div>
+                    <div class="actions" id="action-lodging">
+                        <button class="btn-choose" onclick="openPicker('lodging')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Early Fresh-Up Room Slot (Scenario 7) -->
+                <div class="c-item" id="slot-freshup">
+                    <div class="img">
+                        <span class="material-icons">free_breakfast</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>5:30 AM Early Arrival Fresh-up Room (Scenario 7)</span>
+                        </div>
+                        <div class="product-name" id="val-freshup">Dawn check-in (+35% half-day rate avoiding full extra night)</div>
+                    </div>
+                    <div class="item-price" id="price-freshup">0৳</div>
+                    <div class="actions" id="action-freshup">
+                        <button class="btn-choose" onclick="openPicker('freshup')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- 4. DINING & RESTAURANTS -->
+                <div class="content-label">4. Dining & Meal Plans (খাবার ও রেস্টুরেন্ট নির্বাচন)</div>
+
+                <!-- Dining Slot -->
+                <div class="c-item" id="slot-dining">
+                    <div class="img">
+                        <span class="material-icons">restaurant</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Dining Plan / Seafood BBQ / Traditional Food</span>
+                        </div>
+                        <div class="product-name" id="val-dining">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-dining">0৳</div>
+                    <div class="actions" id="action-dining">
+                        <button class="btn-choose" onclick="openPicker('dining')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- 5. RECREATION & DISAGGREGATED ACTIVITIES -->
+                <div class="content-label">5. Recreation & Activities (অ্যাক্টিভিটি - নো বান্ডলিং / Scenario 8)</div>
+
+                <!-- Adventure Activity Slot -->
+                <div class="c-item" id="slot-adventure">
+                    <div class="img">
+                        <span class="material-icons">surfing</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Parasailing & Speedboat Safari</span>
+                        </div>
+                        <div class="product-name" id="val-adventure">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-adventure">0৳</div>
+                    <div class="actions" id="action-adventure">
+                        <button class="btn-choose" onclick="openPicker('adventure')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Beach Coconut Lounge Slot -->
+                <div class="c-item" id="slot-lounge">
+                    <div class="img">
+                        <span class="material-icons">beach_access</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Beachside Coconut Lounge Relaxation</span>
+                        </div>
+                        <div class="product-name" id="val-lounge">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-lounge">0৳</div>
+                    <div class="actions" id="action-lounge">
+                        <button class="btn-choose" onclick="openPicker('lounge')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Scuba Diving Slot -->
+                <div class="c-item" id="slot-scuba">
+                    <div class="img">
+                        <span class="material-icons">scuba_diving</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Coral Reef Scuba Diving (Scenario 9 Protected)</span>
+                        </div>
+                        <div class="product-name" id="val-scuba">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-scuba">0৳</div>
+                    <div class="actions" id="action-scuba">
+                        <button class="btn-choose" onclick="openPicker('scuba')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- 6. GUIDES, PERMITS & SPECIAL ADDONS -->
+                <div class="content-label">6. Tour Guides, Permits & Special Addons (গাইড ও পারমিট)</div>
+
+                <!-- Guide & Permit Slot -->
+                <div class="c-item" id="slot-guide">
+                    <div class="img">
+                        <span class="material-icons">explore</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Certified Local Eco-Guide & Boat Permits</span>
+                        </div>
+                        <div class="product-name" id="val-guide">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-guide">0৳</div>
+                    <div class="actions" id="action-guide">
+                        <button class="btn-choose" onclick="openPicker('guide')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Honeymoon Bed Decor Slot -->
+                <div class="c-item" id="slot-honeymoon">
+                    <div class="img">
+                        <span class="material-icons">favorite</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Honeymoon Flower Bed Decoration (Scenario 7)</span>
+                        </div>
+                        <div class="product-name" id="val-honeymoon">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-honeymoon">0৳</div>
+                    <div class="actions" id="action-honeymoon">
+                        <button class="btn-choose" onclick="openPicker('honeymoon')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Applied Scenarios Banner -->
+                <div class="applied-scenarios-bar">
+                    <h4>
+                        <i class="material-icons" style="font-size: 18px;">verified</i>
+                        Real-World Algorithmic Scenarios Applied in Real Time:
+                    </h4>
+                    <div class="scenario-tag-list" id="applied-scenarios-list">
+                        <span class="scen-tag">✓ Scenario 5: Multi-Bed Cost Decomposition</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Component Selection Modal -->
+    <div class="modal-overlay" id="selection-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modal-category-title">Select Component</h3>
+                <button class="modal-close-btn" onclick="closePicker()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Bus 40-Seat Picker Container (Shows if bus selected) -->
+                <div id="bus-seat-picker-wrap" style="display: none;">
+                    <div class="bus-seat-layout">
+                        <div class="bus-driver-area">
+                            <span>🚪 ENTRANCE</span>
+                            <span>🚌 SCANIA LUXURY (40 SEATS)</span>
+                            <span>STEERING WHEEL 🛞</span>
+                        </div>
+                        <!-- 40 Seats Grid A1-J4 -->
+                        <div class="seat-row-grid" id="bus-seats-container"></div>
+                    </div>
+                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.85rem; font-size: 0.8rem; color: #166534; margin-bottom: 1.25rem;">
+                        <strong>📞 Scenario 3 Counter Telematics:</strong> Arambagh Counter 4 | Manager: +880 1712-345678 | Supervisor: +880 1819-876543 (Rows A & B reserved for Female safety).
+                    </div>
+                </div>
+
+                <!-- Items List -->
+                <div id="modal-items-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // State Store
+        const currentTour = {
+            transport: null,
+            localtransit: null,
+            lodging: null,
+            freshup: null,
+            dining: null,
+            adventure: null,
+            lounge: null,
+            scuba: null,
+            guide: null,
+            honeymoon: null
+        };
+
+        let selectedSeats = ['A1', 'A2', 'B1', 'B2'];
+
+        // Dynamic Inventory Mapped to Selected Routes
+        const inventory = {
+            transport: [
+                { id: 1, name: "Direct Scania AC Coach (Arambagh ➔ Kolatoli)", sub: "Scenario 3: Interactive 40-Seat Plan | Rows A & B Female Preferred", price: 1500, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
+                { id: 2, name: "Multi-Leg Flight + Microbus (Scenario 1)", sub: "DAC ✈ SPD Flight (৳4,500) + 45-min buffer + SPD 🚐 Tetulia AC Microbus (৳800)", price: 5300, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 1: Multi-Leg Route Synthesis" },
+                { id: 3, name: "Domestic Boeing Direct Flight", sub: "50-minute express air transit to regional runway", price: 4500, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" },
+                { id: 4, name: "Non-AC Economy Coach", sub: "Overnight budget bus transit", price: 900, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80" }
+            ],
+            localtransit: [
+                { id: 1, name: "Four-Wheel Drive Chander Gari (সাজেক চান্দের গাড়ি)", sub: "Dedicated 4WD mountain jeep for Army Escort convoys (10-passenger capacity)", price: 6500, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 14: Mountain Convoy Navigation" },
+                { id: 2, name: "Reserved AC Microbus (HiAce)", sub: "Connecting terminal transfer from airport/bus counter to resort", price: 3200, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" },
+                { id: 3, name: "Auto-Rickshaw / CNG Shuttle", sub: "Local terminal pickup and drop to hotel lobby", price: 600, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
+            ],
+            lodging: [
+                { id: 1, name: "Deluxe 4-Bed Family Room (2 King Beds)", sub: "Scenario 5: ৳3,500/night decomposed down to ৳875/person/night for 4 friends", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
+                { id: 2, name: "Level-Ground Eco Cottage (Wheelchair/Elevator)", sub: "Scenario 6: Verified level ground, no steep hazardous outdoor stairs", price: 3800, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 6: Strict Accessibility Constraints" },
+                { id: 3, name: "Standard Twin-Bed Room (2 Single Beds)", sub: "Air-conditioned standard resort room", price: 2200, img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=150&q=80" },
+                { id: 4, name: "Presidential Panorama Suite", sub: "Luxury sea-facing master balcony & jacuzzi", price: 6000, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" }
+            ],
+            freshup: [
+                { id: 1, name: "5:30 AM Early Check-in Fresh-up Room", sub: "Scenario 7: Modular +35% half-day rate avoiding full extra day charge", price: 1225, img: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: 5:30 AM Fresh-up Room" }
+            ],
+            dining: [
+                { id: 1, name: "Inani Beach Live Seafood BBQ Dinner", sub: "Fresh coral fish, red snapper, pomfret & campfire dinner by the waves", price: 2000, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Beach BBQ Addon" },
+                { id: 2, name: "Traditional Bamboo Chicken & Hill Cuisine", sub: "Peda Ting Ting authentic tribal bamboo cooked chicken & sticky rice", price: 1400, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
+                { id: 3, name: "Full-Board Corporate Buffet Catering", sub: "Scenario 11: 3-course breakfast, lunch, dinner & high-tea per delegate", price: 3600, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 11: Corporate B2B Catering" }
+            ],
+            adventure: [
+                { id: 1, name: "Inani Beach Parasailing & Speedboat", sub: "Scenario 8: 15-minute aerial parachute flight + high-speed boat thrills", price: 2300, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 8: Disaggregated Activities" }
+            ],
+            lounge: [
+                { id: 1, name: "Beachside Coconut Lounge Relaxation", sub: "Scenario 8: Chilled green coconut & seaside sunbed lounge", price: 100, img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 8: Zero Forced Bundling" }
+            ],
+            scuba: [
+                { id: 1, name: "Guided Coral Scuba Diving (Saint Martin)", sub: "Scenario 9: Undersea coral dive. Programmatic auto-refund on Signal No. 3", price: 3000, img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 9: Meteorological Auto-Refund Hook" }
+            ],
+            guide: [
+                { id: 1, name: "Certified Local Eco-Tour Guide", sub: "Full day guiding, photography assistance & historical briefing", price: 1200, img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 4: Certified Guide" },
+                { id: 2, name: "Jaflong Registered Motorized Boat Permit", sub: "Scenario 4: Registered boat operator permit for Zero Point Lalji hill", price: 800, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 4: Registered Boat Permit" }
+            ],
+            honeymoon: [
+                { id: 1, name: "Honeymoon Flower Bed Decoration", sub: "Scenario 7: Fresh natural flower heart bed layout & welcome drink", price: 1500, img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Micro-Addons" }
+            ]
+        };
+
+        // Render 40 Seats Grid (Scenario 3)
+        function renderBusSeatGrid() {
+            const container = document.getElementById('bus-seats-container');
+            const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+            let html = '';
+
+            rows.forEach(r => {
+                const isFemaleRow = (r === 'A' || r === 'B');
+                for (let c = 1; c <= 4; c++) {
+                    const seatId = `${r}${c}`;
+                    const isSelected = selectedSeats.includes(seatId);
+                    const isBooked = (seatId === 'C1' || seatId === 'D4');
+
+                    html += `
+                        <div class="seat-btn ${isFemaleRow ? 'female' : ''} ${isSelected ? 'selected' : ''} ${isBooked ? 'booked' : ''}" 
+                             onclick="toggleBusSeat('${seatId}', this, ${isBooked})">
+                            ${seatId}${isFemaleRow ? '♀' : ''}
+                        </div>
+                    `;
+                    if (c === 2) {
+                        html += `<div class="aisle-gap">||</div>`;
+                    }
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        function toggleBusSeat(seatId, el, isBooked) {
+            if (isBooked) return;
+            el.classList.toggle('selected');
+            if (selectedSeats.includes(seatId)) {
+                selectedSeats = selectedSeats.filter(s => s !== seatId);
+            } else {
+                selectedSeats.push(seatId);
+            }
+        }
+
+        let currentActiveSlot = null;
+
+        function openPicker(slotName) {
+            currentActiveSlot = slotName;
+            const items = inventory[slotName] || [];
+            const titleEl = document.getElementById('modal-category-title');
+            const listEl = document.getElementById('modal-items-list');
+            const busSeatWrap = document.getElementById('bus-seat-picker-wrap');
+
+            titleEl.textContent = `Select ${slotName.toUpperCase()}`;
+
+            if (slotName === 'transport') {
+                busSeatWrap.style.display = 'block';
+                renderBusSeatGrid();
+            } else {
+                busSeatWrap.style.display = 'none';
+            }
+
+            listEl.innerHTML = items.map(item => `
+                <div class="select-card">
+                    <div class="select-card-info">
+                        <img src="${item.img}" class="select-card-img" alt="${item.name}">
+                        <div>
+                            <div class="select-card-title">${item.name}</div>
+                            <div class="select-card-sub">${item.sub}</div>
+                        </div>
+                    </div>
+                    <div class="select-card-price">৳${item.price.toLocaleString()}</div>
+                    <button class="btn-choose" onclick="selectComponent('${slotName}', ${item.id})">Select</button>
+                </div>
+            `).join('');
+
+            document.getElementById('selection-modal').style.display = 'flex';
+        }
+
+        function closePicker() {
+            document.getElementById('selection-modal').style.display = 'none';
+        }
+
+        function selectComponent(slotName, itemId) {
+            const item = (inventory[slotName] || []).find(x => x.id === itemId);
+            if (!item) return;
+
+            currentTour[slotName] = item;
+
+            const valEl = document.getElementById(`val-${slotName}`);
+            const priceEl = document.getElementById(`price-${slotName}`);
+            const actionEl = document.getElementById(`action-${slotName}`);
+
+            valEl.textContent = item.name + (slotName === 'transport' && selectedSeats.length > 0 ? ` (Seats: ${selectedSeats.join(', ')})` : '');
+            valEl.classList.add('configured');
+            priceEl.textContent = `৳${item.price.toLocaleString()}`;
+
+            actionEl.innerHTML = `
+                <button class="btn-choose" style="padding: 0.35rem 0.75rem;" onclick="openPicker('${slotName}')">Change</button>
+                <button class="btn-remove" onclick="removeComponent('${slotName}')" title="Remove Component">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+            `;
+
+            closePicker();
+            recalculateTotals();
+        }
+
+        function removeComponent(slotName) {
+            currentTour[slotName] = null;
+
+            const valEl = document.getElementById(`val-${slotName}`);
+            const priceEl = document.getElementById(`price-${slotName}`);
+            const actionEl = document.getElementById(`action-${slotName}`);
+
+            valEl.textContent = 'Not Selected';
+            valEl.classList.remove('configured');
+            priceEl.textContent = '0৳';
+
+            actionEl.innerHTML = `
+                <button class="btn-choose" onclick="openPicker('${slotName}')">Choose</button>
+            `;
+
+            recalculateTotals();
+        }
+
+        // Scenario 4: Skip Transport Toggle
+        function toggleSkipTransport() {
+            const isSkip = document.getElementById('skip-transport-check').checked;
+            const transitMark = document.getElementById('transit-mark');
+
+            if (isSkip) {
+                currentTour.transport = { id: 0, name: "[✓] Skipped (Self-Drive / Toyota Prado)", price: 0, scenario: "Scenario 4: Decoupled No-Transport" };
+                document.getElementById('val-transport').textContent = "[✓] Skipped (Self-Drive / Toyota Prado)";
+                document.getElementById('val-transport').classList.add('configured');
+                document.getElementById('price-transport').textContent = "0৳";
+                document.getElementById('action-transport').innerHTML = `<span style="color: #ef4444; font-size: 0.8rem; font-weight: 700;">Self-Drive</span>`;
+                transitMark.textContent = "Skipped";
+                transitMark.style.background = "#fef3c7";
+                transitMark.style.color = "#92400e";
+            } else {
+                removeComponent('transport');
+                transitMark.textContent = "Required";
+                transitMark.style.background = "#fee2e2";
+                transitMark.style.color = "#dc2626";
+            }
+            recalculateTotals();
+        }
+
+        function toggleHideUnconfigured() {
+            const isHide = document.getElementById('hide-unconfigured').checked;
+            for (const key in currentTour) {
+                const slot = document.getElementById(`slot-${key}`);
+                if (slot) {
+                    slot.style.display = (isHide && !currentTour[key]) ? 'none' : 'flex';
+                }
+            }
+        }
+
+        function onRouteChanged() {
+            const dest = document.getElementById('destination-select').value;
+            // Pre-customize for Sajek, Tetulia, etc.
+            if (dest === 'sajek') {
+                selectComponent('localtransit', 1); // Chander Gari
+            } else if (dest === 'tetulia') {
+                selectComponent('transport', 2); // Multi-leg flight+micro
+            }
+        }
+
+        // Live Dynamic Recalculation
+        function recalculateTotals() {
+            const travelers = parseInt(document.getElementById('traveler-count').value) || 1;
+            let sum = 0;
+            let configuredCount = 0;
+            const activeScenarios = new Set();
+
+            for (const key in currentTour) {
+                if (currentTour[key]) {
+                    configuredCount++;
+                    sum += currentTour[key].price;
+                    if (currentTour[key].scenario) {
+                        activeScenarios.add(currentTour[key].scenario);
+                    }
+                }
+            }
+
+            if (travelers > 1) {
+                activeScenarios.add("Scenario 5: Multi-Bed Cost Decomposition");
+            }
+
+            const perPerson = Math.round(sum / travelers);
+
+            document.getElementById('total-amount').textContent = `৳${sum.toLocaleString()}`;
+            document.getElementById('per-person-amount').textContent = `৳${perPerson.toLocaleString()}`;
+            document.getElementById('items-count-label').textContent = `${configuredCount} Components Selected`;
+
+            const scenList = document.getElementById('applied-scenarios-list');
+            scenList.innerHTML = Array.from(activeScenarios).map(s => `
+                <span class="scen-tag">✓ ${s}</span>
+            `).join('') || '<span style="color: #64748b; font-size: 0.8rem;">Select components to activate real-world scenario calculations.</span>';
+        }
+
+        // Action Handlers
+        function openShareModal() {
+            const total = document.getElementById('total-amount').textContent;
+            const travelers = document.getElementById('traveler-count').value;
+            const share = document.getElementById('per-person-amount').textContent;
+            alert(`🔗 Scenario 12: Split-Bill Shareable Link Generated!\n\nMaster Itinerary: ${total}\nCohort: ${travelers} Students\nShare Per Student: ${share}\n\nShareable payment link copied to clipboard:\nhttp://localhost:5000/travel-planner.html?split=true&total=${total.replace(/[^\d]/g, '')}`);
+        }
+
+        function openQuoteModal() {
+            alert('📑 Scenario 11: Corporate B2B Quotation Generated with 15% NBR VAT and 5% AIT!\nReady for corporate tax audit submission.');
+        }
+
+        function confirmTourBooking() {
+            if (!currentTour.transport && !document.getElementById('skip-transport-check').checked) {
+                alert('⚠️ Please select an Intermodal Transit method or check [✓] Skip Transport.');
+                return;
+            }
+            if (!currentTour.lodging) {
+                alert('⚠️ Please choose a Hotel & Bedding type to complete your booking.');
+                return;
+            }
+            alert('✅ Travel Plan Confirmed!\nYour custom travel blueprint with dynamic seating, lodging, and dining has been saved.');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            selectComponent('transport', 1); // Scania Coach
+            selectComponent('lodging', 1);   // Deluxe 4-bed Family Room
+        });
+    </script>
+</body>
+</html>
