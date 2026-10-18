@@ -266,11 +266,23 @@
             gap: 1rem;
         }
 
-        .all-actions {
+        .all-actions, .pcb-bottom-actions {
             display: flex;
             align-items: center;
             gap: 0.75rem;
             flex-wrap: wrap;
+        }
+
+        .pcb-bottom-actions {
+            justify-content: flex-end;
+            padding: 1.5rem 0 0.5rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--st-border);
+        }
+
+        .pcb-bottom-actions .action-btn {
+            padding: 0.65rem 1.15rem;
+            font-size: 0.85rem;
         }
 
         .action-btn {
@@ -800,20 +812,20 @@
         <!-- Origin, Destination & Date Search Strip -->
         <div class="search-strip" id="search-strip">
             <div class="search-field" id="field-origin">
-                <label>Origin <span style="color: #ef4444;">*</span></label>
+                <label>From <span style="color: #ef4444;">*</span></label>
                 <select id="origin-select" onchange="onSearchFieldChanged()">
-                    <option value="" disabled selected>Select Origin</option>
+                    <option value="" disabled selected>Select From</option>
                     <option value="Dhaka">Dhaka</option>
                     <option value="Chittagong">Chittagong</option>
                     <option value="Sylhet">Sylhet</option>
                     <option value="Rajshahi">Rajshahi</option>
                 </select>
-                <span class="error-hint">Please choose your origin city</span>
+                <span class="error-hint">Please select departure city (From)</span>
             </div>
             <div class="search-field" id="field-destination">
-                <label>Destination <span style="color: #ef4444;">*</span></label>
+                <label>To <span style="color: #ef4444;">*</span></label>
                 <select id="destination-select" onchange="onSearchFieldChanged()">
-                    <option value="" disabled selected>Select Destination</option>
+                    <option value="" disabled selected>Select To</option>
                     <option value="coxsbazar">Cox's Bazar</option>
                     <option value="sajek">Sajek Valley</option>
                     <option value="sreemangal">Sreemangal</option>
@@ -821,7 +833,7 @@
                     <option value="jaflong">Sylhet & Jaflong</option>
                     <option value="saintmartin">Saint Martin's Island</option>
                 </select>
-                <span class="error-hint">Please choose your destination</span>
+                <span class="error-hint">Please select destination city (To)</span>
             </div>
             <div class="search-field" id="field-dept-date">
                 <label>Departure Date <span style="color: #ef4444;">*</span></label>
@@ -841,35 +853,18 @@
                 <i class="material-icons" id="lock-icon" style="font-size: 18px;">lock</i>
             </span>
             <span id="lock-message" style="flex: 1;">
-                <strong>Planner Locked:</strong> Please fill in all 4 travel criteria above (Origin, Destination, Departure Date, and Travelers) to unlock and customize components.
+                <strong>Planner Locked:</strong> Please fill in all 4 travel criteria above (From, To, Departure Date, and Travelers) to unlock and customize components.
             </span>
         </div>
 
         <!-- PCB Builder Container -->
         <div class="pcb-container is-locked">
 
-            <!-- PCB Head (Logo & Actions) -->
+            <!-- PCB Head (Branding) -->
             <div class="pcb-head">
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
                     <img src="images/logo.png" alt="TravelUp Global" style="height: 38px;">
-                </div>
-                <div class="all-actions">
-                    <button class="action-btn" onclick="openShareModal()">
-                        <i class="material-icons">share</i>
-                        <span>Scenario 12: Split-Bill Link</span>
-                    </button>
-                    <button class="action-btn" onclick="handlePrintItinerary()">
-                        <i class="material-icons">print</i>
-                        <span>Print Itinerary</span>
-                    </button>
-                    <button class="action-btn btn-quote" onclick="openQuoteModal()">
-                        <i class="material-icons">receipt_long</i>
-                        <span>Scenario 11: Get B2B Quote</span>
-                    </button>
-                    <button class="action-btn btn-checkout" onclick="confirmTourBooking()">
-                        <i class="material-icons">shopping_cart_checkout</i>
-                        <span>Confirm & Book</span>
-                    </button>
+                    <span style="font-size: 0.85rem; font-weight: 800; color: var(--st-text-muted); border-left: 2px solid var(--st-border); padding-left: 0.75rem;">Interactive Blueprint Builder</span>
                 </div>
             </div>
 
@@ -921,7 +916,7 @@
                         </div>
                         <div class="product-name" id="val-transport">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-transport">BDT 0</div>
+                    <div class="item-price" id="price-transport"></div>
                     <div class="actions" id="action-transport">
                         <button class="btn-choose" onclick="openPicker('transport')">Choose</button>
                     </div>
@@ -941,7 +936,7 @@
                         </div>
                         <div class="product-name" id="val-localtransit">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-localtransit">BDT 0</div>
+                    <div class="item-price" id="price-localtransit"></div>
                     <div class="actions" id="action-localtransit">
                         <button class="btn-choose" onclick="openPicker('localtransit')">Choose</button>
                     </div>
@@ -962,7 +957,7 @@
                         </div>
                         <div class="product-name" id="val-lodging">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-lodging">BDT 0</div>
+                    <div class="item-price" id="price-lodging"></div>
                     <div class="actions" id="action-lodging">
                         <button class="btn-choose" onclick="openPicker('lodging')">Choose</button>
                     </div>
@@ -979,7 +974,7 @@
                         </div>
                         <div class="product-name" id="val-freshup">Dawn check-in (+35% half-day rate avoiding full extra night)</div>
                     </div>
-                    <div class="item-price" id="price-freshup">BDT 0</div>
+                    <div class="item-price" id="price-freshup"></div>
                     <div class="actions" id="action-freshup">
                         <button class="btn-choose" onclick="openPicker('freshup')">Choose</button>
                     </div>
@@ -999,7 +994,7 @@
                         </div>
                         <div class="product-name" id="val-dining">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-dining">BDT 0</div>
+                    <div class="item-price" id="price-dining"></div>
                     <div class="actions" id="action-dining">
                         <button class="btn-choose" onclick="openPicker('dining')">Choose</button>
                     </div>
@@ -1019,7 +1014,7 @@
                         </div>
                         <div class="product-name" id="val-adventure">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-adventure">BDT 0</div>
+                    <div class="item-price" id="price-adventure"></div>
                     <div class="actions" id="action-adventure">
                         <button class="btn-choose" onclick="openPicker('adventure')">Choose</button>
                     </div>
@@ -1036,7 +1031,7 @@
                         </div>
                         <div class="product-name" id="val-lounge">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-lounge">BDT 0</div>
+                    <div class="item-price" id="price-lounge"></div>
                     <div class="actions" id="action-lounge">
                         <button class="btn-choose" onclick="openPicker('lounge')">Choose</button>
                     </div>
@@ -1053,7 +1048,7 @@
                         </div>
                         <div class="product-name" id="val-scuba">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-scuba">BDT 0</div>
+                    <div class="item-price" id="price-scuba"></div>
                     <div class="actions" id="action-scuba">
                         <button class="btn-choose" onclick="openPicker('scuba')">Choose</button>
                     </div>
@@ -1073,7 +1068,7 @@
                         </div>
                         <div class="product-name" id="val-guide">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-guide">BDT 0</div>
+                    <div class="item-price" id="price-guide"></div>
                     <div class="actions" id="action-guide">
                         <button class="btn-choose" onclick="openPicker('guide')">Choose</button>
                     </div>
@@ -1090,10 +1085,30 @@
                         </div>
                         <div class="product-name" id="val-honeymoon">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-honeymoon">BDT 0</div>
+                    <div class="item-price" id="price-honeymoon"></div>
                     <div class="actions" id="action-honeymoon">
                         <button class="btn-choose" onclick="openPicker('honeymoon')">Choose</button>
                     </div>
+                </div>
+
+                <!-- Bottom Actions Toolbar (Relocated below component form) -->
+                <div class="pcb-bottom-actions">
+                    <button class="action-btn" onclick="openShareModal()">
+                        <i class="material-icons">share</i>
+                        <span>Scenario 12: Split-Bill Link</span>
+                    </button>
+                    <button class="action-btn" onclick="handlePrintItinerary()">
+                        <i class="material-icons">print</i>
+                        <span>Print Itinerary</span>
+                    </button>
+                    <button class="action-btn btn-quote" onclick="openQuoteModal()">
+                        <i class="material-icons">receipt_long</i>
+                        <span>Scenario 11: Get B2B Quote</span>
+                    </button>
+                    <button class="action-btn btn-checkout" onclick="confirmTourBooking()">
+                        <i class="material-icons">shopping_cart_checkout</i>
+                        <span>Confirm & Book</span>
+                    </button>
                 </div>
 
                 <!-- Applied Scenarios Banner -->
@@ -1284,7 +1299,7 @@
 
             if (!origin) {
                 isValid = false;
-                missing.push('Origin');
+                missing.push('From');
                 if (triggerHighlight && fOrigin) fOrigin.classList.add('has-error');
             } else if (fOrigin) {
                 fOrigin.classList.remove('has-error');
@@ -1292,7 +1307,7 @@
 
             if (!dest) {
                 isValid = false;
-                missing.push('Destination');
+                missing.push('To');
                 if (triggerHighlight && fDest) fDest.classList.add('has-error');
             } else if (fDest) {
                 fDest.classList.remove('has-error');
@@ -1324,7 +1339,7 @@
                     banner.className = 'lock-banner locked';
                     if (icon) icon.textContent = 'lock';
                     if (msg) {
-                        msg.innerHTML = `<strong>Planner Locked:</strong> Please fill in all 4 travel criteria above (Origin, Destination, Departure Date, and Travelers) to unlock and customize components.`;
+                        msg.innerHTML = `<strong>Planner Locked:</strong> Please fill in all 4 travel criteria above (From, To, Departure Date, and Travelers) to unlock and customize components.`;
                     }
                 }
                 if (pcb) pcb.classList.add('is-locked');
@@ -1432,7 +1447,7 @@
 
             valEl.textContent = 'Not Selected';
             valEl.classList.remove('configured');
-            priceEl.textContent = 'BDT 0';
+            priceEl.textContent = '';
 
             actionEl.innerHTML = `
                 <button class="btn-choose" onclick="openPicker('${slotName}')">Choose</button>
