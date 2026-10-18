@@ -918,11 +918,11 @@
                 </div>
                 <div class="price-stats-wrap">
                     <div class="stat-box person-box">
-                        <div class="amount" id="per-person-amount">BDT 0</div>
+                        <div class="amount" id="per-person-amount">—</div>
                         <div class="label">Per Person (Scenario 5)</div>
                     </div>
                     <div class="stat-box">
-                        <div class="amount" id="total-amount">BDT 0</div>
+                        <div class="amount" id="total-amount">—</div>
                         <div class="label" id="items-count-label">0 Components Selected</div>
                     </div>
                 </div>
@@ -1332,23 +1332,53 @@
                 <button class="modal-close-btn" onclick="closePicker()">&times;</button>
             </div>
             <div class="modal-body">
-                <!-- Bus 40-Seat Picker Container (Shows if bus selected) -->
+                <!-- Bus 40-Seat Picker Container (Opens after choosing a specific bus) -->
                 <div id="bus-seat-picker-wrap" style="display: none;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <div id="seat-bus-name" style="font-weight: 800; font-size: 0.95rem; color: var(--st-text);"></div>
+                            <div id="seat-bus-rate" style="font-size: 0.8rem; color: var(--st-text-muted);"></div>
+                        </div>
+                        <button type="button" class="btn-demo-reset" onclick="backToBusList()" style="font-size: 0.8rem; cursor: pointer;">
+                            <i class="material-icons" style="font-size: 15px;">arrow_back</i> Back to Buses
+                        </button>
+                    </div>
+
+                    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; color: #1e40af; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <i class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 4px;">airline_seat_recline_extra</i>
+                            Select <strong id="seats-target-count">4</strong> seat(s) for your <strong id="travelers-target-count">4</strong> traveler(s).
+                        </div>
+                        <div>
+                            Selected: <strong id="seats-selected-display" style="color: var(--st-primary);">None</strong>
+                        </div>
+                    </div>
+
                     <div class="bus-seat-layout">
                         <div class="bus-driver-area">
                             <span>🚪 ENTRANCE</span>
-                            <span>🚌 SCANIA LUXURY (40 SEATS)</span>
-                            <span>STEERING WHEEL 🛞</span>
+                            <span>🚌 40-SEAT INTERACTIVE PLAN</span>
+                            <span>STEERING 🛞</span>
                         </div>
                         <!-- 40 Seats Grid A1-J4 -->
                         <div class="seat-row-grid" id="bus-seats-container"></div>
                     </div>
-                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.85rem; font-size: 0.8rem; color: #166534; margin-bottom: 1.25rem;">
-                        <strong>📞 Scenario 3 Counter Telematics:</strong> Arambagh Counter 4 | Manager: +880 1712-345678 | Supervisor: +880 1819-876543 (Rows A & B reserved for Female safety).
+
+                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.8rem; color: #166534; margin: 1rem 0;">
+                        <strong>📞 Scenario 3 Counter Telematics:</strong> Arambagh Counter 4 | Manager: +880 1712-345678 | Supervisor: +880 1819-876543 (Rows A & B reserved for Female safety priority ♀).
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--st-border); flex-wrap: wrap; gap: 0.75rem;">
+                        <div id="seat-cost-summary" style="font-size: 1.1rem; font-weight: 900; color: var(--st-primary);">
+                            Total: BDT 0
+                        </div>
+                        <button type="button" class="btn-checkout" style="padding: 0.6rem 1.5rem; font-size: 0.875rem;" onclick="confirmSeatSelection()">
+                            Confirm Seats & Select Bus
+                        </button>
                     </div>
                 </div>
 
-                <!-- Items List -->
+                <!-- Items List (Shown first when modal opens) -->
                 <div id="modal-items-list"></div>
             </div>
         </div>
@@ -1381,8 +1411,6 @@
             permit: null,
             honeymoon: null
         };
-
-        let selectedSeats = ['A1', 'A2', 'B1', 'B2'];
 
         // Dynamic Inventory Mapped to Individual Categories
         const inventory = {
@@ -1477,9 +1505,79 @@
             ]
         };
 
-        // Render 40 Seats Grid (Scenario 3)
+        // Helper Constants & Classification
+        const PER_PERSON_SLOTS = new Set([
+            'bus', 'coach', 'flight', 'train',
+            'bbq', 'traditionalfood', 'buffet',
+            'parasailing', 'lounge', 'scuba'
+        ]);
+
+        function isPerPersonSlot(slotKey) {
+            return PER_PERSON_SLOTS.has(slotKey);
+        }
+
+        function getTravelerCount() {
+            const el = document.getElementById('traveler-count');
+            const val = el ? parseInt(el.value, 10) : 1;
+            return (val && val > 0) ? val : 1;
+        }
+
+        function formatSlotTitle(slotName) {
+            const titles = {
+                bus: 'Bus (Economy Non-AC)',
+                coach: 'AC Luxury Coach',
+                flight: 'Domestic Flight',
+                train: 'Intercity Express Train',
+                microbus: 'AC Microbus (Toyota HiAce / Noah)',
+                jeep: 'Chander Gari / 4WD Mountain Jeep',
+                cng: 'Auto-Rickshaw / Electric TomTom / CNG',
+                hotel: 'Resort & Hotel Room',
+                cottage: 'Eco Cottage & Wooden Villa',
+                freshup: '5:30 AM Early Arrival Fresh-up Room',
+                bbq: 'Live Seafood BBQ Dinner',
+                traditionalfood: 'Traditional Food & Indigenous Feast',
+                buffet: 'Buffet & Full-Board Meal Plan',
+                parasailing: 'Parasailing Adventure Flight',
+                speedboat: 'Speedboat Safari & Island Cruise',
+                lounge: 'Beachside Coconut Lounge Relaxation',
+                scuba: 'Coral Reef Scuba Diving',
+                guide: 'Certified Local Tour Guide',
+                permit: 'Special Boat & Entry Permits',
+                honeymoon: 'Honeymoon Flower Bed Decoration'
+            };
+            return titles[slotName] || (slotName ? slotName.toUpperCase() : 'COMPONENT');
+        }
+
+        function getItemPriceCalculation(slotKey, item, travelers) {
+            if (!item) return { itemTotal: 0, perPersonShare: 0, subtitle: '' };
+            const isPerPerson = (item.pricingType === 'per_person') || isPerPersonSlot(slotKey);
+
+            let itemTotal = 0;
+            let perPersonShare = 0;
+            let subtitle = '';
+
+            if (isPerPerson) {
+                const count = (item.selectedSeats && item.selectedSeats.length > 0) ? item.selectedSeats.length : travelers;
+                itemTotal = item.price * count;
+                perPersonShare = item.price;
+                subtitle = `BDT ${item.price.toLocaleString()} × ${count} pax`;
+            } else {
+                itemTotal = item.price;
+                perPersonShare = Math.round(item.price / travelers);
+                subtitle = `BDT ${perPersonShare.toLocaleString()} / person (shared)`;
+            }
+
+            return { itemTotal, perPersonShare, subtitle };
+        }
+
+        // 40-Seat Interactive Bus Matrix (Scenario 3)
+        let selectedSeats = ['A1', 'A2', 'B1', 'B2'];
+        let pendingSlot = null;
+        let pendingItem = null;
+
         function renderBusSeatGrid() {
             const container = document.getElementById('bus-seats-container');
+            if (!container) return;
             const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
             let html = '';
 
@@ -1492,7 +1590,8 @@
 
                     html += `
                         <div class="seat-btn ${isFemaleRow ? 'female' : ''} ${isSelected ? 'selected' : ''} ${isBooked ? 'booked' : ''}" 
-                             onclick="toggleBusSeat('${seatId}', this, ${isBooked})">
+                             onclick="toggleBusSeat('${seatId}', this, ${isBooked})"
+                             title="${isBooked ? 'Seat Booked' : isFemaleRow ? 'Female Priority Seat' : 'Available Seat'}">
                             ${seatId}${isFemaleRow ? '♀' : ''}
                         </div>
                     `;
@@ -1506,12 +1605,93 @@
 
         function toggleBusSeat(seatId, el, isBooked) {
             if (isBooked) return;
-            el.classList.toggle('selected');
+            const travelers = getTravelerCount();
+
             if (selectedSeats.includes(seatId)) {
                 selectedSeats = selectedSeats.filter(s => s !== seatId);
             } else {
+                if (selectedSeats.length >= travelers && travelers > 0) {
+                    selectedSeats.shift();
+                }
                 selectedSeats.push(seatId);
             }
+            renderBusSeatGrid();
+            updateSeatSelectionUI();
+        }
+
+        function updateSeatSelectionUI() {
+            const travelers = getTravelerCount();
+            const item = pendingItem;
+            if (!item) return;
+
+            const countEl = document.getElementById('seats-target-count');
+            const travEl = document.getElementById('travelers-target-count');
+            const dispEl = document.getElementById('seats-selected-display');
+            const costEl = document.getElementById('seat-cost-summary');
+
+            if (countEl) countEl.textContent = travelers;
+            if (travEl) travEl.textContent = travelers;
+            if (dispEl) {
+                dispEl.textContent = selectedSeats.length > 0 ? `${selectedSeats.join(', ')} (${selectedSeats.length}/${travelers})` : 'None';
+            }
+            if (costEl) {
+                const totalCost = selectedSeats.length * item.price;
+                costEl.innerHTML = `Total: <strong>BDT ${totalCost.toLocaleString()}</strong> <span style="font-size: 0.8rem; font-weight: normal; color: #64748b;">(${selectedSeats.length} seat(s) × BDT ${item.price.toLocaleString()})</span>`;
+            }
+        }
+
+        function backToBusList() {
+            const busSeatWrap = document.getElementById('bus-seat-picker-wrap');
+            const listEl = document.getElementById('modal-items-list');
+            const titleEl = document.getElementById('modal-category-title');
+
+            if (busSeatWrap) busSeatWrap.style.display = 'none';
+            if (listEl) listEl.style.display = 'block';
+            if (titleEl && pendingSlot) {
+                titleEl.textContent = `Select ${formatSlotTitle(pendingSlot)}`;
+            }
+        }
+
+        function openSeatPicker(slotName, itemId) {
+            const item = (inventory[slotName] || []).find(x => x.id === itemId);
+            if (!item) return;
+
+            pendingSlot = slotName;
+            pendingItem = item;
+
+            const listEl = document.getElementById('modal-items-list');
+            const busSeatWrap = document.getElementById('bus-seat-picker-wrap');
+            const titleEl = document.getElementById('modal-category-title');
+            const nameEl = document.getElementById('seat-bus-name');
+            const rateEl = document.getElementById('seat-bus-rate');
+
+            if (nameEl) nameEl.textContent = item.name;
+            if (rateEl) rateEl.textContent = `BDT ${item.price.toLocaleString()} per seat • ${item.sub}`;
+            if (titleEl) titleEl.textContent = `Select Seats - ${item.name}`;
+
+            listEl.style.display = 'none';
+            busSeatWrap.style.display = 'block';
+
+            const travelers = getTravelerCount();
+            if (!item.selectedSeats || item.selectedSeats.length === 0) {
+                const pool = ['A1', 'A2', 'B1', 'B2', 'A3', 'A4', 'B3', 'B4', 'E1', 'E2', 'E3', 'E4'];
+                selectedSeats = pool.slice(0, travelers);
+            } else {
+                selectedSeats = [...item.selectedSeats];
+            }
+
+            renderBusSeatGrid();
+            updateSeatSelectionUI();
+        }
+
+        function confirmSeatSelection() {
+            if (!pendingSlot || !pendingItem) return;
+            if (selectedSeats.length === 0) {
+                alert('Please select at least one seat to proceed.');
+                return;
+            }
+
+            selectComponent(pendingSlot, pendingItem.id, [...selectedSeats]);
         }
 
         let currentActiveSlot = null;
@@ -1567,6 +1747,10 @@
             if (travelerInput) travelerInput.value = '';
 
             document.querySelectorAll('.btn-demo-pill').forEach(btn => btn.classList.remove('active'));
+
+            for (const key in currentTour) {
+                removeComponent(key);
+            }
 
             validateSearchFields(false);
             recalculateTotals();
@@ -1677,28 +1861,51 @@
             const listEl = document.getElementById('modal-items-list');
             const busSeatWrap = document.getElementById('bus-seat-picker-wrap');
 
-            titleEl.textContent = `Select ${slotName.toUpperCase()}`;
+            titleEl.textContent = `Select ${formatSlotTitle(slotName)}`;
 
-            if (slotName === 'bus' || slotName === 'coach') {
-                busSeatWrap.style.display = 'block';
-                renderBusSeatGrid();
-            } else {
-                busSeatWrap.style.display = 'none';
-            }
+            // Always start by showing the list of operators/options first
+            busSeatWrap.style.display = 'none';
+            listEl.style.display = 'block';
 
-            listEl.innerHTML = items.map(item => `
-                <div class="select-card">
-                    <div class="select-card-info">
-                        <img src="${item.img}" class="select-card-img" alt="${item.name}">
-                        <div>
-                            <div class="select-card-title">${item.name}</div>
-                            <div class="select-card-sub">${item.sub}</div>
+            const travelers = getTravelerCount();
+            const isPerPerson = isPerPersonSlot(slotName);
+
+            listEl.innerHTML = items.map(item => {
+                const itemPricing = item.pricingType || (isPerPerson ? 'per_person' : 'per_group');
+                const priceLabel = itemPricing === 'per_person' 
+                    ? `BDT ${item.price.toLocaleString()} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">/ person</span>`
+                    : `BDT ${item.price.toLocaleString()} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">/ unit (shared)</span>`;
+
+                const totalSubtitle = (itemPricing === 'per_person' && travelers > 1)
+                    ? `<div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Total: BDT ${(item.price * travelers).toLocaleString()} (${travelers} pax)</div>`
+                    : (itemPricing === 'per_group' && travelers > 1)
+                    ? `<div style="font-size: 0.72rem; color: #16a34a; font-weight: 700; margin-top: 2px;">BDT ${Math.round(item.price / travelers).toLocaleString()} / person</div>`
+                    : '';
+
+                const actionBtn = (item.hasSeats || slotName === 'bus' || slotName === 'coach')
+                    ? `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openSeatPicker('${slotName}', ${item.id})">
+                         <span>View Seats</span>
+                         <i class="material-icons" style="font-size: 15px;">airline_seat_recline_extra</i>
+                       </button>`
+                    : `<button class="btn-choose" onclick="selectComponent('${slotName}', ${item.id})">Select</button>`;
+
+                return `
+                    <div class="select-card">
+                        <div class="select-card-info" style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="${item.img}" class="select-card-img" alt="${item.name}" style="width: 75px; height: 60px; object-fit: cover; border-radius: 6px;">
+                            <div>
+                                <div class="select-card-title" style="font-weight: 800; font-size: 0.95rem; color: var(--st-text);">${item.name}</div>
+                                <div class="select-card-sub" style="font-size: 0.8rem; color: var(--st-text-muted); margin-top: 0.2rem;">${item.sub}</div>
+                            </div>
                         </div>
+                        <div style="text-align: right; min-width: 140px;">
+                            <div class="select-card-price" style="font-size: 1.05rem; font-weight: 800; color: var(--st-primary);">${priceLabel}</div>
+                            ${totalSubtitle}
+                        </div>
+                        <div>${actionBtn}</div>
                     </div>
-                    <div class="select-card-price">BDT ${item.price.toLocaleString()}</div>
-                    <button class="btn-choose" onclick="selectComponent('${slotName}', ${item.id})">Select</button>
-                </div>
-            `).join('');
+                `;
+            }).join('');
 
             document.getElementById('selection-modal').style.display = 'flex';
         }
@@ -1707,19 +1914,36 @@
             document.getElementById('selection-modal').style.display = 'none';
         }
 
-        function selectComponent(slotName, itemId) {
+        function selectComponent(slotName, itemId, seats = null) {
             const item = (inventory[slotName] || []).find(x => x.id === itemId);
             if (!item) return;
 
-            currentTour[slotName] = item;
+            const itemToStore = { ...item };
+            if (seats && seats.length > 0) {
+                itemToStore.selectedSeats = [...seats];
+            }
+
+            currentTour[slotName] = itemToStore;
 
             const valEl = document.getElementById(`val-${slotName}`);
             const priceEl = document.getElementById(`price-${slotName}`);
             const actionEl = document.getElementById(`action-${slotName}`);
 
-            valEl.textContent = item.name + ((slotName === 'bus' || slotName === 'coach') && selectedSeats.length > 0 ? ` (Seats: ${selectedSeats.join(', ')})` : '');
+            const travelers = getTravelerCount();
+            const calc = getItemPriceCalculation(slotName, itemToStore, travelers);
+
+            let seatLabel = '';
+            if (itemToStore.selectedSeats && itemToStore.selectedSeats.length > 0) {
+                seatLabel = ` (Seats: ${itemToStore.selectedSeats.join(', ')})`;
+            }
+
+            valEl.textContent = item.name + seatLabel;
             valEl.classList.add('configured');
-            priceEl.textContent = `BDT ${item.price.toLocaleString()}`;
+
+            priceEl.innerHTML = `
+                <div>BDT ${calc.itemTotal.toLocaleString()}</div>
+                <div style="font-size: 0.72rem; color: var(--st-text-muted); font-weight: 600;">${calc.subtitle}</div>
+            `;
 
             actionEl.innerHTML = `
                 <button class="btn-choose" style="padding: 0.35rem 0.75rem;" onclick="openPicker('${slotName}')">Change</button>
@@ -1739,13 +1963,17 @@
             const priceEl = document.getElementById(`price-${slotName}`);
             const actionEl = document.getElementById(`action-${slotName}`);
 
-            valEl.textContent = 'Not Selected';
-            valEl.classList.remove('configured');
-            priceEl.textContent = '';
+            if (valEl) {
+                valEl.textContent = 'Not Selected';
+                valEl.classList.remove('configured');
+            }
+            if (priceEl) priceEl.innerHTML = '';
 
-            actionEl.innerHTML = `
-                <button class="btn-choose" onclick="openPicker('${slotName}')">Choose</button>
-            `;
+            if (actionEl) {
+                actionEl.innerHTML = `
+                    <button class="btn-choose" onclick="openPicker('${slotName}')">Choose</button>
+                `;
+            }
 
             recalculateTotals();
         }
@@ -1925,19 +2153,35 @@
 
         // Live Dynamic Recalculation
         function recalculateTotals() {
-            const travelerInput = document.getElementById('traveler-count');
-            const travelers = (travelerInput && parseInt(travelerInput.value, 10) > 0) ? parseInt(travelerInput.value, 10) : 1;
-            let sum = 0;
+            const travelers = getTravelerCount();
+            let grandTotal = 0;
             let configuredCount = 0;
             const activeScenarios = new Set();
 
-            for (const key in currentTour) {
-                if (currentTour[key]) {
+            for (const slotKey in currentTour) {
+                const item = currentTour[slotKey];
+                if (item) {
                     configuredCount++;
-                    sum += currentTour[key].price;
-                    if (currentTour[key].scenario) {
-                        activeScenarios.add(currentTour[key].scenario);
+                    const calc = getItemPriceCalculation(slotKey, item, travelers);
+                    grandTotal += calc.itemTotal;
+
+                    const priceEl = document.getElementById(`price-${slotKey}`);
+                    const valEl = document.getElementById(`val-${slotKey}`);
+                    let seatSuffix = '';
+                    if (item.selectedSeats && item.selectedSeats.length > 0) {
+                        seatSuffix = ` (Seats: ${item.selectedSeats.join(', ')})`;
                     }
+                    if (valEl && !valEl.textContent.includes('Not Selected')) {
+                        valEl.textContent = item.name + seatSuffix;
+                    }
+                    if (priceEl) {
+                        priceEl.innerHTML = `
+                            <div>BDT ${calc.itemTotal.toLocaleString()}</div>
+                            <div style="font-size: 0.72rem; color: var(--st-text-muted); font-weight: 600;">${calc.subtitle}</div>
+                        `;
+                    }
+
+                    if (item.scenario) activeScenarios.add(item.scenario);
                 }
             }
 
@@ -1945,34 +2189,56 @@
                 activeScenarios.add("Scenario 5: Multi-Bed Cost Decomposition");
             }
 
-            const perPerson = Math.round(sum / travelers);
-
-            document.getElementById('total-amount').textContent = `BDT ${sum.toLocaleString()}`;
-            document.getElementById('per-person-amount').textContent = `BDT ${perPerson.toLocaleString()}`;
-            document.getElementById('items-count-label').textContent = `${configuredCount} Components Selected`;
+            if (configuredCount === 0) {
+                document.getElementById('total-amount').textContent = '—';
+                document.getElementById('per-person-amount').textContent = '—';
+                document.getElementById('items-count-label').textContent = '0 Components Selected';
+            } else {
+                const perPerson = travelers > 0 ? Math.round(grandTotal / travelers) : 0;
+                document.getElementById('total-amount').textContent = `BDT ${grandTotal.toLocaleString()}`;
+                document.getElementById('per-person-amount').textContent = `BDT ${perPerson.toLocaleString()}`;
+                document.getElementById('items-count-label').textContent = `${configuredCount} Components Selected`;
+            }
 
             const scenList = document.getElementById('applied-scenarios-list');
-            scenList.innerHTML = Array.from(activeScenarios).map(s => `
-                <span class="scen-tag">✓ ${s}</span>
-            `).join('') || '<span style="color: #64748b; font-size: 0.8rem;">Select components to activate real-world scenario calculations.</span>';
+            if (scenList) {
+                scenList.innerHTML = Array.from(activeScenarios).map(s => `
+                    <span class="scen-tag">✓ ${s}</span>
+                `).join('') || '<span style="color: #64748b; font-size: 0.8rem;">Select components to activate real-world scenario calculations.</span>';
+            }
         }
 
         // Action Handlers
         function openShareModal() {
             if (!validateSearchFields(true)) return;
+            const hasAnyConfigured = Object.values(currentTour).some(x => x !== null);
+            if (!hasAnyConfigured) {
+                alert('⚠️ Please select at least one component before generating a split-bill link.');
+                return;
+            }
             const total = document.getElementById('total-amount').textContent;
-            const travelers = document.getElementById('traveler-count').value;
+            const travelers = getTravelerCount();
             const share = document.getElementById('per-person-amount').textContent;
-            alert(`🔗 Scenario 12: Split-Bill Shareable Link Generated!\n\nMaster Itinerary: ${total}\nCohort: ${travelers} Students\nShare Per Student: ${share}\n\nShareable payment link copied to clipboard:\nhttp://localhost:5000/travel-planner.html?split=true&total=${total.replace(/[^\d]/g, '')}`);
+            alert(`🔗 Scenario 12: Split-Bill Shareable Link Generated!\n\nMaster Itinerary: ${total}\nCohort: ${travelers} Travelers\nShare Per Traveler: ${share}\n\nShareable payment link copied to clipboard:\nhttp://localhost:5000/travel-planner.html?split=true&total=${total.replace(/[^\d]/g, '')}`);
         }
 
         function openQuoteModal() {
             if (!validateSearchFields(true)) return;
+            const hasAnyConfigured = Object.values(currentTour).some(x => x !== null);
+            if (!hasAnyConfigured) {
+                alert('⚠️ Please select at least one component before generating a B2B quote.');
+                return;
+            }
             alert('📑 Scenario 11: Corporate B2B Quotation Generated with 15% NBR VAT and 5% AIT!\nReady for corporate tax audit submission.');
         }
 
         function handlePrintItinerary() {
             if (!validateSearchFields(true)) return;
+            const hasAnyConfigured = Object.values(currentTour).some(x => x !== null);
+            if (!hasAnyConfigured) {
+                alert('⚠️ Please select at least one component before printing an itinerary.');
+                return;
+            }
             window.print();
         }
 
