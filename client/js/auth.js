@@ -40,11 +40,10 @@ const Auth = {
         if (user) {
             authContainer.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <a href="/dashboard.html" style="font-weight: 600; font-size: 0.9rem; color: var(--secondary); display: flex; align-items: center; gap: 0.4rem;">
+                    <span style="font-weight: 600; font-size: 0.9rem; color: var(--secondary); display: flex; align-items: center; gap: 0.4rem;">
                         <span style="display:inline-block; width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></span>
-                        ${user.name.split(' ')[0]} ${this.isAdmin() ? '<span class="brand-badge" style="background:#fee2e2; color:#dc2626;">Staff</span>' : ''}
-                    </a>
-                    ${this.isAdmin() ? '<a href="/admin.html" class="btn btn-sm btn-outline">Admin Portal</a>' : ''}
+                        ${user.name.split(' ')[0]}
+                    </span>
                     <button onclick="Auth.logout()" class="btn btn-sm btn-outline" style="padding: 0.35rem 0.65rem;">Logout</button>
                 </div>
             `;
