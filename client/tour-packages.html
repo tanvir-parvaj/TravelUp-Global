@@ -18,6 +18,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/style.css">
 
     <style>
@@ -623,27 +625,8 @@
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
-    <header class="top-navbar">
-        <div class="container nav-inner">
-            <div style="display: flex; align-items: center; gap: 2rem;">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="TravelUp Global" class="brand-logo-img">
-                </a>
-                <nav class="main-menu">
-                    <a href="index.html">Home</a>
-                    <a href="tour-packages.html" class="active">Tour Packages</a>
-                    <a href="travel-planner.html">Travel Planner</a>
-                </nav>
-            </div>
-            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <a href="travel-planner.html" class="btn btn-primary btn-sm" style="display: flex; align-items: center; gap: 4px; padding: 0.45rem 1rem;">
-                    <i class="material-icons" style="font-size: 16px;">tune</i>
-                    <span>Custom Trip Builder</span>
-                </a>
-            </div>
-        </div>
-    </header>
+    <!-- Unified Header Slot (Managed by shell.js) -->
+    <div id="site-header-slot"></div>
 
     <!-- Hero Header -->
     <section class="packages-hero">
@@ -723,6 +706,9 @@
             </div>
         </section>
     </div>
+
+    <!-- Unified Footer Slot (Managed by shell.js) -->
+    <div id="site-footer-slot"></div>
 
     <!-- Package Detailed Itinerary Modal -->
     <div class="modal-overlay" id="package-details-modal">
@@ -1380,5 +1366,7 @@
             }
         });
     </script>
+    <script src="js/auth.js"></script>
+    <script src="js/shell.js"></script>
 </body>
 </html>

@@ -1,0 +1,126 @@
+/**
+ * ====================================================================
+ * TravelUp Global — Design System Tokens (tokens.css)
+ * Next-Generation Dynamic Tourism & Algorithmic Travel Engine
+ * ====================================================================
+ */
+
+:root {
+    /* 1. Core Color Palette */
+    --color-primary: #0284c7;             /* Sky 600 - Primary brand blue */
+    --color-primary-hover: #0369a1;       /* Sky 700 - Active / hover state */
+    --color-primary-light: #e0f2fe;       /* Sky 100 - Soft tint background */
+    --color-primary-glow: rgba(2, 132, 199, 0.15);
+
+    --color-secondary: #0f172a;           /* Slate 900 - Dark slate */
+    --color-secondary-hover: #1e293b;     /* Slate 800 */
+
+    --color-accent: #10b981;              /* Emerald 500 - Highlight / success */
+    --color-accent-hover: #059669;
+
+    /* 2. Text & Typography Colors */
+    --color-heading: #0f172a;             /* Dark Slate */
+    --color-text-main: #334155;           /* Slate 700 - High contrast body */
+    --color-text-muted: #64748b;          /* Slate 500 - Secondary info */
+    --color-text-light: #94a3b8;          /* Slate 400 - Tertiary / icons */
+    --color-text-inverse: #ffffff;        /* Pure white on dark surfaces */
+
+    /* 3. Surface & Background Colors */
+    --color-bg-page: #f8fafc;             /* Slate 50 - Off-white canvas */
+    --color-bg-card: #ffffff;             /* Surface white */
+    --color-bg-subtle: #f1f5f9;           /* Slate 100 - Subtle input/pill bg */
+    --color-bg-hover: #f8fafc;            /* Light hover */
+
+    /* 4. Borders & Dividers */
+    --color-border: #e2e8f0;              /* Slate 200 - Clean structural border */
+    --color-border-focus: #0284c7;        /* Focused ring */
+    --color-border-subtle: #f1f5f9;       /* Soft separator */
+
+    /* 5. Semantic Feedback States */
+    --color-success: #15803d;             /* Green 700 - Verified / Success */
+    --color-success-bg: #f0fdf4;
+    --color-success-border: #bbf7d0;
+
+    --color-warning: #b45309;             /* Amber 700 - Caution / Pending */
+    --color-warning-bg: #fffbeb;
+    --color-warning-border: #fde68a;
+
+    --color-error: #b91c1c;               /* Red 700 - Error / Alert */
+    --color-error-bg: #fef2f2;
+    --color-error-border: #fecaca;
+
+    /* 6. Typography Scale */
+    --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    
+    --font-size-hero: clamp(32px, 5vw, 56px);
+    --font-size-h1: clamp(28px, 4vw, 40px);
+    --font-size-h2: clamp(22px, 3vw, 30px);
+    --font-size-h3: clamp(18px, 2.5vw, 24px);
+    --font-size-card: 18px;
+    --font-size-body: 15px;
+    --font-size-nav: 14px;
+    --font-size-sm: 13px;
+    --font-size-xs: 11px;
+    --font-size-price: clamp(24px, 3.5vw, 32px);
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-black: 800;
+
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.65;
+
+    /* 7. Spacing & Sizing Scale (4px / 8px Grid) */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+
+    /* Container constraints */
+    --container-max-width: 1240px;
+    --container-padding: clamp(16px, 3vw, 32px);
+
+    /* 8. Component Sizing */
+    --height-nav: 72px;
+    --height-input: 48px;
+    --height-button: 46px;
+    --height-button-sm: 36px;
+    --height-button-lg: 52px;
+
+    /* 9. Border Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-pill: 9999px;
+
+    /* 10. Elevation & Shadows */
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-dropdown: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+    --shadow-modal: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+    --shadow-primary: 0 4px 14px 0 rgba(2, 132, 199, 0.3);
+
+    /* 11. Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* 12. Z-Index Registry */
+    --z-base: 1;
+    --z-sticky: 100;
+    --z-nav: 1000;
+    --z-dropdown: 1100;
+    --z-modal: 2000;
+    --z-toast: 3000;
+}
