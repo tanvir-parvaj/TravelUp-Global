@@ -85,13 +85,88 @@
             color: var(--st-primary);
         }
 
+        /* Admin Demo Presets Bar */
+        .demo-preset-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            border: 1px solid var(--st-border);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            padding: 0.65rem 1.25rem;
+            margin: 1.5rem 0 0;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .demo-badge {
+            background: #0284c7;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+        }
+
+        .demo-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-demo-pill {
+            background: #f0f9ff;
+            color: #0284c7;
+            border: 1px solid #bae6fd;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .btn-demo-pill:hover, .btn-demo-pill.active {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+            box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+        }
+
+        .btn-demo-reset {
+            background: transparent;
+            color: var(--st-text-muted);
+            border: 1px solid var(--st-border);
+            padding: 0.35rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .btn-demo-reset:hover {
+            color: #ef4444;
+            border-color: #fca5a5;
+            background: #fff5f5;
+        }
+
         /* Search Filter Box (Single Row Layout) */
         .search-strip {
             background: #ffffff;
             border: 1px solid var(--st-border);
-            border-radius: 8px;
+            border-radius: 0 0 8px 8px;
             padding: 1.15rem 1.5rem;
-            margin: 1.5rem 0 1rem;
+            margin: 0 0 1rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.04);
             display: grid;
             grid-template-columns: 1.3fr 1.3fr 1.1fr 0.9fr;
@@ -818,6 +893,28 @@
 
     <div class="container">
 
+        <!-- Admin Quick Demo Combos Strip -->
+        <div class="demo-preset-strip">
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 800; color: #475569;">
+                <span class="demo-badge">ADMIN</span>
+                <span>Quick Demo Combos:</span>
+            </div>
+            <div class="demo-buttons">
+                <button type="button" class="btn-demo-pill active" onclick="autoFillDemo('coxsbazar', 'Dhaka', 4)" title="Autofill Dhaka -> Cox's Bazar (4 Pax)">
+                    ⚡ Demo: Dhaka ➔ Cox's Bazar (4 Pax)
+                </button>
+                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('sajek', 'Dhaka', 10)" title="Autofill Dhaka -> Sajek Valley (10 Pax)">
+                    ⚡ Sajek Valley (10 Pax)
+                </button>
+                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('saintmartin', 'Chittagong', 2)" title="Autofill Chittagong -> Saint Martin (2 Pax)">
+                    ⚡ Saint Martin (2 Pax)
+                </button>
+                <button type="button" class="btn-demo-reset" onclick="resetSearchFields()" title="Reset all fields to test locked state">
+                    <i class="material-icons" style="font-size: 14px;">restart_alt</i> Reset
+                </button>
+            </div>
+        </div>
+
         <!-- Origin, Destination & Date Search Strip -->
         <div class="search-strip" id="search-strip">
             <div class="search-field" id="field-origin">
@@ -864,6 +961,9 @@
             <span id="lock-message" style="flex: 1;">
                 <strong>Planner Locked:</strong> Please fill in all 4 travel criteria above (From, To, Departure Date, and Travelers) to unlock and customize components.
             </span>
+            <button type="button" class="btn-demo-pill" style="margin-left: auto; background: #0284c7; color: #fff; border-color: #0284c7;" onclick="autoFillDemo('coxsbazar', 'Dhaka', 4)">
+                ⚡ Quick Demo
+            </button>
         </div>
 
         <!-- PCB Builder Container -->
@@ -1263,6 +1363,59 @@
             window._toastTimeout = setTimeout(() => {
                 toast.style.display = 'none';
             }, 3500);
+        }
+
+        // Admin Demo Autofill & Reset Combos
+        function autoFillDemo(dest = 'coxsbazar', from = 'Dhaka', travelers = 4) {
+            const originSelect = document.getElementById('origin-select');
+            const destSelect = document.getElementById('destination-select');
+            const deptDateInput = document.getElementById('dept-date');
+            const travelerInput = document.getElementById('traveler-count');
+
+            if (originSelect) originSelect.value = from;
+            if (destSelect) destSelect.value = dest;
+
+            // Compute upcoming date (7 days from now)
+            const futureDate = new Date();
+            futureDate.setDate(futureDate.getDate() + 7);
+            const dateStr = futureDate.toISOString().split('T')[0];
+            if (deptDateInput) deptDateInput.value = dateStr;
+
+            if (travelerInput) travelerInput.value = travelers;
+
+            // Clear any error states
+            ['field-origin', 'field-destination', 'field-dept-date', 'field-travelers'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('has-error');
+            });
+
+            // Trigger sync and unlock
+            onSearchFieldChanged();
+
+            // Active pill highlighting
+            document.querySelectorAll('.btn-demo-pill').forEach(btn => {
+                btn.classList.toggle('active', Boolean(btn.getAttribute('onclick')?.includes(dest)));
+            });
+
+            showToastNotification(`⚡ Auto-Selected: ${from} ➔ ${dest.toUpperCase()} (${travelers} Travelers) - Planner Unlocked!`);
+        }
+
+        function resetSearchFields() {
+            const originSelect = document.getElementById('origin-select');
+            const destSelect = document.getElementById('destination-select');
+            const deptDateInput = document.getElementById('dept-date');
+            const travelerInput = document.getElementById('traveler-count');
+
+            if (originSelect) originSelect.value = '';
+            if (destSelect) destSelect.value = '';
+            if (deptDateInput) deptDateInput.value = '';
+            if (travelerInput) travelerInput.value = '';
+
+            document.querySelectorAll('.btn-demo-pill').forEach(btn => btn.classList.remove('active'));
+
+            validateSearchFields(false);
+            recalculateTotals();
+            showToastNotification('🔄 Form reset to locked state for testing.');
         }
 
         function validateSearchFields(triggerHighlight = false) {
