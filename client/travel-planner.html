@@ -843,13 +843,13 @@
             </div>
             <div class="demo-buttons">
                 <button type="button" class="btn-demo-pill active" onclick="autoFillDemo('coxsbazar', 'Dhaka', 4)" title="Autofill Dhaka -> Cox's Bazar (4 Pax)">
-                    ⚡ Demo: Dhaka ➔ Cox's Bazar (4 Pax)
+                    Dhaka ➔ Cox's Bazar
                 </button>
                 <button type="button" class="btn-demo-pill" onclick="autoFillDemo('sajek', 'Dhaka', 10)" title="Autofill Dhaka -> Sajek Valley (10 Pax)">
-                    ⚡ Sajek Valley (10 Pax)
+                    Sajek Valley
                 </button>
                 <button type="button" class="btn-demo-pill" onclick="autoFillDemo('saintmartin', 'Chittagong', 2)" title="Autofill Chittagong -> Saint Martin (2 Pax)">
-                    ⚡ Saint Martin (2 Pax)
+                    Saint Martin
                 </button>
                 <button type="button" class="btn-demo-reset" onclick="resetSearchFields()" title="Reset all fields to test locked state">
                     <i class="material-icons" style="font-size: 14px;">restart_alt</i> Reset
@@ -931,78 +931,178 @@
             <!-- Component Slots (Star Tech Style) -->
             <div class="pcb-content">
 
-                <!-- 1. LONG-HAUL INTERMODAL TRANSIT -->
-                <div class="content-label">1. Long-Haul Intermodal Transit (Bus / Flight / Train)</div>
+                <!-- Long-Haul Intermodal Transit -->
+                <div class="content-label">Long-Haul Intermodal Transit (Bus / Flight / Train)</div>
 
-                <!-- Bus / Transit Component -->
-                <div class="c-item" id="slot-transport">
+                <!-- Bus Component -->
+                <div class="c-item" id="slot-bus">
                     <div class="img">
                         <span class="material-icons">directions_bus</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Intermodal Transit / Bus Coach / Flight</span>
-                            <span class="mark" id="transit-mark">Required</span>
+                            <span>Bus (Economy Non-AC)</span>
                         </div>
-                        <div class="product-name" id="val-transport">Not Selected</div>
+                        <div class="product-name" id="val-bus">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-transport"></div>
-                    <div class="actions" id="action-transport">
-                        <button class="btn-choose" onclick="openPicker('transport')">Choose</button>
+                    <div class="item-price" id="price-bus"></div>
+                    <div class="actions" id="action-bus">
+                        <button class="btn-choose" onclick="openPicker('bus')">Choose</button>
                     </div>
                 </div>
 
-                <!-- 2. LOCAL GROUND TRANSIT & TERMINAL SHUTTLES -->
-                <div class="content-label">2. Local Ground Transit & Terminal Shuttles (Microbus / 4WD Jeep / Auto)</div>
+                <!-- AC Luxury Coach Component -->
+                <div class="c-item" id="slot-coach">
+                    <div class="img">
+                        <span class="material-icons">directions_bus</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>AC Luxury Coach (Scania / Hyundai)</span>
+                        </div>
+                        <div class="product-name" id="val-coach">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-coach"></div>
+                    <div class="actions" id="action-coach">
+                        <button class="btn-choose" onclick="openPicker('coach')">Choose</button>
+                    </div>
+                </div>
 
-                <!-- Local Transport Slot -->
-                <div class="c-item" id="slot-localtransit">
+                <!-- Domestic Flight Component -->
+                <div class="c-item" id="slot-flight">
+                    <div class="img">
+                        <span class="material-icons">flight</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Domestic Flight</span>
+                        </div>
+                        <div class="product-name" id="val-flight">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-flight"></div>
+                    <div class="actions" id="action-flight">
+                        <button class="btn-choose" onclick="openPicker('flight')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Intercity Express Train Component -->
+                <div class="c-item" id="slot-train">
+                    <div class="img">
+                        <span class="material-icons">train</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Intercity Express Train</span>
+                        </div>
+                        <div class="product-name" id="val-train">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-train"></div>
+                    <div class="actions" id="action-train">
+                        <button class="btn-choose" onclick="openPicker('train')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Local Ground Transit & Terminal Shuttles -->
+                <div class="content-label">Local Ground Transit & Terminal Shuttles (Microbus / 4WD Jeep / Auto)</div>
+
+                <!-- Microbus Component -->
+                <div class="c-item" id="slot-microbus">
                     <div class="img">
                         <span class="material-icons">airport_shuttle</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Connecting Ground Shuttle / Chander Gari / Auto</span>
+                            <span>AC Microbus (Toyota HiAce / Noah)</span>
                         </div>
-                        <div class="product-name" id="val-localtransit">Not Selected</div>
+                        <div class="product-name" id="val-microbus">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-localtransit"></div>
-                    <div class="actions" id="action-localtransit">
-                        <button class="btn-choose" onclick="openPicker('localtransit')">Choose</button>
+                    <div class="item-price" id="price-microbus"></div>
+                    <div class="actions" id="action-microbus">
+                        <button class="btn-choose" onclick="openPicker('microbus')">Choose</button>
                     </div>
                 </div>
 
-                <!-- 3. HOTELS & ACCOMMODATIONS -->
-                <div class="content-label">3. Resort, Hotels & Bedding (Accommodation, Bedding & Fresh-Up)</div>
+                <!-- Chander Gari / Mountain Jeep Component -->
+                <div class="c-item" id="slot-jeep">
+                    <div class="img">
+                        <span class="material-icons">directions_car</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Chander Gari / 4WD Mountain Jeep</span>
+                        </div>
+                        <div class="product-name" id="val-jeep">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-jeep"></div>
+                    <div class="actions" id="action-jeep">
+                        <button class="btn-choose" onclick="openPicker('jeep')">Choose</button>
+                    </div>
+                </div>
 
-                <!-- Hotel Slot -->
-                <div class="c-item" id="slot-lodging">
+                <!-- Auto-Rickshaw / CNG Component -->
+                <div class="c-item" id="slot-cng">
+                    <div class="img">
+                        <span class="material-icons">electric_rickshaw</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Auto-Rickshaw / Electric TomTom / CNG</span>
+                        </div>
+                        <div class="product-name" id="val-cng">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-cng"></div>
+                    <div class="actions" id="action-cng">
+                        <button class="btn-choose" onclick="openPicker('cng')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Resort, Hotels & Bedding -->
+                <div class="content-label">Resort, Hotels & Bedding (Accommodation, Bedding & Fresh-Up)</div>
+
+                <!-- Hotel Component -->
+                <div class="c-item" id="slot-hotel">
                     <div class="img">
                         <span class="material-icons">hotel</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Resort Room & Bedding Allocation</span>
-                            <span class="mark">Required</span>
+                            <span>Resort & Hotel Room (Deluxe / Sea-View)</span>
                         </div>
-                        <div class="product-name" id="val-lodging">Not Selected</div>
+                        <div class="product-name" id="val-hotel">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-lodging"></div>
-                    <div class="actions" id="action-lodging">
-                        <button class="btn-choose" onclick="openPicker('lodging')">Choose</button>
+                    <div class="item-price" id="price-hotel"></div>
+                    <div class="actions" id="action-hotel">
+                        <button class="btn-choose" onclick="openPicker('hotel')">Choose</button>
                     </div>
                 </div>
 
-                <!-- Early Fresh-Up Room Slot (Scenario 7) -->
+                <!-- Eco Cottage & Villa Component -->
+                <div class="c-item" id="slot-cottage">
+                    <div class="img">
+                        <span class="material-icons">holiday_village</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Eco Cottage & Hillside Wooden Villa</span>
+                        </div>
+                        <div class="product-name" id="val-cottage">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-cottage"></div>
+                    <div class="actions" id="action-cottage">
+                        <button class="btn-choose" onclick="openPicker('cottage')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Early Fresh-Up Room Slot -->
                 <div class="c-item" id="slot-freshup">
                     <div class="img">
                         <span class="material-icons">free_breakfast</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>5:30 AM Early Arrival Fresh-up Room (Scenario 7)</span>
+                            <span>5:30 AM Early Arrival Fresh-up Room</span>
                         </div>
-                        <div class="product-name" id="val-freshup">Dawn check-in (+35% half-day rate avoiding full extra night)</div>
+                        <div class="product-name" id="val-freshup">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-freshup"></div>
                     <div class="actions" id="action-freshup">
@@ -1010,43 +1110,94 @@
                     </div>
                 </div>
 
-                <!-- 4. DINING & RESTAURANTS -->
-                <div class="content-label">4. Dining & Meal Plans (Meal Plans & Restaurant Dining)</div>
+                <!-- Dining & Meal Plans -->
+                <div class="content-label">Dining & Meal Plans (Meal Plans & Restaurant Dining)</div>
 
-                <!-- Dining Slot -->
-                <div class="c-item" id="slot-dining">
+                <!-- Seafood BBQ Dinner Component -->
+                <div class="c-item" id="slot-bbq">
+                    <div class="img">
+                        <span class="material-icons">outdoor_grill</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Live Seafood BBQ Dinner</span>
+                        </div>
+                        <div class="product-name" id="val-bbq">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-bbq"></div>
+                    <div class="actions" id="action-bbq">
+                        <button class="btn-choose" onclick="openPicker('bbq')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Traditional Food & Local Cuisine Component -->
+                <div class="c-item" id="slot-traditionalfood">
                     <div class="img">
                         <span class="material-icons">restaurant</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Dining Plan / Seafood BBQ / Traditional Food</span>
+                            <span>Traditional Food & Indigenous Feast</span>
                         </div>
-                        <div class="product-name" id="val-dining">Not Selected</div>
+                        <div class="product-name" id="val-traditionalfood">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-dining"></div>
-                    <div class="actions" id="action-dining">
-                        <button class="btn-choose" onclick="openPicker('dining')">Choose</button>
+                    <div class="item-price" id="price-traditionalfood"></div>
+                    <div class="actions" id="action-traditionalfood">
+                        <button class="btn-choose" onclick="openPicker('traditionalfood')">Choose</button>
                     </div>
                 </div>
 
-                <!-- 5. RECREATION & DISAGGREGATED ACTIVITIES -->
-                <div class="content-label">5. Recreation & Activities (Recreation - No Forced Bundling / Scenario 8)</div>
-
-                <!-- Adventure Activity Slot -->
-                <div class="c-item" id="slot-adventure">
+                <!-- Buffet & Full-Board Meal Plan Component -->
+                <div class="c-item" id="slot-buffet">
                     <div class="img">
-                        <span class="material-icons">surfing</span>
+                        <span class="material-icons">lunch_dining</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Parasailing & Speedboat Safari</span>
+                            <span>Buffet & Full-Board Meal Plan</span>
                         </div>
-                        <div class="product-name" id="val-adventure">Not Selected</div>
+                        <div class="product-name" id="val-buffet">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-adventure"></div>
-                    <div class="actions" id="action-adventure">
-                        <button class="btn-choose" onclick="openPicker('adventure')">Choose</button>
+                    <div class="item-price" id="price-buffet"></div>
+                    <div class="actions" id="action-buffet">
+                        <button class="btn-choose" onclick="openPicker('buffet')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Recreation & Activities -->
+                <div class="content-label">Recreation & Activities (Recreation - No Forced Bundling / Scenario 8)</div>
+
+                <!-- Parasailing Adventure Component -->
+                <div class="c-item" id="slot-parasailing">
+                    <div class="img">
+                        <span class="material-icons">paragliding</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Parasailing Adventure Flight</span>
+                        </div>
+                        <div class="product-name" id="val-parasailing">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-parasailing"></div>
+                    <div class="actions" id="action-parasailing">
+                        <button class="btn-choose" onclick="openPicker('parasailing')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Speedboat Safari Component -->
+                <div class="c-item" id="slot-speedboat">
+                    <div class="img">
+                        <span class="material-icons">sailing</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Speedboat Safari & Island Cruise</span>
+                        </div>
+                        <div class="product-name" id="val-speedboat">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-speedboat"></div>
+                    <div class="actions" id="action-speedboat">
+                        <button class="btn-choose" onclick="openPicker('speedboat')">Choose</button>
                     </div>
                 </div>
 
@@ -1074,7 +1225,7 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Coral Reef Scuba Diving (Scenario 9 Protected)</span>
+                            <span>Coral Reef Scuba Diving</span>
                         </div>
                         <div class="product-name" id="val-scuba">Not Selected</div>
                     </div>
@@ -1084,23 +1235,40 @@
                     </div>
                 </div>
 
-                <!-- 6. GUIDES, PERMITS & SPECIAL ADDONS -->
-                <div class="content-label">6. Tour Guides, Permits & Special Addons (Certified Guides & Permits)</div>
+                <!-- Tour Guides, Permits & Special Addons -->
+                <div class="content-label">Tour Guides, Permits & Special Addons (Certified Guides & Permits)</div>
 
-                <!-- Guide & Permit Slot -->
+                <!-- Tour Guide Slot -->
                 <div class="c-item" id="slot-guide">
                     <div class="img">
                         <span class="material-icons">explore</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Certified Local Eco-Guide & Boat Permits</span>
+                            <span>Certified Local Tour Guide</span>
                         </div>
                         <div class="product-name" id="val-guide">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-guide"></div>
                     <div class="actions" id="action-guide">
                         <button class="btn-choose" onclick="openPicker('guide')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Boat & Entry Permits Slot -->
+                <div class="c-item" id="slot-permit">
+                    <div class="img">
+                        <span class="material-icons">confirmation_number</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Special Boat & Entry Permits</span>
+                        </div>
+                        <div class="product-name" id="val-permit">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-permit"></div>
+                    <div class="actions" id="action-permit">
+                        <button class="btn-choose" onclick="openPicker('permit')">Choose</button>
                     </div>
                 </div>
 
@@ -1111,7 +1279,7 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Honeymoon Flower Bed Decoration (Scenario 7)</span>
+                            <span>Honeymoon Flower Bed Decoration</span>
                         </div>
                         <div class="product-name" id="val-honeymoon">Not Selected</div>
                     </div>
@@ -1190,64 +1358,122 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script>
-        // State Store
+        // State Store (All Disaggregated Component Slots)
         const currentTour = {
-            transport: null,
-            localtransit: null,
-            lodging: null,
+            bus: null,
+            coach: null,
+            flight: null,
+            train: null,
+            microbus: null,
+            jeep: null,
+            cng: null,
+            hotel: null,
+            cottage: null,
             freshup: null,
-            dining: null,
-            adventure: null,
+            bbq: null,
+            traditionalfood: null,
+            buffet: null,
+            parasailing: null,
+            speedboat: null,
             lounge: null,
             scuba: null,
             guide: null,
+            permit: null,
             honeymoon: null
         };
 
         let selectedSeats = ['A1', 'A2', 'B1', 'B2'];
 
-        // Dynamic Inventory Mapped to Selected Routes
+        // Dynamic Inventory Mapped to Individual Categories
         const inventory = {
-            transport: [
-                { id: 1, name: "Direct Scania AC Coach (Arambagh ➔ Kolatoli)", sub: "Scenario 3: Interactive 40-Seat Plan | Rows A & B Female Preferred", price: 1500, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
-                { id: 2, name: "Multi-Leg Flight + Microbus (Scenario 1)", sub: "DAC ✈ SPD Flight (BDT 4,500) + 45-min buffer + SPD 🚐 Tetulia AC Microbus (BDT 800)", price: 5300, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 1: Multi-Leg Route Synthesis" },
-                { id: 3, name: "Domestic Boeing Direct Flight", sub: "50-minute express air transit to regional runway", price: 4500, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" },
-                { id: 4, name: "Non-AC Economy Coach", sub: "Overnight budget bus transit", price: 900, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80" }
+            bus: [
+                { id: 1, name: "Non-AC Economy Coach (Arambagh Gateway)", sub: "Budget overland transit with comfortable push-back seating", price: 900, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true },
+                { id: 2, name: "Shyamoli Paribahan Hino 1J Non-AC", sub: "Reliable highway non-AC direct service", price: 850, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true },
+                { id: 3, name: "Hanif Enterprise Economy Chair Coach", sub: "Standard overland daytime highway coach", price: 900, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true }
             ],
-            localtransit: [
-                { id: 1, name: "Four-Wheel Drive Chander Gari (4WD Mountain Jeep Convoy)", sub: "Dedicated 4WD mountain jeep for Army Escort convoys (10-passenger capacity)", price: 6500, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 14: Mountain Convoy Navigation" },
-                { id: 2, name: "Reserved AC Microbus (HiAce)", sub: "Connecting terminal transfer from airport/bus counter to resort", price: 3200, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" },
-                { id: 3, name: "Auto-Rickshaw / CNG Shuttle", sub: "Local terminal pickup and drop to hotel lobby", price: 600, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
+            coach: [
+                { id: 1, name: "Direct Scania Multi-Axle AC Luxury Coach", sub: "Scenario 3: Interactive 40-Seat Plan | Rows A & B Female Safety Priority", price: 1500, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
+                { id: 2, name: "Green Line Double-Deck Sleeper Coach", sub: "Overnight luxury sleeper berth with USB & individual reading light", price: 2200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true },
+                { id: 3, name: "Saintmartin Travels AC Deluxe Coach", sub: "Premium reclining leather seats with onboard steward service", price: 1600, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true }
             ],
-            lodging: [
-                { id: 1, name: "Deluxe 4-Bed Family Room (2 King Beds)", sub: "Scenario 5: BDT 3,500/night decomposed down to BDT 875/person/night for 4 friends", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
+            flight: [
+                { id: 1, name: "Biman Bangladesh Boeing 737 Express Flight", sub: "50-minute express air transit with 20kg check-in luggage", price: 4500, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" },
+                { id: 2, name: "US-Bangla Airlines ATR 72-600 Daily Flight", sub: "Scenic regional domestic air transit", price: 4800, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80" },
+                { id: 3, name: "Air Astra Regional Jet Express", sub: "Modern aircraft fleet with premium onboard snack service", price: 4600, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" }
+            ],
+            train: [
+                { id: 1, name: "Cox's Bazar Express AC Snigdha Rail", sub: "Fast intercity railway transit along scenic seaside track", price: 1150, img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=150&q=80" },
+                { id: 2, name: "Subarna / Parabat Express AC Chair", sub: "Intercity daytime express with meal tray service", price: 950, img: "https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=150&q=80" },
+                { id: 3, name: "Upaban Express Night Rail Berth", sub: "Overnight scenic rail cabin with fresh bedding", price: 1300, img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=150&q=80" }
+            ],
+            microbus: [
+                { id: 1, name: "Reserved AC Toyota HiAce (Full-Day Tour)", sub: "11-seater air-conditioned private passenger van with experienced chauffeur", price: 3500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" },
+                { id: 2, name: "Toyota Noah 7-Seater Terminal Transfer", sub: "Airport/counter terminal pickup and drop to hotel lobby", price: 2800, img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=150&q=80" }
+            ],
+            jeep: [
+                { id: 1, name: "Four-Wheel Drive Chander Gari (Army Convoy 10-12 Pax)", sub: "Dedicated 4WD mountain jeep for Army Escort convoys (10-passenger capacity)", price: 6500, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 14: Mountain Convoy Navigation" },
+                { id: 2, name: "Mahindra 4x4 Mountain Carrier", sub: "Hill-track certified pickup jeep with luggage rack", price: 5500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+            ],
+            cng: [
+                { id: 1, name: "Electric TomTom / Auto 24-Hour Unlimited Pass", sub: "Unlimited 24-hr hop-on hop-off within local beach & city zones", price: 600, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" },
+                { id: 2, name: "Local CNG Rickshaw Terminal Shuttle", sub: "Dedicated one-way transfer from bus terminal to hotel gate", price: 400, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
+            ],
+            hotel: [
+                { id: 1, name: "Deluxe 4-Bed Sea-View Family Room (2 King Beds)", sub: "Scenario 5: BDT 3,500/night decomposed down to BDT 875/person/night for 4 friends", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
+                { id: 2, name: "Sayeman Beach Resort (Panorama Sea Balcony)", sub: "Luxury beachfront 5-star standard with infinity pool access", price: 6500, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" },
+                { id: 3, name: "Standard Twin-Bed Room (2 Single Beds)", sub: "Air-conditioned standard resort room near town center", price: 2200, img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=150&q=80" }
+            ],
+            cottage: [
+                { id: 1, name: "Meghpunji Cloud-View Wooden Cottage", sub: "Premium wooden cottage with panoramic sunrise mountain deck", price: 4200, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
                 { id: 2, name: "Level-Ground Eco Cottage (Wheelchair/Elevator)", sub: "Scenario 6: Verified level ground, no steep hazardous outdoor stairs", price: 3800, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 6: Strict Accessibility Constraints" },
-                { id: 3, name: "Standard Twin-Bed Room (2 Single Beds)", sub: "Air-conditioned standard resort room", price: 2200, img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=150&q=80" },
-                { id: 4, name: "Presidential Panorama Suite", sub: "Luxury sea-facing master balcony & jacuzzi", price: 6000, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" }
+                { id: 3, name: "Blue Marine Coral Beach Eco-Cottage", sub: "Direct oceanfront cottage on sandy shoreline", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" },
+                { id: 4, name: "Shanti Bari Mud-and-Bamboo Nature Cottage", sub: "Earthy mud-and-bamboo cottage in peaceful tea gardens", price: 2800, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
             ],
             freshup: [
-                { id: 1, name: "5:30 AM Early Check-in Fresh-up Room", sub: "Scenario 7: Modular +35% half-day rate avoiding full extra day charge", price: 1225, img: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: 5:30 AM Fresh-up Room" }
+                { id: 1, name: "5:30 AM Early Check-in Fresh-up Room", sub: "Scenario 7: Modular +35% half-day rate avoiding full extra day charge", price: 1225, img: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: 5:30 AM Fresh-up Room" },
+                { id: 2, name: "Express Morning Shower & Luggage Facility", sub: "Safe luggage locker, hot shower and change room", price: 600, img: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=150&q=80" }
             ],
-            dining: [
+            bbq: [
                 { id: 1, name: "Inani Beach Live Seafood BBQ Dinner", sub: "Fresh coral fish, red snapper, pomfret & campfire dinner by the waves", price: 2000, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Beach BBQ Addon" },
-                { id: 2, name: "Traditional Bamboo Chicken & Hill Cuisine", sub: "Peda Ting Ting authentic tribal bamboo cooked chicken & sticky rice", price: 1400, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
-                { id: 3, name: "Full-Board Corporate Buffet Catering", sub: "Scenario 11: 3-course breakfast, lunch, dinner & high-tea per delegate", price: 3600, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 11: Corporate B2B Catering" }
+                { id: 2, name: "Saint Martin Grilled Lobster & Squid Shore Platter", sub: "Live grilled Koral, Lobster and squid platter under the stars", price: 2400, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" },
+                { id: 3, name: "Hilltop Campfire BBQ Chicken & Kebabs", sub: "Spiced chicken skewers and charcoal naan around the bonfire", price: 1600, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" }
             ],
-            adventure: [
-                { id: 1, name: "Inani Beach Parasailing & Speedboat", sub: "Scenario 8: 15-minute aerial parachute flight + high-speed boat thrills", price: 2300, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 8: Disaggregated Activities" }
+            traditionalfood: [
+                { id: 1, name: "Poushee Traditional Bengali Feast", sub: "20 types of authentic bhorta, Rupchanda fry & steamed rice", price: 950, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
+                { id: 2, name: "Traditional Bamboo Chicken & Mountain Sticky Rice", sub: "Peda Ting Ting authentic tribal bamboo cooked chicken & papaya salad", price: 1400, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
+                { id: 3, name: "Organic North Bengal Duck Curry with Fragrant Rice", sub: "Locally farmed duck curry with fragrant Atash rice", price: 900, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
+            ],
+            buffet: [
+                { id: 1, name: "Full-Board Corporate Buffet Catering", sub: "Scenario 11: 3-course breakfast, lunch, dinner & high-tea per delegate", price: 3600, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 11: Corporate B2B Catering" },
+                { id: 2, name: "Resort Daily Breakfast & Dinner Buffet Pass", sub: "International cuisine buffet with live pasta & egg stations", price: 2200, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
+            ],
+            parasailing: [
+                { id: 1, name: "Inani Beach 15-Minute Parachute Flight", sub: "Scenario 8: 15-minute aerial parachute flight over the Bay of Bengal", price: 2000, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 8: Disaggregated Activities" },
+                { id: 2, name: "Tandem Dual-Flyer Parasailing Session", sub: "Fly together with tandem double harness and HD GoPro video", price: 3500, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80" }
+            ],
+            speedboat: [
+                { id: 1, name: "Marine Drive Ocean Wave Speedboat Safari", sub: "High-speed Yamaha 200HP engine adrenaline thrill ride", price: 1500, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80" },
+                { id: 2, name: "Chera Dwip Coral Islet Speedboat Charter", sub: "Round-trip transfer to southernmost coral reef islet", price: 1800, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
             ],
             lounge: [
-                { id: 1, name: "Beachside Coconut Lounge Relaxation", sub: "Scenario 8: Chilled green coconut & seaside sunbed lounge", price: 100, img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 8: Zero Forced Bundling" }
+                { id: 1, name: "Beachside Coconut Lounge Relaxation", sub: "Scenario 8: Chilled green coconut & seaside sunbed lounge", price: 100, img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 8: Zero Forced Bundling" },
+                { id: 2, name: "Private Oceanfront Umbrella Cabana (Full Day)", sub: "Exclusive shaded daybed with attendant service", price: 500, img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=150&q=80" }
             ],
             scuba: [
-                { id: 1, name: "Guided Coral Scuba Diving (Saint Martin)", sub: "Scenario 9: Undersea coral dive. Programmatic auto-refund on Signal No. 3", price: 3000, img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 9: Meteorological Auto-Refund Hook" }
+                { id: 1, name: "Guided Coral Reef Scuba Diving", sub: "Scenario 9: Undersea coral dive with certified PADI diver. Programmatic auto-refund on Signal No. 3", price: 3000, img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 9: Meteorological Auto-Refund Hook" },
+                { id: 2, name: "Coral Reef Snorkeling Tour with Life Vest", sub: "Shallow water reef exploration with mask, fins and guide", price: 1200, img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=150&q=80" }
             ],
             guide: [
                 { id: 1, name: "Certified Local Eco-Tour Guide", sub: "Full day guiding, photography assistance & historical briefing", price: 1200, img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 4: Certified Guide" },
-                { id: 2, name: "Jaflong Registered Motorized Boat Permit", sub: "Scenario 4: Registered boat operator permit for Zero Point Lalji hill", price: 800, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 4: Registered Boat Permit" }
+                { id: 2, name: "Professional Drone Photography Guide", sub: "Cinematic 4K aerial shots and edited travel reel", price: 2500, img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" }
+            ],
+            permit: [
+                { id: 1, name: "Special Boat Operator & Entry Permit", sub: "Scenario 4: Registered operator permit and forest protection pass", price: 800, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 4: Registered Boat Permit" },
+                { id: 2, name: "Sajek Army Convoy Escort Clearance Pass", sub: "Military escort convoy documentation & checkpoint token", price: 500, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80" }
             ],
             honeymoon: [
-                { id: 1, name: "Honeymoon Flower Bed Decoration", sub: "Scenario 7: Fresh natural flower heart bed layout & welcome drink", price: 1500, img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Micro-Addons" }
+                { id: 1, name: "Honeymoon Flower Bed Decoration", sub: "Scenario 7: Fresh natural flower heart bed layout & welcome drink", price: 1500, img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Micro-Addons" },
+                { id: 2, name: "Candlelight Beach Dinner Setup", sub: "Romantic seaside table with personalized menu and lantern lights", price: 3000, img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=150&q=80" }
             ]
         };
 
@@ -1453,7 +1679,7 @@
 
             titleEl.textContent = `Select ${slotName.toUpperCase()}`;
 
-            if (slotName === 'transport') {
+            if (slotName === 'bus' || slotName === 'coach') {
                 busSeatWrap.style.display = 'block';
                 renderBusSeatGrid();
             } else {
@@ -1491,7 +1717,7 @@
             const priceEl = document.getElementById(`price-${slotName}`);
             const actionEl = document.getElementById(`action-${slotName}`);
 
-            valEl.textContent = item.name + (slotName === 'transport' && selectedSeats.length > 0 ? ` (Seats: ${selectedSeats.join(', ')})` : '');
+            valEl.textContent = item.name + ((slotName === 'bus' || slotName === 'coach') && selectedSeats.length > 0 ? ` (Seats: ${selectedSeats.join(', ')})` : '');
             valEl.classList.add('configured');
             priceEl.textContent = `BDT ${item.price.toLocaleString()}`;
 
@@ -1573,104 +1799,125 @@
 
             // Route-specific dynamic inventory
             if (dest === 'sajek') {
-                inventory.transport = [
+                inventory.coach = [
                     { id: 1, name: "Shanti Paribahan AC Coach (Dhaka ➔ Khagrachhari Gateway)", sub: "Scenario 3: Interactive 40-Seat Plan | Direct route to Khagrachhari", price: 1400, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
-                    { id: 2, name: "Saintmartin Travels AC Deluxe Coach", sub: "Overnight luxury bus with reclining leather seats", price: 1600, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true },
-                    { id: 3, name: "Economy Non-AC Coach (Sayedabad Gateway)", sub: "Budget overnight transit", price: 850, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" }
+                    { id: 2, name: "Saintmartin Travels AC Deluxe Coach", sub: "Overnight luxury bus with reclining leather seats", price: 1600, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
                 ];
-                inventory.localtransit = [
+                inventory.bus = [
+                    { id: 1, name: "Economy Non-AC Coach (Sayedabad Gateway)", sub: "Budget overnight transit to Khagrachhari", price: 850, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                ];
+                inventory.jeep = [
                     { id: 1, name: "Four-Wheel Drive Chander Gari (4WD Mountain Jeep Convoy)", sub: "Dedicated 4WD mountain jeep for Army Escort convoys (10-passenger capacity)", price: 6500, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 14: Mountain Convoy Navigation" },
                     { id: 2, name: "Mahindra 4x4 Mountain Carrier", sub: "Hill-track certified pickup jeep", price: 5500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.lodging = [
+                inventory.cottage = [
                     { id: 1, name: "Meghpunji Cloud-View Cottage", sub: "Premium wooden cottage above the clouds (Family 4-bed)", price: 4200, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
                     { id: 2, name: "Sajek Classic Eco-Resort", sub: "Sunset-facing balcony room with solar power", price: 3200, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" },
                     { id: 3, name: "Runmoy & Kasalong Army Rest House", sub: "Highest altitude secure hilltop view", price: 4800, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.dining = [
+                inventory.traditionalfood = [
                     { id: 1, name: "Traditional Bamboo Chicken & Mountain Sticky Rice", sub: "Peda Ting Ting authentic tribal bamboo cooked chicken & papaya salad", price: 1400, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
                     { id: 2, name: "Hillock View Tribal Feast & Herbal Tea", sub: "Fresh organic hill vegetables, country chicken & mountain tea", price: 1100, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
                 ];
             } else if (dest === 'coxsbazar') {
-                inventory.transport = [
+                inventory.coach = [
                     { id: 1, name: "Direct Scania AC Coach (Arambagh ➔ Kolatoli)", sub: "Scenario 3: Interactive 40-Seat Plan | Rows A & B Female Preferred", price: 1500, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
-                    { id: 2, name: "Domestic Boeing Direct Flight (DAC ✈ CXB)", sub: "50-minute express air transit to Cox's Bazar runway", price: 4500, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" },
-                    { id: 3, name: "Green Line Sleeper Coach (Double Deck)", sub: "Overnight luxury sleeper berth with USB charging", price: 2200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true },
-                    { id: 4, name: "Non-AC Economy Coach (Arambagh Counter)", sub: "Budget overland transit", price: 900, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" }
+                    { id: 2, name: "Green Line Sleeper Coach (Double Deck)", sub: "Overnight luxury sleeper berth with USB charging", price: 2200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
                 ];
-                inventory.localtransit = [
-                    { id: 1, name: "Reserved AC Microbus (HiAce - Marine Drive Tour)", sub: "Full day private minivan for Inani, Himchari and Patuartek", price: 3500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" },
-                    { id: 2, name: "Electric TomTom / Auto Shuttle Pass", sub: "Unlimited 24-hr hop-on hop-off within Kolatoli and Sugandha", price: 600, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
+                inventory.flight = [
+                    { id: 1, name: "Domestic Boeing Direct Flight (DAC ✈ CXB)", sub: "50-minute express air transit to Cox's Bazar runway", price: 4500, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.lodging = [
+                inventory.bus = [
+                    { id: 1, name: "Non-AC Economy Coach (Arambagh Counter)", sub: "Budget overland transit with pushback seats", price: 900, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                ];
+                inventory.microbus = [
+                    { id: 1, name: "Reserved AC Microbus (HiAce - Marine Drive Tour)", sub: "Full day private minivan for Inani, Himchari and Patuartek", price: 3500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.cng = [
+                    { id: 1, name: "Electric TomTom / Auto Shuttle Pass", sub: "Unlimited 24-hr hop-on hop-off within Kolatoli and Sugandha", price: 600, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.hotel = [
                     { id: 1, name: "Deluxe 4-Bed Sea-View Family Room (2 King Beds)", sub: "Scenario 5: BDT 3,500/night decomposed down to BDT 875/person/night for 4 friends", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
                     { id: 2, name: "Sayeman Beach Resort (Panorama Sea Balcony)", sub: "Luxury beachfront 5-star standard with infinity pool", price: 6500, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" },
                     { id: 3, name: "Standard Twin-Bed Room (2 Single Beds)", sub: "Air-conditioned standard resort room near Sugandha", price: 2200, img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.dining = [
-                    { id: 1, name: "Inani Beach Live Seafood BBQ Dinner", sub: "Fresh coral fish, red snapper, pomfret & campfire dinner by the waves", price: 2000, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Beach BBQ Addon" },
-                    { id: 2, name: "Poushee Traditional Bengali Feast", sub: "20 types of authentic bhorta, Rupchanda fry & steamed rice", price: 950, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
-                    { id: 3, name: "Full-Board Corporate Buffet Catering", sub: "Scenario 11: 3-course breakfast, lunch, dinner & high-tea per delegate", price: 3600, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 11: Corporate B2B Catering" }
+                inventory.bbq = [
+                    { id: 1, name: "Inani Beach Live Seafood BBQ Dinner", sub: "Fresh coral fish, red snapper, pomfret & campfire dinner by the waves", price: 2000, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Beach BBQ Addon" }
+                ];
+                inventory.traditionalfood = [
+                    { id: 1, name: "Poushee Traditional Bengali Feast", sub: "20 types of authentic bhorta, Rupchanda fry & steamed rice", price: 950, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
                 ];
             } else if (dest === 'saintmartin') {
-                inventory.transport = [
+                inventory.coach = [
                     { id: 1, name: "Scania AC Coach + Teknaf Water Bus Ferry", sub: "Integrated cross-water transit package with guaranteed ferry boarding", price: 2800, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true },
                     { id: 2, name: "Keari Sindbad Bay-Crossing Ship Transit", sub: "Open-deck cruise ship transit over the Bay of Bengal", price: 1800, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.localtransit = [
-                    { id: 1, name: "Saint Martin Electric Island Van Shuttle", sub: "Eco-friendly battery van for Jetty to West Beach transfers", price: 500, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" },
-                    { id: 2, name: "Chera Dwip Speedboat Charter", sub: "Round-trip transfer to the southernmost coral reef islet", price: 1800, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                inventory.cng = [
+                    { id: 1, name: "Saint Martin Electric Island Van Shuttle", sub: "Eco-friendly battery van for Jetty to West Beach transfers", price: 500, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.lodging = [
+                inventory.speedboat = [
+                    { id: 1, name: "Chera Dwip Speedboat Charter", sub: "Round-trip transfer to the southernmost coral reef islet", price: 1800, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.cottage = [
                     { id: 1, name: "Blue Marine Coral Beach Eco-Resort", sub: "Direct oceanfront cottage on sandy shoreline", price: 4000, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80" },
                     { id: 2, name: "Sunset View Coconut Grove Cottage", sub: "Peaceful West Beach eco-hut surrounded by coconut palms", price: 2800, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.dining = [
-                    { id: 1, name: "Fresh Coral Fish & Lobster Shore BBQ", sub: "Live grilled Koral, Lobster and squid platter under the stars", price: 2200, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" },
-                    { id: 2, name: "Island Green Coconut & Fresh Rice Thali", sub: "Traditional island meal with fresh coconut water and local curry", price: 750, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
+                inventory.bbq = [
+                    { id: 1, name: "Fresh Coral Fish & Lobster Shore BBQ", sub: "Live grilled Koral, Lobster and squid platter under the stars", price: 2200, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.traditionalfood = [
+                    { id: 1, name: "Island Green Coconut & Fresh Rice Thali", sub: "Traditional island meal with fresh coconut water and local curry", price: 750, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
                 ];
             } else if (dest === 'sreemangal') {
-                inventory.transport = [
-                    { id: 1, name: "Upaban Express AC Intercity Rail Transit", sub: "Scenic tea valley rail transit from Kamalapur", price: 750, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" },
-                    { id: 2, name: "Direct AC Tourist Coach (Sayedabad Gateway)", sub: "Express highway coach to Sreemangal Town", price: 800, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                inventory.train = [
+                    { id: 1, name: "Upaban Express AC Intercity Rail Transit", sub: "Scenic tea valley rail transit from Kamalapur", price: 750, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.localtransit = [
+                inventory.coach = [
+                    { id: 1, name: "Direct AC Tourist Coach (Sayedabad Gateway)", sub: "Express highway coach to Sreemangal Town", price: 800, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                ];
+                inventory.jeep = [
                     { id: 1, name: "Lawachara Rain Forest Safari Jeep", sub: "Guided wildlife and tea estate expedition vehicle", price: 2500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.lodging = [
-                    { id: 1, name: "Grand Sultan Tea Resort (Deluxe Suite)", sub: "5-star luxury surrounded by rolling green hills", price: 7500, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" },
-                    { id: 2, name: "Shanti Bari Eco-Resort Cottage", sub: "Earthy mud-and-bamboo cottage in peaceful tea gardens", price: 3000, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
+                inventory.hotel = [
+                    { id: 1, name: "Grand Sultan Tea Resort (Deluxe Suite)", sub: "5-star luxury surrounded by rolling green hills", price: 7500, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.dining = [
+                inventory.cottage = [
+                    { id: 1, name: "Shanti Bari Eco-Resort Cottage", sub: "Earthy mud-and-bamboo cottage in peaceful tea gardens", price: 3000, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.traditionalfood = [
                     { id: 1, name: "Nilkantha Cabin Seven-Color Tea Experience", sub: "Legendary 7-layer tea with traditional Sylheti snacks", price: 350, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
                     { id: 2, name: "Khasia Tribal Roasted Duck Feast", sub: "Authentic indigenous duck roast and sticky rice", price: 1350, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
                 ];
             } else if (dest === 'tetulia') {
-                inventory.transport = [
-                    { id: 1, name: "Multi-Leg Flight + Microbus (Scenario 1)", sub: "DAC ✈ SPD Flight (BDT 4,500) + 45-min buffer + SPD 🚐 Tetulia AC Microbus (BDT 800)", price: 5300, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 1: Multi-Leg Route Synthesis" },
-                    { id: 2, name: "Direct Overnight AC Sleeper Coach (Gabtoli ➔ Banglabandha)", sub: "Northern highway direct transit", price: 1600, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                inventory.flight = [
+                    { id: 1, name: "Multi-Leg Flight + Microbus (Scenario 1)", sub: "DAC ✈ SPD Flight (BDT 4,500) + 45-min buffer + SPD 🚐 Tetulia AC Microbus (BDT 800)", price: 5300, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 1: Multi-Leg Route Synthesis" }
                 ];
-                inventory.localtransit = [
+                inventory.coach = [
+                    { id: 1, name: "Direct Overnight AC Sleeper Coach (Gabtoli ➔ Banglabandha)", sub: "Northern highway direct transit", price: 1600, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                ];
+                inventory.jeep = [
                     { id: 1, name: "Mahananda Riverbank Sightseeing Jeep", sub: "Border view transport for Kanchenjunga lookout point", price: 2800, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.lodging = [
+                inventory.cottage = [
                     { id: 1, name: "Kanchenjunga View Border Eco-Lodge", sub: "Clear morning horizon view of Himalayan snow peaks", price: 2600, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.dining = [
+                inventory.traditionalfood = [
                     { id: 1, name: "Organic North Bengal Duck & Rice Thali", sub: "Locally farmed duck curry with fragrant Atash rice", price: 900, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
                 ];
             } else if (dest === 'jaflong') {
-                inventory.transport = [
-                    { id: 1, name: "Parabat Express Intercity Rail + Sylhet AC Coach", sub: "Comfortable train + connecting road shuttle", price: 1100, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" },
-                    { id: 2, name: "Direct AC Tourist Coach (Kallayanpur ➔ Sylhet)", sub: "Overnight express coach", price: 1200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                inventory.train = [
+                    { id: 1, name: "Parabat Express Intercity Rail + Sylhet AC Coach", sub: "Comfortable train + connecting road shuttle", price: 1100, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.localtransit = [
+                inventory.coach = [
+                    { id: 1, name: "Direct AC Tourist Coach (Kallayanpur ➔ Sylhet)", sub: "Overnight express coach", price: 1200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                ];
+                inventory.permit = [
                     { id: 1, name: "Jaflong Registered Motorized Boat Permit", sub: "Scenario 4: Registered boat operator permit for Zero Point Lalji hill", price: 800, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 4: Registered Boat Permit" }
                 ];
-                inventory.lodging = [
+                inventory.hotel = [
                     { id: 1, name: "Tamabil Border Rest House & Eco Resort", sub: "Panoramic views of Dawki falls across Meghalaya border", price: 2900, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
                 ];
-                inventory.dining = [
+                inventory.traditionalfood = [
                     { id: 1, name: "Surma River Fresh Fish & Shatkora Beef Platter", sub: "Authentic Sylheti citrus Shatkora beef with river fish", price: 1200, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
                 ];
             }
@@ -1732,12 +1979,14 @@
         function confirmTourBooking() {
             if (!validateSearchFields(true)) return;
 
-            if (!currentTour.transport) {
-                alert('⚠️ Please select an Intermodal Transit method to complete your booking.');
+            const hasTransit = currentTour.bus || currentTour.coach || currentTour.flight || currentTour.train;
+            if (!hasTransit) {
+                alert('⚠️ Please select at least one Transit method (Bus, Coach, Flight, or Train) to complete your booking.');
                 return;
             }
-            if (!currentTour.lodging) {
-                alert('⚠️ Please choose a Hotel & Bedding type to complete your booking.');
+            const hasLodging = currentTour.hotel || currentTour.cottage;
+            if (!hasLodging) {
+                alert('⚠️ Please choose a Hotel or Resort Accommodation to complete your booking.');
                 return;
             }
             alert('✅ Travel Plan Confirmed!\nYour custom travel blueprint with dynamic seating, lodging, and dining has been saved.');
