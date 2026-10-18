@@ -1,0 +1,608 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Travel & Discounts — TravelUp Global</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Master Pixel-Perfect Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 1. TOP NAVBAR (Sticky & Pixel-Perfect) -->
+    <header class="top-navbar">
+        <div class="container navbar-inner">
+            <!-- Brand Logo -->
+            <a href="index.html" class="nav-brand-logo">
+                <div class="brand-icon-box">✈️</div>
+                <div class="brand-title-wrap">
+                    <h1>TravelUp Global</h1>
+                    <p>Explore • Plan • Travel</p>
+                </div>
+            </a>
+
+            <!-- Submenu-Organized Navigation Menu -->
+            <ul class="nav-links-menu">
+                <li class="nav-link-item"><a href="index.html" data-en="Home" data-bn="হোম">Home</a></li>
+                <li class="nav-link-item"><a href="destinations.html" data-en="Destinations" data-bn="ডেস্টিনেশন">Destinations</a></li>
+                
+                <!-- Submenu 1: Plan & Build ▾ (Active on group-travel.html) -->
+                <li class="nav-link-item has-dropdown">
+                    <a href="javascript:void(0)" class="dropdown-trigger active">
+                        <span data-en="Plan & Build" data-bn="প্ল্যান ও বিল্ড">Plan & Build</span> <span class="nav-arrow-down">▾</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="trip-builder.html" class="dropdown-link-item">
+                            <div class="drop-icon">🛠️</div>
+                            <div>
+                                <div class="drop-title" data-en="Custom Trip Builder" data-bn="কাস্টম ট্রিপ বিল্ডার">Custom Trip Builder</div>
+                                <div class="drop-desc" data-en="Dynamic pricing & live builder" data-bn="লাইভ দাম ও ট্রিপ কাস্টমাইজার">Dynamic pricing & live builder</div>
+                            </div>
+                        </a>
+                        <a href="itinerary.html" class="dropdown-link-item">
+                            <div class="drop-icon">🗺️</div>
+                            <div>
+                                <div class="drop-title" data-en="Day-wise Itinerary" data-bn="দিনভিত্তিক ভ্রমণসূচি">Day-wise Itinerary</div>
+                                <div class="drop-desc" data-en="Interactive day plans & routes" data-bn="ইন্টারেক্টিভ সূচি ও ম্যাপ">Interactive day plans & routes</div>
+                            </div>
+                        </a>
+                        <a href="ai-planner.html" class="dropdown-link-item">
+                            <div class="drop-icon">🤖</div>
+                            <div>
+                                <div class="drop-title" data-en="AI Trip Planner" data-bn="এআই ট্রিপ প্ল্যানার">AI Trip Planner</div>
+                                <div class="drop-desc" data-en="Budget-protected AI optimizer" data-bn="বাজেট প্রটেক্টেড এআই অপটিমাইজার">Budget-protected AI optimizer</div>
+                            </div>
+                        </a>
+                        <a href="budget-planner.html" class="dropdown-link-item">
+                            <div class="drop-icon">📊</div>
+                            <div>
+                                <div class="drop-title" data-en="Budget Planner" data-bn="বাজেট প্ল্যানার">Budget Planner</div>
+                                <div class="drop-desc" data-en="Accurate category cost forecast" data-bn="সঠিক ক্যাটাগরি খরচ ফোরকাস্ট">Accurate category cost forecast</div>
+                            </div>
+                        </a>
+                        <a href="group-travel.html" class="dropdown-link-item" style="background: var(--blue-subtle);">
+                            <div class="drop-icon">👥</div>
+                            <div>
+                                <div class="drop-title" data-en="Group Travel" data-bn="গ্রুপ ট্রাভেল" style="color: var(--blue-primary);">Group Travel</div>
+                                <div class="drop-desc" data-en="Save up to 20% on group trips" data-bn="গ্রুপে ঘুরুন, ২০% পর্যন্ত সাশ্রয়">Save up to 20% on group trips</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-link-item"><a href="packages.html" data-en="Packages" data-bn="প্যাকেজ">Packages</a></li>
+
+                <!-- Submenu 2: Community & Reviews ▾ -->
+                <li class="nav-link-item has-dropdown">
+                    <a href="javascript:void(0)" class="dropdown-trigger">
+                        <span data-en="Community" data-bn="কমিউনিটি">Community</span> <span class="nav-arrow-down">▾</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="reviews.html" class="dropdown-link-item">
+                            <div class="drop-icon">⭐</div>
+                            <div>
+                                <div class="drop-title" data-en="Traveler Reviews" data-bn="ভ্রমণকারীদের রিভিউ">Traveler Reviews</div>
+                                <div class="drop-desc" data-en="Verified feedback & ratings" data-bn="যাচাইকৃত মতামত ও অভিজ্ঞতা">Verified feedback & ratings</div>
+                            </div>
+                        </a>
+                        <a href="community.html" class="dropdown-link-item">
+                            <div class="drop-icon">💬</div>
+                            <div>
+                                <div class="drop-title" data-en="Travel Stories" data-bn="ভ্রমণ গল্প">Travel Stories</div>
+                                <div class="drop-desc" data-en="Community stories & photo feed" data-bn="কমিউনিটি পোস্ট ও ছবি">Community stories & photo feed</div>
+                            </div>
+                        </a>
+                        <a href="quiz.html" class="dropdown-link-item">
+                            <div class="drop-icon">🎮</div>
+                            <div>
+                                <div class="drop-title" data-en="Travel Personality Quiz" data-bn="ট্রাভেল কুইজ">Travel Personality Quiz</div>
+                                <div class="drop-desc" data-en="Find your ideal destination match" data-bn="পছন্দ অনুযায়ী ডেস্টিনেশন মিলান">Find your ideal destination match</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Right Actions Cluster (Clean & Dynamic Authentication) -->
+            <div class="nav-right-cluster">
+                <!-- Language Selector -->
+                <button class="lang-toggle-btn" onclick="app.toggleLanguage()">
+                    🌐 <span id="currentLangLabel">EN</span> ▾
+                </button>
+
+                <!-- Currency Selector -->
+                <button class="lang-toggle-btn" onclick="app.toggleCurrency()" title="Toggle Currency (USD / BDT)">
+                    💵 <span id="currentCurrLabel">USD</span>
+                </button>
+
+                <!-- Wishlist Heart -->
+                <a href="wishlist.html" class="icon-badge-btn" title="Wishlist">
+                    ♡ <span class="red-notify-dot"></span>
+                </a>
+
+                <!-- Notification Bell -->
+                <button class="icon-badge-btn" onclick="alert('Notification: 15% discount on Bali packages active!')" title="Notifications">
+                    🔔 <span class="red-notify-dot"></span>
+                </button>
+
+                                <!-- Common User Account Button (Unified for Login, Signup & Profile) -->
+                <div class="user-profile-header-wrap">
+                    <div class="profile-header-dropdown-trigger" onclick="auth.toggleProfileDropdown(event)" title="Account & Profile">
+                        <div class="nav-user-avatar-circle">
+                            <span style="font-size: 1.15rem;">👤</span>
+                        </div>
+                    </div>
+
+                    <!-- Unified Account Dropdown Card -->
+                    <div class="user-dropdown-card" id="userDropdownMenu">
+                        <!-- Dynamically populated by auth.renderNav() -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Banner for Group Travel (Screen 8 from Mockup) -->
+        <section style="position: relative; border-radius: 28px; overflow: hidden; margin-top: 36px; margin-bottom: 40px; background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=1400&q=80') center/cover; padding: 70px 48px; color: #ffffff;">
+            <div style="max-width: 650px;">
+                <div class="badge-passion-capsule" style="background: rgba(255,255,255,0.2); color: #fff; margin-bottom: 14px;">
+                    👥 Travel Together, Save Together
+                </div>
+                <h1 style="font-size: 2.8rem; font-weight: 900; line-height: 1.15; margin-bottom: 16px;">
+                    Group Travel Made Easy & Affordable
+                </h1>
+                <p style="font-size: 1.05rem; opacity: 0.9; line-height: 1.6; margin-bottom: 28px;">
+                    Whether traveling with close friends, extended family, or corporate teams, unlock up to 20% instant volume discounts, split bills effortlessly, and build shared itineraries.
+                </p>
+                <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+                    <a href="#groupCalc" class="btn-primary-pill" style="padding: 14px 28px; font-size: 1rem;">
+                        ⚡ Calculate Group Savings
+                    </a>
+                    <a href="trip-builder.html" class="btn-secondary-pill" style="background: rgba(255,255,255,0.9); padding: 14px 24px; font-size: 1rem;">
+                        🛠️ Launch Custom Builder
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 Group Discount Tiers -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <span class="eyebrow-small-tag">VOLUME DISCOUNTS</span>
+            <h2 class="heading-title-bold">Special Group Discount Slabs</h2>
+            <p class="subtext-paragraph" style="margin: 0 auto; max-width: 600px;">
+                Fixed vehicle fees and private tour guides become significantly cheaper as group size expands.
+            </p>
+        </div>
+
+        <div class="group-tiers-grid">
+            <!-- Tier 1: Small Group -->
+            <div class="group-tier-card">
+                <span class="group-tier-badge">3 – 5 TRAVELERS</span>
+                <h3 style="font-size: 1.6rem; font-weight: 900; margin-bottom: 6px;">5% OFF</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Small Friends & Family</p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 24px; text-align: left; font-size: 0.9rem; line-height: 2;">
+                    <li>✅ 5% discount on total package</li>
+                    <li>✅ Shared private transport savings</li>
+                    <li>✅ Complimentary custom day plan</li>
+                    <li>✅ Individual split payments enabled</li>
+                </ul>
+                <button class="btn-secondary-pill" style="width: 100%;" onclick="group.selectTier(4)">Select Small Group</button>
+            </div>
+
+            <!-- Tier 2: Medium Group (Featured) -->
+            <div class="group-tier-card featured">
+                <span class="group-tier-badge" style="background: #2563eb;">MOST POPULAR • 6 – 9 TRAVELERS</span>
+                <h3 style="font-size: 1.8rem; font-weight: 900; color: var(--blue-primary); margin-bottom: 6px;">12% OFF</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Adventure Crews & Reunions</p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 24px; text-align: left; font-size: 0.9rem; line-height: 2;">
+                    <li>🔥 <strong>12% volume price discount</strong></li>
+                    <li>✅ Dedicated AC Minibus included</li>
+                    <li>✅ Free sunset group dinner in Bali</li>
+                    <li>✅ Dedicated WhatsApp support lead</li>
+                </ul>
+                <button class="btn-primary-pill" style="width: 100%;" onclick="group.selectTier(7)">Select Medium Group</button>
+            </div>
+
+            <!-- Tier 3: Large Group -->
+            <div class="group-tier-card">
+                <span class="group-tier-badge">10+ TRAVELERS</span>
+                <h3 style="font-size: 1.6rem; font-weight: 900; margin-bottom: 6px;">20% OFF</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Corporates & Big Parties</p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 24px; text-align: left; font-size: 0.9rem; line-height: 2;">
+                    <li>👑 <strong>20% maximum volume discount</strong></li>
+                    <li>✅ Free Dedicated English Tour Guide</li>
+                    <li>✅ Airport VIP group fast-track</li>
+                    <li>✅ Custom team banner & photographer</li>
+                </ul>
+                <button class="btn-secondary-pill" style="width: 100%;" onclick="group.selectTier(12)">Select Large Group</button>
+            </div>
+        </div>
+
+        <!-- 4 Feature Cards (Screen 8 from Mockup) -->
+        <div style="margin: 60px 0;">
+            <div style="text-align: center; margin-bottom: 36px;">
+                <span class="eyebrow-small-tag">GROUP PERKS</span>
+                <h2 class="heading-title-bold">Why Travel Together with TravelUp?</h2>
+            </div>
+
+            <div class="features-grid-six" style="grid-template-columns: repeat(4, 1fr);">
+                <!-- Feature 1 -->
+                <div class="feature-card-clean">
+                    <div class="feature-bubble-icon" style="background:#eff6ff; color:#2563eb;">💰</div>
+                    <h4>Volume Discounts</h4>
+                    <p>Automated price tier discounts scale up as more friends join your squad.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card-clean">
+                    <div class="feature-bubble-icon" style="background:#f0fdf4; color:#16a34a;">🗺️</div>
+                    <h4>Shared Itineraries</h4>
+                    <p>Collaborative day-by-day itineraries everyone in the group can view and vote on.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card-clean">
+                    <div class="feature-bubble-icon" style="background:#fdf2f8; color:#db2777;">👥</div>
+                    <h4>Group Coordinator</h4>
+                    <p>Single master dashboard for the organizer to manage rooms and RSVPs smoothly.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="feature-card-clean">
+                    <div class="feature-bubble-icon" style="background:#fff7ed; color:#ea580c;">💳</div>
+                    <h4>Flexible Split Payment</h4>
+                    <p>Every member pays their own share directly via credit card or bKash.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Group Savings Calculator (Interactive Anchor) -->
+        <div id="groupCalc" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 28px; padding: 40px; margin-bottom: 60px; box-shadow: var(--shadow-search);">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                <div>
+                    <span class="badge-capsule badge-bg-purple" style="margin-bottom: 10px;">Instant Estimate</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 12px;">Live Group Savings Calculator</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">
+                        Adjust the number of travelers to preview exact collective dollar savings on your chosen destination.
+                    </p>
+
+                    <div style="margin-bottom: 18px;">
+                        <label style="font-weight: 700; font-size: 0.88rem; display: block; margin-bottom: 8px;">Select Destination</label>
+                        <select id="grpDest" class="styled-input-clean" onchange="group.calc()" style="width: 100%; padding: 12px; border: 1.5px solid var(--border-light); border-radius: 12px; font-weight: 600;">
+                            <option value="Bali, Indonesia" data-base="750">🏝️ Bali, Indonesia ($750 base)</option>
+                            <option value="Santorini, Greece" data-base="1100">🏛️ Santorini, Greece ($1,100 base)</option>
+                            <option value="Tokyo, Japan" data-base="1350">⛩️ Tokyo, Japan ($1,350 base)</option>
+                            <option value="Dubai, UAE" data-base="950">🏙️ Dubai, UAE ($950 base)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 700; font-size: 0.88rem; display: block; margin-bottom: 8px;">Group Size</label>
+                        <div class="stepper-control-box">
+                            <button class="stepper-btn" onclick="group.step(-1)">-</button>
+                            <span class="stepper-val" id="grpCountVal">6</span>
+                            <button class="stepper-btn" onclick="group.step(1)">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-gray); border-radius: 20px; padding: 32px; text-align: center;">
+                    <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Estimated Group Discount</div>
+                    <div style="font-size: 3rem; font-weight: 900; color: #16a34a; margin: 8px 0;" id="grpDiscountPct">12% OFF</div>
+                    <div style="font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px;" id="grpSavingsTotal">Total Group Savings: $540</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px;" id="grpPerPaxTotal">Net Price: $660 / person (Regular $750)</div>
+                    
+                    <button class="btn-primary-pill" style="width: 100%; padding: 14px; font-size: 1rem;" onclick="group.launchTripBuilder()">
+                        🚀 Build Custom Group Trip Now ➔
+                    </button>
+                    <button class="btn-secondary-pill" style="width: 100%; padding: 12px; font-size: 0.95rem; margin-top: 10px; border-radius: 999px;" onclick="group.openInquiryModal()">
+                        💬 Request Custom Group Quotation
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Group Lead / Inquiry Modal -->
+        <div class="modal-overlay" id="groupInquiryModal" style="position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px;">
+            <div style="background: #fff; width: 100%; max-width: 520px; border-radius: 20px; padding: 28px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); position: relative;">
+                <button onclick="group.closeInquiryModal()" style="position: absolute; top: 18px; right: 20px; background: none; border: none; font-size: 1.5rem; color: #94a3b8; cursor: pointer;">&times;</button>
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <span style="font-size: 1.8rem;">👥</span>
+                    <h3 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin: 0;">Request Group Travel Quote</h3>
+                </div>
+                <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 18px;">Get an itemized corporate/family group package with dedicated concierge and group discounts.</p>
+                
+                <form id="groupLeadForm" onsubmit="group.submitLead(event)">
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: #334155;">Full Name *</label>
+                        <input type="text" id="grpLeadName" required placeholder="Tanvir Parvaj" style="width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-family: inherit;">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                        <div>
+                            <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: #334155;">Email *</label>
+                            <input type="email" id="grpLeadEmail" required placeholder="contact@example.com" style="width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-family: inherit;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: #334155;">Phone / WhatsApp *</label>
+                            <input type="tel" id="grpLeadPhone" required placeholder="+8801700000000" style="width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-family: inherit;">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                        <div>
+                            <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: #334155;">Group Size</label>
+                            <input type="number" id="grpLeadCount" min="2" max="100" value="6" style="width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-family: inherit;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: #334155;">Preferred Date</label>
+                            <input type="date" id="grpLeadDate" style="width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-family: inherit;">
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 18px;">
+                        <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: #334155;">Special Requests / Notes</label>
+                        <textarea id="grpLeadNotes" rows="2" placeholder="Tell us about dietary preferences, private guide, or flight requirements..." style="width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-family: inherit; resize: vertical;"></textarea>
+                    </div>
+                    <button type="submit" id="grpLeadSubmitBtn" class="btn-primary-pill" style="width: 100%; padding: 14px; font-size: 1rem;">
+                        🚀 Submit Group Inquiry
+                    </button>
+                    <div id="grpLeadStatus" style="margin-top: 10px; text-align: center; font-size: 0.85rem; font-weight: 600;"></div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- MASTER FOOTER (PIXEL-PERFECT FROM DESIGN MOCKUP) -->
+    <footer class="footer-dark-section">
+        <!-- Mockup Flight Trail Decoration -->
+        <svg class="footer-flight-decoration" width="220" height="110" viewBox="0 0 220 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 95 C 70 95, 90 20, 140 45 C 175 60, 195 25, 202 18" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
+            <text x="198" y="16" font-size="14" fill="#38bdf8" transform="rotate(35 198 16)">✈</text>
+        </svg>
+
+        <div class="container">
+            <div class="footer-columns-four">
+                <!-- Brand Column -->
+                <div class="footer-brand-column">
+                    <a href="index.html" class="footer-brand-logo-wrap">
+                        <div class="footer-brand-icon">✈️</div>
+                        <div>
+                            <h3>TravelUp Global</h3>
+                            <span>Explore • Plan • Travel</span>
+                        </div>
+                    </a>
+                    <p class="footer-brand-bio">
+                        Next-generation global travel technology platform. Discover breathtaking destinations, customize dynamic itineraries, and reserve verified dream trips worldwide.
+                    </p>
+                    <div class="footer-social-icons-row">
+                        <!-- Facebook -->
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" title="TikTok">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.16 1.18 2.09 2.35 2.3 1.05.2 2.16-.08 2.93-.82.68-.61.99-1.54 1.02-2.43.05-3.37.02-6.75.03-10.12.02-2.73.01-5.46.02-8.19z"/></svg>
+                        </a>
+                        <!-- X / Twitter -->
+                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-nav-col">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="destinations.html"><span>🗺️</span> Explore Destinations</a></li>
+                        <li><a href="packages.html"><span>✈️</span> Featured Packages</a></li>
+                        <li><a href="trip-builder.html"><span>🛠️</span> Custom Trip Builder</a></li>
+                        <li><a href="community.html"><span>👥</span> Community & Stories</a></li>
+                        <li><a href="index.html#about"><span>ℹ️</span> About Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Support -->
+                <div class="footer-nav-col">
+                    <h5>Support & Help</h5>
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>💬</span> Help Center</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>📬</span> Contact Specialists</a></li>
+                        <li><a href="itinerary.html"><span>🗺️</span> Day-wise Itinerary</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.openTermsModal()"><span>📜</span> Terms & Conditions</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.openPrivacyModal()"><span>🛡️</span> Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Download App -->
+                <div class="footer-nav-col">
+                    <h5>Download Our App</h5>
+                    <p style="font-size:0.78rem; color:#64748b; margin-bottom:14px; line-height:1.5;">
+                        Get exclusive mobile flight deals, barcode e-vouchers & live flight updates.
+                    </p>
+                    <div class="store-badges-container">
+                        <!-- App Store Badge -->
+                        <div class="store-badge-card" onclick="alert('TravelUp Global iOS App is coming soon to the Apple App Store! 🍏')">
+                            <div class="store-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.13-1.96 1-3.1-.98.04-2.16.66-2.85 1.47-.61.71-1.14 1.88-1 2.99 1.09.08 2.2-.56 2.85-1.36z"/></svg>
+                            </div>
+                            <div>
+                                <div class="store-text-top">Download on the</div>
+                                <div class="store-text-brand">App Store</div>
+                            </div>
+                        </div>
+
+                        <!-- Google Play Badge -->
+                        <div class="store-badge-card" onclick="alert('TravelUp Global Android App is coming soon to Google Play Store! 🤖')">
+                            <div class="store-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.023 2.023 0 0 1-.61-1.45V3.264c0-.56.223-1.08.609-1.45zm11.233 11.234l2.551 2.551-12.01 6.857 9.459-9.408zm0-2.096L5.383 1.543l12.01 6.858-2.551 2.551zm1.047 1.048l3.418-1.95a1.86 1.86 0 0 1 0 3.218l-3.418-1.95-.001-.001-.001.683z"/></svg>
+                            </div>
+                            <div>
+                                <div class="store-text-top">GET IT ON</div>
+                                <div class="store-text-brand">Google Play</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-Footer Bottom Line -->
+            <div class="footer-bottom-line">
+                <div>© 2026 TravelUp Global. All rights reserved.</div>
+                
+                <div class="footer-bottom-badges">
+                    <span class="footer-badge-pill status-green">
+                        <span class="footer-pulse-dot"></span> Hostinger Cloud MySQL Connected
+                    </span>
+                    <span class="footer-badge-pill">
+                        🔒 256-Bit SSL Secured
+                    </span>
+                    <span class="footer-badge-pill" style="color:#94a3b8; border-color:rgba(255,255,255,0.08); background:transparent;">
+                        Port: 5000 Active
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        const group = {
+            count: 6,
+
+            step(delta) {
+                const next = this.count + delta;
+                if (next >= 2 && next <= 30) {
+                    this.count = next;
+                    document.getElementById('grpCountVal').innerText = next;
+                    this.calc();
+                }
+            },
+
+            selectTier(num) {
+                this.count = num;
+                document.getElementById('grpCountVal').innerText = num;
+                const calcEl = document.getElementById('groupCalc');
+                calcEl.scrollIntoView({ behavior: 'smooth' });
+                this.calc();
+            },
+
+            calc() {
+                if (window.app) {
+                    app.updateCurrLabels();
+                    app.updateLangLabels();
+                }
+
+                const sel = document.getElementById('grpDest');
+                const basePrice = parseFloat(sel.options[sel.selectedIndex].getAttribute('data-base')) || 750;
+                
+                let discountPct = 0;
+                if (this.count >= 10) discountPct = 0.20;
+                else if (this.count >= 6) discountPct = 0.12;
+                else if (this.count >= 3) discountPct = 0.05;
+
+                const originalTotal = basePrice * this.count;
+                const savings = Math.round(originalTotal * discountPct);
+                const finalTotal = originalTotal - savings;
+                const finalPerPax = Math.round(finalTotal / this.count);
+                const format = (amt) => window.app ? app.formatPrice(amt) : `$${amt.toLocaleString()}`;
+
+                document.getElementById('grpDiscountPct').innerText = discountPct > 0 ? `${Math.round(discountPct * 100)}% OFF` : `0% (2 Pax)`;
+                document.getElementById('grpSavingsTotal').innerText = `Total Group Savings: ${format(savings)}`;
+                document.getElementById('grpPerPaxTotal').innerText = `Net Price: ${format(finalPerPax)} / person (Regular ${format(basePrice)})`;
+            },
+
+            launchTripBuilder() {
+                const sel = document.getElementById('grpDest');
+                const destVal = sel ? sel.value : 1;
+                window.location.href = `trip-builder.html?dest=${destVal}&adults=${this.count}`;
+            },
+
+            openInquiryModal() {
+                const modal = document.getElementById('groupInquiryModal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                    const countEl = document.getElementById('grpLeadCount');
+                    if (countEl) countEl.value = this.count;
+                    if (auth && auth.user) {
+                        const nameEl = document.getElementById('grpLeadName');
+                        const emailEl = document.getElementById('grpLeadEmail');
+                        const phoneEl = document.getElementById('grpLeadPhone');
+                        if (nameEl && !nameEl.value) nameEl.value = auth.user.name || '';
+                        if (emailEl && !emailEl.value) emailEl.value = auth.user.email || '';
+                        if (phoneEl && !phoneEl.value) phoneEl.value = auth.user.phone || '';
+                    }
+                }
+            },
+
+            closeInquiryModal() {
+                const modal = document.getElementById('groupInquiryModal');
+                if (modal) modal.style.display = 'none';
+            },
+
+            async submitLead(e) {
+                e.preventDefault();
+                const btn = document.getElementById('grpLeadSubmitBtn');
+                const statusEl = document.getElementById('grpLeadStatus');
+                btn.disabled = true;
+                btn.innerText = 'Submitting to database...';
+
+                const sel = document.getElementById('grpDest');
+                const destVal = sel ? sel.value : 'Bali, Indonesia';
+                const payload = {
+                    name: document.getElementById('grpLeadName').value,
+                    email: document.getElementById('grpLeadEmail').value,
+                    phone: document.getElementById('grpLeadPhone').value,
+                    destination_interest: destVal,
+                    travelers_count: parseInt(document.getElementById('grpLeadCount').value) || this.count,
+                    travel_dates: document.getElementById('grpLeadDate').value || null,
+                    budget_range: document.getElementById('grpPerPaxTotal')?.innerText || 'Group Tier',
+                    source: 'group_travel',
+                    notes: document.getElementById('grpLeadNotes').value
+                };
+
+                try {
+                    const res = await api.createLead(payload);
+                    if (res && res.success) {
+                        statusEl.style.color = '#16a34a';
+                        statusEl.innerText = '✅ ' + res.message;
+                        setTimeout(() => {
+                            group.closeInquiryModal();
+                            btn.disabled = false;
+                            btn.innerText = '🚀 Submit Group Inquiry';
+                            statusEl.innerText = '';
+                        }, 2500);
+                    } else {
+                        statusEl.style.color = '#dc2626';
+                        statusEl.innerText = '❌ ' + (res.message || 'Submission failed');
+                        btn.disabled = false;
+                        btn.innerText = '🚀 Submit Group Inquiry';
+                    }
+                } catch (err) {
+                    statusEl.style.color = '#dc2626';
+                    statusEl.innerText = '❌ Error submitting lead.';
+                    btn.disabled = false;
+                    btn.innerText = '🚀 Submit Group Inquiry';
+                }
+            }
+        };
+
+        window.addEventListener('currencyChanged', () => group.calc());
+        window.addEventListener('languageChanged', () => group.calc());
+        window.addEventListener('DOMContentLoaded', () => group.calc());
+    </script>
+</body>
+</html>
+

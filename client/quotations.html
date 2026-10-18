@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Quotations — Traveler Portal | TravelUp Global</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Master Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --sidebar-width: 250px;
+            --dashboard-bg: #f8fafc;
+            --dash-card-bg: #ffffff;
+            --dash-border: #e2e8f0;
+            --blue-primary: #2563eb;
+        }
+
+        body {
+            background-color: var(--dashboard-bg);
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #0f172a;
+        }
+
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* 1. Master Traveler Portal Sidebar */
+        .dash-sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid var(--dash-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 20px 14px 16px 14px;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .dash-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            padding: 0 6px 16px 6px;
+            border-bottom: 1px solid var(--dash-border);
+            margin-bottom: 12px;
+        }
+
+        .dash-brand-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .dash-brand-title {
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: #0f172a;
+            line-height: 1.15;
+        }
+
+        .dash-brand-sub {
+            font-size: 0.67rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .dash-user-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid var(--dash-border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 14px;
+        }
+
+        .dash-user-pill:hover {
+            background: #f1f5f9;
+        }
+
+        .dash-user-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+
+        .dash-user-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .dash-user-info h4 {
+            margin: 0;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dash-user-info p {
+            margin: 0;
+            font-size: 0.68rem;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .dash-nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .dash-nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 9px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.87rem;
+            font-weight: 600;
+            color: #475569;
+            transition: all 0.18s ease;
+        }
+
+        .dash-nav-item a:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .dash-nav-item.active a {
+            background: #eff6ff;
+            color: #2563eb;
+            font-weight: 800;
+        }
+
+        .dash-nav-icon {
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* 2. Main Content & Topbar */
+        .dash-main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #f8fafc;
+            min-width: 0;
+        }
+
+        .dash-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 32px;
+            background: #ffffff;
+            border-bottom: 1px solid var(--dash-border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .dash-search-box {
+            position: relative;
+            width: 440px;
+            max-width: 100%;
+        }
+
+        .dash-search-box input {
+            width: 100%;
+            padding: 9px 16px 9px 40px;
+            border-radius: 24px;
+            border: 1px solid var(--dash-border);
+            background: #f8fafc;
+            font-size: 0.86rem;
+            outline: none;
+            font-family: inherit;
+            color: #0f172a;
+            box-sizing: border-box;
+        }
+
+        .dash-search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .dash-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dash-action-pill {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #475569;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .dash-icon-btn {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.05rem;
+            position: relative;
+            color: #475569;
+        }
+
+        .dash-top-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+        }
+
+        .quotations-body-container {
+            padding: 28px 36px 60px 36px;
+        }
+
+        .quote-kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .quote-kpi-card {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .quote-kpi-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .quote-kpi-val {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1.1;
+        }
+
+        .quote-kpi-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #64748b;
+        }
+
+        .quotes-table-card {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .quotes-table-hdr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+            cursor: grab;
+        }
+        .table-responsive thead,
+        .table-responsive tbody tr {
+            cursor: grab;
+        }
+        .table-responsive.is-dragging,
+        .table-responsive.is-dragging * {
+            cursor: grabbing !important;
+            user-select: none !important;
+        }
+        .table-responsive button,
+        .table-responsive a,
+        .table-responsive input,
+        .table-responsive select,
+        .table-responsive .copy-btn-hint,
+        .table-responsive .btn-table-action {
+            cursor: pointer !important;
+        }
+        .table-responsive::-webkit-scrollbar {
+            height: 6px;
+        }
+        .table-responsive::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .quotes-table {
+            min-width: 1250px;
+            width: 100%;
+            border-collapse: separate !important;
+            border-spacing: 0 !important;
+            font-size: 0.86rem;
+        }
+
+        .quotes-table th {
+            text-align: left;
+            padding: 13px 18px;
+            font-size: 0.74rem;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            background: #f8fafc;
+            border-bottom: 1.5px solid var(--dash-border);
+            white-space: nowrap !important;
+            position: relative;
+        }
+
+        .quotes-table td {
+            padding: 13px 18px;
+            font-size: 0.86rem;
+            color: #0f172a;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+            white-space: nowrap !important;
+            user-select: text !important;
+            -webkit-user-select: text !important;
+            cursor: text;
+        }
+        .quotes-table td * {
+            white-space: nowrap !important;
+        }
+        .quotes-table tr:hover td {
+            background: #fbfdff;
+        }
+
+        /* Sticky Fixed Action Column */
+        .quotes-table th:last-child {
+            position: sticky;
+            right: 0;
+            background: #f8fafc;
+            z-index: 10;
+            text-align: right;
+            box-shadow: -5px 0 12px -2px rgba(15, 23, 42, 0.08);
+            border-left: 1px solid #e2e8f0;
+            white-space: nowrap !important;
+        }
+        .quotes-table td:last-child:not([colspan]) {
+            position: sticky;
+            right: 0;
+            background: #ffffff;
+            z-index: 9;
+            text-align: right;
+            box-shadow: -5px 0 12px -2px rgba(15, 23, 42, 0.08);
+            border-left: 1px solid #f1f5f9;
+            white-space: nowrap !important;
+            min-width: 110px;
+        }
+        .quotes-table tr:hover td:last-child:not([colspan]) {
+            background: #fbfdff;
+        }
+
+        /* 1-Click Copy Styles */
+        .copyable-cell {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: text;
+            user-select: text !important;
+        }
+        .copy-btn-hint {
+            opacity: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            font-size: 0.68rem;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+            flex-shrink: 0;
+        }
+        tr:hover .copy-btn-hint,
+        .copyable-cell:hover .copy-btn-hint {
+            opacity: 1;
+        }
+        .copy-btn-hint:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+            border-color: #94a3b8;
+            transform: scale(1.1);
+        }
+
+        .copy-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+        .copy-toast.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .status-badge-pending {
+            background: #fef3c7;
+            color: #b45309;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        .status-badge-approved {
+            background: #dcfce7;
+            color: #15803d;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        .btn-table-action {
+            padding: 6px 12px;
+            background: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-table-action:hover {
+            background: #2563eb;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        
+        <!-- SIDEBAR -->
+        <aside class="dash-sidebar">
+            <div>
+                <a href="index.html" class="dash-brand">
+                    <div class="dash-brand-icon">✈️</div>
+                    <div>
+                        <div class="dash-brand-title">TravelUp Global</div>
+                        <div class="dash-brand-sub">Explore • Plan • Travel</div>
+                    </div>
+                </a>
+
+                <ul class="dash-nav-menu">
+                    <li class="dash-nav-item">
+                        <a href="dashboard.html"><span class="dash-nav-icon">🏠</span> Dashboard</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="my-trips.html"><span class="dash-nav-icon">🗺️</span> My Trips</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="bookings.html"><span class="dash-nav-icon">📋</span> Bookings</a>
+                    </li>
+                    <li class="dash-nav-item active">
+                        <a href="quotations.html"><span class="dash-nav-icon">📄</span> Quotations</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="trip-builder.html"><span class="dash-nav-icon">🛠️</span> Build Your Trip</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="portal-destinations.html"><span class="dash-nav-icon">📍</span> Destinations</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="portal-packages.html"><span class="dash-nav-icon">✈️</span> Packages</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="support.html"><span class="dash-nav-icon">💬</span> Support</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="portal-reviews.html"><span class="dash-nav-icon">⭐</span> Reviews</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="profile.html"><span class="dash-nav-icon">👤</span> Profile</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="border-top: 1px solid var(--dash-border); padding-top: 12px; margin-top: 14px;">
+                <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #bfdbfe; border-radius: 12px; padding: 12px; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.8rem; color: #1e3a8a; margin-bottom: 4px;">
+                        <span>🎧</span> Need Help?
+                    </div>
+                    <p style="font-size: 0.69rem; color: #475569; margin: 0 0 8px 0; line-height: 1.35;">Our travel experts are ready 24/7 Support</p>
+                    <button onclick="location.href='support.html'" style="width: 100%; padding: 7px 0; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 0.76rem; font-weight: 700; cursor: pointer;">Chat Now</button>
+                </div>
+                <div style="text-align: center; font-size: 0.68rem; color: #94a3b8; font-style: italic; font-family: 'Georgia', serif;">
+                    Your Journey Our Priority ✈️
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="dash-main">
+            <!-- TOPBAR -->
+            <div class="dash-topbar">
+                <div style="display: flex; align-items: center; gap: 12px; flex: 1 1 240px; max-width: 500px;">
+                    <button class="mobile-menu-toggle-btn portal-menu-btn" onclick="app.togglePortalSidebar()" title="Toggle Navigation Menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="dash-search-box" style="flex: 1; width: 100%;">
+                        <span class="dash-search-icon">🔍</span>
+                        <input type="text" placeholder="Search quotations, trip codes...">
+                    </div>
+                </div>
+
+                <div class="dash-top-actions">
+                    <a href="index.html" class="dash-action-pill">
+                        🌐 <span>Live Site</span>
+                    </a>
+                    <button class="dash-action-pill" onclick="app.toggleLanguage()">
+                        🌐 <span id="currentLangLabel">EN</span> ▾
+                    </button>
+                    <button class="dash-action-pill" onclick="app.toggleCurrency()">
+                        💵 <span id="currentCurrLabel">USD</span>
+                    </button>
+                    <div class="user-profile-header-wrap" style="position: relative;">
+                        <button class="dash-icon-btn" title="Notifications" onclick="app.toggleNotifications(event)">
+                            🔔 <span class="red-notify-dot"></span>
+                        </button>
+                        <div class="user-dropdown-card" id="notificationsDropdown" style="width: 320px; right: 0;">
+                            <div style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                                <strong style="font-size: 0.9rem; color: #0f172a;">Notifications</strong>
+                                <span style="font-size: 0.72rem; background: #eff6ff; color: #2563eb; padding: 2px 8px; border-radius: 10px; font-weight: 700;">2 New</span>
+                            </div>
+                            <div style="max-height: 280px; overflow-y: auto;">
+                                <a href="portal-packages.html" style="display: block; padding: 12px 16px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                                    <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">🎉 15% Seasonal Discount</div>
+                                    <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Flash deal active on Bali & Tokyo packages.</div>
+                                    <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">2 hours ago</div>
+                                </a>
+                                <a href="bookings.html" style="display: block; padding: 12px 16px; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                                    <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">📋 Booking Voucher Ready</div>
+                                    <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Your trip booking voucher #TUG-2026-16STM is confirmed.</div>
+                                    <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">Yesterday</div>
+                                </a>
+                            </div>
+                            <div style="padding: 10px; text-align: center; background: #f8fafc; border-top: 1px solid #e2e8f0; border-radius: 0 0 16px 16px;">
+                                <a href="javascript:void(0)" onclick="app.toggleNotifications(event)" style="font-size: 0.75rem; color: #2563eb; font-weight: 700; text-decoration: none;">Mark all as read</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile-header-wrap" style="position: relative;">
+                        <div class="profile-header-dropdown-trigger" onclick="auth.toggleProfileDropdown(event)" title="My Account & Profile">
+                            <div class="nav-user-avatar-circle" style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden;">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" 
+                                     alt="Avatar" class="dash-top-avatar" id="dashTopAvatar" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="user-dropdown-card" id="userDropdownMenu"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BODY -->
+            <div class="quotations-body-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <div>
+                        <h1 style="font-size: 1.65rem; font-weight: 800; margin: 0 0 4px 0; color: #0f172a;">Custom Trip Quotations</h1>
+                        <p style="margin: 0; color: #64748b; font-size: 0.88rem;">Track personalized agency price quotes, itineraries and approved proposals.</p>
+                    </div>
+                    <a href="trip-builder.html" class="btn-primary-pill" style="padding: 10px 22px; text-decoration: none; font-size: 0.86rem;">
+                        + Request New Quote
+                    </a>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="quote-kpi-grid">
+                    <div class="quote-kpi-card">
+                        <div class="quote-kpi-icon" style="background: #eff6ff; color: #2563eb;">📄</div>
+                        <div>
+                            <div class="quote-kpi-val" id="kpiTotalQuotes">3</div>
+                            <div class="quote-kpi-label">Total Quotations</div>
+                        </div>
+                    </div>
+                    <div class="quote-kpi-card">
+                        <div class="quote-kpi-icon" style="background: #fef3c7; color: #d97706;">⏳</div>
+                        <div>
+                            <div class="quote-kpi-val">1</div>
+                            <div class="quote-kpi-label">Under Agency Review</div>
+                        </div>
+                    </div>
+                    <div class="quote-kpi-card">
+                        <div class="quote-kpi-icon" style="background: #dcfce7; color: #16a34a;">✅</div>
+                        <div>
+                            <div class="quote-kpi-val">2</div>
+                            <div class="quote-kpi-label">Approved &amp; Ready</div>
+                        </div>
+                    </div>
+                    <div class="quote-kpi-card">
+                        <div class="quote-kpi-icon" style="background: #ede9fe; color: #7c3aed;">💰</div>
+                        <div>
+                            <div class="quote-kpi-val">৳ 415,000</div>
+                            <div class="quote-kpi-label">Total Estimated Value</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quotations Table Card -->
+                <div class="quotes-table-card">
+                    <div class="quotes-table-hdr">
+                        <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0f172a;">Your Quote Requests</h3>
+                        <span style="font-size: 0.8rem; color: #64748b;">Valid for 14 days from issue</span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="quotes-table">
+                            <thead>
+                                <tr>
+                                    <th>Quote Ref</th>
+                                    <th>Destination</th>
+                                    <th>Travel Type</th>
+                                    <th>Duration / Pax</th>
+                                    <th>Estimated Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="copyable-cell">
+                                            <strong>QT-2026-0814</strong>
+                                            <button class="copy-btn-hint" onclick="copyToClipboard('QT-2026-0814', 'Quote Ref')" title="Copy Quote Ref">📋</button>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="copyable-cell">
+                                            <strong>Thailand Explorer (Bangkok + Phuket)</strong>
+                                            <button class="copy-btn-hint" onclick="copyToClipboard('Thailand Explorer (Bangkok + Phuket)', 'Destination')" title="Copy Destination">📋</button>
+                                        </span>
+                                    </td>
+                                    <td><span style="background: #eff6ff; color: #2563eb; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.72rem;">International</span></td>
+                                    <td>6 Days • 2 Adults</td>
+                                    <td><strong style="color: #2563eb;">৳ 185,000</strong></td>
+                                    <td><span class="status-badge-approved">Approved</span></td>
+                                    <td>
+                                        <a href="booking.html?type=custom&quote=QT-2026-0814" class="btn-table-action">
+                                            💳 Book Now
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="copyable-cell">
+                                            <strong>QT-2026-0792</strong>
+                                            <button class="copy-btn-hint" onclick="copyToClipboard('QT-2026-0792', 'Quote Ref')" title="Copy Quote Ref">📋</button>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="copyable-cell">
+                                            <strong>Cox's Bazar Beach &amp; Marine Drive Deluxe</strong>
+                                            <button class="copy-btn-hint" onclick="copyToClipboard('Cox\'s Bazar Beach &amp; Marine Drive Deluxe', 'Destination')" title="Copy Destination">📋</button>
+                                        </span>
+                                    </td>
+                                    <td><span style="background: #f0fdf4; color: #16a34a; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.72rem;">Domestic</span></td>
+                                    <td>4 Days • 4 Adults (Family)</td>
+                                    <td><strong style="color: #2563eb;">৳ 78,000</strong></td>
+                                    <td><span class="status-badge-approved">Approved</span></td>
+                                    <td>
+                                        <a href="booking.html?type=custom&quote=QT-2026-0792" class="btn-table-action">
+                                            💳 Book Now
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="copyable-cell">
+                                            <strong>QT-2026-0850</strong>
+                                            <button class="copy-btn-hint" onclick="copyToClipboard('QT-2026-0850', 'Quote Ref')" title="Copy Quote Ref">📋</button>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="copyable-cell">
+                                            <strong>Maldives Private Island Resort</strong>
+                                            <button class="copy-btn-hint" onclick="copyToClipboard('Maldives Private Island Resort', 'Destination')" title="Copy Destination">📋</button>
+                                        </span>
+                                    </td>
+                                    <td><span style="background: #eff6ff; color: #2563eb; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.72rem;">International</span></td>
+                                    <td>5 Days • 2 Adults</td>
+                                    <td><strong style="color: #64748b;">Calculating...</strong></td>
+                                    <td><span class="status-badge-pending">Reviewing</span></td>
+                                    <td>
+                                        <a href="trip-builder.html" class="btn-table-action">
+                                            ✏️ Edit Details
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+    function copyToClipboard(text, label) {
+        if (!text) return;
+        navigator.clipboard.writeText(text).then(() => {
+            let toast = document.getElementById('quotes-copy-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'quotes-copy-toast';
+                toast.className = 'copy-toast';
+                document.body.appendChild(toast);
+            }
+            toast.innerHTML = `<span>📋</span> Copied <strong>${label ? label + ': ' : ''}${text}</strong> to clipboard!`;
+            toast.classList.add('active');
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => {
+                toast.classList.remove('active');
+            }, 2200);
+        }).catch(err => {
+            console.error('Failed to copy', err);
+        });
+    }
+
+    function initDragToScroll() {
+        const containers = document.querySelectorAll('.table-responsive');
+        containers.forEach(container => {
+            if (container.dataset.dragScrollReady === 'true') return;
+            container.dataset.dragScrollReady = 'true';
+
+            let isDown = false;
+            let startX = 0;
+            let scrollStart = 0;
+            let hasDragged = false;
+
+            container.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return;
+                if (e.target.closest('button, a, input, select, textarea, .copy-btn-hint, .btn-table-action')) return;
+                isDown = true;
+                hasDragged = false;
+                startX = e.clientX;
+                scrollStart = container.scrollLeft;
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const dx = e.clientX - startX;
+                if (!hasDragged && Math.abs(dx) > 4) {
+                    hasDragged = true;
+                    container.classList.add('is-dragging');
+                    if (window.getSelection) {
+                        window.getSelection().removeAllRanges();
+                    }
+                }
+                if (hasDragged) {
+                    e.preventDefault();
+                    container.scrollLeft = scrollStart - (dx * 1.6);
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (!isDown) return;
+                isDown = false;
+                container.classList.remove('is-dragging');
+                if (hasDragged) {
+                    setTimeout(() => { hasDragged = false; }, 80);
+                }
+            });
+
+            container.addEventListener('click', (e) => {
+                if (hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.auth) auth.renderPortalSidebar();
+        initDragToScroll();
+    });
+    </script>
+</body>
+</html>

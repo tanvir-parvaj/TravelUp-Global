@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Account — TravelUp Global</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Google Fonts: Plus Jakarta Sans & Handwritten Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --bg-card: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 1. Main Fullscreen Split Container */
+        .auth-split-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100vw;
+            background-color: #ffffff;
+            background-image: url('images/auth-bg.jpg');
+            background-position: left center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* 2. Left Hero Column */
+        .auth-hero-col {
+            flex: 1;
+            max-width: 52%;
+            min-height: 100vh;
+            padding: 44px 56px 36px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Brand Logo */
+        .brand-logo-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: fit-content;
+        }
+
+        .brand-logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+            flex-shrink: 0;
+        }
+
+        .brand-logo-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            transform: rotate(-10deg);
+        }
+
+        .brand-title-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.4px;
+            line-height: 1.1;
+        }
+
+        .brand-subtitle-text {
+            font-size: 0.64rem;
+            font-weight: 800;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* Left Hero Content */
+        .hero-main-content {
+            max-width: 450px;
+            margin: auto 0;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        /* Sky Handwritten Doodle */
+        .sky-doodle-cluster {
+            position: absolute;
+            top: -40px;
+            right: -30px;
+            font-family: 'Caveat', cursive;
+            color: #1e40af;
+            font-size: 1.55rem;
+            font-weight: 700;
+            line-height: 1.15;
+            transform: rotate(-8deg);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .sky-doodle-cluster svg {
+            width: 24px;
+            height: 24px;
+            fill: #1d4ed8;
+            transform: rotate(20deg);
+        }
+
+        .hero-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            line-height: 1.12;
+            color: #0f172a;
+            margin-bottom: 14px;
+            letter-spacing: -0.8px;
+        }
+
+        .hero-title .text-blue {
+            color: #2563eb;
+        }
+
+        .hero-desc {
+            font-size: 0.96rem;
+            color: #475569;
+            line-height: 1.55;
+            margin-bottom: 30px;
+        }
+
+        /* 3 Features List with Circular Blue Badges */
+        .hero-features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-feature-icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.88);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
+            flex-shrink: 0;
+        }
+
+        .hero-feature-icon-circle svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .hero-feature-title {
+            font-size: 0.94rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .hero-feature-sub {
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.35;
+        }
+
+        /* Glass Frosted Stat Badge over Rocks */
+        .hero-stats-glass-card {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 380px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        }
+
+        .hero-stat-cell {
+            text-align: center;
+            flex: 1;
+        }
+
+        .hero-stat-cell:not(:last-child) {
+            border-right: 1px solid rgba(255, 255, 255, 0.18);
+            padding-right: 12px;
+            margin-right: 12px;
+        }
+
+        .hero-stat-val {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+
+        .hero-bottom-copyright {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            margin-top: 14px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        /* 3. Right Form Column */
+        .auth-form-col {
+            flex: 1;
+            max-width: 48%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 36px 64px 32px 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Right Navigation Switcher */
+        .top-nav-switch-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.86rem;
+            color: #64748b;
+        }
+
+        .btn-top-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 9999px;
+            border: 1.5px solid #2563eb;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .btn-top-switch:hover {
+            background: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Form Card Centered */
+        .auth-form-card {
+            max-width: 470px;
+            width: 100%;
+            margin: auto 0;
+            padding: 10px 0;
+        }
+
+        .form-main-heading {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.4px;
+            margin-bottom: 6px;
+        }
+
+        .form-main-subtext {
+            font-size: 0.88rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        /* Role Switcher: 2 Large Cards */
+        .signup-role-selector-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .signup-role-card {
+            padding: 14px 14px;
+            border-radius: 14px;
+            border: 1.5px solid #e2e8f0;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            user-select: none;
+        }
+
+        .signup-role-card:hover {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+        }
+
+        .signup-role-card.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+            box-shadow: 0 3px 12px rgba(37, 99, 235, 0.14);
+        }
+
+        .signup-role-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .signup-role-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .signup-role-card.active .signup-role-name {
+            color: #1d4ed8;
+        }
+
+        .signup-role-desc {
+            font-size: 0.72rem;
+            color: #64748b;
+            margin-top: 3px;
+            line-height: 1.3;
+        }
+
+        /* Staff Alert Banner */
+        .staff-alert-banner {
+            display: none;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 0.78rem;
+            color: #1e40af;
+            line-height: 1.45;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .staff-alert-banner svg {
+            width: 18px;
+            height: 18px;
+            fill: #2563eb;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Staff Role Selection Dropdown */
+        .staff-role-group {
+            margin-bottom: 16px;
+        }
+
+        .staff-select-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .staff-select-icon {
+            position: absolute;
+            left: 14px;
+            color: #2563eb;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .staff-select-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .staff-custom-select {
+            width: 100%;
+            height: 48px;
+            padding: 0 36px 0 42px;
+            border-radius: 12px;
+            border: 1.5px solid #2563eb;
+            background: #eff6ff;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            appearance: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .staff-custom-select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3.5px rgba(37, 99, 235, 0.2);
+        }
+
+        .staff-select-chevron {
+            position: absolute;
+            right: 14px;
+            color: #1e3a8a;
+            pointer-events: none;
+            font-size: 0.8rem;
+        }
+
+        /* Form Fields 2x2 Grid */
+        .form-fields-grid-2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .form-group-unit {
+            position: relative;
+        }
+
+        .form-label-text {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+
+        .form-label-text span.req {
+            color: #e11d48;
+        }
+
+        .input-box-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-left-icon {
+            position: absolute;
+            left: 14px;
+            color: #94a3b8;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .input-left-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .auth-text-input {
+            width: 100%;
+            height: 46px;
+            padding: 0 40px 0 42px;
+            border-radius: 12px;
+            border: 1.5px solid #e2e8f0;
+            background: #ffffff;
+            font-family: inherit;
+            font-size: 0.88rem;
+            color: #0f172a;
+            transition: all 0.2s ease;
+        }
+
+        .auth-text-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3.5px rgba(37, 99, 235, 0.15);
+        }
+
+        .input-toggle-pw {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+        }
+
+        .input-toggle-pw:hover {
+            color: #475569;
+        }
+
+        .input-toggle-pw svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Checkbox Terms */
+        .form-terms-row {
+            margin-bottom: 22px;
+        }
+
+        .custom-checkbox-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.84rem;
+            color: #475569;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .custom-checkbox-wrap input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            accent-color: #2563eb;
+            border-radius: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .custom-checkbox-wrap a {
+            color: #2563eb;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .custom-checkbox-wrap a:hover {
+            text-decoration: underline;
+        }
+
+        /* Primary Submit Button */
+        .btn-auth-submit {
+            width: 100%;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border: none;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.32);
+            transition: all 0.2s ease;
+        }
+
+        .btn-auth-submit:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-auth-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-auth-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .auth-split-wrapper {
+                flex-direction: column;
+                background-position: center top;
+            }
+
+            .auth-hero-col {
+                max-width: 100%;
+                min-height: auto;
+                padding: 30px 24px;
+                background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.98) 100%);
+            }
+
+            .sky-doodle-cluster {
+                display: none;
+            }
+
+            .auth-form-col {
+                max-width: 100%;
+                min-height: auto;
+                padding: 30px 24px 40px 24px;
+                background: #ffffff;
+            }
+
+            .auth-form-card {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .form-fields-grid-2x2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .auth-hero-col {
+                padding: 24px 18px 16px 18px;
+            }
+            .hero-features-list {
+                display: none;
+            }
+            .hero-desc {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+            .hero-title {
+                font-size: 1.55rem;
+                margin-bottom: 6px;
+            }
+            .auth-form-col {
+                padding: 20px 18px 40px 18px;
+            }
+            .social-buttons-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            select {
+                font-size: 16px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-split-wrapper">
+        <!-- ======================================================= -->
+        <!-- 1. LEFT HERO COLUMN (Branding, Santorini View & Stats)  -->
+        <!-- ======================================================= -->
+        <div class="auth-hero-col">
+            <!-- Brand Logo -->
+            <a href="index.html" class="brand-logo-wrap" title="TravelUp Global Home">
+                <div class="brand-logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </div>
+                <div>
+                    <div class="brand-title-text">TravelUp Global</div>
+                    <div class="brand-subtitle-text">EXPLORE • PLAN • TRAVEL</div>
+                </div>
+            </a>
+
+            <!-- Main Title & Features -->
+            <div class="hero-main-content">
+                <!-- Sky Doodle -->
+                <div class="sky-doodle-cluster">
+                    <span>More Destinations,<br>More Stories</span>
+                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </div>
+
+                <h1 class="hero-title">
+                    Your Journey<br>
+                    <span class="text-blue">Starts Here</span>
+                </h1>
+                <p class="hero-desc">
+                    Join TravelUp Global and be part of a growing community of travelers and professionals building better travel experiences.
+                </p>
+
+                <!-- 3 Features List with Circular Blue Icons -->
+                <div class="hero-features-list">
+                    <div class="hero-feature-item">
+                        <div class="hero-feature-icon-circle">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        </div>
+                        <div>
+                            <div class="hero-feature-title">Explore the World</div>
+                            <div class="hero-feature-sub">Discover amazing destinations, hotels, and experiences.</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-feature-item">
+                        <div class="hero-feature-icon-circle">
+                            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                        </div>
+                        <div>
+                            <div class="hero-feature-title">Safe &amp; Secure</div>
+                            <div class="hero-feature-sub">Your data and transactions are always protected.</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-feature-item">
+                        <div class="hero-feature-icon-circle">
+                            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 3s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </div>
+                        <div>
+                            <div class="hero-feature-title">Global Community</div>
+                            <div class="hero-feature-sub">Connect with travelers and industry professionals.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Frosted Stats Badge & Copyright -->
+            <div>
+                <div class="hero-stats-glass-card">
+                    <div class="hero-stat-cell">
+                        <div class="hero-stat-val">8+</div>
+                        <div class="hero-stat-label">Global Hubs</div>
+                    </div>
+                    <div class="hero-stat-cell">
+                        <div class="hero-stat-val">4.8 ★</div>
+                        <div class="hero-stat-label">Traveler Rating</div>
+                    </div>
+                    <div class="hero-stat-cell">
+                        <div class="hero-stat-val">100%</div>
+                        <div class="hero-stat-label">Price Integrity</div>
+                    </div>
+                </div>
+                <div class="hero-bottom-copyright">
+                    © 2026 TravelUp Global. All rights reserved.
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================================================= -->
+        <!-- 2. RIGHT FORM COLUMN (Create Your Account Form)         -->
+        <!-- ======================================================= -->
+        <div class="auth-form-col">
+            <!-- Top Right Link -->
+            <div class="top-nav-switch-row">
+                <span>Already have an account?</span>
+                <a href="login.html" class="btn-top-switch">Log In ➔</a>
+            </div>
+
+            <!-- Main Form Card -->
+            <div class="auth-form-card">
+                <h2 class="form-main-heading">Create Your Account</h2>
+                <p class="form-main-subtext">
+                    Join TravelUp Global and start your journey with us.
+                </p>
+
+                <!-- Role Switcher: 2 Large Cards -->
+                <div class="signup-role-selector-grid">
+                    <div class="signup-role-card active" id="cardTraveler" onclick="signup.setRole('customer')">
+                        <span class="signup-role-icon">🎒</span>
+                        <div>
+                            <div class="signup-role-name">Traveler</div>
+                            <div class="signup-role-desc">Book trips, hotels, activities &amp; more</div>
+                        </div>
+                    </div>
+                    <div class="signup-role-card" id="cardStaff" onclick="signup.setRole('staff')">
+                        <span class="signup-role-icon">🛡️</span>
+                        <div>
+                            <div class="signup-role-name">Staff &amp; Admin Portal</div>
+                            <div class="signup-role-desc">Access staff &amp; admin features</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff Role Callout & Dropdown (Dynamically Visible for Staff) -->
+                <div id="staffSection" style="display: none;">
+                    <div class="staff-alert-banner">
+                        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                        <div>
+                            Join our staff and admin portal to manage operations, support travelers, handle finances, and more. Your request will be reviewed by a super admin before access is granted.
+                        </div>
+                    </div>
+
+                    <div class="staff-role-group">
+                        <label class="form-label-text" for="assignedStaffRole">Assigned Staff Role <span class="req">*</span></label>
+                        <div class="staff-select-wrap">
+                            <span class="staff-select-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                            </span>
+                            <select id="assignedStaffRole" class="staff-custom-select">
+                                <option value="admin">👑 Administrator (Super Admin) — Full system access</option>
+                                <option value="manager">💼 Operations Manager — Manage operations &amp; packages</option>
+                                <option value="accountant">💳 Senior Accountant — Handle invoices &amp; finance</option>
+                                <option value="support">🎧 Support Specialist — Assist travelers &amp; inquiries</option>
+                                <option value="moderator">✍️ Content Moderator — Moderate reviews &amp; content</option>
+                            </select>
+                            <span class="staff-select-chevron">▾</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <form id="signupForm" onsubmit="signup.handleSubmit(event)">
+                    <!-- 2x2 Form Fields Grid -->
+                    <div class="form-fields-grid-2x2">
+                        <!-- Full Name -->
+                        <div class="form-group-unit">
+                            <label class="form-label-text" for="signupName">Full Name <span class="req">*</span></label>
+                            <div class="input-box-wrap">
+                                <span class="input-left-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                </span>
+                                <input type="text" id="signupName" class="auth-text-input" placeholder="e.g. Tanvir Parvaj" required autocomplete="name">
+                            </div>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="form-group-unit">
+                            <label class="form-label-text" for="signupEmail">Email Address <span class="req">*</span></label>
+                            <div class="input-box-wrap">
+                                <span class="input-left-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                </span>
+                                <input type="email" id="signupEmail" class="auth-text-input" placeholder="e.g. tanvir@travelupglobal.com" required autocomplete="email">
+                            </div>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="form-group-unit">
+                            <label class="form-label-text" for="signupPhone">Phone Number (Optional)</label>
+                            <div class="input-box-wrap">
+                                <span class="input-left-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                                </span>
+                                <input type="tel" id="signupPhone" class="auth-text-input" placeholder="+880 1700-000000" autocomplete="tel">
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group-unit">
+                            <label class="form-label-text" for="signupPassword">Password <span class="req">*</span></label>
+                            <div class="input-box-wrap">
+                                <span class="input-left-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                                </span>
+                                <input type="password" id="signupPassword" class="auth-text-input" placeholder="Create a strong password" required autocomplete="new-password">
+                                <button type="button" class="input-toggle-pw" onclick="signup.togglePassword()" title="Toggle password visibility">
+                                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms Checkbox -->
+                    <div class="form-terms-row">
+                        <label class="custom-checkbox-wrap">
+                            <input type="checkbox" id="agreeTerms" required checked>
+                            <span>I agree to the <a href="javascript:void(0)" onclick="alert('Terms of Service:\nWelcome to TravelUp Global. All bookings and operations adhere to global travel regulations.')">Terms of Service</a> and <a href="javascript:void(0)" onclick="alert('Privacy Policy:\nYour privacy is completely secured under international data protection laws.')">Privacy Policy</a></span>
+                        </label>
+                    </div>
+
+                    <!-- Primary Submit Button -->
+                    <button type="submit" class="btn-auth-submit" id="btnSubmitSignup">
+                        <span>Create Account</span> ➔
+                    </button>
+                </form>
+            </div>
+
+            <!-- Empty bottom spacer for balanced flex layout -->
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        const signup = {
+            roleMode: 'customer',
+
+            setRole(role) {
+                this.roleMode = role;
+                const cardT = document.getElementById('cardTraveler');
+                const cardS = document.getElementById('cardStaff');
+                const staffSec = document.getElementById('staffSection');
+
+                if (role === 'staff') {
+                    cardS.classList.add('active');
+                    cardT.classList.remove('active');
+                    staffSec.style.display = 'block';
+                } else {
+                    cardT.classList.add('active');
+                    cardS.classList.remove('active');
+                    staffSec.style.display = 'none';
+                }
+            },
+
+            togglePassword() {
+                const el = document.getElementById('signupPassword');
+                const isPw = el.type === 'password';
+                el.type = isPw ? 'text' : 'password';
+            },
+
+            async handleSubmit(e) {
+                e.preventDefault();
+                const btn = document.getElementById('btnSubmitSignup');
+                const origHtml = btn.innerHTML;
+                btn.innerHTML = '<span>Creating Account...</span>';
+                btn.disabled = true;
+
+                const name = document.getElementById('signupName').value.trim();
+                const email = document.getElementById('signupEmail').value.trim();
+                const phone = document.getElementById('signupPhone').value.trim();
+                const password = document.getElementById('signupPassword').value;
+
+                let finalRole = 'customer';
+                if (this.roleMode === 'staff') {
+                    finalRole = document.getElementById('assignedStaffRole').value || 'admin';
+                }
+
+                const payload = {
+                    name,
+                    email,
+                    password,
+                    phone: phone || undefined,
+                    role: finalRole,
+                    admin_passcode: this.roleMode === 'staff' ? 'ADMIN2026' : undefined
+                };
+
+                try {
+                    const res = await api.register(payload);
+                    if (res && res.success) {
+                        auth.saveSession(res.token, res.user);
+                        const isStaff = auth.isStaff();
+                        const roleLabel = auth.getRoleLabel(res.user.role);
+
+                        alert(`🎉 Welcome to TravelUp Global, ${res.user.name}!\nYour account is active as: ${roleLabel}`);
+
+                        if (isStaff) {
+                            window.location.href = 'admin.html';
+                        } else {
+                            window.location.href = 'dashboard.html';
+                        }
+                    } else {
+                        alert(`❌ Signup Error:\n${(res && res.message) || 'Could not complete registration. Please try again.'}`);
+                        btn.innerHTML = origHtml;
+                        btn.disabled = false;
+                    }
+                } catch (err) {
+                    alert('❌ Connection Error: Could not connect to registration server.');
+                    btn.innerHTML = origHtml;
+                    btn.disabled = false;
+                }
+            }
+        };
+
+        // If URL param ?role=staff, activate staff mode
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('role') === 'staff') {
+                signup.setRole('staff');
+            }
+        });
+    </script>
+</body>
+</html>

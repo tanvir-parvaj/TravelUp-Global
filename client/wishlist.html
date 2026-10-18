@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist — TravelUp Global</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 1. TOP NAVBAR (Sticky & Pixel-Perfect) -->
+    <header class="top-navbar">
+        <div class="container navbar-inner">
+            <!-- Brand Logo -->
+            <a href="index.html" class="nav-brand-logo">
+                <div class="brand-icon-box">✈️</div>
+                <div class="brand-title-wrap">
+                    <h1>TravelUp Global</h1>
+                    <p>Explore • Plan • Travel</p>
+                </div>
+            </a>
+
+            <!-- Submenu-Organized Navigation Menu -->
+            <ul class="nav-links-menu">
+                <li class="nav-link-item"><a href="index.html" data-en="Home" data-bn="হোম">Home</a></li>
+                <li class="nav-link-item"><a href="destinations.html" data-en="Destinations" data-bn="ডেস্টিনেশন">Destinations</a></li>
+                
+                <!-- Submenu 1: Plan & Build ▾ -->
+                <li class="nav-link-item has-dropdown">
+                    <a href="javascript:void(0)" class="dropdown-trigger">
+                        <span data-en="Plan & Build" data-bn="প্ল্যান ও বিল্ড">Plan & Build</span> <span class="nav-arrow-down">▾</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="trip-builder.html" class="dropdown-link-item">
+                            <div class="drop-icon">🛠️</div>
+                            <div>
+                                <div class="drop-title" data-en="Custom Trip Builder" data-bn="কাস্টম ট্রিপ বিল্ডার">Custom Trip Builder</div>
+                                <div class="drop-desc" data-en="Dynamic pricing & live builder" data-bn="লাইভ দাম ও ট্রিপ কাস্টমাইজার">Dynamic pricing & live builder</div>
+                            </div>
+                        </a>
+                        <a href="itinerary.html" class="dropdown-link-item">
+                            <div class="drop-icon">🗺️</div>
+                            <div>
+                                <div class="drop-title" data-en="Day-wise Itinerary" data-bn="দিনভিত্তিক ভ্রমণসূচি">Day-wise Itinerary</div>
+                                <div class="drop-desc" data-en="Interactive day plans & routes" data-bn="ইন্টারেক্টিভ সূচি ও ম্যাপ">Interactive day plans & routes</div>
+                            </div>
+                        </a>
+                        <a href="ai-planner.html" class="dropdown-link-item">
+                            <div class="drop-icon">🤖</div>
+                            <div>
+                                <div class="drop-title" data-en="AI Trip Planner" data-bn="এআই ট্রিপ প্ল্যানার">AI Trip Planner</div>
+                                <div class="drop-desc" data-en="Budget-protected AI optimizer" data-bn="বাজেট প্রটেক্টেড এআই অপটিমাইজার">Budget-protected AI optimizer</div>
+                            </div>
+                        </a>
+                        <a href="budget-planner.html" class="dropdown-link-item">
+                            <div class="drop-icon">📊</div>
+                            <div>
+                                <div class="drop-title" data-en="Budget Planner" data-bn="বাজেট প্ল্যানার">Budget Planner</div>
+                                <div class="drop-desc" data-en="Accurate category cost forecast" data-bn="সঠিক ক্যাটাগরি খরচ ফোরকাস্ট">Accurate category cost forecast</div>
+                            </div>
+                        </a>
+                        <a href="group-travel.html" class="dropdown-link-item">
+                            <div class="drop-icon">👥</div>
+                            <div>
+                                <div class="drop-title" data-en="Group Travel" data-bn="গ্রুপ ট্রাভেল">Group Travel</div>
+                                <div class="drop-desc" data-en="Save up to 20% on group trips" data-bn="গ্রুপে ঘুরুন, ২০% পর্যন্ত সাশ্রয়">Save up to 20% on group trips</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-link-item"><a href="packages.html" data-en="Packages" data-bn="প্যাকেজ">Packages</a></li>
+
+                <!-- Submenu 2: Community & Reviews ▾ -->
+                <li class="nav-link-item has-dropdown">
+                    <a href="javascript:void(0)" class="dropdown-trigger">
+                        <span data-en="Community" data-bn="কমিউনিটি">Community</span> <span class="nav-arrow-down">▾</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="reviews.html" class="dropdown-link-item">
+                            <div class="drop-icon">⭐</div>
+                            <div>
+                                <div class="drop-title" data-en="Traveler Reviews" data-bn="ভ্রমণকারীদের রিভিউ">Traveler Reviews</div>
+                                <div class="drop-desc" data-en="Verified feedback & ratings" data-bn="যাচাইকৃত মতামত ও অভিজ্ঞতা">Verified feedback & ratings</div>
+                            </div>
+                        </a>
+                        <a href="community.html" class="dropdown-link-item">
+                            <div class="drop-icon">💬</div>
+                            <div>
+                                <div class="drop-title" data-en="Travel Stories" data-bn="ভ্রমণ গল্প">Travel Stories</div>
+                                <div class="drop-desc" data-en="Community stories & photo feed" data-bn="কমিউনিটি পোস্ট ও ছবি">Community stories & photo feed</div>
+                            </div>
+                        </a>
+                        <a href="quiz.html" class="dropdown-link-item">
+                            <div class="drop-icon">🎮</div>
+                            <div>
+                                <div class="drop-title" data-en="Travel Personality Quiz" data-bn="ট্রাভেল কুইজ">Travel Personality Quiz</div>
+                                <div class="drop-desc" data-en="Find your ideal destination match" data-bn="পছন্দ অনুযায়ী ডেস্টিনেশন মিলান">Find your ideal destination match</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Right Actions Cluster (Clean & Dynamic Authentication) -->
+            <div class="nav-right-cluster">
+                <!-- Language Selector -->
+                <button class="lang-toggle-btn" onclick="app.toggleLanguage()">
+                    🌐 <span id="currentLangLabel">EN</span> ▾
+                </button>
+
+                <!-- Currency Selector -->
+                <button class="lang-toggle-btn" onclick="app.toggleCurrency()" title="Toggle Currency (USD / BDT)">
+                    💵 <span id="currentCurrLabel">USD</span>
+                </button>
+
+                <!-- Wishlist Heart -->
+                <a href="wishlist.html" class="icon-badge-btn" title="Wishlist" style="color: #ef4444;">
+                    ❤️ <span class="red-notify-dot" id="wishlistDot"></span>
+                </a>
+
+                <!-- Notification Bell -->
+                <button class="icon-badge-btn" onclick="alert('Notification: 15% discount on Bali packages active!')" title="Notifications">
+                    🔔 <span class="red-notify-dot"></span>
+                </button>
+
+                                <!-- Common User Account Button (Unified for Login, Signup & Profile) -->
+                <div class="user-profile-header-wrap">
+                    <div class="profile-header-dropdown-trigger" onclick="auth.toggleProfileDropdown(event)" title="Account & Profile">
+                        <div class="nav-user-avatar-circle">
+                            <span style="font-size: 1.15rem;">👤</span>
+                        </div>
+                    </div>
+
+                    <!-- Unified Account Dropdown Card -->
+                    <div class="user-dropdown-card" id="userDropdownMenu">
+                        <!-- Dynamically populated by auth.renderNav() -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 24px; padding-bottom: 70px;">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs-nav" style="margin-bottom: 16px;">
+            <a href="index.html" style="color:var(--blue-primary);">Home</a> <span>›</span>
+            <span style="color:var(--text-dark); font-weight:700;">Wishlist</span>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px; flex-wrap:wrap; gap:16px;">
+            <div>
+                <h1 style="font-size:1.9rem; font-weight:800; color:var(--text-dark); margin-bottom:4px;">
+                    My Wishlist ❤️ <span style="font-size:1.2rem; color:var(--blue-primary);" id="wishlistCount">(6)</span>
+                </h1>
+                <p style="color:var(--text-muted); font-size:0.95rem;">Your dream destinations, all in one place.</p>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <select id="wishlistSort" style="padding:10px 14px; border-radius:12px; border:1px solid var(--border-light); font-weight:600; font-size:0.85rem; background:#fff;">
+                    <option value="match">Sort by: Best Match</option>
+                    <option value="price_low">Price: Low to High</option>
+                    <option value="price_high">Price: High to Low</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+                <button class="btn-login-signup-pill" style="background:#f1f5f9; color:var(--text-dark); border:1px solid var(--border-light); padding:10px 18px; font-size:0.88rem; cursor:pointer;" onclick="shareWishlist()">
+                    ↗️ Share Wishlist
+                </button>
+                <a href="destinations.html" class="btn-login-signup-pill" style="padding:10px 20px; font-size:0.88rem; text-decoration:none;">
+                    + Explore More
+                </a>
+            </div>
+        </div>
+
+        <!-- 2. WISHLIST 6-CARD GRID (Image 1 Screen 5) -->
+        <div class="wishlist-grid" id="wishlistGrid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:24px;">
+            <!-- Card 1: Bali -->
+            <div class="wishlist-card" id="wishlist-item-1">
+                <div class="wishlist-img-box" style="position:relative;">
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="Bali, Indonesia" style="width:100%; height:200px; object-fit:cover; border-radius:16px 16px 0 0;">
+                    <span style="position:absolute; top:12px; left:12px; background:rgba(34,197,94,0.9); color:#fff; font-size:0.75rem; font-weight:800; padding:4px 8px; border-radius:8px;">96% Match</span>
+                    <button class="wishlist-remove-btn" title="Remove from Wishlist" onclick="removeItem(1, 'Bali, Indonesia')">✕</button>
+                </div>
+                <div class="wishlist-body" style="padding:18px; background:#fff; border:1px solid var(--border-light); border-top:none; border-radius:0 0 16px 16px;">
+                    <div class="wishlist-title-row" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <h3 style="font-size:1.1rem; font-weight:800; color:var(--text-dark); margin:0;">Bali, Indonesia</h3>
+                        <span class="wishlist-rating" style="font-size:0.85rem; font-weight:700; color:#eab308;">⭐ 4.8</span>
+                    </div>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Tropical beaches, volcanic temples, and lush emerald terraces.</p>
+                    <div class="wishlist-bottom-row" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Starting from</span>
+                            <span style="font-size:1.25rem; font-weight:800; color:var(--blue-primary);">$699</span>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <a href="destination-details.html?id=1" class="btn-login-signup-pill" style="background:#f1f5f9; color:var(--text-dark); padding:8px 14px; font-size:0.82rem; text-decoration:none;">Details</a>
+                            <a href="booking.html?dest=1" class="btn-search-round" style="padding:8px 18px; font-size:0.82rem; text-decoration:none;">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Santorini -->
+            <div class="wishlist-card" id="wishlist-item-2">
+                <div class="wishlist-img-box" style="position:relative;">
+                    <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80" alt="Santorini, Greece" style="width:100%; height:200px; object-fit:cover; border-radius:16px 16px 0 0;">
+                    <span style="position:absolute; top:12px; left:12px; background:rgba(34,197,94,0.9); color:#fff; font-size:0.75rem; font-weight:800; padding:4px 8px; border-radius:8px;">94% Match</span>
+                    <button class="wishlist-remove-btn" title="Remove from Wishlist" onclick="removeItem(2, 'Santorini, Greece')">✕</button>
+                </div>
+                <div class="wishlist-body" style="padding:18px; background:#fff; border:1px solid var(--border-light); border-top:none; border-radius:0 0 16px 16px;">
+                    <div class="wishlist-title-row" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <h3 style="font-size:1.1rem; font-weight:800; color:var(--text-dark); margin:0;">Santorini, Greece</h3>
+                        <span class="wishlist-rating" style="font-size:0.85rem; font-weight:700; color:#eab308;">⭐ 4.9</span>
+                    </div>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">Iconic whitewashed caldera cliffs and Aegean Sea sunsets.</p>
+                    <div class="wishlist-bottom-row" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Starting from</span>
+                            <span style="font-size:1.25rem; font-weight:800; color:var(--blue-primary);">$899</span>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <a href="destination-details.html?id=2" class="btn-login-signup-pill" style="background:#f1f5f9; color:var(--text-dark); padding:8px 14px; font-size:0.82rem; text-decoration:none;">Details</a>
+                            <a href="booking.html?dest=2" class="btn-search-round" style="padding:8px 18px; font-size:0.82rem; text-decoration:none;">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Maldives -->
+            <div class="wishlist-card" id="wishlist-item-3">
+                <div class="wishlist-img-box" style="position:relative;">
+        <div class="wishlist-grid" id="wishlistGrid">
+            <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #64748b;">
+                Loading your saved trips from Hostinger MySQL...
+            </div>
+        </div>
+
+        <!-- 3. PRICE DROP ALERT BANNER (Screen 5 from Image 1) -->
+        <section style="margin-top: 40px; background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%); border-radius: 20px; overflow: hidden; display: flex; align-items: center; justify-content: space-between; padding: 28px 36px; color: #fff; box-shadow: 0 10px 25px rgba(37,99,235,0.2);">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=200&q=80" 
+                     alt="Maldives Bungalows" style="width: 80px; height: 80px; border-radius: 16px; object-fit: cover; border: 2px solid rgba(255,255,255,0.4);">
+                <div>
+                    <span style="display: inline-block; background: #fbbf24; color: #78350f; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; margin-bottom: 6px;">Price Drop Alert!</span>
+                    <h3 style="margin: 0 0 4px 0; font-size: 1.3rem; font-weight: 800;">Prices dropped for 2 destinations in your wishlist!</h3>
+                    <p style="margin: 0; font-size: 0.85rem; color: #e0f2fe;">Bali and Maldives packages are now up to $150 cheaper for October bookings.</p>
+                </div>
+            </div>
+            <a href="packages.html" style="background: #ffffff; color: #1e3a8a; padding: 12px 26px; border-radius: 30px; font-size: 0.9rem; font-weight: 800; text-decoration: none; transition: transform 0.2s; white-space: nowrap;">
+                View Deals ➔
+            </a>
+        </section>
+    </main>
+
+    <!-- MASTER FOOTER (PIXEL-PERFECT FROM DESIGN MOCKUP) -->
+    <footer class="footer-dark-section">
+        <!-- Mockup Flight Trail Decoration -->
+        <svg class="footer-flight-decoration" width="220" height="110" viewBox="0 0 220 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 95 C 70 95, 90 20, 140 45 C 175 60, 195 25, 202 18" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
+            <text x="198" y="16" font-size="14" fill="#38bdf8" transform="rotate(35 198 16)">✈</text>
+        </svg>
+
+        <div class="container">
+            <div class="footer-columns-four">
+                <!-- Brand Column -->
+                <div class="footer-brand-column">
+                    <a href="index.html" class="footer-brand-logo-wrap">
+                        <div class="footer-brand-icon">✈️</div>
+                        <div>
+                            <h3>TravelUp Global</h3>
+                            <span>Explore • Plan • Travel</span>
+                        </div>
+                    </a>
+                    <p class="footer-brand-bio">
+                        Next-generation global travel technology platform. Discover breathtaking destinations, customize dynamic itineraries, and reserve verified dream trips worldwide.
+                    </p>
+                    <div class="footer-social-icons-row">
+                        <!-- Facebook -->
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" title="TikTok">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.16 1.18 2.09 2.35 2.3 1.05.2 2.16-.08 2.93-.82.68-.61.99-1.54 1.02-2.43.05-3.37.02-6.75.03-10.12.02-2.73.01-5.46.02-8.19z"/></svg>
+                        </a>
+                        <!-- X / Twitter -->
+                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-nav-col">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="destinations.html"><span>🗺️</span> Explore Destinations</a></li>
+                        <li><a href="packages.html"><span>✈️</span> Featured Packages</a></li>
+                        <li><a href="trip-builder.html"><span>🛠️</span> Custom Trip Builder</a></li>
+                        <li><a href="community.html"><span>👥</span> Community & Stories</a></li>
+                        <li><a href="index.html#about"><span>ℹ️</span> About Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Support -->
+                <div class="footer-nav-col">
+                    <h5>Support & Help</h5>
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>💬</span> Help Center</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>📬</span> Contact Specialists</a></li>
+                        <li><a href="itinerary.html"><span>🗺️</span> Day-wise Itinerary</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.openTermsModal()"><span>📜</span> Terms & Conditions</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.openPrivacyModal()"><span>🛡️</span> Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Download App -->
+                <div class="footer-nav-col">
+                    <h5>Download Our App</h5>
+                    <p style="font-size:0.78rem; color:#64748b; margin-bottom:14px; line-height:1.5;">
+                        Get exclusive mobile flight deals, barcode e-vouchers & live flight updates.
+                    </p>
+                    <div class="store-badges-container">
+                        <!-- App Store Badge -->
+                        <div class="store-badge-card" onclick="alert('TravelUp Global iOS App is coming soon to the Apple App Store! 🍏')">
+                            <div class="store-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.13-1.96 1-3.1-.98.04-2.16.66-2.85 1.47-.61.71-1.14 1.88-1 2.99 1.09.08 2.2-.56 2.85-1.36z"/></svg>
+                            </div>
+                            <div>
+                                <div class="store-text-top">Download on the</div>
+                                <div class="store-text-brand">App Store</div>
+                            </div>
+                        </div>
+
+                        <!-- Google Play Badge -->
+                        <div class="store-badge-card" onclick="alert('TravelUp Global Android App is coming soon to Google Play Store! 🤖')">
+                            <div class="store-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.023 2.023 0 0 1-.61-1.45V3.264c0-.56.223-1.08.609-1.45zm11.233 11.234l2.551 2.551-12.01 6.857 9.459-9.408zm0-2.096L5.383 1.543l12.01 6.858-2.551 2.551zm1.047 1.048l3.418-1.95a1.86 1.86 0 0 1 0 3.218l-3.418-1.95-.001-.001-.001.683z"/></svg>
+                            </div>
+                            <div>
+                                <div class="store-text-top">GET IT ON</div>
+                                <div class="store-text-brand">Google Play</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-Footer Bottom Line -->
+            <div class="footer-bottom-line">
+                <div>© 2026 TravelUp Global. All rights reserved.</div>
+                
+                <div class="footer-bottom-badges">
+                    <span class="footer-badge-pill status-green">
+                        <span class="footer-pulse-dot"></span> Hostinger Cloud MySQL Connected
+                    </span>
+                    <span class="footer-badge-pill">
+                        🔒 256-Bit SSL Secured
+                    </span>
+                    <span class="footer-badge-pill" style="color:#94a3b8; border-color:rgba(255,255,255,0.08); background:transparent;">
+                        Port: 5000 Active
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let wishlistItems = [];
+
+        async function loadWishlist() {
+            if (window.app) {
+                app.updateCurrLabels();
+                app.updateLangLabels();
+            }
+
+            if (!auth.token) {
+                document.getElementById('wishlistGrid').innerHTML = `
+                    <div style="grid-column:1/-1; text-align:center; padding:60px 20px; background:white; border-radius:20px; border:1px solid var(--border-light);">
+                        <div style="font-size:3rem; margin-bottom:12px;">❤️</div>
+                        <h3 style="font-size:1.3rem; font-weight:800; color:var(--text-dark); margin-bottom:8px;">Please Sign In to View Your Wishlist</h3>
+                        <p style="color:var(--text-muted); margin-bottom:20px;">Save your favorite destinations, compare pricing, and plan faster.</p>
+                        <a href="login.html" class="btn-search-round" style="padding:10px 24px; text-decoration:none;">Log In to Account</a>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const res = await api.getWishlist();
+                if (res && res.success && res.data) {
+                    wishlistItems = res.data;
+                    renderWishlist(wishlistItems);
+                }
+            } catch (err) {
+                console.error('Error fetching wishlist:', err);
+            }
+        }
+
+        function renderWishlist(items) {
+            const container = document.getElementById('wishlistGrid');
+            const countEl = document.getElementById('wishlistCount');
+            if (countEl) countEl.innerText = `(${items.length})`;
+
+            if (items.length === 0) {
+                const dot = document.getElementById('wishlistDot');
+                if (dot) dot.style.display = 'none';
+                container.innerHTML = `
+                    <div style="grid-column:1/-1; text-align:center; padding:60px 20px; background:white; border-radius:20px; border:1px solid var(--border-light);">
+                        <div style="font-size:3rem; margin-bottom:12px;">🏖️</div>
+                        <h3 style="font-size:1.3rem; font-weight:800; color:var(--text-dark); margin-bottom:8px;">Your Wishlist is Empty</h3>
+                        <p style="color:var(--text-muted); margin-bottom:20px;">Browse our destinations and tap the heart icon to save your favorites!</p>
+                        <a href="destinations.html" class="btn-search-round" style="padding:10px 24px; text-decoration:none;">Explore Destinations</a>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = items.map(w => {
+                const title = (window.app && app.currentLang === 'bn' && w.dest_name_bn) ? w.dest_name_bn : (w.dest_name_en || w.pkg_title_en || 'Dream Journey');
+                const country = w.country || 'Global';
+                const img = w.dest_image_url || 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80';
+                const rawPrice = w.dest_price_usd || w.pkg_price_usd || 599;
+                const price = window.app ? app.formatPrice(rawPrice, w.dest_price_bdt) : `$${parseFloat(rawPrice).toLocaleString()}`;
+                const rating = w.dest_rating ? `⭐ ${parseFloat(w.dest_rating).toFixed(1)}` : '⭐ 4.8';
+                const detailsLink = w.destination_id ? `destination-details.html?id=${w.destination_id}` : `packages.html`;
+                const bookLink = w.destination_id ? `booking.html?destId=${w.destination_id}&total=${w.dest_price_usd || 599}` : `booking.html?pkg=${w.package_id}&total=${w.pkg_price_usd || 699}`;
+
+                return `
+                    <div class="wishlist-card" id="wishlist-item-${w.id}">
+                        <div class="wishlist-img-box" style="position:relative;">
+                            <img src="${img}" alt="${title}" style="width:100%; height:200px; object-fit:cover; border-radius:16px 16px 0 0;">
+                            <span style="position:absolute; top:12px; left:12px; background:rgba(34,197,94,0.9); color:#fff; font-size:0.75rem; font-weight:800; padding:4px 8px; border-radius:8px;">Saved</span>
+                            <button class="wishlist-remove-btn" title="Remove from Wishlist" onclick="removeWishlistItem(${w.id})">✕</button>
+                        </div>
+                        <div class="wishlist-body" style="padding:18px; background:#fff; border:1px solid var(--border-light); border-top:none; border-radius:0 0 16px 16px;">
+                            <div class="wishlist-title-row" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                <h3 style="font-size:1.1rem; font-weight:800; color:var(--text-dark); margin:0;">${title}</h3>
+                                <span class="wishlist-rating" style="font-size:0.85rem; font-weight:700; color:#eab308;">${rating}</span>
+                            </div>
+                            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">📍 ${country} • Premium verified getaway with dynamic custom builder support.</p>
+                            <div class="wishlist-bottom-row" style="display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Starting from</span>
+                                    <span style="font-size:1.25rem; font-weight:800; color:var(--blue-primary);">${price}</span>
+                                </div>
+                                <div style="display:flex; gap:8px;">
+                                    <a href="${detailsLink}" class="btn-login-signup-pill" style="background:#f1f5f9; color:var(--text-dark); padding:8px 14px; font-size:0.82rem; text-decoration:none;">Details</a>
+                                    <a href="${bookLink}" class="btn-search-round" style="padding:8px 18px; font-size:0.82rem; text-decoration:none;">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function removeWishlistItem(id) {
+            try {
+                const res = await api.removeFromWishlist(id);
+                if (res && res.success) {
+                    const el = document.getElementById(`wishlist-item-${id}`);
+                    if (el) {
+                        el.style.opacity = '0';
+                        el.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            el.remove();
+                            wishlistItems = wishlistItems.filter(w => w.id !== id);
+                            renderWishlist(wishlistItems);
+                        }, 250);
+                    }
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function shareWishlist() {
+            const shareUrl = window.location.origin + window.location.pathname + '?share=' + (auth.user?.id || 'guest');
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    alert('📋 Wishlist link copied to clipboard!\n' + shareUrl);
+                }).catch(() => {
+                    prompt('Copy your custom wishlist link:', shareUrl);
+                });
+            } else {
+                prompt('Copy your custom wishlist link:', shareUrl);
+            }
+        }
+
+        window.addEventListener('currencyChanged', () => renderWishlist(wishlistItems));
+        window.addEventListener('languageChanged', () => renderWishlist(wishlistItems));
+        document.addEventListener('DOMContentLoaded', () => loadWishlist());
+    </script>
+</body>
+</html>
+

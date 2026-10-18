@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveler Dashboard — TravelUp Global</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Master Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --sidebar-width: 250px;
+            --dashboard-bg: #f8fafc;
+            --dash-card-bg: #ffffff;
+            --dash-border: #e2e8f0;
+        }
+        body {
+            background-color: var(--dashboard-bg);
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #0f172a;
+        }
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        /* Sidebar */
+        .dash-sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid var(--dash-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 24px 16px;
+        }
+        .dash-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            padding: 0 10px 24px 10px;
+            border-bottom: 1px solid var(--dash-border);
+            margin-bottom: 16px;
+        }
+        .dash-brand-icon {
+            width: 38px;
+            height: 38px;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .dash-brand-title {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #0f172a;
+            line-height: 1.1;
+        }
+        .dash-brand-sub {
+            font-size: 0.68rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .dash-nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .dash-nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #64748b;
+            transition: all 0.2s ease;
+        }
+        .dash-nav-item a:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .dash-nav-item.active a {
+            background: #eff6ff;
+            color: #2563eb;
+            font-weight: 700;
+        }
+        .dash-user-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid var(--dash-border);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .dash-user-pill:hover {
+            background: #f1f5f9;
+        }
+        .dash-user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .dash-user-info h4 {
+            margin: 0;
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .dash-user-info p {
+            margin: 0;
+            font-size: 0.72rem;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .dash-main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 24px 36px 60px 36px;
+        }
+        .dash-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+        .dash-search-box {
+            position: relative;
+            width: 440px;
+        }
+        .dash-search-box input {
+            width: 100%;
+            padding: 11px 16px 11px 42px;
+            border-radius: 24px;
+            border: 1px solid var(--dash-border);
+            background: #ffffff;
+            font-size: 0.88rem;
+            outline: none;
+            font-family: inherit;
+        }
+        .dash-search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+        .dash-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .dash-icon-btn {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        /* Banner Grid */
+        .dash-banner-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+        .dash-ai-banner {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(37, 99, 235, 0.6) 100%), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80') center/cover;
+            padding: 40px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 200px;
+        }
+        .dash-ai-banner h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+        }
+        .dash-ai-banner p {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            margin: 0 0 20px 0;
+            max-width: 480px;
+            line-height: 1.5;
+        }
+        .dash-weather-card {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            border-radius: 24px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .weather-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .weather-city {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #0f172a;
+        }
+        .weather-sub {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        .weather-temp {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .weather-forecast-strip {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 14px;
+            margin-top: 14px;
+            text-align: center;
+        }
+        .forecast-col {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .forecast-temp {
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 4px;
+        }
+
+        /* Middle Row (Cards) */
+        .dash-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+        .dash-card {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+            min-width: 0;
+        }
+        .dash-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .dash-card-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-view-all {
+            font-size: 0.78rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* AI Recs Mini Cards */
+        .ai-recs-mini-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 110px), 1fr));
+            gap: 10px;
+        }
+        .ai-rec-mini-item {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--dash-border);
+            text-align: center;
+            background: #fafafa;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .ai-rec-mini-item:hover {
+            transform: translateY(-2px);
+        }
+        .ai-rec-mini-item img {
+            width: 100%;
+            height: 65px;
+            object-fit: cover;
+        }
+        .ai-rec-mini-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 4px;
+        }
+        .ai-rec-mini-match {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #16a34a;
+            margin-bottom: 6px;
+        }
+
+        /* Bottom Row */
+        .dash-bottom-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: 24px;
+        }
+        .booking-row-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .booking-row-item:last-child {
+            border-bottom: none;
+        }
+        .booking-thumb {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .badge-confirmed {
+            background: #dcfce7;
+            color: #16a34a;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 14px;
+        }
+        .badge-upcoming {
+            background: #e0f2fe;
+            color: #0284c7;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 14px;
+        }
+
+        /* Travel Progress Post-it Card */
+        .travel-progress-card {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            border-radius: 20px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+        .sticker-postit {
+            background: #fef08a;
+            color: #854d0e;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-family: var(--font-hand);
+            font-size: 1.1rem;
+            transform: rotate(-6deg);
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.06);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        
+        <!-- 1. LEFT SIDEBAR -->
+        <aside class="dash-sidebar">
+            <div>
+                <!-- Brand Logo -->
+                <a href="index.html" class="dash-brand">
+                    <div class="dash-brand-icon">✈️</div>
+                    <div>
+                        <div class="dash-brand-title">TravelUp Global</div>
+                        <div class="dash-brand-sub">Explore • Plan • Travel</div>
+                    </div>
+                </a>
+
+
+                <!-- Navigation Menu (Master Traveler Portal 10 Items) -->
+                <ul class="dash-nav-menu">
+                    <li class="dash-nav-item active">
+                        <a href="dashboard.html"><span style="width: 20px; text-align: center;">🏠</span> Dashboard</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="my-trips.html"><span style="width: 20px; text-align: center;">🗺️</span> My Trips</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="bookings.html"><span style="width: 20px; text-align: center;">📋</span> Bookings</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="quotations.html"><span style="width: 20px; text-align: center;">📄</span> Quotations</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="trip-builder.html"><span style="width: 20px; text-align: center;">🛠️</span> Build Your Trip</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="portal-destinations.html"><span style="width: 20px; text-align: center;">📍</span> Destinations</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="portal-packages.html"><span style="width: 20px; text-align: center;">✈️</span> Packages</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="support.html"><span style="width: 20px; text-align: center;">💬</span> Support</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="portal-reviews.html"><span style="width: 20px; text-align: center;">⭐</span> Reviews</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="profile.html"><span style="width: 20px; text-align: center;">👤</span> Profile</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Bottom: Need Help Card & Sign Out -->
+            <div style="border-top: 1px solid var(--dash-border); padding-top: 12px; margin-top: 14px;">
+                <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #bfdbfe; border-radius: 12px; padding: 12px; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.8rem; color: #1e3a8a; margin-bottom: 4px;">
+                        <span>🎧</span> Need Help?
+                    </div>
+                    <p style="font-size: 0.69rem; color: #475569; margin: 0 0 8px 0; line-height: 1.35;">Our travel experts are ready 24/7 Support</p>
+                    <button onclick="location.href='support.html'" style="width: 100%; padding: 7px 0; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 0.76rem; font-weight: 700; cursor: pointer;">Chat Now</button>
+                </div>
+                <div style="text-align: center; font-size: 0.68rem; color: #94a3b8; font-style: italic; font-family: 'Georgia', serif;">
+                    Your Journey Our Priority ✈️
+                </div>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN CONTENT DASHBOARD -->
+        <main class="dash-main">
+            
+            <!-- Topbar -->
+            <div class="dash-topbar">
+                <div style="display: flex; align-items: center; gap: 12px; flex: 1 1 240px; max-width: 500px;">
+                    <button class="mobile-menu-toggle-btn portal-menu-btn" onclick="app.togglePortalSidebar()" title="Toggle Navigation Menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="dash-search-box" style="flex: 1; width: 100%;">
+                        <span class="dash-search-icon">🔍</span>
+                        <input type="text" placeholder="Search destinations, packages, or anything...">
+                    </div>
+                </div>
+
+                <div class="dash-top-actions">
+                    <a href="index.html" class="dash-icon-btn" title="View Live Site" style="width: auto; padding: 0 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-decoration: none; color: #475569; display: flex; gap: 6px; align-items: center;">
+                        🌐 <span>Live Site</span>
+                    </a>
+                    <button class="lang-toggle-btn" onclick="app.toggleLanguage()">
+                        🌐 <span id="currentLangLabel">EN</span> ▾
+                    </button>
+                    <div class="user-profile-header-wrap" style="position: relative;">
+                        <button class="dash-icon-btn" title="Notifications" onclick="app.toggleNotifications(event)">
+                            🔔 <span class="red-notify-dot"></span>
+                        </button>
+                        <div class="user-dropdown-card" id="notificationsDropdown" style="width: 320px; right: 0;">
+                            <div style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                                <strong style="font-size: 0.9rem; color: #0f172a;">Notifications</strong>
+                                <span style="font-size: 0.72rem; background: #eff6ff; color: #2563eb; padding: 2px 8px; border-radius: 10px; font-weight: 700;">2 New</span>
+                            </div>
+                            <div style="max-height: 280px; overflow-y: auto;">
+                                <a href="portal-packages.html" style="display: block; padding: 12px 16px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                                    <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">🎉 15% Seasonal Discount</div>
+                                    <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Flash deal active on Bali & Tokyo packages.</div>
+                                    <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">2 hours ago</div>
+                                </a>
+                                <a href="bookings.html" style="display: block; padding: 12px 16px; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                                    <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">📋 Booking Voucher Ready</div>
+                                    <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Your trip booking voucher #TUG-2026-16STM is confirmed.</div>
+                                    <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">Yesterday</div>
+                                </a>
+                            </div>
+                            <div style="padding: 10px; text-align: center; background: #f8fafc; border-top: 1px solid #e2e8f0; border-radius: 0 0 16px 16px;">
+                                <a href="javascript:void(0)" onclick="app.toggleNotifications(event)" style="font-size: 0.75rem; color: #2563eb; font-weight: 700; text-decoration: none;">Mark all as read</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile-header-wrap" style="position: relative;">
+                        <div class="profile-header-dropdown-trigger" onclick="auth.toggleProfileDropdown(event)" title="My Account & Profile">
+                            <div class="nav-user-avatar-circle" style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden;">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" 
+                                     alt="Avatar" class="header-profile-avatar" id="dashTopAvatar" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="user-dropdown-card" id="userDropdownMenu"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Greeting Banner -->
+            <div style="margin-bottom: 24px;">
+                <h1 style="font-size: 1.85rem; font-weight: 800; margin: 0 0 6px 0; color: #0f172a;">
+                    Good morning, <span id="dashGreetingName">Tanvir</span>! 👋
+                </h1>
+                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">
+                    Ready for your next adventure? Let's plan something unforgettable.
+                </p>
+            </div>
+
+            <!-- AI Promo Banner & Weather Widget -->
+            <div class="dash-banner-row">
+                <!-- AI Banner -->
+                <div class="dash-ai-banner">
+                    <h2>Plan your next trip with AI</h2>
+                    <p>Tell us your budget, interests & available days. Our grounded deep learning engine builds your optimal custom itinerary.</p>
+                    <a href="ai-planner.html" class="btn-primary-pill" style="width: fit-content; padding: 12px 24px; font-size: 0.92rem;">
+                        Start Planning ➔
+                    </a>
+                </div>
+
+                <!-- Weather Widget (Dhaka 28°C) -->
+                <div class="dash-weather-card">
+                    <div class="weather-header">
+                        <div>
+                            <div class="weather-city">Dhaka</div>
+                            <div class="weather-sub">Partly Cloudy</div>
+                        </div>
+                        <div class="weather-temp">
+                            <span>☀️</span> 28°C
+                        </div>
+                    </div>
+                    <div class="weather-forecast-strip">
+                        <div class="forecast-col">
+                            <div>Mon</div>
+                            <div style="margin: 4px 0;">🌤️</div>
+                            <div class="forecast-temp">29°</div>
+                        </div>
+                        <div class="forecast-col">
+                            <div>Tue</div>
+                            <div style="margin: 4px 0;">☀️</div>
+                            <div class="forecast-temp">30°</div>
+                        </div>
+                        <div class="forecast-col">
+                            <div>Wed</div>
+                            <div style="margin: 4px 0;">🌧️</div>
+                            <div class="forecast-temp">27°</div>
+                        </div>
+                        <div class="forecast-col">
+                            <div>Thu</div>
+                            <div style="margin: 4px 0;">⛅</div>
+                            <div class="forecast-temp">28°</div>
+                        </div>
+                        <div class="forecast-col">
+                            <div>Fri</div>
+                            <div style="margin: 4px 0;">☀️</div>
+                            <div class="forecast-temp">31°</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Cards: Upcoming Trip | Wishlist Count | AI Recs -->
+            <div class="dash-cards-grid">
+                
+                <!-- Upcoming Trip Card -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <div class="dash-card-title"><span>✈️</span> Upcoming Trip</div>
+                    </div>
+                    <div style="display: flex; gap: 14px; margin-bottom: 14px;">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=150&q=80" 
+                             alt="Bali" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover;">
+                        <div>
+                            <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a;">Bali, Indonesia</div>
+                            <div style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">Mar 15 - Mar 20, 2025 • 2 Travelers</div>
+                        </div>
+                    </div>
+                    <a href="booking.html" class="btn-secondary-pill" style="width: 100%; justify-content: center; padding: 9px; font-size: 0.82rem;">
+                        View Details ➔
+                    </a>
+                </div>
+
+                <!-- Saved Destinations Count Card -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <div class="dash-card-title"><span>❤️</span> Saved Destinations</div>
+                    </div>
+                    <div style="font-size: 2.4rem; font-weight: 900; color: #2563eb; margin: 6px 0 2px 0;">
+                        12
+                    </div>
+                    <div style="font-size: 0.82rem; color: #64748b; margin-bottom: 16px;">
+                        In your personalized wishlist
+                    </div>
+                    <a href="wishlist.html" class="btn-secondary-pill" style="width: 100%; justify-content: center; padding: 9px; font-size: 0.82rem;">
+                        View Wishlist ➔
+                    </a>
+                </div>
+
+                <!-- AI Recommendations -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <div class="dash-card-title"><span>✨</span> AI Recommendations</div>
+                        <a href="destinations.html" class="card-view-all">View all ➔</a>
+                    </div>
+                    <div class="ai-recs-mini-list">
+                        <div class="ai-rec-mini-item" onclick="location.href='destination-details.html'">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=200&q=80" alt="Bali">
+                            <div class="ai-rec-mini-name">Bali</div>
+                            <div class="ai-rec-mini-match">94% Match</div>
+                        </div>
+                        <div class="ai-rec-mini-item" onclick="location.href='destination-details.html'">
+                            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=200&q=80" alt="Santorini">
+                            <div class="ai-rec-mini-name">Santorini</div>
+                            <div class="ai-rec-mini-match">88% Match</div>
+                        </div>
+                        <div class="ai-rec-mini-item" onclick="location.href='destination-details.html'">
+                            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=200&q=80" alt="Tokyo">
+                            <div class="ai-rec-mini-name">Tokyo</div>
+                            <div class="ai-rec-mini-match">84% Match</div>
+                        </div>
+                        <div class="ai-rec-mini-item" onclick="location.href='destination-details.html'">
+                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=200&q=80" alt="Maldives">
+                            <div class="ai-rec-mini-name">Maldives</div>
+                            <div class="ai-rec-mini-match">92% Match</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Row: Recent Bookings & Travel Progress -->
+            <div class="dash-bottom-row">
+                
+                <!-- Recent Bookings List (Synchronized Live with Hostinger MySQL) -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <div class="dash-card-title"><span>📋</span> Recent Bookings</div>
+                        <a href="bookings.html" class="card-view-all">View all ➔</a>
+                    </div>
+                    
+                    <div id="dashRecentBookingsList">
+                        <div style="padding: 20px; text-align: center; color: #64748b; font-size: 0.85rem;">
+                            Loading your bookings from database...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Your Travel Progress Post-it Card -->
+                <div class="travel-progress-card">
+                    <div class="sticker-postit">
+                        Collect moments, not things ✨
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Your Travel Progress</span>
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 4px;">
+                            <span style="font-size: 2.2rem; font-weight: 900; color: #0f172a;" id="dashCompletedTripsCount">3</span>
+                            <span style="font-size: 0.9rem; color: #64748b; font-weight: 600;">trips completed this year</span>
+                        </div>
+                    </div>
+
+                    <div style="position: relative; border-radius: 16px; overflow: hidden; height: 110px;">
+                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" 
+                             alt="Travel" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="position: absolute; bottom: 8px; left: 12px; color: #fff; font-size: 0.75rem; font-weight: 700; text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
+                            📍 12 Cities Visited Across 4 Continents
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let cachedDashboardBookings = [];
+
+        function renderDashboardBookings(bookings) {
+            const container = document.getElementById('dashRecentBookingsList');
+            if (!container) return;
+
+            if (bookings && bookings.length > 0) {
+                container.innerHTML = bookings.slice(0, 3).map(b => {
+                    const img = b.image_url || 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=120&q=80';
+                    const dest = b.dest_name_en || 'Dream Trip';
+                    const dateStr = b.start_date ? new Date(b.start_date).toISOString().split('T')[0] : 'Upcoming';
+                    const isConfirmed = b.status === 'confirmed';
+                    const badgeClass = isConfirmed ? 'badge-confirmed' : 'badge-upcoming';
+                    const badgeText = isConfirmed ? 'Confirmed' : 'Pending';
+                    const priceFormatted = window.app ? app.formatPrice(b.total_price) : `${b.currency || 'USD'} ${parseFloat(b.total_price).toLocaleString()}`;
+
+                    return `
+                        <div class="booking-row-item">
+                            <div style="display: flex; align-items: center; gap: 14px;">
+                                <img src="${img}" alt="${dest}" class="booking-thumb">
+                                <div>
+                                    <div style="font-weight: 800; font-size: 0.9rem; color: #0f172a;">${dest}</div>
+                                    <div style="font-size: 0.78rem; color: #64748b;">${dateStr} • ${b.travelers_count || 1} Travelers</div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a; margin-bottom: 4px;">${priceFormatted}</div>
+                                <span class="${badgeClass}">${badgeText}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                container.innerHTML = `
+                    <div style="padding: 20px; text-align: center; color: #64748b; font-size: 0.85rem;">
+                        No active trips yet. <a href="destinations.html" style="color:var(--primary); font-weight:700;">Explore Destinations ➔</a>
+                    </div>
+                `;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            if (!auth.requireTraveler()) return;
+
+            auth.renderPortalSidebar();
+
+            // Show staff mode notice if personnel previewing traveler portal
+            if (auth.isStaff()) {
+                const navMenu = document.querySelector('.dash-nav-menu');
+                if (navMenu && !document.getElementById('dashStaffLink')) {
+                    const li = document.createElement('li');
+                    li.id = 'dashStaffLink';
+                    li.className = 'dash-nav-item';
+                    li.innerHTML = `<a href="admin.html" style="color:#2563eb; font-weight:800; background:#eff6ff; border-radius:12px; margin-top:8px;"><span>⚙️</span> Admin Control Portal</a>`;
+                    navMenu.appendChild(li);
+                }
+
+                const main = document.querySelector('.dash-main');
+                if (main && !document.getElementById('staffNoticeBanner')) {
+                    const notice = document.createElement('div');
+                    notice.id = 'staffNoticeBanner';
+                    notice.style.cssText = 'background:#eff6ff; border:1px solid #bfdbfe; color:#1e40af; padding:12px 18px; border-radius:14px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;';
+                    notice.innerHTML = `
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span>👔</span>
+                            <strong>Staff Preview Mode:</strong> You are viewing the Traveler Portal as <em>${auth.getRoleLabel(auth.user.role)}</em>.
+                        </div>
+                        <a href="admin.html" style="background:#2563eb; color:#fff; padding:6px 14px; border-radius:8px; text-decoration:none; font-weight:700; font-size:0.82rem;">Switch to Admin Portal ➔</a>
+                    `;
+                    main.prepend(notice);
+                }
+            }
+
+            // Fetch live user bookings from MySQL
+            try {
+                const res = await api.getUserBookings();
+                if (res && res.success && res.bookings) {
+                    cachedDashboardBookings = res.bookings;
+                    renderDashboardBookings(cachedDashboardBookings);
+                } else {
+                    renderDashboardBookings([]);
+                }
+            } catch (err) {
+                console.error('Error fetching dashboard bookings:', err);
+            }
+        });
+
+        window.addEventListener('currencyChanged', () => {
+            renderDashboardBookings(cachedDashboardBookings);
+            if (window.app) app.updateCurrLabels();
+        });
+        window.addEventListener('languageChanged', () => {
+            renderDashboardBookings(cachedDashboardBookings);
+            if (window.app) app.updateLangLabels();
+        });
+    </script>
+</body>
+</html>

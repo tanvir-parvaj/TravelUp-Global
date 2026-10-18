@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Trips — TravelUp Global</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Master Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --sidebar-width: 250px;
+            --dashboard-bg: #f8fafc;
+            --dash-card-bg: #ffffff;
+            --dash-border: #e2e8f0;
+        }
+        body {
+            background-color: var(--dashboard-bg);
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #0f172a;
+        }
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        /* Sidebar */
+        .dash-sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid var(--dash-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 24px 16px;
+        }
+        .dash-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            padding: 0 10px 24px 10px;
+            border-bottom: 1px solid var(--dash-border);
+            margin-bottom: 16px;
+        }
+        .dash-brand-icon {
+            width: 38px;
+            height: 38px;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .dash-brand-title {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #0f172a;
+            line-height: 1.1;
+        }
+        .dash-brand-sub {
+            font-size: 0.68rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .dash-nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .dash-nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #64748b;
+            transition: all 0.2s ease;
+        }
+        .dash-nav-item a:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .dash-nav-item.active a {
+            background: #eff6ff;
+            color: #2563eb;
+            font-weight: 700;
+        }
+        .dash-user-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid var(--dash-border);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .dash-user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .dash-user-info h4 {
+            margin: 0;
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .dash-user-info p {
+            margin: 0;
+            font-size: 0.72rem;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .dash-main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 24px 36px 60px 36px;
+        }
+        .dash-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+        .dash-search-box {
+            position: relative;
+            width: 440px;
+        }
+        .dash-search-box input {
+            width: 100%;
+            padding: 11px 16px 11px 42px;
+            border-radius: 24px;
+            border: 1px solid var(--dash-border);
+            background: #ffffff;
+            font-size: 0.88rem;
+            outline: none;
+            font-family: inherit;
+        }
+        .dash-search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+        .dash-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .dash-icon-btn {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .dash-icon-btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        /* Tabs */
+        .trip-tabs-strip {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .trip-tab-btn {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .trip-tab-btn.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+        }
+
+        /* Layout Grid */
+        .trips-split-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: 28px;
+        }
+
+        /* Upcoming Big Card */
+        .upcoming-trip-card {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            margin-bottom: 28px;
+        }
+        .trip-card-inner {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .trip-hero-thumb {
+            width: 180px;
+            height: 120px;
+            border-radius: 18px;
+            object-fit: cover;
+        }
+        .trip-info-col {
+            flex: 1;
+        }
+        .trip-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .trip-name {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .badge-confirmed {
+            background: #dcfce7;
+            color: #16a34a;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .trip-date-meta {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 14px;
+        }
+        .trip-features-strip {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .trip-feat-badge {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Past Trips List */
+        .past-trips-section h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 16px 0;
+        }
+        .past-trip-item {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            border-radius: 18px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .past-thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .badge-completed {
+            background: #dcfce7;
+            color: #16a34a;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 14px;
+        }
+
+        /* Right Sidebar Stats & CTA */
+        .trip-stats-box {
+            background: #ffffff;
+            border: 1px solid var(--dash-border);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .trip-stats-box h3 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 16px 0;
+        }
+        .stat-item-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .stat-item-row:last-child {
+            border-bottom: none;
+        }
+        .stat-icon-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .stat-number {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1;
+        }
+        .stat-desc {
+            font-size: 0.78rem;
+            color: #64748b;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* Next Adventure CTA */
+        .next-adventure-card {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.8)),
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') center/cover;
+            padding: 32px 24px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .next-adventure-card h4 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+        }
+        .next-adventure-card p {
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            margin: 0 0 20px 0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        
+        <!-- 1. LEFT SIDEBAR -->
+        <aside class="dash-sidebar">
+            <div>
+                <a href="index.html" class="dash-brand">
+                    <div class="dash-brand-icon">✈️</div>
+                    <div>
+                        <div class="dash-brand-title">TravelUp Global</div>
+                        <div class="dash-brand-sub">Explore • Plan • Travel</div>
+                    </div>
+                </a>
+
+
+                <!-- Navigation Menu (Master Traveler Portal 10 Items) -->
+                <ul class="dash-nav-menu">
+                    <li class="dash-nav-item">
+                        <a href="dashboard.html"><span style="width: 20px; text-align: center;">🏠</span> Dashboard</a>
+                    </li>
+                    <li class="dash-nav-item active">
+                        <a href="my-trips.html"><span style="width: 20px; text-align: center;">🗺️</span> My Trips</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="bookings.html"><span style="width: 20px; text-align: center;">📋</span> Bookings</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="quotations.html"><span style="width: 20px; text-align: center;">📄</span> Quotations</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="trip-builder.html"><span style="width: 20px; text-align: center;">🛠️</span> Build Your Trip</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="portal-destinations.html"><span style="width: 20px; text-align: center;">📍</span> Destinations</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="portal-packages.html"><span style="width: 20px; text-align: center;">✈️</span> Packages</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="support.html"><span style="width: 20px; text-align: center;">💬</span> Support</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="portal-reviews.html"><span style="width: 20px; text-align: center;">⭐</span> Reviews</a>
+                    </li>
+                    <li class="dash-nav-item">
+                        <a href="profile.html"><span style="width: 20px; text-align: center;">👤</span> Profile</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Bottom: Need Help Card & Sign Out -->
+            <div style="border-top: 1px solid var(--dash-border); padding-top: 12px; margin-top: 14px;">
+                <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #bfdbfe; border-radius: 12px; padding: 12px; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.8rem; color: #1e3a8a; margin-bottom: 4px;">
+                        <span>🎧</span> Need Help?
+                    </div>
+                    <p style="font-size: 0.69rem; color: #475569; margin: 0 0 8px 0; line-height: 1.35;">Our travel experts are ready 24/7 Support</p>
+                    <button onclick="location.href='support.html'" style="width: 100%; padding: 7px 0; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 0.76rem; font-weight: 700; cursor: pointer;">Chat Now</button>
+                </div>
+                <div style="text-align: center; font-size: 0.68rem; color: #94a3b8; font-style: italic; font-family: 'Georgia', serif;">
+                    Your Journey Our Priority ✈️
+                </div>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN CONTENT -->
+        <main class="dash-main">
+            
+            <!-- Topbar -->
+            <div class="dash-topbar">
+                <div style="display: flex; align-items: center; gap: 12px; flex: 1 1 240px; max-width: 500px;">
+                    <button class="mobile-menu-toggle-btn portal-menu-btn" onclick="app.togglePortalSidebar()" title="Toggle Navigation Menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="dash-search-box" style="flex: 1; width: 100%;">
+                        <span class="dash-search-icon">🔍</span>
+                        <input type="text" placeholder="Search destinations, packages, or anything...">
+                    </div>
+                </div>
+
+                <div class="dash-top-actions">
+                    <a href="index.html" class="dash-icon-btn" title="View Live Site" style="width: auto; padding: 0 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-decoration: none; color: #475569; display: flex; gap: 6px; align-items: center;">
+                        🌐 <span>Live Site</span>
+                    </a>
+                    <button class="lang-toggle-btn" onclick="app.toggleLanguage()">
+                        🌐 <span id="currentLangLabel">EN</span> ▾
+                    </button>
+                    <div class="user-profile-header-wrap" style="position: relative;">
+                        <button class="dash-icon-btn" title="Notifications" onclick="app.toggleNotifications(event)">
+                            🔔 <span class="red-notify-dot"></span>
+                        </button>
+                        <div class="user-dropdown-card" id="notificationsDropdown" style="width: 320px; right: 0;">
+                            <div style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                                <strong style="font-size: 0.9rem; color: #0f172a;">Notifications</strong>
+                                <span style="font-size: 0.72rem; background: #eff6ff; color: #2563eb; padding: 2px 8px; border-radius: 10px; font-weight: 700;">2 New</span>
+                            </div>
+                            <div style="max-height: 280px; overflow-y: auto;">
+                                <a href="portal-packages.html" style="display: block; padding: 12px 16px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                                    <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">🎉 15% Seasonal Discount</div>
+                                    <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Flash deal active on Bali & Tokyo packages.</div>
+                                    <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">2 hours ago</div>
+                                </a>
+                                <a href="bookings.html" style="display: block; padding: 12px 16px; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                                    <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">📋 Booking Voucher Ready</div>
+                                    <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Your trip booking voucher #TUG-2026-16STM is confirmed.</div>
+                                    <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">Yesterday</div>
+                                </a>
+                            </div>
+                            <div style="padding: 10px; text-align: center; background: #f8fafc; border-top: 1px solid #e2e8f0; border-radius: 0 0 16px 16px;">
+                                <a href="javascript:void(0)" onclick="app.toggleNotifications(event)" style="font-size: 0.75rem; color: #2563eb; font-weight: 700; text-decoration: none;">Mark all as read</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile-header-wrap" style="position: relative;">
+                        <div class="profile-header-dropdown-trigger" onclick="auth.toggleProfileDropdown(event)" title="My Account & Profile">
+                            <div class="nav-user-avatar-circle" style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden;">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" 
+                                     alt="Avatar" class="header-profile-avatar" id="dashTopAvatar" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="user-dropdown-card" id="userDropdownMenu"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Title -->
+            <div style="margin-bottom: 20px;">
+                <h1 style="font-size: 1.85rem; font-weight: 800; margin: 0 0 6px 0; color: #0f172a;">My Trips</h1>
+                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Manage your upcoming, past and cancelled trips.</p>
+            </div>
+
+            <!-- Tabs Strip -->
+            <div class="trip-tabs-strip">
+                <button class="trip-tab-btn active">Upcoming (1)</button>
+                <button class="trip-tab-btn">Past Trips (2)</button>
+                <button class="trip-tab-btn">Cancelled (0)</button>
+            </div>
+
+            <!-- Split Grid -->
+            <div class="trips-split-grid">
+                
+                <!-- Left Trips Column -->
+                <div>
+                    <!-- Active Upcoming / Saved Custom Trips Card Container -->
+                    <div id="myTripsListContainer">
+                        <div style="padding: 40px; text-align: center; color: #64748b; background: #fff; border-radius: 16px;">
+                            Loading your custom trips from Hostinger MySQL...
+                        </div>
+                    </div>
+
+                    <!-- Past Trips Section -->
+                    <div class="past-trips-section" style="margin-top: 30px;">
+                        <h3>Past Trips & Completed Adventures</h3>
+                        <div id="pastTripsContainer">
+                            <div style="padding: 20px; text-align: center; color: #64748b; font-size: 0.88rem;">
+                                No completed trips on record yet.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar Column: Trip Stats & CTA -->
+                <div>
+                    <!-- Stats Card -->
+                    <div class="trip-stats-box">
+                        <h3>Trip Stats</h3>
+
+                        <div class="stat-item-row">
+                            <div class="stat-icon-circle" style="background: #eff6ff; color: #2563eb;">🎒</div>
+                            <div>
+                                <div class="stat-number" id="statTotalTrips">0</div>
+                                <div class="stat-desc">Total Trips</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-item-row">
+                            <div class="stat-icon-circle" style="background: #f0fdf4; color: #16a34a;">⏳</div>
+                            <div>
+                                <div class="stat-number" id="statUpcomingTrips">0</div>
+                                <div class="stat-desc">Upcoming / Saved</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-item-row">
+                            <div class="stat-icon-circle" style="background: #faf5ff; color: #7c3aed;">🏁</div>
+                            <div>
+                                <div class="stat-number" id="statCompletedTrips">0</div>
+                                <div class="stat-desc">Completed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Card -->
+                    <div class="next-adventure-card">
+                        <h4>Create Your Next Adventure</h4>
+                        <p>Customize hotels, activities, and private transport with dynamic live pricing.</p>
+                        <a href="trip-builder.html" class="btn-primary-pill" style="background: #ffffff; color: #0f172a !important; padding: 12px 24px; font-weight: 800; display: inline-flex;">
+                            Plan Another Trip ➔
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let cachedCustomTrips = [];
+        let cachedBookings = [];
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            if (!auth.requireTraveler()) return;
+
+            auth.renderPortalSidebar();
+
+            // Show staff mode notice if personnel previewing traveler portal
+            if (auth.isStaff()) {
+                const main = document.querySelector('.dash-main');
+                if (main && !document.getElementById('staffNoticeBanner')) {
+                    const notice = document.createElement('div');
+                    notice.id = 'staffNoticeBanner';
+                    notice.style.cssText = 'background:#eff6ff; border:1px solid #bfdbfe; color:#1e40af; padding:12px 18px; border-radius:14px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;';
+                    notice.innerHTML = `
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span>👔</span>
+                            <strong>Staff Preview Mode:</strong> You are viewing the Traveler Portal as <em>${auth.getRoleLabel(auth.user.role)}</em>.
+                        </div>
+                        <a href="admin.html" style="background:#2563eb; color:#fff; padding:6px 14px; border-radius:8px; text-decoration:none; font-weight:700; font-size:0.82rem;">Switch to Admin Portal ➔</a>
+                    `;
+                    main.prepend(notice);
+                }
+            }
+
+            loadUserTrips();
+        });
+
+        async function loadUserTrips() {
+            try {
+                const [customRes, bookingRes] = await Promise.all([
+                    api.getUserCustomTrips(),
+                    api.getUserBookings()
+                ]);
+
+                cachedCustomTrips = (customRes && customRes.success && customRes.data) ? customRes.data : [];
+                cachedBookings = (bookingRes && bookingRes.success && bookingRes.bookings) ? bookingRes.bookings : [];
+
+                const total = cachedCustomTrips.length + cachedBookings.length;
+                const confirmedCount = cachedBookings.filter(b => b.status === 'confirmed').length;
+                const upcomingCount = cachedCustomTrips.length + cachedBookings.filter(b => b.status === 'pending').length;
+
+                document.getElementById('statTotalTrips').innerText = total;
+                document.getElementById('statUpcomingTrips').innerText = upcomingCount;
+                document.getElementById('statCompletedTrips').innerText = confirmedCount;
+
+                renderCustomTrips(cachedCustomTrips);
+                renderBookingsAsTrips(cachedBookings);
+            } catch (err) {
+                console.error('Error loading trips:', err);
+            }
+        }
+
+        function renderCustomTrips(trips) {
+            const container = document.getElementById('myTripsListContainer');
+            if (trips.length === 0) {
+                container.innerHTML = `
+                    <div style="padding: 50px 20px; text-align: center; background: #fff; border-radius: 16px; border: 1px solid #e2e8f0;">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">🛠️</div>
+                        <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 6px;">No Custom Trips Saved Yet</h4>
+                        <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 18px;">Build your dream itinerary with dynamic hotel and vehicle options.</p>
+                        <a href="trip-builder.html" class="btn-primary-pill" style="padding: 10px 24px; text-decoration: none; display: inline-block;">Build a Custom Trip ➔</a>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = trips.map(t => {
+                const img = t.image_url || 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&q=80';
+                const dateStr = `${t.duration_days || 7} Days • ${t.adults_count || 2} Pax`;
+                const price = window.app ? app.formatPrice(t.calculated_total) : `$${parseFloat(t.calculated_total).toLocaleString()}`;
+
+                return `
+                    <div class="upcoming-trip-card" style="margin-bottom: 20px;">
+                        <div class="trip-card-inner">
+                            <img src="${img}" alt="${t.trip_title}" class="trip-hero-thumb">
+                            <div class="trip-info-col">
+                                <div class="trip-title-row">
+                                    <div class="trip-name">${t.trip_title}</div>
+                                    <span class="badge-confirmed" style="background:#dbeafe; color:#1e40af;">Custom Saved</span>
+                                </div>
+                                <div class="trip-date-meta">
+                                    📍 ${t.dest_name_en || 'Destination'}, ${t.country || ''} • ⏱️ ${dateStr}
+                                </div>
+                                <div class="trip-features-strip">
+                                    <span class="trip-feat-badge">🏨 ${t.hotel_tier ? t.hotel_tier.toUpperCase() : 'STANDARD'}</span>
+                                    <span class="trip-feat-badge">🚗 ${t.transport_pref ? t.transport_pref.replace('_', ' ').toUpperCase() : 'PRIVATE CAR'}</span>
+                                    <span class="trip-feat-badge">🍽️ ${t.food_pref ? t.food_pref.replace('_', ' ').toUpperCase() : 'MIX'}</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                                    <span style="font-weight: 900; font-size: 1.25rem; color: #0f172a;">${price} <span style="font-size: 0.8rem; font-weight: 600; color: #64748b;">total</span></span>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button onclick="deleteTrip(${t.id})" style="background: #fee2e2; border: none; color: #b91c1c; padding: 8px 14px; border-radius: 20px; font-weight: 700; cursor: pointer; font-size: 0.8rem;">Delete</button>
+                                        <a href="booking.html?type=custom&destId=${t.destination_id}&total=${t.calculated_total}&adults=${t.adults_count}" class="btn-primary-pill" style="padding: 8px 18px; font-size: 0.85rem; text-decoration: none;">
+                                            Book This Trip ➔
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderBookingsAsTrips(bookings) {
+            const container = document.getElementById('pastTripsContainer');
+            if (!bookings || bookings.length === 0) return;
+
+            container.innerHTML = bookings.map(b => {
+                const img = b.image_url || 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?auto=format&fit=crop&w=150&q=80';
+                const dest = b.dest_name_en || 'Dream Trip';
+                const dateStr = b.start_date ? new Date(b.start_date).toISOString().split('T')[0] : 'Upcoming';
+                const status = b.status || 'confirmed';
+                const badgeClass = status === 'confirmed' ? 'badge-completed' : 'badge-status';
+                const priceFormatted = window.app ? app.formatPrice(b.total_price) : `${b.currency || 'USD'} ${parseFloat(b.total_price).toLocaleString()}`;
+
+                return `
+                    <div class="past-trip-item">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <img src="${img}" alt="${dest}" class="past-thumb">
+                            <div>
+                                <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a;">${dest}</div>
+                                <div style="font-size: 0.78rem; color: #64748b;">${dateStr} • Ref: ${b.booking_ref}</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span class="${badgeClass}">${status}</span>
+                            <span style="font-weight: 800; font-size: 0.95rem; color: #0f172a;">${priceFormatted}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function deleteTrip(id) {
+            showCustomModal({
+                title: 'Delete Custom Trip',
+                message: 'Are you sure you want to remove this custom trip itinerary?',
+                icon: '🗑️',
+                confirmText: 'Yes, Delete',
+                cancelText: 'Cancel',
+                onConfirm: async () => {
+                    try {
+                        const res = await api.deleteCustomTrip(id);
+                        if (res && res.success) {
+                            showToast('Trip itinerary removed successfully.', 'success', '🗑️');
+                            loadUserTrips();
+                        }
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('currencyChanged', () => {
+            renderCustomTrips(cachedCustomTrips);
+            renderBookingsAsTrips(cachedBookings);
+            if (window.app) app.updateCurrLabels();
+        });
+        window.addEventListener('languageChanged', () => {
+            renderCustomTrips(cachedCustomTrips);
+            renderBookingsAsTrips(cachedBookings);
+            if (window.app) app.updateLangLabels();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Destinations — TravelUp Global</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 1. TOP NAVBAR (Sticky & Pixel-Perfect) -->
+    <header class="top-navbar">
+        <div class="container navbar-inner">
+            <!-- Brand Logo -->
+            <a href="index.html" class="nav-brand-logo">
+                <div class="brand-icon-box">✈️</div>
+                <div class="brand-title-wrap">
+                    <h1>TravelUp Global</h1>
+                    <p>Explore • Plan • Travel</p>
+                </div>
+            </a>
+
+            <!-- Submenu-Organized Navigation Menu -->
+            <ul class="nav-links-menu">
+                <li class="nav-link-item"><a href="index.html" data-en="Home" data-bn="হোম">Home</a></li>
+                <li class="nav-link-item"><a href="destinations.html" class="active" data-en="Destinations" data-bn="ডেস্টিনেশন">Destinations</a></li>
+                
+                <!-- Submenu 1: Plan & Build ▾ -->
+                <li class="nav-link-item has-dropdown">
+                    <a href="javascript:void(0)" class="dropdown-trigger">
+                        <span data-en="Plan & Build" data-bn="প্ল্যান ও বিল্ড">Plan & Build</span> <span class="nav-arrow-down">▾</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="trip-builder.html" class="dropdown-link-item">
+                            <div class="drop-icon">🛠️</div>
+                            <div>
+                                <div class="drop-title" data-en="Custom Trip Builder" data-bn="কাস্টম ট্রিপ বিল্ডার">Custom Trip Builder</div>
+                                <div class="drop-desc" data-en="Dynamic pricing & live builder" data-bn="লাইভ দাম ও ট্রিপ কাস্টমাইজার">Dynamic pricing & live builder</div>
+                            </div>
+                        </a>
+                        <a href="itinerary.html" class="dropdown-link-item">
+                            <div class="drop-icon">🗺️</div>
+                            <div>
+                                <div class="drop-title" data-en="Day-wise Itinerary" data-bn="দিনভিত্তিক ভ্রমণসূচি">Day-wise Itinerary</div>
+                                <div class="drop-desc" data-en="Interactive day plans & routes" data-bn="ইন্টারেক্টিভ সূচি ও ম্যাপ">Interactive day plans & routes</div>
+                            </div>
+                        </a>
+                        <a href="ai-planner.html" class="dropdown-link-item">
+                            <div class="drop-icon">🤖</div>
+                            <div>
+                                <div class="drop-title" data-en="AI Trip Planner" data-bn="এআই ট্রিপ প্ল্যানার">AI Trip Planner</div>
+                                <div class="drop-desc" data-en="Budget-protected AI optimizer" data-bn="বাজেট প্রটেক্টেড এআই অপটিমাইজার">Budget-protected AI optimizer</div>
+                            </div>
+                        </a>
+                        <a href="budget-planner.html" class="dropdown-link-item">
+                            <div class="drop-icon">📊</div>
+                            <div>
+                                <div class="drop-title" data-en="Budget Planner" data-bn="বাজেট প্ল্যানার">Budget Planner</div>
+                                <div class="drop-desc" data-en="Accurate category cost forecast" data-bn="সঠিক ক্যাটাগরি খরচ ফোরকাস্ট">Accurate category cost forecast</div>
+                            </div>
+                        </a>
+                        <a href="group-travel.html" class="dropdown-link-item">
+                            <div class="drop-icon">👥</div>
+                            <div>
+                                <div class="drop-title" data-en="Group Travel" data-bn="গ্রুপ ট্রাভেল">Group Travel</div>
+                                <div class="drop-desc" data-en="Save up to 20% on group trips" data-bn="গ্রুপে ঘুরুন, ২০% পর্যন্ত সাশ্রয়">Save up to 20% on group trips</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-link-item"><a href="packages.html" data-en="Packages" data-bn="প্যাকেজ">Packages</a></li>
+
+                <!-- Submenu 2: Community & Reviews ▾ -->
+                <li class="nav-link-item has-dropdown">
+                    <a href="javascript:void(0)" class="dropdown-trigger">
+                        <span data-en="Community" data-bn="কমিউনিটি">Community</span> <span class="nav-arrow-down">▾</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="reviews.html" class="dropdown-link-item">
+                            <div class="drop-icon">⭐</div>
+                            <div>
+                                <div class="drop-title" data-en="Traveler Reviews" data-bn="ভ্রমণকারীদের রিভিউ">Traveler Reviews</div>
+                                <div class="drop-desc" data-en="Verified feedback & ratings" data-bn="যাচাইকৃত মতামত ও অভিজ্ঞতা">Verified feedback & ratings</div>
+                            </div>
+                        </a>
+                        <a href="community.html" class="dropdown-link-item">
+                            <div class="drop-icon">💬</div>
+                            <div>
+                                <div class="drop-title" data-en="Travel Stories" data-bn="ভ্রমণ গল্প">Travel Stories</div>
+                                <div class="drop-desc" data-en="Community stories & photo feed" data-bn="কমিউনিটি পোস্ট ও ছবি">Community stories & photo feed</div>
+                            </div>
+                        </a>
+                        <a href="quiz.html" class="dropdown-link-item">
+                            <div class="drop-icon">🎮</div>
+                            <div>
+                                <div class="drop-title" data-en="Travel Personality Quiz" data-bn="ট্রাভেল কুইজ">Travel Personality Quiz</div>
+                                <div class="drop-desc" data-en="Find your ideal destination match" data-bn="পছন্দ অনুযায়ী ডেস্টিনেশন মিলান">Find your ideal destination match</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Right Actions Cluster (Clean & Dynamic Authentication) -->
+            <div class="nav-right-cluster">
+                <!-- Language Selector -->
+                <button class="lang-toggle-btn" onclick="app.toggleLanguage()">
+                    🌐 <span id="currentLangLabel">EN</span> ▾
+                </button>
+
+                <!-- Currency Selector -->
+                <button class="lang-toggle-btn" onclick="app.toggleCurrency(); loadDestinations();" title="Toggle Currency (USD / BDT)">
+                    💵 <span id="currentCurrLabel">USD</span>
+                </button>
+
+
+                <!-- Wishlist Heart -->
+                <a href="wishlist.html" class="icon-badge-btn" title="Wishlist">
+                    ♡ <span class="red-notify-dot"></span>
+                </a>
+
+                <!-- Notification Bell -->
+                <button class="icon-badge-btn" onclick="alert('Notification: 15% discount on Bali packages active!')" title="Notifications">
+                    🔔 <span class="red-notify-dot"></span>
+                </button>
+
+                                <!-- Common User Account Button (Unified for Login, Signup & Profile) -->
+                <div class="user-profile-header-wrap">
+                    <div class="profile-header-dropdown-trigger" onclick="auth.toggleProfileDropdown(event)" title="Account & Profile">
+                        <div class="nav-user-avatar-circle">
+                            <span style="font-size: 1.15rem;">👤</span>
+                        </div>
+                    </div>
+
+                    <!-- Unified Account Dropdown Card -->
+                    <div class="user-dropdown-card" id="userDropdownMenu">
+                        <!-- Dynamically populated by auth.renderNav() -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. SUB-HERO BANNER -->
+        <section class="subhero-banner-wrap" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=80');">
+            <div class="subhero-banner-overlay"></div>
+            <div class="container subhero-inner">
+                <div class="breadcrumbs-nav">
+                    <a href="index.html">Home</a> <span>›</span> <span>Destinations</span>
+                </div>
+                <h1>Explore Destinations</h1>
+                <p>Discover amazing places, plan your trip, and create unforgettable memories.</p>
+
+                <!-- Search & Filters Strip -->
+                <div class="filter-strip-pill">
+                    <input type="text" id="destSearchInput" placeholder="🔍 Search destinations (e.g. Bali, Tokyo)...">
+                    <select id="budgetFilterSelect">
+                        <option value="">Budget: Any</option>
+                        <option value="500">Under $500</option>
+                        <option value="1000">$500 - $1,000</option>
+                        <option value="2000">$1,000 - $2,000</option>
+                        <option value="9999">$2,000+</option>
+                    </select>
+                    <select id="interestFilterSelect">
+                        <option value="">Interest: Any</option>
+                        <option value="Beach">Beach</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Culture">Culture</option>
+                        <option value="Food">Food</option>
+                        <option value="Nature">Nature</option>
+                    </select>
+                    <select id="sortFilterSelect">
+                        <option value="popular">Sort by: Popular</option>
+                        <option value="price_asc">Price: Low to High</option>
+                        <option value="price_desc">Price: High to Low</option>
+                        <option value="rating">Top Rated</option>
+                    </select>
+                    <button class="btn-search-round" onclick="applyFilters()">
+                        🔍 Search
+                    </button>
+                    <a href="map.html" class="btn-map-view-white">
+                        🗺️ View Map
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MAIN 2-COLUMN LAYOUT -->
+        <section class="container" style="padding-top: 20px;">
+            <div class="layout-with-sidebar">
+                <!-- Left Sidebar Filters -->
+                <aside class="sidebar-filter-box">
+                    <div class="sidebar-filter-header">
+                        <h3>Filter</h3>
+                        <span class="filter-reset-link" onclick="resetFilters()">Reset All</span>
+                    </div>
+
+                    <!-- Budget Range -->
+                    <div class="filter-group-block">
+                        <h4>Budget Range</h4>
+                        <div class="filter-options-list">
+                            <label class="filter-checkbox-item">
+                                <input type="radio" name="budgetRadio" value="500" onchange="applyFilters()"> Under $500
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="radio" name="budgetRadio" value="1000" onchange="applyFilters()"> $500 - $1,000
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="radio" name="budgetRadio" value="2000" onchange="applyFilters()"> $1,000 - $2,000
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="radio" name="budgetRadio" value="9999" onchange="applyFilters()"> $2,000+
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Interests -->
+                    <div class="filter-group-block">
+                        <h4>Interests</h4>
+                        <div class="filter-options-list">
+                            <label class="filter-checkbox-item">
+                                <input type="checkbox" name="interestChk" value="Beach" checked onchange="applyFilters()"> Beach
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="checkbox" name="interestChk" value="Adventure" checked onchange="applyFilters()"> Adventure
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="checkbox" name="interestChk" value="Culture" checked onchange="applyFilters()"> Culture
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="checkbox" name="interestChk" value="Food" onchange="applyFilters()"> Food
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="checkbox" name="interestChk" value="Nature" checked onchange="applyFilters()"> Nature
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="checkbox" name="interestChk" value="City" onchange="applyFilters()"> City Life
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Travel Type -->
+                    <div class="filter-group-block">
+                        <h4>Travel Type</h4>
+                        <div class="filter-options-list">
+                            <label class="filter-checkbox-item">
+                                <input type="radio" name="travelType" value="Solo" checked> Solo
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="radio" name="travelType" value="Couple"> Couple
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="radio" name="travelType" value="Family"> Family
+                            </label>
+                            <label class="filter-checkbox-item">
+                                <input type="radio" name="travelType" value="Group"> Group
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Right 3x2 Destinations Grid -->
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                        <h3 style="font-size: 1.15rem; font-weight:800; color: var(--text-dark);" id="resultsCountHeader">
+                            Results: (96 Destinations)
+                        </h3>
+                        <span style="font-size: 0.82rem; color: var(--text-muted);">Showing 1 - 6 of 96</span>
+                    </div>
+
+                    <div class="destinations-grid-3x2" id="exploreGridContainer">
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #64748b;">
+                            Loading live destinations from Hostinger MySQL...
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-controls-row" id="paginationControls">
+                        <a href="javascript:void(0)" class="pagination-btn active">1</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MASTER FOOTER (PIXEL-PERFECT FROM DESIGN MOCKUP) -->
+    <footer class="footer-dark-section">
+        <!-- Mockup Flight Trail Decoration -->
+        <svg class="footer-flight-decoration" width="220" height="110" viewBox="0 0 220 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 95 C 70 95, 90 20, 140 45 C 175 60, 195 25, 202 18" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
+            <text x="198" y="16" font-size="14" fill="#38bdf8" transform="rotate(35 198 16)">✈</text>
+        </svg>
+
+        <div class="container">
+            <div class="footer-columns-four">
+                <!-- Brand Column -->
+                <div class="footer-brand-column">
+                    <a href="index.html" class="footer-brand-logo-wrap">
+                        <div class="footer-brand-icon">✈️</div>
+                        <div>
+                            <h3>TravelUp Global</h3>
+                            <span>Explore • Plan • Travel</span>
+                        </div>
+                    </a>
+                    <p class="footer-brand-bio">
+                        Next-generation global travel technology platform. Discover breathtaking destinations, customize dynamic itineraries, and reserve verified dream trips worldwide.
+                    </p>
+                    <div class="footer-social-icons-row">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" title="TikTok">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.16 1.18 2.09 2.35 2.3 1.05.2 2.16-.08 2.93-.82.68-.61.99-1.54 1.02-2.43.05-3.37.02-6.75.03-10.12.02-2.73.01-5.46.02-8.19z"/></svg>
+                        </a>
+                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-nav-col">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="index.html"><span>➔</span> Home</a></li>
+                        <li><a href="destinations.html"><span>➔</span> Explore Destinations</a></li>
+                        <li><a href="packages.html"><span>➔</span> Featured Packages</a></li>
+                        <li><a href="trip-builder.html"><span>➔</span> Custom Trip Builder</a></li>
+                        <li><a href="community.html"><span>➔</span> Community & Stories</a></li>
+                        <li><a href="index.html#about"><span>➔</span> About Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Support -->
+                <div class="footer-nav-col">
+                    <h5>Support & Help</h5>
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>💬</span> Help Center</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>📬</span> Contact Specialists</a></li>
+                        <li><a href="itinerary.html"><span>🗺️</span> Day-wise Itinerary</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.openTermsModal()"><span>📜</span> Terms & Conditions</a></li>
+                        <li><a href="javascript:void(0)" onclick="app.openPrivacyModal()"><span>🛡️</span> Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Download App -->
+                <div class="footer-nav-col">
+                    <h5>Download Our App</h5>
+                    <p style="font-size:0.78rem; color:#64748b; margin-bottom:14px; line-height:1.5;">
+                        Get exclusive mobile flight deals, barcode e-vouchers & live flight updates.
+                    </p>
+                    <div class="store-badges-container">
+                        <div class="store-badge-card" onclick="alert('TravelUp Global iOS App is coming soon to the Apple App Store! 🍏')">
+                            <div class="store-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.13-1.96 1-3.1-.98.04-2.16.66-2.85 1.47-.61.71-1.14 1.88-1 2.99 1.09.08 2.2-.56 2.85-1.36z"/></svg>
+                            </div>
+                            <div>
+                                <div class="store-text-top">Download on the</div>
+                                <div class="store-text-brand">App Store</div>
+                            </div>
+                        </div>
+
+                        <div class="store-badge-card" onclick="alert('TravelUp Global Android App is coming soon to Google Play Store! 🤖')">
+                            <div class="store-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.023 2.023 0 0 1-.61-1.45V3.264c0-.56.223-1.08.609-1.45zm11.233 11.234l2.551 2.551-12.01 6.857 9.459-9.408zm0-2.096L5.383 1.543l12.01 6.858-2.551 2.551zm1.047 1.048l3.418-1.95a1.86 1.86 0 0 1 0 3.218l-3.418-1.95-.001-.001-.001.683z"/></svg>
+                            </div>
+                            <div>
+                                <div class="store-text-top">GET IT ON</div>
+                                <div class="store-text-brand">Google Play</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-Footer Bottom Line -->
+            <div class="footer-bottom-line">
+                <div>© 2026 TravelUp Global. All rights reserved.</div>
+                
+                <div class="footer-bottom-badges">
+                    <span class="footer-badge-pill status-green">
+                        <span class="footer-pulse-dot"></span> Hostinger Cloud MySQL Connected
+                    </span>
+                    <span class="footer-badge-pill">
+                        🔒 256-Bit SSL Secured
+                    </span>
+                    <span class="footer-badge-pill" style="color:#94a3b8; border-color:rgba(255,255,255,0.08); background:transparent;">
+                        Port: 5000 Active
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let allDestinations = [];
+
+        async function loadDestinations() {
+            try {
+                const res = await api.getDestinations();
+                if (res && res.success && res.destinations) {
+                    allDestinations = res.destinations;
+                    renderDestinations(allDestinations);
+                } else {
+                    document.getElementById('exploreGridContainer').innerHTML = `
+                        <div style="grid-column:1/-1; text-align:center; padding:40px; color:#ef4444;">
+                            Failed to load destinations from database.
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                console.error('Error loading destinations:', err);
+            }
+        }
+
+        function renderDestinations(items) {
+            const container = document.getElementById('exploreGridContainer');
+            const countHeader = document.getElementById('destCountHeader');
+            if (countHeader) countHeader.innerText = `Results: (${items.length} Destinations Available)`;
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #fff; border-radius: 16px; border: 1px solid var(--border-light);">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">🔍</div>
+                        <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 6px;">No destinations matched your filter</h4>
+                        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">Try adjusting your budget or searching with different keywords.</p>
+                        <button onclick="resetFilters()" class="btn-primary-pill" style="padding: 8px 20px;">Reset Filters</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const isBn = localStorage.getItem('travelup_lang') === 'bn';
+            container.innerHTML = items.map((dest, idx) => {
+                const img = dest.image_url || 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80';
+                const priceFormatted = window.app ? app.formatPrice(dest.price_usd || 500, dest.price_bdt) : `$${dest.price_usd || 500}`;
+                const rating = dest.rating ? parseFloat(dest.rating).toFixed(1) : '4.8';
+                const badge = idx === 0 ? '<span class="badge-capsule badge-bg-green">Best Price</span>' : 
+                              (idx === 1 ? '<span class="badge-capsule badge-bg-purple">Trending</span>' : '<div></div>');
+                const displayName = (isBn && dest.name_bn) ? dest.name_bn : (dest.name_en || dest.name || 'Destination');
+
+                return `
+                    <div class="destination-tall-card" onclick="location.href='destination-details.html?id=${dest.id}'">
+                        <img src="${img}" alt="${displayName}" class="dest-img-bg" loading="lazy">
+                        <div class="dark-bottom-gradient"></div>
+                        <div class="dest-card-header">
+                            ${badge}
+                            <button class="heart-button-circle" onclick="toggleWishlist(event, ${dest.id}, '${displayName.replace(/'/g, "\\'")}')" title="Save to wishlist">♥</button>
+                        </div>
+                        <div class="dest-card-footer-info">
+                            <h3>📍 ${displayName}, ${dest.country}</h3>
+                            <div class="rating-meta-row"><span style="color:#eab308;">★</span> ${rating} • ${dest.category || 'Discovery'}</div>
+                            <div class="price-tag-row"><span>${isBn ? 'শুরু' : 'From'}</span> ${priceFormatted}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function toggleWishlist(e, destId, name) {
+            e.stopPropagation();
+            if (!auth.token) {
+                alert(`Please log in to save ${name} to your Wishlist account ❤️`);
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const res = await api.addToWishlist(destId);
+                if (res && res.success) {
+                    alert(`❤️ ${name} saved to your Wishlist! View it anytime from your profile.`);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function applyFilters() {
+            const query = (document.getElementById('destSearchInput')?.value || '').toLowerCase().trim();
+            const maxBudget = parseFloat(document.querySelector('input[name="budgetRadio"]:checked')?.value || '99999');
+            const checkedInterests = Array.from(document.querySelectorAll('input[name="interestChk"]:checked')).map(c => c.value.toLowerCase());
+
+            const filtered = allDestinations.filter(d => {
+                const matchesSearch = !query || 
+                    (d.name_en && d.name_en.toLowerCase().includes(query)) || 
+                    (d.country && d.country.toLowerCase().includes(query)) || 
+                    (d.city && d.city.toLowerCase().includes(query));
+
+                const price = parseFloat(d.price_usd || 500);
+                const matchesBudget = price <= maxBudget;
+
+                const cat = (d.category || '').toLowerCase();
+                const matchesInterest = checkedInterests.length === 0 || checkedInterests.some(i => cat.includes(i));
+
+                return matchesSearch && matchesBudget && matchesInterest;
+            });
+
+            renderDestinations(filtered);
+        }
+
+        function resetFilters() {
+            if (document.getElementById('destSearchInput')) document.getElementById('destSearchInput').value = '';
+            document.querySelectorAll('input[name="budgetRadio"]').forEach(r => r.checked = false);
+            document.querySelectorAll('input[name="interestChk"]').forEach(c => c.checked = true);
+            renderDestinations(allDestinations);
+        }
+
+        window.addEventListener('currencyChanged', () => {
+            renderDestinations(allDestinations);
+            if (window.app) app.updateCurrLabels();
+        });
+        window.addEventListener('languageChanged', () => {
+            renderDestinations(allDestinations);
+            if (window.app) app.updateLangLabels();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDestinations();
+            if (window.app) {
+                app.updateCurrLabels();
+                app.updateLangLabels();
+            }
+            const searchInput = document.getElementById('destSearchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', applyFilters);
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,510 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Packages for XeLaTeX / Flawless Bengali & English Support ---
+\usepackage{fontspec}
+
+% Kalpurush provides 100% accurate Bengali conjuncts (যুক্তাক্ষর, ই-কার, রেফ) + English
+\IfFileExists{kalpurush.ttf}{
+    \setmainfont{kalpurush.ttf}[
+        AutoFakeBold=1.5,
+        AutoFakeSlanted=true
+    ]
+}{
+    \setmainfont{Noto Serif Bengali}[
+        Script=Bengali,
+        AutoFakeBold=true,
+        AutoFakeSlanted=true
+    ]
+}
+
+\usepackage[margin=0.8in, top=0.85in, bottom=0.85in]{geometry}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning, calc}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{tcolorbox}
+\usepackage{float}
+
+% --- Colors ---
+\definecolor{primary}{RGB}{14, 116, 144}   % Deep Ocean Cyan
+\definecolor{secondary}{RGB}{15, 23, 42}  % Slate Navy 900
+\definecolor{accent}{RGB}{234, 88, 12}    % Deep Orange
+\definecolor{lightgray}{RGB}{248, 250, 252}
+\definecolor{boxgray}{RGB}{241, 245, 249}
+
+% --- Hyperref Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=primary,      
+    urlcolor=primary,
+    citecolor=primary,
+    pdftitle={TravelUp Global Project Proposal (Bangla)},
+    pdfpagemode=FullScreen,
+}
+
+% --- Header and Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{secondary}{\small\textbf{TravelUp Global} --- প্রজেক্ট প্রস্তাবনা}}
+\rhead{\textcolor{secondary}{\small Markup \& Scripting Languages Lab}}
+\cfoot{\small\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% --- Section Styling ---
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{primary}}{\thesection}{0.8em}{}[\titlerule]
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{secondary}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}
+  {\normalfont\small\bfseries\color{accent}}{\thesubsubsection}{0.5em}{}
+
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+\titlespacing*{\subsubsection}{0pt}{5pt}{2pt}
+
+% --- Compact Lists ---
+\setlist{itemsep=1.5pt, topsep=2pt, parsep=0pt, partopsep=0pt}
+
+% --- Code listings ---
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  backgroundcolor=\color{lightgray},
+  frame=single,
+  rulecolor=\color{gray!30}
+}
+
+\begin{document}
+
+% ==============================================================================
+% কভার পেজ / TITLE PAGE
+% ==============================================================================
+\begin{titlepage}
+    \centering
+    \vspace*{0.3cm}
+    
+    {\large\bfseries\textcolor{primary}{বিশ্ববিদ্যালয় প্রজেক্ট প্রস্তাবনা}}\\[0.2cm]
+    {\color{primary}\rule{0.6\textwidth}{2.2pt}}\\[0.6cm]
+    
+    {\Huge \textbf{\textcolor{secondary}{ট্রাভেলআপ গ্লোবাল (TravelUp Global)}}}\\[0.3cm]
+    {\large \textbf{একটি এন্টারপ্রাইজ ডুয়াল-পোর্টাল গ্লোবাল ট্যুরিজম ও ডায়নামিক আইটিনারারি ইঞ্জিনিয়ারিং প্ল্যাটফর্ম}}\\[0.2cm]
+    {\normalsize \textbf{সোশ্যাল মিডিয়ার সীমাবদ্ধতা অতিক্রম করে বাস্তব ট্রাভেল জটিলতার পূর্ণাঙ্গ সমাধান}}\\[0.55cm]
+    
+    % --- Metadata Specification Table ---
+    \renewcommand{\arraystretch}{1.22}
+    \begin{tabularx}{\textwidth}{@{}>{\bfseries}p{5.2cm} X@{}}
+        প্রজেক্টের নাম          & ট্রাভেলআপ গ্লোবাল (TRAVELUP GLOBAL) \\
+        প্রজেক্টের ধরন          & ফুল-স্ট্যাক ওয়েব অ্যাপ্লিকেশন (ডুয়াল-পোর্টাল আর্কিটেকচার) \\
+        প্রজেক্টের ডোমেইন        & ডায়নামিক আইটিনারারি ইঞ্জিনিয়ারিং, বুকিং লজিস্টিকস ও ফিনটেক \\
+        তত্ত্বাবধায়ক            & সজীব ভট্টাচার্য্য (Sajib Bhattacharjee) \\
+        পদবি                  & প্রভাষক (Lecturer) \\
+        বিভাগ                 & কম্পিউটার সায়েন্স অ্যান্ড ইঞ্জিনিয়ারিং বিভাগ (CSE) \\
+        প্রতিষ্ঠান             & ঢাকা ইন্টারন্যাশনাল ইউনিভার্সিটি (DIU) \\
+        কোর্সের নাম           & Markup \& Scripting Languages Lab \\
+        জমা দেওয়ার তারিখ      & ১৪/১০/২০২৬ \\
+    \end{tabularx}
+    
+    \vspace{0.6cm}
+    
+    % --- Project Team Block ---
+    {\bfseries\textcolor{secondary}{\large প্রজেক্ট টিম (শিক্ষার্থীবৃন্দ)}}\\[0.15cm]
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabularx}{\textwidth}{c X r}
+        \toprule
+        \textbf{নং} & \textbf{শিক্ষার্থীর নাম} & \textbf{রোল / আইডি} \\
+        \midrule
+        ১ & মোঃ তানভীর পারভেজ (Md. Tanvir Parvaj) & ৩৯ \\
+        ২ & মোঃ তৌফিক হাসান (Md. Toufick Hasan) & ৩৪ \\
+        ৩ & ফাহিমা সুবর্ণা (Fahima Suborna)       & ৩৬ \\
+        \bottomrule
+    \end{tabularx}
+    
+    \vfill
+    \begin{tcolorbox}[colback=boxgray,colframe=primary,arc=2mm,boxrule=0.8pt]
+    \centering\footnotesize\textcolor{secondary}{
+    \textbf{এই প্রপোজালের মূল একাডেমিক গবেষণামূলক প্রশ্ন:}\\
+    \textit{''একটি সাধারণ সোশ্যাল মিডিয়া (ফেসবুক) পেজ বা ম্যানুয়াল চ্যাটবক্সের পরিবর্তে আধুনিক ট্রাভেল লজিস্টিকসে ফুল-স্ট্যাক ওয়েব ইঞ্জিনিয়ারিং প্ল্যাটফর্ম কেন প্রযুক্তিগতভাবে অপরিহার্য?''}
+    }
+    \end{tcolorbox}
+    \vspace*{0.1cm}
+\end{titlepage}
+
+\newpage
+
+% ==============================================================================
+% ১. সারসংক্ষেপ ও প্রকল্পের প্রয়োজনীয়তা
+% ==============================================================================
+\section{১. সারসংক্ষেপ ও মূল প্রেষণা (Executive Abstract \& Motivation)}
+
+\subsection{১.১ সারসংক্ষেপ}
+\textbf{ট্রাভেলআপ গ্লোবাল (TravelUp Global)} একটি পূর্ণাঙ্গ, আধুনিক, এন্টারপ্রাইজ ডুয়াল-পোর্টাল ভ্রমণ ডিসকভারি, ডায়নামিক আইটিনারারি ইঞ্জিনিয়ারিং এবং অপারেশনাল ম্যানেজমেন্ট প্ল্যাটফর্ম। \textbf{Markup \& Scripting Languages Lab} কোর্সের কারিকুলাম ও শিক্ষার আলোকে তৈরিকৃত এই প্ল্যাটফর্মে সেমান্টিক HTML5 কাঠামো, হার্ডওয়্যার-অ্যাক্সিলারেটেড CSS3 গ্রিড ও অ্যানিমেশন, রিয়্যাক্টিভ ক্লায়েন্ট স্ক্রিপ্টিং (Vanilla ES6+), নোড.জেএস (Node.js/Express) অ্যাসিনক্রোনাস RESTful মাইক্রোসার্ভিসেস এবং ৩NF ACID কমপ্লায়েন্ট রিলেশনাল MySQL ডাটাবেজ সমন্বয় করা হয়েছে।
+
+ঐতিহ্যবাহী ট্রাভেল এজেন্সিগুলো সাধারণত স্ট্যাটিক ব্রোশিওর বা ফেসবুক পেজের মাধ্যমে ব্যবসা পরিচালনা করে। কিন্তু আধুনিক পর্যটন লজিস্টিকসে মাল্টি-লেগ ইন্টারমোডাল ট্রানজিট সমন্বয়, বয়োবৃদ্ধদের হুইলচেয়ার এক্সেসিবিলিটি ফিল্টারিং, দুর্যোগপূর্ণ আবহাওয়ায় স্বয়ংক্রিয় ওয়ালেট রিফান্ড, ৩০ জনের গ্রুপ ট্যুরে স্প্লিট-বিলিং পেমেন্ট এবং ৬-টিয়ার ক্রিপ্টোগ্রাফিক রোল-বেসড এক্সেস কন্ট্রোল (RBAC) অত্যন্ত জরুরি। ট্রাভেলআপ গ্লোবাল ম্যানুয়াল বিশৃঙ্খলা দূর করে সুসংজ্ঞায়িত সফটওয়্যার আর্কিটেকচার প্রতিষ্ঠা করে।
+
+\subsection{১.২ বিদ্যমান সমস্যা ও ডিজিটাল লজিস্টিকসের সংকট}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ম্যানুয়াল যোগাযোগের দীর্ঘসূত্রতা:} ফেসবুক বা সোশ্যাল মিডিয়ায় প্যাকেজ বুকিং করতে দিনের পর দিন মেসেঞ্জারে কথা বলতে হয়, যাতে প্রচুর সময় নষ্ট হয় এবং ভুলের ঝুঁকি থাকে।
+    \item \textbf{অনমনীয় একঘেয়ে প্যাকেজ:} প্রচলিত অপারেটররা রিজিড প্যাকেজ চাপিয়ে দেয়; যেখানে ট্রাভেলারদের ট্রান্সপোর্ট স্কিপ করার, পছন্দসই বেডিং বাছাই করার বা গ্রুপে যার যার মতো অ্যাক্টিভিটি নেওয়ার সুযোগ থাকে না।
+    \item \textbf{ডাবল-বুকিং ও ডেটা কনকারেন্সির ঝুঁকি:} স্প্রেডশিট বা চ্যাট ইনবক্সে ডাটা রাখায় ট্রানজাকশনাল আইসোলেশন (ACID) থাকে না, ফলে একই হোটেল রুম বা বাসের সিট একাধিক জনের কাছে বুক হয়ে বিপর্যয় ঘটে।
+    \item \textbf{গ্রুপ পেমেন্ট জটিলতা ও আর্থিক অস্বচ্ছতা:} গ্রুপ ট্যুরের পুরো টাকা একজন ছাত্রের পার্সোনাল বিকাশ নম্বরে তোলা অত্যন্ত ঝুঁকিপূর্ণ; এতে লেনদেনের অডিট থাকে না এবং কর্পোরেট ভ্যাট/ট্যাক্স চালান পাওয়া যায় না।
+\end{itemize}
+
+% ==============================================================================
+% ২. একাডেমিক ডিফেন্স: ফুল-স্ট্যাক ওয়েব বনাম ফেসবুক পেজ
+% ==============================================================================
+\section{২. একাডেমিক ডিফেন্স: ফুল-স্ট্যাক ওয়েব প্ল্যাটফর্ম বনাম ফেসবুক পেজ}
+
+একাডেমিক মূল্যায়নে প্রধান প্রশ্ন: \textit{''একটি ফেসবুক পেজ খুলেই যদি ট্যুর পরিচালনা করা যায়, তবে পূর্ণাঙ্গ ফুল-স্ট্যাক ওয়েবসাইট বানানোর কী টেকনিক্যাল যৌক্তিকতা রয়েছে?''} 
+
+সফটওয়্যার ইঞ্জিনিয়ারিং দৃষ্টিকোণ থেকে, সোশ্যাল মিডিয়া পেজগুলো কেবল ছবি ও টেক্সট প্রদর্শনের একটি নোটিশ বোর্ড মাত্র। সেখানে কোনো রিলেশনাল ডাটাবেজ স্টোরেজ, অ্যালগরিদমিক কম্পিউটেশন, ক্রিপ্টোগ্রাফিক রোল আইসোলেশন বা অটোমেটেড স্টেট মেশিন থাকে না। নিচের সারণী ১-এ ফেসবুক পেজ বনাম ট্রাভেলআপ গ্লোবালের সরাসরি প্রযুক্তিগত তুলনা তুলে ধরা হলো:
+
+\begin{table}[H]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{p{2.6cm} p{5.0cm} X}
+\toprule
+\textbf{কার্যকরী ক্ষেত্র (Dimension)} & \textbf{সোশ্যাল মিডিয়া (ফেসবুক পেজ / মেসেঞ্জার চ্যাট)} & \textbf{ট্রাভেলআপ গ্লোবাল ফুল-স্ট্যাক ইঞ্জিনিয়ারিং প্ল্যাটফর্ম} \\
+\midrule
+\textbf{ইনভেন্টরি ও কনকারেন্সি} & কেবল স্ট্যাটিক পোস্ট ও ছবি; কোনো রিলেশনাল স্টেট নেই। একাধিক অ্যাডমিন ভিন্ন কাস্টমারকে একই সিট দিলে ডাবল-বুকিং ঘটে। & Hostinger MySQL 3NF রিলেশনাল স্কিমা, ACID ট্রানজাকশন, রো-লেভেল লকিং এবং রিয়েল-টাইম স্বয়ংক্রিয় ইনভেন্টরি হ্রাস। \\
+\addlinespace
+\textbf{প্রাইসিং ও রুট ক্যালকুলেশন} & অ্যাডমিন আন্দাজে হিসেব করে চ্যাটে লিখে দেয়। ফ্লাইট + মাইক্রোবাসের মাল্টি-লেগ সংযোগের নির্ভুল হিসেব দেওয়া অসম্ভব। & ক্লায়েন্ট-সাইড reactive JavaScript DOM + REST API দ্বারা রিয়েল-টাইম ইন্টারমোডাল ট্রানজিট রুট ও আইটেমাইজড প্রাইস ব্রেকডাউন। \\
+\addlinespace
+\textbf{কাস্টমাইজেশন ও বেডিং লজিক} & নির্ধারিত প্যাকেজ নিতে বাধ্য করা হয়। ৪ জনের ১ রুমে ২ কিং-বেড শেয়ারিং বা গাড়ি বাদ দেওয়ার হিসেব চ্যাটে জটিল হয়ে পড়ে। & কাস্টম ট্রিপ বিল্ডারে \texttt{[✓] Skip Transport} টগল, স্পেসিফিক বেডিং নির্বাচন এবং স্বয়ংক্রিয় মাথাপিছু শেয়ারিং ভাড়া হিসাব। \\
+\addlinespace
+\textbf{গ্রুপ স্প্লিট-বিলিং ফিনটেক} & একজন সিআর-কে ৩০ জনের থেকে পার্সোনাল বিকাশে টাকা তুলে জটিলতায় পড়তে হয়; কার টাকা এসেছে মেলানো যায় না। & স্বয়ংক্রিয় \textit{Shareable Split-Bill Payment Link}; প্রত্যেকে নিজ বিকাশে ৫,০০০ টাকা দেবে এবং পোর্টালে লাইভ গ্রিন টিক উঠবে। \\
+\addlinespace
+\textbf{মেডিকেল ও শারীরিক সীমাবদ্ধতা} & চ্যাট অ্যাডমিন বয়োবৃদ্ধদের সিঁড়ি দিয়ে ওঠার সমস্যা না বুঝে খাড়া পাহাড়ের কটেজে বুকিং দিয়ে বিপদ ঘটায়। & মাল্টি-অ্যাট্রিবিউট রিলেশনাল ফিল্টারিং দ্বারা খাড়া সিঁড়ি বাদ দিয়ে শুধু গ্রাউন্ড ফ্লোর ও লিফটযুক্ত রিসোর্ট ফিল্টার করে দেখানো। \\
+\addlinespace
+\textbf{দুর্যোগে অটো রিফান্ড} & সাগরে ৩ নম্বর সংকেতে স্কুবা ডাইভিং বাতিল হলে ফেসবুক পেজের অ্যাডমিনের সাথে দিনের পর দিন তর্ক করতে হয়। & কেন্দ্রীয় আবহাওয়া অ্যালার্ট ট্রিগার হওয়ার সাথে সাথে স্বয়ংক্রিয়ভাবে সমুদ্রে অ্যাক্টিভিটি বাতিল ও ইউজারের ওয়ালেটে অটো-রিফান্ড। \\
+\addlinespace
+\textbf{কর্পোরেট চালান ও ভ্যাট অডিট} & ফেসবুক চ্যাটে কোনো অফিশিয়াল এনবিআর অনুমোদিত ভ্যাট চালান বা কর্পোরেট ক্যাশ মেমো জেনারেট করা সম্ভব নয়। & অটোমেটেড B2B কোটেশন ইঞ্জিন; ১৫\% সরকারি ভ্যাট ও ৫\% এআইটি সম্বলিত ডাউনলোডযোগ্য কর্পোরেট PDF ইনভয়েস জেনারেশন। \\
+\addlinespace
+\textbf{ক্রিপ্টোগ্রাফিক সিকিউরিটি ও RBAC} & সব কর্মী একই ফেসবুক পেজের লগইন শেয়ার করে; একজন ইন্টার্নের হাতেও মালিকের সমান পারমিশন থাকে; কোনো অডিট লগ নেই। & ক্রিপ্টোগ্রাফিক JWT এবং ৬-টায়ার Enterprise RBAC; সুপার অ্যাডমিন, ম্যানেজার, একাউন্ট্যান্ট ও সাপোর্টের ক্ষমতা সম্পূর্ণ পৃথক। \\
+\bottomrule
+\end{tabularx}
+\caption{প্রযুক্তিগত যৌক্তিকতা: ফেসবুক পেজের সীমাবদ্ধতা বনাম ট্রাভেলআপ গ্লোবাল ওয়েব প্ল্যাটফর্ম}
+\label{tab:fb_vs_web_bn}
+\end{table}
+
+\newpage
+
+% ==============================================================================
+% ৩. ইঞ্জিনিয়ারিং ভেরিফিকেশন: ১২টি বাস্তবমুখী সিনারিও
+% ==============================================================================
+\section{৩. ইঞ্জিনিয়ারিং ভেরিফিকেশন: ১২টি বাস্তবমুখী ও জটিল ট্রাভেল সিনারিও}
+
+ট্রাভেলআপ গ্লোবাল যে একটি সাধারণ ক্যাটালগ নয় বরং একটি কম্পিউটেশনাল লজিস্টিক ইঞ্জিন, তা প্রমাণের জন্য আমাদের প্ল্যাটফর্মে বাস্তবায়িত ১২টি বাস্তবমুখী ও জটিল সিনারিও নিচে উপস্থাপন করা হলো:
+
+\subsection{ক্যাটাগরি A: ইন্টারমোডাল ট্রানজিট ও ডায়নামিক রুট ইঞ্জিন}
+
+\subsubsection{সিনারিও ১: মাল্টি-লেগ রুট সিন্থেসিস (পঞ্চগড়-তেঁতুলিয়া কাঞ্চনজঙ্ঘা ট্রাভেলার)}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} তানজিম (ফ্রিল্যান্স ফটোগ্রাফার, কাঞ্চনজঙ্ঘার ছবি তুলতে ঢাকা থেকে তেঁতুলিয়া যাবে)।
+    \item \textbf{বাস্তব সমস্যা:} পঞ্চগড় বা তেঁতুলিয়ায় কোনো বিমানবন্দর নেই। ফেসবুকে টিকিট কাটতে গেলে তাকে আলাদা ফ্লাইট ও লোকাল মাইক্রোবাস ড্রাইভারের শিডিউল আন্দাজে মেলাতে হয়।
+    \item \textbf{সিস্টেমের সমাধান:} ট্রাভেলআপ প্ল্যাটফর্মের ইন্টারমোডাল রুট অ্যালগরিদম স্বয়ংক্রিয়ভাবে লেগ ১ (ঢাকা ➔ সৈয়দপুর ফ্লাইট: ৳৪,৫০০) এবং লেগ ২ (সৈয়দপুর ➔ তেঁতুলিয়া কানেক্টিং এসি মাইক্রোবাস: ৳৮০০) কম্বাইন করে ৪৫ মিনিটের লাগেজ ট্রান্সফার বাফার সময় হিসাব করে এক ক্লিকে একটি সমন্বিত জয়েন্ট ই-টিকেট প্রদান করে।
+\end{itemize}
+
+\subsubsection{সিনারিও ২: ওপেন-এন্ডেড স্টে ও ডায়নামিক রিটার্ন সিট এলোকেশন}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} ফারহান (রিমোট সফটওয়্যার ইঞ্জিনিয়ার, সাজেক ভ্যালির কটেজে বসে কোডিং করবে)।
+    \item \textbf{বাস্তব সমস্যা:} ফারহান জানে না তার প্রজেক্ট শেষ হতে ৩ দিন লাগবে নাকি ৭ দিন; ফলে আগে থেকে ফেরার টিকিট কাটা অপচয়, অথচ ফেসবুক পেজগুলো ওয়ান-ওয়ে ওপেন টিকিট অফার করে না।
+    \item \textbf{সিস্টেমের সমাধান:} ট্রিপ বিল্ডারে সে শুধু যাওয়ার বাস ও ৩ দিনের কটেজ বুক করে। সিস্টেম বুকিংকে \texttt{Open-Return Status} প্রদান করে। পরবর্তীতে ফেরার দিন ফারহান ড্যাশবোর্ডে লগইন করে ঢাকা ফেরত বাসের খালি সিট বা এজেন্সির অন-গোয়িং ট্যুর টিমের সাথে ডিসকাউন্টে ফেরত আসে।
+\end{itemize}
+
+\subsubsection{সিনারিও ৩: লাইভ সিট লেআউট ও ডায়নামিক কাউন্টার টেলিমেটিক্স}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} সাদিয়া ও তার বান্ধবী (দুইজন ছাত্রী, রাত ১১:৩০-এ আরামবাগ থেকে টেকনাফগামী বাসে যাবে)।
+    \item \textbf{বাস্তব সমস্যা:} বাসের পেছনের ঝাঁকুনির সিট এড়ানো, মহিলাদের জন্য সামনের নিরাপদ সিট নিশ্চিত করা এবং মধ্যরাতে কাউন্টারে পৌঁছে কাকে ফোন দেবে তা নিয়ে দুশ্চিন্তা।
+    \item \textbf{সিস্টেমের সমাধান:} ক্লায়েন্ট ইন্টারফেসে ইন্টারেক্টিভ SVG বাসের সিট লেআউটে নারীদের জন্য সামনের সারি অগ্রাধিকার দেওয়া হয়। টিকিট কনফার্মেশনের সাথে সাথে স্বয়ংক্রিয় ভাউচারে আরামবাগ কাউন্টার ম্যানেজার এবং বাসের সুপারভাইজারের লাইভ ফোন নম্বর প্রিন্ট হয়ে যায়।
+\end{itemize}
+
+\subsubsection{সিনারিও ৪: সেলফ-ড্রাইভ নো-ট্রান্সপোর্ট ট্রিপ বিল্ডার (Skip Transport)}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} আসিফ ও তার ৪ বন্ধু (নিজেদের প্রাডো গাড়ি ড্রাইভ করে সিলেট ভ্রমণ করবে)।
+    \item \textbf{বাস্তব সমস্যা:} সাধারণ এজেন্সিগুলো সম্পূর্ণ প্যাকেজ নিতে বাধ্য করে এবং গাড়ির ভাড়া বাদ দিতে অস্বীকৃতি জানায়।
+    \item \textbf{সিস্টেমের সমাধান:} ট্রিপ বিল্ডারে \texttt{[✓] Skip Transport} টগল রয়েছে। সিস্টেম মুহূর্তেই দূরপাল্লার গাড়ির ভাড়া বাদ দিয়ে ৪টি রিসোর্ট রুম, জাফলংয়ের অনুমোদিত ইঞ্জিন বোট এবং বিছনাকান্দির রেজিস্টার্ড ট্রেকিং গাইড রিজার্ভেশন সম্পন্ন করে।
+\end{itemize}
+
+\subsection{ক্যাটাগরি B: অ্যাকোমোডেশন, বেডিং ও অ্যাক্সেসিবিলিটি ফিল্টারিং}
+
+\subsubsection{সিনারিও ৫: মাল্টি-বেড ফ্যামিলি রুম ও মাথাপিছু খরচ অপ্টিমাইজেশন}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} রাহাত ও তার ৩ বন্ধু (বাজেট ট্রাভেলার, কক্সবাজার যাবে)।
+    \item \textbf{বাস্তব সমস্যা:} ৪ জনের জন্য ২টি আলাদা টুইন রুম নিলে খরচ ডাবল হয়ে যায়, যা ছাত্রদের বাজেটের বাইরে।
+    \item \textbf{সিস্টেমের সমাধান:} হোটেল ডাটাবেজে রুম ক্যাটাগরি রয়েছে: \textit{''Deluxe 4-Bed Family Room (2 King Beds)''} ভাড়া ৳৩,৫০০/রাত। সিস্টেমের রিয়্যাক্টিভ প্রাইসিং ক্যালকুলেটর সাথে সাথে জনপ্রতি খরচ ৳৮৭৫/রাত হিসাব করে ডিসপ্লে করে।
+\end{itemize}
+
+\subsubsection{সিনারিও ৬: শারীরিক ও মেডিকেল অ্যাক্সেসিবিলিটি ফিল্টারিং}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} জামিল সাহেব (ব্যাংকার, সাথে তার ৭০ বছর বয়সী মা যিনি বাতের ব্যথায় সিঁড়ি বাইতে পারেন না এবং ডায়াবেটিক বাবা)।
+    \item \textbf{বাস্তব সমস্যা:} সাজেক বা বান্দরবানের পাহাড়ি খাড়া সিঁড়ির কটেজে উঠলে মারাত্মক স্বাস্থ্যঝুঁকি ঘটবে।
+    \item \textbf{সিস্টেমের সমাধান:} সিস্টেমে \texttt{[✓] Wheelchair \& Elevator Accessible} ফিল্টার নির্বাচন করলে ডাটাবেজ ব্যাকএন্ডে \texttt{WHERE has\_elevator = 1 AND ground\_floor\_available = 1} এক্সিকিউট করে খাড়া সিঁড়ির হোটেলগুলো স্বয়ংক্রিয়ভাবে বাদ দিয়ে কেবল সমতল রিসোর্ট প্রদর্শন করে।
+\end{itemize}
+
+\subsubsection{সিনারিও ৭: মডুলার মাইক্রো অ্যাড-অন ও আর্লি চেক-ইন ফ্রেশ-আপ রুম}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} তৌহিদ ও রিয়া (নবদম্পতি) / মাহিন (ভোর ৫:৩০-এ শ্রীমঙ্গল নামা এক্সিকিউটিভ)।
+    \item \textbf{বাস্তব সমস্যা:} দুপুর ১২টার আগে চেক-ইন দেয় না; ভোরবেলা রাস্তায় ব্যাগ নিয়ে ঘুরতে হয় বা পুরো ১ দিনের ভাড়া দিতে হয়। হানিমুন ডেকোরেশনের কথা চ্যাটে অ্যাডমিন ভুলে যায়।
+    \item \textbf{সিস্টেমের সমাধান:} চেকআউট ফর্মে \textit{''Honeymoon Flower Bed (+৳১,৫০০)''} এবং \textit{''Early Morning Fresh-up Room (৩৫\% হাফ-ডে রেট)''} টিক মার্ক দিলে স্বয়ংক্রিয়ভাবে ইনভয়েসে যুক্ত হয়ে যায়।
+\end{itemize}
+
+\subsection{ক্যাটাগরি C: গ্রুপ ফিনটেক, অ্যাক্টিভিটি স্প্লিটিং ও সেফটি অটোমেশন}
+
+\subsubsection{সিনারিও ৮: গ্রুপের সদস্যদের জন্য ভিন্ন ভিন্ন অ্যাক্টিভিটি বাছাই (Zero Forced Bundling)}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} ইনানী বিচে ৪ বন্ধুর একটি দল।
+    \item \textbf{বাস্তব সমস্যা:} ২ জন বন্ধু রোমাঞ্চকর প্যারাসেইলিং ও স্পিডবোট রাইড করবে (৳২,৩০০/জন), আর বাকি ২ জন বিচে ডাব খেয়ে রিল্যাক্স করবে (৳১০০)। ফেসবুক পেজগুলো সবার ওপর একই প্যাকেজ চাপিয়ে দেয়।
+    \item \textbf{সিস্টেমের সমাধান:} সিস্টেমে প্রতি ট্রাভেলারের জন্য আলাদা অ্যাক্টিভিটি বাছাইয়ের চেক-বক্স রয়েছে; ফলে একটি মাস্টার বুকিংয়ের ভেতরেই আইটেমাইজড খরচের স্বচ্ছ হিসাব তৈরি হয়।
+\end{itemize}
+
+\subsubsection{সিনারিও ৯: দুর্যোগপূর্ণ আবহাওয়া ও তাৎক্ষণিক ডিজিটাল ওয়ালেট রিফান্ড}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} সুজন (সেন্টমার্টিনে স্কুবা ডাইভিংয়ের জন্য ৳৩,০০০ প্রিপে করেছে)।
+    \item \textbf{বাস্তব সমস্যা:} সাগরে হঠাৎ ৩ নম্বর সতর্কতা সংকেত পড়ায় কোস্টগার্ড ডাইভিং নিষিদ্ধ করেছে। ফেসবুক পেজে টাকা ফেরত চাইতে গেলে দিনের পর দিন তর্কাতর্কি চলে।
+    \item \textbf{সিস্টেমের সমাধান:} অ্যাডমিন পোর্টালে ইমার্জেন্সি অ্যালার্ট সক্রিয় হওয়া মাত্র সিস্টেম সেন্টমার্টিনের সমস্ত বিচ অ্যাক্টিভিটি স্ট্যাটাস বাতিল করে এবং সুজনের ওয়ালেট বা বিকাশ অ্যাকাউন্টে তাৎক্ষণিক স্বয়ংক্রিয়ভাবে ৳৩,০০০ রিফান্ড ক্রেডিট করে দেয়।
+\end{itemize}
+
+\subsubsection{সিনারিও ১০: শিশু ও বয়সভিত্তিক নিখুঁত ভাড়া নির্ধারণ ইঞ্জিন}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} আনিস ও তার পরিবার (বাবা-মা, সাথে ৩ বছরের এক শিশু ও ৭ বছরের এক সন্তান)।
+    \item \textbf{বাস্তব সমস্যা:} বাসে ও হোটেলে বাচ্চার বয়স অনুযায়ী ভিন্ন ভাড়ার হিসাব ম্যানুয়ালি করতে গেলে ব্যাপক ভুল হয়।
+    \item \textbf{সিস্টেমের সমাধান:} অ্যালগরিদমিক ভাড়া নির্ধারণ: ৪ বছরের নিচের শিশু কোলে যাবে (বাস ভাড়া ৳০, হোটেল ৳০); ৫-১০ বছরের শিশুর বাসে আলাদা সিট লাগবে (৳৮০০); বাবা-মায়ের রুমে এক্সট্রা রোলঅ্যাওয়ে বেড (৳৫০০/রাত)—সিস্টেম নিখুঁত হিসাব করে।
+\end{itemize}
+
+\subsubsection{সিনারিও ১১: কর্পোরেট বিটুবি কোটেশন ও সরকারি ভ্যাট/ট্যাক্স চালান}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} তানভীর (এইচআর ম্যানেজার, সফটওয়্যার কোম্পানির ২৫ জনের টিম শ্রীমঙ্গল রিট্রিটে যাবে)।
+    \item \textbf{বাস্তব সমস্যা:} তাদের ১টি সম্পূর্ণ এসি বাস রিজার্ভ, ১২টি টুইন রুম, কনফারেন্স রুম এবং অডিট ও ট্যাক্স ফাইলিংয়ের জন্য সরকারি ১৫\% ভ্যাট ও ৫\% এআইটি সম্বলিত অফিশিয়াল ক্যাশ মেমো দরকার।
+    \item \textbf{সিস্টেমের সমাধান:} অ্যাডমিন প্যানেল থেকে এক ক্লিকে ভলিউম ডিসকাউন্ট সহ B2B Corporate Quote তৈরি হয়, যা সরকারি নিয়ম মেনে প্রিন্টযোগ্য কর্পোরেট ইনভয়েস প্রদান করে।
+\end{itemize}
+
+\subsubsection{সিনারিও ১২: ব্যাচ ট্যুর বিকাশ স্প্লিট পেমেন্ট (Split-Bill Fintech)}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{ট্রাভেলার পারসোনা:} বিশ্ববিদ্যালয়ের সিএসই ডিপার্টমেন্টের ৩০ জন শিক্ষার্থী (মোট বাজেট: ৳১,৫০,০০০)।
+    \item \textbf{বাস্তব সমস্যা:} সিআর (ক্লাস রিপ্রেজেন্টেটিভ) একা পুরো টাকা অ্যাডভান্স দিতে পারে না। পার্সোনাল বিকাশে ৩০ জনের টাকা সংগ্রহ করতে গেলে লিমিট শেষ হয়ে যায় এবং কার টাকা এসেছে তা মেলানো কঠিন হয়।
+    \item \textbf{সিস্টেমের সমাধান:} বুকিং কনফার্মেশনের পর সিস্টেমে তৈরি হয় একটি \textit{Shareable Split-Payment Link}। ৩০ জন স্টুডেন্ট তাদের নিজ বিকাশ দিয়ে মাথাপিছু ৳৫,০০০ করে পে করবে এবং সেন্ট্রাল ড্যাশবোর্ডে ৩০ জনের নামের পাশে লাইভ গ্রিন টিক চিহ্ন উঠবে।
+\end{itemize}
+
+\begin{tcolorbox}[colback=lightgray,colframe=secondary,arc=1mm,boxrule=0.6pt]
+\footnotesize\textbf{বোনাস সেফটি গার্ড: আন্তর্জাতিক ভ্রমণে পাসপোর্ট মেয়াদ যাচাই (ICAO কমপ্লায়েন্স)}\\
+বালি বা ব্যাংককের ফ্লাইট বুকিংয়ের সময় জাভাস্ক্রিপ্ট ক্লায়েন্ট ইঞ্জিন ট্রাভেলারের পাসপোর্টের মেয়াদ যাচাই করে। মেয়াদ যদি ৬ মাসের (১৮০ দিন) কম থাকে, সিস্টেম তাৎক্ষণিক বুকিং আটকে লাল সতর্কবার্তা প্রদর্শন করে, যা বিমানবন্দরে বোর্ডিং রিজেকশনের হাত থেকে যাত্রীকে রক্ষা করে।
+\end{tcolorbox}
+
+\newpage
+
+% ==============================================================================
+% ৪. ফ্রন্ট-এন্ড ও ব্যাক-এন্ড প্রযুক্তি
+% ==============================================================================
+\section{৪. ফ্রন্ট-এন্ড প্রযুক্তি (Markup \& Client Scripting)}
+
+\subsection{৪.১ সেমান্টিক মার্কআপ (HTML5)}
+এইচটিএমএল৫ সেমান্টিক এলিমেন্টস (\texttt{<header>}, \texttt{<nav>}, \texttt{<main>}, \texttt{<section>}, \texttt{<article>}, \texttt{<aside>}, \texttt{<footer>}) ব্যবহার করে সার্চ ইঞ্জিন অপ্টিমাইজড (SEO) এবং সহজবোধ্য আর্কিটেকচার তৈরি করা হয়েছে। পাসপোর্টের ফরম্যাট, সিটের সংখ্যা এবং তারিখ ভ্যালিডেশনের জন্য নেটিভ ক্লায়েন্ট-সাইড কনস্ট্রেইন্ট (\texttt{required}, \texttt{pattern}, \texttt{type="email"}) নিশ্চিত করা হয়েছে।
+
+\subsection{৪.২ স্টাইলিং ও রেসপনসিভ অ্যানিমেশন ইঞ্জিন (CSS3)}
+সিএসএস ফ্লেক্সবক্স ও মাল্টি-কলাম গ্রিড আর্কিটেকচার দ্বারা মোবাইল, ট্যাবলেট, ল্যাপটপ এবং বড় মনিটরের জন্য রেসপনসিভ ভিউ নিশ্চিত করা হয়েছে। গ্লোবাল সিএসএস ভেরিয়েবল (\texttt{--primary}, \texttt{--surface-card}, \texttt{--border-light}) ডার্ক ও লাইট থিম পরিবর্তন নিয়ন্ত্রণ করে। হার্ডওয়্যার-অ্যাক্সিলারেটেড কি-ফ্রেম অ্যানিমেশন (\texttt{transform}, \texttt{opacity}) কার্ড হোভার জুম, লাইভ অ্যালার্ট পালসিং এবং গ্লাসফরমিক নেভিগেশন বার পরিচালনা করে।
+
+\subsection{৪.৩ ক্লায়েন্ট স্ক্রিপ্টিং (Vanilla JavaScript ES6+ ও Leaflet.js)}
+ভারী ফ্রেমওয়ার্ক ছাড়াই ব্রাউজার স্ট্যান্ডার্ড জাভাস্ক্রিপ্ট ব্যবহৃত হয়েছে:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{অ্যাসিনক্রোনাস ডেটা ফেচিং:} আধুনিক \texttt{async/await} এবং Fetch API দ্বারা পেজ রিলোড ছাড়াই ব্যাকএন্ড REST এপিআই থেকে ডেটা আদান-প্রদান।
+    \item \textbf{ইন্টারেক্টিভ ম্যাপ (Leaflet.js):} ওপেনস্ট্রিটম্যাপ ভিত্তিক ইন্টারেক্টিভ ম্যাপে বিভিন্ন ডেস্টিনেশনের জিপিএস কোঅর্ডিনেট পিন ও লাইভ বুকিং পপআপ প্রদর্শন।
+    \item \textbf{সেশন স্টেট পারসিস্টেন্স:} \texttt{localStorage} এবং URL Hash (\texttt{\#flights}, \texttt{\#hotels}) ব্যবহার করে ব্রাউজার রিফ্রেশের পরও ইউজারের স্টেট বজায় রাখা।
+\end{itemize}
+
+\section{৫. ব্যাক-এন্ড প্রযুক্তি ও রিলেশনাল ডাটাবেজ আর্কিটেকচার}
+
+\subsection{৫.১ সার্ভার-সাইড স্ক্রিপ্টিং (Node.js ও Express.js)}
+Node.js এর ইভেন্ট-চালিত নন-ব্লকিং I/O পাইপলাইন একই সময়ে হাজার হাজার ফ্লাইট কোয়েরি ও বুকিং রিকোয়েস্ট নিয়ন্ত্রণ করতে সক্ষম। কন্ট্রোলার-রাউট ভিত্তিক মডুলার আর্কিটেকচারে এপিআই রুটগুলো সুসংগঠিত (\texttt{authRoutes}, \texttt{destinationRoutes}, \texttt{bookingRoutes}, \texttt{flightRoutes}, \texttt{visaRoutes}, \texttt{adminRoutes})। মিডলওয়্যার দ্বারা CORS নীতি, বডি পার্সিং এবং \texttt{bcryptjs} পাসওয়ার্ড হ্যাশিং নিশ্চিত করা হয়েছে।
+
+\subsection{৫.২ রিলেশনাল ডাটাবেজ সিস্টেম (Hostinger MySQL 3NF)}
+বুকিং এবং পেমেন্ট ট্রানজাকশনের জন্য ACID ট্রানজাকশনাল কমপ্লায়েন্স নিশ্চিত করা হয়েছে, যা ডাবল-বুকিং রোধ করে। ডেটাবেজ স্কিমা ৩য় নরমাল ফর্ম (3NF) মেনে তৈরি। \texttt{mysql2} কানেকশন পুলিং এবং প্যারামিটারাইজড কুয়েরি দ্বারা এসকিউএল ইনজেকশন (SQL Injection) সম্পূর্ণরূপে নির্মূল করা হয়েছে।
+
+\newpage
+
+% ==============================================================================
+% ৬. এন্টারপ্রাইজ RBAC ও সিকিউরিটি
+% ==============================================================================
+\section{৬. ক্রিপ্টোগ্রাফিক অথেনটিকেশন ও ৬-টায়ার Enterprise RBAC}
+
+ট্রাভেলআপ গ্লোবালে একটি পূর্ণাঙ্গ ৬-টায়ার রোল-বেসড অ্যাক্সেস কন্ট্রোল (RBAC) মডেল বাস্তবায়িত হয়েছে। ক্লায়েন্ট-সাইড প্রেজেন্টেশন লেয়ার এবং সার্ভার-সাইড এপিআই মিডলওয়্যার উভয় স্তরেই কঠোরভাবে পারমিশন যাচাই করা হয়।
+
+\subsection{৬.১ ক্রিপ্টোগ্রাফিক JWT অথেনটিকেশন ফ্লো}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=1.1cm, auto,
+    block/.style={rectangle, draw=primary, fill=lightgray, thick, rounded corners, text width=11.5cm, minimum height=0.6cm, align=left},
+    arrow/.style={thick, ->, >=stealth}]
+    
+    \node [block] (step1) {\textbf{১. ক্রেডেনশিয়াল সাবমিশন:} ইউজার ইমেইল ও পাসওয়ার্ড TLS এনক্রিপশনে সার্ভারে পাঠায়।};
+    \node [block, below of=step1] (step2) {\textbf{২. পাসওয়ার্ড হ্যাশ যাচাই:} সার্ভার ডেটাবেজ থেকে হ্যাশ এনে \texttt{bcrypt.compare()} দ্বারা যাচাই করে।};
+    \node [block, below of=step2] (step3) {\textbf{৩. টোকেন মিন্টিং:} সার্ভার সিক্রেট কি দ্বারা সাইন করে ৭ দিনের মেয়াদি ক্রিপ্টোগ্রাফিক JWT জেনারেট করে।};
+    \node [block, below of=step3] (step4) {\textbf{৪. ক্লায়েন্ট স্টোরেজ:} ক্লায়েন্ট ব্রাউজারের \texttt{localStorage}-এ টোকেন সেভ করে এবং অনুমোদিত পোর্টাল ভিউ দেখায়।};
+    \node [block, below of=step4] (step5) {\textbf{৫. বিয়ারার হেডার রিকোয়েস্ট:} প্রতিটি এপিআই কলে হেডার পাঠানো হয়: \texttt{Authorization: Bearer <token>}।};
+    \node [block, below of=step5] (step6) {\textbf{৬. মিডলওয়্যার সিকিউরিটি গার্ড:} এক্সপ্রেস \texttt{verifyToken} ও \texttt{requireRoles()} সিগনেচার ও পারমিশন চেক করে।};
+
+    \draw [arrow] (step1) -- (step2);
+    \draw [arrow] (step2) -- (step3);
+    \draw [arrow] (step3) -- (step4);
+    \draw [arrow] (step4) -- (step5);
+    \draw [arrow] (step5) -- (step6);
+\end{tikzpicture}
+\caption{ক্রিপ্টোগ্রাফিক JWT অথেনটিকেশন ও সিকিউর মিডলওয়্যার ভেরিফিকেশন ফ্লো}
+\end{figure}
+
+\subsection{৬.২ ৬-টায়ার রোল পারমিশন ম্যাট্রিক্স}
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{l p{3.2cm} X}
+\toprule
+\textbf{রোল আইডি} & \textbf{পদবি} & \textbf{অনুমোদন ও প্ল্যাটফর্ম কার্যপরিধি (Permissions)} \\
+\midrule
+\texttt{superadmin} / \texttt{admin} & \textbf{সুপার অ্যাডমিন} & সম্পূর্ণ প্ল্যাটফর্মে পূর্ণ নিয়ন্ত্রণ: স্টাফ অ্যাকাউন্ট তৈরি, রোল বদলানো, ডেটাবেজ পরিচালনা, ব্যাংক লেজার অডিট ও ইমার্জেন্সি অ্যালার্ট ব্রডকাস্ট। \\
+\addlinespace
+\texttt{manager} & \textbf{অপারেশনস ম্যানেজার} & ডেস্টিনেশন ক্যাটালগ (DMS), ফ্লাইট সময়সূচি, হোটেল রুম ইনভেন্টরি, গাড়ি বহর এবং কাস্টমার বুকিং অনুমোদন। \\
+\addlinespace
+\texttt{accountant} & \textbf{সিনিয়র অ্যাকাউন্ট্যান্ট} & রিয়েল-টাইম ফিন্যান্সিয়াল ট্রানজাকশন লেজার (Stripe, PayPal, bKash), পেমেন্ট ভেরিফিকেশন, ইনভয়েস ভাউচার ও কর্পোরেট ট্যাক্স অডিট। \\
+\addlinespace
+\texttt{support} & \textbf{সাপোর্ট স্পেশালিস্ট} & কাস্টমার ইনকোয়ারি ইনবক্স, ট্রাভেলার সাপোর্ট টিকেট, পাসপোর্ট ট্র্যাকিং ও ভিসা আবেদন ক্লিয়ারেন্স। \\
+\addlinespace
+\texttt{moderator} & \textbf{কন্টেন্ট মডারেটর} & ট্রাভেলারদের রিভিউ অনুমোদন বা ফিল্টারিং, ট্রাভেল ব্লগ প্রকাশনা এবং ভ্রমণ অভিজ্ঞতা মডারেশন। \\
+\addlinespace
+\texttt{customer} & \textbf{নিবন্ধিত ট্রাভেলার} & পাবলিক ব্রাউজিং, কাস্টম ট্রিপ বিল্ডার, প্যাকেজ চেকআউট, পার্সোনাল উইশলিস্ট ও নিজস্ব বুকিং হিস্ট্রি পরিচালনা। \\
+\bottomrule
+\end{tabularx}
+\caption{TravelUp Global প্ল্যাটফর্মের ৬-টায়ার অ্যাক্সেস কন্ট্রোল কাঠামো}
+\end{table}
+
+\newpage
+
+% ==============================================================================
+% ৭. ডাটাবেজ ডিজাইন ও ই-আর (E-R) ডায়াগ্রাম
+% ==============================================================================
+\section{৭. ডাটাবেজ ডিজাইন ও রিলেশনাল স্কিমা (Database Schema)}
+
+\subsection{৭.১ কনসেপচুয়াল ই-আর (E-R) ডায়াগ্রাম}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=1.7cm and 1.5cm, auto,
+    entity/.style={rectangle, draw=secondary, fill=primary!15, thick, rounded corners, minimum width=2.2cm, minimum height=0.85cm, font=\bfseries\footnotesize},
+    rel/.style={diamond, draw=accent, fill=accent!15, thick, aspect=1.8, minimum width=1.9cm, font=\scriptsize}]
+
+    % Nodes
+    \node[entity] (user) {USER};
+    \node[rel, right=of user] (places) {করে (১:N)};
+    \node[entity, right=of places] (booking) {BOOKING};
+    
+    \node[rel, below=of user] (writes) {লেখে (১:N)};
+    \node[entity, below=of writes] (review) {REVIEW};
+    
+    \node[rel, right=of booking] (has) {পেমেন্ট (১:১)};
+    \node[entity, right=of has] (payment) {FINANCIAL\_TRX};
+
+    \node[entity, below=of booking] (package) {PACKAGE};
+    \node[rel, below=of package] (offers) {অফার (১:N)};
+    \node[entity, below=of offers] (destination) {DESTINATION};
+
+    % Connections
+    \draw[thick] (user) -- (places);
+    \draw[thick, ->] (places) -- (booking);
+    
+    \draw[thick] (booking) -- (has);
+    \draw[thick, ->] (has) -- (payment);
+
+    \draw[thick] (package) -- node[right]{\scriptsize বুকড (১:N)} (booking);
+    \draw[thick] (destination) -- (offers);
+    \draw[thick, ->] (offers) -- (package);
+
+    \draw[thick] (user) -- (writes);
+    \draw[thick, ->] (writes) -- (review);
+    \draw[thick] (review) -- node[above]{\scriptsize ডেস্টিনেশনের (N:১)} (destination);
+
+\end{tikzpicture}
+\caption{TravelUp Global প্ল্যাটফর্মের জন্য ই-আর (E-R) ডায়াগ্রাম}
+\end{figure}
+
+\subsection{৭.২ রিলেশনাল ডাটাবেজ টেবিল বিবরণ (Data Dictionary)}
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{l l l X}
+\toprule
+\textbf{টেবিল নাম} & \textbf{প্রাইমারি কি} & \textbf{ফরেন কি} & \textbf{মূল ফিল্ড ও সিস্টেম ভূমিকা} \\
+\midrule
+\texttt{users} & \texttt{id} & নেই & \texttt{name, email, password, role, status, phone, preferred\_lang, avatar\_url} \\
+\addlinespace
+\texttt{destinations} & \texttt{id} & নেই & \texttt{name\_en, name\_bn, country, category, price\_usd, price\_bdt, rating, latitude} \\
+\addlinespace
+\texttt{packages} & \texttt{id} & \texttt{destination\_id} & \texttt{title\_en, title\_bn, duration\_days, price\_usd, price\_bdt, included\_services} \\
+\addlinespace
+\texttt{flights} & \texttt{id} & নেই & \texttt{flight\_code, airline, origin, destination, departure\_time, price\_usd, status} \\
+\addlinespace
+\texttt{hotels} & \texttt{id} & \texttt{destination\_id} & \texttt{name, star\_rating, city, address, base\_price, has\_elevator, is\_accessible} \\
+\addlinespace
+\texttt{transportation}& \texttt{id} & \texttt{destination\_id} & \texttt{title, vehicle\_type, service\_type, capacity, base\_price, status} \\
+\addlinespace
+\texttt{restaurants} & \texttt{id} & \texttt{destination\_id} & \texttt{name, cuisine\_type, is\_halal, is\_pure\_veg, price\_tier, address} \\
+\addlinespace
+\texttt{visa\_applications} & \texttt{id} & \texttt{user\_id} & \texttt{application\_no, traveler\_name, passport\_number, country, status} \\
+\addlinespace
+\texttt{bookings} & \texttt{id} & \texttt{user\_id} & \texttt{booking\_ref, customer\_name, package\_id, travel\_date, total\_price, status} \\
+\addlinespace
+\texttt{financial\_transactions} & \texttt{id} & \texttt{booking\_id} & \texttt{trx\_id, booking\_ref, gateway, currency, amount, status, date} \\
+\addlinespace
+\texttt{split\_payments} & \texttt{id} & \texttt{booking\_id} & \texttt{split\_token, student\_name, amount, payment\_status, trx\_timestamp} \\
+\addlinespace
+\texttt{travel\_alerts} & \texttt{id} & \texttt{destination\_id} & \texttt{title\_en, title\_bn, severity, message\_en, message\_bn, is\_active} \\
+\bottomrule
+\end{tabularx}
+\caption{হোস্টঙ্গার MySQL ডাটাবেজের রিলেশনাল স্কিমা বিবরণ}
+\end{table}
+
+\newpage
+
+% ==============================================================================
+% ৮. বাস্তবায়ন সময়রেখা, ভবিষ্যৎ গবেষণা ও উপসংহার
+% ==============================================================================
+\section{৮. বাস্তবায়ন সময়রেখা, ভবিষ্যৎ গবেষণা ও উপসংহার}
+
+\subsection{৮.১ প্রজেক্ট বাস্তবায়ন সময়রেখা (Milestones)}
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabularx}{\textwidth}{l p{3.8cm} X}
+\toprule
+\textbf{ধাপ / মাইলস্টোন} & \textbf{মূল বিষয়বস্তু} & \textbf{প্রযুক্তিগত ডেলিভারেবলস} \\
+\midrule
+\textbf{ধাপ ১: কোর ফাউন্ডেশন} & সেমান্টিক মার্কআপ ও লেআউট & সেমান্টিক HTML5 আর্কিটেকচার, CSS3 ফ্লেক্স/গ্রিড রেসপনসিভনেস, ওভারলিফ প্রপোজাল। \\
+\textbf{ধাপ ২: ডাটাবেজ সংযোগ} & ব্যাকএন্ড ও রিলেশনাল স্টোরেজ & MySQL স্কিমা তৈরি, Express.js REST এপিআই, কানেকশন পুলিং। \\
+\textbf{ধাপ ৩: সিকিউরিটি ও অথ} & ৬-টায়ার এন্টারপ্রাইজ RBAC & ক্রিপ্টোগ্রাফিক JWT ইস্যু, bcryptjs পাসওয়ার্ড হ্যাশিং, রুট গার্ড। \\
+\textbf{ধাপ ৪: মাস্টার সার্ভিসেস} & DMS ও সার্ভিসেস ডাটা & ডেস্টিনেশন হাব (DMS), IATA ফ্লাইট, হোটেল, ফ্লিট ও ভিসা ট্র্যাকার। \\
+\textbf{ধাপ ৫: লজিস্টিকস ইঞ্জিন} & ডায়নামিক ট্রিপ বিল্ডার & লাইভ ক্যালকুলেটেড কাস্টম ট্রিপ বিল্ডার, \texttt{Skip Transport}, বিকাশ স্প্লিট পেমেন্ট। \\
+\textbf{ধাপ ৬: ভেরিফিকেশন টেস্টিং} & ১২টি বাস্তব সিনারিও যাচাই & ১২টি জটিল সিনারিও টেস্ট, মাইক্রো-অ্যানিমেশন, ভাসমান টোস্ট নোটিফিকেশন। \\
+\textbf{ধাপ ৭: ভবিষ্যৎ সম্প্রসারণ} & উদ্ভাবনী রিসার্চ ফিচারসমূহ & WebXR ৩ডি ভিউ, অফলাইন PWA সিঙ্ক, GDS ফ্লাইট টেলিমেটিক্স ও স্মার্ট কন্ট্রাক্ট। \\
+\bottomrule
+\end{tabularx}
+\caption{প্রজেক্ট বাস্তবায়ন সময়রেখা ও মাইলস্টোন শিডিউল}
+\end{table}
+
+\subsection{৮.২ ভবিষ্যৎ পরিকল্পনা ও উদ্ভাবনী রিসার্চ ফিচার}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{রিয়েল-টাইম ফ্লাইট রাডার ও GDS কানেক্টিভিটি:} Amadeus/Sabre GDS এপিআইয়ের সাথে সরাসরি WebSockets কানেকশন স্থাপন করে লাইভ ফ্লাইট রাডার ও গেট পরিবর্তনের নোটিফিকেশন প্রদান।
+    \item \textbf{WebXR এবং অগমেন্টেড রিয়ালিটি (AR) ৩ডি ভার্চুয়াল ট্যুর:} ব্রাউজারের ভেতর কোনো থার্ড-পার্টি অ্যাপ ছাড়াই WebXR Device API ও Three.js দিয়ে হোটেল রুমের ৩ডি ডাইমেনশন পরিদর্শন।
+    \item \textbf{গ্রুপ ট্যুর এসক্রোর জন্য ব্লকচেইন স্মার্ট কন্ট্রাক্ট:} পলিগন বা ইথেরিয়াম নেটওয়ার্কে ডিসেন্ট্রালাইজড এসক্রো কন্ট্রাক্ট; গ্রুপ ট্যুরের কোটা পূরণ হলে স্বয়ংক্রিয়ভাবে হোটেল/এয়ারলাইন্সকে ফান্ড রিলিজ এবং অন্যথায় অটো-রিফান্ড।
+    \item \textbf{মেশিন লার্নিং প্রেডিক্টিভ ফেয়ার ফোরকাস্টিং:} LSTM ডিপ লার্নিং মডেল দিয়ে বিগত বছরের সিজনাল ডেটার ওপর ভিত্তি করে "Buy Now vs. Wait" পরামর্শ এবং ৪৮-ঘণ্টা প্রাইস লক সুবিধা।
+\end{itemize}
+
+\subsection{৮.৩ একাডেমিক উপসংহার}
+\textbf{ট্রাভেলআপ গ্লোবাল (TravelUp Global)} দ্ব্যর্থহীনভাবে প্রমাণ করে যে আধুনিক ভ্রমণ পরিকল্পনা, রুট কম্পাইলেশন ও অপারেশনাল লজিস্টিকস কোনো ফেসবুক পেজ বা চ্যাটবক্স দ্বারা পরিচালনা করা সম্ভব নয়। \textbf{Markup \& Scripting Languages Lab} কোর্সের প্রতিটি মাইলফলক—সেমান্টিক এইচটিএমএল৫ মার্কআপ, হার্ডওয়্যার-অ্যাক্সিলারেটেড সিএসএস৩ গ্রিড ও অ্যানিমেশন, রিয়্যাক্টিভ ভ্যানিলা জাভাস্ক্রিপ্ট স্ক্রিপ্টিং, নোড.জেএস REST এপিআই এবং মাইএসকিউএল রিলেশনাল ডেটাবেজ—এই প্ল্যাটফর্মে অত্যন্ত দক্ষতার সাথে প্রযুক্ত হয়েছে। এটি কম্পিউটার সায়েন্সের তাত্ত্বিক জ্ঞান ও বাস্তব জীবনের সফটওয়্যার ইঞ্জিনিয়ারিংয়ের একটি দৃষ্টান্তমূলক স্মারক।
+
+\end{document}

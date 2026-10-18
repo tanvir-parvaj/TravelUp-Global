@@ -1,0 +1,14 @@
+# Node Dependencies
+node_modules/
+server/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment Variables
+server/.env
+
+# Temporary / Scratch Files
+scratch/
+temp_*
