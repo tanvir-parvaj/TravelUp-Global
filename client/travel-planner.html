@@ -82,16 +82,16 @@
             color: var(--st-primary);
         }
 
-        /* Search Filter Box (Origin, Destination, Dates) */
+        /* Search Filter Box (Single Row Layout) */
         .search-strip {
             background: #ffffff;
             border: 1px solid var(--st-border);
             border-radius: 8px;
-            padding: 1.25rem 1.5rem;
+            padding: 1.15rem 1.5rem;
             margin: 1.5rem 0 1.25rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.04);
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) auto;
+            grid-template-columns: 1.4fr 1.4fr 1.1fr 0.8fr;
             gap: 1.25rem;
             align-items: center;
         }
@@ -111,7 +111,8 @@
         }
 
         .search-field select, .search-field input {
-            padding: 0.55rem 0.75rem;
+            height: 42px;
+            padding: 0.5rem 0.75rem;
             border: 1px solid var(--st-border);
             border-radius: 6px;
             font-size: 0.925rem;
@@ -119,6 +120,7 @@
             color: var(--st-text);
             background: #f8fafc;
             outline: none;
+            width: 100%;
         }
 
         .search-field select:focus, .search-field input:focus {
@@ -704,10 +706,6 @@
             <div class="search-field">
                 <label>Departure Date</label>
                 <input type="date" id="dept-date" value="2026-11-15">
-            </div>
-            <div class="search-field">
-                <label>Return Date</label>
-                <input type="date" id="ret-date" value="2026-11-18">
             </div>
             <div class="search-field">
                 <label>Travelers</label>
