@@ -259,28 +259,9 @@
             opacity: 0.75;
         }
 
-        /* Floating Toast Alert */
+        /* Floating Toast Alert (Disabled) */
         .toast-notice {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: #0f172a;
-            color: #ffffff;
-            padding: 0.85rem 1.25rem;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-            z-index: 99999;
-            display: none;
-            align-items: center;
-            gap: 0.65rem;
-            animation: fadeInToast 0.3s ease;
-        }
-
-        @keyframes fadeInToast {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            display: none !important;
         }
 
         /* PCB Builder Card */
@@ -1309,21 +1290,10 @@
 
         let currentActiveSlot = null;
 
-        // Validation & Gating Functions
+        // Validation & Gating Functions (Toast notifications turned off per user request)
         function showToastNotification(text) {
-            let toast = document.getElementById('toast-notification');
-            if (!toast) {
-                toast = document.createElement('div');
-                toast.id = 'toast-notification';
-                toast.className = 'toast-notice';
-                document.body.appendChild(toast);
-            }
-            toast.innerHTML = `<i class="material-icons" style="color: #f59e0b; font-size: 20px;">warning</i> <span>${text}</span>`;
-            toast.style.display = 'flex';
-            clearTimeout(window._toastTimeout);
-            window._toastTimeout = setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3500);
+            // Notification popups disabled
+            return;
         }
 
         // Admin Demo Autofill & Reset Combos
@@ -1357,8 +1327,6 @@
             document.querySelectorAll('.btn-demo-pill').forEach(btn => {
                 btn.classList.toggle('active', Boolean(btn.getAttribute('onclick')?.includes(dest)));
             });
-
-            showToastNotification(`⚡ Auto-Selected: ${from} ➔ ${dest.toUpperCase()} (${travelers} Travelers) - Planner Unlocked!`);
         }
 
         function resetSearchFields() {
@@ -1376,7 +1344,6 @@
 
             validateSearchFields(false);
             recalculateTotals();
-            showToastNotification('🔄 Form reset to locked state for testing.');
         }
 
         function validateSearchFields(triggerHighlight = false) {
@@ -1449,7 +1416,6 @@
                 if (triggerHighlight) {
                     const strip = document.getElementById('search-strip');
                     if (strip) strip.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    showToastNotification(`⚠️ Missing required criteria: ${missing.join(', ')}`);
                 }
                 return false;
             } else {
