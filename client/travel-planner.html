@@ -88,18 +88,19 @@
             border: 1px solid var(--st-border);
             border-radius: 8px;
             padding: 1.15rem 1.5rem;
-            margin: 1.5rem 0 1.25rem;
+            margin: 1.5rem 0 1rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.04);
             display: grid;
-            grid-template-columns: 1.4fr 1.4fr 1.1fr 0.8fr;
+            grid-template-columns: 1.3fr 1.3fr 1.1fr 0.9fr;
             gap: 1.25rem;
-            align-items: center;
+            align-items: start;
         }
 
         .search-field {
             display: flex;
             flex-direction: column;
             gap: 0.35rem;
+            position: relative;
         }
 
         .search-field label {
@@ -121,11 +122,126 @@
             background: #f8fafc;
             outline: none;
             width: 100%;
+            transition: all 0.2s ease;
         }
 
         .search-field select:focus, .search-field input:focus {
             border-color: var(--st-primary);
             background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Error / Missing field highlight & shake */
+        @keyframes shakeInput {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .search-field.has-error select,
+        .search-field.has-error input {
+            border-color: #ef4444 !important;
+            background: #fff5f5 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+            animation: shakeInput 0.4s ease-in-out;
+        }
+
+        .search-field .error-hint {
+            display: none;
+            color: #ef4444;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-top: 0.2rem;
+        }
+
+        .search-field.has-error .error-hint {
+            display: block;
+        }
+
+        /* Lock / Unlock Banner */
+        .lock-banner {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            transition: all 0.25s ease;
+        }
+
+        .lock-banner.locked {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            color: #9a3412;
+        }
+
+        .lock-banner.unlocked {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        .lock-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .lock-banner.locked .lock-badge {
+            background: #ffedd5;
+            color: #ea580c;
+        }
+
+        .lock-banner.unlocked .lock-badge {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        /* PCB Builder Locked State */
+        .pcb-container.is-locked .c-item .btn-choose {
+            background: #f1f5f9;
+            color: #94a3b8;
+            border-color: #cbd5e1;
+            cursor: pointer;
+        }
+
+        .pcb-container.is-locked .c-item .btn-choose:hover {
+            background: #fee2e2;
+            color: #ef4444;
+            border-color: #fca5a5;
+        }
+
+        .pcb-container.is-locked .action-btn {
+            opacity: 0.75;
+        }
+
+        /* Floating Toast Alert */
+        .toast-notice {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 0.85rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            gap: 0.65rem;
+            animation: fadeInToast 0.3s ease;
+        }
+
+        @keyframes fadeInToast {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* PCB Builder Card */
@@ -682,39 +798,55 @@
     <div class="container">
 
         <!-- Origin, Destination & Date Search Strip -->
-        <div class="search-strip">
-            <div class="search-field">
-                <label>Origin (কোথা থেকে)</label>
-                <select id="origin-select" onchange="onRouteChanged()">
-                    <option value="Dhaka" selected>Dhaka (ঢাকা)</option>
-                    <option value="Chittagong">Chittagong (চট্টগ্রাম)</option>
-                    <option value="Sylhet">Sylhet (সিলেট)</option>
-                    <option value="Rajshahi">Rajshahi (রাজশাহী)</option>
+        <div class="search-strip" id="search-strip">
+            <div class="search-field" id="field-origin">
+                <label>Origin <span style="color: #ef4444;">*</span></label>
+                <select id="origin-select" onchange="onSearchFieldChanged()">
+                    <option value="" disabled selected>Select Origin</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Sylhet">Sylhet</option>
+                    <option value="Rajshahi">Rajshahi</option>
                 </select>
+                <span class="error-hint">Please choose your origin city</span>
             </div>
-            <div class="search-field">
-                <label>Destination (কোথায় যাবে)</label>
-                <select id="destination-select" onchange="onRouteChanged()">
-                    <option value="coxsbazar" selected>Cox's Bazar (কক্সবাজার)</option>
-                    <option value="sajek">Sajek Valley (সাজেক ভ্যালি)</option>
-                    <option value="sreemangal">Sreemangal (শ্রীমঙ্গল)</option>
-                    <option value="tetulia">Tetulia, Panchagarh (তেঁতুলিয়া)</option>
-                    <option value="jaflong">Sylhet & Jaflong (জাফলং)</option>
-                    <option value="saintmartin">Saint Martin's Island (সেন্টমার্টিন)</option>
+            <div class="search-field" id="field-destination">
+                <label>Destination <span style="color: #ef4444;">*</span></label>
+                <select id="destination-select" onchange="onSearchFieldChanged()">
+                    <option value="" disabled selected>Select Destination</option>
+                    <option value="coxsbazar">Cox's Bazar</option>
+                    <option value="sajek">Sajek Valley</option>
+                    <option value="sreemangal">Sreemangal</option>
+                    <option value="tetulia">Tetulia, Panchagarh</option>
+                    <option value="jaflong">Sylhet & Jaflong</option>
+                    <option value="saintmartin">Saint Martin's Island</option>
                 </select>
+                <span class="error-hint">Please choose your destination</span>
             </div>
-            <div class="search-field">
-                <label>Departure Date</label>
-                <input type="date" id="dept-date" value="2026-11-15">
+            <div class="search-field" id="field-dept-date">
+                <label>Departure Date <span style="color: #ef4444;">*</span></label>
+                <input type="date" id="dept-date" onchange="onSearchFieldChanged()">
+                <span class="error-hint">Please select a departure date</span>
             </div>
-            <div class="search-field">
-                <label>Travelers</label>
-                <input type="number" id="traveler-count" value="4" min="1" max="50" onchange="recalculateTotals()">
+            <div class="search-field" id="field-travelers">
+                <label>Travelers <span style="color: #ef4444;">*</span></label>
+                <input type="number" id="traveler-count" placeholder="e.g. 4" min="1" max="50" oninput="onSearchFieldChanged()" onchange="onSearchFieldChanged()">
+                <span class="error-hint">Minimum 1 traveler required</span>
             </div>
         </div>
 
+        <!-- Lock / Status Banner -->
+        <div id="planner-lock-banner" class="lock-banner locked">
+            <span class="lock-badge">
+                <i class="material-icons" id="lock-icon" style="font-size: 18px;">lock</i>
+            </span>
+            <span id="lock-message" style="flex: 1;">
+                <strong>Planner Locked:</strong> Please fill in all 4 travel criteria above (Origin, Destination, Departure Date, and Travelers) to unlock and customize components.
+            </span>
+        </div>
+
         <!-- PCB Builder Container -->
-        <div class="pcb-container">
+        <div class="pcb-container is-locked">
 
             <!-- PCB Head (Logo & Actions) -->
             <div class="pcb-head">
@@ -726,7 +858,7 @@
                         <i class="material-icons">share</i>
                         <span>Scenario 12: Split-Bill Link</span>
                     </button>
-                    <button class="action-btn" onclick="window.print()">
+                    <button class="action-btn" onclick="handlePrintItinerary()">
                         <i class="material-icons">print</i>
                         <span>Print Itinerary</span>
                     </button>
@@ -744,7 +876,7 @@
             <!-- PCB Top Content (Title, Checkboxes & Price Bar) -->
             <div class="pcb-top-content">
                 <div class="pcb-title-area">
-                    <h1>Travel Planner — Build Your Custom Travel Blueprint</h1>
+                    <h1>Travel Planner</h1>
                     <div class="checkbox-group">
                         <!-- Scenario 4: Skip Transport Toggle -->
                         <label class="custom-check" style="color: var(--st-orange);">
@@ -761,11 +893,11 @@
                 <!-- Right Stats -->
                 <div class="price-stats-wrap">
                     <div class="stat-box person-box">
-                        <div class="amount" id="per-person-amount">0৳</div>
+                        <div class="amount" id="per-person-amount">BDT 0</div>
                         <div class="label">Per Person (Scenario 5)</div>
                     </div>
                     <div class="stat-box">
-                        <div class="amount" id="total-amount">0৳</div>
+                        <div class="amount" id="total-amount">BDT 0</div>
                         <div class="label" id="items-count-label">0 Components</div>
                     </div>
                 </div>
@@ -775,7 +907,7 @@
             <div class="pcb-content">
 
                 <!-- 1. LONG-HAUL INTERMODAL TRANSIT -->
-                <div class="content-label">1. Long-Haul Intermodal Transit (বাস / ট্রেন / ফ্লাইট)</div>
+                <div class="content-label">1. Long-Haul Intermodal Transit (Bus / Flight / Train)</div>
 
                 <!-- Bus / Transit Component -->
                 <div class="c-item" id="slot-transport">
@@ -789,14 +921,14 @@
                         </div>
                         <div class="product-name" id="val-transport">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-transport">0৳</div>
+                    <div class="item-price" id="price-transport">BDT 0</div>
                     <div class="actions" id="action-transport">
                         <button class="btn-choose" onclick="openPicker('transport')">Choose</button>
                     </div>
                 </div>
 
                 <!-- 2. LOCAL GROUND TRANSIT & TERMINAL SHUTTLES -->
-                <div class="content-label">2. Local Ground Transit & Terminal Shuttles (অটো / মাইক্রো / চান্দের গাড়ি)</div>
+                <div class="content-label">2. Local Ground Transit & Terminal Shuttles (Microbus / 4WD Jeep / Auto)</div>
 
                 <!-- Local Transport Slot -->
                 <div class="c-item" id="slot-localtransit">
@@ -809,14 +941,14 @@
                         </div>
                         <div class="product-name" id="val-localtransit">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-localtransit">0৳</div>
+                    <div class="item-price" id="price-localtransit">BDT 0</div>
                     <div class="actions" id="action-localtransit">
                         <button class="btn-choose" onclick="openPicker('localtransit')">Choose</button>
                     </div>
                 </div>
 
                 <!-- 3. HOTELS & ACCOMMODATIONS -->
-                <div class="content-label">3. Resort, Hotels & Bedding (আবাসন, বেডিং ও ফ্রেশ-আপ)</div>
+                <div class="content-label">3. Resort, Hotels & Bedding (Accommodation, Bedding & Fresh-Up)</div>
 
                 <!-- Hotel Slot -->
                 <div class="c-item" id="slot-lodging">
@@ -830,7 +962,7 @@
                         </div>
                         <div class="product-name" id="val-lodging">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-lodging">0৳</div>
+                    <div class="item-price" id="price-lodging">BDT 0</div>
                     <div class="actions" id="action-lodging">
                         <button class="btn-choose" onclick="openPicker('lodging')">Choose</button>
                     </div>
@@ -847,14 +979,14 @@
                         </div>
                         <div class="product-name" id="val-freshup">Dawn check-in (+35% half-day rate avoiding full extra night)</div>
                     </div>
-                    <div class="item-price" id="price-freshup">0৳</div>
+                    <div class="item-price" id="price-freshup">BDT 0</div>
                     <div class="actions" id="action-freshup">
                         <button class="btn-choose" onclick="openPicker('freshup')">Choose</button>
                     </div>
                 </div>
 
                 <!-- 4. DINING & RESTAURANTS -->
-                <div class="content-label">4. Dining & Meal Plans (খাবার ও রেস্টুরেন্ট নির্বাচন)</div>
+                <div class="content-label">4. Dining & Meal Plans (Meal Plans & Restaurant Dining)</div>
 
                 <!-- Dining Slot -->
                 <div class="c-item" id="slot-dining">
@@ -867,14 +999,14 @@
                         </div>
                         <div class="product-name" id="val-dining">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-dining">0৳</div>
+                    <div class="item-price" id="price-dining">BDT 0</div>
                     <div class="actions" id="action-dining">
                         <button class="btn-choose" onclick="openPicker('dining')">Choose</button>
                     </div>
                 </div>
 
                 <!-- 5. RECREATION & DISAGGREGATED ACTIVITIES -->
-                <div class="content-label">5. Recreation & Activities (অ্যাক্টিভিটি - নো বান্ডলিং / Scenario 8)</div>
+                <div class="content-label">5. Recreation & Activities (Recreation - No Forced Bundling / Scenario 8)</div>
 
                 <!-- Adventure Activity Slot -->
                 <div class="c-item" id="slot-adventure">
@@ -887,7 +1019,7 @@
                         </div>
                         <div class="product-name" id="val-adventure">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-adventure">0৳</div>
+                    <div class="item-price" id="price-adventure">BDT 0</div>
                     <div class="actions" id="action-adventure">
                         <button class="btn-choose" onclick="openPicker('adventure')">Choose</button>
                     </div>
@@ -904,7 +1036,7 @@
                         </div>
                         <div class="product-name" id="val-lounge">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-lounge">0৳</div>
+                    <div class="item-price" id="price-lounge">BDT 0</div>
                     <div class="actions" id="action-lounge">
                         <button class="btn-choose" onclick="openPicker('lounge')">Choose</button>
                     </div>
@@ -921,14 +1053,14 @@
                         </div>
                         <div class="product-name" id="val-scuba">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-scuba">0৳</div>
+                    <div class="item-price" id="price-scuba">BDT 0</div>
                     <div class="actions" id="action-scuba">
                         <button class="btn-choose" onclick="openPicker('scuba')">Choose</button>
                     </div>
                 </div>
 
                 <!-- 6. GUIDES, PERMITS & SPECIAL ADDONS -->
-                <div class="content-label">6. Tour Guides, Permits & Special Addons (গাইড ও পারমিট)</div>
+                <div class="content-label">6. Tour Guides, Permits & Special Addons (Certified Guides & Permits)</div>
 
                 <!-- Guide & Permit Slot -->
                 <div class="c-item" id="slot-guide">
@@ -941,7 +1073,7 @@
                         </div>
                         <div class="product-name" id="val-guide">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-guide">0৳</div>
+                    <div class="item-price" id="price-guide">BDT 0</div>
                     <div class="actions" id="action-guide">
                         <button class="btn-choose" onclick="openPicker('guide')">Choose</button>
                     </div>
@@ -958,7 +1090,7 @@
                         </div>
                         <div class="product-name" id="val-honeymoon">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-honeymoon">0৳</div>
+                    <div class="item-price" id="price-honeymoon">BDT 0</div>
                     <div class="actions" id="action-honeymoon">
                         <button class="btn-choose" onclick="openPicker('honeymoon')">Choose</button>
                     </div>
@@ -1033,17 +1165,17 @@
         const inventory = {
             transport: [
                 { id: 1, name: "Direct Scania AC Coach (Arambagh ➔ Kolatoli)", sub: "Scenario 3: Interactive 40-Seat Plan | Rows A & B Female Preferred", price: 1500, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
-                { id: 2, name: "Multi-Leg Flight + Microbus (Scenario 1)", sub: "DAC ✈ SPD Flight (৳4,500) + 45-min buffer + SPD 🚐 Tetulia AC Microbus (৳800)", price: 5300, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 1: Multi-Leg Route Synthesis" },
+                { id: 2, name: "Multi-Leg Flight + Microbus (Scenario 1)", sub: "DAC ✈ SPD Flight (BDT 4,500) + 45-min buffer + SPD 🚐 Tetulia AC Microbus (BDT 800)", price: 5300, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 1: Multi-Leg Route Synthesis" },
                 { id: 3, name: "Domestic Boeing Direct Flight", sub: "50-minute express air transit to regional runway", price: 4500, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" },
                 { id: 4, name: "Non-AC Economy Coach", sub: "Overnight budget bus transit", price: 900, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80" }
             ],
             localtransit: [
-                { id: 1, name: "Four-Wheel Drive Chander Gari (সাজেক চান্দের গাড়ি)", sub: "Dedicated 4WD mountain jeep for Army Escort convoys (10-passenger capacity)", price: 6500, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 14: Mountain Convoy Navigation" },
+                { id: 1, name: "Four-Wheel Drive Chander Gari (4WD Mountain Jeep Convoy)", sub: "Dedicated 4WD mountain jeep for Army Escort convoys (10-passenger capacity)", price: 6500, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 14: Mountain Convoy Navigation" },
                 { id: 2, name: "Reserved AC Microbus (HiAce)", sub: "Connecting terminal transfer from airport/bus counter to resort", price: 3200, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" },
                 { id: 3, name: "Auto-Rickshaw / CNG Shuttle", sub: "Local terminal pickup and drop to hotel lobby", price: 600, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
             ],
             lodging: [
-                { id: 1, name: "Deluxe 4-Bed Family Room (2 King Beds)", sub: "Scenario 5: ৳3,500/night decomposed down to ৳875/person/night for 4 friends", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
+                { id: 1, name: "Deluxe 4-Bed Family Room (2 King Beds)", sub: "Scenario 5: BDT 3,500/night decomposed down to BDT 875/person/night for 4 friends", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
                 { id: 2, name: "Level-Ground Eco Cottage (Wheelchair/Elevator)", sub: "Scenario 6: Verified level ground, no steep hazardous outdoor stairs", price: 3800, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 6: Strict Accessibility Constraints" },
                 { id: 3, name: "Standard Twin-Bed Room (2 Single Beds)", sub: "Air-conditioned standard resort room", price: 2200, img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=150&q=80" },
                 { id: 4, name: "Presidential Panorama Suite", sub: "Luxury sea-facing master balcony & jacuzzi", price: 6000, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" }
@@ -1113,7 +1245,123 @@
 
         let currentActiveSlot = null;
 
+        // Validation & Gating Functions
+        function showToastNotification(text) {
+            let toast = document.getElementById('toast-notification');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast-notification';
+                toast.className = 'toast-notice';
+                document.body.appendChild(toast);
+            }
+            toast.innerHTML = `<i class="material-icons" style="color: #f59e0b; font-size: 20px;">warning</i> <span>${text}</span>`;
+            toast.style.display = 'flex';
+            clearTimeout(window._toastTimeout);
+            window._toastTimeout = setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3500);
+        }
+
+        function validateSearchFields(triggerHighlight = false) {
+            const originEl = document.getElementById('origin-select');
+            const destEl = document.getElementById('destination-select');
+            const dateEl = document.getElementById('dept-date');
+            const countEl = document.getElementById('traveler-count');
+
+            const origin = originEl ? originEl.value.trim() : '';
+            const dest = destEl ? destEl.value.trim() : '';
+            const date = dateEl ? dateEl.value.trim() : '';
+            const countVal = countEl ? countEl.value.trim() : '';
+            const travelers = parseInt(countVal, 10);
+
+            const fOrigin = document.getElementById('field-origin');
+            const fDest = document.getElementById('field-destination');
+            const fDate = document.getElementById('field-dept-date');
+            const fTravelers = document.getElementById('field-travelers');
+
+            let isValid = true;
+            const missing = [];
+
+            if (!origin) {
+                isValid = false;
+                missing.push('Origin');
+                if (triggerHighlight && fOrigin) fOrigin.classList.add('has-error');
+            } else if (fOrigin) {
+                fOrigin.classList.remove('has-error');
+            }
+
+            if (!dest) {
+                isValid = false;
+                missing.push('Destination');
+                if (triggerHighlight && fDest) fDest.classList.add('has-error');
+            } else if (fDest) {
+                fDest.classList.remove('has-error');
+            }
+
+            if (!date) {
+                isValid = false;
+                missing.push('Departure Date');
+                if (triggerHighlight && fDate) fDate.classList.add('has-error');
+            } else if (fDate) {
+                fDate.classList.remove('has-error');
+            }
+
+            if (!travelers || travelers < 1) {
+                isValid = false;
+                missing.push('Travelers (at least 1)');
+                if (triggerHighlight && fTravelers) fTravelers.classList.add('has-error');
+            } else if (fTravelers) {
+                fTravelers.classList.remove('has-error');
+            }
+
+            const banner = document.getElementById('planner-lock-banner');
+            const icon = document.getElementById('lock-icon');
+            const msg = document.getElementById('lock-message');
+            const pcb = document.querySelector('.pcb-container');
+
+            if (!isValid) {
+                if (banner) {
+                    banner.className = 'lock-banner locked';
+                    if (icon) icon.textContent = 'lock';
+                    if (msg) {
+                        msg.innerHTML = `<strong>Planner Locked:</strong> Please fill in all 4 travel criteria above (Origin, Destination, Departure Date, and Travelers) to unlock and customize components.`;
+                    }
+                }
+                if (pcb) pcb.classList.add('is-locked');
+
+                if (triggerHighlight) {
+                    const strip = document.getElementById('search-strip');
+                    if (strip) strip.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    showToastNotification(`⚠️ Missing required criteria: ${missing.join(', ')}`);
+                }
+                return false;
+            } else {
+                if (banner) {
+                    banner.className = 'lock-banner unlocked';
+                    if (icon) icon.textContent = 'lock_open';
+                    const destName = destEl.options[destEl.selectedIndex].text;
+                    if (msg) {
+                        msg.innerHTML = `<strong>Planner Unlocked:</strong> Route from <strong>${origin}</strong> to <strong>${destName}</strong> on <strong>${date}</strong> for <strong>${travelers} Traveler(s)</strong> is active. You can now choose any travel components below!`;
+                    }
+                }
+                if (pcb) pcb.classList.remove('is-locked');
+                return true;
+            }
+        }
+
+        function onSearchFieldChanged() {
+            const isValid = validateSearchFields(false);
+            if (isValid) {
+                onRouteChanged();
+                recalculateTotals();
+            }
+        }
+
         function openPicker(slotName) {
+            if (!validateSearchFields(true)) {
+                return;
+            }
+
             currentActiveSlot = slotName;
             const items = inventory[slotName] || [];
             const titleEl = document.getElementById('modal-category-title');
@@ -1138,7 +1386,7 @@
                             <div class="select-card-sub">${item.sub}</div>
                         </div>
                     </div>
-                    <div class="select-card-price">৳${item.price.toLocaleString()}</div>
+                    <div class="select-card-price">BDT ${item.price.toLocaleString()}</div>
                     <button class="btn-choose" onclick="selectComponent('${slotName}', ${item.id})">Select</button>
                 </div>
             `).join('');
@@ -1162,7 +1410,7 @@
 
             valEl.textContent = item.name + (slotName === 'transport' && selectedSeats.length > 0 ? ` (Seats: ${selectedSeats.join(', ')})` : '');
             valEl.classList.add('configured');
-            priceEl.textContent = `৳${item.price.toLocaleString()}`;
+            priceEl.textContent = `BDT ${item.price.toLocaleString()}`;
 
             actionEl.innerHTML = `
                 <button class="btn-choose" style="padding: 0.35rem 0.75rem;" onclick="openPicker('${slotName}')">Change</button>
@@ -1184,7 +1432,7 @@
 
             valEl.textContent = 'Not Selected';
             valEl.classList.remove('configured');
-            priceEl.textContent = '0৳';
+            priceEl.textContent = 'BDT 0';
 
             actionEl.innerHTML = `
                 <button class="btn-choose" onclick="openPicker('${slotName}')">Choose</button>
@@ -1195,6 +1443,11 @@
 
         // Scenario 4: Skip Transport Toggle
         function toggleSkipTransport() {
+            if (!validateSearchFields(true)) {
+                document.getElementById('skip-transport-check').checked = false;
+                return;
+            }
+
             const isSkip = document.getElementById('skip-transport-check').checked;
             const transitMark = document.getElementById('transit-mark');
 
@@ -1202,7 +1455,7 @@
                 currentTour.transport = { id: 0, name: "[✓] Skipped (Self-Drive / Toyota Prado)", price: 0, scenario: "Scenario 4: Decoupled No-Transport" };
                 document.getElementById('val-transport').textContent = "[✓] Skipped (Self-Drive / Toyota Prado)";
                 document.getElementById('val-transport').classList.add('configured');
-                document.getElementById('price-transport').textContent = "0৳";
+                document.getElementById('price-transport').textContent = "BDT 0";
                 document.getElementById('action-transport').innerHTML = `<span style="color: #ef4444; font-size: 0.8rem; font-weight: 700;">Self-Drive</span>`;
                 transitMark.textContent = "Skipped";
                 transitMark.style.background = "#fef3c7";
@@ -1217,6 +1470,11 @@
         }
 
         function toggleHideUnconfigured() {
+            if (!validateSearchFields(true)) {
+                document.getElementById('hide-unconfigured').checked = false;
+                return;
+            }
+
             const isHide = document.getElementById('hide-unconfigured').checked;
             for (const key in currentTour) {
                 const slot = document.getElementById(`slot-${key}`);
@@ -1228,17 +1486,117 @@
 
         function onRouteChanged() {
             const dest = document.getElementById('destination-select').value;
-            // Pre-customize for Sajek, Tetulia, etc.
+            if (!dest) return;
+
+            // Route-specific dynamic inventory
             if (dest === 'sajek') {
-                selectComponent('localtransit', 1); // Chander Gari
+                inventory.transport = [
+                    { id: 1, name: "Shanti Paribahan AC Coach (Dhaka ➔ Khagrachhari Gateway)", sub: "Scenario 3: Interactive 40-Seat Plan | Direct route to Khagrachhari", price: 1400, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
+                    { id: 2, name: "Saintmartin Travels AC Deluxe Coach", sub: "Overnight luxury bus with reclining leather seats", price: 1600, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true },
+                    { id: 3, name: "Economy Non-AC Coach (Sayedabad Gateway)", sub: "Budget overnight transit", price: 850, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.localtransit = [
+                    { id: 1, name: "Four-Wheel Drive Chander Gari (4WD Mountain Jeep Convoy)", sub: "Dedicated 4WD mountain jeep for Army Escort convoys (10-passenger capacity)", price: 6500, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 14: Mountain Convoy Navigation" },
+                    { id: 2, name: "Mahindra 4x4 Mountain Carrier", sub: "Hill-track certified pickup jeep", price: 5500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.lodging = [
+                    { id: 1, name: "Meghpunji Cloud-View Cottage", sub: "Premium wooden cottage above the clouds (Family 4-bed)", price: 4200, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
+                    { id: 2, name: "Sajek Classic Eco-Resort", sub: "Sunset-facing balcony room with solar power", price: 3200, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" },
+                    { id: 3, name: "Runmoy & Kasalong Army Rest House", sub: "Highest altitude secure hilltop view", price: 4800, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.dining = [
+                    { id: 1, name: "Traditional Bamboo Chicken & Mountain Sticky Rice", sub: "Peda Ting Ting authentic tribal bamboo cooked chicken & papaya salad", price: 1400, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
+                    { id: 2, name: "Hillock View Tribal Feast & Herbal Tea", sub: "Fresh organic hill vegetables, country chicken & mountain tea", price: 1100, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
+                ];
+            } else if (dest === 'coxsbazar') {
+                inventory.transport = [
+                    { id: 1, name: "Direct Scania AC Coach (Arambagh ➔ Kolatoli)", sub: "Scenario 3: Interactive 40-Seat Plan | Rows A & B Female Preferred", price: 1500, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
+                    { id: 2, name: "Domestic Boeing Direct Flight (DAC ✈ CXB)", sub: "50-minute express air transit to Cox's Bazar runway", price: 4500, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" },
+                    { id: 3, name: "Green Line Sleeper Coach (Double Deck)", sub: "Overnight luxury sleeper berth with USB charging", price: 2200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true },
+                    { id: 4, name: "Non-AC Economy Coach (Arambagh Counter)", sub: "Budget overland transit", price: 900, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.localtransit = [
+                    { id: 1, name: "Reserved AC Microbus (HiAce - Marine Drive Tour)", sub: "Full day private minivan for Inani, Himchari and Patuartek", price: 3500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" },
+                    { id: 2, name: "Electric TomTom / Auto Shuttle Pass", sub: "Unlimited 24-hr hop-on hop-off within Kolatoli and Sugandha", price: 600, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.lodging = [
+                    { id: 1, name: "Deluxe 4-Bed Sea-View Family Room (2 King Beds)", sub: "Scenario 5: BDT 3,500/night decomposed down to BDT 875/person/night for 4 friends", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
+                    { id: 2, name: "Sayeman Beach Resort (Panorama Sea Balcony)", sub: "Luxury beachfront 5-star standard with infinity pool", price: 6500, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" },
+                    { id: 3, name: "Standard Twin-Bed Room (2 Single Beds)", sub: "Air-conditioned standard resort room near Sugandha", price: 2200, img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.dining = [
+                    { id: 1, name: "Inani Beach Live Seafood BBQ Dinner", sub: "Fresh coral fish, red snapper, pomfret & campfire dinner by the waves", price: 2000, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Beach BBQ Addon" },
+                    { id: 2, name: "Poushee Traditional Bengali Feast", sub: "20 types of authentic bhorta, Rupchanda fry & steamed rice", price: 950, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
+                    { id: 3, name: "Full-Board Corporate Buffet Catering", sub: "Scenario 11: 3-course breakfast, lunch, dinner & high-tea per delegate", price: 3600, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 11: Corporate B2B Catering" }
+                ];
+            } else if (dest === 'saintmartin') {
+                inventory.transport = [
+                    { id: 1, name: "Scania AC Coach + Teknaf Water Bus Ferry", sub: "Integrated cross-water transit package with guaranteed ferry boarding", price: 2800, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true },
+                    { id: 2, name: "Keari Sindbad Bay-Crossing Ship Transit", sub: "Open-deck cruise ship transit over the Bay of Bengal", price: 1800, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.localtransit = [
+                    { id: 1, name: "Saint Martin Electric Island Van Shuttle", sub: "Eco-friendly battery van for Jetty to West Beach transfers", price: 500, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" },
+                    { id: 2, name: "Chera Dwip Speedboat Charter", sub: "Round-trip transfer to the southernmost coral reef islet", price: 1800, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.lodging = [
+                    { id: 1, name: "Blue Marine Coral Beach Eco-Resort", sub: "Direct oceanfront cottage on sandy shoreline", price: 4000, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80" },
+                    { id: 2, name: "Sunset View Coconut Grove Cottage", sub: "Peaceful West Beach eco-hut surrounded by coconut palms", price: 2800, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.dining = [
+                    { id: 1, name: "Fresh Coral Fish & Lobster Shore BBQ", sub: "Live grilled Koral, Lobster and squid platter under the stars", price: 2200, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" },
+                    { id: 2, name: "Island Green Coconut & Fresh Rice Thali", sub: "Traditional island meal with fresh coconut water and local curry", price: 750, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
+                ];
+            } else if (dest === 'sreemangal') {
+                inventory.transport = [
+                    { id: 1, name: "Upaban Express AC Intercity Rail Transit", sub: "Scenic tea valley rail transit from Kamalapur", price: 750, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" },
+                    { id: 2, name: "Direct AC Tourist Coach (Sayedabad Gateway)", sub: "Express highway coach to Sreemangal Town", price: 800, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                ];
+                inventory.localtransit = [
+                    { id: 1, name: "Lawachara Rain Forest Safari Jeep", sub: "Guided wildlife and tea estate expedition vehicle", price: 2500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.lodging = [
+                    { id: 1, name: "Grand Sultan Tea Resort (Deluxe Suite)", sub: "5-star luxury surrounded by rolling green hills", price: 7500, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" },
+                    { id: 2, name: "Shanti Bari Eco-Resort Cottage", sub: "Earthy mud-and-bamboo cottage in peaceful tea gardens", price: 3000, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.dining = [
+                    { id: 1, name: "Nilkantha Cabin Seven-Color Tea Experience", sub: "Legendary 7-layer tea with traditional Sylheti snacks", price: 350, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
+                    { id: 2, name: "Khasia Tribal Roasted Duck Feast", sub: "Authentic indigenous duck roast and sticky rice", price: 1350, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
+                ];
             } else if (dest === 'tetulia') {
-                selectComponent('transport', 2); // Multi-leg flight+micro
+                inventory.transport = [
+                    { id: 1, name: "Multi-Leg Flight + Microbus (Scenario 1)", sub: "DAC ✈ SPD Flight (BDT 4,500) + 45-min buffer + SPD 🚐 Tetulia AC Microbus (BDT 800)", price: 5300, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 1: Multi-Leg Route Synthesis" },
+                    { id: 2, name: "Direct Overnight AC Sleeper Coach (Gabtoli ➔ Banglabandha)", sub: "Northern highway direct transit", price: 1600, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                ];
+                inventory.localtransit = [
+                    { id: 1, name: "Mahananda Riverbank Sightseeing Jeep", sub: "Border view transport for Kanchenjunga lookout point", price: 2800, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.lodging = [
+                    { id: 1, name: "Kanchenjunga View Border Eco-Lodge", sub: "Clear morning horizon view of Himalayan snow peaks", price: 2600, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.dining = [
+                    { id: 1, name: "Organic North Bengal Duck & Rice Thali", sub: "Locally farmed duck curry with fragrant Atash rice", price: 900, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
+                ];
+            } else if (dest === 'jaflong') {
+                inventory.transport = [
+                    { id: 1, name: "Parabat Express Intercity Rail + Sylhet AC Coach", sub: "Comfortable train + connecting road shuttle", price: 1100, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" },
+                    { id: 2, name: "Direct AC Tourist Coach (Kallayanpur ➔ Sylhet)", sub: "Overnight express coach", price: 1200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                ];
+                inventory.localtransit = [
+                    { id: 1, name: "Jaflong Registered Motorized Boat Permit", sub: "Scenario 4: Registered boat operator permit for Zero Point Lalji hill", price: 800, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 4: Registered Boat Permit" }
+                ];
+                inventory.lodging = [
+                    { id: 1, name: "Tamabil Border Rest House & Eco Resort", sub: "Panoramic views of Dawki falls across Meghalaya border", price: 2900, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
+                ];
+                inventory.dining = [
+                    { id: 1, name: "Surma River Fresh Fish & Shatkora Beef Platter", sub: "Authentic Sylheti citrus Shatkora beef with river fish", price: 1200, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
+                ];
             }
         }
 
         // Live Dynamic Recalculation
         function recalculateTotals() {
-            const travelers = parseInt(document.getElementById('traveler-count').value) || 1;
+            const travelerInput = document.getElementById('traveler-count');
+            const travelers = (travelerInput && parseInt(travelerInput.value, 10) > 0) ? parseInt(travelerInput.value, 10) : 1;
             let sum = 0;
             let configuredCount = 0;
             const activeScenarios = new Set();
@@ -1253,14 +1611,14 @@
                 }
             }
 
-            if (travelers > 1) {
+            if (travelers > 1 && configuredCount > 0) {
                 activeScenarios.add("Scenario 5: Multi-Bed Cost Decomposition");
             }
 
             const perPerson = Math.round(sum / travelers);
 
-            document.getElementById('total-amount').textContent = `৳${sum.toLocaleString()}`;
-            document.getElementById('per-person-amount').textContent = `৳${perPerson.toLocaleString()}`;
+            document.getElementById('total-amount').textContent = `BDT ${sum.toLocaleString()}`;
+            document.getElementById('per-person-amount').textContent = `BDT ${perPerson.toLocaleString()}`;
             document.getElementById('items-count-label').textContent = `${configuredCount} Components Selected`;
 
             const scenList = document.getElementById('applied-scenarios-list');
@@ -1271,6 +1629,7 @@
 
         // Action Handlers
         function openShareModal() {
+            if (!validateSearchFields(true)) return;
             const total = document.getElementById('total-amount').textContent;
             const travelers = document.getElementById('traveler-count').value;
             const share = document.getElementById('per-person-amount').textContent;
@@ -1278,10 +1637,18 @@
         }
 
         function openQuoteModal() {
+            if (!validateSearchFields(true)) return;
             alert('📑 Scenario 11: Corporate B2B Quotation Generated with 15% NBR VAT and 5% AIT!\nReady for corporate tax audit submission.');
         }
 
+        function handlePrintItinerary() {
+            if (!validateSearchFields(true)) return;
+            window.print();
+        }
+
         function confirmTourBooking() {
+            if (!validateSearchFields(true)) return;
+
             if (!currentTour.transport && !document.getElementById('skip-transport-check').checked) {
                 alert('⚠️ Please select an Intermodal Transit method or check [✓] Skip Transport.');
                 return;
@@ -1294,8 +1661,12 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            selectComponent('transport', 1); // Scania Coach
-            selectComponent('lodging', 1);   // Deluxe 4-bed Family Room
+            const today = new Date().toISOString().split('T')[0];
+            const deptInput = document.getElementById('dept-date');
+            if (deptInput) deptInput.setAttribute('min', today);
+
+            validateSearchFields(false);
+            recalculateTotals();
         });
     </script>
 </body>

@@ -134,12 +134,12 @@
                         <tr>
                             <td><strong>Room Bedding Breakdown (Scenario 5)</strong></td>
                             <td><span class="badge-no">❌ Unclear</span> Forces multiple expensive twin rooms without per-person rates.</td>
-                            <td><span class="badge-yes">✓ Automated</span> 4-bed Deluxe Family rooms dynamically split to ৳875/person/night.</td>
+                            <td><span class="badge-yes">✓ Automated</span> 4-bed Deluxe Family rooms dynamically split to BDT 875/person/night.</td>
                         </tr>
                         <tr>
                             <td><strong>Collaborative Fintech Split-Bill (Scenario 12)</strong></td>
-                            <td><span class="badge-no">❌ Dispute-Prone</span> Class Rep must collect ৳1,50,000 to personal bKash, hitting limits.</td>
-                            <td><span class="badge-yes">✓ Webhook Quorum</span> Authenticated shareable link; each student pays their exact ৳5,000 share.</td>
+                            <td><span class="badge-no">❌ Dispute-Prone</span> Class Rep must collect BDT 150,000 to personal bKash, hitting limits.</td>
+                            <td><span class="badge-yes">✓ Webhook Quorum</span> Authenticated shareable link; each student pays their exact BDT 5,000 share.</td>
                         </tr>
                         <tr>
                             <td><strong>B2B Corporate VAT & Tax Invoice (Scenario 11)</strong></td>
@@ -197,7 +197,7 @@
                 <div class="scenario-card">
                     <span class="scenario-number">Scenario 5</span>
                     <h3 class="scenario-title">Multi-Bed Cost Decomposition</h3>
-                    <p class="scenario-desc">Deluxe 4-Bed Family Room (2 King Beds) decomposing ৳3,500 down to ৳875/person/night.</p>
+                    <p class="scenario-desc">Deluxe 4-Bed Family Room (2 King Beds) decomposing BDT 3,500 down to BDT 875/person/night.</p>
                 </div>
                 <div class="scenario-card">
                     <span class="scenario-number">Scenario 6</span>
@@ -207,7 +207,7 @@
                 <div class="scenario-card">
                     <span class="scenario-number">Scenario 7</span>
                     <h3 class="scenario-title">5:30 AM Fresh-up Room</h3>
-                    <p class="scenario-desc">Modular add-ons: Honeymoon flower bed (+৳1,500) and early fresh-up room (+35% half-day rate).</p>
+                    <p class="scenario-desc">Modular add-ons: Honeymoon flower bed (+BDT 1,500) and early fresh-up room (+35% half-day rate).</p>
                 </div>
                 <div class="scenario-card">
                     <span class="scenario-number">Scenario 8</span>
@@ -217,12 +217,12 @@
                 <div class="scenario-card">
                     <span class="scenario-number">Scenario 9</span>
                     <h3 class="scenario-title">Meteorological Auto-Refund</h3>
-                    <p class="scenario-desc">Signal No. 3 storm warning immediately triggers programmatic bKash wallet refund of ৳3,000.</p>
+                    <p class="scenario-desc">Signal No. 3 storm warning immediately triggers programmatic bKash wallet refund of BDT 3,000.</p>
                 </div>
                 <div class="scenario-card">
                     <span class="scenario-number">Scenario 10</span>
                     <h3 class="scenario-title">Granular Age-Tiered Fare</h3>
-                    <p class="scenario-desc">Infant (&lt;4 yrs) free lap seat, child (5-10 yrs) ৳800 bus seat, ৳500 rollaway mattress.</p>
+                    <p class="scenario-desc">Infant (&lt;4 yrs) free lap seat, child (5-10 yrs) BDT 800 bus seat, BDT 500 rollaway mattress.</p>
                 </div>
                 <div class="scenario-card">
                     <span class="scenario-number">Scenario 11</span>
@@ -251,22 +251,17 @@
                 </p>
             </div>
             <div class="footer-links">
-                <h4>Core Engines</h4>
+                <h4>Core Navigation</h4>
                 <ul>
-                    <li><a href="tour-plan.html">Tour Plan (Star Tech Builder)</a></li>
-                    <li><a href="travel-plan.html">Travel Plan (Itineraries)</a></li>
-                    <li><a href="map.html">GIS Route Explorer</a></li>
-                    <li><a href="booking.html">Fintech Split-Bill</a></li>
-                    <li><a href="quotations.html">B2B Corporate Invoices</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="travel-planner.html">Travel Planner</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>System Portals</h4>
+                <h4>System Architecture</h4>
                 <ul>
-                    <li><a href="dashboard.html">Traveler Dashboard</a></li>
-                    <li><a href="admin.html">Staff Console</a></li>
-                    <li><a href="login.html">Sign In</a></li>
-                    <li><a href="signup.html">Create Account</a></li>
+                    <li><a href="travel-planner.html">Component Builder</a></li>
+                    <li><a href="travel-planner.html">Dynamic Seat Allocator</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -323,12 +318,12 @@
                             <span class="card-badge">${dest.category || 'Featured'}</span>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">${dest.name_en} <span style="font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">(${dest.name_bn || ''})</span></h3>
+                            <h3 class="card-title">${dest.name_en}</h3>
                             <p class="card-desc">${(dest.description_en || dest.short_desc_en || 'Experience scenic landscapes, local culture, and bespoke tour coordination with TravelUp Global.').slice(0, 115)}...</p>
                             <div class="card-footer">
                                 <div class="price-tag">
                                     <span class="label">Starting From</span>
-                                    <span class="amount">৳${Math.round(dest.price_bdt || 3500).toLocaleString()}</span>
+                                    <span class="amount">BDT ${Math.round(dest.price_bdt || 3500).toLocaleString()}</span>
                                 </div>
                                 <a href="travel-planner.html" class="btn btn-primary btn-sm">
                                     Plan Travel →
