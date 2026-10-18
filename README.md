@@ -1,7 +1,13 @@
 # ✈️ TravelUp Global
 
 > **Next-Generation Global Travel Platform**  
-> **Course Project:** Markup & Scripting Languages  
+> **Course Project:** Markup & Scripting Languages Lab  
+> **Department:** Computer Science & Engineering (CSE), Dhaka International University (DIU)  
+> **Submitted To:** Sajib Bhattacharjee, Lecturer, Department of CSE  
+> **Project Team:**  
+> 1. **Md. Tanvir Parvaj** (Roll: 39)  
+> 2. **Md. Toufick Hasan** (Roll: 34)  
+> 3. **Fahima Suborna** (Roll: 36)  
 > **Domain:** `travelupglobal.com`  
 > **Database:** Hostinger MySQL (`srv1954.hstgr.io`)  
 
