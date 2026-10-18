@@ -853,6 +853,28 @@
             align-items: center;
         }
 
+        /* Train Coach Matrix */
+        .train-seat-layout {
+            background: #f8fafc;
+            border: 2px dashed #10b981;
+            border-radius: 8px;
+            padding: 1.5rem;
+            max-width: 440px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .train-bogie-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #a7f3d0;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #065f46;
+        }
+
         /* Hotel Room Cards */
         .hotel-rooms-grid {
             display: grid;
@@ -1739,6 +1761,67 @@
                     </div>
                 </div>
 
+                <!-- Train Bogie Seat Picker Container -->
+                <div id="train-seat-picker-wrap" style="display: none;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <div id="seat-train-name" style="font-weight: 800; font-size: 0.95rem; color: #166534;"></div>
+                            <div id="seat-train-rate" style="font-size: 0.8rem; color: #15803d;"></div>
+                        </div>
+                        <button type="button" class="btn-demo-reset" onclick="backToItemsList()" style="font-size: 0.8rem; cursor: pointer;">
+                            <i class="material-icons" style="font-size: 15px;">arrow_back</i> Back to Trains
+                        </button>
+                    </div>
+
+                    <!-- Bogie / Coach Selector -->
+                    <div style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <label style="font-size: 0.85rem; font-weight: 800; color: #1e293b; display: flex; align-items: center; gap: 4px;">
+                                <i class="material-icons" style="font-size: 18px; color: #10b981;">train</i>
+                                Select Bogie (বগি):
+                            </label>
+                            <select id="train-bogie-select" class="room-floor-select" style="margin-top: 0; font-weight: 700;" onchange="onTrainBogieChanged(this.value)">
+                                <option value="Snigdha-Ka (স্নিগ্ধা-ক)">Snigdha-Ka (স্নিগ্ধা-ক) [AC Chair]</option>
+                                <option value="Snigdha-Kha (স্নিগ্ধা-খ)">Snigdha-Kha (স্নিগ্ধা-খ) [AC Chair]</option>
+                                <option value="Snigdha-Ga (স্নিগ্ধা-গ)">Snigdha-Ga (স্নিগ্ধা-গ) [AC Chair]</option>
+                                <option value="Shovon-Gha (শোভন-ঘ)">Shovon-Gha (শোভন-ঘ) [Non-AC Chair]</option>
+                            </select>
+                        </div>
+                        <div style="font-size: 0.775rem; color: #64748b; font-weight: 600;">
+                            Bangladesh Railway Intercity Coach
+                        </div>
+                    </div>
+
+                    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; color: #1e40af; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <i class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 4px;">airline_seat_recline_normal</i>
+                            Select <strong id="train-seats-target-count">4</strong> seat(s) for your <strong id="train-travelers-target-count">4</strong> passenger(s).
+                        </div>
+                        <div>
+                            Selected: <strong id="train-seats-selected-display" style="color: var(--st-primary);">None</strong>
+                        </div>
+                    </div>
+
+                    <div class="train-seat-layout">
+                        <div class="train-bogie-header">
+                            <span>🚪 VESTIBULE DOOR</span>
+                            <span id="train-bogie-indicator" style="font-weight: 900; color: #047857;">COACH: SNIGDHA-KA (স্নিগ্ধা-ক)</span>
+                            <span>RESTROOM 🚻</span>
+                        </div>
+                        <!-- Train Seats Grid -->
+                        <div class="seat-row-grid" id="train-seats-container"></div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--st-border); flex-wrap: wrap; gap: 0.75rem;">
+                        <div id="train-seat-cost-summary" style="font-size: 1.1rem; font-weight: 900; color: var(--st-primary);">
+                            Total: BDT 0
+                        </div>
+                        <button type="button" class="btn-checkout" style="padding: 0.6rem 1.5rem; font-size: 0.875rem;" onclick="confirmTrainSeatSelection()">
+                            Confirm Train Seats & Select Train
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Hotel / Resort Room Picker Container -->
                 <div id="hotel-room-picker-wrap" style="display: none;">
                     <div style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
@@ -2085,6 +2168,7 @@
                     sub: "Fast Intercity Railway Transit Along Scenic Seaside Track",
                     price: 1150,
                     img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80",
+                    hasTrainSeats: true,
                     details: {
                         type: "Intercity Super-Fast Express (Train 813)",
                         schedule: "Departure: 10:30 PM (Kamalapur Railway Station) ➔ Arrival: 06:45 AM (Cox's Bazar Iconic Station)",
@@ -2105,6 +2189,7 @@
                     sub: "Intercity Daytime Express with Meal Tray Service",
                     price: 950,
                     img: "https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=300&q=80",
+                    hasTrainSeats: true,
                     details: {
                         type: "Daytime Rail Express",
                         schedule: "Departure: 07:00 AM (Kamalapur) ➔ Arrival: 03:00 PM",
@@ -2826,6 +2911,7 @@
             const listEl = document.getElementById('modal-items-list');
             const busWrap = document.getElementById('bus-seat-picker-wrap');
             const flightWrap = document.getElementById('flight-seat-picker-wrap');
+            const trainWrap = document.getElementById('train-seat-picker-wrap');
             const roomWrap = document.getElementById('hotel-room-picker-wrap');
             const menuWrap = document.getElementById('dining-menu-picker-wrap');
             const detailsWrap = document.getElementById('modal-item-details-view');
@@ -2833,6 +2919,7 @@
 
             if (busWrap) busWrap.style.display = 'none';
             if (flightWrap) flightWrap.style.display = 'none';
+            if (trainWrap) trainWrap.style.display = 'none';
             if (roomWrap) roomWrap.style.display = 'none';
             if (menuWrap) menuWrap.style.display = 'none';
             if (detailsWrap) detailsWrap.style.display = 'none';
@@ -3059,6 +3146,155 @@
             }
 
             selectComponent(pendingSlot, pendingItem.id, { selectedSeats: [...flightSelectedSeats] });
+        }
+
+        // Interactive Bangladesh Railway Train Bogie Seat Picker
+        let trainSelectedSeats = ['ক-1', 'ক-2', 'ক-3', 'ক-4'];
+        let selectedBogie = 'Snigdha-Ka (স্নিগ্ধা-ক)';
+
+        function openTrainSeatPicker(slotName, itemId) {
+            const item = (inventory[slotName] || []).find(x => x.id === itemId);
+            if (!item) return;
+
+            pendingSlot = slotName;
+            pendingItem = item;
+
+            const listEl = document.getElementById('modal-items-list');
+            const trainWrap = document.getElementById('train-seat-picker-wrap');
+            const titleEl = document.getElementById('modal-category-title');
+            const nameEl = document.getElementById('seat-train-name');
+            const rateEl = document.getElementById('seat-train-rate');
+            const bogieSelect = document.getElementById('train-bogie-select');
+            const bogieIndicator = document.getElementById('train-bogie-indicator');
+
+            if (nameEl) nameEl.textContent = item.name;
+            if (rateEl) rateEl.textContent = `BDT ${item.price.toLocaleString()} per AC Chair / Snigdha seat • Bangladesh Railway e-Ticket`;
+            if (titleEl) titleEl.textContent = `Select Train Seats - ${item.name}`;
+
+            if (item.bogie && bogieSelect) {
+                selectedBogie = item.bogie;
+                bogieSelect.value = item.bogie;
+            } else if (bogieSelect) {
+                selectedBogie = bogieSelect.value;
+            }
+            if (bogieIndicator) {
+                bogieIndicator.textContent = `COACH: ${selectedBogie.toUpperCase()}`;
+            }
+
+            listEl.style.display = 'none';
+            trainWrap.style.display = 'block';
+
+            const travelers = getTravelerCount();
+            const prefix = selectedBogie.includes('Kha') ? 'খ' : selectedBogie.includes('Ga') ? 'গ' : selectedBogie.includes('Gha') ? 'ঘ' : 'ক';
+
+            if (!item.selectedSeats || item.selectedSeats.length === 0) {
+                const pool = [`${prefix}-1`, `${prefix}-2`, `${prefix}-3`, `${prefix}-4`, `${prefix}-5`, `${prefix}-6`, `${prefix}-7`, `${prefix}-8`];
+                trainSelectedSeats = pool.slice(0, travelers);
+            } else {
+                trainSelectedSeats = [...item.selectedSeats];
+            }
+
+            renderTrainSeatGrid();
+            updateTrainSeatSelectionUI();
+        }
+
+        function onTrainBogieChanged(bogieVal) {
+            selectedBogie = bogieVal;
+            const bogieIndicator = document.getElementById('train-bogie-indicator');
+            if (bogieIndicator) {
+                bogieIndicator.textContent = `COACH: ${selectedBogie.toUpperCase()}`;
+            }
+
+            const prefix = selectedBogie.includes('Kha') ? 'খ' : selectedBogie.includes('Ga') ? 'গ' : selectedBogie.includes('Gha') ? 'ঘ' : 'ক';
+            const travelers = getTravelerCount();
+            trainSelectedSeats = [`${prefix}-1`, `${prefix}-2`, `${prefix}-3`, `${prefix}-4`, `${prefix}-5`, `${prefix}-6`].slice(0, travelers);
+
+            renderTrainSeatGrid();
+            updateTrainSeatSelectionUI();
+        }
+
+        function renderTrainSeatGrid() {
+            const container = document.getElementById('train-seats-container');
+            if (!container) return;
+
+            const prefix = selectedBogie.includes('Kha') ? 'খ' : selectedBogie.includes('Ga') ? 'গ' : selectedBogie.includes('Gha') ? 'ঘ' : 'ক';
+            const rows = [1, 2, 3, 4, 5, 6, 7, 8];
+            let html = '';
+
+            rows.forEach((r, rIdx) => {
+                const baseNum = rIdx * 4;
+                const seatCols = [baseNum + 1, baseNum + 2, baseNum + 3, baseNum + 4];
+
+                seatCols.forEach((seatNum, idx) => {
+                    const seatId = `${prefix}-${seatNum}`;
+                    const isSelected = trainSelectedSeats.includes(seatId);
+                    const isBooked = (seatNum === 7 || seatNum === 14 || seatNum === 21);
+                    const isWindow = (idx === 0 || idx === 3);
+
+                    html += `
+                        <div class="seat-btn ${isSelected ? 'selected' : ''} ${isBooked ? 'booked' : ''}" 
+                             onclick="toggleTrainSeat('${seatId}', this, ${isBooked})"
+                             title="${isBooked ? 'Seat Reserved' : isWindow ? 'Window Seat (জানালা)' : 'Aisle Seat (আইল)'}">
+                            ${seatId}${isWindow ? '🪟' : ''}
+                        </div>
+                    `;
+                    if (idx === 1) {
+                        html += `<div class="aisle-gap">🚆</div>`;
+                    }
+                });
+            });
+
+            container.innerHTML = html;
+        }
+
+        function toggleTrainSeat(seatId, el, isBooked) {
+            if (isBooked) return;
+            const travelers = getTravelerCount();
+
+            if (trainSelectedSeats.includes(seatId)) {
+                trainSelectedSeats = trainSelectedSeats.filter(s => s !== seatId);
+            } else {
+                if (trainSelectedSeats.length >= travelers && travelers > 0) {
+                    trainSelectedSeats.shift();
+                }
+                trainSelectedSeats.push(seatId);
+            }
+            renderTrainSeatGrid();
+            updateTrainSeatSelectionUI();
+        }
+
+        function updateTrainSeatSelectionUI() {
+            const travelers = getTravelerCount();
+            const item = pendingItem;
+            if (!item) return;
+
+            const countEl = document.getElementById('train-seats-target-count');
+            const travEl = document.getElementById('train-travelers-target-count');
+            const dispEl = document.getElementById('train-seats-selected-display');
+            const costEl = document.getElementById('train-seat-cost-summary');
+
+            if (countEl) countEl.textContent = travelers;
+            if (travEl) travEl.textContent = travelers;
+            if (dispEl) {
+                dispEl.textContent = trainSelectedSeats.length > 0 ? `${trainSelectedSeats.join(', ')} (${trainSelectedSeats.length}/${travelers})` : 'None';
+            }
+            if (costEl) {
+                const totalCost = trainSelectedSeats.length * item.price;
+                costEl.innerHTML = `Total: <strong>BDT ${totalCost.toLocaleString()}</strong> <span style="font-size: 0.8rem; font-weight: normal; color: #64748b;">(${trainSelectedSeats.length} seat(s) × BDT ${item.price.toLocaleString()})</span>`;
+            }
+        }
+
+        function confirmTrainSeatSelection() {
+            if (!pendingSlot || !pendingItem) return;
+            if (trainSelectedSeats.length === 0) {
+                alert('Please select at least one train seat to proceed.');
+                return;
+            }
+
+            selectComponent(pendingSlot, pendingItem.id, {
+                selectedSeats: [...trainSelectedSeats],
+                bogie: selectedBogie
+            });
         }
 
         // Interactive Hotel & Resort Room Picker (Scenario 5 Multi-Bed Decomposition)
@@ -3395,6 +3631,8 @@
                     proceedBtn.textContent = 'Proceed to View Seats';
                 } else if (item.hasFlightSeats || slotName === 'flight') {
                     proceedBtn.textContent = 'Proceed to Flight Seats';
+                } else if (item.hasTrainSeats || slotName === 'train') {
+                    proceedBtn.textContent = 'Proceed to Train Seats';
                 } else if (item.hasRooms || slotName === 'hotel' || slotName === 'resort' || slotName === 'cottage' || slotName === 'villa') {
                     proceedBtn.textContent = 'Proceed to Choose Rooms';
                 } else if (item.hasMenu || slotName === 'breakfast' || slotName === 'lunch' || slotName === 'dinner') {
@@ -3493,6 +3731,8 @@
                 openSeatPicker(slotName, itemId);
             } else if (pendingItem.hasFlightSeats || slotName === 'flight') {
                 openFlightSeatPicker(slotName, itemId);
+            } else if (pendingItem.hasTrainSeats || slotName === 'train') {
+                openTrainSeatPicker(slotName, itemId);
             } else if (pendingItem.hasRooms || slotName === 'hotel' || slotName === 'resort' || slotName === 'cottage' || slotName === 'villa') {
                 openRoomPicker(slotName, itemId);
             } else if (pendingItem.hasMenu || slotName === 'breakfast' || slotName === 'lunch' || slotName === 'dinner') {
@@ -3705,6 +3945,8 @@
                         actionBtn = `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openSeatPicker('${slotName}', ${item.id})"><span>View Seats</span> <i class="material-icons" style="font-size: 14px;">airline_seat_recline_extra</i></button>`;
                     } else if (item.hasFlightSeats || slotName === 'flight') {
                         actionBtn = `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openFlightSeatPicker('${slotName}', ${item.id})"><span>View Seats</span> <i class="material-icons" style="font-size: 14px;">flight</i></button>`;
+                    } else if (item.hasTrainSeats || slotName === 'train') {
+                        actionBtn = `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openTrainSeatPicker('${slotName}', ${item.id})"><span>View Seats</span> <i class="material-icons" style="font-size: 14px;">train</i></button>`;
                     } else if (item.hasRooms || slotName === 'hotel' || slotName === 'resort' || slotName === 'cottage' || slotName === 'villa') {
                         actionBtn = `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openRoomPicker('${slotName}', ${item.id})"><span>View Rooms</span> <i class="material-icons" style="font-size: 14px;">bed</i></button>`;
                     } else if (item.hasMenu || slotName === 'breakfast' || slotName === 'lunch' || slotName === 'dinner') {
@@ -3754,6 +3996,7 @@
                 if (customData.selectedSeats) itemToStore.selectedSeats = [...customData.selectedSeats];
                 if (customData.selectedRoom) itemToStore.selectedRoom = { ...customData.selectedRoom };
                 if (customData.selectedMenu) itemToStore.selectedMenu = { ...customData.selectedMenu };
+                if (customData.bogie) itemToStore.bogie = customData.bogie;
             }
 
             currentTour[slotName] = itemToStore;
@@ -3766,7 +4009,9 @@
             const calc = getItemPriceCalculation(slotName, itemToStore, travelers);
 
             let labelSuffix = '';
-            if (itemToStore.selectedSeats && itemToStore.selectedSeats.length > 0) {
+            if (itemToStore.bogie && itemToStore.selectedSeats && itemToStore.selectedSeats.length > 0) {
+                labelSuffix = ` (${itemToStore.bogie}, Seats: ${itemToStore.selectedSeats.join(', ')})`;
+            } else if (itemToStore.selectedSeats && itemToStore.selectedSeats.length > 0) {
                 labelSuffix = ` (Seats: ${itemToStore.selectedSeats.join(', ')})`;
             } else if (itemToStore.selectedRoom) {
                 labelSuffix = ` (${itemToStore.selectedRoom.name}${itemToStore.selectedRoom.chosenFloor ? ' - ' + itemToStore.selectedRoom.chosenFloor : ''})`;
@@ -4257,6 +4502,7 @@
                         sub: "Scenic Tea Valley Intercity Rail Transit from Kamalapur",
                         price: 750,
                         img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80",
+                        hasTrainSeats: true,
                         details: {
                             type: "Intercity Rail Express",
                             schedule: "Departure: 08:30 PM (Kamalapur) ➔ Arrival: 01:15 AM (Sreemangal)",
@@ -4328,6 +4574,27 @@
                     }
                 ];
             } else if (dest === 'jaflong') {
+                inventory.train = [
+                    {
+                        id: 1,
+                        name: "Parabat Express Intercity Rail (Dhaka ➔ Sylhet)",
+                        sub: "Air-Conditioned Snigdha Chair Coach to Sylhet Junction",
+                        price: 750,
+                        img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80",
+                        hasTrainSeats: true,
+                        details: {
+                            type: "Intercity Rail Express",
+                            schedule: "Departure: 06:20 AM (Kamalapur) ➔ Arrival: 12:45 PM (Sylhet)",
+                            duration: "6 Hours 25 Mins",
+                            routeStops: [
+                                { station: "Dhaka Kamalapur", time: "06:20 AM", desc: "Boarding" },
+                                { station: "Sylhet Railway Station", time: "12:45 PM", desc: "Arrival" }
+                            ],
+                            amenities: ["AC Snigdha Chair", "Onboard Canteen", "Clean Washrooms"],
+                            policies: "Bangladesh Railway policies apply."
+                        }
+                    }
+                ];
                 inventory.hotel = [
                     {
                         id: 1,
@@ -4380,7 +4647,9 @@
                     const valEl = document.getElementById(`val-${slotKey}`);
                     
                     let labelSuffix = '';
-                    if (item.selectedSeats && item.selectedSeats.length > 0) {
+                    if (item.bogie && item.selectedSeats && item.selectedSeats.length > 0) {
+                        labelSuffix = ` (${item.bogie}, Seats: ${item.selectedSeats.join(', ')})`;
+                    } else if (item.selectedSeats && item.selectedSeats.length > 0) {
                         labelSuffix = ` (Seats: ${item.selectedSeats.join(', ')})`;
                     } else if (item.selectedRoom) {
                         labelSuffix = ` (${item.selectedRoom.name}${item.selectedRoom.chosenFloor ? ' - ' + item.selectedRoom.chosenFloor : ''})`;
