@@ -3,856 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In — TravelUp Global</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <!-- Google Fonts: Plus Jakarta Sans & Handwritten Caveat -->
+    <title>Sign In — TravelUp Global</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --primary-light: #eff6ff;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --bg-card: #ffffff;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            color: var(--text-dark);
-            background-color: #ffffff;
+        .auth-wrapper {
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* 1. Main Fullscreen Split Container */
-        .auth-split-wrapper {
-            display: flex;
-            min-height: 100vh;
-            width: 100vw;
-            background-color: #ffffff;
-            background-image: url('images/auth-bg.jpg');
-            background-position: left center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: relative;
-        }
-
-        /* 2. Left Hero Column */
-        .auth-hero-col {
-            flex: 1;
-            max-width: 52%;
-            min-height: 100vh;
-            padding: 44px 56px 40px 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Top Brand Logo */
-        .brand-logo-wrap {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            width: fit-content;
-        }
-
-        .brand-logo-icon {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
-            flex-shrink: 0;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f8fafc 100%);
         }
-
-        .brand-logo-icon svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-            transform: rotate(-10deg);
-        }
-
-        .brand-title-text {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -0.4px;
-            line-height: 1.1;
-        }
-
-        .brand-subtitle-text {
-            font-size: 0.64rem;
-            font-weight: 800;
-            color: #64748b;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-
-        /* Left Hero Content */
-        .hero-main-content {
+        .auth-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            width: 100%;
             max-width: 440px;
-            margin: auto 0;
-            padding: 20px 0;
-        }
-
-        .hero-title {
-            font-size: 2.75rem;
-            font-weight: 800;
-            line-height: 1.12;
-            color: #0f172a;
-            margin-bottom: 14px;
-            letter-spacing: -0.8px;
-        }
-
-        .hero-title .text-blue {
-            color: #2563eb;
-        }
-
-        .hero-desc {
-            font-size: 0.96rem;
-            color: #475569;
-            line-height: 1.55;
-            margin-bottom: 30px;
-        }
-
-        /* 4 Features List with Circular Blue Badges */
-        .hero-features-list {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .hero-feature-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .hero-feature-icon-circle {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(37, 99, 235, 0.88);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
-            flex-shrink: 0;
-        }
-
-        .hero-feature-icon-circle svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .hero-feature-title {
-            font-size: 0.94rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 2px;
-        }
-
-        .hero-feature-sub {
-            font-size: 0.8rem;
-            color: #64748b;
-            line-height: 1.35;
-        }
-
-        /* Left Bottom Handwritten Accent */
-        .hero-bottom-doodle {
-            font-family: 'Caveat', cursive;
-            color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-            font-size: 2.1rem;
-            font-weight: 700;
-            line-height: 1;
-            transform: rotate(-7deg);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            pointer-events: none;
-        }
-
-        .hero-bottom-doodle svg {
-            width: 28px;
-            height: 28px;
-            fill: #ffffff;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        /* 3. Right Form Column */
-        .auth-form-col {
-            flex: 1;
-            max-width: 48%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 36px 64px 32px 50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Top Right Navigation Switcher */
-        .top-nav-switch-row {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.86rem;
-            color: #64748b;
-        }
-
-        .btn-top-switch {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 18px;
-            border-radius: 9999px;
-            border: 1.5px solid #2563eb;
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            background: #ffffff;
-            transition: all 0.2s ease;
-        }
-
-        .btn-top-switch:hover {
-            background: #2563eb;
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-        }
-
-        /* Form Card Centered */
-        .auth-form-card {
-            max-width: 440px;
-            width: 100%;
-            margin: auto 0;
-            padding: 10px 0;
-        }
-
-        .form-header-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: #2563eb;
-            margin-bottom: 6px;
-        }
-
-        .form-main-heading {
-            font-size: 1.85rem;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -0.4px;
-            margin-bottom: 6px;
-        }
-
-        .form-main-subtext {
-            font-size: 0.88rem;
-            color: #64748b;
-            line-height: 1.5;
-            margin-bottom: 22px;
-        }
-
-        /* Role Segment Tabs (Traveler vs Staff & Admin) */
-        .role-segment-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 22px;
-        }
-
-        .role-segment-tab {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 11px 14px;
-            border-radius: 12px;
-            border: 1.5px solid #e2e8f0;
-            background: #ffffff;
-            color: #475569;
-            font-size: 0.88rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            user-select: none;
-        }
-
-        .role-segment-tab:hover {
-            border-color: #cbd5e1;
-            background: #f8fafc;
-        }
-
-        .role-segment-tab.active {
-            border-color: #2563eb;
-            background: #eff6ff;
-            color: #1d4ed8;
-            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.12);
-        }
-
-        .role-tab-icon {
-            font-size: 1.05rem;
-        }
-
-        /* Quick Demo Autofill Pill */
-        .demo-quick-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            padding: 8px 12px;
-            border-radius: 10px;
-            margin-bottom: 18px;
-            font-size: 0.78rem;
-            color: #475569;
-        }
-
-        .demo-quick-btn {
-            background: #2563eb;
-            color: #ffffff;
-            border: none;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.74rem;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-
-        .demo-quick-btn:hover {
-            background: #1d4ed8;
-        }
-
-        /* Form Fields */
-        .form-group-unit {
-            margin-bottom: 16px;
-            position: relative;
-        }
-
-        .form-label-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-        }
-
-        .form-label-text {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #334155;
-        }
-
-        .form-label-text span.req {
-            color: #e11d48;
-        }
-
-        .forgot-pw-link {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        .forgot-pw-link:hover {
-            text-decoration: underline;
-        }
-
-        .input-box-wrap {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-left-icon {
-            position: absolute;
-            left: 14px;
-            color: #94a3b8;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .input-left-icon svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-
-        .auth-text-input {
-            width: 100%;
-            height: 48px;
-            padding: 0 42px 0 42px;
-            border-radius: 12px;
-            border: 1.5px solid #e2e8f0;
-            background: #ffffff;
-            font-family: inherit;
-            font-size: 0.9rem;
-            color: #0f172a;
-            transition: all 0.2s ease;
-        }
-
-        .auth-text-input:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3.5px rgba(37, 99, 235, 0.15);
-        }
-
-        .input-toggle-pw {
-            position: absolute;
-            right: 12px;
-            background: none;
-            border: none;
-            color: #94a3b8;
-            cursor: pointer;
-            padding: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
-        }
-
-        .input-toggle-pw:hover {
-            color: #475569;
-        }
-
-        .input-toggle-pw svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-
-        /* Checkbox & Options */
-        .form-options-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .custom-checkbox-wrap {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            color: #475569;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .custom-checkbox-wrap input[type="checkbox"] {
-            width: 17px;
-            height: 17px;
-            accent-color: #2563eb;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Primary Submit Button */
-        .btn-auth-submit {
-            width: 100%;
-            height: 48px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            border: none;
-            color: #ffffff;
-            font-family: inherit;
-            font-size: 0.98rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.32);
-            transition: all 0.2s ease;
-        }
-
-        .btn-auth-submit:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
-            transform: translateY(-1px);
-        }
-
-        .btn-auth-submit:active {
-            transform: translateY(0);
-        }
-
-        .btn-auth-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Divider */
-        .auth-divider-wrap {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin: 20px 0;
-        }
-
-        .auth-divider-line {
-            flex: 1;
-            height: 1px;
-            background: #e2e8f0;
-        }
-
-        .auth-divider-text {
-            font-size: 0.76rem;
-            font-weight: 700;
-            color: #94a3b8;
-            letter-spacing: 1px;
-        }
-
-        /* Social Login Buttons */
-        .social-buttons-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .btn-social-auth {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            height: 44px;
-            padding: 0 14px;
-            border-radius: 12px;
-            border: 1.5px solid #e2e8f0;
-            background: #ffffff;
-            font-family: inherit;
-            font-size: 0.84rem;
-            font-weight: 600;
-            color: #1e293b;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-social-auth:hover {
-            background: #f8fafc;
-            border-color: #cbd5e1;
-        }
-
-        .btn-social-auth svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Footer Security Notice */
-        .auth-security-notice {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 0.76rem;
-            color: #64748b;
-            line-height: 1.4;
-        }
-
-        .auth-security-notice svg {
-            width: 20px;
-            height: 20px;
-            fill: #2563eb;
-            flex-shrink: 0;
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 1024px) {
-            .auth-split-wrapper {
-                flex-direction: column;
-                background-position: center top;
-            }
-
-            .auth-hero-col {
-                max-width: 100%;
-                min-height: auto;
-                padding: 30px 24px;
-                background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.98) 100%);
-            }
-
-            .auth-form-col {
-                max-width: 100%;
-                min-height: auto;
-                padding: 30px 24px 40px 24px;
-                background: #ffffff;
-            }
-
-            .auth-form-card {
-                max-width: 100%;
-                margin: 0 auto;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .auth-hero-col {
-                padding: 24px 18px 16px 18px;
-            }
-            .hero-features-list {
-                display: none;
-            }
-            .hero-desc {
-                font-size: 0.85rem;
-                margin-bottom: 12px;
-            }
-            .hero-title {
-                font-size: 1.55rem;
-                margin-bottom: 6px;
-            }
-            .auth-form-col {
-                padding: 20px 18px 40px 18px;
-            }
-            .social-buttons-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            input[type="text"],
-            input[type="email"],
-            input[type="password"] {
-                font-size: 16px !important;
-            }
+            box-shadow: var(--shadow-xl);
         }
     </style>
 </head>
 <body>
 
-    <div class="auth-split-wrapper">
-        <!-- ======================================================= -->
-        <!-- 1. LEFT HERO COLUMN (Branding, Santorini View & Perks) -->
-        <!-- ======================================================= -->
-        <div class="auth-hero-col">
-            <!-- Brand Logo -->
-            <a href="index.html" class="brand-logo-wrap" title="TravelUp Global Home">
-                <div class="brand-logo-icon">
-                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                </div>
-                <div>
-                    <div class="brand-title-text">TravelUp Global</div>
-                    <div class="brand-subtitle-text">EXPLORE • PLAN • TRAVEL</div>
-                </div>
-            </a>
-
-            <!-- Main Title & Features -->
-            <div class="hero-main-content">
-                <h1 class="hero-title">
-                    Welcome Back<br>
-                    to <span class="text-blue">TravelUp Global</span>
-                </h1>
-                <p class="hero-desc">
-                    Your next adventure is just a login away. Access your trips, bookings, and more.
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <a href="index.html" class="brand-logo" style="justify-content: center; margin-bottom: 0.5rem;">
+                    TravelUp<span>Global</span>
+                </a>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">
+                    Sign in to your dynamic travel management portal
                 </p>
-
-                <!-- 4 Features List with Circular Blue Icons -->
-                <div class="hero-features-list">
-                    <div class="hero-feature-item">
-                        <div class="hero-feature-icon-circle">
-                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                        </div>
-                        <div>
-                            <div class="hero-feature-title">Explore Destinations</div>
-                            <div class="hero-feature-sub">Discover amazing places around the world.</div>
-                        </div>
-                    </div>
-
-                    <div class="hero-feature-item">
-                        <div class="hero-feature-icon-circle">
-                            <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
-                        </div>
-                        <div>
-                            <div class="hero-feature-title">Manage Bookings</div>
-                            <div class="hero-feature-sub">Hotels, flights, activities and more — all in one place.</div>
-                        </div>
-                    </div>
-
-                    <div class="hero-feature-item">
-                        <div class="hero-feature-icon-circle">
-                            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                        </div>
-                        <div>
-                            <div class="hero-feature-title">Your Travel Dashboard</div>
-                            <div class="hero-feature-sub">View your trips, wishlist and travel history.</div>
-                        </div>
-                    </div>
-
-                    <div class="hero-feature-item">
-                        <div class="hero-feature-icon-circle">
-                            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-                        </div>
-                        <div>
-                            <div class="hero-feature-title">Safe &amp; Secure</div>
-                            <div class="hero-feature-sub">Your data and privacy are always protected.</div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- Bottom Left Handwritten Accent & Airplane Doodle -->
-            <div>
-                <div class="hero-bottom-doodle">
-                    Travel More, Worry Less
-                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                </div>
-            </div>
-        </div>
+            <!-- Error message container -->
+            <div id="auth-error" style="display: none; background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 0.75rem; border-radius: var(--radius-md); font-size: 0.85rem; margin-bottom: 1.25rem;"></div>
 
-        <!-- ======================================================= -->
-        <!-- 2. RIGHT FORM COLUMN (Pixel-Perfect Sign In Card)       -->
-        <!-- ======================================================= -->
-        <div class="auth-form-col">
-            <!-- Top Right Link -->
-            <div class="top-nav-switch-row">
-                <span>Don't have an account?</span>
-                <a href="signup.html" class="btn-top-switch">Sign Up ➔</a>
-            </div>
-
-            <!-- Main Form Card -->
-            <div class="auth-form-card">
-                <div class="form-header-badge">
-                    <span>Welcome Back</span> 👋
-                </div>
-                <h2 class="form-main-heading">Log In to TravelUp Global</h2>
-                <p class="form-main-subtext">
-                    Continue your journey and access your saved trips, bookings and more.
-                </p>
-
-                <!-- Role Segment Switcher (Traveler vs Staff & Admin) -->
-                <div class="role-segment-grid">
-                    <button type="button" class="role-segment-tab active" id="tabTraveler" onclick="login.setPortal('traveler')">
-                        <span class="role-tab-icon">🎒</span>
-                        <span>Traveler</span>
-                    </button>
-                    <button type="button" class="role-segment-tab" id="tabStaff" onclick="login.setPortal('staff')">
-                        <span class="role-tab-icon">🛡️</span>
-                        <span>Staff &amp; Admin Portal</span>
-                    </button>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="input-group" style="margin-bottom: 1.25rem;">
+                    <label>Email Address</label>
+                    <input type="email" id="login-email" required placeholder="admin@travelupglobal.com or your email" value="admin@travelupglobal.com">
                 </div>
 
-                <!-- Quick 1-Click Demo Helper -->
-                <div class="demo-quick-bar">
-                    <span id="demoHelpLabel">💡 Testing Demo? Fill Sarah Ahmed (Traveler)</span>
-                    <button type="button" class="demo-quick-btn" onclick="login.autofillCurrent()">Fill Demo</button>
-                </div>
-
-                <!-- Main Login Form -->
-                <form id="loginForm" onsubmit="login.handleSubmit(event)">
-                    <!-- Email Input -->
-                    <div class="form-group-unit">
-                        <div class="form-label-row">
-                            <label class="form-label-text" for="loginEmail">Email Address <span class="req">*</span></label>
-                        </div>
-                        <div class="input-box-wrap">
-                            <span class="input-left-icon">
-                                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                            </span>
-                            <input type="email" id="loginEmail" class="auth-text-input" placeholder="e.g. tanvir@travelupglobal.com" required autocomplete="email">
-                        </div>
+                <div class="input-group" style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label>Password</label>
+                        <small style="color: var(--text-muted); font-size: 0.75rem;">Default: admin123 / user123</small>
                     </div>
-
-                    <!-- Password Input -->
-                    <div class="form-group-unit">
-                        <div class="form-label-row">
-                            <label class="form-label-text" for="loginPassword">Password <span class="req">*</span></label>
-                            <a href="javascript:void(0)" onclick="alert('Password Reset:\nA secure password reset link has been dispatched to your email address.')" class="forgot-pw-link">Forgot Password?</a>
-                        </div>
-                        <div class="input-box-wrap">
-                            <span class="input-left-icon">
-                                <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                            </span>
-                            <input type="password" id="loginPassword" class="auth-text-input" placeholder="Enter your password" required autocomplete="current-password">
-                            <button type="button" class="input-toggle-pw" onclick="login.togglePassword()" title="Toggle password visibility">
-                                <svg viewBox="0 0 24 24" id="eyeIcon"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Remember Me Option -->
-                    <div class="form-options-row">
-                        <label class="custom-checkbox-wrap">
-                            <input type="checkbox" id="rememberMe" checked>
-                            <span>Remember me</span>
-                        </label>
-                    </div>
-
-                    <!-- Primary Submit Button -->
-                    <button type="submit" class="btn-auth-submit" id="btnLoginSubmit">
-                        <span>Log In</span> ➔
-                    </button>
-                </form>
-
-                <!-- Divider -->
-                <div class="auth-divider-wrap">
-                    <div class="auth-divider-line"></div>
-                    <span class="auth-divider-text">OR</span>
-                    <div class="auth-divider-line"></div>
+                    <input type="password" id="login-password" required placeholder="••••••••" value="admin123">
                 </div>
 
-                <!-- Social Sign In Grid -->
-                <div class="social-buttons-grid">
-                    <button type="button" class="btn-social-auth" onclick="alert('Redirecting to Google Secure Authentication...')">
-                        <svg viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                        </svg>
-                        <span>Continue with Google</span>
-                    </button>
-                    <button type="button" class="btn-social-auth" onclick="alert('Redirecting to Apple ID Authentication...')">
-                        <svg viewBox="0 0 24 24" fill="#000000">
-                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 5.06c.64-.78 1.08-1.86.96-2.95-1 .04-2.14.65-2.82 1.44-.59.68-1.12 1.77-.98 2.83 1.11.08 2.22-.57 2.84-1.32z"/>
-                        </svg>
-                        <span>Continue with Apple</span>
-                    </button>
-                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-size: 1rem;" id="login-btn">
+                    Sign In to Portal
+                </button>
+            </form>
 
-                <!-- Footer Security Notice -->
-                <div class="auth-security-notice">
-                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-                    <div>
-                        <strong style="color: #0f172a; display: block;">Your information is safe with us</strong>
-                        We use industry-standard security measures to protect your data.
-                    </div>
-                </div>
+            <div style="margin-top: 1.5rem; text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+                Don't have an account? <a href="signup.html" style="font-weight: 700;">Create Account</a>
             </div>
 
-            <!-- Empty bottom spacer for balanced flex layout -->
-            <div></div>
+            <!-- Quick Demo Credentials Box -->
+            <div style="margin-top: 2rem; background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; font-size: 0.75rem; color: var(--text-muted);">
+                <strong>⚡ Quick Academic Demo Accounts:</strong><br>
+                • <strong>Admin / Staff:</strong> admin@travelupglobal.com | admin123<br>
+                • <strong>Customer:</strong> user@travelupglobal.com | user123
+            </div>
         </div>
     </div>
 
@@ -860,90 +80,38 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script>
-        const login = {
-            portalMode: 'traveler',
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            const btn = document.getElementById('login-btn');
+            const errBox = document.getElementById('auth-error');
 
-            setPortal(mode) {
-                this.portalMode = mode;
-                const tabT = document.getElementById('tabTraveler');
-                const tabS = document.getElementById('tabStaff');
-                const label = document.getElementById('demoHelpLabel');
+            errBox.style.display = 'none';
+            btn.disabled = true;
+            btn.textContent = 'Verifying Credentials...';
 
-                if (mode === 'staff') {
-                    tabS.classList.add('active');
-                    tabT.classList.remove('active');
-                    label.innerText = '🛡️ Staff Portal: Fill Admin (Tanvir Parvaj)';
-                } else {
-                    tabT.classList.add('active');
-                    tabS.classList.remove('active');
-                    label.innerText = '🎒 Traveler Portal: Fill Sarah Ahmed';
-                }
-            },
+            try {
+                const res = await API.request('/api/auth/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password })
+                });
 
-            autofillCurrent() {
-                const emailInput = document.getElementById('loginEmail');
-                const pwInput = document.getElementById('loginPassword');
-
-                if (this.portalMode === 'staff') {
-                    emailInput.value = 'admin@travelupglobal.com';
-                    pwInput.value = 'admin123';
-                } else {
-                    emailInput.value = 'user@travelupglobal.com';
-                    pwInput.value = 'user123';
-                }
-            },
-
-            togglePassword() {
-                const el = document.getElementById('loginPassword');
-                const isPw = el.type === 'password';
-                el.type = isPw ? 'text' : 'password';
-            },
-
-            async handleSubmit(e) {
-                e.preventDefault();
-                const btn = document.getElementById('btnLoginSubmit');
-                const origHtml = btn.innerHTML;
-                btn.innerHTML = '<span>Authenticating...</span>';
-                btn.disabled = true;
-
-                const email = document.getElementById('loginEmail').value.trim();
-                const password = document.getElementById('loginPassword').value;
-
-                try {
-                    const res = await api.login({ email, password });
-                    if (res && res.success) {
-                        auth.saveSession(res.token, res.user);
-                        const isStaff = auth.isStaff();
-                        const roleTitle = auth.getRoleLabel(res.user.role);
-
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const redirectParam = urlParams.get('redirect');
-
-                        if (isStaff) {
-                            window.location.href = (redirectParam && !redirectParam.includes('dashboard')) ? redirectParam : 'admin.html';
-                        } else {
-                            window.location.href = (redirectParam && !redirectParam.includes('admin')) ? redirectParam : 'dashboard.html';
-                        }
+                if (res.success) {
+                    Auth.setUser(res.user, res.token);
+                    if (res.user.role === 'admin' || res.user.role === 'staff') {
+                        window.location.href = 'admin.html';
                     } else {
-                        alert(`❌ Login Error:\n${(res && res.message) || 'Invalid email or password.'}`);
-                        btn.innerHTML = origHtml;
-                        btn.disabled = false;
+                        window.location.href = 'dashboard.html';
                     }
-                } catch (err) {
-                    alert('❌ Connection Error: Could not reach authentication server.');
-                    btn.innerHTML = origHtml;
-                    btn.disabled = false;
                 }
+            } catch (err) {
+                errBox.textContent = err.message || 'Invalid email or password.';
+                errBox.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Sign In to Portal';
             }
-        };
-
-        // If redirect has required=staff, activate staff tab by default
-        window.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            if (params.get('required') === 'staff') {
-                login.setPortal('staff');
-            }
-        });
+        }
     </script>
 </body>
 </html>

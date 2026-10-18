@@ -3,1172 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelUp Global — Discover the World Your Way</title>
-    <!-- Favicon Icons -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <!-- Master Pixel-Perfect Stylesheet -->
+    <title>TravelUp Global — Dynamic Tourism & Algorithmic Travel Engine</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Leaflet.js for Interactive Maps -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- 1. TOP NAVBAR (Sticky & Pixel-Perfect) -->
-    <header class="top-navbar">
-        <div class="container navbar-inner">
-            <!-- Brand Logo -->
-            <a href="index.html" class="nav-brand-logo">
-                <div class="brand-icon-box">✈️</div>
-                <div class="brand-title-wrap">
-                    <h1>TravelUp Global</h1>
-                    <p>Explore • Plan • Travel</p>
-                </div>
+    <!-- Scenario 9: Meteorological Storm Warning Banner -->
+    <div id="top-alert-banner" class="alert-banner" style="display: none;">
+        <span class="badge">Weather Alert</span>
+        <span id="alert-message">Maritime Cautionary Signal No. 3 in Bay of Bengal. Automated digital refund engine active for affected activities.</span>
+        <a href="admin.html" style="color: white; text-decoration: underline; font-size: 0.75rem; margin-left: 0.5rem;">View Live Telematics</a>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                TravelUp<span>Global</span>
+                <span class="brand-badge">DIU CSE Lab</span>
             </a>
-
-            <!-- Submenu-Organized Navigation Menu -->
-            <ul class="nav-links-menu">
-                <li class="nav-link-item"><a href="index.html" class="active" data-en="Home" data-bn="হোম">Home</a></li>
-                <li class="nav-link-item"><a href="destinations.html" data-en="Destinations" data-bn="ডেস্টিনেশন">Destinations</a></li>
-                
-                <!-- Submenu 1: Plan & Build ▾ -->
-                <li class="nav-link-item has-dropdown">
-                    <a href="javascript:void(0)" class="dropdown-trigger">
-                        <span data-en="Plan & Build" data-bn="প্ল্যান ও বিল্ড">Plan & Build</span> <span class="nav-arrow-down">▾</span>
-                    </a>
-                    <div class="nav-dropdown-menu">
-                        <a href="trip-builder.html" class="dropdown-link-item">
-                            <div class="drop-icon">🛠️</div>
-                            <div>
-                                <div class="drop-title" data-en="Custom Trip Builder" data-bn="কাস্টম ট্রিপ বিল্ডার">Custom Trip Builder</div>
-                                <div class="drop-desc" data-en="Dynamic pricing & live builder" data-bn="লাইভ দাম ও ট্রিপ কাস্টমাইজার">Dynamic pricing & live builder</div>
-                            </div>
-                        </a>
-                        <a href="itinerary.html" class="dropdown-link-item">
-                            <div class="drop-icon">🗺️</div>
-                            <div>
-                                <div class="drop-title" data-en="Day-wise Itinerary" data-bn="দিনভিত্তিক ভ্রমণসূচি">Day-wise Itinerary</div>
-                                <div class="drop-desc" data-en="Interactive day plans & routes" data-bn="ইন্টারেক্টিভ সূচি ও ম্যাপ">Interactive day plans & routes</div>
-                            </div>
-                        </a>
-                        <a href="ai-planner.html" class="dropdown-link-item">
-                            <div class="drop-icon">🤖</div>
-                            <div>
-                                <div class="drop-title" data-en="AI Trip Planner" data-bn="এআই ট্রিপ প্ল্যানার">AI Trip Planner</div>
-                                <div class="drop-desc" data-en="Budget-protected AI optimizer" data-bn="বাজেট প্রটেক্টেড এআই অপটিমাইজার">Budget-protected AI optimizer</div>
-                            </div>
-                        </a>
-                        <a href="budget-planner.html" class="dropdown-link-item">
-                            <div class="drop-icon">📊</div>
-                            <div>
-                                <div class="drop-title" data-en="Budget Planner" data-bn="বাজেট প্ল্যানার">Budget Planner</div>
-                                <div class="drop-desc" data-en="Accurate category cost forecast" data-bn="সঠিক ক্যাটাগরি খরচ ফোরকাস্ট">Accurate category cost forecast</div>
-                            </div>
-                        </a>
-                        <a href="group-travel.html" class="dropdown-link-item">
-                            <div class="drop-icon">👥</div>
-                            <div>
-                                <div class="drop-title" data-en="Group Travel" data-bn="গ্রুপ ট্রাভেল">Group Travel</div>
-                                <div class="drop-desc" data-en="Save up to 20% on group trips" data-bn="গ্রুপে ঘুরুন, ২০% পর্যন্ত সাশ্রয়">Save up to 20% on group trips</div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-
-                <li class="nav-link-item"><a href="packages.html" data-en="Packages" data-bn="প্যাকেজ">Packages</a></li>
-
-                <!-- Submenu 2: Community & Reviews ▾ -->
-                <li class="nav-link-item has-dropdown">
-                    <a href="javascript:void(0)" class="dropdown-trigger">
-                        <span data-en="Community" data-bn="কমিউনিটি">Community</span> <span class="nav-arrow-down">▾</span>
-                    </a>
-                    <div class="nav-dropdown-menu">
-                        <a href="reviews.html" class="dropdown-link-item">
-                            <div class="drop-icon">⭐</div>
-                            <div>
-                                <div class="drop-title" data-en="Traveler Reviews" data-bn="ভ্রমণকারীদের রিভিউ">Traveler Reviews</div>
-                                <div class="drop-desc" data-en="Verified feedback & ratings" data-bn="যাচাইকৃত মতামত ও অভিজ্ঞতা">Verified feedback & ratings</div>
-                            </div>
-                        </a>
-                        <a href="community.html" class="dropdown-link-item">
-                            <div class="drop-icon">💬</div>
-                            <div>
-                                <div class="drop-title" data-en="Travel Stories" data-bn="ভ্রমণ গল্প">Travel Stories</div>
-                                <div class="drop-desc" data-en="Community stories & photo feed" data-bn="কমিউনিটি পোস্ট ও ছবি">Community stories & photo feed</div>
-                            </div>
-                        </a>
-                        <a href="quiz.html" class="dropdown-link-item">
-                            <div class="drop-icon">🎮</div>
-                            <div>
-                                <div class="drop-title" data-en="Travel Personality Quiz" data-bn="ট্রাভেল কুইজ">Travel Personality Quiz</div>
-                                <div class="drop-desc" data-en="Find your ideal destination match" data-bn="পছন্দ অনুযায়ী ডেস্টিনেশন মিলান">Find your ideal destination match</div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="trip-builder.html">Trip Builder (12 Scenarios)</a></li>
+                <li><a href="map.html">GIS Route Map</a></li>
+                <li><a href="booking.html">Fintech Split-Bill</a></li>
+                <li><a href="quotations.html">B2B Quotations</a></li>
+                <li><a href="dashboard.html">My Portal</a></li>
             </ul>
+            <div class="nav-actions" id="nav-auth-slot">
+                <!-- Injected by auth.js -->
+                <a href="login.html" class="btn btn-outline btn-sm">Log In</a>
+                <a href="signup.html" class="btn btn-primary btn-sm">Get Started</a>
+            </div>
+        </div>
+    </nav>
 
-            <!-- Right Actions Cluster (Clean & Dynamic Authentication) -->
-            <div class="nav-right-cluster">
-                <!-- Language Selector -->
-                <button class="lang-toggle-btn" onclick="app.toggleLanguage()">
-                    🌐 <span id="currentLangLabel">EN</span> ▾
-                </button>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-pill">
+                🚀 Engineering Verification: 12 Real-World Scenarios Implemented
+            </div>
+            <h1 class="hero-title">
+                Next-Generation <span>Dynamic Tourism</span> & Algorithmic Travel Engine
+            </h1>
+            <p class="hero-subtitle">
+                Solving multi-leg routing, decoupled self-drive transit, group fintech split-payments, and real-time accessibility constraints beyond the limits of static social media.
+            </p>
 
-                <!-- Currency Selector -->
-                <button class="lang-toggle-btn" onclick="app.toggleCurrency()" title="Toggle Currency (USD / BDT)">
-                    💵 <span id="currentCurrLabel">USD</span>
-                </button>
-
-                <!-- Wishlist Heart -->
-                <a href="wishlist.html" class="icon-badge-btn" title="Wishlist">
-                    ♡ <span class="red-notify-dot"></span>
-                </a>
-
-                <!-- Notification Bell with Interactive Dropdown -->
-                <div class="user-profile-header-wrap">
-                    <button class="icon-badge-btn" onclick="app.toggleNotifications(event)" title="Notifications">
-                        🔔 <span class="red-notify-dot"></span>
+            <!-- Global Search & Scenario 6 Accessibility Filter -->
+            <div class="search-box-card">
+                <div class="search-field">
+                    <label>Where To?</label>
+                    <input type="text" id="search-input" placeholder="e.g. Sajek, Cox's Bazar, Tetulia...">
+                </div>
+                <div class="search-field">
+                    <label>Travel Category</label>
+                    <select id="category-select">
+                        <option value="all">All Categories</option>
+                        <option value="Hill Tracts">Hill Tracts / Mountains</option>
+                        <option value="Beach">Sea Beach / Island</option>
+                        <option value="Tea Garden">Eco-Tourism / Tea Gardens</option>
+                        <option value="Heritage">Historical & Heritage</option>
+                    </select>
+                </div>
+                <div class="search-field" style="min-width: 150px; display: flex; align-items: flex-start; justify-content: center;">
+                    <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; text-transform: none;">
+                        <input type="checkbox" id="accessible-toggle" style="width: 16px; height: 16px; accent-color: var(--primary);">
+                        <span style="font-weight: 700; color: var(--secondary); font-size: 0.8rem;">♿ Accessible Only</span>
+                    </label>
+                    <span style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">(Scenario 6: Ground/Lift)</span>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-lg" onclick="searchDestinations()">
+                        Explore Now
                     </button>
-                    <div class="user-dropdown-card" id="notificationsDropdown" style="width: 320px; right: 0;">
-                        <div style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                            <strong style="font-size: 0.9rem; color: #0f172a;">Notifications</strong>
-                            <span style="font-size: 0.72rem; background: #eff6ff; color: #2563eb; padding: 2px 8px; border-radius: 10px; font-weight: 700;">3 New</span>
-                        </div>
-                        <div style="max-height: 280px; overflow-y: auto;">
-                            <a href="destinations.html" style="display: block; padding: 12px 16px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
-                                <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">🎉 15% Seasonal Discount</div>
-                                <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Flash deal active on Bali & Santorini packages.</div>
-                                <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">2 hours ago</div>
-                            </a>
-                            <a href="trip-builder.html" style="display: block; padding: 12px 16px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
-                                <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">🛠️ Custom Trip Builder Live</div>
-                                <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Build your day-by-day travel plan with real-time pricing.</div>
-                                <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">Yesterday</div>
-                            </a>
-                            <a href="group-travel.html" style="display: block; padding: 12px 16px; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
-                                <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">👥 Group Travel Savings</div>
-                                <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Invite 4+ travelers to save up to 20% on reservations.</div>
-                                <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">2 days ago</div>
-                            </a>
-                        </div>
-                        <div style="padding: 10px; text-align: center; background: #f8fafc; border-top: 1px solid #e2e8f0; border-radius: 0 0 16px 16px;">
-                            <a href="javascript:void(0)" onclick="app.toggleNotifications(event)" style="font-size: 0.75rem; color: #2563eb; font-weight: 700; text-decoration: none;">Mark all as read</a>
-                        </div>
-                    </div>
                 </div>
+            </div>
 
-                <!-- Common User Account Button (Unified for Login, Signup & Profile) -->
-                <div class="user-profile-header-wrap">
-                    <div class="profile-header-dropdown-trigger" onclick="auth.toggleProfileDropdown(event)" title="Account & Profile">
-                        <div class="nav-user-avatar-circle">
-                            <span style="font-size: 1.15rem;">👤</span>
-                        </div>
-                    </div>
-
-                    <!-- Unified Account Dropdown Card -->
-                    <div class="user-dropdown-card" id="userDropdownMenu">
-                        <!-- Dynamically populated by auth.renderNav() -->
-                    </div>
-                </div>
+            <!-- Quick Action Shortcuts -->
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="trip-builder.html" class="btn btn-accent">
+                    🛠️ Open Algorithmic Trip Builder
+                </a>
+                <a href="quotations.html" class="btn btn-outline" style="background: white;">
+                    📑 Generate B2B Corporate Invoice
+                </a>
             </div>
         </div>
     </header>
 
-    <main>
-        <!-- 2. HERO SECTION (100% Full Width Background Edge-to-Edge) -->
-        <section class="hero-fullwidth-section">
-            <div class="hero-fullwidth-overlay"></div>
-
-            <div class="container hero-inner-container">
-                <!-- Handwritten Accent Sticker -->
-                <div class="handwritten-hero-quote">Better Trips, Bigger Stories</div>
-
-                <!-- Floating Santorini Card on Top Right -->
-                <div class="floating-santorini-topcard">
-                    <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=120&q=80" alt="Santorini">
-                    <div>
-                        <h5>Santorini, Greece</h5>
-                        <p>★ 4.8 (2.4k reviews)</p>
-                    </div>
-                    <span class="heart-icon-gray">♥</span>
-                </div>
-
-                <!-- Left Content Block -->
-                <div class="hero-left-content">
-                    <div class="badge-passion-capsule">
-                        🌍 <span data-en="Your Journey, Our Passion" data-bn="আপনার ভ্রমণ, আমাদের প্রেরণা">Your Journey, Our Passion</span>
-                    </div>
-                    <h1 class="hero-main-title">
-                        <span data-en="Discover the World" data-bn="বিশ্ব ঘুরে দেখুন">Discover the World</span><br>
-                        <span class="gradient-violet-blue" data-en="Your Way" data-bn="আপনার মনের মতো">Your Way</span>
-                    </h1>
-                    <p class="hero-lead-text" data-en="From breathtaking destinations to seamless bookings, TravelUp Global makes your travel dreams come true."
-                       data-bn="মনোরম ডেস্টিনেশন থেকে সহজ বুকিং—আপনার স্বপ্নের ভ্রমণকে বাস্তবে রূপ দিতে ট্রাভেলআপ গ্লোবাল।">
-                        From breathtaking destinations to seamless bookings, TravelUp Global makes your travel dreams come true.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. FLOATING SEARCH PILL WIDGET (Overlapping Hero Bottom) -->
-        <div class="search-widget-anchor">
-            <div class="container">
-                <form class="search-pill-card" id="heroSearchForm" onsubmit="event.preventDefault(); app.handleHeroSearch();">
-                    <div class="search-col-segment">
-                        <span class="segment-icon-style">📍</span>
-                        <div class="segment-text-inputs">
-                            <label data-en="Where do you want to go?" data-bn="কোথায় যেতে চান?">Where do you want to go?</label>
-                            <input type="text" id="heroDestinationInput" placeholder="e.g. Bali, Thailand, Japan">
-                        </div>
-                    </div>
-
-                    <div class="search-col-segment">
-                        <span class="segment-icon-style">📅</span>
-                        <div class="segment-text-inputs">
-                            <label data-en="Travel Date" data-bn="ভ্রমণের তারিখ">Travel Date</label>
-                            <input type="date" id="heroDateInput" value="2026-11-01">
-                        </div>
-                    </div>
-
-                    <div class="search-col-segment">
-                        <span class="segment-icon-style">👥</span>
-                        <div class="segment-text-inputs">
-                            <label data-en="Travelers" data-bn="ভ্রমণকারী সংখ্যা">Travelers</label>
-                            <select id="heroTravelersInput">
-                                <option value="1">1 Traveler</option>
-                                <option value="2" selected>2 Travelers</option>
-                                <option value="4">4 Travelers (Group)</option>
-                                <option value="6">6+ Travelers</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-search-blue-pill">
-                        🔍 <span data-en="Search" data-bn="অনুসন্ধান">Search</span> ➔
-                    </button>
-                </form>
-            </div>
+    <!-- Live Destinations Showcase Section -->
+    <main class="container" style="padding: 4rem 1.5rem;">
+        <div class="section-header">
+            <span class="section-badge">Hostinger Database Synchronized</span>
+            <h2 class="section-title">Explore Verified Global Destinations</h2>
+            <p style="color: var(--text-muted);">
+                Real-time inventory connected to live MySQL tables with instant pricing, hotel amenities, and dynamic route coordination.
+            </p>
         </div>
 
-        <!-- 3.5. TRUST & SECURITY PROOF STRIP -->
-        <section class="trust-proof-strip">
-            <div class="container trust-proof-inner">
-                <div class="trust-item">
-                    <div class="trust-icon-box" style="background:#eff6ff; color:#2563eb;">✈️</div>
-                    <div>
-                        <div class="trust-title" data-en="IATA Certified Agency" data-bn="আইএটিএ নিবন্ধিত ট্রাভেল এজেন্সি">IATA Certified Agency</div>
-                        <div class="trust-sub" data-en="Official Airline & Hub Partner" data-bn="অফিসিয়াল এয়ারলাইন পার্টনার">Official Airline & Hub Partner</div>
-                    </div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon-box" style="background:#f0fdf4; color:#16a34a;">🛡️</div>
-                    <div>
-                        <div class="trust-title" data-en="100% Protected Checkout" data-bn="১০০% সুরক্ষিত পেমেন্ট">100% Protected Checkout</div>
-                        <div class="trust-sub" data-en="Bank SSL, bKash & Stripe" data-bn="ব্যাংক-গ্রেড এসএসএল ও বিকাশ">Bank SSL, bKash & Stripe</div>
-                    </div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon-box" style="background:#fef3c7; color:#d97706;">⚡</div>
-                    <div>
-                        <div class="trust-title" data-en="Instant E-Tickets" data-bn="তাৎক্ষণিক ই-টিকিট ও ভাউচার">Instant E-Tickets</div>
-                        <div class="trust-sub" data-en="Real-Time Seat & Hotel Lock" data-bn="রিয়েল-টাইম সিট ও রুম কনফার্মেশন">Real-Time Seat & Hotel Lock</div>
-                    </div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon-box" style="background:#faf5ff; color:#7c3aed;">⭐</div>
-                    <div>
-                        <div class="trust-title" data-en="4.9 / 5 Rating" data-bn="৪.৯ / ৫ কাস্টমার রেটিং">4.9 / 5 Rating</div>
-                        <div class="trust-sub" data-en="12,450+ Verified Travelers" data-bn="১২,৪৫০+ সন্তুষ্ট ভ্রমণকারী">12,450+ Verified Travelers</div>
-                    </div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon-box" style="background:#fff7ed; color:#ea580c;">🎧</div>
-                    <div>
-                        <div class="trust-title" data-en="24/7 Travel Concierge" data-bn="২৪/৭ ট্রাভেল সাপোর্ট">24/7 Travel Concierge</div>
-                        <div class="trust-sub" data-en="Dedicated Expert Assistance" data-bn="বিশেষজ্ঞ ভ্রমণ সহযোগী">Dedicated Expert Assistance</div>
-                    </div>
-                </div>
+        <div id="destinations-grid" class="grid-3">
+            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">
+                ⏳ Connecting to Hostinger MySQL & Loading Inventory...
             </div>
-        </section>
-
-        <!-- 4. FEATURES STRIP (6 Equal White Shortcut Cards - Screen 1) -->
-        <section class="features-section-wrap">
-            <div class="container">
-                <div class="features-grid-six">
-                    <a href="trip-builder.html" class="feature-card-clean" style="text-decoration: none; color: inherit;">
-                        <div class="feature-bubble-icon" style="background:#eff6ff; color:#2563eb;">🛠️</div>
-                        <h4 data-en="Custom Trip Builder" data-bn="কাস্টম ট্রিপ বিল্ডার">Custom Trip Builder</h4>
-                        <p data-en="Build your trip with live calculated component prices" data-bn="লাইভ কম্পোনেন্ট দামে নিজের ট্রিপ তৈরি করুন">Build your trip with live calculated component prices</p>
-                    </a>
-
-                    <a href="ai-planner.html" class="feature-card-clean" style="text-decoration: none; color: inherit;">
-                        <div class="feature-bubble-icon" style="background:#f5f3ff; color:#7c3aed;">🤖</div>
-                        <h4 data-en="AI Trip Planner" data-bn="এআই ট্রিপ প্ল্যানার">AI Trip Planner</h4>
-                        <p data-en="Budget-protected AI itineraries with verified rates" data-bn="যাচাইকৃত দামে বাজেট প্রটেক্টেড এআই সূচি">Budget-protected AI itineraries with verified rates</p>
-                    </a>
-
-                    <a href="budget-planner.html" class="feature-card-clean" style="text-decoration: none; color: inherit;">
-                        <div class="feature-bubble-icon" style="background:#f0fdf4; color:#16a34a;">📊</div>
-                        <h4 data-en="Budget Planner" data-bn="বাজেট প্ল্যানার">Budget Planner</h4>
-                        <p data-en="Forecast exact flight, stay, and dining breakdowns" data-bn="ফ্লাইট, হোটেল ও খাবারের সঠিক খরচ হিসাব">Forecast exact flight, stay, and dining breakdowns</p>
-                    </a>
-
-                    <a href="group-travel.html" class="feature-card-clean" style="text-decoration: none; color: inherit;">
-                        <div class="feature-bubble-icon" style="background:#fff7ed; color:#ea580c;">👥</div>
-                        <h4 data-en="Group Travel" data-bn="গ্রুপ ট্রাভেল">Group Travel</h4>
-                        <p data-en="Travel together and unlock up to 20% volume discounts" data-bn="বন্ধুদের সাথে ঘুরে ২০% পর্যন্ত ছাড় পান">Travel together and unlock up to 20% volume discounts</p>
-                    </a>
-
-                    <a href="destinations.html" class="feature-card-clean" style="text-decoration: none; color: inherit;">
-                        <div class="feature-bubble-icon" style="background:#fdf2f8; color:#db2777;">🏝️</div>
-                        <h4 data-en="Explore Destinations" data-bn="ডেস্টিনেশন অন্বেষণ">Explore Destinations</h4>
-                        <p data-en="Filter 8 top global hubs by style & budget" data-bn="বাজেট ও ধরন অনুযায়ী সেরা ডেস্টিনেশন খুঁজুন">Filter 8 top global hubs by style & budget</p>
-                    </a>
-
-                    <div class="feature-card-clean" onclick="app.toggleLanguage()" style="cursor:pointer;">
-                        <div class="feature-bubble-icon" style="background:#ecfeff; color:#0891b2;">🌐</div>
-                        <h4 data-en="Multi-language" data-bn="বহুভাষিক সুবিধা">Multi-language</h4>
-                        <p style="color:#0284c7; font-weight:700;">বাংলা | English ➔</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. POPULAR DESTINATIONS (5 Vertical Cards) -->
-        <section class="section-standard-padding" id="destinations">
-            <div class="container">
-                <div class="section-header-row">
-                    <div>
-                        <span class="eyebrow-small-tag" data-en="POPULAR DESTINATIONS" data-bn="জনপ্রিয় ডেস্টিনেশন">POPULAR DESTINATIONS</span>
-                        <h2 class="heading-title-bold">
-                            <span data-en="Explore" data-bn="অন্বেষণ করুন">Explore</span> <span data-en="Top Destinations" data-bn="সেরা ডেস্টিনেশন">Top Destinations</span>
-                        </h2>
-                        <p class="subtext-paragraph" data-en="Handpicked destinations for unforgettable experiences. Discover, explore, and fall in love with the world."
-                           data-bn="অবিস্মরণীয় অভিজ্ঞতার জন্য বাছাইকৃত সেরা ডেস্টিনেশন।">
-                            Handpicked destinations for unforgettable experiences. Discover, explore, and fall in love with the world.
-                        </p>
-                    </div>
-                    <a href="destinations.html" class="link-see-all">
-                        <span data-en="View All Destinations" data-bn="সব ডেস্টিনেশন দেখুন">View All Destinations</span> ➔
-                    </a>
-                </div>
-
-                <div class="carousel-outer-container">
-                    <button class="carousel-nav-arrow arrow-pos-left" onclick="app.slidePrev()">‹</button>
-                    
-                    <div class="five-destinations-layout" id="destinationsContainer">
-                        <!-- Card 1: Bali, Indonesia -->
-                        <div class="destination-tall-card" onclick="app.openBookingModal(1)">
-                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80" alt="Bali, Indonesia" class="dest-img-bg" loading="lazy">
-                            <div class="dark-bottom-gradient"></div>
-                            <div class="dest-card-header">
-                                <div><span class="badge-capsule badge-bg-green">Best Price</span></div>
-                                <button class="heart-button-circle" onclick="event.stopPropagation(); alert('Added Bali to Wishlist! ❤️')">♥</button>
-                            </div>
-                            <div class="dest-card-footer-info">
-                                <h3>📍 Bali, Indonesia</h3>
-                                <div class="rating-meta-row"><span style="color:#eab308;">★</span> 4.8 (2.4k reviews)</div>
-                                <div class="price-tag-row"><span>From</span> $599</div>
-                            </div>
-                        </div>
-
-                        <!-- Card 2: Santorini, Greece -->
-                        <div class="destination-tall-card" onclick="app.openBookingModal(2)">
-                            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=700&q=80" alt="Santorini, Greece" class="dest-img-bg" loading="lazy">
-                            <div class="dark-bottom-gradient"></div>
-                            <div class="dest-card-header">
-                                <div><span class="badge-capsule badge-bg-purple">Trending</span></div>
-                                <button class="heart-button-circle" onclick="event.stopPropagation(); alert('Added Santorini to Wishlist! ❤️')">♥</button>
-                            </div>
-                            <div class="dest-card-footer-info">
-                                <h3>📍 Santorini, Greece</h3>
-                                <div class="rating-meta-row"><span style="color:#eab308;">★</span> 4.9 (3.1k reviews)</div>
-                                <div class="price-tag-row"><span>From</span> $899</div>
-                            </div>
-                        </div>
-
-                        <!-- Card 3: Tokyo, Japan -->
-                        <div class="destination-tall-card" onclick="app.openBookingModal(3)">
-                            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=700&q=80" alt="Tokyo, Japan" class="dest-img-bg" loading="lazy">
-                            <div class="dark-bottom-gradient"></div>
-                            <div class="dest-card-header">
-                                <div></div>
-                                <button class="heart-button-circle" onclick="event.stopPropagation(); alert('Added Tokyo to Wishlist! ❤️')">♥</button>
-                            </div>
-                            <div class="dest-card-footer-info">
-                                <h3>📍 Tokyo, Japan</h3>
-                                <div class="rating-meta-row"><span style="color:#eab308;">★</span> 4.8 (2.1k reviews)</div>
-                                <div class="price-tag-row"><span>From</span> $1,099</div>
-                            </div>
-                        </div>
-
-                        <!-- Card 4: Maldives -->
-                        <div class="destination-tall-card" onclick="app.openBookingModal(4)">
-                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=700&q=80" alt="Maldives" class="dest-img-bg" loading="lazy">
-                            <div class="dark-bottom-gradient"></div>
-                            <div class="dest-card-header">
-                                <div></div>
-                                <button class="heart-button-circle" onclick="event.stopPropagation(); alert('Added Maldives to Wishlist! ❤️')">♥</button>
-                            </div>
-                            <div class="dest-card-footer-info">
-                                <h3>📍 Maldives</h3>
-                                <div class="rating-meta-row"><span style="color:#eab308;">★</span> 4.9 (2.8k reviews)</div>
-                                <div class="price-tag-row"><span>From</span> $1,299</div>
-                            </div>
-                        </div>
-
-                        <!-- Card 5: Bangkok, Thailand -->
-                        <div class="destination-tall-card" onclick="app.openBookingModal(5)">
-                            <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=700&q=80" alt="Bangkok, Thailand" class="dest-img-bg" loading="lazy">
-                            <div class="dark-bottom-gradient"></div>
-                            <div class="dest-card-header">
-                                <div></div>
-                                <button class="heart-button-circle" onclick="event.stopPropagation(); alert('Added Bangkok to Wishlist! ❤️')">♥</button>
-                            </div>
-                            <div class="dest-card-footer-info">
-                                <h3>📍 Bangkok, Thailand</h3>
-                                <div class="rating-meta-row"><span style="color:#eab308;">★</span> 4.7 (1.6k reviews)</div>
-                                <div class="price-tag-row"><span>From</span> $499</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="carousel-nav-arrow arrow-pos-right" onclick="app.slideNext()">›</button>
-                </div>
-
-                <!-- AI Planner Promo Banner (Matching Mockup Page 1) -->
-                <div class="ai-promo-banner-card">
-                    <div class="ai-promo-text">
-                        <h3>Let AI Plan Your Perfect Trip</h3>
-                        <p>Tell us your dream, budget and interests — get personalized destination suggestions and instant smart itineraries!</p>
-                        <a href="ai-planner.html" class="btn-search-round" style="padding:12px 28px; text-decoration:none; display:inline-block; font-size:0.95rem;">
-                            Try AI Planner ➔
-                        </a>
-                    </div>
-                    <div class="ai-promo-art">
-                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=300&q=80" alt="Traveler" style="border-radius:20px; width:110px; height:110px; object-fit:cover;">
-                        <div style="font-size:4.2rem; filter:drop-shadow(0 8px 16px rgba(0,0,0,0.15));">🤖</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. WHY CHOOSE US ("More Than Just a Trip") -->
-        <section class="section-standard-padding why-us-outer" id="about">
-            <div class="container">
-                <div class="why-us-grid">
-                    <!-- Left: Content & 2x2 Feature Cards -->
-                    <div>
-                        <span class="eyebrow-small-tag" data-en="WHY CHOOSE US" data-bn="কেন আমাদের বেছে নেবেন">WHY CHOOSE US</span>
-                        <h2 class="heading-title-bold">
-                            <span data-en="More Than" data-bn="শুধু ভ্রমণ নয়">More Than</span> <span data-en="Just a Trip" data-bn="এক অনন্য অভিজ্ঞতা">Just a Trip</span>
-                        </h2>
-                        <p class="subtext-paragraph" data-en="We make your travel experience simple, safe and memorable with smart technology and personal touch."
-                           data-bn="স্মার্ট প্রযুক্তি ও নির্ভরযোগ্য সেবার মাধ্যমে আমরা আপনার ভ্রমণকে করি সহজ ও আনন্দময়।">
-                            We make your travel experience simple, safe and memorable with smart technology and personal touch.
-                        </p>
-
-                        <div class="why-two-columns-features">
-                            <div class="why-single-feature-card">
-                                <div class="why-icon-color">💎</div>
-                                <h4 data-en="Smart Planning" data-bn="স্মার্ট পরিকল্পনা">Smart Planning</h4>
-                                <p data-en="AI powered recommendations for your perfect trip" data-bn="নিখুঁত ভ্রমণের জন্য এআই নির্ভর পরামর্শ">AI powered recommendations for your perfect trip</p>
-                            </div>
-
-                            <div class="why-single-feature-card">
-                                <div class="why-icon-color">🏷️</div>
-                                <h4 data-en="Best Price Guarantee" data-bn="সেরা মূল্যের নিশ্চয়তা">Best Price Guarantee</h4>
-                                <p data-en="Get the best deals and exclusive offers" data-bn="সেরা প্যাকেজ ডিল ও আকর্ষণীয় অফার">Get the best deals and exclusive offers</p>
-                            </div>
-
-                            <div class="why-single-feature-card">
-                                <div class="why-icon-color">🤝</div>
-                                <h4 data-en="Trusted Partners" data-bn="বিশ্বস্ত পার্টনার">Trusted Partners</h4>
-                                <p data-en="Top airlines, hotels and local guides" data-bn="সেরা এয়ারলাইন্স, হোটেল ও লোকাল গাইড">Top airlines, hotels and local guides</p>
-                            </div>
-
-                            <div class="why-single-feature-card">
-                                <div class="why-icon-color">🎧</div>
-                                <h4 data-en="24/7 Customer Support" data-bn="২৪/৭ কাস্টমার সাপোর্ট">24/7 Customer Support</h4>
-                                <p data-en="Always here when you need us" data-bn="যে কোনো প্রয়োজনে সবসময় পাশে">Always here when you need us</p>
-                            </div>
-                        </div>
-
-                        <button class="btn-blue-pill-explore" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">
-                            <span data-en="Explore More" data-bn="আরও জানুন">Explore More</span> ➔
-                        </button>
-                    </div>
-
-                    <!-- Right: Photo Collage with Floating Cards -->
-                    <div class="why-media-wrapper">
-                        <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=1000&q=80" 
-                             alt="Traveler with backpack looking at mountain lake" class="why-hero-photo">
-
-                        <!-- Handwritten Sticker -->
-                        <div class="handwritten-sticker-nature">Collect Moments Not Things</div>
-
-                        <!-- Floating AI Card -->
-                        <div class="floating-ai-box">
-                            <div class="ai-icon-bubble">🤖</div>
-                            <div>
-                                <h5>AI Destination Recommendation</h5>
-                                <p>Based on your interests & travel history</p>
-                                <div style="font-size:0.7rem; color:#eab308; font-weight:700; margin-top:2px;">★ 4.8 (2.1k reviews) <span style="color:#2563eb; margin-left:4px;">➔</span></div>
-                            </div>
-                        </div>
-
-                        <!-- Watch Story Video Pill Button -->
-                        <button class="btn-video-story-pill" onclick="app.openStoryVideoModal()">
-                            ▶ Watch Our Story 2:34
-                        </button>
-
-                        <!-- Floating Bali Weather Card -->
-                        <div class="floating-weather-box">
-                            <div class="weather-meta-row">
-                                <span>Bali, Indonesia</span>
-                                <span style="cursor:pointer; color:#2563eb;">➔</span>
-                            </div>
-                            <div class="weather-temp-bold">
-                                ☀️ 28°C <span class="badge-sunny-pill">Sunny</span>
-                            </div>
-                            <p style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">Perfect for outdoor activities</p>
-                            <div class="weather-forecast-row">
-                                <div>Today<br>☀️<br><strong>28°</strong></div>
-                                <div>Sun<br>☀️<br><strong>27°</strong></div>
-                                <div>Mon<br>🌤️<br><strong>26°</strong></div>
-                                <div>Tue<br>☀️<br><strong>27°</strong></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. FEATURED PACKAGES (4 Cards) -->
-        <section class="section-standard-padding" id="packages">
-            <div class="container">
-                <div class="section-header-row">
-                    <div>
-                        <span class="eyebrow-small-tag" data-en="FEATURED PACKAGES" data-bn="ফিচার্ড প্যাকেজসমূহ">FEATURED PACKAGES</span>
-                        <h2 class="heading-title-bold">
-                            <span data-en="Handpicked Travel" data-bn="বাছাইকৃত ট্রাভেল">Handpicked Travel</span> <span data-en="Packages" data-bn="প্যাকেজসমূহ">Packages</span>
-                        </h2>
-                        <p class="subtext-paragraph" data-en="Explore our exclusive packages for a hassle-free travel experience."
-                           data-bn="ঝামেলাহীন ভ্রমণের জন্য আমাদের এক্সক্লুসিভ প্যাকেজগুলো দেখুন।">
-                            Explore our exclusive packages for a hassle-free travel experience.
-                        </p>
-                    </div>
-                    <a href="packages.html" class="link-see-all">
-                        <span data-en="View All Packages" data-bn="সব প্যাকেজ দেখুন">View All Packages</span> ➔
-                    </a>
-                </div>
-
-                <div class="carousel-outer-container">
-                    <button class="carousel-nav-arrow arrow-pos-left" onclick="app.slidePackagesPrev()">‹</button>
-                    
-                    <div class="packages-four-grid" id="packagesContainer">
-                        <!-- Package 1: Bali Adventure -->
-                        <div class="single-package-card">
-                            <div class="package-thumb-wrap">
-                                <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=700&q=80" alt="Bali Adventure" loading="lazy">
-                                <span class="badge-package-top badge-package-blue" style="left:12px;">Popular</span>
-                                <span class="badge-package-top badge-bg-green" style="left:76px;">Best Price</span>
-                                <button class="heart-package-top" onclick="alert('Saved Bali Adventure to wishlist!')">♥</button>
-                            </div>
-                            <div class="package-body-content">
-                                <h3>Bali Adventure</h3>
-                                <div class="package-meta-item"><span>⏱️ 5 Days • 4 Nights</span></div>
-                                <div class="package-meta-item"><span>✈️ Flight + Hotel + Tour</span></div>
-                                <div class="package-card-bottom">
-                                    <div class="package-price-bold">$699</div>
-                                    <button class="btn-view-details-outline" onclick="app.openBookingModal(1)">View Details ➔</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Package 2: Dubai Luxury -->
-                        <div class="single-package-card">
-                            <div class="package-thumb-wrap">
-                                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80" alt="Dubai Luxury" loading="lazy">
-                                <span class="badge-package-top badge-bg-green" style="left:12px;">Luxury</span>
-                                <button class="heart-package-top" onclick="alert('Saved Dubai Luxury to wishlist!')">♥</button>
-                            </div>
-                            <div class="package-body-content">
-                                <h3>Dubai Luxury</h3>
-                                <div class="package-meta-item"><span>⏱️ 6 Days • 5 Nights</span></div>
-                                <div class="package-meta-item"><span>✈️ Flight + Hotel + Tour</span></div>
-                                <div class="package-card-bottom">
-                                    <div class="package-price-bold">$999</div>
-                                    <button class="btn-view-details-outline" onclick="app.openBookingModal(7)">View Details ➔</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Package 3: Thailand Getaway -->
-                        <div class="single-package-card">
-                            <div class="package-thumb-wrap">
-                                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=700&q=80" alt="Thailand Getaway" loading="lazy">
-                                <span class="badge-package-top badge-bg-green" style="left:12px;">Best Value</span>
-                                <button class="heart-package-top" onclick="alert('Saved Thailand Getaway to wishlist!')">♥</button>
-                            </div>
-                            <div class="package-body-content">
-                                <h3>Thailand Getaway</h3>
-                                <div class="package-meta-item"><span>⏱️ 5 Days • 4 Nights</span></div>
-                                <div class="package-meta-item"><span>✈️ Flight + Hotel + Tour</span></div>
-                                <div class="package-card-bottom">
-                                    <div class="package-price-bold">$599</div>
-                                    <button class="btn-view-details-outline" onclick="app.openBookingModal(5)">View Details ➔</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Package 4: Europe Discovery -->
-                        <div class="single-package-card">
-                            <div class="package-thumb-wrap">
-                                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=700&q=80" alt="Europe Discovery" loading="lazy">
-                                <span class="badge-package-top badge-package-blue" style="left:12px;">Exclusive</span>
-                                <button class="heart-package-top" onclick="alert('Saved Europe Discovery to wishlist!')">♥</button>
-                            </div>
-                            <div class="package-body-content">
-                                <h3>Europe Discovery</h3>
-                                <div class="package-meta-item"><span>⏱️ 10 Days • 9 Nights</span></div>
-                                <div class="package-meta-item"><span>✈️ Flight + Hotel + Tour</span></div>
-                                <div class="package-card-bottom">
-                                    <div class="package-price-bold">$1,499</div>
-                                    <button class="btn-view-details-outline" onclick="app.openBookingModal(8)">View Details ➔</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="carousel-nav-arrow arrow-pos-right" onclick="app.slidePackagesNext()">›</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 8. WHAT OUR TRAVELERS SAY (Split Layout 1:1 with Mockup) -->
-        <section class="section-standard-padding why-us-outer" id="community">
-            <div class="container">
-                <div class="testimonials-split-layout">
-                    <!-- Left: Title, Badges & View All Button -->
-                    <div class="testimonials-left-col">
-                        <div class="badge-stories-purple">👥 REAL STORIES, REAL PEOPLE</div>
-                        <h2 class="heading-title-bold" style="margin: 8px 0;">
-                            <span data-en="What Our Travelers" data-bn="ভ্রমণকারীরা কী">What Our Travelers</span><br>
-                            <span data-en="Say" data-bn="বলছেন">Say</span>
-                        </h2>
-                        <p class="subtext-paragraph" style="margin-bottom: 20px;"
-                           data-en="Join thousands of travelers and start your next adventure with us."
-                           data-bn="হাজারো ভ্রমণকারীর সাথে আপনিও শুরু করুন আপনার পরবর্তী অভিযান।">
-                            Join thousands of travelers and start your next adventure with us.
-                        </p>
-                        <a href="community.html" class="btn-view-details-outline" style="font-size:0.85rem; padding:8px 20px; text-decoration:none; display:inline-block;">
-                            View All Stories ➔
-                        </a>
-                    </div>
-
-                    <!-- Right: Testimonial Cards Carousel -->
-                    <div class="testimonials-right-col">
-                        <div class="carousel-outer-container">
-                            <button class="carousel-nav-arrow arrow-pos-left" onclick="app.slideReviewsPrev()">‹</button>
-                            
-                            <div class="testimonials-three-grid" id="reviewsContainer">
-                                <!-- Review 1: Sarah Ahmed from Dhaka -->
-                                <div class="testimonial-box-item">
-                                    <div class="reviewer-profile-header">
-                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Sarah Ahmed">
-                                        <div>
-                                            <h4>Sarah Ahmed</h4>
-                                            <p>Dhaka, Bangladesh</p>
-                                        </div>
-                                    </div>
-                                    <p class="testimonial-quote-paragraph">
-                                        "TravelUp Global made my Bali trip so easy! From booking to local tours, everything was perfect. Highly recommended!"
-                                    </p>
-                                    <div class="testimonial-rating-stars">★★★★★ <strong>5.0</strong></div>
-                                </div>
-
-                                <!-- Review 2: James Carter from USA -->
-                                <div class="testimonial-box-item">
-                                    <div class="reviewer-profile-header">
-                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="James Carter">
-                                        <div>
-                                            <h4>James Carter</h4>
-                                            <p>USA</p>
-                                        </div>
-                                    </div>
-                                    <p class="testimonial-quote-paragraph">
-                                        "Amazing platform! The AI recommendation feature suggested the perfect destination for my budget. Loved it!"
-                                    </p>
-                                    <div class="testimonial-rating-stars">★★★★★ <strong>5.0</strong></div>
-                                </div>
-
-                                <!-- Review 3: Priya Saha from India -->
-                                <div class="testimonial-box-item">
-                                    <div class="reviewer-profile-header">
-                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Priya Saha">
-                                        <div>
-                                            <h4>Priya Saha</h4>
-                                            <p>India</p>
-                                        </div>
-                                    </div>
-                                    <p class="testimonial-quote-paragraph">
-                                        "Great customer support and very user-friendly interface. I booked my first international trip with them and it was a wonderful experience."
-                                    </p>
-                                    <div class="testimonial-rating-stars">★★★★★ <strong>5.0</strong></div>
-                                </div>
-                            </div>
-
-                            <button class="carousel-nav-arrow arrow-pos-right" onclick="app.slideReviewsNext()">›</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9. READY TO EXPLORE? (MOUNTAIN CTA BANNER - FULL WIDTH) -->
-        <section class="mountain-cta-banner-wrap">
-            <div class="container">
-                <div class="mountain-banner-grid">
-                    <div class="mountain-left-text">
-                        <span class="cta-tag-cyan">✈️ Ready to Explore?</span>
-                        <h2>Your Next Adventure Awaits</h2>
-                        <p>Join millions of travelers and turn your dream into reality with us.</p>
-                        <button class="btn-white-pill-start" onclick="document.getElementById('destinations').scrollIntoView({behavior:'smooth'})">
-                            Get Started ➔
-                        </button>
-                    </div>
-
-                    <div class="tools-three-boxes">
-                        <!-- Tool 1: Smart Budget Planner -->
-                        <div class="tool-single-card" onclick="app.openBudgetModal()">
-                            <div class="tool-icon-bubble">🎯</div>
-                            <div class="tool-text-info">
-                                <h4>Smart Budget Planner</h4>
-                                <p>Plan your trip within budget</p>
-                            </div>
-                        </div>
-
-                        <!-- Tool 2: Travel Quiz -->
-                        <div class="tool-single-card" onclick="window.location.href='quiz.html'" style="cursor:pointer;">
-                            <div class="tool-icon-bubble">🎮</div>
-                            <div class="tool-text-info">
-                                <h4>Travel Quiz</h4>
-                                <p>Discover your travel style</p>
-                            </div>
-                        </div>
-
-                        <!-- Tool 3: Nearby Attractions -->
-                        <div class="tool-single-card" onclick="app.openMapModal()" style="cursor:pointer;">
-                            <div class="tool-icon-bubble">📍</div>
-                            <div class="tool-text-info">
-                                <h4>Nearby Attractions</h4>
-                                <p>Interactive map & attractions</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <!-- 10. MASTER FOOTER (PIXEL-PERFECT FROM DESIGN MOCKUP) -->
-    <footer class="footer-dark-section">
-        <!-- Mockup Flight Trail Decoration -->
-        <svg class="footer-flight-decoration" width="220" height="110" viewBox="0 0 220 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 95 C 70 95, 90 20, 140 45 C 175 60, 195 25, 202 18" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
-            <text x="198" y="16" font-size="14" fill="#38bdf8" transform="rotate(35 198 16)">✈</text>
-        </svg>
-
+    <!-- Academic Defense Section: Facebook vs TravelUp Global -->
+    <section class="comparison-section">
         <div class="container">
-            <div class="footer-columns-four">
-                <!-- Brand Column -->
-                <div class="footer-brand-column">
-                    <a href="index.html" class="footer-brand-logo-wrap">
-                        <div class="footer-brand-icon">✈️</div>
-                        <div>
-                            <h3>TravelUp Global</h3>
-                            <span>Explore • Plan • Travel</span>
-                        </div>
-                    </a>
-                    <p class="footer-brand-bio">
-                        Next-generation global travel technology platform. Discover breathtaking destinations, customize dynamic itineraries, and reserve verified dream trips worldwide.
-                    </p>
-                    <div class="footer-social-icons-row">
-                        <!-- Facebook -->
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-                        </a>
-                        <!-- Instagram -->
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <!-- YouTube -->
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        </a>
-                        <!-- TikTok -->
-                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" title="TikTok">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.16 1.18 2.09 2.35 2.3 1.05.2 2.16-.08 2.93-.82.68-.61.99-1.54 1.02-2.43.05-3.37.02-6.75.03-10.12.02-2.73.01-5.46.02-8.19z"/></svg>
-                        </a>
-                        <!-- X / Twitter -->
-                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Column 2: Quick Links -->
-                <div class="footer-nav-col">
-                    <h5>Quick Links</h5>
-                    <ul>
-                        <li><a href="index.html"><span>➔</span> Home</a></li>
-                        <li><a href="destinations.html"><span>➔</span> Explore Destinations</a></li>
-                        <li><a href="packages.html"><span>➔</span> Featured Packages</a></li>
-                        <li><a href="trip-builder.html"><span>➔</span> Custom Trip Builder</a></li>
-                        <li><a href="community.html"><span>➔</span> Community & Stories</a></li>
-                        <li><a href="index.html#about"><span>➔</span> About Us</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Support -->
-                <div class="footer-nav-col">
-                    <h5>Support & Help</h5>
-                    <ul>
-                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>💬</span> Help Center</a></li>
-                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>📬</span> Contact Specialists</a></li>
-                        <li><a href="itinerary.html"><span>🗺️</span> Day-wise Itinerary</a></li>
-                        <li><a href="javascript:void(0)" onclick="app.openTermsModal()"><span>📜</span> Terms & Conditions</a></li>
-                        <li><a href="javascript:void(0)" onclick="app.openPrivacyModal()"><span>🛡️</span> Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 4: Download App -->
-                <div class="footer-nav-col">
-                    <h5>Download Our App</h5>
-                    <p style="font-size:0.78rem; color:#64748b; margin-bottom:14px; line-height:1.5;">
-                        Get exclusive mobile flight deals, barcode e-vouchers & live flight updates.
-                    </p>
-                    <div class="store-badges-container">
-                        <!-- App Store Badge -->
-                        <div class="store-badge-card" onclick="alert('TravelUp Global iOS App is coming soon to the Apple App Store! 🍏')">
-                            <div class="store-icon-wrap">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.13-1.96 1-3.1-.98.04-2.16.66-2.85 1.47-.61.71-1.14 1.88-1 2.99 1.09.08 2.2-.56 2.85-1.36z"/></svg>
-                            </div>
-                            <div>
-                                <div class="store-text-top">Download on the</div>
-                                <div class="store-text-brand">App Store</div>
-                            </div>
-                        </div>
-
-                        <!-- Google Play Badge -->
-                        <div class="store-badge-card" onclick="alert('TravelUp Global Android App is coming soon to Google Play Store! 🤖')">
-                            <div class="store-icon-wrap">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.023 2.023 0 0 1-.61-1.45V3.264c0-.56.223-1.08.609-1.45zm11.233 11.234l2.551 2.551-12.01 6.857 9.459-9.408zm0-2.096L5.383 1.543l12.01 6.858-2.551 2.551zm1.047 1.048l3.418-1.95a1.86 1.86 0 0 1 0 3.218l-3.418-1.95-.001-.001-.001.683z"/></svg>
-                            </div>
-                            <div>
-                                <div class="store-text-top">GET IT ON</div>
-                                <div class="store-text-brand">Google Play</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="section-header">
+                <span class="section-badge">Academic Proposal Defense</span>
+                <h2 class="section-title">Why a Website? (Facebook Limitations Analysis)</h2>
+                <p style="color: var(--text-muted);">
+                    Direct comparative justification for CSE Markup & Scripting Languages Lab, demonstrating why transactional state machines cannot be replaced by social media messaging.
+                </p>
             </div>
 
-            <!-- Sub-Footer Bottom Line -->
-            <div class="footer-bottom-line">
-                <div>© 2026 TravelUp Global. All rights reserved.</div>
-                
-                <div class="footer-bottom-badges">
-                    <span class="footer-badge-pill status-green">
-                        <span class="footer-pulse-dot"></span> Hostinger Cloud MySQL Connected
-                    </span>
-                    <span class="footer-badge-pill">
-                        🔒 256-Bit SSL Secured
-                    </span>
-                    <span class="footer-badge-pill" style="color:#94a3b8; border-color:rgba(255,255,255,0.08); background:transparent;">
-                        Port: 5000 Active
-                    </span>
+            <div class="table-wrapper">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Operational Dimension</th>
+                            <th style="color: #dc2626;">Facebook Page / Social Media Operators</th>
+                            <th style="color: #0284c7;">TravelUp Global Web Engine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Intermodal Route Synthesis (Scenario 1)</strong></td>
+                            <td><span class="badge-no">❌ Impossible</span> Manual guess work; traveler must coordinate multiple bus counters.</td>
+                            <td><span class="badge-yes">✓ Algorithmic</span> Pairs DAC-SPD flight with connecting microbus with 45-min buffer.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Decoupled Self-Drive Trip (Scenario 4)</strong></td>
+                            <td><span class="badge-no">❌ Rejected</span> Monolithic forced packages; refuses to subtract bus fares for SUV travelers.</td>
+                            <td><span class="badge-yes">✓ Reactive Toggle</span> [✓] Skip Transport instantly removes transit, recalculating lodging only.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Room Bedding Breakdown (Scenario 5)</strong></td>
+                            <td><span class="badge-no">❌ Unclear</span> Forces multiple expensive twin rooms without per-person rates.</td>
+                            <td><span class="badge-yes">✓ Automated</span> 4-bed Deluxe Family rooms dynamically split to ৳875/person/night.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Collaborative Fintech Split-Bill (Scenario 12)</strong></td>
+                            <td><span class="badge-no">❌ Dispute-Prone</span> Class Rep must collect ৳1,50,000 to personal bKash, hitting limits.</td>
+                            <td><span class="badge-yes">✓ Webhook Quorum</span> Authenticated shareable link; each student pays their exact ৳5,000 share.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>B2B Corporate VAT & Tax Invoice (Scenario 11)</strong></td>
+                            <td><span class="badge-no">❌ Non-Compliant</span> Handwritten cash memos inadmissible for corporate tax filing.</td>
+                            <td><span class="badge-yes">✓ NBR Compliant</span> Programmatic 15% VAT + 5% AIT invoice calculation with instant PDF voucher.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meteorological Storm Auto-Refund (Scenario 9)</strong></td>
+                            <td><span class="badge-no">❌ Weeks of Dispute</span> Host blames Coast Guard, manual refunds take over 3 weeks.</td>
+                            <td><span class="badge-yes">✓ Instant Trigger</span> Signal No. 3 broadcast triggers automatic cancellation & wallet refund.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ICAO 6-Month Passport Guard (Bonus)</strong></td>
+                            <td><span class="badge-no">❌ Human Error</span> Unnoticed expiry causes catastrophic airport check-in boarding denials.</td>
+                            <td><span class="badge-yes">✓ Pre-Checkout Guard</span> Form blocks international checkout if validity is under 180 days.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12 Real-World Scenarios Directory -->
+    <section class="scenarios-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">System Verification</span>
+                <h2 class="section-title">12 Engineering Verification Scenarios</h2>
+                <p style="color: var(--text-muted);">
+                    Each module corresponds to an academic proposal verification case submitted to course supervisor Sajib Bhattacharjee.
+                </p>
+            </div>
+
+            <div class="grid-4">
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 1</span>
+                    <h3 class="scenario-title">Multi-Leg Route Synthesis</h3>
+                    <p class="scenario-desc">DAC $\rightarrow$ SPD flight + connecting Tetulia microbus with 45-min baggage transfer buffer.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 2</span>
+                    <h3 class="scenario-title">Open-Ended Return</h3>
+                    <p class="scenario-desc">Telecommuting remote sprint stay with dynamic return seat allocation from dashboard.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 3</span>
+                    <h3 class="scenario-title">Female Seat Preference</h3>
+                    <p class="scenario-desc">Front-row female seating layout & dynamic counter manager / supervisor mobile telematics.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 4</span>
+                    <h3 class="scenario-title">[✓] Skip Transport Toggle</h3>
+                    <p class="scenario-desc">Self-drive Toyota Prado road-trip dynamically subtracting bus fares to lodging + guide only.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 5</span>
+                    <h3 class="scenario-title">Multi-Bed Cost Decomposition</h3>
+                    <p class="scenario-desc">Deluxe 4-Bed Family Room (2 King Beds) decomposing ৳3,500 down to ৳875/person/night.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 6</span>
+                    <h3 class="scenario-title">Accessibility Constraints</h3>
+                    <p class="scenario-desc">Wheelchair and elevator filter pruning hazardous steep hilltop cottages for elderly parents.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 7</span>
+                    <h3 class="scenario-title">5:30 AM Fresh-up Room</h3>
+                    <p class="scenario-desc">Modular add-ons: Honeymoon flower bed (+৳1,500) and early fresh-up room (+35% half-day rate).</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 8</span>
+                    <h3 class="scenario-title">Disaggregated Activities</h3>
+                    <p class="scenario-desc">Zero forced bundling: individual parasailing vs coconut lounge cost matrix per friend.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 9</span>
+                    <h3 class="scenario-title">Meteorological Auto-Refund</h3>
+                    <p class="scenario-desc">Signal No. 3 storm warning immediately triggers programmatic bKash wallet refund of ৳3,000.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 10</span>
+                    <h3 class="scenario-title">Granular Age-Tiered Fare</h3>
+                    <p class="scenario-desc">Infant (&lt;4 yrs) free lap seat, child (5-10 yrs) ৳800 bus seat, ৳500 rollaway mattress.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 11</span>
+                    <h3 class="scenario-title">Corporate B2B VAT Invoicing</h3>
+                    <p class="scenario-desc">25-employee retreat quotation with volume discount, 15% NBR VAT, and 5% AIT audit receipt.</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-number">Scenario 12</span>
+                    <h3 class="scenario-title">Fintech Split-Bill Webhook</h3>
+                    <p class="scenario-desc">30-student university tour shareable payment link with live real-time green tick progress.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h3>TravelUp Global</h3>
+                <p>
+                    Dual-Portal Dynamic Tourism Web Engine developed for the Markup & Scripting Languages Lab, Department of Computer Science & Engineering, Dhaka International University (DIU).
+                </p>
+                <p style="margin-top: 1rem; color: #cbd5e1; font-size: 0.85rem;">
+                    <strong>Supervisor:</strong> Sajib Bhattacharjee, Lecturer, Dept. of CSE
+                </p>
+            </div>
+            <div class="footer-links">
+                <h4>Core Engines</h4>
+                <ul>
+                    <li><a href="trip-builder.html">Trip Builder (12 Scenarios)</a></li>
+                    <li><a href="map.html">GIS Route Explorer</a></li>
+                    <li><a href="booking.html">Fintech Split-Bill</a></li>
+                    <li><a href="quotations.html">Corporate B2B Invoices</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>System Portals</h4>
+                <ul>
+                    <li><a href="dashboard.html">Traveler Dashboard</a></li>
+                    <li><a href="admin.html">Dual-Portal Admin</a></li>
+                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="signup.html">Create Account</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Project Team (CSE DIU)</h4>
+                <ul style="font-size: 0.85rem; line-height: 1.8;">
+                    <li><strong>1. Md. Tanvir Parvaj</strong> (Lead, Roll 39)</li>
+                    <li><strong>2. Md. Toufick Hasan</strong> (Roll 34)</li>
+                    <li><strong>3. Fahima Suborna</strong> (Roll 36)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            &copy; 2026 TravelUp Global. All Rights Reserved. Dhaka International University CSE Lab Project.
         </div>
     </footer>
 
-    <!-- MODALS -->
-    <!-- Modal 1: Login / Sign Up Modal -->
-    <div class="modal-overlay" id="authModal">
-        <div class="modal-box-card">
-            <button class="modal-close-cross" onclick="auth.closeModal()">&times;</button>
-            <h3 id="authModalTitle" style="font-size:1.3rem; font-weight:800; color:#0f172a; margin-bottom:16px;">Login to TravelUp</h3>
-
-            <form id="loginForm">
-                <div style="margin-bottom:12px;">
-                    <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Email Address</label>
-                    <input type="email" id="loginEmail" required placeholder="admin@travelupglobal.com"
-                           style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:10px; font-family:inherit;">
-                </div>
-                <div style="margin-bottom:18px;">
-                    <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Password</label>
-                    <input type="password" id="loginPassword" required placeholder="••••••••"
-                           style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:10px; font-family:inherit;">
-                </div>
-                <button type="submit" class="btn-login-signup-pill" style="width:100%; text-align:center;">Log In</button>
-                <p style="margin-top:12px; text-align:center; font-size:0.8rem; color:#64748b;">
-                    Don't have an account? <a href="javascript:void(0)" onclick="auth.openModal('register')" style="color:#2563eb; font-weight:700;">Sign up</a>
-                </p>
-            </form>
-
-            <form id="registerForm" style="display:none;">
-                <div style="margin-bottom:10px;">
-                    <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Full Name</label>
-                    <input type="text" id="regName" required placeholder="Tanvir Parvaj"
-                           style="width:100%; padding:9px 12px; border:1px solid #cbd5e1; border-radius:10px; font-family:inherit;">
-                </div>
-                <div style="margin-bottom:10px;">
-                    <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Email Address</label>
-                    <input type="email" id="regEmail" required placeholder="tanvir@example.com"
-                           style="width:100%; padding:9px 12px; border:1px solid #cbd5e1; border-radius:10px; font-family:inherit;">
-                </div>
-                <div style="margin-bottom:10px;">
-                    <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Phone Number</label>
-                    <input type="tel" id="regPhone" placeholder="+8801700000000"
-                           style="width:100%; padding:9px 12px; border:1px solid #cbd5e1; border-radius:10px; font-family:inherit;">
-                </div>
-                <div style="margin-bottom:16px;">
-                    <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Password</label>
-                    <input type="password" id="regPassword" required placeholder="••••••••"
-                           style="width:100%; padding:9px 12px; border:1px solid #cbd5e1; border-radius:10px; font-family:inherit;">
-                </div>
-                <button type="submit" class="btn-login-signup-pill" style="width:100%; text-align:center;">Create Account</button>
-                <p style="margin-top:12px; text-align:center; font-size:0.8rem; color:#64748b;">
-                    Already have an account? <a href="javascript:void(0)" onclick="auth.openModal('login')" style="color:#2563eb; font-weight:700;">Log in</a>
-                </p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal 2: Step Booking Modal -->
-    <div class="modal-overlay" id="bookingModal">
-        <div class="modal-box-card">
-            <button class="modal-close-cross" onclick="app.closeBookingModal()">&times;</button>
-            <h3 style="font-size:1.25rem; font-weight:800; color:#0f172a; margin-bottom:4px;" id="bookingDestName">Confirm Booking</h3>
-            <p id="bookingPriceDisplay" style="color:#2563eb; font-weight:800; margin-bottom:16px; font-size:1.1rem;"></p>
-
-            <form id="bookingFormSubmit">
-                <div style="margin-bottom:12px;">
-                    <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Travel Date</label>
-                    <input type="date" id="bookingStartDate" required min="2026-10-08"
-                           style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:10px; font-family:inherit;">
-                </div>
-                <div style="margin-bottom:12px;">
-                    <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Travelers Count</label>
-                    <input type="number" id="bookingTravelersCount" value="1" min="1" max="20" required
-                           style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:10px; font-family:inherit;">
-                </div>
-                <div style="display:flex; align-items:center; gap:8px; margin-bottom:18px;">
-                    <input type="checkbox" id="bookingIsGroup">
-                    <label for="bookingIsGroup" style="font-size:0.8rem; cursor:pointer;">
-                        👥 Create Group Booking (Invite friends & split payment)
-                    </label>
-                </div>
-                <button type="submit" class="btn-login-signup-pill" style="width:100%; text-align:center;">
-                    Confirm & Reserve 🚀
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal 3: Smart Budget Modal -->
-    <div class="modal-overlay" id="budgetModal">
-        <div class="modal-box-card" style="max-width:500px;">
-            <button class="modal-close-cross" onclick="document.getElementById('budgetModal').classList.remove('active')">&times;</button>
-            <h3 style="font-size:1.25rem; font-weight:800; color:#0f172a; margin-bottom:6px;">🎯 Smart Budget Planner</h3>
-            <p style="font-size:0.8rem; color:#64748b; margin-bottom:16px;">Input budget to compute an itemized breakdown for stay, dining & activities.</p>
-
-            <form onsubmit="event.preventDefault(); app.handleBudgetCalculation();">
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
-                    <div>
-                        <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Total Budget (BDT ৳)</label>
-                        <input type="number" id="modalBudgetAmount" placeholder="e.g. 50000" min="5000" required
-                               style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:10px;">
-                    </div>
-                    <div>
-                        <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Trip Duration (Days)</label>
-                        <input type="number" id="modalBudgetDays" value="3" min="1" max="30" required
-                               style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:10px;">
-                    </div>
-                </div>
-                <button type="submit" class="btn-login-signup-pill" style="width:100%; text-align:center; margin-bottom:14px;">
-                    Calculate Breakdown ➔
-                </button>
-            </form>
-
-            <div id="modalBudgetResult" style="background:#f8fafc; border-radius:12px; padding:14px; border:1px dashed #cbd5e1; display:none;">
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 4: AI Travel Assistant Modal -->
-    <div class="modal-overlay" id="aiModal">
-        <div class="modal-box-card" style="max-width:500px;">
-            <button class="modal-close-cross" onclick="document.getElementById('aiModal').classList.remove('active')">&times;</button>
-            <h3 style="font-size:1.25rem; font-weight:800; color:#0f172a; margin-bottom:4px;">🤖 TravelUp AI Assistant</h3>
-            <p style="font-size:0.8rem; color:#64748b; margin-bottom:14px;">Personalized AI recommendations and custom itineraries.</p>
-
-            <div id="aiChatBox" style="height:200px; overflow-y:auto; background:#f8fafc; border-radius:10px; padding:12px; margin-bottom:12px; font-size:0.85rem; border:1px solid #e2e8f0;">
-                <div style="background:#eff6ff; color:#1e40af; padding:8px 12px; border-radius:8px; margin-bottom:8px;">
-                    <strong>TravelUp AI:</strong> Hello! Where would you like to travel? Ask me for custom travel itineraries or packing tips!
-                </div>
-            </div>
-
-            <form onsubmit="event.preventDefault(); app.handleAiPrompt();" style="display:flex; gap:8px;">
-                <input type="text" id="aiPromptInput" placeholder="e.g. Suggest a 4-day trip to Bali..." required
-                       style="flex-grow:1; padding:9px 12px; border:1px solid #cbd5e1; border-radius:10px; font-family:inherit;">
-                <button type="submit" class="btn-login-signup-pill">Send</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal 5: Interactive Map Modal (Nearby Attractions) -->
-    <div class="modal-overlay" id="mapModal">
-        <div class="modal-box-card" style="max-width:750px; padding:20px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <h3 style="font-size:1.25rem; font-weight:800; color:#0f172a; margin:0;">📍 Nearby Attractions & World Map</h3>
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <a href="map.html" style="font-size:0.8rem; color:#2563eb; font-weight:700; text-decoration:none;">Open Full Map ➔</a>
-                    <button class="modal-close-cross" onclick="document.getElementById('mapModal').classList.remove('active')">&times;</button>
-                </div>
-            </div>
-            <div id="map" style="height:420px; border-radius:14px;"></div>
-        </div>
-    </div>
-
-    <!-- Modal 6: TravelUp Brand Story Video Modal -->
-    <div class="modal-overlay" id="storyVideoModal">
-        <div class="modal-box-card" style="max-width: 680px; padding: 22px; border-radius: 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 1.4rem;">🎬</span>
-                    <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0;">Our Story — TravelUp Global</h3>
-                </div>
-                <button class="modal-close-cross" onclick="app.closeStoryVideoModal()">&times;</button>
-            </div>
-            <div style="position: relative; border-radius: 16px; overflow: hidden; background: #0f172a; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="TravelUp Story" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
-                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,0.2) 0%, rgba(15,23,42,0.7) 100%);"></div>
-                <div style="position: absolute; text-align: center; color: white; padding: 20px;">
-                    <div style="width: 64px; height: 64px; background: rgba(37,99,235,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 1.8rem; cursor: pointer; box-shadow: 0 0 25px rgba(37,99,235,0.6); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" onclick="alert('Enjoy the TravelUp Global Journey Preview!')">▶</div>
-                    <h4 style="font-size: 1.3rem; font-weight: 800; margin: 0 0 6px;">Journey of a Lifetime</h4>
-                    <p style="font-size: 0.85rem; color: #e2e8f0; margin: 0;">Connecting dreams with global adventures across 40+ countries.</p>
-                </div>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; color: #64748b;">
-                <span>⏱️ Duration: 2 mins 34 secs</span>
-                <button class="btn-login-signup-pill" style="padding: 8px 18px; font-size: 0.82rem;" onclick="location.href='packages.html'">Explore Featured Packages ➔</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 7: Terms & Conditions Modal -->
-    <div class="modal-overlay" id="termsModal">
-        <div class="modal-box-card" style="max-width: 600px; padding: 24px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0;">📜 Terms & Conditions</h3>
-                <button class="modal-close-cross" onclick="app.closeTermsModal()">&times;</button>
-            </div>
-            <div style="max-height: 340px; overflow-y: auto; font-size: 0.85rem; color: #475569; line-height: 1.7; padding-right: 8px;">
-                <h4 style="color: #0f172a; margin: 8px 0 4px;">1. Booking & Reservation Policy</h4>
-                <p>All package and custom trip reservations made through TravelUp Global are subject to real-time confirmation. Rates include applicable taxes and designated included services.</p>
-                
-                <h4 style="color: #0f172a; margin: 12px 0 4px;">2. Cancellation & Refund Policy</h4>
-                <p>Travelers may request cancellation through their Traveler Portal up to 7 days prior to departure for eligible refunds according to vendor partner terms.</p>
-                
-                <h4 style="color: #0f172a; margin: 12px 0 4px;">3. Identity & Travel Documentation</h4>
-                <p>Travelers are responsible for holding valid passports (minimum 6 months validity) and required visas for destination countries.</p>
-            </div>
-            <div style="margin-top: 16px; text-align: right;">
-                <button class="btn-login-signup-pill" onclick="app.closeTermsModal()">I Understand</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 8: Privacy Policy Modal -->
-    <div class="modal-overlay" id="privacyModal">
-        <div class="modal-box-card" style="max-width: 600px; padding: 24px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0;">🛡️ Privacy & Data Security</h3>
-                <button class="modal-close-cross" onclick="app.closePrivacyModal()">&times;</button>
-            </div>
-            <div style="max-height: 340px; overflow-y: auto; font-size: 0.85rem; color: #475569; line-height: 1.7; padding-right: 8px;">
-                <h4 style="color: #0f172a; margin: 8px 0 4px;">1. Information Collection & Usage</h4>
-                <p>TravelUp Global collects user information strictly for account authentication, itinerary generation, reservation processing, and personalized travel recommendations.</p>
-                
-                <h4 style="color: #0f172a; margin: 12px 0 4px;">2. Encryption & Financial Security</h4>
-                <p>All transactions processed via Stripe, PayPal, and SSLCommerz use bank-grade 256-bit SSL encryption. We never store raw payment card credentials on our servers.</p>
-                
-                <h4 style="color: #0f172a; margin: 12px 0 4px;">3. Third-Party Sharing</h4>
-                <p>Personal data is strictly never sold or leased to third parties. Only essential reservation details are communicated to verified airlines and hotel partners.</p>
-            </div>
-            <div style="margin-top: 16px; text-align: right;">
-                <button class="btn-login-signup-pill" onclick="app.closePrivacyModal()">Accept & Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Floating Traveler Concierge Widget -->
-    <div class="floating-concierge-pill" onclick="app.toggleConciergeMenu(event)">
-        <span class="concierge-live-dot"></span>
-        <span>💬</span>
-        <span data-en="Trip Help & Concierge" data-bn="ভ্রমণ পরামর্শ ও সাপোর্ট">Trip Help & Concierge</span>
-    </div>
-
-    <!-- Concierge Popover Menu -->
-    <div class="concierge-popover-card" id="conciergePopover">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #f1f5f9; padding-bottom:8px;">
-            <div style="font-weight:800; font-size:0.92rem; color:#0f172a;">✈️ TravelUp Concierge</div>
-            <span style="font-size:0.72rem; color:#16a34a; background:#f0fdf4; padding:2px 8px; border-radius:10px; font-weight:700;">● Online</span>
-        </div>
-        <a href="trip-builder.html" class="concierge-option-item">
-            <div class="concierge-option-icon" style="background:#eff6ff; color:#2563eb;">🛠️</div>
-            <div>
-                <div style="font-weight:700; font-size:0.86rem; color:#0f172a;" data-en="Custom Trip Builder" data-bn="কাস্টম ট্রিপ বিল্ডার">Custom Trip Builder</div>
-                <div style="font-size:0.72rem; color:#64748b;" data-en="Build custom plan with live rates" data-bn="লাইভ রেটে তৈরি করুন ট্যুর">Build custom plan with live rates</div>
-            </div>
-        </a>
-        <a href="ai-planner.html" class="concierge-option-item">
-            <div class="concierge-option-icon" style="background:#f5f3ff; color:#7c3aed;">🤖</div>
-            <div>
-                <div style="font-weight:700; font-size:0.86rem; color:#0f172a;" data-en="AI Trip Planner" data-bn="এআই ট্রিপ প্ল্যানার">AI Trip Planner</div>
-                <div style="font-size:0.72rem; color:#64748b;" data-en="Instant smart budget itinerary" data-bn="বাজেট-ফ্রেন্ডলি এআই প্ল্যান">Instant smart budget itinerary</div>
-            </div>
-        </a>
-        <a href="budget-planner.html" class="concierge-option-item">
-            <div class="concierge-option-icon" style="background:#f0fdf4; color:#16a34a;">📊</div>
-            <div>
-                <div style="font-weight:700; font-size:0.86rem; color:#0f172a;" data-en="Budget Calculator" data-bn="বাজেট ক্যালকুলেটর">Budget Calculator</div>
-                <div style="font-size:0.72rem; color:#64748b;" data-en="Calculate exact cost per person" data-bn="জনপ্রতি সঠিক খরচের হিসাব">Calculate exact cost per person</div>
-            </div>
-        </a>
-        <a href="support.html" class="concierge-option-item">
-            <div class="concierge-option-icon" style="background:#fff7ed; color:#ea580c;">🎧</div>
-            <div>
-                <div style="font-weight:700; font-size:0.86rem; color:#0f172a;" data-en="Talk to an Expert" data-bn="বিশেষজ্ঞের সাথে কথা বলুন">Talk to an Expert</div>
-                <div style="font-size:0.72rem; color:#64748b;" data-en="Live assistance & support tickets" data-bn="লাইভ সহযোগিতা ও টিকিট">Live assistance & support tickets</div>
-            </div>
-        </a>
-    </div>
-
-    <!-- Global Traveler Toast Container -->
-    <div class="travel-toast-container" id="travelToastContainer"></div>
-
     <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/app.js"></script>
+    <script>
+        // Check active weather alerts on page load (Scenario 9)
+        async function loadAlerts() {
+            try {
+                const res = await API.getAlerts();
+                if (res.success && res.data.length > 0) {
+                    const alert = res.data[0];
+                    if (alert.is_active) {
+                        const banner = document.getElementById('top-alert-banner');
+                        const msg = document.getElementById('alert-message');
+                        msg.textContent = `${alert.title_en}: ${alert.message_en}`;
+                        banner.style.display = 'flex';
+                    }
+                }
+            } catch (err) {
+                console.log('No active alerts or offline mode.');
+            }
+        }
+
+        // Load destinations from Hostinger MySQL
+        async function loadDestinations(params = {}) {
+            const grid = document.getElementById('destinations-grid');
+            try {
+                const res = await API.getDestinations(params);
+                if (!res.success || res.data.length === 0) {
+                    grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">No destinations matched your criteria.</div>';
+                    return;
+                }
+
+                grid.innerHTML = res.data.slice(0, 6).map(dest => `
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="${dest.image_url || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'}" 
+                                 alt="${dest.name_en}" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'">
+                            <span class="card-badge">${dest.category || 'Featured'}</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">${dest.name_en} <span style="font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">(${dest.name_bn || ''})</span></h3>
+                            <p class="card-desc">${(dest.description_en || dest.short_desc_en || 'Experience scenic landscapes, local culture, and bespoke tour coordination with TravelUp Global.').slice(0, 115)}...</p>
+                            <div class="card-footer">
+                                <div class="price-tag">
+                                    <span class="label">Starting From</span>
+                                    <span class="amount">৳${Math.round(dest.price_bdt || 3500).toLocaleString()}</span>
+                                </div>
+                                <a href="trip-builder.html?destination=${dest.id}" class="btn btn-primary btn-sm">
+                                    Build Trip →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: red;">Failed to load destinations. Ensure server is running on port 5000.</div>';
+            }
+        }
+
+        // Search and filter handler
+        function searchDestinations() {
+            const search = document.getElementById('search-input').value.trim();
+            const category = document.getElementById('category-select').value;
+            const accessibleOnly = document.getElementById('accessible-toggle').checked;
+
+            const params = {};
+            if (search) params.search = search;
+            if (category && category !== 'all') params.category = category;
+            if (accessibleOnly) params.accessible_only = 'true';
+
+            loadDestinations(params);
+        }
+
+        // Trigger on enter key
+        document.getElementById('search-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchDestinations();
+        });
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAlerts();
+            loadDestinations();
+        });
+    </script>
 </body>
 </html>

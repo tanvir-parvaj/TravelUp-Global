@@ -3,793 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking & Payment — TravelUp Global</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <!-- Master Pixel-Perfect Stylesheet -->
+    <title>Smart Checkout & Fintech Split-Bill — TravelUp Global</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 2.5rem;
+            padding: 3rem 0 5rem;
+        }
+        .checkout-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .quorum-progress {
+            background: #e2e8f0;
+            border-radius: var(--radius-full);
+            height: 12px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .quorum-bar {
+            background: var(--accent);
+            height: 100%;
+            transition: width 0.4s ease;
+        }
+        .member-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.75rem;
+            background: #f8fafc;
+        }
+        .member-row.paid {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+        .status-pill {
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.25rem 0.65rem;
+            border-radius: var(--radius-full);
+        }
+        .status-pill.paid {
+            background: #dcfce7;
+            color: #15803d;
+        }
+        .status-pill.unpaid {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+        .passport-warning-box {
+            display: none;
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin-top: 1rem;
+            color: #991b1b;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 900px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- 1. TOP NAVBAR (Sticky & Pixel-Perfect) -->
-    <header class="top-navbar">
-        <div class="container navbar-inner">
-            <!-- Brand Logo -->
-            <a href="index.html" class="nav-brand-logo">
-                <div class="brand-icon-box">✈️</div>
-                <div class="brand-title-wrap">
-                    <h1>TravelUp Global</h1>
-                    <p>Explore • Plan • Travel</p>
-                </div>
+    <!-- Sticky Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                TravelUp<span>Global</span>
+                <span class="brand-badge">Fintech</span>
             </a>
-
-            <!-- Submenu-Organized Navigation Menu -->
-            <ul class="nav-links-menu">
-                <li class="nav-link-item"><a href="index.html" data-en="Home" data-bn="হোম">Home</a></li>
-                <li class="nav-link-item"><a href="destinations.html" data-en="Destinations" data-bn="ডেস্টিনেশন">Destinations</a></li>
-                
-                <!-- Submenu 1: Plan & Build ▾ -->
-                <li class="nav-link-item has-dropdown">
-                    <a href="javascript:void(0)" class="dropdown-trigger">
-                        <span data-en="Plan & Build" data-bn="প্ল্যান ও বিল্ড">Plan & Build</span> <span class="nav-arrow-down">▾</span>
-                    </a>
-                    <div class="nav-dropdown-menu">
-                        <a href="trip-builder.html" class="dropdown-link-item">
-                            <div class="drop-icon">🛠️</div>
-                            <div>
-                                <div class="drop-title" data-en="Custom Trip Builder" data-bn="কাস্টম ট্রিপ বিল্ডার">Custom Trip Builder</div>
-                                <div class="drop-desc" data-en="Dynamic pricing & live builder" data-bn="লাইভ দাম ও ট্রিপ কাস্টমাইজার">Dynamic pricing & live builder</div>
-                            </div>
-                        </a>
-                        <a href="itinerary.html" class="dropdown-link-item">
-                            <div class="drop-icon">🗺️</div>
-                            <div>
-                                <div class="drop-title" data-en="Day-wise Itinerary" data-bn="দিনভিত্তিক ভ্রমণসূচি">Day-wise Itinerary</div>
-                                <div class="drop-desc" data-en="Interactive day plans & routes" data-bn="ইন্টারেক্টিভ সূচি ও ম্যাপ">Interactive day plans & routes</div>
-                            </div>
-                        </a>
-                        <a href="ai-planner.html" class="dropdown-link-item">
-                            <div class="drop-icon">🤖</div>
-                            <div>
-                                <div class="drop-title" data-en="AI Trip Planner" data-bn="এআই ট্রিপ প্ল্যানার">AI Trip Planner</div>
-                                <div class="drop-desc" data-en="Budget-protected AI optimizer" data-bn="বাজেট প্রটেক্টেড এআই অপটিমাইজার">Budget-protected AI optimizer</div>
-                            </div>
-                        </a>
-                        <a href="budget-planner.html" class="dropdown-link-item">
-                            <div class="drop-icon">📊</div>
-                            <div>
-                                <div class="drop-title" data-en="Budget Planner" data-bn="বাজেট প্ল্যানার">Budget Planner</div>
-                                <div class="drop-desc" data-en="Accurate category cost forecast" data-bn="সঠিক ক্যাটাগরি খরচ ফোরকাস্ট">Accurate category cost forecast</div>
-                            </div>
-                        </a>
-                        <a href="group-travel.html" class="dropdown-link-item">
-                            <div class="drop-icon">👥</div>
-                            <div>
-                                <div class="drop-title" data-en="Group Travel" data-bn="গ্রুপ ট্রাভেল">Group Travel</div>
-                                <div class="drop-desc" data-en="Save up to 20% on group trips" data-bn="গ্রুপে ঘুরুন, ২০% পর্যন্ত সাশ্রয়">Save up to 20% on group trips</div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-
-                <li class="nav-link-item"><a href="packages.html" data-en="Packages" data-bn="প্যাকেজ">Packages</a></li>
-
-                <!-- Submenu 2: Community & Reviews ▾ -->
-                <li class="nav-link-item has-dropdown">
-                    <a href="javascript:void(0)" class="dropdown-trigger">
-                        <span data-en="Community" data-bn="কমিউনিটি">Community</span> <span class="nav-arrow-down">▾</span>
-                    </a>
-                    <div class="nav-dropdown-menu">
-                        <a href="reviews.html" class="dropdown-link-item">
-                            <div class="drop-icon">⭐</div>
-                            <div>
-                                <div class="drop-title" data-en="Traveler Reviews" data-bn="ভ্রমণকারীদের রিভিউ">Traveler Reviews</div>
-                                <div class="drop-desc" data-en="Verified feedback & ratings" data-bn="যাচাইকৃত মতামত ও অভিজ্ঞতা">Verified feedback & ratings</div>
-                            </div>
-                        </a>
-                        <a href="community.html" class="dropdown-link-item">
-                            <div class="drop-icon">💬</div>
-                            <div>
-                                <div class="drop-title" data-en="Travel Stories" data-bn="ভ্রমণ গল্প">Travel Stories</div>
-                                <div class="drop-desc" data-en="Community stories & photo feed" data-bn="কমিউনিটি পোস্ট ও ছবি">Community stories & photo feed</div>
-                            </div>
-                        </a>
-                        <a href="quiz.html" class="dropdown-link-item">
-                            <div class="drop-icon">🎮</div>
-                            <div>
-                                <div class="drop-title" data-en="Travel Personality Quiz" data-bn="ট্রাভেল কুইজ">Travel Personality Quiz</div>
-                                <div class="drop-desc" data-en="Find your ideal destination match" data-bn="পছন্দ অনুযায়ী ডেস্টিনেশন মিলান">Find your ideal destination match</div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="trip-builder.html">Trip Builder</a></li>
+                <li><a href="map.html">GIS Route Map</a></li>
+                <li><a href="booking.html" class="active">Fintech Split-Bill</a></li>
+                <li><a href="quotations.html">B2B Quotations</a></li>
+                <li><a href="dashboard.html">My Portal</a></li>
             </ul>
-
-            <!-- Right Actions Cluster (Clean & Dynamic Authentication) -->
-            <div class="nav-right-cluster">
-                <!-- Language Selector -->
-                <button class="lang-toggle-btn" onclick="app.toggleLanguage()">
-                    🌐 <span id="currentLangLabel">EN</span> ▾
-                </button>
-
-                <!-- Currency Selector -->
-                <button class="lang-toggle-btn" onclick="app.toggleCurrency()" title="Toggle Currency (USD / BDT)">
-                    💵 <span id="currentCurrLabel">USD</span>
-                </button>
-
-                <!-- Wishlist Heart -->
-                <a href="wishlist.html" class="icon-badge-btn" title="Wishlist">
-                    ♡ <span class="red-notify-dot"></span>
-                </a>
-
-                <!-- Notification Bell -->
-                <button class="icon-badge-btn" onclick="alert('Notification: 15% discount on Bali packages active!')" title="Notifications">
-                    🔔 <span class="red-notify-dot"></span>
-                </button>
-
-                                <!-- Common User Account Button (Unified for Login, Signup & Profile) -->
-                <div class="user-profile-header-wrap">
-                    <div class="profile-header-dropdown-trigger" onclick="auth.toggleProfileDropdown(event)" title="Account & Profile">
-                        <div class="nav-user-avatar-circle">
-                            <span style="font-size: 1.15rem;">👤</span>
-                        </div>
-                    </div>
-
-                    <!-- Unified Account Dropdown Card -->
-                    <div class="user-dropdown-card" id="userDropdownMenu">
-                        <!-- Dynamically populated by auth.renderNav() -->
-                    </div>
-                </div>
-            </div>
+            <div class="nav-actions" id="nav-auth-slot"></div>
         </div>
-    </header>
+    </nav>
 
-    <main class="container" style="padding-top: 20px; padding-bottom: 70px;">
-        <!-- 2. STEP WIZARD PROGRESS BAR (Screen 9 from Mockup) -->
-        <div class="step-wizard-bar">
-            <div class="step-wizard-item active">
-                <div class="step-num-bubble">1</div>
-                <span>Traveler Info</span>
+    <div class="container">
+        <!-- Header -->
+        <div style="padding-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;">
+            <div class="hero-pill" style="margin-bottom: 0.75rem;">
+                💳 Collaborative Split-Bill & ICAO Verification
             </div>
-            <div class="step-divider-line"></div>
-            <div class="step-wizard-item active">
-                <div class="step-num-bubble">2</div>
-                <span>Payment</span>
-            </div>
-            <div class="step-divider-line"></div>
-            <div class="step-wizard-item">
-                <div class="step-num-bubble">3</div>
-                <span>Confirmation</span>
-            </div>
+            <h1 style="font-size: 2.25rem; font-weight: 900; color: var(--secondary);">
+                Smart Gateway & Fintech Split-Bill (Scenario 12)
+            </h1>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+                Resolves student batch tour payment bottlenecks through shareable payment links with live webhook status.
+            </p>
         </div>
 
-        <!-- 3. CHECKOUT 2-COLUMN GRID -->
-        <div class="checkout-grid">
-            <!-- Left: Booking Summary Card -->
-            <div class="checkout-card">
-                <div class="badge-capsule badge-bg-green" style="margin-bottom: 12px;" id="bookingTypeBadge">
-                    Verified Booking
-                </div>
-                <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-dark); margin-bottom:14px;">Booking Summary</h3>
-                
-                <div style="display:flex; gap:14px; margin-bottom:16px;">
-                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=300&q=80" 
-                         id="bookSummaryImg" alt="Trip Cover" style="width:100px; height:80px; border-radius:12px; object-fit:cover;">
-                    <div>
-                        <h4 style="font-size:1.05rem; font-weight:800; color:var(--text-dark);" id="bookTitle">Bali Custom Trip</h4>
-                        <p style="font-size:0.8rem; color:var(--text-muted);" id="bookMeta">⏱️ 7 Days • 6 Nights | 2 Travelers</p>
-                        <div style="font-size:1.35rem; font-weight:900; color:var(--blue-primary); margin-top:4px;" id="bookPriceMain">$1,574</div>
-                    </div>
-                </div>
-
-                <!-- Flight / Transit Details -->
-                <div style="background:#f8fafc; border-radius:12px; padding:12px; margin-bottom:12px; border:1px solid var(--border-light);">
-                    <div style="font-size:0.75rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Arrival & Transfers</div>
-                    <div style="font-weight:700; font-size:0.88rem; margin:2px 0;">🚗 VIP Airport Chauffeur & Pick-up</div>
-                    <div style="font-size:0.75rem; color:var(--text-muted);">Includes private AC vehicle, bottled water & flight delay protection</div>
-                </div>
-
-                <!-- Hotel Details -->
-                <div style="background:#f8fafc; border-radius:12px; padding:12px; margin-bottom:14px; border:1px solid var(--border-light);">
-                    <div style="font-size:0.75rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Lodging Information</div>
-                    <div style="font-weight:700; font-size:0.88rem; margin:2px 0;" id="bookLodgingName">🏨 Standard Boutique Villa / Hotel</div>
-                    <div style="font-size:0.75rem; color:#eab308; font-weight:700;">★ 4.8 (Breakfast & Pool Included)</div>
-                </div>
-
-                <!-- Inclusions List -->
-                <div style="margin-bottom:16px;">
-                    <div style="font-size:0.8rem; font-weight:800; color:var(--text-dark); margin-bottom:6px;">Package Inclusions:</div>
-                    <div style="font-size:0.8rem; color:var(--text-body); line-height:1.7;">
-                        <div>✅ Dynamic Component Pricing Engine Validated</div>
-                        <div>✅ Full Day Sightseeing & Activity Passes</div>
-                        <div>✅ Dedicated English-Speaking Local Coordinator</div>
-                        <div>✅ Free Rescheduling Guarantee (Up to 48h before)</div>
-                    </div>
-                </div>
-
-                <div style="border-top:1px solid var(--border-subtle); padding-top:14px; display:flex; justify-content:space-between; align-items:center;">
-                    <span style="font-weight:800; font-size:1rem;">Total Price</span>
-                    <span style="font-size:1.6rem; font-weight:900; color:var(--text-dark);" id="bookTotalFinal">$1,574</span>
-                </div>
-            </div>
-
-            <!-- Right: Traveler Information & Payment Form -->
-            <div class="checkout-card">
-                <h3 style="font-size:1.2rem; font-weight:800; color:var(--text-dark); margin-bottom:14px;">Traveler Information</h3>
-
-                <form onsubmit="checkout.handleSubmit(event)">
-                    <div style="margin-bottom:12px;">
-                        <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Lead Traveler Name *</label>
-                        <input type="text" id="custName" value="MD Tanvir Parvaj" required 
-                               style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit; font-weight:600;">
+        <div class="checkout-layout">
+            <!-- Left: Checkout / Split Payment Workflow -->
+            <div>
+                <!-- Scenario 12: Split-Bill Module -->
+                <div class="checkout-card" id="split-bill-section">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                        <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary);">
+                            👥 Scenario 12: Collaborative Split-Bill Quorum
+                        </h2>
+                        <span class="badge" style="background: #e0f2fe; color: #0284c7; padding: 0.35rem 0.75rem; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.8rem;">
+                            Live Webhook Sync
+                        </span>
                     </div>
 
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
-                        <div>
-                            <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Email Address *</label>
-                            <input type="email" id="custEmail" value="tanvir@travelupglobal.com" required 
-                                   style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit; font-weight:600;">
-                        </div>
-                        <div>
-                            <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Phone Number *</label>
-                            <input type="tel" id="custPhone" value="+880 1700-000000" required 
-                                   style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit; font-weight:600;">
-                        </div>
-                    </div>
-                    <!-- Travel Date Selection -->
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
-                        <div>
-                            <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Travel Start Date *</label>
-                            <input type="date" id="bookStartDate" required 
-                                   style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit; font-weight:600;">
-                        </div>
-                        <div>
-                            <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Travelers Count *</label>
-                            <input type="number" id="bookTravelersCount" min="1" max="50" value="2" required 
-                                   style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit; font-weight:600;"
-                                   onchange="checkout.updateTravelers(this.value)">
-                        </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                        Shareable Link generated for 4-Student Cohort. Each student pays their exact ৳3,500 share independently.
+                    </p>
+
+                    <!-- Shareable Link Copy Box -->
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                        <input type="text" id="split-link-input" readonly value="http://localhost:5000/booking.html?ref=TB-SPLIT-9921&split=true" style="flex: 1; padding: 0.65rem 0.85rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 0.85rem; background: #f8fafc; font-family: monospace;">
+                        <button class="btn btn-outline btn-sm" onclick="copySplitLink()">📋 Copy Link</button>
                     </div>
 
-                    <!-- Dynamic Travel Identification (Domestic NID vs International Passport) -->
-                    <div id="domesticDocBlock" style="margin-bottom:14px; background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:10px;">
-                        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
-                            <span style="font-size:0.75rem; font-weight:800; color:#166534;">🇧🇩 DOMESTIC TOUR IDENTIFICATION</span>
-                            <span style="font-size:0.7rem; color:#15803d; font-weight:700;">No Passport Required</span>
-                        </div>
-                        <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px; color:#166534;">National ID (NID) / Birth Certificate Number</label>
-                        <input type="text" id="custNid" placeholder="e.g. 19876543210" value="1992019482910"
-                               style="width:100%; padding:10px 12px; border:1px solid #86efac; border-radius:8px; font-family:inherit; font-weight:600; background:#fff;">
-                        <div style="font-size:0.72rem; color:#166534; margin-top:4px;">Used for hotel check-in and domestic transport permits inside Bangladesh.</div>
+                    <!-- Live Quorum Progress Bar -->
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+                        <span>Quorum Completion: <span id="quorum-text" style="color: var(--accent);">75% Quorum Reached</span></span>
+                        <span>3 of 4 Paid</span>
+                    </div>
+                    <div class="quorum-progress">
+                        <div class="quorum-bar" id="quorum-bar" style="width: 75%;"></div>
                     </div>
 
-                    <div id="intlDocBlock" style="display:none; margin-bottom:14px; background:#eff6ff; border:1px solid #bfdbfe; padding:12px; border-radius:10px;">
-                        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
-                            <span style="font-size:0.75rem; font-weight:800; color:#1e40af;">✈️ INTERNATIONAL TRAVEL DOCUMENTS</span>
-                            <span style="font-size:0.7rem; color:#2563eb; font-weight:700;">Passport & Visa Required</span>
-                        </div>
-                        <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:10px; margin-bottom:8px;">
+                    <!-- Member Status List with Live Green Ticks -->
+                    <div id="members-list" style="margin-top: 1.5rem;">
+                        <div class="member-row paid">
                             <div>
-                                <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px; color:#1e40af;">Passport Number *</label>
-                                <input type="text" id="custPassport" placeholder="e.g. A02948192" value="A02948192"
-                                       style="width:100%; padding:10px 12px; border:1px solid #93c5fd; border-radius:8px; font-family:inherit; font-weight:600; background:#fff;">
+                                <strong style="font-size: 0.95rem; color: var(--secondary);">1. Md. Tanvir Parvaj (Lead)</strong>
+                                <span style="display: block; font-size: 0.75rem; color: var(--text-muted);">Share: ৳3,500 | bKash TrxID: BK-88219A</span>
                             </div>
+                            <span class="status-pill paid">✓ Paid (Lead)</span>
+                        </div>
+                        <div class="member-row paid">
                             <div>
-                                <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px; color:#1e40af;">Passport Expiry Date *</label>
-                                <input type="date" id="custPassportExpiry" value="2028-12-31"
-                                       style="width:100%; padding:10px 12px; border:1px solid #93c5fd; border-radius:8px; font-family:inherit; font-weight:600; background:#fff;">
+                                <strong style="font-size: 0.95rem; color: var(--secondary);">2. Md. Toufick Hasan</strong>
+                                <span style="display: block; font-size: 0.75rem; color: var(--text-muted);">Share: ৳3,500 | bKash TrxID: BK-91823B</span>
                             </div>
+                            <span class="status-pill paid">✓ Paid</span>
                         </div>
-                        <label style="display:flex; align-items:center; gap:8px; font-size:0.76rem; color:#1e40af; font-weight:700; cursor:pointer;">
-                            <input type="checkbox" id="custVisaAssistance" checked> Request TravelUp Global Visa Processing & E-Visa Filing
-                        </label>
-                    </div>
-
-                    <div style="margin-bottom:18px;">
-                        <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Special Preferences / Requests</label>
-                        <input type="text" id="custNotes" placeholder="e.g. Halal/Vegetarian meal preference, airport wheelchair assistance, high floor room" 
-                               style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit;">
-                    </div>
-
-                    <!-- Payment Method Selector -->
-                    <h4 style="font-size:0.95rem; font-weight:800; color:var(--text-dark); margin-bottom:8px;">Select Payment Method</h4>
-                    
-                    <div class="payment-selector-tabs" style="margin-bottom:14px;">
-                        <div class="payment-selector-pill active" id="tabPayCard" onclick="checkout.selectPay('card')">
-                            💳 Credit / Debit Card
-                        </div>
-                        <div class="payment-selector-pill" id="tabPayBkash" onclick="checkout.selectPay('bkash')">
-                            📱 bKash / Nagad
-                        </div>
-                        <div class="payment-selector-pill" id="tabPayPaypal" onclick="checkout.selectPay('paypal')">
-                            🅿️ PayPal / Stripe
-                        </div>
-                    </div>
-
-                    <!-- 1. Card Details Form -->
-                    <div id="cardFieldsBlock">
-                        <div style="margin-bottom:12px;">
-                            <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Cardholder Name</label>
-                            <input type="text" id="cardHolderName" placeholder="Full name on card" value="MD Tanvir Parvaj" 
-                                   style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit; font-weight:600;">
-                        </div>
-                        <div style="margin-bottom:12px;">
-                            <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Card Number</label>
-                            <input type="text" id="cardNumber" placeholder="4532 •••• •••• 8892" value="4532 8920 1928 8892" 
-                                   style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit; font-weight:600;">
-                        </div>
-
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+                        <div class="member-row paid">
                             <div>
-                                <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Expiry Date</label>
-                                <input type="text" id="cardExpiry" placeholder="MM/YY" value="08/28" 
-                                       style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit; font-weight:600;">
+                                <strong style="font-size: 0.95rem; color: var(--secondary);">3. Fahima Suborna</strong>
+                                <span style="display: block; font-size: 0.75rem; color: var(--text-muted);">Share: ৳3,500 | Nagad TrxID: NG-47120C</span>
                             </div>
+                            <span class="status-pill paid">✓ Paid</span>
+                        </div>
+                        <div class="member-row" id="pending-member-row">
                             <div>
-                                <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">CVC / CVV</label>
-                                <input type="password" id="cardCvv" placeholder="•••" value="892" 
-                                       style="width:100%; padding:10px 12px; border:1px solid var(--border-light); border-radius:10px; font-family:inherit; font-weight:600;">
+                                <strong style="font-size: 0.95rem; color: var(--secondary);">4. Sajib Bhattacharjee</strong>
+                                <span style="display: block; font-size: 0.75rem; color: var(--text-muted);">Share: ৳3,500 | Awaiting Payment</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span class="status-pill unpaid" id="pending-status-pill">⏳ Pending</span>
+                                <button class="btn btn-primary btn-sm" id="pay-share-btn" onclick="simulateSharePayment()">
+                                    Pay My Share (৳3,500)
+                                </button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- 2. bKash / Nagad Mobile Wallet Form -->
-                    <div id="bkashFieldsBlock" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:16px; margin-bottom:16px;">
-                        <div style="display:flex; align-items:center; gap:8px; font-size:0.85rem; font-weight:800; color:#15803d; margin-bottom:8px;">
-                            <span>📱 Mobile Wallet Payment</span>
-                        </div>
-                        <p style="font-size:0.78rem; color:#166534; margin:0 0 10px 0; line-height:1.5;">
-                            Please send payment to TravelUp Global Merchant Wallet: <strong>01711-002233</strong> (bKash / Nagad Merchant Account) and enter your transaction info below.
-                        </p>
-                        <div style="margin-bottom:10px;">
-                            <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Sender Mobile Number</label>
-                            <input type="text" id="bkashSenderMobile" placeholder="e.g. 017XXXXXXXX" value="01712345678"
-                                   style="width:100%; padding:10px 12px; border:1px solid #86efac; border-radius:10px; font-family:inherit; font-weight:600;">
-                        </div>
-                        <div>
-                            <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">Transaction ID (TrxID)</label>
-                            <input type="text" id="bkashTrxId" placeholder="e.g. BK892JX92L" value="TRX9824K12"
-                                   style="width:100%; padding:10px 12px; border:1px solid #86efac; border-radius:10px; font-family:inherit; font-weight:600; text-transform:uppercase;">
-                        </div>
-                    </div>
-
-                    <!-- 3. PayPal / Stripe Form -->
-                    <div id="paypalFieldsBlock" style="display:none; background:#eff6ff; border:1px solid #bfdbfe; border-radius:12px; padding:16px; margin-bottom:16px;">
-                        <div style="font-size:0.85rem; font-weight:800; color:#1d4ed8; margin-bottom:8px;">
-                            🅿️ PayPal & International Gateway
-                        </div>
-                        <p style="font-size:0.78rem; color:#1e40af; margin:0 0 10px 0; line-height:1.5;">
-                            Enter your PayPal email address or billing reference. Instant SSL validation.
-                        </p>
-                        <div>
-                            <label style="display:block; font-size:0.75rem; font-weight:700; margin-bottom:4px;">PayPal Account Email</label>
-                            <input type="email" id="paypalEmail" placeholder="billing@paypal.com" value="user@travelupglobal.com"
-                                   style="width:100%; padding:10px 12px; border:1px solid #93c5fd; border-radius:10px; font-family:inherit; font-weight:600;">
-                        </div>
-                    </div>
-
-                    <div style="display:flex; align-items:center; gap:8px; font-size:0.75rem; color:var(--text-muted); margin-bottom:18px;">
-                        <span>🔒 Secured with 256-bit SSL encryption. Authoritative backend validation gate active.</span>
-                    </div>
-
-                    <button type="submit" class="btn-primary-pill" style="width:100%; text-align:center; padding:14px 0; font-size:1rem;" id="btnSubmitPayment">
-                        Pay & Confirm Booking ➔
-                    </button>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <!-- CONFIRMATION & E-TICKET MODAL -->
-    <div id="confirmationTicketModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.7); backdrop-filter:blur(6px); z-index:9999; display:none; align-items:center; justify-content:center; padding:16px;">
-        <div style="background:#ffffff; border-radius:24px; max-width:540px; width:100%; max-height:90vh; overflow-y:auto; box-shadow:0 25px 60px rgba(0,0,0,0.3); border:1px solid var(--border-light); padding:28px; position:relative;">
-            
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span style="font-size:1.6rem;">🎉</span>
-                    <h3 style="font-size:1.35rem; font-weight:900; color:var(--text-dark); margin:0;">Booking Confirmed!</h3>
-                </div>
-                <button type="button" onclick="checkout.closeModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:#94a3b8;">&times;</button>
-            </div>
-
-            <!-- Ticket Card (Printable) -->
-            <div id="printableTicketCard" style="background:#f8fafc; border:1.5px solid var(--border-light); border-radius:18px; padding:20px; margin-bottom:20px;">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; border-bottom:1.5px dashed #cbd5e1; padding-bottom:14px;">
-                    <div>
-                        <div style="font-size:0.72rem; font-weight:800; color:var(--text-muted); text-transform:uppercase;">OFFICIAL TRAVEL E-TICKET</div>
-                        <h4 style="font-size:1.2rem; font-weight:900; color:var(--blue-primary); margin:2px 0;" id="ticketDestTitle">Bali Custom Trip</h4>
-                        <div style="font-size:0.78rem; color:var(--text-muted);">TravelUp Global • travelupglobal.com</div>
-                    </div>
-                    <div style="text-align:right;">
-                        <span class="badge-capsule badge-bg-green" style="font-size:0.75rem;">CONFIRMED</span>
-                        <div style="font-weight:900; font-size:0.88rem; color:var(--text-dark); margin-top:4px;" id="ticketRefCode">TUG-2026-X889</div>
-                    </div>
                 </div>
 
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.84rem; margin-bottom:14px;">
-                    <div>
-                        <span style="color:var(--text-muted); font-size:0.75rem; display:block;">Lead Traveler:</span>
-                        <strong id="ticketTravelerName">MD Tanvir Parvaj</strong>
-                    </div>
-                    <div>
-                        <span style="color:var(--text-muted); font-size:0.75rem; display:block;">Email Address:</span>
-                        <strong id="ticketTravelerEmail">tanvir@travelupglobal.com</strong>
-                    </div>
-                    <div>
-                        <span style="color:var(--text-muted); font-size:0.75rem; display:block;">Travel Start Date:</span>
-                        <strong id="ticketDate">2026-11-01</strong>
-                    </div>
-                    <div>
-                        <span style="color:var(--text-muted); font-size:0.75rem; display:block;">Party Size:</span>
-                        <strong id="ticketPax">2 Travelers</strong>
-                    </div>
-                    <div>
-                        <span style="color:var(--text-muted); font-size:0.75rem; display:block;">Payment Method:</span>
-                        <strong id="ticketPaymentMethod">Credit Card</strong>
-                    </div>
-                    <div>
-                        <span style="color:var(--text-muted); font-size:0.75rem; display:block;">Total Amount Paid:</span>
-                        <strong id="ticketTotalAmount" style="color:var(--blue-primary); font-size:1rem;">$1,574</strong>
-                    </div>
-                </div>
+                <!-- Bonus Safety Constraint: Pre-Checkout Passport 6-Month Validity Guard -->
+                <div class="checkout-card">
+                    <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.5rem;">
+                        🛂 Bonus: Pre-Checkout Passport 6-Month Validity Guard
+                    </h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                        ICAO Aviation Law Compliance Engine. Blocks international checkout if validity is under 180 days.
+                    </p>
 
-                <div style="background:#ffffff; border-radius:10px; padding:10px; border:1px solid #e2e8f0; font-size:0.75rem; color:#475569; display:flex; justify-content:space-between; align-items:center;">
-                    <div>
-                        <strong>Inclusions:</strong> Airport Transfer • AC Villa • Itinerary Sightseeing • 24/7 Coordinator
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Travel Departure Date</label>
+                            <input type="date" id="pass-departure-date" value="2026-11-20" onchange="validatePassport()">
+                        </div>
+                        <div class="input-group">
+                            <label>Passport Expiry Date</label>
+                            <input type="date" id="pass-expiry-date" value="2026-12-10" onchange="validatePassport()">
+                        </div>
                     </div>
-                    <div style="font-size:1.8rem; letter-spacing:2px; font-family:monospace; color:#334155;">🏁QR</div>
+
+                    <!-- Warning Box -->
+                    <div id="passport-alert" class="passport-warning-box">
+                        <strong>⚠️ ICAO Aviation Law Compliance Violation:</strong><br>
+                        <span id="passport-alert-text"></span>
+                        <div style="margin-top: 0.5rem; font-weight: 700; color: #b91c1c;">
+                            ❌ Checkout Blocked to Prevent Airport Boarding Denial!
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div style="display:flex; gap:12px;">
-                <button type="button" class="btn-secondary-pill" style="flex:1; padding:12px; font-size:0.88rem;" onclick="window.print()">
-                    🖨️ Print / Download Ticket
-                </button>
-                <a href="bookings.html" class="btn-primary-pill" style="flex:1; text-align:center; padding:12px; font-size:0.88rem;">
-                    📋 View in My Bookings ➔
-                </a>
+            <!-- Right: Order Summary & Confirmation -->
+            <div>
+                <div class="checkout-card" style="position: sticky; top: 90px;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--secondary); margin-bottom: 1rem;">
+                        Reservation Summary
+                    </h3>
+
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1rem; font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: var(--text-muted);">Destination:</span>
+                            <strong>Cox's Bazar & Saint Martin</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: var(--text-muted);">Travelers:</span>
+                            <strong>4 Students (CSE Batch)</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: var(--text-muted);">Bedding:</span>
+                            <span>Deluxe Family (2 King Beds)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: var(--text-muted);">Per-Person Rate:</span>
+                            <strong style="color: var(--primary);">৳3,500 / person</strong>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem;">
+                        <span style="font-size: 1.1rem; font-weight: 700;">Total Master Amount:</span>
+                        <span style="font-size: 1.75rem; font-weight: 900; color: var(--secondary);">৳14,000</span>
+                    </div>
+
+                    <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem; font-size: 0.8rem; color: var(--text-muted);">
+                        🔒 <strong>256-Bit SSL Encrypted:</strong> Integrated with bKash, Nagad, Visa, Mastercard & Hostinger Relational Ledger.
+                    </div>
+
+                    <a href="dashboard.html" class="btn btn-accent" style="width: 100%; font-size: 1rem; padding: 0.85rem;">
+                        View My Travel Portal & E-Ticket →
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- MASTER FOOTER (PIXEL-PERFECT FROM DESIGN MOCKUP) -->
-    <footer class="footer-dark-section">
-        <!-- Mockup Flight Trail Decoration -->
-        <svg class="footer-flight-decoration" width="220" height="110" viewBox="0 0 220 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 95 C 70 95, 90 20, 140 45 C 175 60, 195 25, 202 18" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
-            <text x="198" y="16" font-size="14" fill="#38bdf8" transform="rotate(35 198 16)">✈</text>
-        </svg>
-
-        <div class="container">
-            <div class="footer-columns-four">
-                <!-- Brand Column -->
-                <div class="footer-brand-column">
-                    <a href="index.html" class="footer-brand-logo-wrap">
-                        <div class="footer-brand-icon">✈️</div>
-                        <div>
-                            <h3>TravelUp Global</h3>
-                            <span>Explore • Plan • Travel</span>
-                        </div>
-                    </a>
-                    <p class="footer-brand-bio">
-                        Next-generation global travel technology platform. Discover breathtaking destinations, customize dynamic itineraries, and reserve verified dream trips worldwide.
-                    </p>
-                    <div class="footer-social-icons-row">
-                        <!-- Facebook -->
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-                        </a>
-                        <!-- Instagram -->
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <!-- YouTube -->
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        </a>
-                        <!-- TikTok -->
-                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" title="TikTok">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.16 1.18 2.09 2.35 2.3 1.05.2 2.16-.08 2.93-.82.68-.61.99-1.54 1.02-2.43.05-3.37.02-6.75.03-10.12.02-2.73.01-5.46.02-8.19z"/></svg>
-                        </a>
-                        <!-- X / Twitter -->
-                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Column 2: Quick Links -->
-                <div class="footer-nav-col">
-                    <h5>Quick Links</h5>
-                    <ul>
-                        <li><a href="destinations.html"><span>🗺️</span> Explore Destinations</a></li>
-                        <li><a href="packages.html"><span>✈️</span> Featured Packages</a></li>
-                        <li><a href="trip-builder.html"><span>🛠️</span> Custom Trip Builder</a></li>
-                        <li><a href="community.html"><span>👥</span> Community & Stories</a></li>
-                        <li><a href="index.html#about"><span>ℹ️</span> About Us</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Support -->
-                <div class="footer-nav-col">
-                    <h5>Support & Help</h5>
-                    <ul>
-                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>💬</span> Help Center</a></li>
-                        <li><a href="javascript:void(0)" onclick="app.openContactModal()"><span>📬</span> Contact Specialists</a></li>
-                        <li><a href="itinerary.html"><span>🗺️</span> Day-wise Itinerary</a></li>
-                        <li><a href="javascript:void(0)" onclick="app.openTermsModal()"><span>📜</span> Terms & Conditions</a></li>
-                        <li><a href="javascript:void(0)" onclick="app.openPrivacyModal()"><span>🛡️</span> Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 4: Download App -->
-                <div class="footer-nav-col">
-                    <h5>Download Our App</h5>
-                    <p style="font-size:0.78rem; color:#64748b; margin-bottom:14px; line-height:1.5;">
-                        Get exclusive mobile flight deals, barcode e-vouchers & live flight updates.
-                    </p>
-                    <div class="store-badges-container">
-                        <!-- App Store Badge -->
-                        <div class="store-badge-card" onclick="alert('TravelUp Global iOS App is coming soon to the Apple App Store! 🍏')">
-                            <div class="store-icon-wrap">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.67-.82 1.13-1.96 1-3.1-.98.04-2.16.66-2.85 1.47-.61.71-1.14 1.88-1 2.99 1.09.08 2.2-.56 2.85-1.36z"/></svg>
-                            </div>
-                            <div>
-                                <div class="store-text-top">Download on the</div>
-                                <div class="store-text-brand">App Store</div>
-                            </div>
-                        </div>
-
-                        <!-- Google Play Badge -->
-                        <div class="store-badge-card" onclick="alert('TravelUp Global Android App is coming soon to Google Play Store! 🤖')">
-                            <div class="store-icon-wrap">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.023 2.023 0 0 1-.61-1.45V3.264c0-.56.223-1.08.609-1.45zm11.233 11.234l2.551 2.551-12.01 6.857 9.459-9.408zm0-2.096L5.383 1.543l12.01 6.858-2.551 2.551zm1.047 1.048l3.418-1.95a1.86 1.86 0 0 1 0 3.218l-3.418-1.95-.001-.001-.001.683z"/></svg>
-                            </div>
-                            <div>
-                                <div class="store-text-top">GET IT ON</div>
-                                <div class="store-text-brand">Google Play</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sub-Footer Bottom Line -->
-            <div class="footer-bottom-line">
-                <div>© 2026 TravelUp Global. All rights reserved.</div>
-                
-                <div class="footer-bottom-badges">
-                    <span class="footer-badge-pill status-green">
-                        <span class="footer-pulse-dot"></span> Hostinger Cloud MySQL Connected
-                    </span>
-                    <span class="footer-badge-pill">
-                        🔒 256-Bit SSL Secured
-                    </span>
-                    <span class="footer-badge-pill" style="color:#94a3b8; border-color:rgba(255,255,255,0.08); background:transparent;">
-                        Port: 5000 Active
-                    </span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    <!-- Scripts -->
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/app.js"></script>
     <script>
-        const checkout = {
-            totalAmount: 1574,
-            unitPrice: 787,
-            destName: "Bali, Indonesia",
-            destinationId: 1,
-            packageId: null,
-            travelersCount: 2,
-            currentPaymentMethod: 'card',
-            travelType: 'domestic',
+        function copySplitLink() {
+            const input = document.getElementById('split-link-input');
+            input.select();
+            document.execCommand('copy');
+            alert('Shareable Split-Bill Payment Link copied to clipboard!\nSend this to your friends or batchmates.');
+        }
 
-            init() {
-                const params = new URLSearchParams(window.location.search);
-                if (params.has('total')) {
-                    this.totalAmount = parseFloat(params.get('total')) || 1574;
-                }
-                if (params.has('dest')) {
-                    this.destName = params.get('dest');
-                }
-                if (params.has('destId')) {
-                    this.destinationId = parseInt(params.get('destId')) || 1;
-                }
-                if (params.has('pkgId') || params.has('pkg')) {
-                    this.packageId = parseInt(params.get('pkgId') || params.get('pkg'));
-                }
-                if (params.has('adults')) {
-                    this.travelersCount = parseInt(params.get('adults')) || 2;
-                }
-                if (params.has('img')) {
-                    const imgEl = document.getElementById('bookSummaryImg');
-                    if (imgEl) imgEl.src = decodeURIComponent(params.get('img'));
-                }
+        // Scenario 12: Live Payment Simulation for 4th friend
+        function simulateSharePayment() {
+            const row = document.getElementById('pending-member-row');
+            const pill = document.getElementById('pending-status-pill');
+            const btn = document.getElementById('pay-share-btn');
+            const qBar = document.getElementById('quorum-bar');
+            const qText = document.getElementById('quorum-text');
 
-                // Determine Travel Type
-                if (params.has('travelType')) {
-                    this.travelType = params.get('travelType');
-                } else {
-                    const intlKeywords = ['bali', 'thailand', 'dubai', 'santorini', 'maldives', 'japan', 'singapore', 'europe', 'paris', 'tokyo'];
-                    const isIntl = intlKeywords.some(k => (this.destName || '').toLowerCase().includes(k));
-                    this.travelType = isIntl ? 'international' : 'domestic';
-                }
+            btn.disabled = true;
+            btn.textContent = 'Processing bKash...';
 
-                const domEl = document.getElementById('domesticDocBlock');
-                const intlEl = document.getElementById('intlDocBlock');
-                const badgeEl = document.getElementById('bookingTypeBadge');
+            setTimeout(() => {
+                row.classList.add('paid');
+                pill.className = 'status-pill paid';
+                pill.textContent = '✓ Paid via bKash';
+                btn.style.display = 'none';
 
-                if (this.travelType === 'international') {
-                    if (domEl) domEl.style.display = 'none';
-                    if (intlEl) intlEl.style.display = 'block';
-                    if (badgeEl) {
-                        badgeEl.innerHTML = '✈️ International Tour (Passport & Visa Required)';
-                        badgeEl.style.background = '#eff6ff';
-                        badgeEl.style.color = '#2563eb';
-                    }
-                } else {
-                    if (domEl) domEl.style.display = 'block';
-                    if (intlEl) intlEl.style.display = 'none';
-                    if (badgeEl) {
-                        badgeEl.innerHTML = '🇧🇩 Domestic Tour (NID Verification)';
-                        badgeEl.style.background = '#f0fdf4';
-                        badgeEl.style.color = '#16a34a';
-                    }
-                }
+                qBar.style.width = '100%';
+                qText.textContent = '100% Quorum Reached (All 4 Paid)';
+                qText.style.color = '#15803d';
 
-                // Default date to 14 days from today
-                const defaultDate = new Date();
-                defaultDate.setDate(defaultDate.getDate() + 14);
-                const dateStr = defaultDate.toISOString().split('T')[0];
-                const dateInput = document.getElementById('bookStartDate');
-                if (dateInput) {
-                    dateInput.value = params.has('date') ? params.get('date') : dateStr;
-                    dateInput.min = new Date().toISOString().split('T')[0];
-                }
+                alert('✅ Success! ৳3,500 received via bKash.\nMaster Tour reservation is now 100% confirmed with active green ticks for all 4 students!');
+            }, 800);
+        }
 
-                const travelersInput = document.getElementById('bookTravelersCount');
-                if (travelersInput) travelersInput.value = this.travelersCount;
+        // Bonus Safety Constraint: Pre-checkout passport validation
+        function validatePassport() {
+            const departureVal = document.getElementById('pass-departure-date').value;
+            const expiryVal = document.getElementById('pass-expiry-date').value;
+            const alertBox = document.getElementById('passport-alert');
+            const alertText = document.getElementById('passport-alert-text');
 
-                this.unitPrice = Math.round(this.totalAmount / this.travelersCount);
+            if (!departureVal || !expiryVal) return;
 
-                // Auto-fill logged-in traveler
-                if (auth.user) {
-                    if (document.getElementById('custName')) document.getElementById('custName').value = auth.user.name || '';
-                    if (document.getElementById('custEmail')) document.getElementById('custEmail').value = auth.user.email || '';
-                    if (document.getElementById('custPhone') && auth.user.phone) document.getElementById('custPhone').value = auth.user.phone;
-                }
+            const departure = new Date(departureVal);
+            const expiry = new Date(expiryVal);
+            const diffDays = Math.ceil((expiry - departure) / (1000 * 60 * 60 * 24));
 
-                this.updateUI();
-            },
-
-            updateTravelers(newCount) {
-                const count = parseInt(newCount) || 1;
-                this.travelersCount = count;
-                this.totalAmount = this.unitPrice * count;
-                this.updateUI();
-            },
-
-            updateUI() {
-                const formatted = window.app ? app.formatPrice(this.totalAmount) : `$${this.totalAmount.toLocaleString()}`;
-                const isBn = localStorage.getItem('travelup_lang') === 'bn';
-
-                document.getElementById('bookTitle').innerText = `${this.destName} ${isBn ? 'ভ্রমণ' : 'Trip'}`;
-                document.getElementById('bookPriceMain').innerText = formatted;
-                document.getElementById('bookTotalFinal').innerText = formatted;
-                document.getElementById('bookMeta').innerText = isBn 
-                    ? `⏱️ যাচাইকৃত ভ্রমণসূচি | ${this.travelersCount} জন ভ্রমণকারী` 
-                    : `⏱️ Verified Itinerary | ${this.travelersCount} Travelers`;
-                document.getElementById('btnSubmitPayment').innerText = isBn
-                    ? `${formatted} পরিশোধ করুন ও বুকিং নিশ্চিত করুন ➔`
-                    : `Pay ${formatted} & Confirm Booking ➔`;
-
-                if (window.app) {
-                    app.updateCurrLabels();
-                    app.updateLangLabels();
-                }
-            },
-
-            selectPay(type) {
-                this.currentPaymentMethod = type;
-                document.getElementById('tabPayCard').classList.remove('active');
-                document.getElementById('tabPayBkash').classList.remove('active');
-                document.getElementById('tabPayPaypal').classList.remove('active');
-
-                document.getElementById('cardFieldsBlock').style.display = 'none';
-                document.getElementById('bkashFieldsBlock').style.display = 'none';
-                document.getElementById('paypalFieldsBlock').style.display = 'none';
-
-                if (type === 'card') {
-                    document.getElementById('tabPayCard').classList.add('active');
-                    document.getElementById('cardFieldsBlock').style.display = 'block';
-                } else if (type === 'bkash') {
-                    document.getElementById('tabPayBkash').classList.add('active');
-                    document.getElementById('bkashFieldsBlock').style.display = 'block';
-                } else if (type === 'paypal') {
-                    document.getElementById('tabPayPaypal').classList.add('active');
-                    document.getElementById('paypalFieldsBlock').style.display = 'block';
-                }
-            },
-
-            async handleSubmit(e) {
-                e.preventDefault();
-                const btn = document.getElementById('btnSubmitPayment');
-                btn.innerText = "Processing Reservation with Hostinger MySQL...";
-                btn.disabled = true;
-
-                const name = document.getElementById('custName').value;
-                const email = document.getElementById('custEmail').value;
-                const phone = document.getElementById('custPhone').value;
-                const startDate = document.getElementById('bookStartDate').value;
-                const notes = document.getElementById('custNotes').value;
-                const passport_number = this.travelType === 'international' ? document.getElementById('custPassport')?.value : null;
-                const nid_number = this.travelType === 'domestic' ? document.getElementById('custNid')?.value : null;
-
-                let trxId = null;
-                if (this.currentPaymentMethod === 'bkash') {
-                    trxId = document.getElementById('bkashTrxId').value;
-                }
-
-                const currentCurr = localStorage.getItem('travelup_curr') || 'USD';
-
-                // Execute Booking in Hostinger MySQL
-                const bookingRes = await api.createBooking({
-                    destination_id: this.destinationId,
-                    package_id: this.packageId,
-                    start_date: startDate,
-                    travelers_count: this.travelersCount,
-                    total_price: this.totalAmount,
-                    customer_name: name,
-                    customer_email: email,
-                    customer_phone: phone,
-                    payment_method: this.currentPaymentMethod,
-                    trx_id: trxId,
-                    special_notes: notes,
-                    currency: currentCurr,
-                    travel_type: this.travelType,
-                    passport_number,
-                    nid_number
-                });
-
-                // Auto login if new traveler session was created
-                if (bookingRes && bookingRes.userToken && bookingRes.currentUser) {
-                    auth.saveSession(bookingRes.userToken, bookingRes.currentUser);
-                }
-
-                const refId = (bookingRes && bookingRes.booking) ? bookingRes.booking.booking_ref : `TUG-2026-${Math.floor(10000 + Math.random() * 90000)}`;
-
-                // Populate Confirmation Ticket Modal
-                const formatted = window.app ? app.formatPrice(this.totalAmount) : `$${this.totalAmount.toLocaleString()}`;
-                document.getElementById('ticketDestTitle').innerText = `${this.destName} Trip`;
-                document.getElementById('ticketRefCode').innerText = refId;
-                document.getElementById('ticketTravelerName').innerText = name;
-                document.getElementById('ticketTravelerEmail').innerText = email;
-                document.getElementById('ticketDate').innerText = startDate;
-                document.getElementById('ticketPax').innerText = `${this.travelersCount} Travelers`;
-                document.getElementById('ticketPaymentMethod').innerText = this.currentPaymentMethod === 'bkash' ? 'bKash / Nagad' : (this.currentPaymentMethod === 'paypal' ? 'PayPal' : 'Credit / Debit Card');
-                document.getElementById('ticketTotalAmount').innerText = formatted;
-
-                // Show Confirmation Ticket Modal
-                document.getElementById('confirmationTicketModal').style.display = 'flex';
-                btn.innerText = "Booking Confirmed ✅";
-            },
-
-            closeModal() {
-                document.getElementById('confirmationTicketModal').style.display = 'none';
-                window.location.href = 'bookings.html';
+            if (diffDays < 180) {
+                alertBox.style.display = 'block';
+                alertText.innerHTML = `Your passport expires in only <strong>${diffDays} days</strong> from your departure date. International aviation law requires at least <strong>180 days (6 months)</strong> remaining validity.`;
+            } else {
+                alertBox.style.display = 'none';
             }
-        };
+        }
 
-        window.addEventListener('currencyChanged', () => checkout.updateUI());
-        window.addEventListener('languageChanged', () => checkout.updateUI());
-        window.addEventListener('DOMContentLoaded', () => checkout.init());
+        document.addEventListener('DOMContentLoaded', () => {
+            validatePassport();
+        });
     </script>
 </body>
 </html>
-
-

@@ -3,2163 +3,622 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Build Your Custom Trip — Traveler Portal | TravelUp Global</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <!-- Master Stylesheet -->
+    <title>Trip Builder (12 Scenarios) — TravelUp Global</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --sidebar-width: 250px;
-            --dashboard-bg: #f8fafc;
-            --dash-card-bg: #ffffff;
-            --dash-border: #e2e8f0;
-            --blue-primary: #2563eb;
-            --blue-dark: #1d4ed8;
-            --blue-subtle: #eff6ff;
-        }
-
-        body {
-            background-color: var(--dashboard-bg);
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #0f172a;
-        }
-
-        .dashboard-layout {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* ============================================================
-           1. TRAVELER PORTAL LEFT SIDEBAR (PIXEL PERFECT)
-           ============================================================ */
-        .dash-sidebar {
-            width: var(--sidebar-width);
-            background: #ffffff;
-            border-right: 1px solid var(--dash-border);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 100;
-            padding: 20px 14px 16px 14px;
-            overflow-y: auto;
-            box-sizing: border-box;
-        }
-
-        .dash-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            padding: 0 6px 16px 6px;
-            border-bottom: 1px solid var(--dash-border);
-            margin-bottom: 12px;
-        }
-
-        .dash-brand-icon {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(135deg, #1d4ed8, #2563eb);
-            color: #fff;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.15rem;
-            flex-shrink: 0;
-        }
-
-        .dash-brand-title {
-            font-weight: 800;
-            font-size: 1.05rem;
-            color: #0f172a;
-            line-height: 1.15;
-        }
-
-        .dash-brand-sub {
-            font-size: 0.67rem;
-            color: #64748b;
-            font-weight: 600;
-        }
-
-        /* User Profile Pill under Brand */
-        .dash-user-pill {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 12px;
-            border-radius: 12px;
-            background: #f8fafc;
-            border: 1px solid var(--dash-border);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-bottom: 14px;
-        }
-
-        .dash-user-pill:hover {
-            background: #f1f5f9;
-            border-color: #cbd5e1;
-        }
-
-        .dash-user-avatar {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-            flex-shrink: 0;
-        }
-
-        .dash-user-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .dash-user-info h4 {
-            margin: 0;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #0f172a;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .dash-user-info p {
-            margin: 0;
-            font-size: 0.68rem;
-            color: #2563eb;
-            font-weight: 600;
-        }
-
-        .dash-user-chevron {
-            color: #94a3b8;
-            font-size: 0.75rem;
-        }
-
-        /* Navigation Menu (Exact 10 Items from Uploaded Reference) */
-        .dash-nav-menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .dash-nav-item a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 9px 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 0.87rem;
-            font-weight: 600;
-            color: #475569;
-            transition: all 0.18s ease;
-        }
-
-        .dash-nav-item a:hover {
-            background: #f1f5f9;
-            color: #0f172a;
-        }
-
-        .dash-nav-item.active a {
-            background: #eff6ff;
-            color: #2563eb;
-            font-weight: 800;
-        }
-
-        .dash-nav-icon {
-            font-size: 1.05rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            text-align: center;
-        }
-
-        /* Sidebar Bottom: Need Help Card & Script */
-        .sidebar-bottom-wrap {
-            margin-top: 14px;
-            padding-top: 12px;
-            border-top: 1px solid var(--dash-border);
-        }
-
-        .need-help-card {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            border: 1px solid #bfdbfe;
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
-            text-align: left;
-        }
-
-        .need-help-card-header {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 800;
-            font-size: 0.8rem;
-            color: #1e3a8a;
-            margin-bottom: 4px;
-        }
-
-        .need-help-card p {
-            font-size: 0.69rem;
-            color: #475569;
-            margin: 0 0 8px 0;
-            line-height: 1.35;
-        }
-
-        .btn-sidebar-chat {
-            width: 100%;
-            padding: 7px 0;
-            background: #2563eb;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.76rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-
-        .btn-sidebar-chat:hover {
-            background: #1d4ed8;
-        }
-
-        .sidebar-script-note {
-            text-align: center;
-            font-size: 0.68rem;
-            color: #94a3b8;
-            font-style: italic;
-            font-family: 'Georgia', serif;
-            letter-spacing: 0.02em;
-        }
-
-        /* ============================================================
-           2. TRAVELER PORTAL MAIN LAYOUT & TOPBAR
-           ============================================================ */
-        .dash-main {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background: #f8fafc;
-            min-width: 0;
-        }
-
-        /* Topbar (The original traveler portal topbar) */
-        .dash-topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 32px;
-            background: #ffffff;
-            border-bottom: 1px solid var(--dash-border);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .dash-search-box {
-            position: relative;
-            width: 440px;
-            max-width: 100%;
-        }
-
-        .dash-search-box input {
-            width: 100%;
-            padding: 9px 16px 9px 40px;
-            border-radius: 24px;
-            border: 1px solid var(--dash-border);
-            background: #f8fafc;
-            font-size: 0.86rem;
-            outline: none;
-            font-family: inherit;
-            color: #0f172a;
-            transition: all 0.2s;
-            box-sizing: border-box;
-        }
-
-        .dash-search-box input:focus {
-            background: #ffffff;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-        }
-
-        .dash-search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        .dash-top-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .dash-action-pill {
-            background: #ffffff;
-            border: 1px solid var(--dash-border);
-            padding: 7px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-decoration: none;
-            color: #475569;
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-
-        .dash-action-pill:hover {
-            background: #f8fafc;
-            border-color: #cbd5e1;
-            color: #0f172a;
-        }
-
-        .dash-icon-btn {
-            background: #ffffff;
-            border: 1px solid var(--dash-border);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.05rem;
-            position: relative;
-            transition: all 0.15s;
-            color: #475569;
-        }
-
-        .dash-icon-btn:hover {
-            background: #f8fafc;
-            border-color: #cbd5e1;
-        }
-
-        .notif-badge-dot {
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            width: 8px;
-            height: 8px;
-            background: #ef4444;
-            border-radius: 50%;
-            border: 2px solid #ffffff;
-        }
-
-        .dash-top-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #e2e8f0;
-            cursor: pointer;
-            display: block;
-            transition: transform 0.15s;
-        }
-
-        .dash-top-avatar:hover {
-            transform: scale(1.05);
-            border-color: #2563eb;
-        }
-
-        /* ============================================================
-           3. HERO BANNER
-           ============================================================ */
-        .builder-hero-banner {
-            position: relative;
-            height: 190px;
-            overflow: hidden;
-            background: #0f172a;
-        }
-
-        .builder-hero-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 0.88;
-        }
-
-        .builder-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(15,23,42,0.78) 0%, rgba(15,23,42,0.4) 55%, rgba(15,23,42,0.1) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 24px 36px;
-        }
-
-        .builder-breadcrumb {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            color: #ffffff;
-            font-size: 0.73rem;
-            font-weight: 700;
-            width: fit-content;
-            margin-bottom: 8px;
-        }
-
-        .builder-hero-title {
-            font-size: 2.1rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin: 0 0 4px 0;
-            line-height: 1.15;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-
-        .builder-hero-desc {
-            font-size: 0.85rem;
-            color: #e2e8f0;
-            margin: 0;
-            max-width: 620px;
-            line-height: 1.45;
-        }
-
-        .hero-script-tag {
-            position: absolute;
-            right: 36px;
-            bottom: 24px;
-            color: rgba(255,255,255,0.75);
-            font-style: italic;
-            font-family: 'Georgia', serif;
-            font-size: 1.05rem;
-            line-height: 1.3;
-            text-align: right;
-            pointer-events: none;
-        }
-
-        /* ============================================================
-           4. WIZARD STEPPER BAR
-           ============================================================ */
-        .wizard-bar-container {
-            background: #ffffff;
-            border-bottom: 1px solid var(--dash-border);
-            padding: 0 36px;
-            display: flex;
-            align-items: center;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .wizard-bar-container::-webkit-scrollbar { display: none; }
-
-        .wiz-step-item {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-            padding: 14px 10px;
-            cursor: pointer;
-            gap: 10px;
-        }
-
-        .wiz-step-circle {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            color: #64748b;
-            font-size: 0.78rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            border: 1.5px solid #e2e8f0;
-        }
-
-        .wiz-step-item.active .wiz-step-circle {
-            background: #2563eb;
-            color: #ffffff;
-            border-color: #2563eb;
-            box-shadow: 0 2px 8px rgba(37,99,235,0.35);
-        }
-
-        .wiz-step-item.completed .wiz-step-circle {
-            background: #16a34a;
-            color: #ffffff;
-            border-color: #16a34a;
-        }
-
-        .wiz-step-info {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-        .wiz-step-title {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #64748b;
-        }
-
-        .wiz-step-item.active .wiz-step-title {
-            color: #2563eb;
-            font-weight: 800;
-        }
-
-        .wiz-step-item.completed .wiz-step-title {
-            color: #16a34a;
-        }
-
-        .wiz-step-subtitle {
-            font-size: 0.68rem;
-            color: #94a3b8;
-        }
-
-        .wiz-step-connector {
-            width: 32px;
-            height: 2px;
-            background: #e2e8f0;
-            flex-shrink: 0;
-            margin: 0 6px;
-        }
-
-        .wiz-step-connector.completed {
-            background: #16a34a;
-        }
-
-        /* ============================================================
-           5. TWO-COLUMN BUILDER CONTENT AREA
-           ============================================================ */
-        .builder-workspace-grid {
+        .builder-layout {
             display: grid;
-            grid-template-columns: 1fr 340px;
-            gap: 24px;
-            padding: 24px 36px 60px 36px;
+            grid-template-columns: 1fr 400px;
+            gap: 2.5rem;
             align-items: start;
+            padding: 3rem 0 5rem;
         }
-
-        /* Left Column: Interactive Form Card */
-        .step-main-card {
-            background: #ffffff;
-            border: 1px solid var(--dash-border);
-            border-radius: 18px;
-            padding: 28px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        .form-section {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
         }
-
-        .step-main-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 24px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .step-badge-title-group {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .step-badge-avatar {
-            width: 40px;
-            height: 40px;
-            background: #2563eb;
-            color: #ffffff;
-            border-radius: 50%;
+        .section-step-title {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .step-main-header h2 {
-            font-size: 1.18rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin: 0 0 3px 0;
-        }
-
-        .step-main-header p {
-            font-size: 0.8rem;
-            color: #64748b;
-            margin: 0;
-        }
-
-        .btn-save-template-header {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 14px;
-            background: #ffffff;
-            border: 1.5px solid var(--dash-border);
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #475569;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-
-        .btn-save-template-header:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-            background: #eff6ff;
-        }
-
-        /* Section Item Blocks */
-        .form-block-group {
-            margin-bottom: 24px;
-        }
-
-        .block-title-num {
-            font-size: 0.92rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 4px;
-        }
-
-        .block-subtitle-desc {
-            font-size: 0.77rem;
-            color: #64748b;
-            margin-bottom: 12px;
-        }
-
-        /* 1. Travel Type Switcher */
-        .travel-type-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
-
-        .tt-selection-card {
-            border: 2px solid var(--dash-border);
-            border-radius: 14px;
-            padding: 16px;
-            background: #ffffff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            position: relative;
-            transition: all 0.2s ease;
-        }
-
-        .tt-selection-card:hover {
-            border-color: #93c5fd;
-            background: #f8fafc;
-        }
-
-        .tt-selection-card.selected {
-            border-color: #2563eb;
-            background: #eff6ff;
-        }
-
-        .tt-flag-circle {
-            font-size: 1.8rem;
-            flex-shrink: 0;
-        }
-
-        .tt-info-title {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 2px;
-        }
-
-        .tt-info-sub {
-            font-size: 0.72rem;
-            color: #64748b;
-            line-height: 1.35;
-        }
-
-        .tt-selected-check {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 20px;
-            height: 20px;
-            background: #2563eb;
-            color: #ffffff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.68rem;
-            font-weight: 800;
-            opacity: 0;
-            transition: opacity 0.15s;
-        }
-
-        .tt-selection-card.selected .tt-selected-check {
-            opacity: 1;
-        }
-
-        /* 2. Destination Search & Thumbnails */
-        .dest-input-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 14px;
-        }
-
-        .dest-search-input-box {
-            flex: 1;
-            position: relative;
-        }
-
-        .dest-search-input-box input {
-            width: 100%;
-            padding: 11px 16px 11px 40px;
-            border-radius: 12px;
-            border: 1.5px solid var(--dash-border);
-            font-size: 0.88rem;
-            font-family: inherit;
-            outline: none;
-            box-sizing: border-box;
-            transition: border-color 0.15s;
-        }
-
-        .dest-search-input-box input:focus {
-            border-color: #2563eb;
-        }
-
-        .dest-pin-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-
-        .btn-browse-destinations-trigger {
-            padding: 11px 18px;
-            background: #ffffff;
-            border: 1.5px solid var(--dash-border);
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #334155;
-            cursor: pointer;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.15s;
-        }
-
-        .btn-browse-destinations-trigger:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-            background: #eff6ff;
-        }
-
-        .popular-dest-strip-hdr {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .popular-dest-strip-hdr span {
-            font-size: 0.84rem;
-            font-weight: 800;
-            color: #0f172a;
-        }
-
-        .popular-dest-strip-hdr a {
-            font-size: 0.77rem;
-            font-weight: 700;
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        .popular-dest-thumbnails-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
-        }
-
-        .pop-dest-thumb-item {
-            border-radius: 12px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-            background: #f8fafc;
-        }
-
-        .pop-dest-thumb-item:hover {
-            transform: translateY(-2px);
-            border-color: #93c5fd;
-        }
-
-        .pop-dest-thumb-item.active {
-            border-color: #2563eb;
-            box-shadow: 0 4px 12px rgba(37,99,235,0.18);
-        }
-
-        .pop-dest-thumb-item img {
-            width: 100%;
-            height: 70px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .pop-dest-thumb-name {
-            font-size: 0.74rem;
-            font-weight: 700;
-            color: #0f172a;
-            padding: 5px 4px 1px 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .pop-dest-thumb-country {
-            font-size: 0.65rem;
-            color: #64748b;
-            padding-bottom: 5px;
-        }
-
-        /* 3. Travel Date Inputs */
-        .dates-picker-split-row {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 12px;
-            align-items: end;
-        }
-
-        .date-input-field label {
-            display: block;
-            font-size: 0.74rem;
-            font-weight: 700;
-            color: #64748b;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-
-        .date-input-field input {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1.5px solid var(--dash-border);
-            border-radius: 10px;
-            font-size: 0.86rem;
-            font-weight: 600;
-            color: #0f172a;
-            font-family: inherit;
-            outline: none;
-            box-sizing: border-box;
-            background: #ffffff;
-            cursor: pointer;
-            transition: border-color 0.15s;
-        }
-
-        .date-input-field input:focus {
-            border-color: #2563eb;
-        }
-
-        .date-arrow-separator {
-            padding-bottom: 10px;
-            font-size: 1.1rem;
-            color: #94a3b8;
-            text-align: center;
-        }
-
-        .flexible-checkbox-line {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .flexible-checkbox-line input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: #2563eb;
-            cursor: pointer;
-        }
-
-        .flexible-checkbox-line label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #0f172a;
-            cursor: pointer;
-        }
-
-        .flexible-checkbox-line span {
-            font-size: 0.74rem;
-            color: #64748b;
-        }
-
-        /* 4. Number of Travelers Counters */
-        .travelers-steppers-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-        }
-
-        .traveler-counter-box {
-            border: 1.5px solid var(--dash-border);
-            border-radius: 12px;
-            padding: 14px 12px;
-            text-align: center;
-            background: #ffffff;
-        }
-
-        .tc-emoji-avatar {
-            font-size: 1.35rem;
-            margin-bottom: 4px;
-        }
-
-        .tc-heading-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #64748b;
-            margin-bottom: 10px;
-        }
-
-        .tc-action-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-        }
-
-        .tc-btn-round {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 1.5px solid var(--dash-border);
-            background: #ffffff;
-            color: #334155;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            transition: all 0.15s;
-        }
-
-        .tc-btn-round:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-            background: #eff6ff;
-        }
-
-        .tc-number-display {
+            gap: 0.75rem;
             font-size: 1.25rem;
-            font-weight: 900;
-            color: #0f172a;
-            min-width: 24px;
-            text-align: center;
-        }
-
-        /* 5. Travel Style Grid */
-        .travel-style-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-
-        .ts-choice-card {
-            border: 2px solid var(--dash-border);
-            border-radius: 12px;
-            padding: 14px 10px;
-            text-align: center;
-            cursor: pointer;
-            background: #ffffff;
-            transition: all 0.2s ease;
-        }
-
-        .ts-choice-card:hover {
-            border-color: #93c5fd;
-            background: #f8fafc;
-        }
-
-        .ts-choice-card.selected {
-            border-color: #2563eb;
-            background: #eff6ff;
-        }
-
-        .ts-choice-icon {
-            font-size: 1.45rem;
-            margin-bottom: 6px;
-        }
-
-        .ts-choice-name {
-            font-size: 0.86rem;
             font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 2px;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.75rem;
         }
-
-        .ts-choice-card.selected .ts-choice-name {
-            color: #2563eb;
-        }
-
-        .ts-choice-sub {
-            font-size: 0.67rem;
-            color: #64748b;
-        }
-
-        /* Wizard Bottom Navigation Buttons */
-        .wizard-buttons-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 28px;
-            padding-top: 20px;
-            border-top: 1px solid #f1f5f9;
-        }
-
-        .btn-wizard-back-action {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 11px 22px;
-            background: #ffffff;
-            border: 1.5px solid var(--dash-border);
-            border-radius: 10px;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: #475569;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-
-        .btn-wizard-back-action:hover {
-            border-color: #334155;
-            color: #0f172a;
-        }
-
-        .btn-wizard-next-action {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 32px;
-            background: #2563eb;
-            color: #ffffff;
-            border: none;
-            border-radius: 10px;
-            font-size: 0.92rem;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(37,99,235,0.35);
-            transition: all 0.15s;
-        }
-
-        .btn-wizard-next-action:hover {
-            background: #1d4ed8;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(37,99,235,0.4);
-        }
-
-        /* ============================================================
-           6. RIGHT COLUMN: PERSONALIZED TRIP PLAN PANEL
-           ============================================================ */
-        .right-trip-plan-card {
-            background: #ffffff;
-            border: 1px solid var(--dash-border);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
-            position: sticky;
-            top: 86px;
-        }
-
-        .plan-hero-media-wrap {
-            position: relative;
-            height: 125px;
-            overflow: hidden;
-        }
-
-        .plan-hero-media-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .plan-hero-media-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(37,99,235,0.72) 0%, rgba(124,58,237,0.55) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 14px;
-        }
-
-        .plan-hero-media-overlay h3 {
-            font-size: 0.98rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin: 0 0 3px 0;
-        }
-
-        .plan-hero-media-overlay p {
-            font-size: 0.71rem;
-            color: rgba(255,255,255,0.9);
-            margin: 0;
-        }
-
-        /* Trust Badges Bar */
-        .plan-trust-strip {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 11px 12px;
-            background: #f8fafc;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .plan-trust-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .plan-trust-icon {
-            font-size: 1.05rem;
-        }
-
-        .plan-trust-label {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: #64748b;
-            text-align: center;
-            line-height: 1.2;
-        }
-
-        .plan-trust-sep {
-            width: 1px;
-            height: 24px;
-            background: #e2e8f0;
-        }
-
-        /* Preferences Body */
-        .plan-body-content {
-            padding: 16px;
-        }
-
-        .plan-pref-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .plan-pref-header-row h4 {
-            font-size: 0.88rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin: 0;
-        }
-
-        .btn-edit-pref-link {
-            font-size: 0.73rem;
-            font-weight: 700;
-            color: #2563eb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .plan-pref-table-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 7px 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .plan-pref-table-item:last-child {
-            border-bottom: none;
-        }
-
-        .plan-pref-table-icon {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-top: 1px;
-            flex-shrink: 0;
-        }
-
-        .plan-pref-table-key {
-            font-size: 0.73rem;
-            color: #64748b;
-            font-weight: 500;
-            flex: 1;
-        }
-
-        .plan-pref-table-val {
-            font-size: 0.77rem;
-            font-weight: 700;
-            color: #0f172a;
-            text-align: right;
-        }
-
-        /* Popular Packages for You */
-        .popular-packages-aside {
-            margin-top: 14px;
-            padding-top: 12px;
-            border-top: 1px solid #f1f5f9;
-        }
-
-        .popular-packages-hdr {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .popular-packages-hdr h4 {
-            font-size: 0.88rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin: 0;
-        }
-
-        .popular-packages-hdr a {
-            font-size: 0.73rem;
-            font-weight: 700;
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        .aside-packages-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .aside-pkg-card {
-            display: flex;
-            border: 1px solid var(--dash-border);
-            border-radius: 10px;
-            overflow: hidden;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.15s;
-            cursor: pointer;
-            background: #ffffff;
-        }
-
-        .aside-pkg-card:hover {
-            border-color: #2563eb;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            transform: translateY(-1px);
-        }
-
-        .aside-pkg-thumb {
-            width: 78px;
-            height: 72px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .aside-pkg-info {
-            padding: 8px 10px;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .aside-pkg-tag {
-            display: inline-block;
-            font-size: 0.58rem;
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 20px;
-            margin-bottom: 3px;
-            text-transform: uppercase;
-        }
-
-        .tag-best { background: #fef3c7; color: #d97706; }
-        .tag-hot { background: #fee2e2; color: #dc2626; }
-        .tag-luxury { background: #ede9fe; color: #7c3aed; }
-
-        .aside-pkg-title {
-            font-size: 0.79rem;
-            font-weight: 800;
-            color: #0f172a;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 2px;
-        }
-
-        .aside-pkg-days {
-            font-size: 0.65rem;
-            color: #64748b;
-            margin-bottom: 3px;
-        }
-
-        .aside-pkg-price {
-            font-size: 0.83rem;
-            font-weight: 800;
-            color: #2563eb;
-        }
-
-        .aside-pkg-price span {
-            font-size: 0.6rem;
-            font-weight: 500;
-            color: #94a3b8;
-        }
-
-        /* Custom Plan CTA Card */
-        .aside-expert-cta-card {
-            margin-top: 14px;
-            background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
-            border: 1px solid #bfdbfe;
-            border-radius: 12px;
-            padding: 12px;
-        }
-
-        .aside-expert-header {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .aside-expert-icon {
+        .step-num {
+            background: var(--primary);
+            color: white;
             width: 32px;
             height: 32px;
-            background: #2563eb;
-            color: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.85rem;
-            flex-shrink: 0;
-        }
-
-        .aside-expert-header h5 {
-            font-size: 0.81rem;
+            font-size: 0.9rem;
             font-weight: 800;
-            color: #0f172a;
-            margin: 0 0 3px 0;
         }
-
-        .aside-expert-header p {
-            font-size: 0.68rem;
-            color: #64748b;
-            margin: 0;
-            line-height: 1.35;
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
         }
-
-        .btn-talk-expert-aside {
-            width: 100%;
-            padding: 9px 0;
-            background: #2563eb;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.78rem;
-            font-weight: 800;
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .input-group label {
+            font-size: 0.825rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        .input-group input, .input-group select {
+            padding: 0.65rem 0.85rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        .toggle-box {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin-top: 1rem;
+            transition: var(--transition);
+        }
+        .toggle-box.active {
+            background: #f0fdf4;
+            border-color: var(--accent);
+        }
+        .seat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.65rem;
+            margin-top: 1rem;
+            max-width: 280px;
+        }
+        .seat-btn {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.65rem 0.35rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-align: center;
             cursor: pointer;
-            transition: background 0.15s;
+            transition: var(--transition);
         }
-
-        .btn-talk-expert-aside:hover {
-            background: #1d4ed8;
+        .seat-btn.female {
+            border-color: #ec4899;
+            background: #fdf2f8;
+            color: #be185d;
+        }
+        .seat-btn.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .summary-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 90px;
+        }
+        .scenario-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.4rem;
+        }
+        @media (max-width: 960px) {
+            .builder-layout {
+                grid-template-columns: 1fr;
+            }
+            .summary-card {
+                position: static;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="dashboard-layout">
-        
-        <!-- ============================================================
-             1. TRAVELER PORTAL LEFT SIDEBAR (EXACT MATCH TO REFERENCE)
-             ============================================================ -->
-        <aside class="dash-sidebar">
-            <div>
-                <!-- Brand Header -->
-                <a href="index.html" class="dash-brand">
-                    <div class="dash-brand-icon">✈️</div>
-                    <div>
-                        <div class="dash-brand-title">TravelUp Global</div>
-                        <div class="dash-brand-sub">Explore • Plan • Travel</div>
-                    </div>
-                </a>
+    <!-- Sticky Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                TravelUp<span>Global</span>
+                <span class="brand-badge">Engine</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="trip-builder.html" class="active">Trip Builder (12 Scenarios)</a></li>
+                <li><a href="map.html">GIS Route Map</a></li>
+                <li><a href="booking.html">Fintech Split-Bill</a></li>
+                <li><a href="quotations.html">B2B Quotations</a></li>
+                <li><a href="dashboard.html">My Portal</a></li>
+            </ul>
+            <div class="nav-actions" id="nav-auth-slot"></div>
+        </div>
+    </nav>
 
-                <!-- Exact 10 Nav Items from uploaded reference -->
-                <ul class="dash-nav-menu">
-                    <li class="dash-nav-item">
-                        <a href="dashboard.html">
-                            <span class="dash-nav-icon">🏠</span> Dashboard
-                        </a>
-                    </li>
-                    <li class="dash-nav-item">
-                        <a href="my-trips.html">
-                            <span class="dash-nav-icon">🗺️</span> My Trips
-                        </a>
-                    </li>
-                    <li class="dash-nav-item">
-                        <a href="bookings.html">
-                            <span class="dash-nav-icon">📋</span> Bookings
-                        </a>
-                    </li>
-                    <li class="dash-nav-item">
-                        <a href="quotations.html">
-                            <span class="dash-nav-icon">📄</span> Quotations
-                        </a>
-                    </li>
-                    <li class="dash-nav-item active">
-                        <a href="trip-builder.html">
-                            <span class="dash-nav-icon">🛠️</span> Build Your Trip
-                        </a>
-                    </li>
-                    <li class="dash-nav-item">
-                        <a href="portal-destinations.html">
-                            <span class="dash-nav-icon">📍</span> Destinations
-                        </a>
-                    </li>
-                    <li class="dash-nav-item">
-                        <a href="portal-packages.html">
-                            <span class="dash-nav-icon">✈️</span> Packages
-                        </a>
-                    </li>
-                    <li class="dash-nav-item">
-                        <a href="support.html">
-                            <span class="dash-nav-icon">💬</span> Support
-                        </a>
-                    </li>
-                    <li class="dash-nav-item">
-                        <a href="portal-reviews.html">
-                            <span class="dash-nav-icon">⭐</span> Reviews
-                        </a>
-                    </li>
-                    <li class="dash-nav-item">
-                        <a href="profile.html">
-                            <span class="dash-nav-icon">👤</span> Profile
-                        </a>
-                    </li>
-                </ul>
+    <div class="container">
+        <!-- Page Header -->
+        <div style="padding-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;">
+            <div class="hero-pill" style="margin-bottom: 0.75rem;">
+                ⚙️ Reactive Algorithmic Calculation Engine
             </div>
+            <h1 style="font-size: 2.25rem; font-weight: 900; color: var(--secondary);">
+                Interactive Dynamic Trip Builder
+            </h1>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+                Live execution of multi-leg transit synthesis, skip-transport road trips, room cost decomposition, age-tiered child fare, and micro-addons.
+            </p>
+        </div>
 
-            <!-- Bottom: Need Help Card & "Your Journey Our Priority" -->
-            <div class="sidebar-bottom-wrap">
-                <div class="need-help-card">
-                    <div class="need-help-card-header">
-                        <span>🎧</span> Need Help?
+        <div class="builder-layout">
+            <!-- Left: Wizard Form Controls -->
+            <div class="builder-controls">
+
+                <!-- Step 1: Destination & Duration -->
+                <div class="form-section">
+                    <div class="section-step-title">
+                        <span class="step-num">1</span>
+                        <span>Destination & Schedule</span>
                     </div>
-                    <p>Our travel experts are ready 24/7 Support</p>
-                    <button class="btn-sidebar-chat" onclick="location.href='support.html'">Chat Now</button>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Destination</label>
+                            <select id="builder-destination" onchange="onDestinationChange()">
+                                <option value="1">Cox's Bazar (Sea Beach)</option>
+                                <option value="2">Sajek Valley (Hill Tracts)</option>
+                                <option value="3">Sreemangal (Tea Gardens)</option>
+                                <option value="4">Tetulia, Panchagarh (Kanchenjunga)</option>
+                                <option value="5">Sylhet & Jaflong</option>
+                                <option value="6">Saint Martin's Island</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Departure Date</label>
+                            <input type="date" id="builder-date" value="2026-11-15">
+                        </div>
+                        <div class="input-group">
+                            <label>Duration (Days)</label>
+                            <select id="builder-duration" onchange="recalculate()">
+                                <option value="2">2 Days, 1 Night</option>
+                                <option value="3" selected>3 Days, 2 Nights</option>
+                                <option value="4">4 Days, 3 Nights</option>
+                                <option value="5">5 Days, 4 Nights</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="sidebar-script-note">
-                    Your Journey Our Priority ✈️
-                </div>
-            </div>
-        </aside>
 
-        <!-- ============================================================
-             2. MAIN CONTENT (TOPBAR + WIZARD + PLANNER)
-             ============================================================ -->
-        <main class="dash-main">
-            
-            <!-- ORIGINAL TRAVELER PORTAL TOPBAR -->
-            <div class="dash-topbar">
-                <div class="dash-search-box">
-                    <span class="dash-search-icon">🔍</span>
-                    <input type="text" placeholder="Search destinations, hotels, activities...">
+                <!-- Step 2: Granular Age-Tiered Travelers (Scenario 10) -->
+                <div class="form-section">
+                    <div class="section-step-title">
+                        <span class="step-num">2</span>
+                        <span>Travelers & Age-Tiered Fare (Scenario 10)</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Adults (12+ yrs)</label>
+                            <input type="number" id="builder-adults" value="4" min="1" max="50" onchange="recalculate()">
+                        </div>
+                        <div class="input-group">
+                            <label>Children (5-10 yrs) — Discounted</label>
+                            <input type="number" id="builder-children" value="0" min="0" max="10" onchange="recalculate()">
+                            <small style="color: var(--text-muted); font-size: 0.75rem;">Dedicated bus seat (৳800)</small>
+                        </div>
+                        <div class="input-group">
+                            <label>Infants (&lt;4 yrs) — Free Lap Seat</label>
+                            <input type="number" id="builder-infants" value="0" min="0" max="5" onchange="recalculate()">
+                            <small style="color: var(--accent); font-size: 0.75rem;">Free parent lap transit (৳0)</small>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="dash-top-actions">
-                    <a href="index.html" class="dash-action-pill" title="View Public Live Site">
-                        🌐 <span>Live Site</span>
-                    </a>
-                    <button class="dash-action-pill" onclick="app.toggleLanguage()" title="Language (EN / BN)">
-                        🌐 <span id="currentLangLabel">EN</span> ▾
-                    </button>
-                    <button class="dash-action-pill" onclick="app.toggleCurrency()" title="Currency (USD / BDT)">
-                        💵 <span id="currentCurrLabel">USD</span>
-                    </button>
-                    <div class="user-profile-header-wrap" style="position: relative;">
-                        <button class="dash-icon-btn" title="Notifications" onclick="app.toggleNotifications(event)">
-                            🔔 <span class="notif-badge-dot"></span>
-                        </button>
-                        <div class="user-dropdown-card" id="notificationsDropdown" style="width: 320px; right: 0;">
-                            <div style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                                <strong style="font-size: 0.9rem; color: #0f172a;">Notifications</strong>
-                                <span style="font-size: 0.72rem; background: #eff6ff; color: #2563eb; padding: 2px 8px; border-radius: 10px; font-weight: 700;">2 New</span>
+                <!-- Step 3: Intermodal Transit, Skip Transport & Telematics (Scenarios 1, 2, 3, 4) -->
+                <div class="form-section">
+                    <div class="section-step-title">
+                        <span class="step-num">3</span>
+                        <span>Intermodal Transit & Seat Layout (Scenarios 1, 2, 3, 4)</span>
+                    </div>
+
+                    <!-- Scenario 4: Skip Transport Toggle -->
+                    <div class="toggle-box" id="skip-transport-box">
+                        <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                            <input type="checkbox" id="skip-transport-toggle" style="width: 20px; height: 20px; accent-color: var(--primary);" onchange="toggleSkipTransport()">
+                            <div>
+                                <span style="font-weight: 800; color: var(--secondary); font-size: 1rem;">
+                                    [✓] Skip Transport (Self-Drive / Private SUV)
+                                </span>
+                                <span style="display: block; font-size: 0.8rem; color: var(--text-muted);">
+                                    <strong>Scenario 4:</strong> Asif's Toyota Prado road trip. Bypasses all bus fares; provisions resort, guide & boat permits only.
+                                </span>
                             </div>
-                            <div style="max-height: 280px; overflow-y: auto;">
-                                <a href="portal-packages.html" style="display: block; padding: 12px 16px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
-                                    <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">🎉 15% Seasonal Discount</div>
-                                    <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Flash deal active on Bali & Tokyo packages.</div>
-                                    <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">2 hours ago</div>
-                                </a>
-                                <a href="bookings.html" style="display: block; padding: 12px 16px; text-decoration: none; color: inherit; transition: background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
-                                    <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a;">📋 Booking Voucher Ready</div>
-                                    <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Your trip booking voucher #TUG-2026-16STM is confirmed.</div>
-                                    <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">Yesterday</div>
-                                </a>
+                        </label>
+                    </div>
+
+                    <!-- Transit Options (Visible if Skip Transport is OFF) -->
+                    <div id="transit-options-wrapper" style="margin-top: 1.5rem;">
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label>Transit Mode</label>
+                                <select id="builder-transport-type" onchange="recalculate()">
+                                    <option value="bus">Direct AC Scania Coach (৳1,500/adult)</option>
+                                    <option value="multileg">Scenario 1: Multi-Leg (DAC-SPD Flight + Tetulia Microbus)</option>
+                                    <option value="flight">Domestic Flight (৳4,500/adult)</option>
+                                </select>
                             </div>
-                            <div style="padding: 10px; text-align: center; background: #f8fafc; border-top: 1px solid #e2e8f0; border-radius: 0 0 16px 16px;">
-                                <a href="javascript:void(0)" onclick="app.toggleNotifications(event)" style="font-size: 0.75rem; color: #2563eb; font-weight: 700; text-decoration: none;">Mark all as read</a>
+                            <div class="input-group" style="justify-content: center;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="open-return-toggle" style="width: 18px; height: 18px;" onchange="recalculate()">
+                                    <span style="font-weight: 700; color: var(--secondary); font-size: 0.875rem;">Scenario 2: Open-Ended Return</span>
+                                </label>
+                                <small style="color: var(--text-muted); font-size: 0.75rem;">For telecommuting remote sprint stays.</small>
+                            </div>
+                        </div>
+
+                        <!-- Scenario 3: Bus Seat Selection & Female Preference -->
+                        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <div>
+                                    <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--secondary);">
+                                        Scenario 3: Seat Allocation & Female Priority Layout
+                                    </h4>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted);">
+                                        Front rows (A & B) prioritize female travelers with supervisor direct telematics.
+                                    </p>
+                                </div>
+                                <span class="badge" style="background: #fdf2f8; color: #be185d; border: 1px solid #fbcfe8; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: var(--radius-sm); font-weight: 700;">
+                                    A1-B2: Female Safe
+                                </span>
+                            </div>
+
+                            <div class="seat-grid">
+                                <div class="seat-btn female selected" onclick="toggleSeat(this, 'A1')">A1 (Lady)</div>
+                                <div class="seat-btn female selected" onclick="toggleSeat(this, 'A2')">A2 (Lady)</div>
+                                <div class="seat-btn female" onclick="toggleSeat(this, 'A3')">A3</div>
+                                <div class="seat-btn female" onclick="toggleSeat(this, 'A4')">A4</div>
+                                <div class="seat-btn selected" onclick="toggleSeat(this, 'B1')">B1</div>
+                                <div class="seat-btn selected" onclick="toggleSeat(this, 'B2')">B2</div>
+                                <div class="seat-btn" onclick="toggleSeat(this, 'B3')">B3</div>
+                                <div class="seat-btn" onclick="toggleSeat(this, 'B4')">B4</div>
+                            </div>
+
+                            <!-- Live Counter Telematics Box -->
+                            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-md); padding: 0.85rem; margin-top: 1rem; font-size: 0.825rem; color: #166534;">
+                                <strong>📞 Dynamic Counter Contact Telematics:</strong><br>
+                                Departure: <strong>Arambagh Counter 4 (11:30 PM)</strong> | Manager: <strong>+880 1712-345678</strong> | Supervisor: <strong>+880 1819-876543</strong>
                             </div>
                         </div>
                     </div>
-                    <div class="user-profile-header-wrap" style="position: relative;">
-                        <div class="profile-header-dropdown-trigger" onclick="auth.toggleProfileDropdown(event)" title="My Account & Profile">
-                            <div class="nav-user-avatar-circle" style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden;">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" 
-                                     alt="Avatar" class="dash-top-avatar" id="dashTopAvatar" style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
+                </div>
+
+                <!-- Step 4: Lodging, Bedding Breakdown & Fresh-up (Scenarios 5, 6, 7) -->
+                <div class="form-section">
+                    <div class="section-step-title">
+                        <span class="step-num">4</span>
+                        <span>Lodging, Bedding Breakdown & Fresh-Up (Scenarios 5, 6, 7)</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Room Bedding Allocation (Scenario 5)</label>
+                            <select id="builder-room-type" onchange="recalculate()">
+                                <option value="deluxe_family" selected>Deluxe 4-Bed Family Room (2 King Beds) — ৳3,500/night</option>
+                                <option value="standard_twin">Standard Twin-Bed Room (2 Single Beds) — ৳2,200/night</option>
+                                <option value="luxury_suite">Presidential Panorama Suite — ৳6,000/night</option>
+                            </select>
                         </div>
-                        <div class="user-dropdown-card" id="userDropdownMenu"></div>
+                        <div class="input-group">
+                            <label>Number of Rooms</label>
+                            <input type="number" id="builder-rooms-count" value="1" min="1" max="10" onchange="recalculate()">
+                        </div>
+                    </div>
+
+                    <!-- Scenario 7: Early Fresh-up Checkbox -->
+                    <div style="margin-top: 1.25rem; background: #fffbeb; border: 1px solid #fef3c7; border-radius: var(--radius-md); padding: 1rem;">
+                        <label style="display: flex; align-items: center; gap: 0.65rem; cursor: pointer;">
+                            <input type="checkbox" id="early-freshup-toggle" style="width: 18px; height: 18px; accent-color: var(--warning);" onchange="recalculate()">
+                            <div>
+                                <span style="font-weight: 800; color: #92400e; font-size: 0.9rem;">
+                                    Scenario 7: Early Morning Fresh-up Room (5:30 AM Arrival)
+                                </span>
+                                <span style="display: block; font-size: 0.8rem; color: #b45309;">
+                                    Applies +35% half-day rate instead of paying for a full extra day.
+                                </span>
+                            </div>
+                        </label>
                     </div>
                 </div>
-            </div>
 
-            <!-- HERO BANNER -->
-            <div class="builder-hero-banner">
-                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=1400&q=80" 
-                     alt="Thailand Island Landscape">
-                <div class="builder-hero-overlay">
-                    <div class="builder-breadcrumb">
-                        <span>✨</span> Create Your Dream Trip
+                <!-- Step 5: Micro-Addons & Disaggregated Activities (Scenarios 7, 8) -->
+                <div class="form-section">
+                    <div class="section-step-title">
+                        <span class="step-num">5</span>
+                        <span>Addons & Disaggregated Activities (Scenarios 7, 8)</span>
                     </div>
-                    <h1 class="builder-hero-title">Build Your Custom Trip</h1>
-                    <p class="builder-hero-desc">
-                        Tell us your preferences and let us craft the perfect journey with the best destinations, hotels, activities and more.
+
+                    <h4 style="font-size: 0.9rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem;">
+                        Modular Micro-Addons (Scenario 7)
+                    </h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+                            <input type="checkbox" id="addon-honeymoon" onchange="recalculate()">
+                            <span>🌸 Honeymoon Flower Bed Decoration (+৳1,500)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+                            <input type="checkbox" id="addon-bbq" onchange="recalculate()">
+                            <span>🍢 Inani Beach Private Seafood BBQ (+৳2,000)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+                            <input type="checkbox" id="addon-guide" onchange="recalculate()">
+                            <span>🧭 Certified Local Eco-Tour Guide (+৳1,200/day)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+                            <input type="checkbox" id="addon-boat" onchange="recalculate()">
+                            <span>🚤 Jaflong Registered Motorized Boat Permits (+৳800)</span>
+                        </label>
+                    </div>
+
+                    <h4 style="font-size: 0.9rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem;">
+                        Scenario 8: Disaggregated Group Activities (Zero Forced Bundling)
+                    </h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                        Each traveler selects only what they desire; friends don't pay for others' parasailing!
                     </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; padding: 0.65rem 1rem; border-radius: var(--radius-md);">
+                            <div>
+                                <span style="font-weight: 700; font-size: 0.875rem;">🪂 Parasailing & Speedboat</span>
+                                <span style="display: block; font-size: 0.75rem; color: var(--text-muted);">৳2,300 per person</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <label style="font-size: 0.75rem;">Participants:</label>
+                                <input type="number" id="act-parasailing" value="2" min="0" max="10" style="width: 60px; padding: 0.25rem 0.5rem;" onchange="recalculate()">
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; padding: 0.65rem 1rem; border-radius: var(--radius-md);">
+                            <div>
+                                <span style="font-weight: 700; font-size: 0.875rem;">🥥 Beachside Coconut Lounge</span>
+                                <span style="display: block; font-size: 0.75rem; color: var(--text-muted);">৳100 per person</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <label style="font-size: 0.75rem;">Participants:</label>
+                                <input type="number" id="act-coconut" value="2" min="0" max="10" style="width: 60px; padding: 0.25rem 0.5rem;" onchange="recalculate()">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="hero-script-tag">
-                    More<br>than a trip,<br>it's an experience ✈
-                </div>
+
             </div>
 
-            <!-- 6-STEP WIZARD PROGRESS BAR -->
-            <div class="wizard-bar-container">
-                <div class="wiz-step-item active" id="wStep1" onclick="tb.goToStep(1)">
-                    <div class="wiz-step-circle">1</div>
-                    <div class="wiz-step-info">
-                        <span class="wiz-step-title">Your Details</span>
-                        <span class="wiz-step-subtitle">Traveler &amp; Trip Info</span>
-                    </div>
-                </div>
-                <div class="wiz-step-connector" id="wConn1"></div>
+            <!-- Right: Sticky Reactive Cost Breakdown & Applied Scenarios -->
+            <div class="summary-wrapper">
+                <div class="summary-card">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.5rem;">
+                        Dynamic Ledger
+                    </h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                        Live algorithmic breakdown updated in real time.
+                    </p>
 
-                <div class="wiz-step-item" id="wStep2" onclick="tb.goToStep(2)">
-                    <div class="wiz-step-circle">2</div>
-                    <div class="wiz-step-info">
-                        <span class="wiz-step-title">Destination</span>
-                        <span class="wiz-step-subtitle">Where to go?</span>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                            <span style="color: var(--text-muted);">Transport Transit:</span>
+                            <strong id="cost-transport">৳6,000</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                            <span style="color: var(--text-muted);">Lodging & Bedding:</span>
+                            <strong id="cost-lodging">৳7,000</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                            <span style="color: var(--text-muted);">Micro-Addons:</span>
+                            <strong id="cost-addons">৳0</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                            <span style="color: var(--text-muted);">Disaggregated Activities:</span>
+                            <strong id="cost-activities">৳4,800</strong>
+                        </div>
                     </div>
-                </div>
-                <div class="wiz-step-connector" id="wConn2"></div>
 
-                <div class="wiz-step-item" id="wStep3" onclick="tb.goToStep(3)">
-                    <div class="wiz-step-circle">3</div>
-                    <div class="wiz-step-info">
-                        <span class="wiz-step-title">Date &amp; People</span>
-                        <span class="wiz-step-subtitle">When &amp; how many?</span>
+                    <!-- Grand Total & Scenario 5 Decomposition -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.25rem;">
+                            <span style="font-size: 1.1rem; font-weight: 700; color: var(--secondary);">Total Itinerary:</span>
+                            <span style="font-size: 1.85rem; font-weight: 900; color: var(--primary);" id="cost-grand-total">৳17,800</span>
+                        </div>
+                        <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span style="font-size: 0.75rem; font-weight: 700; color: #0369a1; text-transform: uppercase;">Scenario 5 Rate:</span>
+                                <span style="display: block; font-size: 0.75rem; color: #0284c7;">Per Person Share</span>
+                            </div>
+                            <span style="font-size: 1.25rem; font-weight: 900; color: #0369a1;" id="cost-per-person">৳4,450/person</span>
+                        </div>
                     </div>
-                </div>
-                <div class="wiz-step-connector" id="wConn3"></div>
 
-                <div class="wiz-step-item" id="wStep4" onclick="tb.goToStep(4)">
-                    <div class="wiz-step-circle">4</div>
-                    <div class="wiz-step-info">
-                        <span class="wiz-step-title">Preferences</span>
-                        <span class="wiz-step-subtitle">Your travel style</span>
+                    <!-- Applied Scenarios Log -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">
+                            Applied Algorithmic Scenarios:
+                        </h4>
+                        <div id="applied-scenarios-container">
+                            <div class="scenario-pill">✓ Scenario 5: Multi-Bed Cost Decomposition</div>
+                            <div class="scenario-pill">✓ Scenario 8: Disaggregated Activities</div>
+                        </div>
                     </div>
-                </div>
-                <div class="wiz-step-connector" id="wConn4"></div>
 
-                <div class="wiz-step-item" id="wStep5" onclick="tb.goToStep(5)">
-                    <div class="wiz-step-circle">5</div>
-                    <div class="wiz-step-info">
-                        <span class="wiz-step-title">Build Itinerary</span>
-                        <span class="wiz-step-subtitle">Customize your plan</span>
-                    </div>
-                </div>
-                <div class="wiz-step-connector" id="wConn5"></div>
-
-                <div class="wiz-step-item" id="wStep6" onclick="tb.goToStep(6)">
-                    <div class="wiz-step-circle">6</div>
-                    <div class="wiz-step-info">
-                        <span class="wiz-step-title">Review &amp; Submit</span>
-                        <span class="wiz-step-subtitle">Get your final plan</span>
-                    </div>
+                    <button class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 0.85rem;" onclick="proceedToCheckout()">
+                        Proceed to Smart Checkout →
+                    </button>
+                    <small style="display: block; text-align: center; color: var(--text-muted); font-size: 0.75rem; margin-top: 0.75rem;">
+                        Supports Fintech Split-Bill & Passport ICAO Guard
+                    </small>
                 </div>
             </div>
-
-            <!-- TWO-COLUMN BUILDER WORKSPACE -->
-            <div class="builder-workspace-grid">
-                
-                <!-- LEFT COLUMN: STEP 1 FORM -->
-                <div class="step-main-card">
-                    <div class="step-main-header">
-                        <div class="step-badge-title-group">
-                            <div class="step-badge-avatar">1</div>
-                            <div>
-                                <h2>Your Details &amp; Trip Information</h2>
-                                <p>First, tell us a little about your travel plan.</p>
-                            </div>
-                        </div>
-                        <button class="btn-save-template-header" onclick="tb.saveTemplate()">
-                            💾 Save as Template
-                        </button>
-                    </div>
-
-                    <!-- 1. Select Travel Type -->
-                    <div class="form-block-group">
-                        <div class="block-title-num">1. Select Travel Type</div>
-                        <div class="block-subtitle-desc">Are you planning a domestic or international trip?</div>
-                        <div class="travel-type-cards">
-                            <div class="tt-selection-card selected" id="cardDomestic" onclick="tb.selectTravelType('domestic')">
-                                <div class="tt-selected-check">✓</div>
-                                <div class="tt-flag-circle">🇧🇩</div>
-                                <div>
-                                    <div class="tt-info-title">Domestic Tour</div>
-                                    <div class="tt-info-sub">Explore the beauty of Bangladesh<br>e.g. Cox's Bazar, Sajek, Sylhet ...</div>
-                                </div>
-                            </div>
-                            <div class="tt-selection-card" id="cardIntl" onclick="tb.selectTravelType('international')">
-                                <div class="tt-selected-check">✓</div>
-                                <div class="tt-flag-circle">🌍</div>
-                                <div>
-                                    <div class="tt-info-title">International Tour</div>
-                                    <div class="tt-info-sub">Discover the world<br>e.g. Thailand, Malaysia, Dubai ...</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 2. Where do you want to go? -->
-                    <div class="form-block-group">
-                        <div class="block-title-num">2. Where do you want to go?</div>
-                        <div class="block-subtitle-desc">Choose your destination or tell us what you're interested in.</div>
-                        <div class="dest-input-row">
-                            <div class="dest-search-input-box">
-                                <span class="dest-pin-icon">📍</span>
-                                <input type="text" id="destSearchBox" placeholder="Search destination (e.g. Cox's Bazar, Thailand, Dubai...)" oninput="tb.filterDestThumbnails(this.value)">
-                            </div>
-                            <button class="btn-browse-destinations-trigger" onclick="location.href='destinations.html'">
-                                🗺️ Browse Destinations
-                            </button>
-                        </div>
-
-                        <div class="popular-dest-strip-hdr">
-                            <span>Popular Destinations</span>
-                            <a href="destinations.html">View All →</a>
-                        </div>
-                        <div class="popular-dest-thumbnails-grid" id="destThumbsGrid">
-                            <div class="pop-dest-thumb-item active" data-id="1" data-name="Cox's Bazar" data-country="Bangladesh" data-type="domestic" onclick="tb.pickDestThumbnail(this)">
-                                <img src="https://images.unsplash.com/photo-1590593162201-f67611a18b87?auto=format&fit=crop&w=200&q=80" alt="Cox's Bazar">
-                                <div class="pop-dest-thumb-name">Cox's Bazar</div>
-                                <div class="pop-dest-thumb-country">Bangladesh</div>
-                            </div>
-                            <div class="pop-dest-thumb-item" data-id="2" data-name="Sajek Valley" data-country="Bangladesh" data-type="domestic" onclick="tb.pickDestThumbnail(this)">
-                                <img src="https://images.unsplash.com/photo-1588392382834-a891154bca4d?auto=format&fit=crop&w=200&q=80" alt="Sajek Valley">
-                                <div class="pop-dest-thumb-name">Sajek Valley</div>
-                                <div class="pop-dest-thumb-country">Bangladesh</div>
-                            </div>
-                            <div class="pop-dest-thumb-item" data-id="3" data-name="Sylhet" data-country="Bangladesh" data-type="domestic" onclick="tb.pickDestThumbnail(this)">
-                                <img src="https://images.unsplash.com/photo-1566552881560-0be862a7c445?auto=format&fit=crop&w=200&q=80" alt="Sylhet">
-                                <div class="pop-dest-thumb-name">Sylhet</div>
-                                <div class="pop-dest-thumb-country">Bangladesh</div>
-                            </div>
-                            <div class="pop-dest-thumb-item" data-id="4" data-name="Thailand" data-country="Asia" data-type="international" onclick="tb.pickDestThumbnail(this)">
-                                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=200&q=80" alt="Thailand">
-                                <div class="pop-dest-thumb-name">Thailand</div>
-                                <div class="pop-dest-thumb-country">Asia</div>
-                            </div>
-                            <div class="pop-dest-thumb-item" data-id="5" data-name="Dubai" data-country="UAE" data-type="international" onclick="tb.pickDestThumbnail(this)">
-                                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=200&q=80" alt="Dubai">
-                                <div class="pop-dest-thumb-name">Dubai</div>
-                                <div class="pop-dest-thumb-country">UAE</div>
-                            </div>
-                            <div class="pop-dest-thumb-item" data-id="6" data-name="Maldives" data-country="Asia" data-type="international" onclick="tb.pickDestThumbnail(this)">
-                                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=200&q=80" alt="Maldives">
-                                <div class="pop-dest-thumb-name">Maldives</div>
-                                <div class="pop-dest-thumb-country">Asia</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3. Travel Date -->
-                    <div class="form-block-group">
-                        <div class="block-title-num">3. Travel Date</div>
-                        <div class="block-subtitle-desc">When do you plan to travel?</div>
-                        <div class="dates-picker-split-row">
-                            <div class="date-input-field">
-                                <label>Select travel date</label>
-                                <input type="date" id="inputStartDate" value="2025-12-15" onchange="tb.updateDates()">
-                            </div>
-                            <div class="date-arrow-separator">→</div>
-                            <div class="date-input-field">
-                                <label>Select return date</label>
-                                <input type="date" id="inputEndDate" value="2025-12-20" onchange="tb.updateDates()">
-                            </div>
-                        </div>
-                        <div class="flexible-checkbox-line">
-                            <input type="checkbox" id="checkFlexDates">
-                            <label for="checkFlexDates">Flexible with dates</label>
-                            <span>Get better deals with flexible dates</span>
-                        </div>
-                    </div>
-
-                    <!-- 4. Number of Travelers -->
-                    <div class="form-block-group">
-                        <div class="block-title-num">4. Number of Travelers</div>
-                        <div class="block-subtitle-desc">How many people are traveling?</div>
-                        <div class="travelers-steppers-grid">
-                            <div class="traveler-counter-box">
-                                <div class="tc-emoji-avatar">🧑</div>
-                                <div class="tc-heading-label">Adults (12+)</div>
-                                <div class="tc-action-row">
-                                    <button class="tc-btn-round" onclick="tb.updatePax('adults', -1)">−</button>
-                                    <span class="tc-number-display" id="valAdults">2</span>
-                                    <button class="tc-btn-round" onclick="tb.updatePax('adults', 1)">+</button>
-                                </div>
-                            </div>
-                            <div class="traveler-counter-box">
-                                <div class="tc-emoji-avatar">👧</div>
-                                <div class="tc-heading-label">Children (2–11)</div>
-                                <div class="tc-action-row">
-                                    <button class="tc-btn-round" onclick="tb.updatePax('children', -1)">−</button>
-                                    <span class="tc-number-display" id="valChildren">0</span>
-                                    <button class="tc-btn-round" onclick="tb.updatePax('children', 1)">+</button>
-                                </div>
-                            </div>
-                            <div class="traveler-counter-box">
-                                <div class="tc-emoji-avatar">👶</div>
-                                <div class="tc-heading-label">Infants (0–2)</div>
-                                <div class="tc-action-row">
-                                    <button class="tc-btn-round" onclick="tb.updatePax('infants', -1)">−</button>
-                                    <span class="tc-number-display" id="valInfants">0</span>
-                                    <button class="tc-btn-round" onclick="tb.updatePax('infants', 1)">+</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 5. Travel Style -->
-                    <div class="form-block-group" style="margin-bottom: 0;">
-                        <div class="block-title-num">5. Travel Style</div>
-                        <div class="block-subtitle-desc">What kind of experience are you looking for?</div>
-                        <div class="travel-style-cards-grid">
-                            <div class="ts-choice-card" id="styleCardBudget" onclick="tb.selectStyle('budget')">
-                                <div class="ts-choice-icon">💰</div>
-                                <div class="ts-choice-name">Budget</div>
-                                <div class="ts-choice-sub">Save &amp; Explore</div>
-                            </div>
-                            <div class="ts-choice-card selected" id="styleCardComfort" onclick="tb.selectStyle('comfort')">
-                                <div class="ts-choice-icon">🛋️</div>
-                                <div class="ts-choice-name">Comfort</div>
-                                <div class="ts-choice-sub">Best Value</div>
-                            </div>
-                            <div class="ts-choice-card" id="styleCardPremium" onclick="tb.selectStyle('premium')">
-                                <div class="ts-choice-icon">⭐</div>
-                                <div class="ts-choice-name">Premium</div>
-                                <div class="ts-choice-sub">More Comfort</div>
-                            </div>
-                            <div class="ts-choice-card" id="styleCardLuxury" onclick="tb.selectStyle('luxury')">
-                                <div class="ts-choice-icon">💎</div>
-                                <div class="ts-choice-name">Luxury</div>
-                                <div class="ts-choice-sub">Ultimate Experience</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bottom Nav Actions -->
-                    <div class="wizard-buttons-footer">
-                        <button class="btn-wizard-back-action" onclick="history.back()">
-                            ← Back
-                        </button>
-                        <button class="btn-wizard-next-action" onclick="tb.nextStep()">
-                            Next: Destination →
-                        </button>
-                    </div>
-
-                </div><!-- /step-main-card -->
-
-                <!-- RIGHT COLUMN: PERSONALIZED TRIP PLAN PANEL -->
-                <div class="right-trip-plan-card">
-                    
-                    <!-- Media Header -->
-                    <div class="plan-hero-media-wrap">
-                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" 
-                             id="planMediaThumb" alt="Personalized Trip">
-                        <div class="plan-hero-media-overlay">
-                            <div>
-                                <h3>Your Personalized Trip Plan</h3>
-                                <p>Customize every detail. We'll handle the rest!</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Trust Strip -->
-                    <div class="plan-trust-strip">
-                        <div class="plan-trust-item">
-                            <span class="plan-trust-icon">✅</span>
-                            <span class="plan-trust-label">Best Price<br>Guarantee</span>
-                        </div>
-                        <div class="plan-trust-sep"></div>
-                        <div class="plan-trust-item">
-                            <span class="plan-trust-icon">🤝</span>
-                            <span class="plan-trust-label">Expert<br>Support</span>
-                        </div>
-                        <div class="plan-trust-sep"></div>
-                        <div class="plan-trust-item">
-                            <span class="plan-trust-icon">🔒</span>
-                            <span class="plan-trust-label">Secure<br>Booking</span>
-                        </div>
-                    </div>
-
-                    <!-- Preferences Live Summary -->
-                    <div class="plan-body-content">
-                        <div class="plan-pref-header-row">
-                            <h4>Trip Preferences</h4>
-                            <a href="javascript:void(0)" class="btn-edit-pref-link" onclick="tb.goToStep(1)">Edit</a>
-                        </div>
-
-                        <div class="plan-pref-table-item">
-                            <span class="plan-pref-table-icon">✈️</span>
-                            <span class="plan-pref-table-key">Travel Type</span>
-                            <span class="plan-pref-table-val" id="summaryType">International</span>
-                        </div>
-                        <div class="plan-pref-table-item">
-                            <span class="plan-pref-table-icon">📍</span>
-                            <span class="plan-pref-table-key">Destination</span>
-                            <span class="plan-pref-table-val" id="summaryDest">Thailand (Bangkok, Phuket)</span>
-                        </div>
-                        <div class="plan-pref-table-item">
-                            <span class="plan-pref-table-icon">📅</span>
-                            <span class="plan-pref-table-key">Travel Date</span>
-                            <span class="plan-pref-table-val" id="summaryDates">15 Dec 2025 – 20 Dec 2025</span>
-                        </div>
-                        <div class="plan-pref-table-item">
-                            <span class="plan-pref-table-icon">👥</span>
-                            <span class="plan-pref-table-key">Travelers</span>
-                            <span class="plan-pref-table-val" id="summaryPax">2 Adults, 0 Children, 0 Infants</span>
-                        </div>
-                        <div class="plan-pref-table-item">
-                            <span class="plan-pref-table-icon">⭐</span>
-                            <span class="plan-pref-table-key">Travel Style</span>
-                            <span class="plan-pref-table-val" id="summaryStyle">Comfort</span>
-                        </div>
-                        <div class="plan-pref-table-item" style="border-bottom:none;">
-                            <span class="plan-pref-table-icon">💕</span>
-                            <span class="plan-pref-table-key">Purpose</span>
-                            <span class="plan-pref-table-val" id="summaryPurpose">Honeymoon</span>
-                        </div>
-
-                        <!-- Popular Packages for You -->
-                        <div class="popular-packages-aside">
-                            <div class="popular-packages-hdr">
-                                <h4>Popular Packages for You</h4>
-                                <a href="packages.html">View All →</a>
-                            </div>
-
-                            <div class="aside-packages-list">
-                                <div class="aside-pkg-card" onclick="location.href='packages.html'">
-                                    <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=150&q=80" 
-                                         alt="Thailand Explorer" class="aside-pkg-thumb">
-                                    <div class="aside-pkg-info">
-                                        <span class="aside-pkg-tag tag-best">Best</span>
-                                        <div class="aside-pkg-title">Thailand Explorer</div>
-                                        <div class="aside-pkg-days">5 Days • 4 Nights</div>
-                                        <div class="aside-pkg-price">৳ 155,000 <span>/person</span></div>
-                                    </div>
-                                </div>
-
-                                <div class="aside-pkg-card" onclick="location.href='packages.html'">
-                                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=150&q=80" 
-                                         alt="Bali Honeymoon" class="aside-pkg-thumb">
-                                    <div class="aside-pkg-info">
-                                        <span class="aside-pkg-tag tag-hot">🔥 Popular</span>
-                                        <div class="aside-pkg-title">Bali Honeymoon</div>
-                                        <div class="aside-pkg-days">6 Days • 5 Nights</div>
-                                        <div class="aside-pkg-price">৳ 180,000 <span>/person</span></div>
-                                    </div>
-                                </div>
-
-                                <div class="aside-pkg-card" onclick="location.href='packages.html'">
-                                    <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=150&q=80" 
-                                         alt="Maldives Escape" class="aside-pkg-thumb">
-                                    <div class="aside-pkg-info">
-                                        <span class="aside-pkg-tag tag-luxury">💎 Luxury</span>
-                                        <div class="aside-pkg-title">Maldives Escape</div>
-                                        <div class="aside-pkg-days">4 Days • 3 Nights</div>
-                                        <div class="aside-pkg-price">৳ 227,000 <span>/person</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Expert Plan CTA -->
-                        <div class="aside-expert-cta-card">
-                            <div class="aside-expert-header">
-                                <div class="aside-expert-icon">✈️</div>
-                                <div>
-                                    <h5>Need a Custom Plan?</h5>
-                                    <p>Tell us your budget, preferences and we'll create a tailor-made itinerary just for you.</p>
-                                </div>
-                            </div>
-                            <button class="btn-talk-expert-aside" onclick="location.href='support.html'">
-                                Talk to a Travel Expert →
-                            </button>
-                        </div>
-
-                    </div><!-- /plan-body-content -->
-                </div><!-- /right-trip-plan-card -->
-
-            </div><!-- /builder-workspace-grid -->
-        </main>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/app.js"></script>
     <script>
-    // ================================================================
-    //  TRAVELER PORTAL — CUSTOM TRIP BUILDER CONTROLLER
-    // ================================================================
-    const tb = {
-        state: {
-            currentStep: 1,
-            travelType: 'international',
-            destId: 4,
-            destName: "Thailand",
-            destSub: "Bangkok, Phuket",
-            destImg: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=600&q=80",
-            startDate: '2025-12-15',
-            endDate: '2025-12-20',
-            flexible: false,
-            adults: 2,
-            children: 0,
-            infants: 0,
-            style: 'comfort',
-            purpose: 'Honeymoon'
-        },
+        let selectedSeats = ['A1', 'A2', 'B1', 'B2'];
 
-        init() {
-            try {
-                if (window.auth) {
-                    auth.renderPortalSidebar();
-                }
-            } catch(e) {}
-
-            this.updateSummary();
-        },
-
-        // Travel Type Selection
-        selectTravelType(type) {
-            this.state.travelType = type;
-            document.getElementById('cardDomestic').classList.toggle('selected', type === 'domestic');
-            document.getElementById('cardIntl').classList.toggle('selected', type === 'international');
-
-            const label = type === 'domestic' ? 'Domestic' : 'International';
-            document.getElementById('summaryType').textContent = label;
-
-            // Auto-filter destinations to match travel type
-            document.querySelectorAll('.pop-dest-thumb-item').forEach(el => {
-                const t = el.getAttribute('data-type');
-                if (type === 'domestic' && t === 'domestic') {
-                    // activate first domestic if current was international
-                    if (this.state.travelType === 'domestic' && this.state.destId > 3) {
-                        this.pickDestThumbnail(document.querySelector('.pop-dest-thumb-item[data-id="1"]'));
-                    }
-                }
-            });
-
-            this.updateSummary();
-        },
-
-        // Destination Thumbnail Pick
-        pickDestThumbnail(el) {
-            if (!el) return;
-            document.querySelectorAll('.pop-dest-thumb-item').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-
-            this.state.destId = parseInt(el.getAttribute('data-id'));
-            this.state.destName = el.getAttribute('data-name');
-            const country = el.getAttribute('data-country');
-            const type = el.getAttribute('data-type');
-
-            if (type && type !== this.state.travelType) {
-                this.selectTravelType(type);
-            }
-
-            const img = el.querySelector('img')?.src;
-            if (img) {
-                this.state.destImg = img;
-                const heroImg = document.getElementById('planMediaThumb');
-                if (heroImg) heroImg.src = img;
-            }
-
-            document.getElementById('summaryDest').textContent = `${this.state.destName} (${country})`;
-            this.updateSummary();
-        },
-
-        filterDestThumbnails(q) {
-            const query = (q || '').toLowerCase().trim();
-            document.querySelectorAll('.pop-dest-thumb-item').forEach(el => {
-                const name = (el.getAttribute('data-name') || '').toLowerCase();
-                const country = (el.getAttribute('data-country') || '').toLowerCase();
-                el.style.display = (!query || name.includes(query) || country.includes(query)) ? '' : 'none';
-            });
-        },
-
-        // Travel Dates
-        updateDates() {
-            const s = document.getElementById('inputStartDate').value;
-            const e = document.getElementById('inputEndDate').value;
-            this.state.startDate = s;
-            this.state.endDate = e;
-
-            if (s && e) {
-                const fmt = (d) => {
-                    const dt = new Date(d);
-                    return dt.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-                };
-                document.getElementById('summaryDates').textContent = `${fmt(s)} – ${fmt(e)}`;
-            }
-            this.updateSummary();
-        },
-
-        // Travelers Counter
-        updatePax(field, delta) {
-            const min = field === 'adults' ? 1 : 0;
-            const max = 20;
-            const newVal = Math.min(max, Math.max(min, this.state[field] + delta));
-            this.state[field] = newVal;
-
-            const map = { adults: 'valAdults', children: 'valChildren', infants: 'valInfants' };
-            document.getElementById(map[field]).textContent = newVal;
-
-            document.getElementById('summaryPax').textContent = 
-                `${this.state.adults} Adults, ${this.state.children} Children, ${this.state.infants} Infants`;
-
-            this.updateSummary();
-        },
-
-        // Travel Style
-        selectStyle(style) {
-            this.state.style = style;
-            ['budget','comfort','premium','luxury'].forEach(s => {
-                const id = 'styleCard' + s.charAt(0).toUpperCase() + s.slice(1);
-                const el = document.getElementById(id);
-                if (el) el.classList.toggle('selected', s === style);
-            });
-
-            const styleCapitalized = style.charAt(0).toUpperCase() + style.slice(1);
-            document.getElementById('summaryStyle').textContent = styleCapitalized;
-            this.updateSummary();
-        },
-
-        updateSummary() {
-            // Live reflection is updated by each handler
-        },
-
-        // Wizard Step Navigation
-        goToStep(step) {
-            if (step > this.state.currentStep + 1) return;
-            this.setStep(step);
-        },
-
-        nextStep() {
-            const next = this.state.currentStep + 1;
-            if (next <= 6) {
-                this.setStep(next);
+        function toggleSeat(btn, seatId) {
+            btn.classList.toggle('selected');
+            if (selectedSeats.includes(seatId)) {
+                selectedSeats = selectedSeats.filter(s => s !== seatId);
             } else {
-                // Final submission -> proceed to live booking with all selections
-                const params = new URLSearchParams({
-                    type: 'custom',
-                    dest: this.state.destName,
-                    travel_type: this.state.travelType,
-                    adults: this.state.adults,
-                    children: this.state.children,
-                    start_date: this.state.startDate,
-                    end_date: this.state.endDate,
-                    style: this.state.style
-                });
-                window.location.href = `booking.html?${params.toString()}`;
-            }
-        },
-
-        setStep(step) {
-            this.state.currentStep = step;
-            for (let i = 1; i <= 6; i++) {
-                const el = document.getElementById('wStep' + i);
-                if (el) {
-                    el.classList.remove('active', 'completed');
-                    if (i < step) el.classList.add('completed');
-                    else if (i === step) el.classList.add('active');
-                }
-            }
-            for (let i = 1; i <= 5; i++) {
-                const conn = document.getElementById('wConn' + i);
-                if (conn) {
-                    conn.classList.toggle('completed', i < step);
-                }
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        },
-
-        saveTemplate() {
-            if (window.auth && auth.isLoggedIn()) {
-                showCustomModal({
-                    title: 'Custom Trip Template Saved',
-                    message: `Destination: ${this.state.destName}\nType: ${this.state.travelType.toUpperCase()}\nTravelers: ${this.state.adults} Adults, ${this.state.children} Children\n\nYou can access and manage this template anytime under 'My Trips'.`,
-                    icon: '🗺️',
-                    confirmText: 'View My Trips',
-                    cancelText: 'Keep Editing',
-                    onConfirm: () => {
-                        window.location.href = 'my-trips.html';
-                    }
-                });
-            } else {
-                showCustomModal({
-                    title: 'Login Required',
-                    message: 'Please log in to save your customized trip template.',
-                    icon: '🔑',
-                    confirmText: 'Go to Login',
-                    cancelText: 'Cancel',
-                    onConfirm: () => {
-                        window.location.href = 'login.html?redirect=trip-builder.html';
-                    }
-                });
+                selectedSeats.push(seatId);
             }
         }
-    };
 
-    window.addEventListener('DOMContentLoaded', () => tb.init());
+        function toggleSkipTransport() {
+            const isSkip = document.getElementById('skip-transport-toggle').checked;
+            const box = document.getElementById('skip-transport-box');
+            const transitOptions = document.getElementById('transit-options-wrapper');
+
+            box.classList.toggle('active', isSkip);
+            transitOptions.style.display = isSkip ? 'none' : 'block';
+            recalculate();
+        }
+
+        function onDestinationChange() {
+            const dest = document.getElementById('builder-destination').value;
+            const transportSelect = document.getElementById('builder-transport-type');
+            if (dest === '4') { // Tetulia
+                transportSelect.value = 'multileg';
+            }
+            recalculate();
+        }
+
+        async function recalculate() {
+            const adults = parseInt(document.getElementById('builder-adults').value) || 1;
+            const children = parseInt(document.getElementById('builder-children').value) || 0;
+            const infants = parseInt(document.getElementById('builder-infants').value) || 0;
+            const duration = parseInt(document.getElementById('builder-duration').value) || 3;
+            const isSkip = document.getElementById('skip-transport-toggle').checked;
+            const transportType = document.getElementById('builder-transport-type').value;
+            const isOpenReturn = document.getElementById('open-return-toggle').checked;
+
+            const roomType = document.getElementById('builder-room-type').value;
+            const roomsCount = parseInt(document.getElementById('builder-rooms-count').value) || 1;
+            const earlyFreshup = document.getElementById('early-freshup-toggle').checked;
+
+            const honeymoon = document.getElementById('addon-honeymoon').checked;
+            const bbq = document.getElementById('addon-bbq').checked;
+            const guide = document.getElementById('addon-guide').checked;
+            const boat = document.getElementById('addon-boat').checked;
+
+            const parasailingCount = parseInt(document.getElementById('act-parasailing').value) || 0;
+            const coconutCount = parseInt(document.getElementById('act-coconut').value) || 0;
+
+            const payload = {
+                destination_id: parseInt(document.getElementById('builder-destination').value),
+                duration_days: duration,
+                travelers: { adults, children, infants },
+                transport: {
+                    type: transportType,
+                    skip_transport: isSkip,
+                    seat_selection: selectedSeats,
+                    is_open_return: isOpenReturn
+                },
+                lodging: {
+                    room_type: roomType,
+                    rooms_count: roomsCount,
+                    early_freshup: earlyFreshup
+                },
+                addons: {
+                    honeymoon_bed: honeymoon,
+                    beach_bbq: bbq,
+                    local_guide: guide,
+                    boat_permits: boat
+                },
+                activities: [
+                    { id: 1, name: 'Parasailing', price: 2300, participants: parasailingCount },
+                    { id: 2, name: 'Coconut Lounge', price: 100, participants: coconutCount }
+                ]
+            };
+
+            try {
+                const res = await API.calculateTrip(payload);
+                if (res.success) {
+                    const b = res.breakdown;
+                    document.getElementById('cost-transport').textContent = `৳${b.transport.toLocaleString()}`;
+                    document.getElementById('cost-lodging').textContent = `৳${b.lodging.toLocaleString()}`;
+                    document.getElementById('cost-addons').textContent = `৳${b.addons.toLocaleString()}`;
+                    document.getElementById('cost-activities').textContent = `৳${b.activities.toLocaleString()}`;
+                    document.getElementById('cost-grand-total').textContent = `৳${b.grand_total.toLocaleString()}`;
+                    document.getElementById('cost-per-person').textContent = `৳${b.per_person.toLocaleString()}/person`;
+
+                    // Render applied scenarios badges
+                    const container = document.getElementById('applied-scenarios-container');
+                    container.innerHTML = b.applied_scenarios.map(s => `
+                        <div class="scenario-pill" title="${s.description}">
+                            ✓ Scenario ${s.scenario}: ${s.title}
+                        </div>
+                    `).join('');
+                }
+            } catch (err) {
+                console.error('Recalculation error:', err);
+            }
+        }
+
+        function proceedToCheckout() {
+            const dest = document.getElementById('builder-destination').value;
+            const adults = parseInt(document.getElementById('builder-adults').value) || 1;
+            const children = parseInt(document.getElementById('builder-children').value) || 0;
+            const totalTravelers = adults + children;
+            const date = document.getElementById('builder-date').value;
+            const grandTotalText = document.getElementById('cost-grand-total').textContent.replace(/[^\d]/g, '');
+
+            sessionStorage.setItem('travelup_checkout_data', JSON.stringify({
+                destination_id: dest,
+                start_date: date,
+                travelers_count: totalTravelers,
+                total_price: parseInt(grandTotalText) || 15000,
+                is_split_bill: totalTravelers > 1
+            }));
+
+            window.location.href = `booking.html?dest=${dest}&total=${grandTotalText}&travelers=${totalTravelers}`;
+        }
+
+        // On load
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const destParam = urlParams.get('destination');
+            if (destParam) {
+                document.getElementById('builder-destination').value = destParam;
+            }
+            recalculate();
+        });
     </script>
 </body>
 </html>
