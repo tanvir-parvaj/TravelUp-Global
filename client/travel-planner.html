@@ -386,12 +386,18 @@
         }
 
         .stat-box {
-            background: #ffffff;
+            background: #f8fafc;
             border: 1px solid var(--st-border);
-            border-radius: 6px;
-            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            padding: 0.55rem 1.25rem;
             text-align: right;
-            min-width: 140px;
+            min-width: 145px;
+            transition: all 0.2s ease;
+        }
+
+        .stat-box:hover {
+            border-color: #94a3b8;
+            background: #ffffff;
         }
 
         .stat-box .amount {
@@ -863,32 +869,11 @@
         <!-- PCB Builder Container -->
         <div class="pcb-container is-locked">
 
-            <!-- PCB Head (Branding) -->
+            <!-- PCB Head (Larger Logo on Left, Price Stats on Right) -->
             <div class="pcb-head">
-                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <img src="images/logo.png" alt="TravelUp Global" style="height: 38px;">
-                    <span style="font-size: 0.85rem; font-weight: 800; color: var(--st-text-muted); border-left: 2px solid var(--st-border); padding-left: 0.75rem;">Interactive Blueprint Builder</span>
+                <div style="display: flex; align-items: center;">
+                    <img src="images/logo.png" alt="TravelUp Global" style="height: 52px; width: auto; display: block;">
                 </div>
-            </div>
-
-            <!-- PCB Top Content (Title, Checkboxes & Price Bar) -->
-            <div class="pcb-top-content">
-                <div class="pcb-title-area">
-                    <h1>Travel Planner</h1>
-                    <div class="checkbox-group">
-                        <!-- Scenario 4: Skip Transport Toggle -->
-                        <label class="custom-check" style="color: var(--st-orange);">
-                            <input type="checkbox" id="skip-transport-check" onchange="toggleSkipTransport()">
-                            <span>[✓] Skip Transport (Self-Drive / Scenario 4)</span>
-                        </label>
-                        <label class="custom-check">
-                            <input type="checkbox" id="hide-unconfigured" onchange="toggleHideUnconfigured()">
-                            <span>Hide Unconfigured Components</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Right Stats -->
                 <div class="price-stats-wrap">
                     <div class="stat-box person-box">
                         <div class="amount" id="per-person-amount">BDT 0</div>
@@ -896,7 +881,7 @@
                     </div>
                     <div class="stat-box">
                         <div class="amount" id="total-amount">BDT 0</div>
-                        <div class="label" id="items-count-label">0 Components</div>
+                        <div class="label" id="items-count-label">0 Components Selected</div>
                     </div>
                 </div>
             </div>
@@ -1667,8 +1652,8 @@
         function confirmTourBooking() {
             if (!validateSearchFields(true)) return;
 
-            if (!currentTour.transport && !document.getElementById('skip-transport-check').checked) {
-                alert('⚠️ Please select an Intermodal Transit method or check [✓] Skip Transport.');
+            if (!currentTour.transport) {
+                alert('⚠️ Please select an Intermodal Transit method to complete your booking.');
                 return;
             }
             if (!currentTour.lodging) {
