@@ -4,365 +4,1752 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelUp Global — Dynamic Tourism & Algorithmic Travel Engine</title>
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --accent: #10b981;
+            --secondary: #0f172a;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.12), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-pill: 9999px;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ==============================================================
+           1. TOP NAVIGATION BAR
+           ============================================================== */
+        .site-navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.25rem 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.65) 0%, rgba(15, 23, 42, 0) 100%);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-logo-img {
+            height: 44px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #38bdf8;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-nav-outline {
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.15rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav-outline:hover {
+            background: #ffffff;
+            color: var(--secondary);
+            border-color: #ffffff;
+        }
+
+        .btn-nav-primary {
+            background: #0284c7;
+            color: #ffffff;
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav-primary:hover {
+            background: #0369a1;
+            transform: translateY(-1px);
+        }
+
+        /* ==============================================================
+           2. HERO SECTION
+           ============================================================== */
+        .hero-section {
+            position: relative;
+            min-height: 640px;
+            background: url('images/hero-bg.jpg') no-repeat center top / cover;
+            padding-top: 7rem;
+            padding-bottom: 4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.55) 0%, rgba(15, 23, 42, 0.2) 60%, rgba(15, 23, 42, 0.4) 100%);
+            z-index: 1;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            color: #bae6fd;
+            text-transform: uppercase;
+            margin-bottom: 0.65rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            max-width: 680px;
+        }
+
+        .hero-title span {
+            color: #38bdf8;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: #e2e8f0;
+            max-width: 600px;
+            line-height: 1.55;
+            margin-bottom: 2.25rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        /* Floating Accessible Travel Badge (Top-Right / Mid-Right) */
+        .accessible-badge-card {
+            position: absolute;
+            right: 1.5rem;
+            bottom: 3rem;
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1.15rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            max-width: 260px;
+            z-index: 5;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .accessible-badge-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+            border-color: #0284c7;
+        }
+
+        .access-icon-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #e0f2fe;
+            color: #0284c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+
+        .access-info strong {
+            display: block;
+            font-size: 0.85rem;
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        .access-info span {
+            display: block;
+            font-size: 0.72rem;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        /* ==============================================================
+           SEARCH BOX CARD (WITH TABS)
+           ============================================================== */
+        .search-card-wrapper {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.18);
+            padding: 1.25rem 1.5rem 1.5rem;
+            max-width: 1040px;
+            position: relative;
+        }
+
+        /* Tabs Row */
+        .search-tabs-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 0.75rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.5rem 1.15rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #64748b;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: #0f172a;
+            background: #f1f5f9;
+        }
+
+        .tab-btn.active {
+            background: #0284c7;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+        }
+
+        /* Search Form Fields Grid */
+        .search-form-grid {
+            display: grid;
+            grid-template-columns: 1.2fr auto 1.2fr 1.3fr 1fr auto;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .search-col {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.55rem 0.85rem;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .search-col:focus-within {
+            border-color: #0284c7;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+        }
+
+        .search-col-icon {
+            color: #0284c7;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .search-col-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .search-col-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .search-col select,
+        .search-col input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0f172a;
+            outline: none;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .btn-swap-locations {
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .btn-swap-locations:hover {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+            transform: rotate(180deg);
+        }
+
+        .btn-search-action {
+            background: #0284c7;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            height: 48px;
+            padding: 0 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            white-space: nowrap;
+        }
+
+        .btn-search-action:hover {
+            background: #0369a1;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+        }
+
+        /* Trust Badges Bar */
+        .trust-badges-bar {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .trust-badge-item i {
+            font-size: 17px;
+            color: #38bdf8;
+        }
+
+        /* ==============================================================
+           3. SECTION: POPULAR DESTINATIONS
+           ============================================================== */
+        .section-wrap {
+            padding: 4.5rem 0;
+        }
+
+        .section-header-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .view-all-link {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0284c7;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: gap 0.2s ease;
+        }
+
+        .view-all-link:hover {
+            color: #0369a1;
+            gap: 0.5rem;
+        }
+
+        .destinations-row-wrap {
+            position: relative;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.25rem;
+        }
+
+        .dest-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 280px;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .dest-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .dest-card:hover .dest-card-img {
+            transform: scale(1.08);
+        }
+
+        .dest-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.05) 0%, rgba(15, 23, 42, 0.2) 40%, rgba(15, 23, 42, 0.85) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.15rem;
+            color: #ffffff;
+        }
+
+        .dest-name {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+
+        .dest-location {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            margin-bottom: 0.45rem;
+        }
+
+        .dest-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #fde047;
+        }
+
+        .dest-rating span {
+            color: #cbd5e1;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .dest-next-btn {
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #0f172a;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .dest-next-btn:hover {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+        }
+
+        /* ==============================================================
+           4. SECTION: WHY TRAVELUP GLOBAL?
+           ============================================================== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.25rem 0.75rem;
+        }
+
+        .feature-icon-circle {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.15rem;
+            transition: transform 0.2s ease;
+        }
+
+        .feature-item:hover .feature-icon-circle {
+            transform: scale(1.1);
+        }
+
+        .feature-icon-circle.c-cyan { background: #e0f2fe; color: #0284c7; }
+        .feature-icon-circle.c-blue { background: #dbeafe; color: #2563eb; }
+        .feature-icon-circle.c-teal { background: #ccfbf1; color: #0d9488; }
+        .feature-icon-circle.c-green { background: #dcfce7; color: #16a34a; }
+        .feature-icon-circle.c-indigo { background: #e0e7ff; color: #4f46e5; }
+
+        .feature-icon-circle i {
+            font-size: 26px;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-desc {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* ==============================================================
+           5. SECTION: FEATURED TOUR PACKAGES
+           ============================================================== */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .pkg-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pkg-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: #cbd5e1;
+        }
+
+        .pkg-card-media {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .pkg-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .pkg-card:hover .pkg-card-media img {
+            transform: scale(1.05);
+        }
+
+        .pkg-badge-bestseller {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #10b981;
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.25rem 0.65rem;
+            border-radius: var(--radius-pill);
+            letter-spacing: 0.05em;
+        }
+
+        .pkg-card-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .pkg-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .pkg-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.65rem;
+        }
+
+        .pkg-inclusions {
+            font-size: 0.78rem;
+            color: #475569;
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            border-radius: 6px;
+            padding: 0.4rem 0.6rem;
+            margin-bottom: 1.15rem;
+            line-height: 1.35;
+        }
+
+        .pkg-card-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            padding-top: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pkg-price-wrap strong {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1;
+        }
+
+        .pkg-price-wrap span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .btn-view-details {
+            background: #0284c7;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-view-details:hover {
+            background: #0369a1;
+            transform: translateY(-1px);
+        }
+
+        .pkg-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #eab308;
+            margin-top: 0.4rem;
+        }
+
+        /* ==============================================================
+           6. PROMOTIONAL BANNER: PLAN SMARTER. TRAVEL FURTHER.
+           ============================================================== */
+        .promo-banner {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center / cover;
+            padding: 3rem 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #ffffff;
+            box-shadow: var(--shadow-md);
+        }
+
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(2, 132, 199, 0.92) 0%, rgba(3, 105, 161, 0.85) 60%, rgba(14, 165, 233, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .promo-content {
+            position: relative;
+            z-index: 2;
+            max-width: 500px;
+        }
+
+        .promo-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: #bae6fd;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .promo-title {
+            font-size: clamp(1.85rem, 3vw, 2.35rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 0.65rem;
+            color: #ffffff;
+        }
+
+        .promo-desc {
+            font-size: 0.95rem;
+            color: #e0f2fe;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .btn-start-planning {
+            background: #ffffff;
+            color: #0284c7;
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--radius-pill);
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+        }
+
+        .btn-start-planning:hover {
+            background: #f0f9ff;
+            color: #0369a1;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+        }
+
+        .promo-card-right {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            padding: 1.5rem 1.75rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .promo-checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .promo-checklist li {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .promo-checklist li i {
+            color: #0284c7;
+            font-size: 16px;
+        }
+
+        .promo-handwriting {
+            font-family: 'Caveat', cursive;
+            text-align: center;
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: #0284c7;
+            line-height: 1.15;
+            border-left: 2px dashed #e2e8f0;
+            padding-left: 1.5rem;
+        }
+
+        /* ==============================================================
+           7. SECTION: WHAT OUR TRAVELERS SAY (TESTIMONIALS)
+           ============================================================== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .testi-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .testi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .testi-user-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .testi-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e0f2fe;
+        }
+
+        .testi-meta strong {
+            display: block;
+            font-size: 0.925rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .testi-meta span {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .testi-stars {
+            color: #f59e0b;
+            font-size: 1rem;
+            margin-bottom: 0.65rem;
+            letter-spacing: 2px;
+        }
+
+        .testi-quote {
+            font-size: 0.85rem;
+            color: #475569;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        /* ==============================================================
+           8. UNIVERSAL FOOTER
+           ============================================================== */
+        .site-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand img {
+            height: 42px;
+            width: auto;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-brand p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .footer-links-list a {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: #ffffff;
+        }
+
+        .social-icons-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #1e293b;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .social-icon-btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom-bar {
+            border-top: 1px solid #1e293b;
+            padding-top: 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #64748b;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* ==============================================================
+           9. RESPONSIVE MEDIA QUERIES
+           ============================================================== */
+        @media (max-width: 1024px) {
+            .destinations-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .search-form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .promo-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2rem;
+                padding: 2.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .accessible-badge-card {
+                position: static;
+                margin-top: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-navbar {
+                position: relative;
+                background: #0f172a;
+            }
+            .nav-links {
+                display: none;
+            }
+            .destinations-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .search-form-grid {
+                grid-template-columns: 1fr;
+            }
+            .btn-swap-locations {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-section {
+                padding-top: 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-                <img src="images/logo.png" alt="TravelUp Global" style="height: 44px; width: auto; display: block;">
+    <!-- Top Navigation Bar -->
+    <header class="site-navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="images/logo.png" alt="TravelUp Global" class="nav-logo-img">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="tour-packages.html">Destinations</a></li>
                 <li><a href="tour-packages.html">Tour Packages</a></li>
                 <li><a href="travel-planner.html">Travel Planner</a></li>
             </ul>
             <div class="nav-actions" id="nav-auth-slot">
-                <!-- Injected by auth.js -->
-                <a href="login.html" class="btn btn-outline btn-sm">Log In</a>
-                <a href="signup.html" class="btn btn-primary btn-sm">Get Started</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="container hero-content">
-            <div class="hero-pill">
-                🚀 Engineering Verification: 12 Real-World Scenarios Implemented
-            </div>
-            <h1 class="hero-title">
-                Next-Generation <span>Dynamic Tourism</span> & Algorithmic Travel Engine
-            </h1>
-            <p class="hero-subtitle">
-                Solving multi-leg routing, decoupled self-drive transit, group fintech split-payments, and real-time accessibility constraints beyond the limits of static social media.
-            </p>
-
-            <!-- Global Search & Scenario 6 Accessibility Filter -->
-            <div class="search-box-card">
-                <div class="search-field">
-                    <label>Where To?</label>
-                    <input type="text" id="search-input" placeholder="e.g. Sajek, Cox's Bazar, Tetulia...">
-                </div>
-                <div class="search-field">
-                    <label>Travel Category</label>
-                    <select id="category-select">
-                        <option value="all">All Categories</option>
-                        <option value="Hill Tracts">Hill Tracts / Mountains</option>
-                        <option value="Beach">Sea Beach / Island</option>
-                        <option value="Tea Garden">Eco-Tourism / Tea Gardens</option>
-                        <option value="Heritage">Historical & Heritage</option>
-                    </select>
-                </div>
-                <div class="search-field" style="min-width: 150px; display: flex; align-items: flex-start; justify-content: center;">
-                    <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; text-transform: none;">
-                        <input type="checkbox" id="accessible-toggle" style="width: 16px; height: 16px; accent-color: var(--primary);">
-                        <span style="font-weight: 700; color: var(--secondary); font-size: 0.8rem;">♿ Accessible Only</span>
-                    </label>
-                    <span style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">(Scenario 6: Ground/Lift)</span>
-                </div>
-                <div>
-                    <button class="btn btn-primary btn-lg" onclick="searchDestinations()">
-                        Explore Now
-                    </button>
-                </div>
-            </div>
-
-            <!-- Quick Action Shortcuts -->
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="travel-planner.html" class="btn btn-accent" style="font-size: 1.05rem; padding: 0.95rem 2rem;">
-                    🧭 Open Star Tech Style Travel Planner
-                </a>
+                <a href="login.html" class="btn-nav-outline">Log In</a>
+                <a href="travel-planner.html" class="btn-nav-primary">Build My Trip</a>
             </div>
         </div>
     </header>
 
-    <!-- Live Destinations Showcase Section -->
-    <main class="container" style="padding: 4rem 1.5rem;">
-        <div class="section-header">
-            <span class="section-badge">Hostinger Database Synchronized</span>
-            <h2 class="section-title">Explore Verified Global Destinations</h2>
-            <p style="color: var(--text-muted);">
-                Real-time inventory connected to live MySQL tables with instant pricing, hotel amenities, and dynamic route coordination.
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-inner">
+            <div class="hero-tag">EXPLORE • PLAN • TRAVEL</div>
+            <h1 class="hero-title">
+                Discover the World with <span>TravelUp Global</span>
+            </h1>
+            <p class="hero-desc">
+                Your all-in-one travel platform to explore amazing destinations, customize your journey, book transport, hotels, food and activities -- all in one place.
             </p>
-        </div>
 
-        <div id="destinations-grid" class="grid-3">
-            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">
-                ⏳ Connecting to Hostinger MySQL & Loading Inventory...
+            <!-- Search Card with Tabs -->
+            <div class="search-card-wrapper">
+                <!-- Search Tabs -->
+                <div class="search-tabs-row">
+                    <button type="button" class="tab-btn active" id="tab-custom" onclick="selectSearchTab('custom')">
+                        <i class="material-icons" style="font-size: 16px;">tune</i> Custom Trip
+                    </button>
+                    <button type="button" class="tab-btn" id="tab-packages" onclick="selectSearchTab('packages')">
+                        <i class="material-icons" style="font-size: 16px;">luggage</i> Tour Packages
+                    </button>
+                    <button type="button" class="tab-btn" id="tab-flight" onclick="selectSearchTab('flight')">
+                        <i class="material-icons" style="font-size: 16px;">flight</i> Flight Only
+                    </button>
+                </div>
+
+                <!-- Form Controls -->
+                <div class="search-form-grid">
+                    <!-- From -->
+                    <div class="search-col">
+                        <i class="material-icons search-col-icon">flight_takeoff</i>
+                        <div class="search-col-content">
+                            <span class="search-col-label">From</span>
+                            <select id="search-from">
+                                <option value="Dhaka" selected>Dhaka</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Khulna">Khulna</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Swap Button -->
+                    <button type="button" class="btn-swap-locations" onclick="swapLocations()" title="Swap Departure and Arrival">
+                        <i class="material-icons" style="font-size: 18px;">swap_horiz</i>
+                    </button>
+
+                    <!-- To -->
+                    <div class="search-col">
+                        <i class="material-icons search-col-icon">location_on</i>
+                        <div class="search-col-content">
+                            <span class="search-col-label">To</span>
+                            <select id="search-to">
+                                <option value="coxsbazar" selected>Cox's Bazar</option>
+                                <option value="sajek">Sajek Valley</option>
+                                <option value="saintmartin">Saint Martin</option>
+                                <option value="sreemangal">Sreemangal</option>
+                                <option value="tetulia">Tetulia</option>
+                                <option value="sundarban">Sundarban</option>
+                                <option value="bandarban">Bandarban</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Travel Date -->
+                    <div class="search-col">
+                        <i class="material-icons search-col-icon">calendar_today</i>
+                        <div class="search-col-content">
+                            <span class="search-col-label">Travel Date</span>
+                            <input type="text" id="search-date" value="07 Apr 2025 – 10 Apr 2025" placeholder="Select dates">
+                        </div>
+                    </div>
+
+                    <!-- Travelers -->
+                    <div class="search-col">
+                        <i class="material-icons search-col-icon">group</i>
+                        <div class="search-col-content">
+                            <span class="search-col-label">Travelers</span>
+                            <select id="search-travelers">
+                                <option value="1">1 Person</option>
+                                <option value="2">2 People</option>
+                                <option value="3" selected>3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="6">6+ People</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Submit CTA -->
+                    <button type="button" class="btn-search-action" onclick="executeSearch()">
+                        <i class="material-icons" style="font-size: 18px;">search</i>
+                        <span>Search Your Trip</span>
+                    </button>
+                </div>
             </div>
-        </div>
-    </main>
 
-    <!-- Academic Defense Section: Facebook vs TravelUp Global -->
-    <section class="comparison-section">
+            <!-- Trust Badges Bar -->
+            <div class="trust-badges-bar">
+                <div class="trust-badge-item">
+                    <i class="material-icons">schedule</i>
+                    <span>Real-time Availability</span>
+                </div>
+                <div class="trust-badge-item">
+                    <i class="material-icons">verified_user</i>
+                    <span>Secure Booking</span>
+                </div>
+                <div class="trust-badge-item">
+                    <i class="material-icons">sell</i>
+                    <span>Best Price Guarantee</span>
+                </div>
+                <div class="trust-badge-item">
+                    <i class="material-icons">support_agent</i>
+                    <span>24/7 Support</span>
+                </div>
+            </div>
+
+            <!-- Floating Accessible Travel Card -->
+            <a href="travel-planner.html" class="accessible-badge-card" title="Click to filter wheelchair friendly options">
+                <div class="access-icon-circle">
+                    <i class="material-icons" style="font-size: 20px;">accessible</i>
+                </div>
+                <div class="access-info">
+                    <strong>Accessible Travel</strong>
+                    <span>Filter for wheelchair friendly & special needs</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION: POPULAR DESTINATIONS -->
+    <section class="section-wrap">
         <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Academic Proposal Defense</span>
-                <h2 class="section-title">Why a Website? (Facebook Limitations Analysis)</h2>
-                <p style="color: var(--text-muted);">
-                    Direct comparative justification for CSE Markup & Scripting Languages Lab, demonstrating why transactional state machines cannot be replaced by social media messaging.
-                </p>
+            <div class="section-header-row">
+                <div>
+                    <h2 class="section-title">Popular Destinations</h2>
+                    <p class="section-subtitle">Explore breathtaking places around Bangladesh and beyond.</p>
+                </div>
+                <a href="tour-packages.html" class="view-all-link">
+                    View All Destinations ➔
+                </a>
             </div>
 
-            <div class="table-wrapper">
-                <table class="compare-table">
-                    <thead>
-                        <tr>
-                            <th>Operational Dimension</th>
-                            <th style="color: #dc2626;">Facebook Page / Social Media Operators</th>
-                            <th style="color: #0284c7;">TravelUp Global Web Engine</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Intermodal Route Synthesis (Scenario 1)</strong></td>
-                            <td><span class="badge-no">❌ Impossible</span> Manual guess work; traveler must coordinate multiple bus counters.</td>
-                            <td><span class="badge-yes">✓ Algorithmic</span> Pairs DAC-SPD flight with connecting microbus with 45-min buffer.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Decoupled Self-Drive Trip (Scenario 4)</strong></td>
-                            <td><span class="badge-no">❌ Rejected</span> Monolithic forced packages; refuses to subtract bus fares for SUV travelers.</td>
-                            <td><span class="badge-yes">✓ Reactive Toggle</span> [✓] Skip Transport instantly removes transit, recalculating lodging only.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Room Bedding Breakdown (Scenario 5)</strong></td>
-                            <td><span class="badge-no">❌ Unclear</span> Forces multiple expensive twin rooms without per-person rates.</td>
-                            <td><span class="badge-yes">✓ Automated</span> 4-bed Deluxe Family rooms dynamically split to BDT 875/person/night.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Collaborative Fintech Split-Bill (Scenario 12)</strong></td>
-                            <td><span class="badge-no">❌ Dispute-Prone</span> Class Rep must collect BDT 150,000 to personal bKash, hitting limits.</td>
-                            <td><span class="badge-yes">✓ Webhook Quorum</span> Authenticated shareable link; each student pays their exact BDT 5,000 share.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>B2B Corporate VAT & Tax Invoice (Scenario 11)</strong></td>
-                            <td><span class="badge-no">❌ Non-Compliant</span> Handwritten cash memos inadmissible for corporate tax filing.</td>
-                            <td><span class="badge-yes">✓ NBR Compliant</span> Programmatic 15% VAT + 5% AIT invoice calculation with instant PDF voucher.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Meteorological Storm Auto-Refund (Scenario 9)</strong></td>
-                            <td><span class="badge-no">❌ Weeks of Dispute</span> Host blames Coast Guard, manual refunds take over 3 weeks.</td>
-                            <td><span class="badge-yes">✓ Instant Trigger</span> Signal No. 3 broadcast triggers automatic cancellation & wallet refund.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>ICAO 6-Month Passport Guard (Bonus)</strong></td>
-                            <td><span class="badge-no">❌ Human Error</span> Unnoticed expiry causes catastrophic airport check-in boarding denials.</td>
-                            <td><span class="badge-yes">✓ Pre-Checkout Guard</span> Form blocks international checkout if validity is under 180 days.</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="destinations-row-wrap">
+                <div class="destinations-grid">
+                    <!-- 1. Cox's Bazar -->
+                    <a href="travel-planner.html?dest=coxsbazar" class="dest-card">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Cox's Bazar" class="dest-card-img">
+                        <div class="dest-card-overlay">
+                            <h3 class="dest-name">Cox's Bazar</h3>
+                            <div class="dest-location">Bangladesh</div>
+                            <div class="dest-rating">★ 4.8 <span>(2.4k)</span></div>
+                        </div>
+                    </a>
+
+                    <!-- 2. Sajek Valley -->
+                    <a href="travel-planner.html?dest=sajek" class="dest-card">
+                        <img src="https://images.unsplash.com/photo-1628107082933-07974e64ff6c?auto=format&fit=crop&w=600&q=80" alt="Sajek Valley" class="dest-card-img">
+                        <div class="dest-card-overlay">
+                            <h3 class="dest-name">Sajek Valley</h3>
+                            <div class="dest-location">Bangladesh</div>
+                            <div class="dest-rating">★ 4.7 <span>(1.8k)</span></div>
+                        </div>
+                    </a>
+
+                    <!-- 3. Sundarban -->
+                    <a href="tour-packages.html?search=sundarban" class="dest-card">
+                        <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="Sundarban" class="dest-card-img">
+                        <div class="dest-card-overlay">
+                            <h3 class="dest-name">Sundarban</h3>
+                            <div class="dest-location">Bangladesh</div>
+                            <div class="dest-rating">★ 4.6 <span>(1.2k)</span></div>
+                        </div>
+                    </a>
+
+                    <!-- 4. Saint Martin -->
+                    <a href="travel-planner.html?dest=saintmartin" class="dest-card">
+                        <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=600&q=80" alt="Saint Martin" class="dest-card-img">
+                        <div class="dest-card-overlay">
+                            <h3 class="dest-name">Saint Martin</h3>
+                            <div class="dest-location">Bangladesh</div>
+                            <div class="dest-rating">★ 4.9 <span>(980)</span></div>
+                        </div>
+                    </a>
+
+                    <!-- 5. Bandarban -->
+                    <a href="tour-packages.html?cat=hills" class="dest-card">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Bandarban" class="dest-card-img">
+                        <div class="dest-card-overlay">
+                            <h3 class="dest-name">Bandarban</h3>
+                            <div class="dest-location">Bangladesh</div>
+                            <div class="dest-rating">★ 4.8 <span>(1.1k)</span></div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Next Arrow Control -->
+                <button type="button" class="dest-next-btn" onclick="window.location.href='tour-packages.html'" title="Next destinations">
+                    <i class="material-icons" style="font-size: 20px;">chevron_right</i>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- 12 Real-World Scenarios Directory -->
-    <section class="scenarios-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">System Verification</span>
-                <h2 class="section-title">12 Engineering Verification Scenarios</h2>
-                <p style="color: var(--text-muted);">
-                    Each module corresponds to an academic proposal verification case submitted to course supervisor Sajib Bhattacharjee.
-                </p>
-            </div>
+    <!-- SECTION: WHY TRAVELUP GLOBAL? -->
+    <section class="section-wrap" style="background: #ffffff; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9;">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Why TravelUp Global?</h2>
+            <p class="section-subtitle">We make your travel dreams simple, safe and unforgettable.</p>
 
-            <div class="grid-4">
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 1</span>
-                    <h3 class="scenario-title">Multi-Leg Route Synthesis</h3>
-                    <p class="scenario-desc">DAC ➔ SPD flight + connecting Tetulia microbus with 45-min baggage transfer buffer.</p>
+            <div class="features-grid">
+                <!-- 1 -->
+                <div class="feature-item">
+                    <div class="feature-icon-circle c-cyan">
+                        <i class="material-icons">edit_calendar</i>
+                    </div>
+                    <h3 class="feature-title">Customizable Itineraries</h3>
+                    <p class="feature-desc">Build your own trip just the way you want.</p>
                 </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 2</span>
-                    <h3 class="scenario-title">Open-Ended Return</h3>
-                    <p class="scenario-desc">Telecommuting remote sprint stay with dynamic return seat allocation from dashboard.</p>
+
+                <!-- 2 -->
+                <div class="feature-item">
+                    <div class="feature-icon-circle c-blue">
+                        <i class="material-icons">directions_bus</i>
+                    </div>
+                    <h3 class="feature-title">Multiple Transport Options</h3>
+                    <p class="feature-desc">Bus, Train, Flight, Car – you choose.</p>
                 </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 3</span>
-                    <h3 class="scenario-title">Female Seat Preference</h3>
-                    <p class="scenario-desc">Front-row female seating layout & dynamic counter manager / supervisor mobile telematics.</p>
+
+                <!-- 3 -->
+                <div class="feature-item">
+                    <div class="feature-icon-circle c-teal">
+                        <i class="material-icons">hotel</i>
+                    </div>
+                    <h3 class="feature-title">Verified Hotels & Resorts</h3>
+                    <p class="feature-desc">Comfort, safety and best deals always.</p>
                 </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 4</span>
-                    <h3 class="scenario-title">[✓] Skip Transport Toggle</h3>
-                    <p class="scenario-desc">Self-drive Toyota Prado road-trip dynamically subtracting bus fares to lodging + guide only.</p>
+
+                <!-- 4 -->
+                <div class="feature-item">
+                    <div class="feature-icon-circle c-green">
+                        <i class="material-icons">restaurant</i>
+                    </div>
+                    <h3 class="feature-title">Local Food & Experiences</h3>
+                    <p class="feature-desc">Taste local flavors and live unique moments.</p>
                 </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 5</span>
-                    <h3 class="scenario-title">Multi-Bed Cost Decomposition</h3>
-                    <p class="scenario-desc">Deluxe 4-Bed Family Room (2 King Beds) decomposing BDT 3,500 down to BDT 875/person/night.</p>
-                </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 6</span>
-                    <h3 class="scenario-title">Accessibility Constraints</h3>
-                    <p class="scenario-desc">Wheelchair and elevator filter pruning hazardous steep hilltop cottages for elderly parents.</p>
-                </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 7</span>
-                    <h3 class="scenario-title">5:30 AM Fresh-up Room</h3>
-                    <p class="scenario-desc">Modular add-ons: Honeymoon flower bed (+BDT 1,500) and early fresh-up room (+35% half-day rate).</p>
-                </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 8</span>
-                    <h3 class="scenario-title">Disaggregated Activities</h3>
-                    <p class="scenario-desc">Zero forced bundling: individual parasailing vs coconut lounge cost matrix per friend.</p>
-                </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 9</span>
-                    <h3 class="scenario-title">Meteorological Auto-Refund</h3>
-                    <p class="scenario-desc">Signal No. 3 storm warning immediately triggers programmatic bKash wallet refund of BDT 3,000.</p>
-                </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 10</span>
-                    <h3 class="scenario-title">Granular Age-Tiered Fare</h3>
-                    <p class="scenario-desc">Infant (&lt;4 yrs) free lap seat, child (5-10 yrs) BDT 800 bus seat, BDT 500 rollaway mattress.</p>
-                </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 11</span>
-                    <h3 class="scenario-title">Corporate B2B VAT Invoicing</h3>
-                    <p class="scenario-desc">25-employee retreat quotation with volume discount, 15% NBR VAT, and 5% AIT audit receipt.</p>
-                </div>
-                <div class="scenario-card">
-                    <span class="scenario-number">Scenario 12</span>
-                    <h3 class="scenario-title">Fintech Split-Bill Webhook</h3>
-                    <p class="scenario-desc">30-student university tour shareable payment link with live real-time green tick progress.</p>
+
+                <!-- 5 -->
+                <div class="feature-item">
+                    <div class="feature-icon-circle c-indigo">
+                        <i class="material-icons">support_agent</i>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-desc">We're always here for you, anytime, anywhere.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <img src="images/logo.png" alt="TravelUp Global" style="height: 42px; margin-bottom: 1rem;">
-                <p>
-                    Dual-Portal Dynamic Tourism Web Engine developed for Markup & Scripting Languages Lab, Dept. of CSE, Dhaka International University (DIU).
-                </p>
-                <p style="margin-top: 1rem; color: #cbd5e1; font-size: 0.85rem;">
-                    <strong>Supervisor:</strong> Sajib Bhattacharjee, Lecturer, Dept. of CSE
-                </p>
+    <!-- SECTION: FEATURED TOUR PACKAGES -->
+    <section class="section-wrap">
+        <div class="container">
+            <div class="section-header-row">
+                <div>
+                    <h2 class="section-title">Featured Tour Packages</h2>
+                    <p class="section-subtitle">Handpicked packages for unforgettable experiences.</p>
+                </div>
+                <a href="tour-packages.html" class="view-all-link">
+                    View All Packages ➔
+                </a>
             </div>
-            <div class="footer-links">
-                <h4>Core Navigation</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="travel-planner.html">Travel Planner</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>System Architecture</h4>
-                <ul>
-                    <li><a href="travel-planner.html">Component Builder</a></li>
-                    <li><a href="travel-planner.html">Dynamic Seat Allocator</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Project Team (CSE DIU)</h4>
-                <ul style="font-size: 0.85rem; line-height: 1.8;">
-                    <li><strong>1. Md. Tanvir Parvaj</strong> (Lead, Roll 39)</li>
-                    <li><strong>2. Md. Toufick Hasan</strong> (Roll 34)</li>
-                    <li><strong>3. Fahima Suborna</strong> (Roll 36)</li>
-                </ul>
+
+            <div class="packages-grid">
+                <!-- 1. Cox's Bazar -->
+                <div class="pkg-card">
+                    <div class="pkg-card-media">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Cox's Bazar Getaway">
+                        <span class="pkg-badge-bestseller">Best Seller</span>
+                    </div>
+                    <div class="pkg-card-body">
+                        <h3 class="pkg-title">Cox's Bazar Getaway</h3>
+                        <div class="pkg-meta">
+                            <span>⏱ 3 Days</span>
+                            <span>🌙 2 Nights</span>
+                        </div>
+                        <div class="pkg-inclusions">
+                            🚌 Transport + Hotel + Food + Sightseeing
+                        </div>
+                        <div class="pkg-card-footer">
+                            <div class="pkg-price-wrap">
+                                <strong>৳ 8,500</strong>
+                                <span>/ person</span>
+                                <div class="pkg-rating-row">★ 4.8 <span>(120)</span></div>
+                            </div>
+                            <a href="tour-packages.html?search=coxsbazar" class="btn-view-details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Sajek Valley -->
+                <div class="pkg-card">
+                    <div class="pkg-card-media">
+                        <img src="https://images.unsplash.com/photo-1628107082933-07974e64ff6c?auto=format&fit=crop&w=600&q=80" alt="Sajek Valley Adventure">
+                    </div>
+                    <div class="pkg-card-body">
+                        <h3 class="pkg-title">Sajek Valley Adventure</h3>
+                        <div class="pkg-meta">
+                            <span>⏱ 2 Days</span>
+                            <span>🌙 1 Night</span>
+                        </div>
+                        <div class="pkg-inclusions">
+                            🚌 Transport + Resort + Sightseeing
+                        </div>
+                        <div class="pkg-card-footer">
+                            <div class="pkg-price-wrap">
+                                <strong>৳ 6,500</strong>
+                                <span>/ person</span>
+                                <div class="pkg-rating-row">★ 4.7 <span>(880)</span></div>
+                            </div>
+                            <a href="tour-packages.html?search=sajek" class="btn-view-details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Saint Martin Island -->
+                <div class="pkg-card">
+                    <div class="pkg-card-media">
+                        <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=600&q=80" alt="Saint Martin Island">
+                    </div>
+                    <div class="pkg-card-body">
+                        <h3 class="pkg-title">Saint Martin Island</h3>
+                        <div class="pkg-meta">
+                            <span>⏱ 3 Days</span>
+                            <span>🌙 2 Nights</span>
+                        </div>
+                        <div class="pkg-inclusions">
+                            🚢 Transport + Hotel + Food + Activities
+                        </div>
+                        <div class="pkg-card-footer">
+                            <div class="pkg-price-wrap">
+                                <strong>৳ 12,000</strong>
+                                <span>/ person</span>
+                                <div class="pkg-rating-row">★ 4.9 <span>(620)</span></div>
+                            </div>
+                            <a href="tour-packages.html?search=saintmartin" class="btn-view-details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Sundarban Wildlife Tour -->
+                <div class="pkg-card">
+                    <div class="pkg-card-media">
+                        <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="Sundarban Wildlife Tour">
+                    </div>
+                    <div class="pkg-card-body">
+                        <h3 class="pkg-title">Sundarban Wildlife Tour</h3>
+                        <div class="pkg-meta">
+                            <span>⏱ 2 Days</span>
+                            <span>🌙 1 Night</span>
+                        </div>
+                        <div class="pkg-inclusions">
+                            🚤 Transport + Resort + Boat Ride
+                        </div>
+                        <div class="pkg-card-footer">
+                            <div class="pkg-price-wrap">
+                                <strong>৳ 7,500</strong>
+                                <span>/ person</span>
+                                <div class="pkg-rating-row">★ 4.6 <span>(540)</span></div>
+                            </div>
+                            <a href="tour-packages.html?search=sundarban" class="btn-view-details">View Details</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="container footer-bottom">
-            &copy; 2026 TravelUp Global. All Rights Reserved. Dhaka International University CSE Lab Project.
+    </section>
+
+    <!-- PROMOTIONAL BANNER: PLAN SMARTER. TRAVEL FURTHER. -->
+    <section class="section-wrap" style="padding-top: 1rem;">
+        <div class="container">
+            <div class="promo-banner">
+                <div class="promo-content">
+                    <span class="promo-tag">YOUR NEXT ADVENTURE AWAITS</span>
+                    <h2 class="promo-title">Plan Smarter. Travel Further.</h2>
+                    <p class="promo-desc">
+                        Create your own custom trip with our advanced travel planner.
+                    </p>
+                    <a href="travel-planner.html" class="btn-start-planning">
+                        <span>Start Planning</span> ➔
+                    </a>
+                </div>
+
+                <div class="promo-card-right">
+                    <ul class="promo-checklist">
+                        <li><i class="material-icons">check_circle</i> Custom Itinerary</li>
+                        <li><i class="material-icons">check_circle</i> Real-time Pricing</li>
+                        <li><i class="material-icons">check_circle</i> Multiple Transport Options</li>
+                        <li><i class="material-icons">check_circle</i> Group Discounts</li>
+                    </ul>
+                    <div class="promo-handwriting">
+                        Your Trip.<br>Your Rules.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: WHAT OUR TRAVELERS SAY -->
+    <section class="section-wrap">
+        <div class="container">
+            <div class="section-header-row">
+                <div>
+                    <h2 class="section-title">What Our Travelers Say</h2>
+                    <p class="section-subtitle">Real stories. Real experiences.</p>
+                </div>
+                <a href="tour-packages.html" class="view-all-link">
+                    View All Reviews ➔
+                </a>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- 1 -->
+                <div class="testi-card">
+                    <div>
+                        <div class="testi-user-row">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Samiul Hasan" class="testi-avatar">
+                            <div class="testi-meta">
+                                <strong>Samiul Hasan</strong>
+                                <span>Dhaka 📍</span>
+                            </div>
+                        </div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-quote">
+                            "TravelUp Global made our Cox's Bazar trip so easy and memorable. Everything was well planned and on time!"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="testi-card">
+                    <div>
+                        <div class="testi-user-row">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Nusrat Jahan" class="testi-avatar">
+                            <div class="testi-meta">
+                                <strong>Nusrat Jahan</strong>
+                                <span>Chittagong 📍</span>
+                            </div>
+                        </div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-quote">
+                            "The custom trip planner is amazing! We could choose everything we wanted within our budget."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="testi-card">
+                    <div>
+                        <div class="testi-user-row">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Rafiq Ahmed" class="testi-avatar">
+                            <div class="testi-meta">
+                                <strong>Rafiq Ahmed</strong>
+                                <span>Sylhet 📍</span>
+                            </div>
+                        </div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-quote">
+                            "Best travel platform in Bangladesh. Highly recommended for anyone who loves to travel!"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="testi-card">
+                    <div>
+                        <div class="testi-user-row">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Tanha Islam" class="testi-avatar">
+                            <div class="testi-meta">
+                                <strong>Tanha Islam</strong>
+                                <span>Rajshahi 📍</span>
+                            </div>
+                        </div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-quote">
+                            "Great service, friendly support and amazing destinations. Can't wait for my next trip!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Col 1 -->
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="TravelUp Global">
+                    <p>
+                        Next-Generation Dynamic Tourism & Algorithmic Travel Engine
+                    </p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tour-packages.html">Destinations</a></li>
+                        <li><a href="travel-planner.html">Travel Planner</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Support -->
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html">FAQ</a></li>
+                        <li><a href="index.html">Contact Us</a></li>
+                        <li><a href="index.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Follow Us -->
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons-row">
+                        <a href="#" class="social-icon-btn" title="Facebook">f</a>
+                        <a href="#" class="social-icon-btn" title="Instagram">in</a>
+                        <a href="#" class="social-icon-btn" title="YouTube">▶</a>
+                        <a href="#" class="social-icon-btn" title="LinkedIn">li</a>
+                        <a href="#" class="social-icon-btn" title="X / Twitter">𝕏</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div>
+                    &copy; 2026 TravelUp Global. All rights reserved.
+                </div>
+                <div style="color: #475569;">
+                    DIU CSE Lab Project • Roll 39, 34, 36
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script>
-        // Check active weather alerts on page load (Scenario 9)
-        async function loadAlerts() {
-            try {
-                const res = await API.getAlerts();
-                if (res.success && res.data.length > 0) {
-                    const alert = res.data[0];
-                    if (alert.is_active) {
-                        const banner = document.getElementById('top-alert-banner');
-                        const msg = document.getElementById('alert-message');
-                        msg.textContent = `${alert.title_en}: ${alert.message_en}`;
-                        banner.style.display = 'flex';
-                    }
-                }
-            } catch (err) {
-                console.log('No active alerts or offline mode.');
+        // Tab switching
+        let activeTab = 'custom';
+        function selectSearchTab(tabKey) {
+            activeTab = tabKey;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            const clicked = document.getElementById(`tab-${tabKey}`);
+            if (clicked) clicked.classList.add('active');
+
+            const submitBtn = document.querySelector('.btn-search-action span');
+            if (tabKey === 'custom') {
+                submitBtn.textContent = 'Search Your Trip';
+            } else if (tabKey === 'packages') {
+                submitBtn.textContent = 'Find Packages';
+            } else if (tabKey === 'flight') {
+                submitBtn.textContent = 'Search Flights';
             }
         }
 
-        // Load destinations from Hostinger MySQL
-        async function loadDestinations(params = {}) {
-            const grid = document.getElementById('destinations-grid');
-            try {
-                const res = await API.getDestinations(params);
-                if (!res.success || res.data.length === 0) {
-                    grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">No destinations matched your criteria.</div>';
-                    return;
-                }
+        // Swap Origin & Destination
+        function swapLocations() {
+            const fromSelect = document.getElementById('search-from');
+            const toSelect = document.getElementById('search-to');
+            const currentFrom = fromSelect.value;
+            const currentToText = toSelect.options[toSelect.selectedIndex].text;
 
-                grid.innerHTML = res.data.slice(0, 6).map(dest => `
-                    <div class="card">
-                        <div class="card-img-wrapper">
-                            <img src="${dest.image_url || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'}" 
-                                 alt="${dest.name_en}" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'">
-                            <span class="card-badge">${dest.category || 'Featured'}</span>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">${dest.name_en}</h3>
-                            <p class="card-desc">${(dest.description_en || dest.short_desc_en || 'Experience scenic landscapes, local culture, and bespoke tour coordination with TravelUp Global.').slice(0, 115)}...</p>
-                            <div class="card-footer">
-                                <div class="price-tag">
-                                    <span class="label">Starting From</span>
-                                    <span class="amount">BDT ${Math.round(dest.price_bdt || 3500).toLocaleString()}</span>
-                                </div>
-                                <a href="travel-planner.html" class="btn btn-primary btn-sm">
-                                    Plan Travel →
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-            } catch (err) {
-                grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: red;">Failed to load destinations. Ensure server is running on port 5000.</div>';
+            // Simple visual swap
+            alert(`⇄ Swapping locations: ${currentToText} ➔ ${currentFrom}`);
+        }
+
+        // Execute Search Action
+        function executeSearch() {
+            const from = document.getElementById('search-from').value;
+            const to = document.getElementById('search-to').value;
+            const travelers = document.getElementById('search-travelers').value;
+
+            if (activeTab === 'custom') {
+                window.location.href = `travel-planner.html?dest=${to}&origin=${encodeURIComponent(from)}&pax=${travelers}`;
+            } else if (activeTab === 'packages') {
+                window.location.href = `tour-packages.html?search=${encodeURIComponent(to)}`;
+            } else if (activeTab === 'flight') {
+                window.location.href = `travel-planner.html?dest=${to}&origin=${encodeURIComponent(from)}&pax=${travelers}&mode=flight`;
             }
         }
-
-        // Search and filter handler
-        function searchDestinations() {
-            const search = document.getElementById('search-input').value.trim();
-            const category = document.getElementById('category-select').value;
-            const accessibleOnly = document.getElementById('accessible-toggle').checked;
-
-            const params = {};
-            if (search) params.search = search;
-            if (category && category !== 'all') params.category = category;
-            if (accessibleOnly) params.accessible_only = 'true';
-
-            loadDestinations(params);
-        }
-
-        document.getElementById('search-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') searchDestinations();
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadAlerts();
-            loadDestinations();
-        });
     </script>
 </body>
 </html>
