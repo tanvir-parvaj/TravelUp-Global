@@ -794,6 +794,274 @@
             text-align: right;
         }
 
+        /* Action buttons in select-card */
+        .select-card-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .btn-item-details {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 0.45rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.775rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.2s;
+        }
+
+        .btn-item-details:hover {
+            background: #e2e8f0;
+            border-color: #94a3b8;
+            color: var(--st-primary);
+        }
+
+        /* Flight Seat Matrix */
+        .flight-seat-layout {
+            background: #f8fafc;
+            border: 2px dashed #93c5fd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            max-width: 400px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .flight-driver-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #bfdbfe;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #1e40af;
+        }
+
+        .flight-row-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 30px 1fr 1fr;
+            gap: 0.65rem;
+            align-items: center;
+        }
+
+        /* Hotel Room Cards */
+        .hotel-rooms-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .room-card {
+            display: flex;
+            border: 2px solid var(--st-border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #ffffff;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .room-card:hover {
+            border-color: #93c5fd;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .room-card.selected {
+            border-color: var(--st-primary);
+            background: #f0fdf4;
+            box-shadow: 0 0 0 1px var(--st-primary);
+        }
+
+        .room-card-img {
+            width: 140px;
+            min-height: 120px;
+            object-fit: cover;
+        }
+
+        .room-card-content {
+            padding: 0.85rem 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .room-bed-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+
+        .room-floor-select {
+            font-size: 0.775rem;
+            font-weight: 600;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid var(--st-border);
+            border-radius: 4px;
+            background: #ffffff;
+            color: #1e293b;
+            margin-top: 0.4rem;
+        }
+
+        /* Dining Menu Customizer */
+        .dining-menu-box {
+            background: #ffffff;
+            border: 1px solid var(--st-border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .menu-included-grid {
+            display: grid;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .menu-dish-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #334155;
+            background: #f8fafc;
+            padding: 0.4rem 0.75rem;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .menu-addon-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.55rem 0.75rem;
+            border: 1px solid var(--st-border);
+            border-radius: 6px;
+            background: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .menu-addon-row:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        /* Roadmap Timeline & Details Popup */
+        .details-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .details-hero {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            background: #f8fafc;
+            border: 1px solid var(--st-border);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+        }
+
+        .details-hero-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid var(--st-border);
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            padding-left: 1.75rem;
+            margin: 0.75rem 0;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            bottom: 6px;
+            left: 7px;
+            width: 2px;
+            background: #cbd5e1;
+        }
+
+        .roadmap-step {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .roadmap-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .roadmap-dot {
+            position: absolute;
+            left: -1.75rem;
+            top: 3px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--st-primary);
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 1px #93c5fd;
+        }
+
+        .roadmap-step:last-child .roadmap-dot {
+            background: #ef4444;
+            box-shadow: 0 0 0 1px #fca5a5;
+        }
+
+        .roadmap-station {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .roadmap-desc {
+            font-size: 0.775rem;
+            color: #64748b;
+        }
+
+        .amenity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .amenity-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 0.45rem 0.75rem;
+            font-size: 0.8rem;
+            color: #334155;
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             .search-strip {
                 grid-template-columns: 1fr;
@@ -1066,7 +1334,7 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Resort & Hotel Room (Deluxe / Sea-View)</span>
+                            <span>Hotel (City & Standard 3-5 Star Hotels)</span>
                         </div>
                         <div class="product-name" id="val-hotel">Not Selected</div>
                     </div>
@@ -1076,20 +1344,54 @@
                     </div>
                 </div>
 
-                <!-- Eco Cottage & Villa Component -->
+                <!-- Resort Component -->
+                <div class="c-item" id="slot-resort">
+                    <div class="img">
+                        <span class="material-icons">beach_access</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Resort (Beachfront & Scenic Holiday Resorts)</span>
+                        </div>
+                        <div class="product-name" id="val-resort">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-resort"></div>
+                    <div class="actions" id="action-resort">
+                        <button class="btn-choose" onclick="openPicker('resort')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Eco Cottage Component -->
                 <div class="c-item" id="slot-cottage">
                     <div class="img">
                         <span class="material-icons">holiday_village</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Eco Cottage & Hillside Wooden Villa</span>
+                            <span>Eco Cottage (Nature Wooden Lodges & Bamboo Huts)</span>
                         </div>
                         <div class="product-name" id="val-cottage">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-cottage"></div>
                     <div class="actions" id="action-cottage">
                         <button class="btn-choose" onclick="openPicker('cottage')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Luxury Villa Component -->
+                <div class="c-item" id="slot-villa">
+                    <div class="img">
+                        <span class="material-icons">villa</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Luxury Villa (Private Oceanfront & Hilltop Villas)</span>
+                        </div>
+                        <div class="product-name" id="val-villa">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-villa"></div>
+                    <div class="actions" id="action-villa">
+                        <button class="btn-choose" onclick="openPicker('villa')">Choose</button>
                     </div>
                 </div>
 
@@ -1111,56 +1413,73 @@
                 </div>
 
                 <!-- Dining & Meal Plans -->
-                <div class="content-label">Dining & Meal Plans (Meal Plans & Restaurant Dining)</div>
+                <div class="content-label">Dining & Meal Plans (Breakfast / Lunch / Dinner / Cafe & Snacks)</div>
 
-                <!-- Seafood BBQ Dinner Component -->
-                <div class="c-item" id="slot-bbq">
+                <!-- Breakfast Component -->
+                <div class="c-item" id="slot-breakfast">
                     <div class="img">
-                        <span class="material-icons">outdoor_grill</span>
+                        <span class="material-icons">breakfast_dining</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Live Seafood BBQ Dinner</span>
+                            <span>Breakfast (Morning Breakfast & Continental Buffet)</span>
                         </div>
-                        <div class="product-name" id="val-bbq">Not Selected</div>
+                        <div class="product-name" id="val-breakfast">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-bbq"></div>
-                    <div class="actions" id="action-bbq">
-                        <button class="btn-choose" onclick="openPicker('bbq')">Choose</button>
+                    <div class="item-price" id="price-breakfast"></div>
+                    <div class="actions" id="action-breakfast">
+                        <button class="btn-choose" onclick="openPicker('breakfast')">Choose</button>
                     </div>
                 </div>
 
-                <!-- Traditional Food & Local Cuisine Component -->
-                <div class="c-item" id="slot-traditionalfood">
+                <!-- Lunch Component -->
+                <div class="c-item" id="slot-lunch">
                     <div class="img">
                         <span class="material-icons">restaurant</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Traditional Food & Indigenous Feast</span>
+                            <span>Lunch (Traditional Feast & Local Cuisine)</span>
                         </div>
-                        <div class="product-name" id="val-traditionalfood">Not Selected</div>
+                        <div class="product-name" id="val-lunch">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-traditionalfood"></div>
-                    <div class="actions" id="action-traditionalfood">
-                        <button class="btn-choose" onclick="openPicker('traditionalfood')">Choose</button>
+                    <div class="item-price" id="price-lunch"></div>
+                    <div class="actions" id="action-lunch">
+                        <button class="btn-choose" onclick="openPicker('lunch')">Choose</button>
                     </div>
                 </div>
 
-                <!-- Buffet & Full-Board Meal Plan Component -->
-                <div class="c-item" id="slot-buffet">
+                <!-- Dinner Component -->
+                <div class="c-item" id="slot-dinner">
                     <div class="img">
-                        <span class="material-icons">lunch_dining</span>
+                        <span class="material-icons">outdoor_grill</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Buffet & Full-Board Meal Plan</span>
+                            <span>Dinner (Live Seafood BBQ & Beachside Dinner)</span>
                         </div>
-                        <div class="product-name" id="val-buffet">Not Selected</div>
+                        <div class="product-name" id="val-dinner">Not Selected</div>
                     </div>
-                    <div class="item-price" id="price-buffet"></div>
-                    <div class="actions" id="action-buffet">
-                        <button class="btn-choose" onclick="openPicker('buffet')">Choose</button>
+                    <div class="item-price" id="price-dinner"></div>
+                    <div class="actions" id="action-dinner">
+                        <button class="btn-choose" onclick="openPicker('dinner')">Choose</button>
+                    </div>
+                </div>
+
+                <!-- Cafe Component -->
+                <div class="c-item" id="slot-cafe">
+                    <div class="img">
+                        <span class="material-icons">local_cafe</span>
+                    </div>
+                    <div class="details">
+                        <div class="component-name">
+                            <span>Cafe (Artisan Coffee, Snacks & Special Tea)</span>
+                        </div>
+                        <div class="product-name" id="val-cafe">Not Selected</div>
+                    </div>
+                    <div class="item-price" id="price-cafe"></div>
+                    <div class="actions" id="action-cafe">
+                        <button class="btn-choose" onclick="openPicker('cafe')">Choose</button>
                     </div>
                 </div>
 
@@ -1339,8 +1658,8 @@
                             <div id="seat-bus-name" style="font-weight: 800; font-size: 0.95rem; color: var(--st-text);"></div>
                             <div id="seat-bus-rate" style="font-size: 0.8rem; color: var(--st-text-muted);"></div>
                         </div>
-                        <button type="button" class="btn-demo-reset" onclick="backToBusList()" style="font-size: 0.8rem; cursor: pointer;">
-                            <i class="material-icons" style="font-size: 15px;">arrow_back</i> Back to Buses
+                        <button type="button" class="btn-demo-reset" onclick="backToItemsList()" style="font-size: 0.8rem; cursor: pointer;">
+                            <i class="material-icons" style="font-size: 15px;">arrow_back</i> Back to List
                         </button>
                     </div>
 
@@ -1365,7 +1684,7 @@
                     </div>
 
                     <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.75rem 1rem; font-size: 0.8rem; color: #166534; margin: 1rem 0;">
-                        <strong>📞 Scenario 3 Counter Telematics:</strong> Arambagh Counter 4 | Manager: +880 1712-345678 | Supervisor: +880 1819-876543 (Rows A & B reserved for Female safety priority ♀).
+                        <strong>📞 Scenario 3 Counter Telematics:</strong> Station Master: +880 1712-345678 | Supervisor: +880 1819-876543 (Rows A & B reserved for Female safety priority ♀).
                     </div>
 
                     <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--st-border); flex-wrap: wrap; gap: 0.75rem;">
@@ -1374,6 +1693,135 @@
                         </div>
                         <button type="button" class="btn-checkout" style="padding: 0.6rem 1.5rem; font-size: 0.875rem;" onclick="confirmSeatSelection()">
                             Confirm Seats & Select Bus
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Flight Seat Picker Container -->
+                <div id="flight-seat-picker-wrap" style="display: none;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <div id="seat-flight-name" style="font-weight: 800; font-size: 0.95rem; color: #1e3a8a;"></div>
+                            <div id="seat-flight-rate" style="font-size: 0.8rem; color: #3b82f6;"></div>
+                        </div>
+                        <button type="button" class="btn-demo-reset" onclick="backToItemsList()" style="font-size: 0.8rem; cursor: pointer;">
+                            <i class="material-icons" style="font-size: 15px;">arrow_back</i> Back to Flights
+                        </button>
+                    </div>
+
+                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; color: #166534; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <i class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 4px;">flight</i>
+                            Select <strong id="flight-seats-target-count">4</strong> seat(s) for your <strong id="flight-travelers-target-count">4</strong> passenger(s).
+                        </div>
+                        <div>
+                            Selected: <strong id="flight-seats-selected-display" style="color: var(--st-primary);">None</strong>
+                        </div>
+                    </div>
+
+                    <div class="flight-seat-layout">
+                        <div class="flight-driver-area">
+                            <span>✈ COCKPIT</span>
+                            <span>BOEING 737 JETLINER CABIN</span>
+                            <span>GALLEY ☕</span>
+                        </div>
+                        <!-- Flight Seats Grid 1A-6D -->
+                        <div class="flight-row-grid" id="flight-seats-container"></div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--st-border); flex-wrap: wrap; gap: 0.75rem;">
+                        <div id="flight-seat-cost-summary" style="font-size: 1.1rem; font-weight: 900; color: var(--st-primary);">
+                            Total: BDT 0
+                        </div>
+                        <button type="button" class="btn-checkout" style="padding: 0.6rem 1.5rem; font-size: 0.875rem;" onclick="confirmFlightSeatSelection()">
+                            Confirm Flight Seats & Select Flight
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hotel / Resort Room Picker Container -->
+                <div id="hotel-room-picker-wrap" style="display: none;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <div id="room-hotel-name" style="font-weight: 800; font-size: 1rem; color: var(--st-text);"></div>
+                            <div id="room-hotel-sub" style="font-size: 0.8rem; color: var(--st-text-muted);"></div>
+                        </div>
+                        <button type="button" class="btn-demo-reset" onclick="backToItemsList()" style="font-size: 0.8rem; cursor: pointer;">
+                            <i class="material-icons" style="font-size: 15px;">arrow_back</i> Back to List
+                        </button>
+                    </div>
+
+                    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; color: #166534; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <i class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 4px;">king_bed</i>
+                            Choose preferred room category & floor for your <strong id="hotel-travelers-target-count">4</strong> traveler(s).
+                        </div>
+                        <span class="scen-tag" style="background: #dcfce7; color: #166534; border: 1px solid #86efac; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem;">
+                            Scenario 5: Multi-Bed Cost Decomposition
+                        </span>
+                    </div>
+
+                    <!-- Room Categories List -->
+                    <div id="hotel-rooms-list" class="hotel-rooms-grid"></div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--st-border); flex-wrap: wrap; gap: 0.75rem;">
+                        <div id="room-cost-summary" style="font-size: 1.05rem; font-weight: 900; color: var(--st-primary);">
+                            Select a room to see pricing
+                        </div>
+                        <button type="button" class="btn-checkout" style="padding: 0.6rem 1.5rem; font-size: 0.875rem;" onclick="confirmRoomSelection()">
+                            Confirm Room & Select Accommodation
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dining Menu Customizer Container -->
+                <div id="dining-menu-picker-wrap" style="display: none;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <div id="menu-restaurant-name" style="font-weight: 800; font-size: 1rem; color: var(--st-text);"></div>
+                            <div id="menu-restaurant-sub" style="font-size: 0.8rem; color: var(--st-text-muted);"></div>
+                        </div>
+                        <button type="button" class="btn-demo-reset" onclick="backToItemsList()" style="font-size: 0.8rem; cursor: pointer;">
+                            <i class="material-icons" style="font-size: 15px;">arrow_back</i> Back to List
+                        </button>
+                    </div>
+
+                    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 1rem; font-size: 0.825rem; color: #1e40af;">
+                        <i class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 4px;">restaurant_menu</i>
+                        Review included dishes and select optional gourmet add-ons for your <strong id="dining-travelers-target-count">4</strong> traveler(s).
+                    </div>
+
+                    <!-- Included Dishes and Add-ons -->
+                    <div id="dining-menu-content"></div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--st-border); flex-wrap: wrap; gap: 0.75rem;">
+                        <div id="dining-cost-summary" style="font-size: 1.05rem; font-weight: 900; color: var(--st-primary);">
+                            Total: BDT 0
+                        </div>
+                        <button type="button" class="btn-checkout" style="padding: 0.6rem 1.5rem; font-size: 0.875rem;" onclick="confirmMenuSelection()">
+                            Confirm Menu & Select Meal
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item Details & Roadmap View Container -->
+                <div id="modal-item-details-view" style="display: none;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <div id="details-item-title" style="font-weight: 800; font-size: 1.05rem; color: var(--st-text);"></div>
+                            <div id="details-item-sub" style="font-size: 0.8rem; color: var(--st-text-muted);"></div>
+                        </div>
+                        <button type="button" class="btn-demo-reset" onclick="backToItemsList()" style="font-size: 0.8rem; cursor: pointer;">
+                            <i class="material-icons" style="font-size: 15px;">arrow_back</i> Back to List
+                        </button>
+                    </div>
+
+                    <div id="item-details-body" class="details-container"></div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 1.25rem; border-top: 1px solid var(--st-border); margin-top: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+                        <div id="details-cost-preview" style="font-size: 1.05rem; font-weight: 900; color: var(--st-primary);"></div>
+                        <button type="button" class="btn-checkout" id="details-proceed-btn" style="padding: 0.6rem 1.5rem; font-size: 0.875rem;" onclick="proceedFromDetails()">
+                            Proceed to Select This Option
                         </button>
                     </div>
                 </div>
@@ -1398,8 +1846,14 @@
             jeep: null,
             cng: null,
             hotel: null,
+            resort: null,
             cottage: null,
+            villa: null,
             freshup: null,
+            breakfast: null,
+            lunch: null,
+            dinner: null,
+            cafe: null,
             bbq: null,
             traditionalfood: null,
             buffet: null,
@@ -1415,27 +1869,793 @@
         // Dynamic Inventory Mapped to Individual Categories
         const inventory = {
             bus: [
-                { id: 1, name: "Non-AC Economy Coach (Arambagh Gateway)", sub: "Budget overland transit with comfortable push-back seating", price: 900, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true },
-                { id: 2, name: "Shyamoli Paribahan Hino 1J Non-AC", sub: "Reliable highway non-AC direct service", price: 850, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true },
-                { id: 3, name: "Hanif Enterprise Economy Chair Coach", sub: "Standard overland daytime highway coach", price: 900, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                {
+                    id: 1,
+                    name: "Shyamoli NR Travels",
+                    sub: "Non-AC Economy Chair Coach • Comfortable Push-back Seats",
+                    price: 900,
+                    img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
+                    hasSeats: true,
+                    details: {
+                        type: "Non-AC Economy Chair Coach (Hino 1J)",
+                        schedule: "Departure: 10:30 PM (Sayedabad / Arambagh) ➔ Arrival: 07:30 AM (Cox's Bazar Kolatoli)",
+                        duration: "9 Hours Overnight Direct",
+                        routeStops: [
+                            { station: "Dhaka (Arambagh Counter)", time: "10:30 PM", desc: "Boarding & baggage loading" },
+                            { station: "Kanchpur & Meghna Bridge", time: "11:15 PM", desc: "Express highway corridor" },
+                            { station: "Cumilla Highway Inn", time: "01:30 AM", desc: "30-min food & prayer break" },
+                            { station: "Feni & Chittagong Bypass", time: "04:00 AM", desc: "Smooth bypass lane" },
+                            { station: "Chakaria & Ramu", time: "06:30 AM", desc: "Southern gateway entry" },
+                            { station: "Cox's Bazar (Kolatoli Terminal)", time: "07:30 AM", desc: "Final destination arrival" }
+                        ],
+                        amenities: [
+                            "Comfortable 2x2 Push-back Seats",
+                            "Individual Reading Lights",
+                            "Emergency First-Aid Kit",
+                            "Spacious Luggage Compartment (20kg)",
+                            "Experienced Highway Pilot & Helper",
+                            "Real-Time GPS Tracking"
+                        ],
+                        policies: "Free cancellation up to 24 hrs prior to departure. Reporting time 15 minutes before departure."
+                    }
+                },
+                {
+                    id: 2,
+                    name: "Hanif Enterprise",
+                    sub: "Hino 1J Non-AC Economy Coach • Reliable Highway Service",
+                    price: 850,
+                    img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=300&q=80",
+                    hasSeats: true,
+                    details: {
+                        type: "Economy Highway Chair Coach",
+                        schedule: "Departure: 11:15 PM (Gabtoli / Sayedabad) ➔ Arrival: 08:15 AM (Kolatoli)",
+                        duration: "9 Hours Direct",
+                        routeStops: [
+                            { station: "Dhaka (Sayedabad Counter)", time: "11:15 PM", desc: "Boarding" },
+                            { station: "Cumilla Highway Break", time: "02:00 AM", desc: "Rest stop" },
+                            { station: "Cox's Bazar (Kolatoli)", time: "08:15 AM", desc: "Arrival" }
+                        ],
+                        amenities: ["Ergonomic Pushback Seats", "Luggage Storage", "First Aid", "GPS Fleet Tracking"],
+                        policies: "Instant booking confirmation."
+                    }
+                },
+                {
+                    id: 3,
+                    name: "Ena Transport",
+                    sub: "Economy Chair Coach • High-Clearance Suspension",
+                    price: 900,
+                    img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
+                    hasSeats: true,
+                    details: {
+                        type: "Economy Chair Coach",
+                        schedule: "Departure: 10:00 PM (Arambagh) ➔ Arrival: 07:00 AM (Kolatoli)",
+                        duration: "9 Hours Direct",
+                        routeStops: [
+                            { station: "Dhaka Arambagh", time: "10:00 PM", desc: "Boarding" },
+                            { station: "Cumilla Poddar", time: "01:15 AM", desc: "Food break" },
+                            { station: "Cox's Bazar", time: "07:00 AM", desc: "Arrival" }
+                        ],
+                        amenities: ["Air Suspension", "Reclining Seats", "Water Bottle", "Luggage Tagging"],
+                        policies: "Free cancellation up to 24 hrs prior to departure."
+                    }
+                }
             ],
             coach: [
-                { id: 1, name: "Direct Scania Multi-Axle AC Luxury Coach", sub: "Scenario 3: Interactive 40-Seat Plan | Rows A & B Female Safety Priority", price: 1500, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
-                { id: 2, name: "Green Line Double-Deck Sleeper Coach", sub: "Overnight luxury sleeper berth with USB & individual reading light", price: 2200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true },
-                { id: 3, name: "Saintmartin Travels AC Deluxe Coach", sub: "Premium reclining leather seats with onboard steward service", price: 1600, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                {
+                    id: 1,
+                    name: "Green Line Double-Decker Sleeper",
+                    sub: "Overnight Luxury Sleeper Berths • Individual USB & Reading Lamps",
+                    price: 2200,
+                    img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=300&q=80",
+                    hasSeats: true,
+                    scenario: "Scenario 3: Female Front Seats & Supervisor Telematics",
+                    details: {
+                        type: "MAN Multi-Axle Luxury Double-Decker Sleeper",
+                        schedule: "Departure: 11:00 PM (Arambagh Counter) ➔ Arrival: 07:00 AM (Kolatoli)",
+                        duration: "8 Hours Express Sleeper",
+                        routeStops: [
+                            { station: "Dhaka Arambagh VIP Lounge", time: "11:00 PM", desc: "Lounge boarding & luggage tags" },
+                            { station: "Cumilla Poddar Highway Resort", time: "01:45 AM", desc: "Midnight refreshment break" },
+                            { station: "Chittagong Express Flyover", time: "04:30 AM", desc: "Non-stop smooth transit" },
+                            { station: "Cox's Bazar Kolatoli Main Counter", time: "07:00 AM", desc: "Direct terminal drop" }
+                        ],
+                        amenities: [
+                            "Flat Reclining Sleeper Berths with Privacy Curtains",
+                            "Individual USB Fast Charging & Night Reading Lamp",
+                            "Scenario 3: Reserved Female Priority Front Berths",
+                            "Complimentary Bottled Mineral Water & Cookies",
+                            "Onboard Steward Assistance & Sanitized Blankets",
+                            "Ultra-Smooth Electronically Controlled Air Suspension"
+                        ],
+                        policies: "Scenario 3 Verified Supervisor Telematics. Instant boarding pass via SMS."
+                    }
+                },
+                {
+                    id: 2,
+                    name: "Saintmartin Travels Scania Multi-Axle",
+                    sub: "AC Business Class • Reclining Leather Seats & Onboard Steward",
+                    price: 1600,
+                    img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
+                    hasSeats: true,
+                    details: {
+                        type: "Scania K410 Multi-Axle AC Business Class",
+                        schedule: "Departure: 10:45 PM (Panthapath / Arambagh) ➔ Arrival: 06:45 AM (Kolatoli)",
+                        duration: "8 Hours Overnight Direct",
+                        routeStops: [
+                            { station: "Dhaka Panthapath", time: "10:45 PM", desc: "VIP Boarding" },
+                            { station: "Cumilla Highway Break", time: "01:30 AM", desc: "Refreshment break" },
+                            { station: "Cox's Bazar Kolatoli", time: "06:45 AM", desc: "Arrival" }
+                        ],
+                        amenities: ["140° Reclining Leather Seats", "High-speed WiFi", "USB Port", "Snack Box", "Air Suspension"],
+                        policies: "Free cancellation up to 24 hrs before trip."
+                    }
+                },
+                {
+                    id: 3,
+                    name: "Shohagh Paribahan Hyundai Universe",
+                    sub: "Luxury AC Executive Coach • Smooth Highway Suspension",
+                    price: 1500,
+                    img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
+                    hasSeats: true,
+                    details: {
+                        type: "Hyundai Universe Luxury AC Chair Coach",
+                        schedule: "Departure: 11:30 PM (Arambagh) ➔ Arrival: 07:30 AM (Kolatoli)",
+                        duration: "8 Hours Direct",
+                        routeStops: [
+                            { station: "Dhaka Arambagh", time: "11:30 PM", desc: "Boarding" },
+                            { station: "Cumilla Highway", time: "02:15 AM", desc: "Snack stop" },
+                            { station: "Cox's Bazar", time: "07:30 AM", desc: "Arrival" }
+                        ],
+                        amenities: ["Ergonomic Push-back Seats", "Personal AC Louver", "Mineral Water", "GPS Monitoring"],
+                        policies: "Instant confirmation."
+                    }
+                }
             ],
             flight: [
-                { id: 1, name: "Biman Bangladesh Boeing 737 Express Flight", sub: "50-minute express air transit with 20kg check-in luggage", price: 4500, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" },
-                { id: 2, name: "US-Bangla Airlines ATR 72-600 Daily Flight", sub: "Scenic regional domestic air transit", price: 4800, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80" },
-                { id: 3, name: "Air Astra Regional Jet Express", sub: "Modern aircraft fleet with premium onboard snack service", price: 4600, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" }
+                {
+                    id: 1,
+                    name: "Biman Bangladesh Airlines (Boeing 737-800)",
+                    sub: "Direct Express Jetliner • 50 Minutes • 20kg Luggage Included",
+                    price: 4500,
+                    img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80",
+                    hasFlightSeats: true,
+                    details: {
+                        type: "Boeing 737-800 Commercial Jetliner (Flight BG-433)",
+                        schedule: "Takeoff: 11:15 AM (DAC Terminal 2) ➔ Landing: 12:05 PM (CXB Airport)",
+                        duration: "50 Minutes Direct Flight",
+                        routeStops: [
+                            { station: "Hazrat Shahjalal Intl Airport (DAC Terminal 2)", time: "10:15 AM", desc: "Check-in & security" },
+                            { station: "DAC Runway Takeoff", time: "11:15 AM", desc: "Cruising altitude 18,000 ft" },
+                            { station: "Bay of Bengal Coastal Descent", time: "11:50 AM", desc: "Scenic ocean approach" },
+                            { station: "Cox's Bazar Airport (CXB Runway 35)", time: "12:05 PM", desc: "Touchdown at runway" }
+                        ],
+                        amenities: [
+                            "20kg Check-in Luggage + 7kg Cabin Bag",
+                            "Complimentary In-flight Snacks & Tropical Juice",
+                            "Air-Conditioned Pressurized Jetliner Cabin",
+                            "Interactive Seat Selection (Window & Aisle)",
+                            "Priority Boarding for Families & Seniors"
+                        ],
+                        policies: "Check-in counter closes 30 minutes before takeoff. Valid photo NID or Passport required."
+                    }
+                },
+                {
+                    id: 2,
+                    name: "US-Bangla Airlines (Boeing 737 Next-Gen)",
+                    sub: "Daily Express Jetliner • Premium Leather Seating",
+                    price: 4800,
+                    img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80",
+                    hasFlightSeats: true,
+                    details: {
+                        type: "Boeing 737 Next-Gen Domestic Jetliner (BS-141)",
+                        schedule: "Takeoff: 02:30 PM (DAC Terminal 2) ➔ Landing: 03:20 PM (CXB)",
+                        duration: "50 Minutes Direct",
+                        routeStops: [
+                            { station: "DAC Terminal 2", time: "01:30 PM", desc: "Boarding" },
+                            { station: "CXB Airport", time: "03:20 PM", desc: "Arrival" }
+                        ],
+                        amenities: ["20kg Luggage", "Snack Box", "Window/Aisle Seating", "Frequent Flyer Miles"],
+                        policies: "Instant e-ticket generation."
+                    }
+                },
+                {
+                    id: 3,
+                    name: "Air Astra (ATR 72-600 Turboprop)",
+                    sub: "Regional Domestic Flight • Modern Quiet Cabin",
+                    price: 4600,
+                    img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80",
+                    hasFlightSeats: true,
+                    details: {
+                        type: "ATR 72-600 Regional Aircraft (2A-412)",
+                        schedule: "Takeoff: 04:00 PM (DAC Domestic) ➔ Landing: 05:00 PM (CXB)",
+                        duration: "60 Minutes Direct",
+                        routeStops: [
+                            { station: "DAC Domestic Terminal", time: "03:00 PM", desc: "Boarding" },
+                            { station: "CXB Airport Runway", time: "05:00 PM", desc: "Arrival" }
+                        ],
+                        amenities: ["15kg Luggage", "Fresh Juice & Cookies", "Comfortable Seating"],
+                        policies: "Free date change up to 24 hrs prior."
+                    }
+                }
             ],
             train: [
-                { id: 1, name: "Cox's Bazar Express AC Snigdha Rail", sub: "Fast intercity railway transit along scenic seaside track", price: 1150, img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=150&q=80" },
-                { id: 2, name: "Subarna / Parabat Express AC Chair", sub: "Intercity daytime express with meal tray service", price: 950, img: "https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=150&q=80" },
-                { id: 3, name: "Upaban Express Night Rail Berth", sub: "Overnight scenic rail cabin with fresh bedding", price: 1300, img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=150&q=80" }
+                {
+                    id: 1,
+                    name: "Cox's Bazar Express AC Snigdha Rail",
+                    sub: "Fast Intercity Railway Transit Along Scenic Seaside Track",
+                    price: 1150,
+                    img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80",
+                    details: {
+                        type: "Intercity Super-Fast Express (Train 813)",
+                        schedule: "Departure: 10:30 PM (Kamalapur Railway Station) ➔ Arrival: 06:45 AM (Cox's Bazar Iconic Station)",
+                        duration: "8 Hours 15 Mins Direct",
+                        routeStops: [
+                            { station: "Dhaka Kamalapur Railway Station", time: "10:30 PM", desc: "Platform boarding" },
+                            { station: "Dhaka Airport Station", time: "11:00 PM", desc: "Passenger stop" },
+                            { station: "Chittagong Railway Station", time: "03:45 AM", desc: "Transit hub" },
+                            { station: "Cox's Bazar Oyster Iconic Station", time: "06:45 AM", desc: "Arrival at destination" }
+                        ],
+                        amenities: ["AC Snigdha Reclining Chair", "Onboard Dining Car", "Clean Washrooms", "Scenic Coastal Views"],
+                        policies: "Government Railway ticket reservation."
+                    }
+                },
+                {
+                    id: 2,
+                    name: "Subarna / Parabat Express AC Chair",
+                    sub: "Intercity Daytime Express with Meal Tray Service",
+                    price: 950,
+                    img: "https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=300&q=80",
+                    details: {
+                        type: "Daytime Rail Express",
+                        schedule: "Departure: 07:00 AM (Kamalapur) ➔ Arrival: 03:00 PM",
+                        duration: "8 Hours",
+                        routeStops: [
+                            { station: "Kamalapur Station", time: "07:00 AM", desc: "Departure" },
+                            { station: "Destination", time: "03:00 PM", desc: "Arrival" }
+                        ],
+                        amenities: ["Air Conditioned", "Meal Tray", "Charging Ports"],
+                        policies: "Non-refundable within 12 hours of departure."
+                    }
+                }
             ],
+            hotel: [
+                {
+                    id: 1,
+                    name: "Long Beach Hotel",
+                    sub: "★★★★★ 5-Star Luxury City Hotel • Infinity Pool & Health Club",
+                    rating: "★★★★★ 5-Star",
+                    price: 4800,
+                    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80",
+                    hasRooms: true,
+                    details: {
+                        type: "5-Star Luxury Hotel (Central Kolatoli)",
+                        schedule: "Check-in: 12:00 PM | Check-out: 11:00 AM (24/7 Concierge)",
+                        duration: "Per Night Stay",
+                        routeStops: [
+                            { station: "Kolatoli Circle", time: "500m to Beach", desc: "Central tourism zone" },
+                            { station: "CXB Airport", time: "10 Mins Shuttle", desc: "Complimentary hotel shuttle pickup" }
+                        ],
+                        amenities: [
+                            "Rooftop Infinity Swimming Pool & Jacuzzi",
+                            "Complimentary Daily Buffet Breakfast for All Guests",
+                            "Ultra High-speed Fiber WiFi in All Rooms",
+                            "Modern Fitness Health Club, Steam & Sauna",
+                            "Safe Deposit Box & Marble Bathrooms"
+                        ],
+                        policies: "Government NID or Passport required. Free cancellation up to 24 hrs prior to check-in."
+                    },
+                    rooms: [
+                        {
+                            id: 'lb_deluxe_king',
+                            name: 'Deluxe Premier King Room',
+                            bed: '1 Super King Bed (2 Guests)',
+                            capacity: 2,
+                            price: 4800,
+                            floors: ['Floor 3 (City & Garden View)', 'Floor 5 (High Ocean View)', 'Floor 7 (Executive Wing)'],
+                            amenities: ['Buffet Breakfast Included', 'Private Balcony', 'Bathtub', 'High-Speed WiFi', 'Smart TV'],
+                            img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=250&q=80'
+                        },
+                        {
+                            id: 'lb_family_quad',
+                            name: 'Family Executive Suite (2 Queen Beds)',
+                            bed: '2 Queen Beds (4 Guests)',
+                            capacity: 4,
+                            price: 6800,
+                            floors: ['Floor 2 (Pool Access Wing)', 'Floor 4 (Mid-Level Panorama)', 'Floor 6 (Sea Facing Balcony)'],
+                            amenities: ['Spacious Living Area', '2 Queen Beds', 'Breakfast for 4 Included', 'Minibar & Safe', '2 Bathrooms'],
+                            img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=250&q=80'
+                        },
+                        {
+                            id: 'lb_std_twin',
+                            name: 'Standard Twin AC Room',
+                            bed: '2 Single Beds (2 Guests)',
+                            capacity: 2,
+                            price: 3500,
+                            floors: ['Floor 1 (Quiet Garden Wing)', 'Floor 2 (Standard Floor)'],
+                            amenities: ['Air Conditioned', 'Hot Water Shower', 'Work Desk', 'Free Breakfast'],
+                            img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=250&q=80'
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    name: "Hotel The Cox Today",
+                    sub: "★★★★☆ 4-Star Premium Hotel • 300m from Kolatoli Beach",
+                    rating: "★★★★☆ 4-Star",
+                    price: 4200,
+                    img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=300&q=80",
+                    hasRooms: true,
+                    details: {
+                        type: "4-Star Beachside Hotel",
+                        schedule: "Check-in: 01:00 PM | Check-out: 11:30 AM",
+                        duration: "Per Night Stay",
+                        routeStops: [
+                            { station: "Plot 7, Road 2, Kolatoli", time: "Beachside", desc: "Walking distance to Laboni and Kolatoli" }
+                        ],
+                        amenities: ["Swimming Pool", "Complimentary Breakfast", "Free WiFi", "Gym & Spa"],
+                        policies: "Free cancellation up to 48 hours before check-in."
+                    },
+                    rooms: [
+                        {
+                            id: 'ct_deluxe_king',
+                            name: 'Deluxe Couple Sea-Facing Room',
+                            bed: '1 King Bed (2 Guests)',
+                            capacity: 2,
+                            price: 4200,
+                            floors: ['Floor 3 (Balcony View)', 'Floor 5 (Panoramic Horizon)'],
+                            amenities: ['Breakfast Included', 'Private Balcony', 'AC', 'Mini Fridge'],
+                            img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=250&q=80'
+                        },
+                        {
+                            id: 'ct_family_quad',
+                            name: 'Family Quad Deluxe Suite',
+                            bed: '2 King Beds (4 Guests)',
+                            capacity: 4,
+                            price: 5800,
+                            floors: ['Floor 2 (Courtyard View)', 'Floor 4 (Sea View)'],
+                            amenities: ['2 King Beds', 'Breakfast for 4', 'Smart TV', 'Spacious Bath'],
+                            img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=250&q=80'
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    name: "Hotel Shaon Deluxe",
+                    sub: "★★★☆☆ 3-Star Budget Friendly Hotel • Central Location",
+                    rating: "★★★☆☆ 3-Star",
+                    price: 2200,
+                    img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=300&q=80",
+                    hasRooms: true,
+                    details: {
+                        type: "3-Star Standard Hotel",
+                        schedule: "Check-in: 12:00 PM | Check-out: 11:00 AM",
+                        duration: "Per Night Stay",
+                        routeStops: [{ station: "Central Kolatoli", time: "Central", desc: "Nearby shopping and dining" }],
+                        amenities: ["Air Conditioned", "Attached Bath with Geyser", "Free WiFi", "Room Service"],
+                        policies: "Family friendly hotel."
+                    },
+                    rooms: [
+                        {
+                            id: 'sh_deluxe_couple',
+                            name: 'Standard Couple AC Room',
+                            bed: '1 Queen Bed (2 Guests)',
+                            capacity: 2,
+                            price: 2200,
+                            floors: ['Floor 1 (Direct Entry)', 'Floor 2 (Standard Floor)'],
+                            amenities: ['Air Conditioned', 'Hot Water Geyser', 'Free WiFi'],
+                            img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=250&q=80'
+                        },
+                        {
+                            id: 'sh_family_4bed',
+                            name: 'Standard Family 4-Bed Room',
+                            bed: '2 Double Beds (4 Guests)',
+                            capacity: 4,
+                            price: 3200,
+                            floors: ['Floor 2 (Quiet Wing)', 'Floor 3 (Balcony Side)'],
+                            amenities: ['2 Double Beds', 'Attached Bath', 'Cable TV'],
+                            img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=250&q=80'
+                        }
+                    ]
+                }
+            ],
+            resort: [
+                {
+                    id: 1,
+                    name: "Sayeman Beach Resort",
+                    sub: "★★★★★ 5-Star Oceanfront Luxury Resort • Infinity Pool & Sea-View Balconies",
+                    rating: "★★★★★ 5-Star",
+                    price: 6500,
+                    img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=300&q=80",
+                    hasRooms: true,
+                    scenario: "Scenario 5: Multi-Bed Cost Decomposition",
+                    details: {
+                        type: "5-Star Beachfront Luxury Resort (Marine Drive)",
+                        schedule: "Check-in: 01:00 PM | Check-out: 11:30 AM",
+                        duration: "Per Night Stay",
+                        routeStops: [
+                            { station: "Marine Drive Shoreline", time: "Direct Beachfront", desc: "Private access to Kolatoli beach" },
+                            { station: "Infinity Pool Deck", time: "Open 7 AM - 9 PM", desc: "Sea-facing infinity pool with sun loungers" }
+                        ],
+                        amenities: [
+                            "Signature Infinity Edge Ocean Swimming Pool",
+                            "Panoramic Sea-Facing Private Balconies",
+                            "Lavish Buffet Breakfast at Casablanca Restaurant",
+                            "Tarboosh Ocean View Lounge & Cafe",
+                            "Scenario 5: Cost Decomposition for Multi-Bed Cohorts"
+                        ],
+                        policies: "Complimentary airport shuttle included for guests. 100% smoke-free rooms."
+                    },
+                    rooms: [
+                        {
+                            id: 'sayeman_ocean_king',
+                            name: 'Infinity Ocean-View King Room',
+                            bed: '1 Super King Bed (2 Guests)',
+                            capacity: 2,
+                            price: 6500,
+                            floors: ['Floor 3 (Ocean Balcony)', 'Floor 5 (Horizon View)', 'Floor 7 (Penthouse Deck)'],
+                            amenities: ['Direct Sea View Balcony', 'Buffet Breakfast for 2', 'Bathtub with Ocean View', 'Smart TV', 'Espresso Machine'],
+                            img: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=250&q=80'
+                        },
+                        {
+                            id: 'sayeman_family_suite',
+                            name: 'Grand Family Quad Suite (2 King Beds)',
+                            bed: '2 King Beds (4 Guests)',
+                            capacity: 4,
+                            price: 9000,
+                            floors: ['Floor 2 (Pool & Sea Deck)', 'Floor 4 (Mid-Level Panorama)', 'Floor 6 (Panoramic Sunset Wing)'],
+                            amenities: ['Scenario 5 Decomposition (BDT 2,250/pax)', '2 King Beds', 'Breakfast for 4', 'Spacious Lounge', '2 En-suite Bathrooms'],
+                            img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=250&q=80'
+                        },
+                        {
+                            id: 'sayeman_honeymoon_suite',
+                            name: 'Presidential Honeymoon Sea Suite',
+                            bed: '1 Royal King Bed + Jacuzzi',
+                            capacity: 2,
+                            price: 13500,
+                            floors: ['Floor 8 (Top Horizon Panorama)'],
+                            amenities: ['Private Balcony Jacuzzi', 'Candlelight Dinner Setup', 'Airport Limousine Pickup', 'Personal Butler Service'],
+                            img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=250&q=80'
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    name: "Mermaid Beach Resort",
+                    sub: "★★★★★ Eco-Luxury Beachfront Retreat • Private Sandy Beach & Organic Cafe",
+                    rating: "★★★★★ 5-Star",
+                    price: 7500,
+                    img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=300&q=80",
+                    hasRooms: true,
+                    details: {
+                        type: "Eco-Luxury Beach Resort (Pehchardiya)",
+                        schedule: "Check-in: 02:00 PM | Check-out: 12:00 PM",
+                        duration: "Per Night Stay",
+                        routeStops: [{ station: "Pehchardiya Beach", time: "Private Shoreline", desc: "Private secluded white sand beach" }],
+                        amenities: ["Private Beach", "Organic Farm-to-Table Dining", "Eco Spa & Yoga Deck", "Water Sports"],
+                        policies: "Eco-friendly guidelines apply."
+                    },
+                    rooms: [
+                        {
+                            id: 'mermaid_beach_bungalow',
+                            name: 'Beachfront Wooden Bungalow',
+                            bed: '1 King Bed (2 Guests)',
+                            capacity: 2,
+                            price: 7500,
+                            floors: ['Ground Floor (Direct Beach Steps)'],
+                            amenities: ['Open-air Rain Shower', 'Organic Breakfast', 'Private Hammock Deck'],
+                            img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=250&q=80'
+                        },
+                        {
+                            id: 'mermaid_family_villa',
+                            name: 'Two-Bedroom Family Pool Villa',
+                            bed: '2 King Beds (4 Guests)',
+                            capacity: 4,
+                            price: 12000,
+                            floors: ['Ground Floor (Private Pool & Garden)'],
+                            amenities: ['Private Plunge Pool', 'Breakfast for 4', 'Dedicated Butler'],
+                            img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=250&q=80'
+                        }
+                    ]
+                }
+            ],
+            cottage: [
+                {
+                    id: 1,
+                    name: "Meghpunji Cloud-View Cottage",
+                    sub: "★★★★☆ Premium Wooden Cottage • Sunrise Mountain Balcony Deck",
+                    rating: "★★★★☆ 4-Star",
+                    price: 4200,
+                    img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=300&q=80",
+                    hasRooms: true,
+                    scenario: "Scenario 5: Multi-Bed Cost Decomposition",
+                    details: {
+                        type: "Hilltop Wooden Eco-Cottage",
+                        schedule: "Check-in: 12:00 PM | Check-out: 10:30 AM",
+                        duration: "Per Night Stay",
+                        routeStops: [{ station: "Sajek Mountain Ridge", time: "Cloud View", desc: "Above the clouds sunrise vantage" }],
+                        amenities: ["Cloud View Wooden Deck", "Solar Power 24/7", "Hot Water", "Campfire Yard"],
+                        policies: "Army escort coordination required."
+                    },
+                    rooms: [
+                        {
+                            id: 'megh_family_4bed',
+                            name: 'Cloud-Front Family Wooden Room',
+                            bed: '2 Queen Beds (4 Guests)',
+                            capacity: 4,
+                            price: 4200,
+                            floors: ['Upper Floor (Cloud Balcony)'],
+                            amenities: ['Panoramic Sunrise Deck', '2 Queen Beds', 'Hot Water'],
+                            img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=250&q=80'
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    name: "Blue Marine Coral Beach Eco-Cottage",
+                    sub: "★★★★☆ Direct Oceanfront Eco-Hut • Coconut Grove",
+                    rating: "★★★★☆ 4-Star",
+                    price: 3500,
+                    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80",
+                    hasRooms: true,
+                    details: {
+                        type: "Coral Beachfront Cottage",
+                        schedule: "Check-in: 11:30 AM | Check-out: 10:00 AM",
+                        duration: "Per Night Stay",
+                        routeStops: [{ station: "Saint Martin West Beach", time: "Seaside", desc: "Direct sandy shoreline steps" }],
+                        amenities: ["Coconut Grove Shading", "Seaside Hammock", "Fresh Coconut Welcome", "Solar Electricity"],
+                        policies: "Island eco-protection rules apply."
+                    },
+                    rooms: [
+                        {
+                            id: 'bm_ocean_cottage',
+                            name: 'Ocean Wave Front Couple Cottage',
+                            bed: '1 King Bed (2 Guests)',
+                            capacity: 2,
+                            price: 3500,
+                            floors: ['Beach Level (Direct Shore Access)'],
+                            amenities: ['Wave Sound Balcony', 'King Bed', 'Attached Bath'],
+                            img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=250&q=80'
+                        }
+                    ]
+                }
+            ],
+            villa: [
+                {
+                    id: 1,
+                    name: "Marine Drive Oceanfront Luxury Villa",
+                    sub: "★★★★★ Exclusive 4-Bedroom Private Pool Villa • Personal Butler",
+                    rating: "★★★★★ 5-Star",
+                    price: 15000,
+                    img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=300&q=80",
+                    hasRooms: true,
+                    scenario: "Scenario 5: Multi-Bed Cost Decomposition",
+                    details: {
+                        type: "Private Luxury Villa Estate",
+                        schedule: "Check-in: 02:00 PM | Check-out: 12:00 PM",
+                        duration: "Full Private Estate / Night",
+                        routeStops: [{ station: "Marine Drive Km 12", time: "Private Estate", desc: "Gated private oceanfront property" }],
+                        amenities: ["Private Swimming Pool", "Dedicated Gourmet Chef & Butler", "4 En-suite Master Bedrooms", "Private Beach Pavilion"],
+                        policies: "Exclusive property rental for families or cohorts."
+                    },
+                    rooms: [
+                        {
+                            id: 'villa_full_estate',
+                            name: 'Complete 4-Bedroom Villa Estate',
+                            bed: '4 King Beds (Up to 8 Guests)',
+                            capacity: 8,
+                            price: 15000,
+                            floors: ['Two-Story Private Estate (Infinity Pool & Sun Terrace)'],
+                            amenities: ['Private Infinity Pool', '4 Master Bedrooms', 'Breakfast & Chef Included', 'Direct Beach Lawn'],
+                            img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=250&q=80'
+                        }
+                    ]
+                }
+            ],
+            freshup: [
+                { id: 1, name: "5:30 AM Early Check-in Fresh-up Room", sub: "Scenario 7: Modular +35% half-day rate avoiding full extra day charge", price: 1225, img: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: 5:30 AM Fresh-up Room" },
+                { id: 2, name: "Express Morning Shower & Luggage Facility", sub: "Safe luggage locker, hot shower and change room", price: 600, img: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=150&q=80" }
+            ],
+            breakfast: [
+                {
+                    id: 1,
+                    name: "Traditional Bangladeshi Breakfast Platter",
+                    sub: "Hot Paratha, Bhaji, Butter Dal Fry, Egg Omelette & Spiced Milk Tea",
+                    price: 250,
+                    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80",
+                    hasMenu: true,
+                    details: {
+                        type: "Authentic Morning Breakfast Feast",
+                        schedule: "Serving Hours: 07:00 AM - 10:30 AM",
+                        duration: "Morning Service",
+                        amenities: ["100% Halal Ingredients", "Freshly Cooked Hot Parathas", "Pure Cow Milk Masala Tea"],
+                        policies: "Served hot in dining hall or outdoor garden."
+                    },
+                    menu: {
+                        title: "Bengali Heritage Breakfast Platter",
+                        basePrice: 250,
+                        included: [
+                            "Flaky Layered Parathas (2 pcs)",
+                            "Aloo Dum & Mixed Vegetable Bhaji",
+                            "Special Dal Butter Fry with Tadka",
+                            "Farm-Fresh Double Egg Omelette or Poached",
+                            "Fresh Brewed Spiced Milk Tea"
+                        ],
+                        addons: [
+                            { id: 'nehari', name: "Add Slow-Cooked Beef Nehari Bowl (+ BDT 180 / pax)", price: 180 },
+                            { id: 'halwa', name: "Add Shuji Halwa / Sweet Semolina Pudding (+ BDT 50 / pax)", price: 50 },
+                            { id: 'juice', name: "Add Freshly Squeezed Orange Juice (+ BDT 80 / pax)", price: 80 }
+                        ]
+                    }
+                },
+                {
+                    id: 2,
+                    name: "Resort International Continental Buffet",
+                    sub: "Live Egg Station, Fresh Baked Croissants, Fresh Fruits & Barista Coffee",
+                    price: 550,
+                    img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=300&q=80",
+                    hasMenu: true,
+                    details: {
+                        type: "International 5-Star Breakfast Buffet",
+                        schedule: "Serving Hours: 07:00 AM - 11:00 AM",
+                        duration: "Unlimited Buffet",
+                        amenities: ["Live Omelette & Pancake Station", "Fresh Bakery Basket", "Espresso & Cappuccino Station"],
+                        policies: "Unlimited servings per guest."
+                    },
+                    menu: {
+                        title: "Full International Morning Buffet",
+                        basePrice: 550,
+                        included: [
+                            "Eggs Cooked to Order (Scrambled, Benedict, Omelette)",
+                            "Butter Croissants, Danish Pastries & Artisan Bread",
+                            "Seasonal Fresh Tropical Fruit Platter",
+                            "Pancake & Waffle Station with Pure Maple Syrup",
+                            "Fresh Roast Coffee & Herbal Teas"
+                        ],
+                        addons: [
+                            { id: 'salmon', name: "Add Smoked Coral Fish & Cream Cheese Bagel (+ BDT 300 / pax)", price: 300 }
+                        ]
+                    }
+                }
+            ],
+            lunch: [
+                {
+                    id: 1,
+                    name: "Poushee Traditional Bengali Feast (20 Bhortas)",
+                    sub: "20 Varieties of Authentic Bhorta, Rupchanda Fry & Steamed Fragrant Rice",
+                    price: 950,
+                    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80",
+                    hasMenu: true,
+                    details: {
+                        type: "Authentic Coastal Bengali Lunch Feast",
+                        schedule: "Lunch Serving: 12:30 PM - 04:00 PM",
+                        duration: "Lunch Service",
+                        amenities: ["20 Types of Heritage Bhortas", "Fresh Catch Rupchanda / Pomfret Fry", "Unlimited Fragrant Atash Rice"],
+                        policies: "Advance table booking included."
+                    },
+                    menu: {
+                        title: "Poushee Grand Coastal Thali",
+                        basePrice: 950,
+                        included: [
+                            "20 Kinds of Signature Bhortas (Shutki, Ilish, Chingri, Begun, etc.)",
+                            "Crispy Deep-Fried Fresh Rupchanda (Pomfret) Fish",
+                            "Coastal Crab Curry or Prawn Malai Curry",
+                            "Steamed Fragrant Hot Rice & Green Salad",
+                            "Thick Moong Dal with Ghee & Lemon Wedges"
+                        ],
+                        addons: [
+                            { id: 'loitta', name: "Add Loitta Fry / Crispy Bombay Duck (+ BDT 200 / pax)", price: 200 },
+                            { id: 'beef_kala', name: "Add Chittagong Mezbeni Beef / Kala Bhuna (+ BDT 350 / pax)", price: 350 },
+                            { id: 'borhani', name: "Add Traditional Spiced Borhani Glass (+ BDT 80 / pax)", price: 80 }
+                        ]
+                    }
+                }
+            ],
+            dinner: [
+                {
+                    id: 1,
+                    name: "Inani Beach Live Seafood BBQ Dinner",
+                    sub: "Fresh Coral Fish & Red Snapper BBQ by the Waves • Butter Naan & Salad",
+                    price: 1800,
+                    img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80",
+                    hasMenu: true,
+                    scenario: "Scenario 7: Beach BBQ Addon",
+                    details: {
+                        type: "Beachside Live Charcoal BBQ & Campfire Dining",
+                        schedule: "Dinner Serving: 07:30 PM - 10:30 PM (Beach Campfire Setup)",
+                        duration: "Evening Dining Experience",
+                        amenities: [
+                            "100% Fresh Daily Coral Fish from Local Fishermen",
+                            "Campfire Bonfire & Lantern Tables on the Sand",
+                            "Hygiene Certified Live Kitchen Preparation",
+                            "Live Acoustic Folk Music by the Waves",
+                            "100% Halal Ingredients & Pure Butter Grill"
+                        ],
+                        policies: "Scenario 7 Modular Add-on. Reserved seaside campfire table."
+                    },
+                    menu: {
+                        title: "Signature Coral Seafood BBQ Platter",
+                        basePrice: 1800,
+                        included: [
+                            "Fresh Charcoal-Grilled Coral Fish Steak (350g)",
+                            "Hot Clay-Oven Butter Garlic Naan (2 pcs)",
+                            "Crispy Fried Potato Wedges with Cajun Seasoning",
+                            "Garden Fresh Cucumber, Tomato & Onion Salad",
+                            "Special Mint-Coriander Raita & Sweet Tamarind Chutney"
+                        ],
+                        addons: [
+                            { id: 'prawn', name: "Add Jumbo Bay Tiger Prawn Skewer (2 pcs) (+ BDT 450 / pax)", price: 450 },
+                            { id: 'squid', name: "Add Crispy Calamari / Fried Squid Rings (+ BDT 350 / pax)", price: 350 },
+                            { id: 'coconut', name: "Add Chilled Fresh Green Coconut Water (+ BDT 120 / pax)", price: 120 },
+                            { id: 'brownie', name: "Add Warm Molten Chocolate Brownie (+ BDT 200 / pax)", price: 200 }
+                        ]
+                    }
+                },
+                {
+                    id: 2,
+                    name: "Saint Martin Grilled Lobster & Calamari Shore Platter",
+                    sub: "Live Grilled Koral, Lobster & Squid Under the Coral Island Stars",
+                    price: 2400,
+                    img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80",
+                    hasMenu: true,
+                    details: {
+                        type: "Island Night Lobster & Coral Grill",
+                        schedule: "Serving Hours: 08:00 PM - 11:00 PM",
+                        duration: "Beach Starlight Dining",
+                        amenities: ["Live Lobster Grill", "Fresh Calamari Rings", "Garlic Butter Glaze"],
+                        policies: "Subject to daily ocean catch availability."
+                    },
+                    menu: {
+                        title: "Grand Coral Island Lobster & Squid Feast",
+                        basePrice: 2400,
+                        included: [
+                            "Whole Charcoal-Grilled Bay Lobster with Garlic Butter",
+                            "Fresh Coral Fish Steak with Mustard Crust",
+                            "Spicy Grilled Squid Rings with Sweet Chili",
+                            "Herb Butter Rice & Grilled Sweet Corn",
+                            "Citrus Garden Salad"
+                        ],
+                        addons: [
+                            { id: 'crab', name: "Add Chili Garlic Shore Crab (+ BDT 400 / pax)", price: 400 }
+                        ]
+                    }
+                }
+            ],
+            cafe: [
+                {
+                    id: 1,
+                    name: "Oceanview Artisan Barista Coffee & Pastry",
+                    sub: "Fresh Espresso, Cappuccino, Strawberry Cheesecake & Cold Brew",
+                    price: 350,
+                    img: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=300&q=80",
+                    details: {
+                        type: "Seaside Specialty Coffee Bar",
+                        schedule: "Open Hours: 08:00 AM - 11:00 PM",
+                        duration: "Relaxed Cafe Lounge",
+                        amenities: ["100% Arabica Roasted Beans", "Ocean Balcony Seating", "High-Speed WiFi", "Artisan Desserts"],
+                        policies: "Order directly at counter."
+                    }
+                },
+                {
+                    id: 2,
+                    name: "Nilkantha Cabin Seven-Color Tea Experience",
+                    sub: "Legendary 7-Layer Rainbow Tea with Traditional Savory Snacks",
+                    price: 350,
+                    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80",
+                    details: {
+                        type: "Heritage Tea Tasting Experience",
+                        schedule: "Open Hours: 09:00 AM - 08:00 PM",
+                        duration: "Cultural Tea Session",
+                        amenities: ["World Famous 7-Layer Tea", "Local Sylheti Nimki & Bakarkhani", "Tea Garden Panorama"],
+                        policies: "Heritage patented recipe."
+                    }
+                }
+            ],
+            // Backward-compatible alias mappings for existing buttons
+            get bbq() { return this.dinner; },
+            get traditionalfood() { return this.lunch; },
+            get buffet() { return this.breakfast; },
             microbus: [
-                { id: 1, name: "Reserved AC Toyota HiAce (Full-Day Tour)", sub: "11-seater air-conditioned private passenger van with experienced chauffeur", price: 3500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" },
+                { id: 1, name: "Reserved AC Toyota HiAce (Full-Day Tour)", sub: "11-seater air-conditioned private passenger van with chauffeur", price: 3500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" },
                 { id: 2, name: "Toyota Noah 7-Seater Terminal Transfer", sub: "Airport/counter terminal pickup and drop to hotel lobby", price: 2800, img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=150&q=80" }
             ],
             jeep: [
@@ -1445,35 +2665,6 @@
             cng: [
                 { id: 1, name: "Electric TomTom / Auto 24-Hour Unlimited Pass", sub: "Unlimited 24-hr hop-on hop-off within local beach & city zones", price: 600, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" },
                 { id: 2, name: "Local CNG Rickshaw Terminal Shuttle", sub: "Dedicated one-way transfer from bus terminal to hotel gate", price: 400, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
-            ],
-            hotel: [
-                { id: 1, name: "Deluxe 4-Bed Sea-View Family Room (2 King Beds)", sub: "Scenario 5: BDT 3,500/night decomposed down to BDT 875/person/night for 4 friends", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
-                { id: 2, name: "Sayeman Beach Resort (Panorama Sea Balcony)", sub: "Luxury beachfront 5-star standard with infinity pool access", price: 6500, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" },
-                { id: 3, name: "Standard Twin-Bed Room (2 Single Beds)", sub: "Air-conditioned standard resort room near town center", price: 2200, img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=150&q=80" }
-            ],
-            cottage: [
-                { id: 1, name: "Meghpunji Cloud-View Wooden Cottage", sub: "Premium wooden cottage with panoramic sunrise mountain deck", price: 4200, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
-                { id: 2, name: "Level-Ground Eco Cottage (Wheelchair/Elevator)", sub: "Scenario 6: Verified level ground, no steep hazardous outdoor stairs", price: 3800, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 6: Strict Accessibility Constraints" },
-                { id: 3, name: "Blue Marine Coral Beach Eco-Cottage", sub: "Direct oceanfront cottage on sandy shoreline", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" },
-                { id: 4, name: "Shanti Bari Mud-and-Bamboo Nature Cottage", sub: "Earthy mud-and-bamboo cottage in peaceful tea gardens", price: 2800, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
-            ],
-            freshup: [
-                { id: 1, name: "5:30 AM Early Check-in Fresh-up Room", sub: "Scenario 7: Modular +35% half-day rate avoiding full extra day charge", price: 1225, img: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: 5:30 AM Fresh-up Room" },
-                { id: 2, name: "Express Morning Shower & Luggage Facility", sub: "Safe luggage locker, hot shower and change room", price: 600, img: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=150&q=80" }
-            ],
-            bbq: [
-                { id: 1, name: "Inani Beach Live Seafood BBQ Dinner", sub: "Fresh coral fish, red snapper, pomfret & campfire dinner by the waves", price: 2000, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Beach BBQ Addon" },
-                { id: 2, name: "Saint Martin Grilled Lobster & Squid Shore Platter", sub: "Live grilled Koral, Lobster and squid platter under the stars", price: 2400, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" },
-                { id: 3, name: "Hilltop Campfire BBQ Chicken & Kebabs", sub: "Spiced chicken skewers and charcoal naan around the bonfire", price: 1600, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" }
-            ],
-            traditionalfood: [
-                { id: 1, name: "Poushee Traditional Bengali Feast", sub: "20 types of authentic bhorta, Rupchanda fry & steamed rice", price: 950, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
-                { id: 2, name: "Traditional Bamboo Chicken & Mountain Sticky Rice", sub: "Peda Ting Ting authentic tribal bamboo cooked chicken & papaya salad", price: 1400, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
-                { id: 3, name: "Organic North Bengal Duck Curry with Fragrant Rice", sub: "Locally farmed duck curry with fragrant Atash rice", price: 900, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
-            ],
-            buffet: [
-                { id: 1, name: "Full-Board Corporate Buffet Catering", sub: "Scenario 11: 3-course breakfast, lunch, dinner & high-tea per delegate", price: 3600, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 11: Corporate B2B Catering" },
-                { id: 2, name: "Resort Daily Breakfast & Dinner Buffet Pass", sub: "International cuisine buffet with live pasta & egg stations", price: 2200, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
             ],
             parasailing: [
                 { id: 1, name: "Inani Beach 15-Minute Parachute Flight", sub: "Scenario 8: 15-minute aerial parachute flight over the Bay of Bengal", price: 2000, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 8: Disaggregated Activities" },
@@ -1505,9 +2696,36 @@
             ]
         };
 
+        const DEFAULT_INVENTORY_SNAPSHOT = JSON.parse(JSON.stringify({
+            bus: inventory.bus,
+            coach: inventory.coach,
+            flight: inventory.flight,
+            train: inventory.train,
+            hotel: inventory.hotel,
+            resort: inventory.resort,
+            cottage: inventory.cottage,
+            villa: inventory.villa,
+            freshup: inventory.freshup,
+            breakfast: inventory.breakfast,
+            lunch: inventory.lunch,
+            dinner: inventory.dinner,
+            cafe: inventory.cafe,
+            microbus: inventory.microbus,
+            jeep: inventory.jeep,
+            cng: inventory.cng,
+            parasailing: inventory.parasailing,
+            speedboat: inventory.speedboat,
+            lounge: inventory.lounge,
+            scuba: inventory.scuba,
+            guide: inventory.guide,
+            permit: inventory.permit,
+            honeymoon: inventory.honeymoon
+        }));
+
         // Helper Constants & Classification
         const PER_PERSON_SLOTS = new Set([
             'bus', 'coach', 'flight', 'train',
+            'breakfast', 'lunch', 'dinner', 'cafe',
             'bbq', 'traditionalfood', 'buffet',
             'parasailing', 'lounge', 'scuba'
         ]);
@@ -1531,9 +2749,15 @@
                 microbus: 'AC Microbus (Toyota HiAce / Noah)',
                 jeep: 'Chander Gari / 4WD Mountain Jeep',
                 cng: 'Auto-Rickshaw / Electric TomTom / CNG',
-                hotel: 'Resort & Hotel Room',
-                cottage: 'Eco Cottage & Wooden Villa',
+                hotel: 'Hotel (City & Standard 3-5 Star)',
+                resort: 'Resort (Beach & Mountain Scenic)',
+                cottage: 'Eco Cottage (Nature Wooden Lodges)',
+                villa: 'Luxury Villa (Private Oceanfront & Hilltop)',
                 freshup: '5:30 AM Early Arrival Fresh-up Room',
+                breakfast: 'Breakfast (Morning Continental & Bengali)',
+                lunch: 'Lunch (Traditional Feast & Local Cuisine)',
+                dinner: 'Dinner (Live Seafood BBQ & Beachside Dinner)',
+                cafe: 'Cafe (Artisan Coffee, Snacks & 7-Color Tea)',
                 bbq: 'Live Seafood BBQ Dinner',
                 traditionalfood: 'Traditional Food & Indigenous Feast',
                 buffet: 'Buffet & Full-Board Meal Plan',
@@ -1550,8 +2774,31 @@
 
         function getItemPriceCalculation(slotKey, item, travelers) {
             if (!item) return { itemTotal: 0, perPersonShare: 0, subtitle: '' };
-            const isPerPerson = (item.pricingType === 'per_person') || isPerPersonSlot(slotKey);
 
+            // Hotel / Resort / Cottage / Villa with selected room
+            if (item.selectedRoom) {
+                const roomPrice = item.selectedRoom.price;
+                const perPersonShare = Math.round(roomPrice / travelers);
+                return {
+                    itemTotal: roomPrice,
+                    perPersonShare: perPersonShare,
+                    subtitle: `BDT ${perPersonShare.toLocaleString()} / person (shared)`
+                };
+            }
+
+            // Dining with customized menu
+            if (item.selectedMenu) {
+                const rate = item.selectedMenu.perPersonPrice;
+                const itemTotal = rate * travelers;
+                return {
+                    itemTotal: itemTotal,
+                    perPersonShare: rate,
+                    subtitle: `BDT ${rate.toLocaleString()} × ${travelers} pax`
+                };
+            }
+
+            // Standard per-person vs per-group
+            const isPerPerson = (item.pricingType === 'per_person') || isPerPersonSlot(slotKey);
             let itemTotal = 0;
             let perPersonShare = 0;
             let subtitle = '';
@@ -1574,6 +2821,27 @@
         let selectedSeats = ['A1', 'A2', 'B1', 'B2'];
         let pendingSlot = null;
         let pendingItem = null;
+
+        function backToItemsList() {
+            const listEl = document.getElementById('modal-items-list');
+            const busWrap = document.getElementById('bus-seat-picker-wrap');
+            const flightWrap = document.getElementById('flight-seat-picker-wrap');
+            const roomWrap = document.getElementById('hotel-room-picker-wrap');
+            const menuWrap = document.getElementById('dining-menu-picker-wrap');
+            const detailsWrap = document.getElementById('modal-item-details-view');
+            const titleEl = document.getElementById('modal-category-title');
+
+            if (busWrap) busWrap.style.display = 'none';
+            if (flightWrap) flightWrap.style.display = 'none';
+            if (roomWrap) roomWrap.style.display = 'none';
+            if (menuWrap) menuWrap.style.display = 'none';
+            if (detailsWrap) detailsWrap.style.display = 'none';
+            if (listEl) listEl.style.display = 'block';
+
+            if (titleEl && pendingSlot) {
+                titleEl.textContent = `Select ${formatSlotTitle(pendingSlot)}`;
+            }
+        }
 
         function renderBusSeatGrid() {
             const container = document.getElementById('bus-seats-container');
@@ -1640,18 +2908,6 @@
             }
         }
 
-        function backToBusList() {
-            const busSeatWrap = document.getElementById('bus-seat-picker-wrap');
-            const listEl = document.getElementById('modal-items-list');
-            const titleEl = document.getElementById('modal-category-title');
-
-            if (busSeatWrap) busSeatWrap.style.display = 'none';
-            if (listEl) listEl.style.display = 'block';
-            if (titleEl && pendingSlot) {
-                titleEl.textContent = `Select ${formatSlotTitle(pendingSlot)}`;
-            }
-        }
-
         function openSeatPicker(slotName, itemId) {
             const item = (inventory[slotName] || []).find(x => x.id === itemId);
             if (!item) return;
@@ -1691,7 +2947,559 @@
                 return;
             }
 
-            selectComponent(pendingSlot, pendingItem.id, [...selectedSeats]);
+            selectComponent(pendingSlot, pendingItem.id, { selectedSeats: [...selectedSeats] });
+        }
+
+        // Interactive Flight Cabin Seat Picker
+        let flightSelectedSeats = ['1A', '1B', '2A', '2B'];
+
+        function openFlightSeatPicker(slotName, itemId) {
+            const item = (inventory[slotName] || []).find(x => x.id === itemId);
+            if (!item) return;
+
+            pendingSlot = slotName;
+            pendingItem = item;
+
+            const listEl = document.getElementById('modal-items-list');
+            const flightWrap = document.getElementById('flight-seat-picker-wrap');
+            const titleEl = document.getElementById('modal-category-title');
+            const nameEl = document.getElementById('seat-flight-name');
+            const rateEl = document.getElementById('seat-flight-rate');
+
+            if (nameEl) nameEl.textContent = item.name;
+            if (rateEl) rateEl.textContent = `BDT ${item.price.toLocaleString()} per passenger seat • 20kg luggage`;
+            if (titleEl) titleEl.textContent = `Select Flight Seats - ${item.name}`;
+
+            listEl.style.display = 'none';
+            flightWrap.style.display = 'block';
+
+            const travelers = getTravelerCount();
+            if (!item.selectedSeats || item.selectedSeats.length === 0) {
+                const pool = ['1A', '1B', '2A', '2B', '3A', '3B', '1C', '1D', '2C', '2D'];
+                flightSelectedSeats = pool.slice(0, travelers);
+            } else {
+                flightSelectedSeats = [...item.selectedSeats];
+            }
+
+            renderFlightSeatGrid();
+            updateFlightSeatSelectionUI();
+        }
+
+        function renderFlightSeatGrid() {
+            const container = document.getElementById('flight-seats-container');
+            if (!container) return;
+            const rows = [1, 2, 3, 4, 5, 6];
+            let html = '';
+
+            rows.forEach(r => {
+                const cols = ['A', 'B', 'C', 'D'];
+                cols.forEach((col, idx) => {
+                    const seatId = `${r}${col}`;
+                    const isSelected = flightSelectedSeats.includes(seatId);
+                    const isBooked = (seatId === '2C' || seatId === '5A');
+                    const isWindow = (col === 'A' || col === 'D');
+
+                    html += `
+                        <div class="seat-btn ${isSelected ? 'selected' : ''} ${isBooked ? 'booked' : ''}" 
+                             onclick="toggleFlightSeat('${seatId}', this, ${isBooked})"
+                             title="${isBooked ? 'Seat Occupied' : isWindow ? 'Window Seat' : 'Aisle Seat'}">
+                            ${seatId}${isWindow ? '🪟' : ''}
+                        </div>
+                    `;
+                    if (idx === 1) {
+                        html += `<div class="aisle-gap">✈</div>`;
+                    }
+                });
+            });
+            container.innerHTML = html;
+        }
+
+        function toggleFlightSeat(seatId, el, isBooked) {
+            if (isBooked) return;
+            const travelers = getTravelerCount();
+
+            if (flightSelectedSeats.includes(seatId)) {
+                flightSelectedSeats = flightSelectedSeats.filter(s => s !== seatId);
+            } else {
+                if (flightSelectedSeats.length >= travelers && travelers > 0) {
+                    flightSelectedSeats.shift();
+                }
+                flightSelectedSeats.push(seatId);
+            }
+            renderFlightSeatGrid();
+            updateFlightSeatSelectionUI();
+        }
+
+        function updateFlightSeatSelectionUI() {
+            const travelers = getTravelerCount();
+            const item = pendingItem;
+            if (!item) return;
+
+            const countEl = document.getElementById('flight-seats-target-count');
+            const travEl = document.getElementById('flight-travelers-target-count');
+            const dispEl = document.getElementById('flight-seats-selected-display');
+            const costEl = document.getElementById('flight-seat-cost-summary');
+
+            if (countEl) countEl.textContent = travelers;
+            if (travEl) travEl.textContent = travelers;
+            if (dispEl) {
+                dispEl.textContent = flightSelectedSeats.length > 0 ? `${flightSelectedSeats.join(', ')} (${flightSelectedSeats.length}/${travelers})` : 'None';
+            }
+            if (costEl) {
+                const totalCost = flightSelectedSeats.length * item.price;
+                costEl.innerHTML = `Total: <strong>BDT ${totalCost.toLocaleString()}</strong> <span style="font-size: 0.8rem; font-weight: normal; color: #64748b;">(${flightSelectedSeats.length} seat(s) × BDT ${item.price.toLocaleString()})</span>`;
+            }
+        }
+
+        function confirmFlightSeatSelection() {
+            if (!pendingSlot || !pendingItem) return;
+            if (flightSelectedSeats.length === 0) {
+                alert('Please select at least one flight seat to proceed.');
+                return;
+            }
+
+            selectComponent(pendingSlot, pendingItem.id, { selectedSeats: [...flightSelectedSeats] });
+        }
+
+        // Interactive Hotel & Resort Room Picker (Scenario 5 Multi-Bed Decomposition)
+        let pendingSelectedRoom = null;
+
+        function openRoomPicker(slotName, itemId) {
+            const item = (inventory[slotName] || []).find(x => x.id === itemId);
+            if (!item) return;
+
+            pendingSlot = slotName;
+            pendingItem = item;
+
+            const listEl = document.getElementById('modal-items-list');
+            const roomWrap = document.getElementById('hotel-room-picker-wrap');
+            const titleEl = document.getElementById('modal-category-title');
+            const nameEl = document.getElementById('room-hotel-name');
+            const subEl = document.getElementById('room-hotel-sub');
+            const travEl = document.getElementById('hotel-travelers-target-count');
+
+            const travelers = getTravelerCount();
+            if (travEl) travEl.textContent = travelers;
+
+            if (nameEl) nameEl.innerHTML = `${item.name} <span style="color: #f59e0b; font-size: 0.9rem;">${item.rating || '★★★★★'}</span>`;
+            if (subEl) subEl.textContent = item.sub;
+            if (titleEl) titleEl.textContent = `Choose Rooms & Rates - ${item.name}`;
+
+            listEl.style.display = 'none';
+            roomWrap.style.display = 'block';
+
+            // Default to first room or previously chosen room
+            const rooms = item.rooms || [
+                {
+                    id: 'std_room',
+                    name: 'Standard Deluxe Room',
+                    bed: '1 King Bed (2 Persons)',
+                    capacity: 2,
+                    price: item.price,
+                    floors: ['Floor 2', 'Floor 3', 'Floor 4'],
+                    amenities: ['Buffet Breakfast Included', 'Private Balcony', 'AC', 'Free WiFi'],
+                    img: item.img
+                }
+            ];
+
+            if (item.selectedRoom) {
+                pendingSelectedRoom = { ...item.selectedRoom };
+            } else {
+                pendingSelectedRoom = { ...rooms[0], chosenFloor: rooms[0].floors ? rooms[0].floors[0] : 'Standard Floor' };
+            }
+
+            renderHotelRooms(rooms);
+        }
+
+        function renderHotelRooms(rooms) {
+            const container = document.getElementById('hotel-rooms-list');
+            if (!container) return;
+            const travelers = getTravelerCount();
+
+            container.innerHTML = (rooms || pendingItem.rooms || []).map(r => {
+                const isSelected = pendingSelectedRoom && pendingSelectedRoom.id === r.id;
+                const perPersonShare = Math.round(r.price / travelers);
+                const floorOptions = (r.floors || ['Standard Floor', 'High Floor View']).map(f => `
+                    <option value="${f}" ${pendingSelectedRoom && pendingSelectedRoom.chosenFloor === f ? 'selected' : ''}>${f}</option>
+                `).join('');
+
+                const amenitiesBadges = (r.amenities || []).map(a => `
+                    <span style="font-size: 0.72rem; background: #f1f5f9; color: #475569; padding: 0.2rem 0.45rem; border-radius: 4px; display: inline-flex; align-items: center; gap: 3px;">
+                        ✓ ${a}
+                    </span>
+                `).join('');
+
+                return `
+                    <div class="room-card ${isSelected ? 'selected' : ''}" onclick="selectRoomOption('${r.id}')">
+                        <img src="${r.img || pendingItem.img}" class="room-card-img" alt="${r.name}">
+                        <div class="room-card-content">
+                            <div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                                    <div style="font-weight: 800; font-size: 0.95rem; color: var(--st-text);">${r.name}</div>
+                                    <div style="text-align: right;">
+                                        <div style="font-weight: 800; font-size: 1.05rem; color: var(--st-primary);">BDT ${r.price.toLocaleString()} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">/ night</span></div>
+                                        <div style="font-size: 0.72rem; color: #16a34a; font-weight: 700;">BDT ${perPersonShare.toLocaleString()} / traveler (shared)</div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 0.35rem; display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem;">
+                                    <span class="room-bed-badge">
+                                        <i class="material-icons" style="font-size: 14px;">king_bed</i> ${r.bed}
+                                    </span>
+                                    <span style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Max Capacity: ${r.capacity} Guests</span>
+                                </div>
+                                <div style="display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.4rem;">
+                                    ${amenitiesBadges}
+                                </div>
+                            </div>
+
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 0.65rem; border-top: 1px dashed var(--st-border); padding-top: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;" onclick="event.stopPropagation()">
+                                    <label style="font-size: 0.75rem; font-weight: 700; color: #64748b;">Preferred Floor:</label>
+                                    <select class="room-floor-select" onchange="updateRoomFloor('${r.id}', this.value)">
+                                        ${floorOptions}
+                                    </select>
+                                </div>
+                                <button type="button" class="btn-choose" style="padding: 0.3rem 0.85rem; font-size: 0.775rem;">
+                                    ${isSelected ? '✓ Selected' : 'Choose Room'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            updateRoomSelectionUI();
+        }
+
+        function selectRoomOption(roomId) {
+            const rooms = pendingItem.rooms || [];
+            const r = rooms.find(x => x.id === roomId);
+            if (!r) return;
+
+            const existingFloor = (pendingSelectedRoom && pendingSelectedRoom.id === roomId) ? pendingSelectedRoom.chosenFloor : (r.floors ? r.floors[0] : 'Standard Floor');
+            pendingSelectedRoom = { ...r, chosenFloor: existingFloor };
+            renderHotelRooms(rooms);
+        }
+
+        function updateRoomFloor(roomId, floorVal) {
+            if (pendingSelectedRoom && pendingSelectedRoom.id === roomId) {
+                pendingSelectedRoom.chosenFloor = floorVal;
+            } else {
+                const r = (pendingItem.rooms || []).find(x => x.id === roomId);
+                if (r) {
+                    pendingSelectedRoom = { ...r, chosenFloor: floorVal };
+                }
+            }
+            updateRoomSelectionUI();
+        }
+
+        function updateRoomSelectionUI() {
+            const summaryEl = document.getElementById('room-cost-summary');
+            if (!summaryEl || !pendingSelectedRoom) return;
+
+            const travelers = getTravelerCount();
+            const perPerson = Math.round(pendingSelectedRoom.price / travelers);
+            summaryEl.innerHTML = `
+                Selected: <strong>${pendingSelectedRoom.name}</strong> (${pendingSelectedRoom.chosenFloor || 'Standard Floor'}) — 
+                <strong>BDT ${pendingSelectedRoom.price.toLocaleString()}</strong> 
+                <span style="font-size: 0.8rem; font-weight: normal; color: #16a34a;">(BDT ${perPerson.toLocaleString()} / traveler for ${travelers} pax)</span>
+            `;
+        }
+
+        function confirmRoomSelection() {
+            if (!pendingSlot || !pendingItem || !pendingSelectedRoom) {
+                alert('Please select a room category to proceed.');
+                return;
+            }
+
+            selectComponent(pendingSlot, pendingItem.id, { selectedRoom: { ...pendingSelectedRoom } });
+        }
+
+        // Interactive Dining Menu Customizer
+        let pendingSelectedAddons = [];
+
+        function openMenuPicker(slotName, itemId) {
+            const item = (inventory[slotName] || []).find(x => x.id === itemId);
+            if (!item) return;
+
+            pendingSlot = slotName;
+            pendingItem = item;
+
+            const listEl = document.getElementById('modal-items-list');
+            const menuWrap = document.getElementById('dining-menu-picker-wrap');
+            const titleEl = document.getElementById('modal-category-title');
+            const nameEl = document.getElementById('menu-restaurant-name');
+            const subEl = document.getElementById('menu-restaurant-sub');
+            const travEl = document.getElementById('dining-travelers-target-count');
+
+            const travelers = getTravelerCount();
+            if (travEl) travEl.textContent = travelers;
+
+            if (nameEl) nameEl.textContent = item.name;
+            if (subEl) subEl.textContent = item.sub;
+            if (titleEl) titleEl.textContent = `Customize Dining Menu - ${item.name}`;
+
+            listEl.style.display = 'none';
+            menuWrap.style.display = 'block';
+
+            pendingSelectedAddons = (item.selectedMenu && item.selectedMenu.addons) ? [...item.selectedMenu.addons] : [];
+            renderDiningMenu();
+        }
+
+        function renderDiningMenu() {
+            const container = document.getElementById('dining-menu-content');
+            if (!container || !pendingItem) return;
+
+            const menu = pendingItem.menu || {
+                title: pendingItem.name,
+                basePrice: pendingItem.price,
+                included: ["Full Course Chef Special Meal", "Mineral Water", "Fresh Seasonal Dessert"],
+                addons: []
+            };
+
+            const includedHtml = (menu.included || []).map(dish => `
+                <div class="menu-dish-item">
+                    <i class="material-icons" style="font-size: 16px; color: #16a34a;">check_circle</i>
+                    <span>${dish}</span>
+                </div>
+            `).join('');
+
+            const addonsHtml = (menu.addons && menu.addons.length > 0) ? `
+                <div style="margin-top: 1.25rem;">
+                    <div style="font-size: 0.85rem; font-weight: 800; color: var(--st-text); margin-bottom: 0.5rem;">
+                        Optional Gourmet Add-ons & Beverages:
+                    </div>
+                    ${menu.addons.map(addon => {
+                        const isChecked = pendingSelectedAddons.includes(addon.id);
+                        return `
+                            <div class="menu-addon-row">
+                                <label style="display: flex; align-items: center; gap: 0.65rem; cursor: pointer; flex: 1;">
+                                    <input type="checkbox" class="addon-checkbox" ${isChecked ? 'checked' : ''} onchange="toggleMenuAddon('${addon.id}')">
+                                    <span style="font-weight: 600; color: #1e293b;">${addon.name}</span>
+                                </label>
+                                <span style="font-weight: 800; color: var(--st-primary);">+ BDT ${addon.price.toLocaleString()} / pax</span>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            ` : '';
+
+            container.innerHTML = `
+                <div class="dining-menu-box">
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--st-border); padding-bottom: 0.65rem;">
+                        <div style="font-weight: 800; font-size: 0.95rem; color: #1e293b;">
+                            🍽 ${menu.title}
+                        </div>
+                        <div style="font-weight: 800; color: var(--st-primary); font-size: 1.05rem;">
+                            BDT ${menu.basePrice.toLocaleString()} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">/ person</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 0.75rem;">
+                        <div style="font-size: 0.8rem; font-weight: 800; color: #166534; margin-bottom: 0.35rem;">
+                            ✓ INCLUDED DISHES IN THIS PLATTER:
+                        </div>
+                        <div class="menu-included-grid">
+                            ${includedHtml}
+                        </div>
+                    </div>
+
+                    ${addonsHtml}
+                </div>
+            `;
+
+            updateDiningCostUI();
+        }
+
+        function toggleMenuAddon(addonId) {
+            if (pendingSelectedAddons.includes(addonId)) {
+                pendingSelectedAddons = pendingSelectedAddons.filter(id => id !== addonId);
+            } else {
+                pendingSelectedAddons.push(addonId);
+            }
+            updateDiningCostUI();
+        }
+
+        function updateDiningCostUI() {
+            const costEl = document.getElementById('dining-cost-summary');
+            if (!costEl || !pendingItem) return;
+
+            const menu = pendingItem.menu || { basePrice: pendingItem.price, addons: [] };
+            let perPersonRate = menu.basePrice;
+
+            (menu.addons || []).forEach(a => {
+                if (pendingSelectedAddons.includes(a.id)) {
+                    perPersonRate += a.price;
+                }
+            });
+
+            const travelers = getTravelerCount();
+            const total = perPersonRate * travelers;
+
+            costEl.innerHTML = `
+                Total: <strong>BDT ${total.toLocaleString()}</strong> 
+                <span style="font-size: 0.8rem; font-weight: normal; color: #64748b;">(BDT ${perPersonRate.toLocaleString()} / person × ${travelers} travelers)</span>
+            `;
+        }
+
+        function confirmMenuSelection() {
+            if (!pendingSlot || !pendingItem) return;
+
+            const menu = pendingItem.menu || { title: pendingItem.name, basePrice: pendingItem.price, addons: [] };
+            let perPersonRate = menu.basePrice;
+
+            (menu.addons || []).forEach(a => {
+                if (pendingSelectedAddons.includes(a.id)) {
+                    perPersonRate += a.price;
+                }
+            });
+
+            selectComponent(pendingSlot, pendingItem.id, {
+                selectedMenu: {
+                    packageName: menu.title,
+                    addons: [...pendingSelectedAddons],
+                    perPersonPrice: perPersonRate
+                }
+            });
+        }
+
+        // Details & Roadmap Timeline Popup
+        function showItemDetails(slotName, itemId) {
+            const item = (inventory[slotName] || []).find(x => x.id === itemId);
+            if (!item) return;
+
+            pendingSlot = slotName;
+            pendingItem = item;
+
+            const listEl = document.getElementById('modal-items-list');
+            const detailsWrap = document.getElementById('modal-item-details-view');
+            const titleEl = document.getElementById('modal-category-title');
+            const itemTitle = document.getElementById('details-item-title');
+            const itemSub = document.getElementById('details-item-sub');
+            const bodyEl = document.getElementById('item-details-body');
+            const costPreview = document.getElementById('details-cost-preview');
+            const proceedBtn = document.getElementById('details-proceed-btn');
+
+            if (titleEl) titleEl.textContent = `Service Details & Roadmap - ${item.name}`;
+            if (itemTitle) itemTitle.innerHTML = `${item.name} ${item.rating ? `<span style="color: #f59e0b; font-size: 0.9rem;">${item.rating}</span>` : ''}`;
+            if (itemSub) itemSub.textContent = item.sub;
+
+            const travelers = getTravelerCount();
+            const calc = getItemPriceCalculation(slotName, item, travelers);
+            if (costPreview) {
+                costPreview.innerHTML = `BDT ${calc.itemTotal.toLocaleString()} <span style="font-size: 0.775rem; color: #64748b; font-weight: normal;">(${calc.subtitle})</span>`;
+            }
+
+            if (proceedBtn) {
+                if (item.hasSeats || slotName === 'bus' || slotName === 'coach') {
+                    proceedBtn.textContent = 'Proceed to View Seats';
+                } else if (item.hasFlightSeats || slotName === 'flight') {
+                    proceedBtn.textContent = 'Proceed to Flight Seats';
+                } else if (item.hasRooms || slotName === 'hotel' || slotName === 'resort' || slotName === 'cottage' || slotName === 'villa') {
+                    proceedBtn.textContent = 'Proceed to Choose Rooms';
+                } else if (item.hasMenu || slotName === 'breakfast' || slotName === 'lunch' || slotName === 'dinner') {
+                    proceedBtn.textContent = 'Proceed to Customize Menu';
+                } else {
+                    proceedBtn.textContent = 'Select This Service';
+                }
+            }
+
+            const d = item.details || {};
+            const scheduleHtml = d.schedule ? `
+                <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 0.85rem 1rem;">
+                    <div style="font-size: 0.8rem; font-weight: 800; color: #1e40af; text-transform: uppercase; margin-bottom: 0.25rem;">
+                        🕒 Schedule & Timing:
+                    </div>
+                    <div style="font-size: 0.9rem; font-weight: 700; color: #1e293b;">
+                        ${d.schedule}
+                    </div>
+                    ${d.duration ? `<div style="font-size: 0.775rem; color: #64748b; margin-top: 2px;">Duration: ${d.duration}</div>` : ''}
+                </div>
+            ` : '';
+
+            const roadmapHtml = (d.routeStops && d.routeStops.length > 0) ? `
+                <div style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 0.8rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
+                        <i class="material-icons" style="font-size: 16px; color: var(--st-primary);">route</i>
+                        Route Map & Stops Breakdown:
+                    </div>
+                    <div class="roadmap-timeline">
+                        ${d.routeStops.map((stop, sIdx) => `
+                            <div class="roadmap-step">
+                                <div class="roadmap-dot"></div>
+                                <div class="roadmap-station">${stop.station} <span style="font-size: 0.75rem; font-weight: normal; color: var(--st-primary);">(${stop.time})</span></div>
+                                <div class="roadmap-desc">${stop.desc}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : '';
+
+            const amenitiesHtml = (d.amenities && d.amenities.length > 0) ? `
+                <div style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 0.8rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
+                        <i class="material-icons" style="font-size: 16px; color: #16a34a;">verified</i>
+                        Key Features & Onboard Amenities:
+                    </div>
+                    <div class="amenity-grid">
+                        ${d.amenities.map(a => `
+                            <div class="amenity-pill">
+                                <i class="material-icons" style="font-size: 15px; color: #16a34a;">check</i>
+                                <span>${a}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : '';
+
+            const policiesHtml = d.policies ? `
+                <div style="background: #f8fafc; border: 1px dashed var(--st-border); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.8rem; color: #64748b;">
+                    <strong>📋 Booking & Cancellation Policy:</strong> ${d.policies}
+                </div>
+            ` : '';
+
+            bodyEl.innerHTML = `
+                <div class="details-hero">
+                    <img src="${item.img}" class="details-hero-img" alt="${item.name}">
+                    <div>
+                        <div style="font-weight: 800; font-size: 1.1rem; color: var(--st-text);">${item.name}</div>
+                        <div style="font-size: 0.825rem; color: var(--st-text-muted); margin-top: 0.25rem;">${d.type || item.sub}</div>
+                        <div style="margin-top: 0.4rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="scen-tag" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe; font-size: 0.75rem;">
+                                Instant Guaranteed Booking
+                            </span>
+                            ${item.scenario ? `<span class="scen-tag">${item.scenario}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+
+                ${scheduleHtml}
+                ${roadmapHtml}
+                ${amenitiesHtml}
+                ${policiesHtml}
+            `;
+
+            listEl.style.display = 'none';
+            detailsWrap.style.display = 'block';
+        }
+
+        function proceedFromDetails() {
+            if (!pendingSlot || !pendingItem) return;
+
+            const slotName = pendingSlot;
+            const itemId = pendingItem.id;
+
+            if (pendingItem.hasSeats || slotName === 'bus' || slotName === 'coach') {
+                openSeatPicker(slotName, itemId);
+            } else if (pendingItem.hasFlightSeats || slotName === 'flight') {
+                openFlightSeatPicker(slotName, itemId);
+            } else if (pendingItem.hasRooms || slotName === 'hotel' || slotName === 'resort' || slotName === 'cottage' || slotName === 'villa') {
+                openRoomPicker(slotName, itemId);
+            } else if (pendingItem.hasMenu || slotName === 'breakfast' || slotName === 'lunch' || slotName === 'dinner') {
+                openMenuPicker(slotName, itemId);
+            } else {
+                selectComponent(slotName, itemId);
+            }
         }
 
         let currentActiveSlot = null;
@@ -1856,56 +3664,77 @@
             }
 
             currentActiveSlot = slotName;
+            pendingSlot = slotName;
             const items = inventory[slotName] || [];
             const titleEl = document.getElementById('modal-category-title');
             const listEl = document.getElementById('modal-items-list');
-            const busSeatWrap = document.getElementById('bus-seat-picker-wrap');
+
+            // Reset sub-views so we always start with the items list
+            backToItemsList();
 
             titleEl.textContent = `Select ${formatSlotTitle(slotName)}`;
-
-            // Always start by showing the list of operators/options first
-            busSeatWrap.style.display = 'none';
-            listEl.style.display = 'block';
 
             const travelers = getTravelerCount();
             const isPerPerson = isPerPersonSlot(slotName);
 
-            listEl.innerHTML = items.map(item => {
-                const itemPricing = item.pricingType || (isPerPerson ? 'per_person' : 'per_group');
-                const priceLabel = itemPricing === 'per_person' 
-                    ? `BDT ${item.price.toLocaleString()} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">/ person</span>`
-                    : `BDT ${item.price.toLocaleString()} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">/ unit (shared)</span>`;
-
-                const totalSubtitle = (itemPricing === 'per_person' && travelers > 1)
-                    ? `<div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Total: BDT ${(item.price * travelers).toLocaleString()} (${travelers} pax)</div>`
-                    : (itemPricing === 'per_group' && travelers > 1)
-                    ? `<div style="font-size: 0.72rem; color: #16a34a; font-weight: 700; margin-top: 2px;">BDT ${Math.round(item.price / travelers).toLocaleString()} / person</div>`
-                    : '';
-
-                const actionBtn = (item.hasSeats || slotName === 'bus' || slotName === 'coach')
-                    ? `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openSeatPicker('${slotName}', ${item.id})">
-                         <span>View Seats</span>
-                         <i class="material-icons" style="font-size: 15px;">airline_seat_recline_extra</i>
-                       </button>`
-                    : `<button class="btn-choose" onclick="selectComponent('${slotName}', ${item.id})">Select</button>`;
-
-                return `
-                    <div class="select-card">
-                        <div class="select-card-info" style="display: flex; align-items: center; gap: 1rem;">
-                            <img src="${item.img}" class="select-card-img" alt="${item.name}" style="width: 75px; height: 60px; object-fit: cover; border-radius: 6px;">
-                            <div>
-                                <div class="select-card-title" style="font-weight: 800; font-size: 0.95rem; color: var(--st-text);">${item.name}</div>
-                                <div class="select-card-sub" style="font-size: 0.8rem; color: var(--st-text-muted); margin-top: 0.2rem;">${item.sub}</div>
-                            </div>
-                        </div>
-                        <div style="text-align: right; min-width: 140px;">
-                            <div class="select-card-price" style="font-size: 1.05rem; font-weight: 800; color: var(--st-primary);">${priceLabel}</div>
-                            ${totalSubtitle}
-                        </div>
-                        <div>${actionBtn}</div>
+            if (items.length === 0) {
+                listEl.innerHTML = `
+                    <div style="text-align: center; padding: 2.5rem 1rem; color: #64748b;">
+                        <i class="material-icons" style="font-size: 40px; color: #cbd5e1; margin-bottom: 0.5rem;">event_busy</i>
+                        <div style="font-weight: 700; font-size: 1rem;">No options currently available for this route.</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.25rem;">Please check back soon or try selecting an alternative destination.</div>
                     </div>
                 `;
-            }).join('');
+            } else {
+                listEl.innerHTML = items.map(item => {
+                    const itemPricing = item.pricingType || (isPerPerson ? 'per_person' : 'per_group');
+                    const priceLabel = itemPricing === 'per_person' 
+                        ? `BDT ${item.price.toLocaleString()} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">/ person</span>`
+                        : `BDT ${item.price.toLocaleString()} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">/ unit (shared)</span>`;
+
+                    const totalSubtitle = (itemPricing === 'per_person' && travelers > 1)
+                        ? `<div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Total: BDT ${(item.price * travelers).toLocaleString()} (${travelers} pax)</div>`
+                        : (itemPricing === 'per_group' && travelers > 1)
+                        ? `<div style="font-size: 0.72rem; color: #16a34a; font-weight: 700; margin-top: 2px;">BDT ${Math.round(item.price / travelers).toLocaleString()} / person</div>`
+                        : '';
+
+                    const detailsBtn = `<button type="button" class="btn-item-details" onclick="showItemDetails('${slotName}', ${item.id})"><i class="material-icons" style="font-size: 14px;">info</i> Details</button>`;
+
+                    let actionBtn = `<button class="btn-choose" onclick="selectComponent('${slotName}', ${item.id})">Select</button>`;
+                    if (item.hasSeats || slotName === 'bus' || slotName === 'coach') {
+                        actionBtn = `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openSeatPicker('${slotName}', ${item.id})"><span>View Seats</span> <i class="material-icons" style="font-size: 14px;">airline_seat_recline_extra</i></button>`;
+                    } else if (item.hasFlightSeats || slotName === 'flight') {
+                        actionBtn = `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openFlightSeatPicker('${slotName}', ${item.id})"><span>View Seats</span> <i class="material-icons" style="font-size: 14px;">flight</i></button>`;
+                    } else if (item.hasRooms || slotName === 'hotel' || slotName === 'resort' || slotName === 'cottage' || slotName === 'villa') {
+                        actionBtn = `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openRoomPicker('${slotName}', ${item.id})"><span>View Rooms</span> <i class="material-icons" style="font-size: 14px;">bed</i></button>`;
+                    } else if (item.hasMenu || slotName === 'breakfast' || slotName === 'lunch' || slotName === 'dinner') {
+                        actionBtn = `<button class="btn-choose" style="display: inline-flex; align-items: center; gap: 0.35rem;" onclick="openMenuPicker('${slotName}', ${item.id})"><span>Customize Menu</span> <i class="material-icons" style="font-size: 14px;">restaurant_menu</i></button>`;
+                    }
+
+                    return `
+                        <div class="select-card">
+                            <div class="select-card-info" style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="${item.img}" class="select-card-img" alt="${item.name}" style="width: 75px; height: 60px; object-fit: cover; border-radius: 6px;">
+                                <div>
+                                    <div class="select-card-title" style="font-weight: 800; font-size: 0.95rem; color: var(--st-text); display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+                                        <span>${item.name}</span>
+                                        ${item.rating ? `<span style="color: #f59e0b; font-size: 0.8rem; font-weight: 700;">${item.rating}</span>` : ''}
+                                    </div>
+                                    <div class="select-card-sub" style="font-size: 0.8rem; color: var(--st-text-muted); margin-top: 0.2rem;">${item.sub}</div>
+                                </div>
+                            </div>
+                            <div style="text-align: right; min-width: 140px;">
+                                <div class="select-card-price" style="font-size: 1.05rem; font-weight: 800; color: var(--st-primary);">${priceLabel}</div>
+                                ${totalSubtitle}
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; justify-content: flex-end;">
+                                ${detailsBtn}
+                                ${actionBtn}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
 
             document.getElementById('selection-modal').style.display = 'flex';
         }
@@ -1914,13 +3743,17 @@
             document.getElementById('selection-modal').style.display = 'none';
         }
 
-        function selectComponent(slotName, itemId, seats = null) {
+        function selectComponent(slotName, itemId, customData = {}) {
             const item = (inventory[slotName] || []).find(x => x.id === itemId);
             if (!item) return;
 
             const itemToStore = { ...item };
-            if (seats && seats.length > 0) {
-                itemToStore.selectedSeats = [...seats];
+            if (Array.isArray(customData)) {
+                itemToStore.selectedSeats = [...customData];
+            } else if (customData && typeof customData === 'object') {
+                if (customData.selectedSeats) itemToStore.selectedSeats = [...customData.selectedSeats];
+                if (customData.selectedRoom) itemToStore.selectedRoom = { ...customData.selectedRoom };
+                if (customData.selectedMenu) itemToStore.selectedMenu = { ...customData.selectedMenu };
             }
 
             currentTour[slotName] = itemToStore;
@@ -1932,25 +3765,35 @@
             const travelers = getTravelerCount();
             const calc = getItemPriceCalculation(slotName, itemToStore, travelers);
 
-            let seatLabel = '';
+            let labelSuffix = '';
             if (itemToStore.selectedSeats && itemToStore.selectedSeats.length > 0) {
-                seatLabel = ` (Seats: ${itemToStore.selectedSeats.join(', ')})`;
+                labelSuffix = ` (Seats: ${itemToStore.selectedSeats.join(', ')})`;
+            } else if (itemToStore.selectedRoom) {
+                labelSuffix = ` (${itemToStore.selectedRoom.name}${itemToStore.selectedRoom.chosenFloor ? ' - ' + itemToStore.selectedRoom.chosenFloor : ''})`;
+            } else if (itemToStore.selectedMenu) {
+                labelSuffix = ` (${itemToStore.selectedMenu.packageName})`;
             }
 
-            valEl.textContent = item.name + seatLabel;
-            valEl.classList.add('configured');
+            if (valEl) {
+                valEl.textContent = item.name + labelSuffix;
+                valEl.classList.add('configured');
+            }
 
-            priceEl.innerHTML = `
-                <div>BDT ${calc.itemTotal.toLocaleString()}</div>
-                <div style="font-size: 0.72rem; color: var(--st-text-muted); font-weight: 600;">${calc.subtitle}</div>
-            `;
+            if (priceEl) {
+                priceEl.innerHTML = `
+                    <div>BDT ${calc.itemTotal.toLocaleString()}</div>
+                    <div style="font-size: 0.72rem; color: var(--st-text-muted); font-weight: 600;">${calc.subtitle}</div>
+                `;
+            }
 
-            actionEl.innerHTML = `
-                <button class="btn-choose" style="padding: 0.35rem 0.75rem;" onclick="openPicker('${slotName}')">Change</button>
-                <button class="btn-remove" onclick="removeComponent('${slotName}')" title="Remove Component">
-                    <i class="material-icons" style="font-size: 18px;">close</i>
-                </button>
-            `;
+            if (actionEl) {
+                actionEl.innerHTML = `
+                    <button class="btn-choose" style="padding: 0.35rem 0.75rem;" onclick="openPicker('${slotName}')">Change</button>
+                    <button class="btn-remove" onclick="removeComponent('${slotName}')" title="Remove Component">
+                        <i class="material-icons" style="font-size: 18px;">close</i>
+                    </button>
+                `;
+            }
 
             closePicker();
             recalculateTotals();
@@ -2025,128 +3868,496 @@
             const dest = document.getElementById('destination-select').value;
             if (!dest) return;
 
+            // Reset to default base inventory snapshot first
+            if (typeof DEFAULT_INVENTORY_SNAPSHOT !== 'undefined') {
+                for (const key in DEFAULT_INVENTORY_SNAPSHOT) {
+                    inventory[key] = JSON.parse(JSON.stringify(DEFAULT_INVENTORY_SNAPSHOT[key]));
+                }
+            }
+
             // Route-specific dynamic inventory
             if (dest === 'sajek') {
                 inventory.coach = [
-                    { id: 1, name: "Shanti Paribahan AC Coach (Dhaka ➔ Khagrachhari Gateway)", sub: "Scenario 3: Interactive 40-Seat Plan | Direct route to Khagrachhari", price: 1400, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
-                    { id: 2, name: "Saintmartin Travels AC Deluxe Coach", sub: "Overnight luxury bus with reclining leather seats", price: 1600, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                    {
+                        id: 1,
+                        name: "Shanti Paribahan AC Hino Coach",
+                        sub: "Direct Dhaka ➔ Khagrachhari Gateway • Push-back Seats",
+                        price: 1400,
+                        img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
+                        hasSeats: true,
+                        scenario: "Scenario 3: Female Front Seats & Supervisor Telematics",
+                        details: {
+                            type: "Hino 1J AC Chair Coach (Direct Khagrachhari)",
+                            schedule: "Departure: 10:30 PM (Sayedabad / Arambagh) ➔ Arrival: 06:30 AM (Khagrachhari)",
+                            duration: "8 Hours Direct",
+                            routeStops: [
+                                { station: "Dhaka Arambagh Counter", time: "10:30 PM", desc: "Boarding" },
+                                { station: "Cumilla Poddar Highway Inn", time: "01:30 AM", desc: "Midnight meal break" },
+                                { station: "Khagrachhari Central Terminal", time: "06:30 AM", desc: "Chander Gari transit transfer point" }
+                            ],
+                            amenities: ["Air Conditioned", "Ergonomic Push-back Seats", "Mineral Water", "GPS Telematics"],
+                            policies: "Instant confirmation. Army convoy departure is strictly 09:30 AM."
+                        }
+                    },
+                    {
+                        id: 2,
+                        name: "Saintmartin Travels AC Deluxe Coach",
+                        sub: "Executive Business Class Coach to Khagrachhari Terminal",
+                        price: 1600,
+                        img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=300&q=80",
+                        hasSeats: true,
+                        details: {
+                            type: "Scania AC Business Class",
+                            schedule: "Departure: 11:00 PM (Panthapath) ➔ Arrival: 07:00 AM (Khagrachhari)",
+                            duration: "8 Hours Overnight",
+                            routeStops: [
+                                { station: "Dhaka Panthapath", time: "11:00 PM", desc: "Boarding" },
+                                { station: "Khagrachhari Counter", time: "07:00 AM", desc: "Arrival" }
+                            ],
+                            amenities: ["Reclining Leather Seats", "USB Charging", "Steward Assistance", "Blanket"],
+                            policies: "Free cancellation up to 24 hrs prior."
+                        }
+                    }
                 ];
                 inventory.bus = [
-                    { id: 1, name: "Economy Non-AC Coach (Sayedabad Gateway)", sub: "Budget overnight transit to Khagrachhari", price: 850, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                    {
+                        id: 1,
+                        name: "Soudia Economy Coach (Non-AC)",
+                        sub: "Hino 1J Non-AC Coach • Budget Overnight Overland Transit",
+                        price: 850,
+                        img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
+                        hasSeats: true,
+                        details: {
+                            type: "Economy Highway Chair Coach",
+                            schedule: "Departure: 10:00 PM (Sayedabad) ➔ Arrival: 06:45 AM (Khagrachhari)",
+                            duration: "8 Hours 45 Mins",
+                            routeStops: [
+                                { station: "Dhaka Sayedabad", time: "10:00 PM", desc: "Departure" },
+                                { station: "Khagrachhari Terminal", time: "06:45 AM", desc: "Arrival" }
+                            ],
+                            amenities: ["Push-back Seats", "Luggage Tagging", "First Aid"],
+                            policies: "Reporting 15 mins prior to departure."
+                        }
+                    }
                 ];
                 inventory.jeep = [
-                    { id: 1, name: "Four-Wheel Drive Chander Gari (4WD Mountain Jeep Convoy)", sub: "Dedicated 4WD mountain jeep for Army Escort convoys (10-passenger capacity)", price: 6500, img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 14: Mountain Convoy Navigation" },
-                    { id: 2, name: "Mahindra 4x4 Mountain Carrier", sub: "Hill-track certified pickup jeep", price: 5500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                    {
+                        id: 1,
+                        name: "Four-Wheel Drive Chander Gari (Army Convoy 10-12 Pax)",
+                        sub: "Dedicated 4WD mountain jeep for Army Escort convoys (10-passenger capacity)",
+                        price: 6500,
+                        img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=300&q=80",
+                        scenario: "Scenario 14: Mountain Convoy Navigation",
+                        details: {
+                            type: "Mahindra / Toyota 4WD Hill-Climb Jeep",
+                            schedule: "Convoy Timings: 10:00 AM & 03:00 PM (Khagrachhari Checkpost)",
+                            duration: "3.5 Hours Mountain Track",
+                            routeStops: [
+                                { station: "Khagrachhari Escort Camp", time: "09:30 AM", desc: "Vehicle queuing and army escort formation" },
+                                { station: "Baghaihat Police Camp Checkpoint", time: "11:00 AM", desc: "Document inspection & clearance" },
+                                { station: "Tiger Hill & Masalong Bazaar", time: "12:15 PM", desc: "Scenic mountain ridge crossing" },
+                                { station: "Sajek Valley Ruilui Para Helipad", time: "01:30 PM", desc: "Final arrival in the clouds" }
+                            ],
+                            amenities: ["Experienced Mountain Driver", "Hill-Traction 4x4", "Roof Luggage Carrier", "Emergency Spare Tyre"],
+                            policies: "Military escort schedule is mandatory. Valid national ID required."
+                        }
+                    },
+                    {
+                        id: 2,
+                        name: "Mahindra 4x4 Mountain Carrier",
+                        sub: "Hill-track certified pickup jeep with luggage rack",
+                        price: 5500,
+                        img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=300&q=80",
+                        details: {
+                            type: "4WD Mountain Pickup Carrier",
+                            schedule: "Convoy Timings: 10:00 AM Checkpoint",
+                            duration: "3.5 Hours",
+                            routeStops: [
+                                { station: "Khagrachhari Checkpost", time: "10:00 AM", desc: "Convoy start" },
+                                { station: "Ruilui Para Sajek", time: "01:30 PM", desc: "Arrival" }
+                            ],
+                            amenities: ["Heavy Suspension", "Open Air / Covered Options"],
+                            policies: "Requires escort token."
+                        }
+                    }
                 ];
                 inventory.cottage = [
-                    { id: 1, name: "Meghpunji Cloud-View Cottage", sub: "Premium wooden cottage above the clouds (Family 4-bed)", price: 4200, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
-                    { id: 2, name: "Sajek Classic Eco-Resort", sub: "Sunset-facing balcony room with solar power", price: 3200, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" },
-                    { id: 3, name: "Runmoy & Kasalong Army Rest House", sub: "Highest altitude secure hilltop view", price: 4800, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" }
+                    {
+                        id: 1,
+                        name: "Meghpunji Cloud-View Cottage",
+                        sub: "★★★★☆ Premium Wooden Eco-Cottage • Sunrise Mountain Balcony",
+                        rating: "★★★★☆ 4-Star",
+                        price: 4200,
+                        img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=300&q=80",
+                        hasRooms: true,
+                        scenario: "Scenario 5: Multi-Bed Cost Decomposition",
+                        details: {
+                            type: "Hilltop Wooden Eco-Cottage",
+                            schedule: "Check-in: 12:00 PM | Check-out: 10:30 AM",
+                            duration: "Per Night Stay",
+                            routeStops: [{ station: "Ruilui Para Ridge", time: "Cloud Edge", desc: "Direct sunrise view over the valleys" }],
+                            amenities: ["Panoramic Cloud Balcony", "24/7 Solar Electricity & Hot Water", "Organic Mountain Breakfast", "Campfire Yard"],
+                            policies: "Eco-friendly cottage guidelines apply."
+                        },
+                        rooms: [
+                            {
+                                id: 'megh_family_4bed',
+                                name: 'Cloud-Front Family Wooden Room',
+                                bed: '2 Queen Beds (4 Guests)',
+                                capacity: 4,
+                                price: 4200,
+                                floors: ['Upper Floor (Panoramic Balcony)'],
+                                amenities: ['Direct Cloud View Balcony', '2 Queen Beds', 'Attached Modern Bath', 'Solar Hot Geyser'],
+                                img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=250&q=80'
+                            },
+                            {
+                                id: 'megh_couple_suite',
+                                name: 'Sunrise Wooden Couple Suite',
+                                bed: '1 King Bed (2 Guests)',
+                                capacity: 2,
+                                price: 3600,
+                                floors: ['Upper Floor (Sunrise Front)'],
+                                amenities: ['Sunrise View Deck', '1 King Bed', 'Attached Bath'],
+                                img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=250&q=80'
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        name: "Sajek Classic Eco-Resort",
+                        sub: "★★★☆☆ Hilltop Bamboo Cottage • Sunset View Balcony",
+                        rating: "★★★☆☆ 3-Star",
+                        price: 3200,
+                        img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80",
+                        hasRooms: true,
+                        details: {
+                            type: "Bamboo & Timber Mountain Cottage",
+                            schedule: "Check-in: 12:30 PM | Check-out: 11:00 AM",
+                            duration: "Per Night Stay",
+                            routeStops: [{ station: "Kanglak Ridge Road", time: "Sunset Side", desc: "View of the western hills" }],
+                            amenities: ["Sunset Balcony", "Hot Water", "Local Dining Hall"],
+                            policies: "Advance booking advised."
+                        },
+                        rooms: [
+                            {
+                                id: 'sc_quad_room',
+                                name: 'Classic Family Quad Room',
+                                bed: '2 Double Beds (4 Guests)',
+                                capacity: 4,
+                                price: 3200,
+                                floors: ['Ground Floor (Balcony Facing)'],
+                                amenities: ['2 Double Beds', 'Attached Bath', 'Balcony Chairs'],
+                                img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=250&q=80'
+                            }
+                        ]
+                    }
                 ];
-                inventory.traditionalfood = [
-                    { id: 1, name: "Traditional Bamboo Chicken & Mountain Sticky Rice", sub: "Peda Ting Ting authentic tribal bamboo cooked chicken & papaya salad", price: 1400, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
-                    { id: 2, name: "Hillock View Tribal Feast & Herbal Tea", sub: "Fresh organic hill vegetables, country chicken & mountain tea", price: 1100, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
+                inventory.resort = [
+                    {
+                        id: 1,
+                        name: "Runmoy & Kasalong Army Rest House",
+                        sub: "★★★★★ Highest Altitude Hilltop Rest House • Helipad Panorama",
+                        rating: "★★★★★ 5-Star",
+                        price: 5200,
+                        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=300&q=80",
+                        hasRooms: true,
+                        details: {
+                            type: "Military Hilltop Luxury Rest House",
+                            schedule: "Check-in: 01:00 PM | Check-out: 11:30 AM",
+                            duration: "Per Night Stay",
+                            routeStops: [{ station: "Ruilui Para Helipad Peak", time: "Altitude 1,800 ft", desc: "360-degree panorama of Mizoram mountains" }],
+                            amenities: ["360-Degree Panoramic View", "VIP Dining Facility", "24/7 Generator & Hot Water", "Secure Gated Compound"],
+                            policies: "Official civilian protocol booking."
+                        },
+                        rooms: [
+                            {
+                                id: 'runmoy_vip_suite',
+                                name: 'Runmoy Presidential Mountain Suite',
+                                bed: '1 Super King Bed (2 Guests)',
+                                capacity: 2,
+                                price: 5200,
+                                floors: ['Top Hill Deck'],
+                                amenities: ['Panoramic Glass Window', 'King Bed', 'VIP Dining Access'],
+                                img: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=250&q=80'
+                            }
+                        ]
+                    }
                 ];
-            } else if (dest === 'coxsbazar') {
-                inventory.coach = [
-                    { id: 1, name: "Direct Scania AC Coach (Arambagh ➔ Kolatoli)", sub: "Scenario 3: Interactive 40-Seat Plan | Rows A & B Female Preferred", price: 1500, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true, scenario: "Scenario 3: Female Front Seats & Supervisor Telematics" },
-                    { id: 2, name: "Green Line Sleeper Coach (Double Deck)", sub: "Overnight luxury sleeper berth with USB charging", price: 2200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
+                inventory.lunch = [
+                    {
+                        id: 1,
+                        name: "Traditional Bamboo Chicken & Mountain Sticky Rice Feast",
+                        sub: "Peda Ting Ting tribal bamboo-cooked chicken & organic mountain herb salad",
+                        price: 950,
+                        img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80",
+                        hasMenu: true,
+                        details: {
+                            type: "Authentic Indigenous Hill Tribe Feast",
+                            schedule: "Serving Hours: 12:30 PM - 03:30 PM",
+                            duration: "Lunch Dining",
+                            amenities: ["Slow-Cooked Inside Wild Mountain Bamboo", "Organic Hill Chicken", "Indigenous Wild Herbs & Chili"],
+                            policies: "Freshly prepared on charcoal fire."
+                        },
+                        menu: {
+                            title: "Sajek Valley Indigenous Bamboo Chicken Feast",
+                            basePrice: 950,
+                            included: [
+                                "Charcoal Smoked Bamboo Chicken (Half Bird)",
+                                "Aromatic Sticky Jhum Rice Wrapped in Banana Leaves",
+                                "Fresh Mountain Forest Veggie Salad & Bamboo Shoot Chutney",
+                                "Organic Lentil Soup with Hill Herbs",
+                                "Fresh Papaya & Mountain Honey"
+                            ],
+                            addons: [
+                                { id: 'duck', name: "Add Hill Duck Roast with Coriander (+ BDT 250 / pax)", price: 250 },
+                                { id: 'salad', name: "Add Spicy Bamboo Shoot Salad (+ BDT 80 / pax)", price: 80 }
+                            ]
+                        }
+                    }
                 ];
-                inventory.flight = [
-                    { id: 1, name: "Domestic Boeing Direct Flight (DAC ✈ CXB)", sub: "50-minute express air transit to Cox's Bazar runway", price: 4500, img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.bus = [
-                    { id: 1, name: "Non-AC Economy Coach (Arambagh Counter)", sub: "Budget overland transit with pushback seats", price: 900, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true }
-                ];
-                inventory.microbus = [
-                    { id: 1, name: "Reserved AC Microbus (HiAce - Marine Drive Tour)", sub: "Full day private minivan for Inani, Himchari and Patuartek", price: 3500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.cng = [
-                    { id: 1, name: "Electric TomTom / Auto Shuttle Pass", sub: "Unlimited 24-hr hop-on hop-off within Kolatoli and Sugandha", price: 600, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.hotel = [
-                    { id: 1, name: "Deluxe 4-Bed Sea-View Family Room (2 King Beds)", sub: "Scenario 5: BDT 3,500/night decomposed down to BDT 875/person/night for 4 friends", price: 3500, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 5: Multi-Bed Cost Decomposition" },
-                    { id: 2, name: "Sayeman Beach Resort (Panorama Sea Balcony)", sub: "Luxury beachfront 5-star standard with infinity pool", price: 6500, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" },
-                    { id: 3, name: "Standard Twin-Bed Room (2 Single Beds)", sub: "Air-conditioned standard resort room near Sugandha", price: 2200, img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.bbq = [
-                    { id: 1, name: "Inani Beach Live Seafood BBQ Dinner", sub: "Fresh coral fish, red snapper, pomfret & campfire dinner by the waves", price: 2000, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 7: Beach BBQ Addon" }
-                ];
-                inventory.traditionalfood = [
-                    { id: 1, name: "Poushee Traditional Bengali Feast", sub: "20 types of authentic bhorta, Rupchanda fry & steamed rice", price: 950, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
+                inventory.dinner = [
+                    {
+                        id: 1,
+                        name: "Sajek Cloud Ridge Live BBQ Campfire Platter",
+                        sub: "Charcoal Grilled Hill Country Chicken & Warm Butter Naan under Starlit Sky",
+                        price: 1100,
+                        img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80",
+                        hasMenu: true,
+                        details: {
+                            type: "Hilltop Starlight Campfire & BBQ",
+                            schedule: "Serving Hours: 07:30 PM - 10:30 PM (Campfire Yard)",
+                            duration: "Evening Dining",
+                            amenities: ["Campfire Bonfire", "Freshly Charcoal Grilled", "Warm Butter Naan"],
+                            policies: "Warm mountain blankets provided."
+                        },
+                        menu: {
+                            title: "Sajek Campfire Ridge BBQ Platter",
+                            basePrice: 1100,
+                            included: [
+                                "Full Leg Charcoal Grilled Chicken Quarter (2 pcs)",
+                                "Clay Oven Butter Garlic Naan (2 pcs)",
+                                "Smoky Grilled Corn on the Cob with Chili Butter",
+                                "Creamy Mint Raita & Hot Spiced Green Tea"
+                            ],
+                            addons: [
+                                { id: 'soup', name: "Add Hot Country Chicken Corn Soup (+ BDT 150 / pax)", price: 150 }
+                            ]
+                        }
+                    }
                 ];
             } else if (dest === 'saintmartin') {
                 inventory.coach = [
-                    { id: 1, name: "Scania AC Coach + Teknaf Water Bus Ferry", sub: "Integrated cross-water transit package with guaranteed ferry boarding", price: 2800, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80", hasSeats: true },
-                    { id: 2, name: "Keari Sindbad Bay-Crossing Ship Transit", sub: "Open-deck cruise ship transit over the Bay of Bengal", price: 1800, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.cng = [
-                    { id: 1, name: "Saint Martin Electric Island Van Shuttle", sub: "Eco-friendly battery van for Jetty to West Beach transfers", price: 500, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.speedboat = [
-                    { id: 1, name: "Chera Dwip Speedboat Charter", sub: "Round-trip transfer to the southernmost coral reef islet", price: 1800, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                    {
+                        id: 1,
+                        name: "Scania AC Coach + Teknaf Water Bus Ferry",
+                        sub: "Integrated cross-water transit package with guaranteed ferry boarding",
+                        price: 2800,
+                        img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
+                        hasSeats: true,
+                        details: {
+                            type: "Intermodal Coach + Island Ship Cruise",
+                            schedule: "Departure: 10:00 PM (Arambagh) ➔ Teknaf Ferry: 09:30 AM (Damdamia)",
+                            duration: "Overnight Coach + 2.5 Hr Sea Cruise",
+                            routeStops: [
+                                { station: "Dhaka Arambagh", time: "10:00 PM", desc: "Overnight coach boarding" },
+                                { station: "Teknaf Damdamia Ghat", time: "08:30 AM", desc: "Breakfast & ship embarkation" },
+                                { station: "Saint Martin Island Main Jetty", time: "12:00 PM", desc: "Island arrival" }
+                            ],
+                            amenities: ["Guaranteed Ship Boarding Pass", "Air Conditioned Reclining Seats", "Life Vest on Ferry"],
+                            policies: "Subject to BIWTA and maritime weather clearance."
+                        }
+                    },
+                    {
+                        id: 2,
+                        name: "Keari Sindbad Bay-Crossing Ship Transit",
+                        sub: "Open-deck cruise ship transit over the Bay of Bengal",
+                        price: 1800,
+                        img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80",
+                        details: {
+                            type: "Open-Deck Coastal Passenger Ship",
+                            schedule: "Departure: 09:30 AM (Teknaf Damdamia) ➔ Arrival: 12:00 PM",
+                            duration: "2.5 Hours Bay Crossing",
+                            routeStops: [
+                                { station: "Damdamia Ghat", time: "09:30 AM", desc: "Naf River departure" },
+                                { station: "Bay of Bengal Open Waters", time: "10:30 AM", desc: "Seagulls flight & blue waters" },
+                                { station: "Saint Martin Jetty", time: "12:00 PM", desc: "Arrival" }
+                            ],
+                            amenities: ["Open Air Observation Deck", "Canteen Service", "Lifeboats & Jackets"],
+                            policies: "Signal No. 3 activates full programmatic refund."
+                        }
+                    }
                 ];
                 inventory.cottage = [
-                    { id: 1, name: "Blue Marine Coral Beach Eco-Resort", sub: "Direct oceanfront cottage on sandy shoreline", price: 4000, img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=150&q=80" },
-                    { id: 2, name: "Sunset View Coconut Grove Cottage", sub: "Peaceful West Beach eco-hut surrounded by coconut palms", price: 2800, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
+                    {
+                        id: 1,
+                        name: "Blue Marine Coral Beach Eco-Resort",
+                        sub: "★★★★☆ Direct Oceanfront Eco-Hut • Coral Reef & Coconut Grove",
+                        rating: "★★★★☆ 4-Star",
+                        price: 4000,
+                        img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=300&q=80",
+                        hasRooms: true,
+                        details: {
+                            type: "Coral Island Beachfront Eco-Lodge",
+                            schedule: "Check-in: 12:30 PM | Check-out: 10:30 AM",
+                            duration: "Per Night Stay",
+                            routeStops: [{ station: "West Beach Shore", time: "Direct Sand Access", desc: "Steps away from crystal clear coral waters" }],
+                            amenities: ["Wave Sound Wooden Balcony", "Fresh Coconut Welcome", "Solar Electricity", "Hammock Grove"],
+                            policies: "Plastic-free island policy strictly followed."
+                        },
+                        rooms: [
+                            {
+                                id: 'bm_ocean_cottage',
+                                name: 'Ocean Wave Front Couple Cottage',
+                                bed: '1 King Bed (2 Guests)',
+                                capacity: 2,
+                                price: 4000,
+                                floors: ['Beach Level (Direct Shore Access)'],
+                                amenities: ['Wave Sound Balcony', 'King Bed', 'Attached Bath', 'Hammock'],
+                                img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=250&q=80'
+                            }
+                        ]
+                    }
                 ];
-                inventory.bbq = [
-                    { id: 1, name: "Fresh Coral Fish & Lobster Shore BBQ", sub: "Live grilled Koral, Lobster and squid platter under the stars", price: 2200, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.traditionalfood = [
-                    { id: 1, name: "Island Green Coconut & Fresh Rice Thali", sub: "Traditional island meal with fresh coconut water and local curry", price: 750, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
+                inventory.resort = [
+                    {
+                        id: 1,
+                        name: "Coral View Island Resort",
+                        sub: "★★★★★ Premium Island Resort • Direct West Beach Sunset Facing",
+                        rating: "★★★★★ 5-Star",
+                        price: 5500,
+                        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=300&q=80",
+                        hasRooms: true,
+                        details: {
+                            type: "West Beach Luxury Resort",
+                            schedule: "Check-in: 01:00 PM | Check-out: 11:00 AM",
+                            duration: "Per Night Stay",
+                            routeStops: [{ station: "West Beach Sunset Point", time: "Beachfront", desc: "Golden hour sunset horizon" }],
+                            amenities: ["Private Coral Beach Access", "Seafood Restaurant", "24/7 Generator Power", "En-suite AC Rooms"],
+                            policies: "Environmental island guidelines apply."
+                        },
+                        rooms: [
+                            {
+                                id: 'coral_view_deluxe',
+                                name: 'Deluxe Sunset Coral Suite',
+                                bed: '1 King Bed (2 Guests)',
+                                capacity: 2,
+                                price: 5500,
+                                floors: ['Upper Deck (Sunset Panorama)'],
+                                amenities: ['Direct Sunset Balcony', 'AC', 'Breakfast Included', 'Mini Fridge'],
+                                img: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=250&q=80'
+                            }
+                        ]
+                    }
                 ];
             } else if (dest === 'sreemangal') {
                 inventory.train = [
-                    { id: 1, name: "Upaban Express AC Intercity Rail Transit", sub: "Scenic tea valley rail transit from Kamalapur", price: 750, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.coach = [
-                    { id: 1, name: "Direct AC Tourist Coach (Sayedabad Gateway)", sub: "Express highway coach to Sreemangal Town", price: 800, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
-                ];
-                inventory.jeep = [
-                    { id: 1, name: "Lawachara Rain Forest Safari Jeep", sub: "Guided wildlife and tea estate expedition vehicle", price: 2500, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
+                    {
+                        id: 1,
+                        name: "Upaban Express AC Snigdha Rail Transit",
+                        sub: "Scenic Tea Valley Intercity Rail Transit from Kamalapur",
+                        price: 750,
+                        img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80",
+                        details: {
+                            type: "Intercity Rail Express",
+                            schedule: "Departure: 08:30 PM (Kamalapur) ➔ Arrival: 01:15 AM (Sreemangal)",
+                            duration: "4 Hours 45 Mins",
+                            routeStops: [
+                                { station: "Kamalapur Railway Station", time: "08:30 PM", desc: "Boarding" },
+                                { station: "Airport Station", time: "09:00 PM", desc: "Pickup" },
+                                { station: "Sreemangal Iconic Station", time: "01:15 AM", desc: "Arrival" }
+                            ],
+                            amenities: ["AC Snigdha Reclining Chair", "Onboard Snacks", "Clean Washrooms"],
+                            policies: "Standard Railway booking policies."
+                        }
+                    }
                 ];
                 inventory.hotel = [
-                    { id: 1, name: "Grand Sultan Tea Resort (Deluxe Suite)", sub: "5-star luxury surrounded by rolling green hills", price: 7500, img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.cottage = [
-                    { id: 1, name: "Shanti Bari Eco-Resort Cottage", sub: "Earthy mud-and-bamboo cottage in peaceful tea gardens", price: 3000, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.traditionalfood = [
-                    { id: 1, name: "Nilkantha Cabin Seven-Color Tea Experience", sub: "Legendary 7-layer tea with traditional Sylheti snacks", price: 350, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" },
-                    { id: 2, name: "Khasia Tribal Roasted Duck Feast", sub: "Authentic indigenous duck roast and sticky rice", price: 1350, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
+                    {
+                        id: 1,
+                        name: "Grand Sultan Tea Resort & Golf",
+                        sub: "★★★★★ 5-Star Luxury Resort • Surrounded by Rolling Green Hills & Golf Course",
+                        rating: "★★★★★ 5-Star",
+                        price: 7500,
+                        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=300&q=80",
+                        hasRooms: true,
+                        details: {
+                            type: "5-Star Tea Estate Luxury Resort",
+                            schedule: "Check-in: 02:00 PM | Check-out: 12:00 PM",
+                            duration: "Per Night Stay",
+                            routeStops: [{ station: "Radhanagar Tea Valley", time: "Tea Hills", desc: "Overlooking lush green tea gardens" }],
+                            amenities: ["3 Temperature Controlled Swimming Pools", "9-Hole Golf Course", "Fine Dining Restaurants", "Spa & Wellness Center"],
+                            policies: "VIP amenities included."
+                        },
+                        rooms: [
+                            {
+                                id: 'gs_king_deluxe',
+                                name: 'King Deluxe Tea-View Suite',
+                                bed: '1 Super King Bed (2 Guests)',
+                                capacity: 2,
+                                price: 7500,
+                                floors: ['Floor 3 (Tea Hills View)'],
+                                amenities: ['Tea Garden Balcony', 'Buffet Breakfast Included', 'Jacuzzi Bath', 'Espresso Bar'],
+                                img: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=250&q=80'
+                            }
+                        ]
+                    }
                 ];
             } else if (dest === 'tetulia') {
                 inventory.flight = [
-                    { id: 1, name: "Multi-Leg Flight + Microbus (Scenario 1)", sub: "DAC ✈ SPD Flight (BDT 4,500) + 45-min buffer + SPD 🚐 Tetulia AC Microbus (BDT 800)", price: 5300, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 1: Multi-Leg Route Synthesis" }
-                ];
-                inventory.coach = [
-                    { id: 1, name: "Direct Overnight AC Sleeper Coach (Gabtoli ➔ Banglabandha)", sub: "Northern highway direct transit", price: 1600, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
-                ];
-                inventory.jeep = [
-                    { id: 1, name: "Mahananda Riverbank Sightseeing Jeep", sub: "Border view transport for Kanchenjunga lookout point", price: 2800, img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.cottage = [
-                    { id: 1, name: "Kanchenjunga View Border Eco-Lodge", sub: "Clear morning horizon view of Himalayan snow peaks", price: 2600, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.traditionalfood = [
-                    { id: 1, name: "Organic North Bengal Duck & Rice Thali", sub: "Locally farmed duck curry with fragrant Atash rice", price: 900, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=150&q=80" }
+                    {
+                        id: 1,
+                        name: "Multi-Leg Flight + Microbus (Scenario 1)",
+                        sub: "DAC ✈ SPD Flight (BDT 4,500) + 45-min buffer + SPD 🚐 Tetulia AC Microbus (BDT 800)",
+                        price: 5300,
+                        img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80",
+                        hasFlightSeats: true,
+                        scenario: "Scenario 1: Multi-Leg Route Synthesis",
+                        details: {
+                            type: "Multi-Leg Air + Overland Synthesis",
+                            schedule: "DAC ✈ Saidpur (09:00 AM) + Transit Buffer (45m) + Saidpur 🚐 Tetulia (11:00 AM)",
+                            duration: "3.5 Hours Total Door-to-Door",
+                            routeStops: [
+                                { station: "Hazrat Shahjalal Intl (DAC)", time: "09:00 AM", desc: "Domestic takeoff" },
+                                { station: "Saidpur Airport (SPD)", time: "09:50 AM", desc: "Landing & baggage claim" },
+                                { station: "Saidpur AC Microbus Terminal", time: "10:35 AM", desc: "Connecting air-conditioned shuttle" },
+                                { station: "Tetulia Dak Bungalow & Lookout Point", time: "12:30 PM", desc: "Arrival at Kanchenjunga lookout" }
+                            ],
+                            amenities: ["Seamless Airport Baggage Transfer", "20kg Checked Bag", "Chilled Mineral Water", "Front Passenger View"],
+                            policies: "Scenario 1 Synthesized Route Guarantee."
+                        }
+                    }
                 ];
             } else if (dest === 'jaflong') {
-                inventory.train = [
-                    { id: 1, name: "Parabat Express Intercity Rail + Sylhet AC Coach", sub: "Comfortable train + connecting road shuttle", price: 1100, img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.coach = [
-                    { id: 1, name: "Direct AC Tourist Coach (Kallayanpur ➔ Sylhet)", sub: "Overnight express coach", price: 1200, img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=150&q=80", hasSeats: true }
-                ];
-                inventory.permit = [
-                    { id: 1, name: "Jaflong Registered Motorized Boat Permit", sub: "Scenario 4: Registered boat operator permit for Zero Point Lalji hill", price: 800, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 4: Registered Boat Permit" }
-                ];
                 inventory.hotel = [
-                    { id: 1, name: "Tamabil Border Rest House & Eco Resort", sub: "Panoramic views of Dawki falls across Meghalaya border", price: 2900, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&q=80" }
-                ];
-                inventory.traditionalfood = [
-                    { id: 1, name: "Surma River Fresh Fish & Shatkora Beef Platter", sub: "Authentic Sylheti citrus Shatkora beef with river fish", price: 1200, img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=150&q=80" }
+                    {
+                        id: 1,
+                        name: "Tamabil Border Rest House & Eco Resort",
+                        sub: "★★★★☆ Panoramic Views of Dawki Waterfalls Across Meghalaya Border",
+                        rating: "★★★★☆ 4-Star",
+                        price: 2900,
+                        img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80",
+                        hasRooms: true,
+                        details: {
+                            type: "Border Mountain Eco-Resort",
+                            schedule: "Check-in: 12:00 PM | Check-out: 11:00 AM",
+                            duration: "Per Night Stay",
+                            routeStops: [{ station: "Tamabil Zero Point", time: "Border View", desc: "Direct views of Meghalaya cloud hills" }],
+                            amenities: ["Dawki Waterfall Horizon View", "Attached Modern Bath", "Local Sylheti Dining", "Secure Parking"],
+                            policies: "Valid national identification required."
+                        },
+                        rooms: [
+                            {
+                                id: 'tamabil_deluxe_room',
+                                name: 'Dawki View Deluxe Room',
+                                bed: '1 King Bed (2 Guests)',
+                                capacity: 2,
+                                price: 2900,
+                                floors: ['Floor 2 (Waterfall View)'],
+                                amenities: ['Mountain View Window', 'King Bed', 'Hot Water', 'WiFi'],
+                                img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=250&q=80'
+                            }
+                        ]
+                    }
                 ];
             }
         }
@@ -2167,12 +4378,18 @@
 
                     const priceEl = document.getElementById(`price-${slotKey}`);
                     const valEl = document.getElementById(`val-${slotKey}`);
-                    let seatSuffix = '';
+                    
+                    let labelSuffix = '';
                     if (item.selectedSeats && item.selectedSeats.length > 0) {
-                        seatSuffix = ` (Seats: ${item.selectedSeats.join(', ')})`;
+                        labelSuffix = ` (Seats: ${item.selectedSeats.join(', ')})`;
+                    } else if (item.selectedRoom) {
+                        labelSuffix = ` (${item.selectedRoom.name}${item.selectedRoom.chosenFloor ? ' - ' + item.selectedRoom.chosenFloor : ''})`;
+                    } else if (item.selectedMenu) {
+                        labelSuffix = ` (${item.selectedMenu.packageName})`;
                     }
+
                     if (valEl && !valEl.textContent.includes('Not Selected')) {
-                        valEl.textContent = item.name + seatSuffix;
+                        valEl.textContent = item.name + labelSuffix;
                     }
                     if (priceEl) {
                         priceEl.innerHTML = `
@@ -2245,17 +4462,18 @@
         function confirmTourBooking() {
             if (!validateSearchFields(true)) return;
 
-            const hasTransit = currentTour.bus || currentTour.coach || currentTour.flight || currentTour.train;
-            if (!hasTransit) {
-                alert('⚠️ Please select at least one Transit method (Bus, Coach, Flight, or Train) to complete your booking.');
+            const configuredSlots = Object.keys(currentTour).filter(k => currentTour[k] !== null);
+            if (configuredSlots.length === 0) {
+                alert('⚠️ Please select at least one travel component (e.g. Hotel, Bus, Flight, Resort, or Dining) before confirming your booking.');
                 return;
             }
-            const hasLodging = currentTour.hotel || currentTour.cottage;
-            if (!hasLodging) {
-                alert('⚠️ Please choose a Hotel or Resort Accommodation to complete your booking.');
-                return;
-            }
-            alert('✅ Travel Plan Confirmed!\nYour custom travel blueprint with dynamic seating, lodging, and dining has been saved.');
+
+            const total = document.getElementById('total-amount').textContent;
+            const perPerson = document.getElementById('per-person-amount').textContent;
+            const count = configuredSlots.length;
+            const travelers = getTravelerCount();
+
+            alert(`✅ Travel Plan Confirmed!\n\nComponents Booked: ${count}\nTotal Group Price: ${total}\nCost Per Traveler: ${perPerson} (${travelers} Travelers)\n\nYour flexible booking has been verified and saved to system records.`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
