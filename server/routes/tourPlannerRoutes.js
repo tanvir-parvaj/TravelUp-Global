@@ -20,4 +20,9 @@ router.get('/locations/districts', tourPlannerController.getDistricts);
 router.get('/locations/upazilas', tourPlannerController.getUpazilas);
 router.get('/locations/search', tourPlannerController.searchLocations);
 
+// 6. Tour Destination Places (Country -> Division -> District -> Tourist Destinations)
+router.get('/destinations/places', tourPlannerController.getTourDestinations);
+router.get('/destinations/search', tourPlannerController.searchTourDestinations);
+
 module.exports = router;
+

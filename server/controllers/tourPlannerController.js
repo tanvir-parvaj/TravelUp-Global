@@ -319,3 +319,82 @@ exports.searchLocations = async (req, res) => {
     }
 };
 
+/**
+ * 9. Get Tour Destinations from bd_tour_destinations table
+ * Supports filtering by district_id, division_id, top_50, type, or search keyword
+ */
+exports.getTourDestinations = async (req, res) => {
+    try {
+        const { district_id, division_id, top_50, type, q } = req.query;
+        let query = 'SELECT * FROM bd_tour_destinations WHERE is_active = 1';
+        const params = [];
+
+        if (district_id) {
+            query += ' AND district_id = ?';
+            params.push(district_id);
+        } else if (division_id) {
+            query += ' AND division_id = ?';
+            params.push(division_id);
+        }
+
+        if (top_50 === '1' || top_50 === 'true') {
+            query += ' AND top_50_flag = 1';
+        }
+
+        if (type) {
+            query += ' AND destination_type = ?';
+            params.push(type);
+        }
+
+        if (q) {
+            const pattern = `%${q.trim()}%`;
+            query += ' AND (name_en LIKE ? OR name_bn LIKE ? OR search_keywords LIKE ? OR district_name_en LIKE ?)';
+            params.push(pattern, pattern, pattern, pattern);
+        }
+
+        query += ' ORDER BY CASE WHEN popularity_rank IS NOT NULL THEN popularity_rank ELSE 9999 END ASC, name_en ASC';
+
+        const [rows] = await pool.query(query, params);
+        return res.json({ success: true, count: rows.length, destinations: rows });
+    } catch (error) {
+        console.error('Get tour destinations error:', error);
+        return res.status(500).json({ success: false, message: 'Failed to load tour destinations', error: error.message });
+    }
+};
+
+/**
+ * 10. Search Tour Destinations with Ranking & Relevance
+ */
+exports.searchTourDestinations = async (req, res) => {
+    try {
+        const q = (req.query.q || '').trim();
+        if (!q) {
+            return res.json({ success: true, count: 0, results: [] });
+        }
+        const pattern = `%${q}%`;
+        const [rows] = await pool.query(`
+            SELECT destination_id, name_en, name_bn, district_id, district_name_en, district_name_bn, 
+                   division_id, division_name_en, division_name_bn, destination_type, top_50_flag, popularity_rank
+            FROM bd_tour_destinations
+            WHERE is_active = 1 
+              AND (name_en LIKE ? OR name_bn LIKE ? OR district_name_en LIKE ? OR division_name_en LIKE ? OR search_keywords LIKE ?)
+            ORDER BY 
+              CASE 
+                WHEN name_en LIKE ? THEN 1 
+                WHEN name_bn LIKE ? THEN 2 
+                WHEN district_name_en LIKE ? THEN 3 
+                ELSE 4 
+              END,
+              CASE WHEN popularity_rank IS NOT NULL THEN popularity_rank ELSE 9999 END ASC,
+              name_en ASC
+            LIMIT 40
+        `, [pattern, pattern, pattern, pattern, pattern, `${q}%`, `${q}%`, `${q}%`]);
+
+        return res.json({ success: true, count: rows.length, results: rows });
+    } catch (error) {
+        console.error('Search tour destinations error:', error);
+        return res.status(500).json({ success: false, message: 'Failed to search tour destinations', error: error.message });
+    }
+};
+
+
