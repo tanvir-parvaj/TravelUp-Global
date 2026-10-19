@@ -257,10 +257,22 @@
             margin: 0 0 1.25rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.04);
             display: grid;
-            grid-template-columns: 1.2fr 1.2fr 1fr 1fr 1.1fr;
-            gap: 1.25rem;
+            grid-template-columns: 1.15fr 1.15fr 0.9fr 0.9fr 1.05fr 0.95fr;
+            gap: 1rem;
             align-items: start;
             transition: all 0.25s ease;
+        }
+
+        @media (max-width: 1200px) {
+            .search-strip {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-strip {
+                grid-template-columns: 1fr;
+            }
         }
 
         .trip-type-tabs {
@@ -768,6 +780,310 @@
             font-weight: 700;
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
+        }
+
+        /* ==============================================================
+           TOUR PLANNER PREMIUM REDESIGN & ITINERARY PLANNING STYLES
+           ============================================================== */
+        
+        /* Category Quick Navigation & Search Strip */
+        .cat-nav-strip {
+            background: #ffffff;
+            border: 1px solid var(--st-border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 68px;
+            z-index: 800;
+        }
+
+        .cat-nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .cat-nav-btn {
+            background: #f8fafc;
+            border: 1px solid var(--st-border);
+            color: #475569;
+            padding: 0.45rem 0.85rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .cat-nav-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .cat-nav-btn.active {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+            box-shadow: 0 2px 4px rgba(2, 132, 199, 0.25);
+        }
+
+        .cat-nav-btn .badge {
+            background: rgba(0,0,0,0.08);
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+
+        .cat-nav-btn.active .badge {
+            background: rgba(255,255,255,0.25);
+            color: #ffffff;
+        }
+
+        .cat-search-wrap {
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid var(--st-border);
+            border-radius: 6px;
+            padding: 0.35rem 0.75rem;
+            gap: 0.4rem;
+            min-width: 240px;
+            transition: all 0.2s;
+        }
+
+        .cat-search-wrap:focus-within {
+            border-color: #0284c7;
+            background: #ffffff;
+            box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+        }
+
+        .cat-search-wrap input {
+            border: none;
+            background: transparent;
+            font-size: 0.825rem;
+            font-weight: 600;
+            color: #0f172a;
+            outline: none;
+            width: 100%;
+        }
+
+        /* Budget Meter Card */
+        .budget-card-wrap {
+            background: #ffffff;
+            border: 1px solid var(--st-border);
+            border-radius: 8px;
+            padding: 0.85rem 1.25rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .budget-info-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .budget-meter-bar-outer {
+            width: 220px;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 9999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .budget-meter-bar-inner {
+            height: 100%;
+            background: #10b981;
+            transition: width 0.3s ease, background 0.3s ease;
+            border-radius: 9999px;
+        }
+
+        .budget-meter-bar-inner.over-budget {
+            background: #ef4444;
+        }
+
+        /* Tourist Preferences Bar */
+        .preferences-bar {
+            background: #f8fafc;
+            border: 1px solid var(--st-border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .pref-pill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        /* Service Row Status Badges */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .status-pill.not-added {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .status-pill.configured {
+            background: #ecfdf5;
+            color: #059669;
+            border: 1px solid #a7f3d0;
+        }
+
+        .status-pill.warning {
+            background: #fffbeb;
+            color: #d97706;
+            border: 1px solid #fde68a;
+        }
+
+        /* Day-by-Day Itinerary Timeline */
+        .itinerary-day-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .itinerary-day-header {
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .itinerary-day-title {
+            font-size: 0.925rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .itinerary-items-timeline {
+            padding: 1rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .itinerary-step-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.65rem 0.9rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+        }
+
+        .itinerary-time-pill {
+            background: #eff6ff;
+            color: #0284c7;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            min-width: 75px;
+            text-align: center;
+        }
+
+        /* Schedule Conflict Warning Card */
+        .conflict-alert-card {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-left: 4px solid #d97706;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.825rem;
+            color: #92400e;
+        }
+
+        /* Print-specific Stylesheet */
+        @media print {
+            .site-navbar,
+            .demo-preset-strip,
+            .cat-nav-strip,
+            .budget-card-wrap,
+            .preferences-bar,
+            .all-actions,
+            .pcb-bottom-actions,
+            .actions,
+            .checkbox-group,
+            .btn-choose,
+            .btn-remove,
+            .modal-overlay,
+            #field-budget {
+                display: none !important;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .pcb-container {
+                box-shadow: none !important;
+                border: none !important;
+            }
+
+            .c-item {
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: avoid;
+            }
         }
 
         /* Modal Overlay */
@@ -1426,6 +1742,14 @@
                     </button>
                 </div>
             </div>
+            <div class="search-field" id="field-budget">
+                <label>Target Budget (BDT)</label>
+                <div style="position: relative; display: flex; align-items: center;">
+                    <span style="position: absolute; left: 8px; font-weight: 800; font-size: 0.72rem; color: #64748b;">BDT</span>
+                    <input type="number" id="target-budget-input" placeholder="e.g. 50,000" min="0" step="500" style="padding-left: 36px;" oninput="onBudgetInputChanged(this.value)">
+                </div>
+                <span class="error-hint" id="budget-hint">Target budget amount</span>
+            </div>
         </div>
 
         <!-- Lock / Status Banner (Hidden per user request) -->
@@ -1441,22 +1765,99 @@
             </button>
         </div>
 
+        <!-- Category Quick Jump Strip & Service Search Bar -->
+        <div class="cat-nav-strip" id="cat-nav-strip">
+            <div class="cat-nav-buttons" id="cat-nav-buttons">
+                <button type="button" class="cat-nav-btn active" data-cat="all" onclick="filterCategory('all')">
+                    <span>All Components</span> <span class="badge" id="badge-count-all">25</span>
+                </button>
+                <button type="button" class="cat-nav-btn" data-cat="transit" onclick="filterCategory('transit')">
+                    <span>Transit</span> <span class="badge" id="badge-count-transit">9</span>
+                </button>
+                <button type="button" class="cat-nav-btn" data-cat="accommodation" onclick="filterCategory('accommodation')">
+                    <span>Accommodation</span> <span class="badge" id="badge-count-accommodation">5</span>
+                </button>
+                <button type="button" class="cat-nav-btn" data-cat="dining" onclick="filterCategory('dining')">
+                    <span>Dining & Meals</span> <span class="badge" id="badge-count-dining">4</span>
+                </button>
+                <button type="button" class="cat-nav-btn" data-cat="recreation" onclick="filterCategory('recreation')">
+                    <span>Recreation</span> <span class="badge" id="badge-count-recreation">4</span>
+                </button>
+                <button type="button" class="cat-nav-btn" data-cat="addons" onclick="filterCategory('addons')">
+                    <span>Guides & Addons</span> <span class="badge" id="badge-count-addons">3</span>
+                </button>
+            </div>
+            <div class="cat-search-wrap">
+                <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
+                <input type="text" id="service-search-input" placeholder="Search 25 services by name..." oninput="onServiceSearchChanged(this.value)">
+                <button type="button" id="clear-service-search" style="display: none; background: none; border: none; cursor: pointer; color: #94a3b8; padding: 0;" onclick="clearServiceSearch()">
+                    <i class="material-icons" style="font-size: 16px;">close</i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Budget Gauge & Tourist Preferences Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+            <!-- Target Budget Gauge -->
+            <div class="budget-card-wrap" style="margin-bottom: 0;">
+                <div class="budget-info-left">
+                    <div style="width: 36px; height: 36px; border-radius: 8px; background: #eff6ff; display: flex; align-items: center; justify-content: center; color: #0284c7;">
+                        <i class="material-icons" style="font-size: 20px;">account_balance_wallet</i>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Target Budget Gauge</div>
+                        <div style="font-size: 0.875rem; font-weight: 800; color: #0f172a;" id="budget-status-text">Enter target budget above to track cost</div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div class="budget-meter-bar-outer" title="Spent vs Target Budget">
+                        <div class="budget-meter-bar-inner" id="budget-progress-bar" style="width: 0%;"></div>
+                    </div>
+                    <span id="budget-percentage-text" style="font-size: 0.8rem; font-weight: 800; color: #475569; min-width: 45px; text-align: right;">0%</span>
+                </div>
+            </div>
+
+            <!-- Tourist Preferences Strip -->
+            <div class="preferences-bar" style="margin-bottom: 0;">
+                <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;">
+                    <span style="font-size: 0.725rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Preferences:</span>
+                    <span class="pref-pill-tag" id="pref-tag-pace"><i class="material-icons" style="font-size: 13px;">speed</i> <span id="pref-val-pace">Moderate Pace</span></span>
+                    <span class="pref-pill-tag" id="pref-tag-mobility"><i class="material-icons" style="font-size: 13px;">accessible</i> <span id="pref-val-mobility">Standard</span></span>
+                    <span class="pref-pill-tag" id="pref-tag-dietary"><i class="material-icons" style="font-size: 13px;">restaurant</i> <span id="pref-val-dietary">Halal / Standard</span></span>
+                    <span class="pref-pill-tag" id="pref-tag-luggage"><i class="material-icons" style="font-size: 13px;">luggage</i> <span id="pref-val-luggage">Standard</span></span>
+                </div>
+                <button type="button" class="action-btn" onclick="openPreferencesModal()" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;">
+                    <i class="material-icons" style="font-size: 14px;">tune</i> Edit
+                </button>
+            </div>
+        </div>
+
         <!-- PCB Builder Container -->
         <div class="pcb-container is-locked">
 
             <!-- PCB Head (Larger Logo on Left, Price Stats on Right) -->
             <div class="pcb-head">
-                <div style="display: flex; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
                     <img src="images/logo.png" alt="TravelUp Global" style="height: 52px; width: auto; display: block;">
-                </div>
-                <div class="price-stats-wrap">
-                    <div class="stat-box person-box">
-                        <div class="amount" id="per-person-amount">—</div>
-                        <div class="label">Per Person (Scenario 5)</div>
+                    <div>
+                        <div style="font-size: 0.8rem; font-weight: 800; color: #0284c7; text-transform: uppercase; letter-spacing: 0.05em;">Tour Itinerary Builder</div>
+                        <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Custom Multi-Component Disaggregated Travel Plan</div>
                     </div>
-                    <div class="stat-box">
-                        <div class="amount" id="total-amount">—</div>
-                        <div class="label" id="items-count-label">0 Components Selected</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                    <button type="button" class="action-btn" onclick="openItineraryModal()" style="background: #0284c7; color: #ffffff; border-color: #0284c7; font-weight: 800;">
+                        <i class="material-icons" style="font-size: 18px;">calendar_month</i>
+                        <span>View Day-by-Day Schedule</span>
+                    </button>
+                    <div class="price-stats-wrap">
+                        <div class="stat-box person-box">
+                            <div class="amount" id="per-person-amount">—</div>
+                            <div class="label">Per Person</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="amount" id="total-amount">—</div>
+                            <div class="label" id="items-count-label">0 Components Selected</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1465,16 +1866,17 @@
             <div class="pcb-content">
 
                 <!-- Long-Haul Intermodal Transit -->
-                <div class="content-label">Long-Haul Intermodal Transit (Bus / Flight / Train)</div>
+                <div class="content-label" data-category-heading="transit">Long-Haul Intermodal Transit (Bus / Flight / Train)</div>
 
                 <!-- Bus Component -->
-                <div class="c-item" id="slot-bus">
+                <div class="c-item" id="slot-bus" data-category="transit">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80" alt="Bus (Economy Non-AC)" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Bus (Economy Non-AC)</span>
+                            <span class="status-pill not-added" id="status-bus">Not Added</span>
                         </div>
                         <div class="product-name" id="val-bus">Not Selected</div>
                     </div>
@@ -1485,13 +1887,14 @@
                 </div>
 
                 <!-- AC Luxury Coach Component -->
-                <div class="c-item" id="slot-coach">
+                <div class="c-item" id="slot-coach" data-category="transit">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=300&q=80" alt="AC Luxury Coach" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>AC Luxury Coach (Scania / Hyundai)</span>
+                            <span class="status-pill not-added" id="status-coach">Not Added</span>
                         </div>
                         <div class="product-name" id="val-coach">Not Selected</div>
                     </div>
@@ -1502,13 +1905,14 @@
                 </div>
 
                 <!-- Domestic Flight Component -->
-                <div class="c-item" id="slot-flight">
+                <div class="c-item" id="slot-flight" data-category="transit">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80" alt="Domestic Flight" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Domestic Flight</span>
+                            <span class="status-pill not-added" id="status-flight">Not Added</span>
                         </div>
                         <div class="product-name" id="val-flight">Not Selected</div>
                     </div>
@@ -1519,13 +1923,14 @@
                 </div>
 
                 <!-- Intercity Express Train Component -->
-                <div class="c-item" id="slot-train">
+                <div class="c-item" id="slot-train" data-category="transit">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80" alt="Intercity Express Train" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Intercity Express Train</span>
+                            <span class="status-pill not-added" id="status-train">Not Added</span>
                         </div>
                         <div class="product-name" id="val-train">Not Selected</div>
                     </div>
@@ -1536,13 +1941,14 @@
                 </div>
 
                 <!-- River Cruise / Passenger Launch Component -->
-                <div class="c-item" id="slot-launch">
+                <div class="c-item" id="slot-launch" data-category="transit">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=300&q=80" alt="River Cruise / Launch" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>River Cruise / Passenger Launch</span>
+                            <span class="status-pill not-added" id="status-launch">Not Added</span>
                         </div>
                         <div class="product-name" id="val-launch">Not Selected</div>
                     </div>
@@ -1553,16 +1959,17 @@
                 </div>
 
                 <!-- Local Ground Transit & Terminal Shuttles -->
-                <div class="content-label">Local Ground Transit & Terminal Shuttles (Microbus / 4WD Jeep / Auto)</div>
+                <div class="content-label" data-category-heading="transit">Local Ground Transit & Terminal Shuttles (Microbus / 4WD Jeep / Auto)</div>
 
                 <!-- Microbus Component -->
-                <div class="c-item" id="slot-microbus">
+                <div class="c-item" id="slot-microbus" data-category="transit">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=300&q=80" alt="AC Microbus" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>AC Microbus (Toyota HiAce / Noah)</span>
+                            <span class="status-pill not-added" id="status-microbus">Not Added</span>
                         </div>
                         <div class="product-name" id="val-microbus">Not Selected</div>
                     </div>
@@ -1573,13 +1980,14 @@
                 </div>
 
                 <!-- Chander Gari / Mountain Jeep Component -->
-                <div class="c-item" id="slot-jeep">
+                <div class="c-item" id="slot-jeep" data-category="transit">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=300&q=80" alt="Chander Gari / 4WD Jeep" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Chander Gari / 4WD Mountain Jeep</span>
+                            <span class="status-pill not-added" id="status-jeep">Not Added</span>
                         </div>
                         <div class="product-name" id="val-jeep">Not Selected</div>
                     </div>
@@ -1590,13 +1998,14 @@
                 </div>
 
                 <!-- Auto-Rickshaw / CNG Component -->
-                <div class="c-item" id="slot-cng">
+                <div class="c-item" id="slot-cng" data-category="transit">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=300&q=80" alt="Auto-Rickshaw / CNG" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Auto-Rickshaw / Electric TomTom / CNG</span>
+                            <span class="status-pill not-added" id="status-cng">Not Added</span>
                         </div>
                         <div class="product-name" id="val-cng">Not Selected</div>
                     </div>
@@ -1607,13 +2016,14 @@
                 </div>
 
                 <!-- Covered Cargo & Heavy Luggage Truck -->
-                <div class="c-item" id="slot-truck">
+                <div class="c-item" id="slot-truck" data-category="transit">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=300&q=80" alt="Luggage & Cargo Truck" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Luggage & Cargo Truck</span>
+                            <span class="status-pill not-added" id="status-truck">Not Added</span>
                         </div>
                         <div class="product-name" id="val-truck">Not Selected</div>
                     </div>
@@ -1624,16 +2034,17 @@
                 </div>
 
                 <!-- Resort, Hotels & Bedding -->
-                <div class="content-label">Resort, Hotels & Bedding (Accommodation, Bedding & Fresh-Up)</div>
+                <div class="content-label" data-category-heading="accommodation">Resort, Hotels & Bedding (Accommodation, Bedding & Fresh-Up)</div>
 
                 <!-- Hotel Component -->
-                <div class="c-item" id="slot-hotel">
+                <div class="c-item" id="slot-hotel" data-category="accommodation">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80" alt="Hotel" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Hotel (City & Standard 3-5 Star Hotels)</span>
+                            <span class="status-pill not-added" id="status-hotel">Not Added</span>
                         </div>
                         <div class="product-name" id="val-hotel">Not Selected</div>
                     </div>
@@ -1644,13 +2055,14 @@
                 </div>
 
                 <!-- Resort Component -->
-                <div class="c-item" id="slot-resort">
+                <div class="c-item" id="slot-resort" data-category="accommodation">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=300&q=80" alt="Resort" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Resort (Beachfront & Scenic Holiday Resorts)</span>
+                            <span class="status-pill not-added" id="status-resort">Not Added</span>
                         </div>
                         <div class="product-name" id="val-resort">Not Selected</div>
                     </div>
@@ -1661,13 +2073,14 @@
                 </div>
 
                 <!-- Eco Cottage Component -->
-                <div class="c-item" id="slot-cottage">
+                <div class="c-item" id="slot-cottage" data-category="accommodation">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=300&q=80" alt="Eco Cottage" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Eco Cottage (Nature Wooden Lodges & Bamboo Huts)</span>
+                            <span class="status-pill not-added" id="status-cottage">Not Added</span>
                         </div>
                         <div class="product-name" id="val-cottage">Not Selected</div>
                     </div>
@@ -1678,13 +2091,14 @@
                 </div>
 
                 <!-- Luxury Villa Component -->
-                <div class="c-item" id="slot-villa">
+                <div class="c-item" id="slot-villa" data-category="accommodation">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=300&q=80" alt="Luxury Villa" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Luxury Villa (Private Oceanfront & Hilltop Villas)</span>
+                            <span class="status-pill not-added" id="status-villa">Not Added</span>
                         </div>
                         <div class="product-name" id="val-villa">Not Selected</div>
                     </div>
@@ -1695,13 +2109,14 @@
                 </div>
 
                 <!-- Early Fresh-Up Room Slot -->
-                <div class="c-item" id="slot-freshup">
+                <div class="c-item" id="slot-freshup" data-category="accommodation">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=300&q=80" alt="Early Fresh-up Room" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>5:30 AM Early Arrival Fresh-up Room</span>
+                            <span class="status-pill not-added" id="status-freshup">Not Added</span>
                         </div>
                         <div class="product-name" id="val-freshup">Not Selected</div>
                     </div>
@@ -1712,16 +2127,17 @@
                 </div>
 
                 <!-- Dining & Meal Plans -->
-                <div class="content-label">Dining & Meal Plans (Breakfast / Lunch / Dinner / Cafe & Snacks)</div>
+                <div class="content-label" data-category-heading="dining">Dining & Meal Plans (Breakfast / Lunch / Dinner / Cafe & Snacks)</div>
 
                 <!-- Breakfast Component -->
-                <div class="c-item" id="slot-breakfast">
+                <div class="c-item" id="slot-breakfast" data-category="dining">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=300&q=80" alt="Breakfast" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Breakfast (Morning Breakfast & Continental Buffet)</span>
+                            <span class="status-pill not-added" id="status-breakfast">Not Added</span>
                         </div>
                         <div class="product-name" id="val-breakfast">Not Selected</div>
                     </div>
@@ -1732,13 +2148,14 @@
                 </div>
 
                 <!-- Lunch Component -->
-                <div class="c-item" id="slot-lunch">
+                <div class="c-item" id="slot-lunch" data-category="dining">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80" alt="Lunch" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Lunch (Traditional Feast & Local Cuisine)</span>
+                            <span class="status-pill not-added" id="status-lunch">Not Added</span>
                         </div>
                         <div class="product-name" id="val-lunch">Not Selected</div>
                     </div>
@@ -1749,13 +2166,14 @@
                 </div>
 
                 <!-- Dinner Component -->
-                <div class="c-item" id="slot-dinner">
+                <div class="c-item" id="slot-dinner" data-category="dining">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300&q=80" alt="Dinner" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Dinner (Live Seafood BBQ & Beachside Dinner)</span>
+                            <span class="status-pill not-added" id="status-dinner">Not Added</span>
                         </div>
                         <div class="product-name" id="val-dinner">Not Selected</div>
                     </div>
@@ -1766,13 +2184,14 @@
                 </div>
 
                 <!-- Cafe Component -->
-                <div class="c-item" id="slot-cafe">
+                <div class="c-item" id="slot-cafe" data-category="dining">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=300&q=80" alt="Cafe & Snacks" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Cafe (Artisan Coffee, Snacks & Special Tea)</span>
+                            <span class="status-pill not-added" id="status-cafe">Not Added</span>
                         </div>
                         <div class="product-name" id="val-cafe">Not Selected</div>
                     </div>
@@ -1783,16 +2202,17 @@
                 </div>
 
                 <!-- Recreation & Activities -->
-                <div class="content-label">Recreation & Activities (Recreation - No Forced Bundling / Scenario 8)</div>
+                <div class="content-label" data-category-heading="recreation">Recreation & Activities (Recreation - No Forced Bundling / Scenario 8)</div>
 
                 <!-- Parasailing Adventure Component -->
-                <div class="c-item" id="slot-parasailing">
+                <div class="c-item" id="slot-parasailing" data-category="recreation">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=300&q=80" alt="Parasailing Adventure Flight" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Parasailing Adventure Flight</span>
+                            <span class="status-pill not-added" id="status-parasailing">Not Added</span>
                         </div>
                         <div class="product-name" id="val-parasailing">Not Selected</div>
                     </div>
@@ -1803,13 +2223,14 @@
                 </div>
 
                 <!-- Speedboat Safari Component -->
-                <div class="c-item" id="slot-speedboat">
+                <div class="c-item" id="slot-speedboat" data-category="recreation">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=300&q=80" alt="Speedboat Safari" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Speedboat Safari & Island Cruise</span>
+                            <span class="status-pill not-added" id="status-speedboat">Not Added</span>
                         </div>
                         <div class="product-name" id="val-speedboat">Not Selected</div>
                     </div>
@@ -1820,13 +2241,14 @@
                 </div>
 
                 <!-- Beach Coconut Lounge Slot -->
-                <div class="c-item" id="slot-lounge">
+                <div class="c-item" id="slot-lounge" data-category="recreation">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=300&q=80" alt="Beachside Coconut Lounge Relaxation" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Beachside Coconut Lounge Relaxation</span>
+                            <span class="status-pill not-added" id="status-lounge">Not Added</span>
                         </div>
                         <div class="product-name" id="val-lounge">Not Selected</div>
                     </div>
@@ -1837,13 +2259,14 @@
                 </div>
 
                 <!-- Scuba Diving Slot -->
-                <div class="c-item" id="slot-scuba">
+                <div class="c-item" id="slot-scuba" data-category="recreation">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=300&q=80" alt="Coral Reef Scuba Diving" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Coral Reef Scuba Diving</span>
+                            <span class="status-pill not-added" id="status-scuba">Not Added</span>
                         </div>
                         <div class="product-name" id="val-scuba">Not Selected</div>
                     </div>
@@ -1854,16 +2277,17 @@
                 </div>
 
                 <!-- Tour Guides, Permits & Special Addons -->
-                <div class="content-label">Tour Guides, Permits & Special Addons (Certified Guides & Permits)</div>
+                <div class="content-label" data-category-heading="addons">Tour Guides, Permits & Special Addons (Certified Guides & Permits)</div>
 
                 <!-- Tour Guide Slot -->
-                <div class="c-item" id="slot-guide">
+                <div class="c-item" id="slot-guide" data-category="addons">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=300&q=80" alt="Certified Local Tour Guide" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Certified Local Tour Guide</span>
+                            <span class="status-pill not-added" id="status-guide">Not Added</span>
                         </div>
                         <div class="product-name" id="val-guide">Not Selected</div>
                     </div>
@@ -1874,13 +2298,14 @@
                 </div>
 
                 <!-- Boat & Entry Permits Slot -->
-                <div class="c-item" id="slot-permit">
+                <div class="c-item" id="slot-permit" data-category="addons">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80" alt="Special Boat & Entry Permits" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Special Boat & Entry Permits</span>
+                            <span class="status-pill not-added" id="status-permit">Not Added</span>
                         </div>
                         <div class="product-name" id="val-permit">Not Selected</div>
                     </div>
@@ -1891,13 +2316,14 @@
                 </div>
 
                 <!-- Honeymoon Bed Decor Slot -->
-                <div class="c-item" id="slot-honeymoon">
+                <div class="c-item" id="slot-honeymoon" data-category="addons">
                     <div class="img">
                         <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=300&q=80" alt="Honeymoon Flower Bed Decoration" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
                             <span>Honeymoon Flower Bed Decoration</span>
+                            <span class="status-pill not-added" id="status-honeymoon">Not Added</span>
                         </div>
                         <div class="product-name" id="val-honeymoon">Not Selected</div>
                     </div>
@@ -1907,23 +2333,31 @@
                     </div>
                 </div>
 
-                <!-- Bottom Actions Toolbar (Relocated below component form) -->
+                <!-- Bottom Actions Toolbar (Comprehensive Suite) -->
                 <div class="pcb-bottom-actions">
-                    <button class="action-btn" onclick="openShareModal()">
-                        <i class="material-icons">share</i>
-                        <span>Scenario 12: Split-Bill Link</span>
+                    <button class="action-btn" onclick="openItineraryModal()">
+                        <i class="material-icons">calendar_month</i>
+                        <span>View Day-by-Day Itinerary</span>
+                    </button>
+                    <button class="action-btn" onclick="openSplitBillModal()">
+                        <i class="material-icons">groups</i>
+                        <span>Split Bill (Demo)</span>
+                    </button>
+                    <button class="action-btn" onclick="openPreferencesModal()">
+                        <i class="material-icons">tune</i>
+                        <span>Tourist Preferences</span>
+                    </button>
+                    <button class="action-btn btn-quote" onclick="openB2BQuoteModal()">
+                        <i class="material-icons">receipt_long</i>
+                        <span>Get B2B Quote</span>
                     </button>
                     <button class="action-btn" onclick="handlePrintItinerary()">
                         <i class="material-icons">print</i>
                         <span>Print Itinerary</span>
                     </button>
-                    <button class="action-btn btn-quote" onclick="openQuoteModal()">
-                        <i class="material-icons">receipt_long</i>
-                        <span>Scenario 11: Get B2B Quote</span>
-                    </button>
                     <button class="action-btn btn-checkout" onclick="confirmTourBooking()">
                         <i class="material-icons">shopping_cart_checkout</i>
-                        <span>Confirm & Book</span>
+                        <span>Confirm & Book (Demo)</span>
                     </button>
                 </div>
 
@@ -2204,6 +2638,12 @@
             </div>
             <div class="modal-body" style="padding: 1.5rem;">
                 <div id="checkout-form-view">
+                    <!-- Demonstration Mode Notice -->
+                    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #0284c7; border-radius: 6px; padding: 0.65rem 0.85rem; margin-bottom: 1rem; font-size: 0.775rem; color: #1e40af; display: flex; align-items: flex-start; gap: 8px;">
+                        <i class="material-icons" style="font-size: 18px; color: #0284c7; flex-shrink: 0; margin-top: 1px;">info</i>
+                        <span><strong>DEMONSTRATION PLANNING MODE:</strong> Booking and checkout are simulated for travel planning. Submitting will record your confirmed itinerary into the live MySQL database (<code style="background: rgba(0,0,0,0.06); padding: 1px 4px; border-radius: 3px;">tour_planner_trips</code>). No live bank card charges or verified payments are executed.</span>
+                    </div>
+
                     <!-- Itinerary Mini Summary -->
                     <div style="background: #f8fafc; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 4px;">
@@ -2280,7 +2720,7 @@
 
                     <!-- Submit Button -->
                     <button type="button" id="btn-submit-booking" class="btn-checkout" style="width: 100%; padding: 0.85rem; font-size: 0.95rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="executeDatabaseBooking()">
-                        <i class="material-icons">lock</i> Pay & Write Booking to MySQL Database
+                        <i class="material-icons">lock</i> Confirm Demo Reservation & Store in MySQL
                     </button>
                 </div>
 
@@ -2308,7 +2748,7 @@
                         </div>
                         <div style="display: flex; justify-content: space-between;">
                             <span style="font-size: 0.8rem; color: #64748b;">Payment Status:</span>
-                            <span style="color: #059669; font-weight: 800; font-size: 0.825rem;">PAID (Verified via MySQL Database)</span>
+                            <span style="color: #059669; font-weight: 800; font-size: 0.825rem;">SIMULATED / DEMO RESERVATION (Saved in MySQL)</span>
                         </div>
                     </div>
                     <div style="display: flex; gap: 0.75rem; justify-content: center;">
@@ -2319,6 +2759,272 @@
                             Done
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day-by-Day Interactive Itinerary & Schedule Verification Modal -->
+    <div class="modal-overlay" id="itinerary-modal" style="display: none;">
+        <div class="modal-box" style="max-width: 860px;">
+            <div class="modal-header" style="background: #0f172a; color: white;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i class="material-icons" style="color: #38bdf8;">calendar_month</i>
+                    <h3 style="color: white; margin: 0; font-size: 1.15rem;">Day-by-Day Itinerary & Schedule Verification</h3>
+                </div>
+                <button class="modal-close-btn" style="color: #94a3b8;" onclick="closeItineraryModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 1.5rem;">
+                <!-- Itinerary Route & Dates Sub-Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border: 1px solid var(--st-border); border-radius: 8px; padding: 0.85rem 1.25rem; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+                    <div>
+                        <div style="font-size: 1.05rem; font-weight: 800; color: #0f172a;" id="itinerary-modal-route">Savar ➔ Cox's Bazar</div>
+                        <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;" id="itinerary-modal-subtitle">4 Travelers • 3 Nights • Master Tour Plan</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <button type="button" class="action-btn" onclick="window.print()" style="padding: 0.45rem 0.85rem; font-size: 0.8rem;">
+                            <i class="material-icons" style="font-size: 16px;">print</i> Print Schedule
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Schedule Conflict Alert Container -->
+                <div id="itinerary-conflicts-container"></div>
+
+                <!-- Day-by-Day Chronological Timeline Container -->
+                <div id="itinerary-days-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tourist Preferences Modal -->
+    <div class="modal-overlay" id="preferences-modal" style="display: none;">
+        <div class="modal-box" style="max-width: 620px;">
+            <div class="modal-header" style="background: #0f172a; color: white;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i class="material-icons" style="color: #38bdf8;">tune</i>
+                    <h3 style="color: white; margin: 0; font-size: 1.15rem;">Tourist Preferences & Special Requirements</h3>
+                </div>
+                <button class="modal-close-btn" style="color: #94a3b8;" onclick="closePreferencesModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 1.5rem;">
+                <p style="font-size: 0.825rem; color: #64748b; margin: 0 0 1.25rem;">
+                    Set your group travel style, mobility needs, and dietary requirements. The Tour Planner verifies component compatibility against these preferences in real time.
+                </p>
+
+                <!-- Travel Pace -->
+                <div style="margin-bottom: 1.25rem;">
+                    <label style="font-size: 0.8rem; font-weight: 800; color: #0f172a; text-transform: uppercase; display: block; margin-bottom: 0.5rem;">
+                        Travel Pace
+                    </label>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                        <label class="pref-radio-label" id="label-pace-relaxed" style="border: 1px solid var(--st-border); border-radius: 6px; padding: 0.65rem 0.5rem; text-align: center; cursor: pointer;" onclick="selectPrefRadio('pace', 'relaxed', this)">
+                            <input type="radio" name="pref-pace" value="relaxed" style="display: none;">
+                            <div style="font-size: 0.825rem; font-weight: 800; color: #0f172a;">Relaxed</div>
+                            <div style="font-size: 0.7rem; color: #64748b;">1–2 activities/day</div>
+                        </label>
+                        <label class="pref-radio-label active" id="label-pace-moderate" style="border: 2px solid #0284c7; background: #f0f9ff; border-radius: 6px; padding: 0.65rem 0.5rem; text-align: center; cursor: pointer;" onclick="selectPrefRadio('pace', 'moderate', this)">
+                            <input type="radio" name="pref-pace" value="moderate" checked style="display: none;">
+                            <div style="font-size: 0.825rem; font-weight: 800; color: #0284c7;">Moderate</div>
+                            <div style="font-size: 0.7rem; color: #64748b;">2–3 activities/day</div>
+                        </label>
+                        <label class="pref-radio-label" id="label-pace-packed" style="border: 1px solid var(--st-border); border-radius: 6px; padding: 0.65rem 0.5rem; text-align: center; cursor: pointer;" onclick="selectPrefRadio('pace', 'packed', this)">
+                            <input type="radio" name="pref-pace" value="packed" style="display: none;">
+                            <div style="font-size: 0.825rem; font-weight: 800; color: #0f172a;">Packed</div>
+                            <div style="font-size: 0.7rem; color: #64748b;">High-energy tour</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Mobility & Accessibility -->
+                <div style="margin-bottom: 1.25rem;">
+                    <label style="font-size: 0.8rem; font-weight: 800; color: #0f172a; text-transform: uppercase; display: block; margin-bottom: 0.5rem;">
+                        Mobility & Accessibility (Scenario 5, 10)
+                    </label>
+                    <select id="pref-mobility-select" style="width: 100%; height: 40px; padding: 0.5rem; border: 1px solid var(--st-border); border-radius: 6px; font-size: 0.85rem; font-weight: 600;">
+                        <option value="standard" selected>Standard (Can walk normally / climb stairs)</option>
+                        <option value="ground_floor">Ground Floor / Lift Access Only (Elderly Traveler)</option>
+                        <option value="wheelchair">Wheelchair Accessible Required (Ramps & Van)</option>
+                    </select>
+                </div>
+
+                <!-- Dietary & Meal Constraints -->
+                <div style="margin-bottom: 1.25rem;">
+                    <label style="font-size: 0.8rem; font-weight: 800; color: #0f172a; text-transform: uppercase; display: block; margin-bottom: 0.5rem;">
+                        Dietary Preferences (Scenario 16)
+                    </label>
+                    <select id="pref-dietary-select" style="width: 100%; height: 40px; padding: 0.5rem; border: 1px solid var(--st-border); border-radius: 6px; font-size: 0.85rem; font-weight: 600;">
+                        <option value="halal" selected>Halal-Certified Standard (Chicken, Beef, Fish)</option>
+                        <option value="vegetarian">Pure Vegetarian / Jain / Vegan</option>
+                        <option value="seafood_allergy">No Shellfish / Crab Allergy Safe</option>
+                        <option value="diabetic">Low Sugar / Diabetic Friendly</option>
+                    </select>
+                </div>
+
+                <!-- Luggage & Logistics -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="font-size: 0.8rem; font-weight: 800; color: #0f172a; text-transform: uppercase; display: block; margin-bottom: 0.5rem;">
+                        Luggage Count & Cargo Needs
+                    </label>
+                    <select id="pref-luggage-select" style="width: 100%; height: 40px; padding: 0.5rem; border: 1px solid var(--st-border); border-radius: 6px; font-size: 0.85rem; font-weight: 600;">
+                        <option value="standard" selected>Standard (1 Cabin + 1 Check-in per traveler, max 20kg)</option>
+                        <option value="cargo_truck">Heavy Equipment / Bulk Cargo (Requires Dedicated Cargo Truck)</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn-checkout" onclick="saveTouristPreferences()" style="width: 100%; padding: 0.75rem; font-size: 0.9rem; font-weight: 800;">
+                    Save Preferences & Re-verify Schedule
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Split-Bill Modal (Demonstration Simulation) -->
+    <div class="modal-overlay" id="split-bill-modal" style="display: none;">
+        <div class="modal-box" style="max-width: 680px;">
+            <div class="modal-header" style="background: #0f172a; color: white;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i class="material-icons" style="color: #38bdf8;">groups</i>
+                    <h3 style="color: white; margin: 0; font-size: 1.15rem;">Group Expense Splitting (Scenario 12 - Demo)</h3>
+                </div>
+                <button class="modal-close-btn" style="color: #94a3b8;" onclick="closeSplitBillModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 1.5rem;">
+                <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #0284c7; border-radius: 6px; padding: 0.65rem 0.85rem; margin-bottom: 1.25rem; font-size: 0.775rem; color: #1e40af;">
+                    <strong>ℹ️ DEMONSTRATION MODE:</strong> Split-bill calculations are simulated. You can allocate equal shares or customize individual traveler amounts and copy a shareable link.
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                    <div>
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Master Itinerary Total</div>
+                        <div style="font-size: 1.35rem; font-weight: 900; color: #0284c7;" id="split-modal-total">BDT 0</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Travelers Cohort</div>
+                        <div style="font-size: 1.1rem; font-weight: 800; color: #0f172a;" id="split-modal-travelers">4 Travelers</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Equal Share</div>
+                        <div style="font-size: 1.15rem; font-weight: 800; color: #16a34a;" id="split-modal-equal-share">BDT 0 / person</div>
+                    </div>
+                </div>
+
+                <!-- Split Mode Radio -->
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
+                    <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 700; cursor: pointer;">
+                        <input type="radio" name="split-mode" value="equal" checked onchange="onSplitModeChanged('equal')">
+                        <span>Equal Split (All Travelers Pay Same)</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 700; cursor: pointer;">
+                        <input type="radio" name="split-mode" value="custom" onchange="onSplitModeChanged('custom')">
+                        <span>Custom Allocation (Sliders)</span>
+                    </label>
+                </div>
+
+                <!-- Traveler Share Sliders Container -->
+                <div id="split-travelers-container" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;"></div>
+
+                <!-- Balance Status Bar -->
+                <div id="split-balance-bar" style="padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.825rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;">
+                    <span id="split-balance-text">✓ Sum matches Master Itinerary Total</span>
+                    <span id="split-balance-delta" style="font-weight: 900;">0 Remaining</span>
+                </div>
+
+                <div style="display: flex; gap: 0.75rem;">
+                    <button type="button" class="btn-checkout" onclick="copySplitBillLink()" style="flex: 1; padding: 0.75rem; font-size: 0.85rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <i class="material-icons" style="font-size: 18px;">share</i> Copy Split-Bill Shareable Link
+                    </button>
+                    <button type="button" class="action-btn" onclick="closeSplitBillModal()" style="padding: 0.75rem 1.25rem; font-size: 0.85rem;">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Corporate B2B Quotation Modal (Tax Audited) -->
+    <div class="modal-overlay" id="b2b-quote-modal" style="display: none;">
+        <div class="modal-box" style="max-width: 780px;">
+            <div class="modal-header" style="background: #0f172a; color: white;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i class="material-icons" style="color: #38bdf8;">receipt_long</i>
+                    <h3 style="color: white; margin: 0; font-size: 1.15rem;">Corporate B2B Tax Quotation & Invoice</h3>
+                </div>
+                <button class="modal-close-btn" style="color: #94a3b8;" onclick="closeB2BQuoteModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 1.5rem;">
+                <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #0284c7; border-radius: 6px; padding: 0.65rem 0.85rem; margin-bottom: 1.25rem; font-size: 0.775rem; color: #1e40af;">
+                    <strong>ℹ️ DEMONSTRATION MODE:</strong> Corporate Quotation with National Board of Revenue (NBR) compliant 15% VAT and 5% Advance Income Tax (AIT) calculation.
+                </div>
+
+                <!-- Invoice Header -->
+                <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1.25rem;">
+                    <div>
+                        <img src="images/logo.png" alt="TravelUp Global" style="height: 38px; margin-bottom: 4px;">
+                        <div style="font-size: 0.75rem; color: #64748b;">TravelUp Global Corporate Desk • DIU CSE Lab Project</div>
+                        <div style="font-size: 0.75rem; color: #64748b;">NBR BIN: 002938475-0101 • Tax Certificate: NBR-AIT-2026</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 1.1rem; font-weight: 900; color: #0f172a;">QUOTATION / PROFORMA</div>
+                        <div style="font-size: 0.8rem; color: #64748b;" id="quote-ref-no">REF: TUG-B2B-...</div>
+                        <div style="font-size: 0.8rem; color: #64748b;" id="quote-issue-date">Date: Oct 2026</div>
+                    </div>
+                </div>
+
+                <!-- Corporate Client Field -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; background: #f8fafc; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.85rem; margin-bottom: 1.25rem;">
+                    <div>
+                        <label style="font-size: 0.725rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Corporate Client Name</label>
+                        <input type="text" id="quote-company-name" value="Corporate Partner Ltd." style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--st-border); border-radius: 4px; font-size: 0.85rem; font-weight: 700;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.725rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Corporate Tax / BIN ID</label>
+                        <input type="text" id="quote-company-bin" value="BIN-192837465-02" style="width: 100%; padding: 0.35rem 0.5rem; border: 1px solid var(--st-border); border-radius: 4px; font-size: 0.85rem; font-weight: 700;">
+                    </div>
+                </div>
+
+                <!-- Itemized Breakdown Table -->
+                <div style="overflow-x: auto; margin-bottom: 1.25rem;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.825rem; text-align: left;">
+                        <thead>
+                            <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                                <th style="padding: 0.5rem 0.75rem; font-weight: 800; color: #334155;">Service Component</th>
+                                <th style="padding: 0.5rem 0.75rem; font-weight: 800; color: #334155;">Category</th>
+                                <th style="padding: 0.5rem 0.75rem; font-weight: 800; color: #334155;">Units / Travelers</th>
+                                <th style="padding: 0.5rem 0.75rem; font-weight: 800; color: #334155; text-align: right;">Line Total (BDT)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quote-items-tbody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Financial & Tax Summary (15% VAT + 5% AIT) -->
+                <div style="margin-left: auto; width: 340px; background: #f8fafc; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1.25rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.825rem; margin-bottom: 0.35rem;">
+                        <span style="color: #64748b;">Net Services Subtotal:</span>
+                        <strong id="quote-subtotal" style="color: #0f172a;">BDT 0</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.825rem; margin-bottom: 0.35rem;">
+                        <span style="color: #64748b;">NBR VAT (15% Standard):</span>
+                        <strong id="quote-vat" style="color: #0284c7;">BDT 0</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.825rem; margin-bottom: 0.5rem;">
+                        <span style="color: #64748b;">Advance Income Tax (AIT 5%):</span>
+                        <strong id="quote-ait" style="color: #ea580c;">BDT 0</strong>
+                    </div>
+                    <div style="border-top: 2px solid #cbd5e1; padding-top: 0.5rem; display: flex; justify-content: space-between; font-size: 1rem; font-weight: 900;">
+                        <span style="color: #0f172a;">Grand Total Payable:</span>
+                        <span id="quote-grand-total" style="color: #059669;">BDT 0</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+                    <button type="button" class="action-btn" onclick="window.print()" style="padding: 0.65rem 1.25rem; font-size: 0.85rem;">
+                        <i class="material-icons" style="font-size: 16px;">print</i> Print Tax Quotation
+                    </button>
+                    <button type="button" class="btn-checkout" onclick="closeB2BQuoteModal()" style="padding: 0.65rem 1.5rem; font-size: 0.85rem;">
+                        Done
+                    </button>
                 </div>
             </div>
         </div>
@@ -3284,10 +3990,10 @@
 
             if (type === 'round_trip') {
                 if (retField) retField.style.display = 'flex';
-                if (strip) strip.style.gridTemplateColumns = '1.2fr 1.2fr 1fr 1fr 1.1fr';
+                if (strip) strip.style.gridTemplateColumns = '1.15fr 1.15fr 0.9fr 0.9fr 1.05fr 0.95fr';
             } else {
                 if (retField) retField.style.display = 'none';
-                if (strip) strip.style.gridTemplateColumns = '1.3fr 1.3fr 1.1fr 1fr';
+                if (strip) strip.style.gridTemplateColumns = '1.2fr 1.2fr 1fr 1.1fr 1fr';
             }
             onSearchFieldChanged();
         }
@@ -3376,7 +4082,11 @@
             }
             const d1 = new Date(dInput);
             const d2 = new Date(rInput);
-            const diffDays = Math.max(1, Math.round((d2 - d1) / (1000 * 60 * 60 * 24)));
+            const diffDays = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+            if (diffDays <= 0) {
+                if (badge) badge.textContent = `(Same-Day Trip • 0 Nights)`;
+                return 0;
+            }
             if (badge) badge.textContent = `(${diffDays} Night${diffDays > 1 ? 's' : ''})`;
             return diffDays;
         }
@@ -4406,7 +5116,9 @@
 
             let isValid = true;
             const missing = [];
+            const todayStr = new Date().toISOString().split('T')[0];
 
+            // 1. Origin Upazila Validation
             if (!origin) {
                 isValid = false;
                 missing.push('From');
@@ -4415,6 +5127,7 @@
                 fOrigin.classList.remove('has-error');
             }
 
+            // 2. Destination Validation
             if (!dest) {
                 isValid = false;
                 missing.push('To');
@@ -4423,14 +5136,43 @@
                 fDest.classList.remove('has-error');
             }
 
+            // 3. Origin vs Destination Conflict (Problem 1)
+            if (origin && dest) {
+                const normOrigin = origin.toLowerCase().replace(/[^\w]/g, '');
+                const normDest = dest.toLowerCase().replace(/[^\w]/g, '');
+                if (normOrigin.includes(normDest) || normDest.includes(normOrigin)) {
+                    isValid = false;
+                    missing.push('Destination must differ from Origin');
+                    if (triggerHighlight && fDest) {
+                        fDest.classList.add('has-error');
+                        const h = fDest.querySelector('.error-hint');
+                        if (h) h.textContent = 'Destination must differ from Origin';
+                    }
+                }
+            }
+
+            // 4. Departure Date (Cannot be in the past)
             if (!date) {
                 isValid = false;
                 missing.push('Departure Date');
-                if (triggerHighlight && fDate) fDate.classList.add('has-error');
+                if (triggerHighlight && fDate) {
+                    fDate.classList.add('has-error');
+                    const h = fDate.querySelector('.error-hint');
+                    if (h) h.textContent = 'Please select departure date';
+                }
+            } else if (date < todayStr) {
+                isValid = false;
+                missing.push('Departure Date in past');
+                if (triggerHighlight && fDate) {
+                    fDate.classList.add('has-error');
+                    const h = fDate.querySelector('.error-hint');
+                    if (h) h.textContent = 'Date cannot be in the past';
+                }
             } else if (fDate) {
                 fDate.classList.remove('has-error');
             }
 
+            // 5. Return Date (Round Trip Rules)
             const returnEl = document.getElementById('return-date');
             const fReturn = document.getElementById('field-return-date');
             const returnDate = returnEl ? returnEl.value.trim() : '';
@@ -4439,7 +5181,19 @@
                 if (!returnDate) {
                     isValid = false;
                     missing.push('Return Date');
-                    if (triggerHighlight && fReturn) fReturn.classList.add('has-error');
+                    if (triggerHighlight && fReturn) {
+                        fReturn.classList.add('has-error');
+                        const h = fReturn.querySelector('.error-hint');
+                        if (h) h.textContent = 'Please select return date';
+                    }
+                } else if (date && returnDate < date) {
+                    isValid = false;
+                    missing.push('Return before Departure');
+                    if (triggerHighlight && fReturn) {
+                        fReturn.classList.add('has-error');
+                        const h = fReturn.querySelector('.error-hint');
+                        if (h) h.textContent = 'Return must be on or after departure';
+                    }
                 } else if (fReturn) {
                     fReturn.classList.remove('has-error');
                 }
@@ -4448,6 +5202,7 @@
                 fReturn.classList.remove('has-error');
             }
 
+            // 6. Traveler Count (Min 1)
             if (!travelers || travelers < 1) {
                 isValid = false;
                 missing.push('Travelers (at least 1)');
@@ -4466,7 +5221,7 @@
                     banner.className = 'lock-banner locked';
                     if (icon) icon.textContent = 'lock';
                     if (msg) {
-                        msg.innerHTML = `<strong>Planner Locked:</strong> Please fill in all 4 travel criteria above (From, To, Departure Date, and Travelers) to unlock and customize components.`;
+                        msg.innerHTML = `<strong>Planner Locked:</strong> Please fill in all travel criteria above to customize components.`;
                     }
                 }
                 if (pcb) pcb.classList.add('is-locked');
@@ -4482,7 +5237,7 @@
                     if (icon) icon.textContent = 'lock_open';
                     const destName = destEl.options[destEl.selectedIndex].text;
                     if (msg) {
-                        msg.innerHTML = `<strong>Planner Unlocked:</strong> Route from <strong>${origin}</strong> to <strong>${destName}</strong> on <strong>${date}</strong> for <strong>${travelers} Traveler(s)</strong> is active. You can now choose any travel components below!`;
+                        msg.innerHTML = `<strong>Planner Active:</strong> Route from <strong>${origin}</strong> to <strong>${destName}</strong> on <strong>${date}</strong> for <strong>${travelers} Traveler(s)</strong> is active. You can customize any travel components below!`;
                     }
                 }
                 if (pcb) pcb.classList.remove('is-locked');
@@ -4628,6 +5383,12 @@
                 valEl.classList.add('configured');
             }
 
+            const statusEl = document.getElementById(`status-${slotName}`);
+            if (statusEl) {
+                statusEl.className = 'status-pill configured';
+                statusEl.textContent = 'Configured';
+            }
+
             if (priceEl) {
                 priceEl.innerHTML = `
                     <div>BDT ${calc.itemTotal.toLocaleString()}</div>
@@ -4660,10 +5421,15 @@
             const valEl = document.getElementById(`val-${slotName}`);
             const priceEl = document.getElementById(`price-${slotName}`);
             const actionEl = document.getElementById(`action-${slotName}`);
+            const statusEl = document.getElementById(`status-${slotName}`);
 
             if (valEl) {
                 valEl.textContent = 'Not Selected';
                 valEl.classList.remove('configured');
+            }
+            if (statusEl) {
+                statusEl.className = 'status-pill not-added';
+                statusEl.textContent = 'Not Added';
             }
             if (priceEl) priceEl.innerHTML = '';
 
@@ -5308,6 +6074,7 @@
                     <span class="scen-tag">✓ ${s}</span>
                 `).join('') || '<span style="color: #64748b; font-size: 0.8rem;">Select components to activate real-world scenario calculations.</span>';
             }
+            updateBudgetMeterUI(grandTotal);
         }
 
         // ==========================================
@@ -5436,22 +6203,676 @@
             }
         }
 
-        async function openShareModal() {
-            if (!validateSearchFields(true)) return;
-            const configuredSlots = Object.keys(currentTour).filter(k => currentTour[k] !== null);
-            if (configuredSlots.length === 0) {
-                alert('⚠️ Please select at least one component before generating a split-bill link.');
+        // ==========================================
+        // 1. Target Budget Gauge & Dynamic Meter
+        // ==========================================
+        let targetBudget = 0;
+
+        function onBudgetInputChanged() {
+            const input = document.getElementById('target-budget-input');
+            const val = parseFloat(input?.value) || 0;
+            targetBudget = val;
+            const currentTotalNum = parseFloat(document.getElementById('total-amount')?.textContent.replace(/[^\d.]/g, '')) || 0;
+            updateBudgetMeterUI(currentTotalNum);
+        }
+
+        function updateBudgetMeterUI(currentTotal) {
+            const totalNum = typeof currentTotal === 'number' 
+                ? currentTotal 
+                : (parseFloat(document.getElementById('total-amount')?.textContent.replace(/[^\d.]/g, '')) || 0);
+
+            const spentEl = document.getElementById('budget-meter-spent');
+            const targetEl = document.getElementById('budget-meter-target');
+            const statusEl = document.getElementById('budget-meter-status');
+            const fillEl = document.getElementById('budget-progress-fill');
+            const budgetInput = document.getElementById('target-budget-input');
+
+            if (budgetInput && !targetBudget && budgetInput.value) {
+                targetBudget = parseFloat(budgetInput.value) || 0;
+            }
+
+            if (spentEl) spentEl.textContent = `BDT ${totalNum.toLocaleString()}`;
+            if (targetEl) targetEl.textContent = targetBudget > 0 ? `BDT ${targetBudget.toLocaleString()}` : 'Not Set';
+
+            if (!targetBudget || targetBudget <= 0) {
+                if (fillEl) {
+                    fillEl.style.width = '0%';
+                    fillEl.style.background = '#0284c7';
+                }
+                if (statusEl) {
+                    statusEl.innerHTML = `<span style="color: #64748b;">Set a target budget above to track your expenses dynamically.</span>`;
+                }
                 return;
             }
 
+            const pct = Math.min(100, Math.round((totalNum / targetBudget) * 100));
+            if (fillEl) fillEl.style.width = `${pct}%`;
+
+            if (totalNum <= targetBudget * 0.8) {
+                if (fillEl) fillEl.style.background = '#10b981';
+                if (statusEl) {
+                    const remaining = targetBudget - totalNum;
+                    statusEl.innerHTML = `<span style="color: #059669; font-weight: 700;">✓ Well within budget: BDT ${remaining.toLocaleString()} remaining (${pct}% allocated)</span>`;
+                }
+            } else if (totalNum <= targetBudget) {
+                if (fillEl) fillEl.style.background = '#f59e0b';
+                if (statusEl) {
+                    const remaining = targetBudget - totalNum;
+                    statusEl.innerHTML = `<span style="color: #d97706; font-weight: 700;">⚡ Approaching target budget: BDT ${remaining.toLocaleString()} remaining (${pct}% allocated)</span>`;
+                }
+            } else {
+                if (fillEl) fillEl.style.background = '#ef4444';
+                if (statusEl) {
+                    const over = totalNum - targetBudget;
+                    statusEl.innerHTML = `<span style="color: #dc2626; font-weight: 800;">⚠️ Budget Exceeded by BDT ${over.toLocaleString()} (${Math.round((totalNum / targetBudget) * 100)}% of target)! Review selected components.</span>`;
+                }
+            }
+        }
+
+        // ==========================================
+        // 2. Category Nav & Service Search Filters
+        // ==========================================
+        let activeCategoryFilter = 'all';
+
+        function filterCategory(cat, btnEl) {
+            activeCategoryFilter = cat;
+            document.querySelectorAll('.cat-pill').forEach(pill => pill.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            applyCategoryAndSearchFilter();
+        }
+
+        function onServiceSearchChanged() {
+            const input = document.getElementById('service-search-input');
+            const clearBtn = document.getElementById('clear-service-search');
+            if (clearBtn) {
+                clearBtn.style.display = (input && input.value.trim().length > 0) ? 'inline-block' : 'none';
+            }
+            applyCategoryAndSearchFilter();
+        }
+
+        function clearServiceSearch() {
+            const input = document.getElementById('service-search-input');
+            const clearBtn = document.getElementById('clear-service-search');
+            if (input) input.value = '';
+            if (clearBtn) clearBtn.style.display = 'none';
+            applyCategoryAndSearchFilter();
+        }
+
+        function applyCategoryAndSearchFilter() {
+            const searchVal = (document.getElementById('service-search-input')?.value || '').toLowerCase().trim();
+            const rows = document.querySelectorAll('.c-item[data-category]');
+            const categoryVisibilityMap = {};
+
+            rows.forEach(row => {
+                const rowCat = row.getAttribute('data-category') || '';
+                const nameEl = row.querySelector('.name');
+                const rowTitle = nameEl ? nameEl.textContent.toLowerCase() : '';
+                const subEl = row.querySelector('.sub');
+                const rowSub = subEl ? subEl.textContent.toLowerCase() : '';
+
+                const matchesCat = (activeCategoryFilter === 'all' || rowCat === activeCategoryFilter);
+                const matchesSearch = (!searchVal || rowTitle.includes(searchVal) || rowSub.includes(searchVal));
+
+                if (matchesCat && matchesSearch) {
+                    row.style.display = 'flex';
+                    categoryVisibilityMap[rowCat] = true;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // Adjust category headings
+            document.querySelectorAll('.category-header[data-category-heading]').forEach(head => {
+                const headCat = head.getAttribute('data-category-heading') || '';
+                if (activeCategoryFilter !== 'all') {
+                    head.style.display = (headCat === activeCategoryFilter && categoryVisibilityMap[headCat]) ? 'block' : 'none';
+                } else if (searchVal) {
+                    head.style.display = categoryVisibilityMap[headCat] ? 'block' : 'none';
+                } else {
+                    head.style.display = 'block';
+                }
+            });
+        }
+
+        // ==========================================
+        // 3. Tourist Preferences Modal & Constraints
+        // ==========================================
+        let touristPreferences = {
+            pace: 'moderate',
+            mobility: 'standard',
+            dietary: 'halal',
+            luggage: 'standard'
+        };
+
+        function openPreferencesModal() {
+            const modal = document.getElementById('preferences-modal');
+            if (!modal) return;
+
+            selectPrefRadio('pace', touristPreferences.pace);
+            const mobSelect = document.getElementById('pref-mobility-select');
+            const dietSelect = document.getElementById('pref-dietary-select');
+            const lugSelect = document.getElementById('pref-luggage-select');
+
+            if (mobSelect) mobSelect.value = touristPreferences.mobility;
+            if (dietSelect) dietSelect.value = touristPreferences.dietary;
+            if (lugSelect) lugSelect.value = touristPreferences.luggage;
+
+            modal.style.display = 'flex';
+        }
+
+        function closePreferencesModal() {
+            const modal = document.getElementById('preferences-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function selectPrefRadio(group, val, labelEl) {
+            touristPreferences[group] = val;
+            if (group === 'pace') {
+                ['relaxed', 'moderate', 'packed'].forEach(opt => {
+                    const l = document.getElementById(`label-pace-${opt}`);
+                    if (l) {
+                        l.classList.remove('active');
+                        l.style.border = '1px solid var(--st-border)';
+                        l.style.background = '#fff';
+                        const title = l.querySelector('div:first-child');
+                        if (title) title.style.color = '#0f172a';
+                    }
+                });
+                const activeLabel = labelEl || document.getElementById(`label-pace-${val}`);
+                if (activeLabel) {
+                    activeLabel.classList.add('active');
+                    activeLabel.style.border = '2px solid #0284c7';
+                    activeLabel.style.background = '#f0f9ff';
+                    const title = activeLabel.querySelector('div:first-child');
+                    if (title) title.style.color = '#0284c7';
+                    const radio = activeLabel.querySelector('input[type="radio"]');
+                    if (radio) radio.checked = true;
+                }
+            }
+        }
+
+        function saveTouristPreferences() {
+            const mobSelect = document.getElementById('pref-mobility-select');
+            const dietSelect = document.getElementById('pref-dietary-select');
+            const lugSelect = document.getElementById('pref-luggage-select');
+
+            if (mobSelect) touristPreferences.mobility = mobSelect.value;
+            if (dietSelect) touristPreferences.dietary = dietSelect.value;
+            if (lugSelect) touristPreferences.luggage = lugSelect.value;
+
+            // Update header badge
+            const badge = document.getElementById('pref-mobility-badge');
+            if (badge) {
+                if (touristPreferences.mobility === 'ground_floor') {
+                    badge.textContent = 'Mobility: Ground Floor Required';
+                    badge.style.background = '#fef3c7';
+                    badge.style.color = '#92400e';
+                } else if (touristPreferences.mobility === 'wheelchair') {
+                    badge.textContent = 'Mobility: Wheelchair / Step-Free';
+                    badge.style.background = '#fee2e2';
+                    badge.style.color = '#991b1b';
+                } else {
+                    badge.textContent = `Mobility: Standard • Pace: ${touristPreferences.pace.toUpperCase()}`;
+                    badge.style.background = '#f1f5f9';
+                    badge.style.color = '#475569';
+                }
+            }
+
+            closePreferencesModal();
+        }
+
+        // ==========================================
+        // 4. Schedule Conflict & Advisory Detection
+        // ==========================================
+        function detectScheduleConflicts() {
+            const conflicts = [];
+            const nights = calculateNights();
+
+            // 1. Same-Day trip vs Overnight accommodation
+            if (currentTripType === 'round_trip' && nights === 0) {
+                const hasOvernightLodging = (currentTour.hotel || currentTour.resort || currentTour.cottage || currentTour.villa);
+                if (hasOvernightLodging) {
+                    conflicts.push({
+                        type: 'warning',
+                        title: 'Same-Day Trip with Overnight Room Selected',
+                        message: 'Departure and Return dates are on the exact same date (0 nights). For same-day returns, consider switching to "Fresh-Up Rest Suite & Locker" to avoid paying for an unused overnight room.'
+                    });
+                }
+            }
+
+            // 2. Redundant Primary Intercity Transit Modes
+            const transitSelections = [];
+            if (currentTour.flight) transitSelections.push('Air Flight');
+            if (currentTour.bus) transitSelections.push('Intercity AC Bus');
+            if (currentTour.coach) transitSelections.push('Executive Coach');
+            if (currentTour.train) transitSelections.push('Railway Snigdha');
+            if (currentTour.launch) transitSelections.push('Luxury Water Launch');
+
+            if (transitSelections.length > 2) {
+                conflicts.push({
+                    type: 'info',
+                    title: 'Multiple Long-Haul Transit Modes Configured',
+                    message: `You have selected ${transitSelections.join(', ')}. If your group is splitting routes or taking multi-leg transport, this is valid; otherwise verify you did not select duplicate tickets.`
+                });
+            }
+
+            // 3. Mobility & Accessibility Checks
+            if (touristPreferences.mobility === 'ground_floor' || touristPreferences.mobility === 'wheelchair') {
+                const lodging = currentTour.hotel || currentTour.resort || currentTour.cottage || currentTour.villa;
+                if (lodging && lodging.selectedRoom && lodging.selectedRoom.chosenFloor) {
+                    const floorStr = lodging.selectedRoom.chosenFloor.toLowerCase();
+                    if (!floorStr.includes('floor 1') && !floorStr.includes('ground') && !floorStr.includes('lift')) {
+                        conflicts.push({
+                            type: 'warning',
+                            title: 'Mobility Constraint: Upper Floor Room Selected',
+                            message: `Group preference is set to "${touristPreferences.mobility === 'wheelchair' ? 'Wheelchair Accessible' : 'Ground Floor Only'}", but room is assigned to "${lodging.selectedRoom.chosenFloor}". Ground floor room or lift-access wing is strongly recommended.`
+                        });
+                    }
+                }
+            }
+
+            // 4. Dietary Constraint Checks
+            if (touristPreferences.dietary === 'seafood_allergy') {
+                const dinner = currentTour.dinner;
+                if (dinner && (dinner.name.toLowerCase().includes('seafood') || dinner.name.toLowerCase().includes('lobster') || dinner.name.toLowerCase().includes('coral'))) {
+                    conflicts.push({
+                        type: 'danger',
+                        title: 'Dietary Allergy Conflict: Shellfish / Seafood Selected',
+                        message: `Tourist preference specifies a Shellfish/Crab allergy, but "${dinner.name}" contains ocean crustacean/seafood dishes. Please customize menu or select a continental/chicken platter.`
+                    });
+                }
+            }
+
+            // 5. Cargo / Heavy Luggage vs Transit Capacity
+            if (touristPreferences.luggage === 'cargo_truck' && !currentTour.truck) {
+                conflicts.push({
+                    type: 'info',
+                    title: 'Heavy Logistics Notice: Cargo Truck Recommended',
+                    message: 'Your preferences indicate heavy equipment/bulk cargo transport. Adding a "Cargo Truck / Pickup Van" under Local Transport is advised.'
+                });
+            }
+
+            return conflicts;
+        }
+
+        // ==========================================
+        // 5. Day-by-Day Chronological Itinerary
+        // ==========================================
+        function openItineraryModal() {
+            if (!validateSearchFields(true)) return;
+
+            const modal = document.getElementById('itinerary-modal');
+            if (!modal) return;
+
+            const origin = document.getElementById('origin-select')?.value || 'Origin';
+            const destSelect = document.getElementById('destination-select');
+            const destName = destSelect ? destSelect.options[destSelect.selectedIndex].text : 'Destination';
+            const travelers = getTravelerCount();
+            const nights = calculateNights();
+            const dDate = document.getElementById('dept-date')?.value || 'Departure';
+            const rDate = document.getElementById('return-date')?.value || '';
+
+            const routeEl = document.getElementById('itinerary-modal-route');
+            const subEl = document.getElementById('itinerary-modal-subtitle');
+
+            if (routeEl) routeEl.textContent = `${origin} ➔ ${destName} (${currentTripType.replace('_', ' ').toUpperCase()})`;
+            if (subEl) {
+                subEl.textContent = currentTripType === 'round_trip'
+                    ? `${travelers} Traveler${travelers > 1 ? 's' : ''} • ${nights} Night${nights > 1 ? 's' : ''} (${dDate} to ${rDate})`
+                    : `${travelers} Traveler${travelers > 1 ? 's' : ''} • Departure: ${dDate}`;
+            }
+
+            // Render Conflicts
+            const conflicts = detectScheduleConflicts();
+            const conflictContainer = document.getElementById('itinerary-conflicts-container');
+            if (conflictContainer) {
+                if (conflicts.length === 0) {
+                    conflictContainer.innerHTML = `
+                        <div class="conflict-alert info" style="margin-bottom: 1.25rem;">
+                            <i class="material-icons">verified</i>
+                            <div>
+                                <strong>Schedule Fully Verified:</strong> All transit, lodging, and activity timings align smoothly with zero detected conflicts.
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    conflictContainer.innerHTML = conflicts.map(c => `
+                        <div class="conflict-alert ${c.type}" style="margin-bottom: 0.75rem;">
+                            <i class="material-icons">${c.type === 'danger' ? 'error' : c.type === 'warning' ? 'warning' : 'info'}</i>
+                            <div>
+                                <strong>${c.title}:</strong> ${c.message}
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            // Render Day-by-Day Timeline
+            renderDayByDayTimeline();
+            modal.style.display = 'flex';
+        }
+
+        function closeItineraryModal() {
+            const modal = document.getElementById('itinerary-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function renderDayByDayTimeline() {
+            const container = document.getElementById('itinerary-days-container');
+            if (!container) return;
+
+            const nights = calculateNights();
+            const origin = document.getElementById('origin-select')?.value || 'Your Origin Upazila';
+            const destSelect = document.getElementById('destination-select');
+            const destName = destSelect ? destSelect.options[destSelect.selectedIndex].text : 'Destination';
+            const dDate = document.getElementById('dept-date')?.value || '';
+
+            let totalDays = 1;
+            if (currentTripType === 'round_trip') {
+                totalDays = Math.max(1, nights + 1);
+            } else if (currentTripType === 'open_ended') {
+                totalDays = 3; // Representative itinerary for open-ended
+            } else {
+                totalDays = 1; // One-way
+            }
+
+            let daysHtml = '';
+
+            for (let day = 1; day <= totalDays; day++) {
+                let dayTitle = '';
+                let daySubtitle = '';
+                let itemsForDay = [];
+
+                if (day === 1) {
+                    dayTitle = `Day 1: Departure from ${origin} & Destination Arrival`;
+                    daySubtitle = `${dDate} • Journey & Check-In`;
+
+                    // Transit Inbound
+                    if (currentTour.flight) {
+                        itemsForDay.push({ time: "07:30 AM", title: "Outbound Air Flight", desc: currentTour.flight.name, icon: "flight", badge: "Aviation" });
+                    } else if (currentTour.bus || currentTour.coach) {
+                        const b = currentTour.bus || currentTour.coach;
+                        itemsForDay.push({ time: "06:30 AM", title: "Intercity Highway Transit", desc: b.name, icon: "directions_bus", badge: "Highway" });
+                    } else if (currentTour.train) {
+                        itemsForDay.push({ time: "06:45 AM", title: "Intercity Rail Transit", desc: currentTour.train.name, icon: "train", badge: "Rail" });
+                    } else if (currentTour.launch) {
+                        itemsForDay.push({ time: "08:00 PM", title: "River Cruise Voyage", desc: currentTour.launch.name, icon: "directions_boat", badge: "Waterway" });
+                    } else {
+                        itemsForDay.push({ time: "Morning", title: "Independent Transit to Destination", desc: `Arrival at ${destName}`, icon: "commute", badge: "Transit" });
+                    }
+
+                    // Local terminal transfer
+                    if (currentTour.microbus || currentTour.cng) {
+                        const tr = currentTour.microbus || currentTour.cng;
+                        itemsForDay.push({ time: "11:30 AM", title: "Terminal-to-Hotel Shuttle", desc: tr.name, icon: "airport_shuttle", badge: "Local Transport" });
+                    }
+
+                    // Lodging check-in or Fresh-up
+                    if (currentTour.freshup) {
+                        itemsForDay.push({ time: "12:00 PM", title: "Fresh-Up Rest Suite Check-In", desc: currentTour.freshup.name, icon: "bathtub", badge: "Rest Suite" });
+                    } else if (currentTour.hotel || currentTour.resort || currentTour.cottage || currentTour.villa) {
+                        const h = currentTour.hotel || currentTour.resort || currentTour.cottage || currentTour.villa;
+                        itemsForDay.push({ time: "12:30 PM", title: "Hotel / Resort Check-In", desc: `${h.name}${h.selectedRoom ? ' • ' + h.selectedRoom.name : ''}`, icon: "hotel", badge: "Lodging" });
+                    }
+
+                    // Lunch
+                    if (currentTour.lunch) {
+                        itemsForDay.push({ time: "01:30 PM", title: "Traditional Destination Lunch", desc: currentTour.lunch.name, icon: "restaurant", badge: "Dining" });
+                    }
+
+                    // Evening Cafe / Sunset
+                    if (currentTour.cafe) {
+                        itemsForDay.push({ time: "05:00 PM", title: "Sunset Cafe & Refreshment", desc: currentTour.cafe.name, icon: "local_cafe", badge: "Relaxation" });
+                    }
+
+                    // Dinner
+                    if (currentTour.dinner) {
+                        itemsForDay.push({ time: "08:30 PM", title: "Dinner Platter / Seaside BBQ", desc: currentTour.dinner.name, icon: "dinner_dining", badge: "Gourmet Dining" });
+                    }
+                } else if (day === totalDays && currentTripType === 'round_trip') {
+                    dayTitle = `Day ${day}: Final Exploration & Return to ${origin}`;
+                    daySubtitle = `Check-Out & Safe Return Connection`;
+
+                    // Breakfast
+                    if (currentTour.breakfast) {
+                        itemsForDay.push({ time: "08:00 AM", title: "Morning Buffet Breakfast", desc: currentTour.breakfast.name, icon: "bakery_dining", badge: "Breakfast" });
+                    }
+
+                    // Check-out
+                    itemsForDay.push({ time: "11:00 AM", title: "Hotel Check-Out & Luggage Storage", desc: "Room settlement and receipt handover", icon: "luggage", badge: "Check-Out" });
+
+                    // Souvenir / Beach Stroll
+                    if (currentTour.guide) {
+                        itemsForDay.push({ time: "01:00 PM", title: "Local Market & Cultural Tour", desc: currentTour.guide.name, icon: "support_agent", badge: "Guide" });
+                    }
+
+                    // Lunch
+                    if (currentTour.lunch) {
+                        itemsForDay.push({ time: "02:00 PM", title: "Farewell Destination Lunch", desc: currentTour.lunch.name, icon: "restaurant", badge: "Dining" });
+                    }
+
+                    // Return transit to Origin Upazila
+                    itemsForDay.push({ time: "04:30 PM", title: `Return Transit to ${origin}`, desc: `Upazila-to-Upazila return connection reaching ${origin}`, icon: "home", badge: "Return" });
+                } else {
+                    dayTitle = `Day ${day}: Sightseeing, Adventure & Recreation in ${destName}`;
+                    daySubtitle = `Full Day Exploration`;
+
+                    // Breakfast
+                    if (currentTour.breakfast) {
+                        itemsForDay.push({ time: "08:00 AM", title: "Complimentary Buffet Breakfast", desc: currentTour.breakfast.name, icon: "bakery_dining", badge: "Breakfast" });
+                    }
+
+                    // Adventures & Activities
+                    if (currentTour.jeep) {
+                        itemsForDay.push({ time: "09:30 AM", title: "Mountain Jeep / Safari Excursion", desc: currentTour.jeep.name, icon: "directions_car", badge: "Offroad Safari" });
+                    }
+                    if (currentTour.speedboat) {
+                        itemsForDay.push({ time: "11:00 AM", title: "Ocean Speedboat Wave Safari", desc: currentTour.speedboat.name, icon: "speed", badge: "Water Sports" });
+                    }
+                    if (currentTour.parasailing) {
+                        itemsForDay.push({ time: "12:00 PM", title: "Bay Aerial Parasailing Session", desc: currentTour.parasailing.name, icon: "paragliding", badge: "Aviation" });
+                    }
+                    if (currentTour.scuba) {
+                        itemsForDay.push({ time: "02:30 PM", title: "Coral Reef Guided Scuba Diving", desc: currentTour.scuba.name, icon: "scuba_diving", badge: "Marine Reef" });
+                    }
+                    if (currentTour.lounge) {
+                        itemsForDay.push({ time: "04:30 PM", title: "Private Seaside Sunbed Lounge", desc: currentTour.lounge.name, icon: "deck", badge: "Leisure" });
+                    }
+
+                    // Lunch
+                    if (currentTour.lunch) {
+                        itemsForDay.push({ time: "01:30 PM", title: "Afternoon Dining", desc: currentTour.lunch.name, icon: "restaurant", badge: "Dining" });
+                    }
+
+                    // Honeymoon / Special setup
+                    if (currentTour.honeymoon) {
+                        itemsForDay.push({ time: "07:30 PM", title: "Special Arrangement / Floral Surprise", desc: currentTour.honeymoon.name, icon: "favorite", badge: "Special" });
+                    }
+
+                    // Dinner
+                    if (currentTour.dinner) {
+                        itemsForDay.push({ time: "08:30 PM", title: "Gourmet Dinner", desc: currentTour.dinner.name, icon: "dinner_dining", badge: "Dinner" });
+                    }
+                }
+
+                daysHtml += `
+                    <div class="itinerary-day-card">
+                        <div class="day-badge-header">
+                            <div>
+                                <span class="day-number-tag">DAY ${day}</span>
+                                <strong style="font-size: 0.95rem; color: #0f172a; margin-left: 0.5rem;">${dayTitle}</strong>
+                            </div>
+                            <span style="font-size: 0.775rem; color: #64748b; font-weight: 600;">${daySubtitle}</span>
+                        </div>
+                        <div class="timeline-items-flow">
+                            ${itemsForDay.length > 0 ? itemsForDay.map(it => `
+                                <div class="timeline-item-entry">
+                                    <div class="entry-time-col">
+                                        <span class="entry-time-text">${it.time}</span>
+                                        <i class="material-icons" style="font-size: 16px; color: #0284c7;">${it.icon}</i>
+                                    </div>
+                                    <div class="entry-details-col">
+                                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                                            <strong style="color: #1e293b; font-size: 0.85rem;">${it.title}</strong>
+                                            <span style="font-size: 0.675rem; font-weight: 800; background: #e0f2fe; color: #0369a1; padding: 2px 6px; border-radius: 4px; text-transform: uppercase;">${it.badge}</span>
+                                        </div>
+                                        <div style="font-size: 0.775rem; color: #64748b; margin-top: 2px;">${it.desc}</div>
+                                    </div>
+                                </div>
+                            `).join('') : `
+                                <div style="padding: 0.75rem 0; font-size: 0.8rem; color: #94a3b8; font-style: italic;">
+                                    Free day for leisure and self-guided exploration.
+                                </div>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = daysHtml;
+        }
+
+        // ==========================================
+        // 6. Split-Bill Modal (Scenario 12 - Demo)
+        // ==========================================
+        let splitBillShares = [];
+        let splitMode = 'equal';
+
+        function openSplitBillModal() {
+            if (!validateSearchFields(true)) return;
+            const configuredSlots = Object.keys(currentTour).filter(k => currentTour[k] !== null);
+            if (configuredSlots.length === 0) {
+                alert('⚠️ Please select at least one travel component before opening the Split-Bill module.');
+                return;
+            }
+
+            const modal = document.getElementById('split-bill-modal');
+            if (!modal) return;
+
+            const totalNum = parseFloat(document.getElementById('total-amount')?.textContent.replace(/[^\d.]/g, '')) || 0;
+            const travelers = getTravelerCount();
+            const equalShare = Math.round(totalNum / travelers);
+
+            document.getElementById('split-modal-total').textContent = `BDT ${totalNum.toLocaleString()}`;
+            document.getElementById('split-modal-travelers').textContent = `${travelers} Traveler${travelers > 1 ? 's' : ''}`;
+            document.getElementById('split-modal-equal-share').textContent = `BDT ${equalShare.toLocaleString()} / person`;
+
+            // Initialize shares
+            splitBillShares = [];
+            for (let i = 0; i < travelers; i++) {
+                splitBillShares.push({
+                    travelerId: i + 1,
+                    name: i === 0 ? 'Traveler 1 (Lead Organizer)' : `Traveler ${i + 1}`,
+                    amount: equalShare
+                });
+            }
+
+            splitMode = 'equal';
+            const equalRadio = document.querySelector('input[name="split-mode"][value="equal"]');
+            if (equalRadio) equalRadio.checked = true;
+
+            renderSplitTravelersList();
+            updateSplitBalanceUI();
+            modal.style.display = 'flex';
+        }
+
+        function closeSplitBillModal() {
+            const modal = document.getElementById('split-bill-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function onSplitModeChanged(mode) {
+            splitMode = mode;
+            const totalNum = parseFloat(document.getElementById('total-amount')?.textContent.replace(/[^\d.]/g, '')) || 0;
+            const travelers = getTravelerCount();
+            const equalShare = Math.round(totalNum / travelers);
+
+            if (mode === 'equal') {
+                splitBillShares.forEach(s => s.amount = equalShare);
+            }
+            renderSplitTravelersList();
+            updateSplitBalanceUI();
+        }
+
+        function renderSplitTravelersList() {
+            const container = document.getElementById('split-travelers-container');
+            if (!container) return;
+
+            const isCustom = (splitMode === 'custom');
+
+            container.innerHTML = splitBillShares.map((s, idx) => `
+                <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.65rem 0.85rem; gap: 0.75rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1;">
+                        <i class="material-icons" style="font-size: 20px; color: ${idx === 0 ? '#0284c7' : '#94a3b8'};">person</i>
+                        <div>
+                            <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b;">${s.name}</div>
+                            <div style="font-size: 0.7rem; color: #64748b;">${idx === 0 ? 'Primary Booking Contact' : 'Group Member'}</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 0.8rem; font-weight: 700; color: #475569;">BDT</span>
+                        <input type="number" 
+                               value="${s.amount}" 
+                               ${!isCustom ? 'disabled' : ''} 
+                               oninput="onCustomShareChanged(${idx}, this.value)"
+                               style="width: 110px; height: 34px; padding: 0.25rem 0.5rem; text-align: right; border: 1px solid var(--st-border); border-radius: 4px; font-size: 0.85rem; font-weight: 800; color: #0f172a; background: ${isCustom ? '#fff' : '#f8fafc'};">
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function onCustomShareChanged(idx, val) {
+            const num = parseFloat(val) || 0;
+            if (splitBillShares[idx]) {
+                splitBillShares[idx].amount = num;
+            }
+            updateSplitBalanceUI();
+        }
+
+        function updateSplitBalanceUI() {
+            const totalNum = parseFloat(document.getElementById('total-amount')?.textContent.replace(/[^\d.]/g, '')) || 0;
+            const currentSum = splitBillShares.reduce((acc, s) => acc + (s.amount || 0), 0);
+            const delta = totalNum - currentSum;
+
+            const bar = document.getElementById('split-balance-bar');
+            const textEl = document.getElementById('split-balance-text');
+            const deltaEl = document.getElementById('split-balance-delta');
+
+            if (Math.abs(delta) < 2) {
+                if (bar) {
+                    bar.style.background = '#ecfdf5';
+                    bar.style.color = '#065f46';
+                    bar.style.border = '1px solid #a7f3d0';
+                }
+                if (textEl) textEl.textContent = '✓ Total Sum Perfectly Balanced with Itinerary Total';
+                if (deltaEl) deltaEl.textContent = 'BDT 0 Remaining';
+            } else if (delta > 0) {
+                if (bar) {
+                    bar.style.background = '#fffbeb';
+                    bar.style.color = '#92400e';
+                    bar.style.border = '1px solid #fde68a';
+                }
+                if (textEl) textEl.textContent = `Under-allocated: BDT ${delta.toLocaleString()} remaining to distribute`;
+                if (deltaEl) deltaEl.textContent = `+ BDT ${delta.toLocaleString()}`;
+            } else {
+                const over = Math.abs(delta);
+                if (bar) {
+                    bar.style.background = '#fef2f2';
+                    bar.style.color = '#991b1b';
+                    bar.style.border = '1px solid #fecaca';
+                }
+                if (textEl) textEl.textContent = `Over-allocated: Shares exceed itinerary total by BDT ${over.toLocaleString()}`;
+                if (deltaEl) deltaEl.textContent = `- BDT ${over.toLocaleString()}`;
+            }
+        }
+
+        async function copySplitBillLink() {
             const total = document.getElementById('total-amount').textContent;
             const travelers = getTravelerCount();
             const share = document.getElementById('per-person-amount').textContent;
-
             const totalNum = parseFloat(total.replace(/[^\d.]/g, '')) || 0;
             const perPersonNum = parseFloat(share.replace(/[^\d.]/g, '')) || 0;
 
-            // Auto-save to MySQL to get a persistent Trip PNR Code
             const payload = {
                 trip_type: currentTripType,
                 origin_upazila: document.getElementById('origin-select')?.value || 'Savar, Dhaka',
@@ -5485,19 +6906,94 @@
             } catch (e) {}
 
             const shareUrl = `${window.location.origin}/trip-planner.html?trip=${tripCode}`;
-            navigator.clipboard?.writeText(shareUrl);
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareUrl);
+            }
 
-            alert(`🔗 Scenario 12: Split-Bill Shareable Link Generated in MySQL!\n\nBooking PNR: ${tripCode}\nMaster Itinerary: ${total}\nCohort: ${travelers} Travelers\nShare Per Traveler: ${share}\n\nShareable database link copied to clipboard:\n${shareUrl}`);
+            alert(`🔗 Split-Bill Shareable Link Copied to Clipboard!\n\nBooking PNR: ${tripCode}\nMaster Total: ${total}\nCohort: ${travelers} Travelers\nLink: ${shareUrl}\n\n(Saved to MySQL database for live retrieval)`);
+        }
+
+        function openShareModal() {
+            openSplitBillModal();
+        }
+
+        // ==========================================
+        // 7. Corporate B2B Quotation (Scenario 11)
+        // ==========================================
+        function openB2BQuoteModal() {
+            if (!validateSearchFields(true)) return;
+            const configuredSlots = Object.keys(currentTour).filter(k => currentTour[k] !== null);
+            if (configuredSlots.length === 0) {
+                alert('⚠️ Please select at least one travel component before generating a B2B quotation.');
+                return;
+            }
+
+            const modal = document.getElementById('b2b-quote-modal');
+            if (!modal) return;
+
+            const travelers = getTravelerCount();
+            const refCode = 'TUG-B2B-' + Date.now().toString(36).toUpperCase();
+            const todayStr = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+            const refEl = document.getElementById('quote-ref-no');
+            const dateEl = document.getElementById('quote-issue-date');
+            if (refEl) refEl.textContent = `REF: ${refCode}`;
+            if (dateEl) dateEl.textContent = `Date: ${todayStr}`;
+
+            const tbody = document.getElementById('quote-items-tbody');
+            let subtotal = 0;
+            let rowsHtml = '';
+
+            configuredSlots.forEach(slotKey => {
+                const item = currentTour[slotKey];
+                const calc = getItemPriceCalculation(slotKey, item, travelers);
+                subtotal += calc.itemTotal;
+
+                rowsHtml += `
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.65rem 0.75rem; font-weight: 700; color: #1e293b;">
+                            ${item.name}
+                            <div style="font-size: 0.7rem; color: #64748b; font-weight: normal;">${calc.subtitle}</div>
+                        </td>
+                        <td style="padding: 0.65rem 0.75rem; color: #475569; text-transform: capitalize;">
+                            ${formatSlotTitle(slotKey)}
+                        </td>
+                        <td style="padding: 0.65rem 0.75rem; color: #475569;">
+                            ${isPerPersonSlot(slotKey) ? `${travelers} Pax` : '1 Unit (Shared)'}
+                        </td>
+                        <td style="padding: 0.65rem 0.75rem; font-weight: 800; color: #0f172a; text-align: right;">
+                            BDT ${calc.itemTotal.toLocaleString()}
+                        </td>
+                    </tr>
+                `;
+            });
+
+            if (tbody) tbody.innerHTML = rowsHtml;
+
+            const vat = Math.round(subtotal * 0.15); // NBR 15% VAT
+            const ait = Math.round(subtotal * 0.05); // Advance Income Tax 5%
+            const grandTotal = subtotal + vat + ait;
+
+            const subEl = document.getElementById('quote-subtotal');
+            const vatEl = document.getElementById('quote-vat');
+            const aitEl = document.getElementById('quote-ait');
+            const grandEl = document.getElementById('quote-grand-total');
+
+            if (subEl) subEl.textContent = `BDT ${subtotal.toLocaleString()}`;
+            if (vatEl) vatEl.textContent = `BDT ${vat.toLocaleString()}`;
+            if (aitEl) aitEl.textContent = `BDT ${ait.toLocaleString()}`;
+            if (grandEl) grandEl.textContent = `BDT ${grandTotal.toLocaleString()}`;
+
+            modal.style.display = 'flex';
+        }
+
+        function closeB2BQuoteModal() {
+            const modal = document.getElementById('b2b-quote-modal');
+            if (modal) modal.style.display = 'none';
         }
 
         function openQuoteModal() {
-            if (!validateSearchFields(true)) return;
-            const hasAnyConfigured = Object.values(currentTour).some(x => x !== null);
-            if (!hasAnyConfigured) {
-                alert('⚠️ Please select at least one component before generating a B2B quote.');
-                return;
-            }
-            alert('📑 Scenario 11: Corporate B2B Quotation Generated with 15% NBR VAT and 5% AIT!\nReady for corporate tax audit submission.');
+            openB2BQuoteModal();
         }
 
         function handlePrintItinerary() {
