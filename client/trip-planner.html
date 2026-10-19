@@ -1943,826 +1943,2285 @@
                 height: 440px;
             }
         }
+
+        /* ==============================================================
+           PIXEL-PERFECT MOCKUP DESIGN SYSTEM & STYLES (IMAGES 1 & 2)
+           ============================================================== */
+        .planner-page-container {
+            max-width: 1480px;
+            margin: 0 auto;
+            padding: 1.25rem 1.5rem 3.5rem;
+        }
+
+        /* 1. Header Navigation Bar (Mockup Aligned) */
+        .site-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+            padding: 0;
+            height: 70px;
+        }
+
+        .site-navbar .container {
+            max-width: 1480px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #0284c7;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+        }
+
+        .nav-brand-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #0284c7;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .nav-brand-text span {
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        .nav-main-menu {
+            display: flex;
+            align-items: center;
+            gap: 2.25rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .nav-main-menu li {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-main-menu a {
+            color: #475569;
+            font-size: 0.925rem;
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            padding: 1.5rem 0;
+            transition: color 0.2s ease;
+        }
+
+        .nav-main-menu a:hover,
+        .nav-main-menu a.active {
+            color: #0284c7;
+        }
+
+        .nav-main-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #0284c7;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .nav-profile-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem 0.35rem 0.45rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #0f172a;
+            transition: all 0.2s;
+        }
+
+        .nav-profile-pill:hover {
+            border-color: #0284c7;
+            background: #f0f9ff;
+        }
+
+        .nav-avatar-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #0284c7;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .btn-nav-search-icon {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .btn-nav-search-icon:hover {
+            background: #f1f5f9;
+            color: #0284c7;
+        }
+
+        /* Admin Demo Combos Strip */
+        .admin-demo-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.45rem 1rem;
+            margin-bottom: 1rem;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        /* 2. Hero Dream Card */
+        .hero-dream-card {
+            background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 35%, #bae6fd 70%, #93c5fd 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 145px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(2, 132, 199, 0.08);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-dream-left {
+            padding: 1.75rem 2.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            z-index: 2;
+            max-width: 65%;
+        }
+
+        .hero-pin-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: #0284c7;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            flex-shrink: 0;
+        }
+
+        .hero-dream-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-dream-sub {
+            font-size: 0.95rem;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .hero-dream-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 48%;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80') center right / cover no-repeat;
+            mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,1) 60%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,1) 60%);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 3rem;
+        }
+
+        .hero-script-overlay {
+            position: relative;
+            z-index: 3;
+            text-align: right;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            font-family: 'Caveat', cursive;
+            font-size: 1.85rem;
+            line-height: 1.15;
+            font-weight: 700;
+        }
+
+        .hero-script-plane {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 1.5rem;
+            margin-left: 0.35rem;
+            transform: rotate(-10deg);
+        }
+
+        /* 3. Search Strip (6 fields) */
+        .search-strip-mockup {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+            display: grid;
+            grid-template-columns: 1.15fr 1.35fr 1fr 1fr 1.15fr 1fr;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+        }
+
+        .search-field-pill {
+            padding: 0.85rem 1.15rem;
+            border-right: 1px solid #f1f5f9;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .search-field-pill:last-child {
+            border-right: none;
+        }
+
+        .search-field-pill:hover {
+            background: #f8fafc;
+        }
+
+        .search-field-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #64748b;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .search-field-value {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.4rem;
+        }
+
+        .search-val-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 0;
+        }
+
+        .search-val-icon {
+            color: #0284c7;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .search-val-text {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .search-val-chevron {
+            color: #94a3b8;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* 4. Category Tabs Strip & Search */
+        .cat-tabs-mockup {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .cat-pills-group {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+        }
+
+        .cat-pill-btn {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            padding: 0.5rem 1.15rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #334155;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .cat-pill-btn:hover {
+            background: #f0f9ff;
+            color: #0284c7;
+            border-color: #bae6fd;
+        }
+
+        .cat-pill-btn.active {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+
+        .cat-pill-count {
+            background: #e0f2fe;
+            color: #0284c7;
+            padding: 2px 7px;
+            border-radius: 9999px;
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        .cat-pill-btn.active .cat-pill-count {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        .cat-search-box {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            padding: 0.45rem 1.15rem;
+            min-width: 290px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .cat-search-box input {
+            border: none;
+            outline: none;
+            font-size: 0.85rem;
+            color: #0f172a;
+            width: 100%;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        /* 5. 2-Column Grid Layout */
+        .planner-two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1120px) {
+            .planner-two-col-grid {
+                grid-template-columns: 1fr;
+            }
+            .search-strip-mockup {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-strip-mockup {
+                grid-template-columns: 1fr;
+            }
+            .nav-main-menu {
+                display: none;
+            }
+            .hero-dream-right {
+                display: none;
+            }
+            .hero-dream-left {
+                max-width: 100%;
+            }
+        }
+
+        /* 6. Left Column Category Accordion Card */
+        .cat-card-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+            transition: border-color 0.2s;
+        }
+
+        .cat-card-box.collapsed .cat-card-body {
+            display: none;
+        }
+
+        .cat-card-box.collapsed .cat-chevron-icon {
+            transform: rotate(0deg);
+        }
+
+        .cat-card-header {
+            padding: 1.15rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            background: #ffffff;
+            user-select: none;
+            transition: background 0.15s;
+        }
+
+        .cat-card-header:hover {
+            background: #fafafa;
+        }
+
+        .cat-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cat-icon-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .cat-icon-badge.blue { background: #e0f2fe; color: #0284c7; }
+        .cat-icon-badge.purple { background: #f3e8ff; color: #9333ea; }
+        .cat-icon-badge.orange { background: #ffedd5; color: #ea580c; }
+        .cat-icon-badge.green { background: #dcfce7; color: #16a34a; }
+        .cat-icon-badge.amber { background: #fef3c7; color: #d97706; }
+
+        .cat-title-text {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.25;
+        }
+
+        .cat-sub-text {
+            font-size: 0.78rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 0.15rem;
+        }
+
+        .cat-header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .cat-minimize-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #0284c7;
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 9999px;
+            padding: 0.3rem 0.75rem;
+            cursor: pointer;
+        }
+
+        .cat-chevron-icon {
+            font-size: 20px;
+            color: #94a3b8;
+            transition: transform 0.2s;
+        }
+
+        /* Sub-type filter pills */
+        .sub-filter-row {
+            padding: 0.75rem 1.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            border-top: 1px solid #f1f5f9;
+            flex-wrap: wrap;
+            background: #ffffff;
+        }
+
+        .sub-filter-pill {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #475569;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.15s ease;
+        }
+
+        .sub-filter-pill:hover {
+            background: #f8fafc;
+            color: #0284c7;
+            border-color: #cbd5e1;
+        }
+
+        .sub-filter-pill.active {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+        }
+
+        .sub-filter-pill.active i {
+            color: #ffffff;
+        }
+
+        /* Inner Sub-section */
+        .inner-service-section {
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .inner-service-header {
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .inner-header-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .inner-header-count {
+            font-size: 0.78rem;
+            color: #64748b;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        /* Service Rows (1 service per row!) */
+        .provider-service-row {
+            display: grid;
+            grid-template-columns: 140px 1.4fr 1.2fr 1fr 110px 105px;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            gap: 1rem;
+            transition: background 0.15s;
+        }
+
+        .provider-service-row:last-child {
+            border-bottom: none;
+        }
+
+        .provider-service-row:hover {
+            background: #f8fafc;
+        }
+
+        .provider-logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .provider-logo-wrap img {
+            max-height: 38px;
+            max-width: 120px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        .provider-thumb-hotel {
+            width: 90px;
+            height: 65px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .provider-details-wrap {
+            min-width: 0;
+        }
+
+        .provider-name-text {
+            font-size: 0.925rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .provider-sub-text {
+            font-size: 0.76rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 0.2rem;
+        }
+
+        .provider-meta-row {
+            font-size: 0.75rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+            margin-top: 0.25rem;
+        }
+
+        .provider-meta-row span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .provider-timing-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .provider-time-text {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .provider-duration-text {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .provider-amenity-pills {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+        }
+
+        .amenity-badge {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.55rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            white-space: nowrap;
+        }
+
+        .provider-price-wrap {
+            text-align: right;
+        }
+
+        .provider-price-amount {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0f172a;
+            font-family: var(--font-sans);
+        }
+
+        .provider-price-unit {
+            font-size: 0.7rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .btn-select-service {
+            background: #0284c7;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.55rem 1.15rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-select-service:hover {
+            background: #0369a1;
+            transform: translateY(-1px);
+        }
+
+        .btn-select-service.selected {
+            background: #10b981;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-view-all-foot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.85rem 1.5rem;
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            color: #0284c7;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .btn-view-all-foot:hover {
+            background: #f0f9ff;
+        }
+
+        /* 7. Sticky Sidebar */
+        .planner-sidebar-sticky {
+            position: sticky;
+            top: 85px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Trip Summary Card */
+        .trip-summary-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.25rem 1.35rem;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+        }
+
+        .summary-card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .summary-title-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .btn-edit-summary {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            padding: 0.25rem 0.65rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #475569;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: all 0.15s;
+        }
+
+        .btn-edit-summary:hover {
+            background: #f8fafc;
+            color: #0284c7;
+            border-color: #0284c7;
+        }
+
+        /* Destination Photo Route Card */
+        .summary-route-box {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            border-radius: 10px;
+            padding: 0.65rem 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary-route-thumb {
+            width: 60px;
+            height: 52px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .summary-route-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.25;
+        }
+
+        .summary-route-meta {
+            font-size: 0.72rem;
+            color: #64748b;
+            margin-top: 0.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        /* Category Subtotals Rows */
+        .summary-breakdown-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary-row-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.825rem;
+        }
+
+        .summary-row-name {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .summary-row-name i {
+            font-size: 16px;
+            color: #0284c7;
+        }
+
+        .summary-row-price {
+            font-weight: 800;
+            color: #0f172a;
+            font-family: var(--font-sans);
+        }
+
+        .summary-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 0.85rem 0 1rem;
+        }
+
+        /* Estimated Total */
+        .summary-total-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 1.15rem;
+        }
+
+        .summary-total-label {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .summary-total-val {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #0284c7;
+            font-family: var(--font-sans);
+        }
+
+        /* Confirm & Book Button */
+        .btn-book-tour-main {
+            background: #0284c7;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-book-tour-main:hover {
+            background: #0369a1;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.45);
+        }
+
+        .summary-secondary-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-top: 0.85rem;
+            padding-top: 0.85rem;
+            border-top: 1px dashed #e2e8f0;
+        }
+
+        .btn-sidebar-sec {
+            background: transparent;
+            border: none;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #64748b;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.35rem;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+
+        .btn-sidebar-sec:hover {
+            color: #0284c7;
+            background: #f0f9ff;
+        }
+
+        /* Card 2: Green Algorithmic Scenarios */
+        .card-green-scenarios {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 0.95rem 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+        }
+
+        .card-green-scenarios:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15);
+        }
+
+        .scen-check-circle {
+            width: 28px;
+            height: 28px;
+            background: #16a34a;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .scen-info-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .scen-info-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #166534;
+            line-height: 1.25;
+        }
+
+        .scen-info-sub {
+            font-size: 0.72rem;
+            color: #4b5563;
+            line-height: 1.35;
+            margin-top: 0.2rem;
+        }
+
+        .scen-chevron-right {
+            color: #16a34a;
+            font-size: 18px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        /* Card 3: Blue Secure & Reliable */
+        .card-blue-security {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 0.95rem 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card-blue-security:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+        }
+
+        .sec-shield-badge {
+            width: 28px;
+            height: 28px;
+            background: #2563eb;
+            color: #ffffff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .sec-info-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .sec-info-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #1e40af;
+        }
+
+        .sec-info-sub {
+            font-size: 0.72rem;
+            color: #4b5563;
+            margin-top: 0.15rem;
+        }
+
+        .sec-chevron-right {
+            color: #2563eb;
+            font-size: 18px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        /* Card 4: Adventure Sky Card */
+        .card-sky-adventure {
+            background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 45%, #e0f2fe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 14px;
+            padding: 1.5rem 1.25rem 0.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.05);
+        }
+
+        .adv-plane-icon {
+            font-size: 28px;
+            color: #0284c7;
+            display: inline-block;
+            transform: rotate(-35deg);
+            margin-bottom: 0.35rem;
+        }
+
+        .adv-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            line-height: 1.25;
+        }
+
+        .adv-sub {
+            font-size: 0.76rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .adv-mountains-svg {
+            width: 100%;
+            height: 70px;
+            display: block;
+            margin: 0 auto -2px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
+    <!-- Top Navigation Bar (Mockup Aligned) -->
     <header class="site-navbar">
-        <div class="container nav-inner">
-            <a href="index.html" class="nav-brand">
-                <img src="images/logo.png" alt="TravelUp Global" class="nav-logo-img">
+        <div class="container">
+            <a href="index.html" class="nav-logo-group">
+                <div class="nav-logo-icon">
+                    <i class="material-icons" style="font-size: 22px;">flight_takeoff</i>
+                </div>
+                <div class="nav-brand-text">TravelUp <span>Global</span></div>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-main-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="tour-packages.html">Tour Packages</a></li>
-                <li><a href="trip-planner.html" class="active">Trip Planner</a></li>
-                <li><a href="travel-planner.html">Travel Planner</a></li>
+                <li><a href="tour-packages.html">Destinations</a></li>
+                <li><a href="trip-planner.html" class="active">Tour Planner</a></li>
+                <li><a href="travel-planner.html">Travel Guide</a></li>
+                <li><a href="about.html">About</a></li>
             </ul>
-            <div class="nav-actions" id="nav-auth-slot">
-                <a href="login.html" class="btn-nav-outline">Log In</a>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <button type="button" class="btn-nav-search-icon" title="Search destinations & tours" onclick="document.getElementById('live-service-search')?.focus()">
+                    <i class="material-icons" style="font-size: 20px;">search</i>
+                </button>
+                <div class="nav-profile-pill" title="User Profile">
+                    <div class="nav-avatar-circle">
+                        <i class="material-icons" style="font-size: 18px;">person</i>
+                    </div>
+                    <span>Admin</span>
+                    <i class="material-icons" style="font-size: 18px; color: #64748b;">expand_more</i>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section (Consistent with TravelUp Home Page & Tour Packages) -->
-    <section class="packages-hero">
-        <div class="container hero-inner">
-            <div class="hero-badge">DYNAMIC ITINERARY ENGINE • CUSTOMIZE EVERY SERVICE</div>
-            <h1 class="hero-title">
-                Custom Tour Planner — <span>TravelUp Global</span>
-            </h1>
-            <p class="hero-desc">
-                Plan your tailored trip with intermodal transit, verified resorts, dining packages, and local activities across 495 Upazilas.
-            </p>
-        </div>
-    </section>
+    <!-- Main Planner Page Container -->
+    <div class="planner-page-container">
 
-    <div class="container">
-
-        <!-- Elevated Trip Configuration & Search Card (Home Page Style) -->
-        <div class="planner-filter-card">
-
-            <!-- Admin Quick Demo Combos Strip -->
-            <div class="demo-preset-strip">
+        <!-- Admin Quick Tour Demo Combos Bar -->
+        <div class="admin-demo-strip">
             <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 800; color: #475569;">
-                <span class="demo-badge">ADMIN</span>
-                <span>Quick Tour Demos:</span>
+                <span style="background: #0284c7; color: #fff; font-size: 0.65rem; font-weight: 900; padding: 2px 7px; border-radius: 9999px;">ADMIN DEMO</span>
+                <span>Quick Tour Routes:</span>
             </div>
-            <div class="demo-buttons">
-                <button type="button" class="btn-demo-pill active" onclick="autoFillDemo('coxsbazar', 'Savar, Dhaka', 4)" title="Autofill Savar -> Cox's Bazar (4 Pax Round-Trip)">
-                    Savar ➔ Cox's Bazar
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <button type="button" class="btn-demo-pill active" onclick="autoFillDemo('coxsbazar', 'Mirpur, Dhaka', 4)" title="Autofill Mirpur -> Cox's Bazar">
+                    Mirpur ➔ Cox's Bazar
                 </button>
-                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('sajek', 'Mirpur, Dhaka', 10)" title="Autofill Mirpur -> Sajek Valley (10 Pax Round-Trip)">
+                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('sajek', 'Mirpur, Dhaka', 10)" title="Autofill Mirpur -> Sajek Valley">
                     Mirpur ➔ Sajek
                 </button>
-                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('saintmartin', 'Chittagong Sadar', 2)" title="Autofill Chittagong -> Saint Martin (2 Pax Round-Trip)">
+                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('saintmartin', 'Chittagong Sadar', 2)" title="Autofill Chittagong -> Saint Martin">
                     Chittagong ➔ Saint Martin
                 </button>
-                <button type="button" class="btn-demo-reset" onclick="resetSearchFields()" title="Reset all fields to test locked state">
+                <button type="button" class="btn-demo-reset" onclick="resetSearchFields()" title="Reset all fields">
                     <i class="material-icons" style="font-size: 14px;">restart_alt</i> Reset
                 </button>
             </div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; margin-left: auto;">
-                DIU CSE Lab Project • Roll 39, 34, 36
+            <div id="db-status-badge" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 800; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; border-radius: 20px; padding: 3px 10px; margin-left: auto;">
+                <span style="width: 7px; height: 7px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
+                <span>Hostinger MySQL Live</span>
             </div>
         </div>
 
-        <!-- Trip Type Tabs & Live Database Status (Problem 3 & Database Sync) -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.75rem;">
-            <div class="trip-type-tabs">
-                <button type="button" class="trip-tab-btn active" id="tab-round-trip" onclick="setTripType('round_trip')">
-                    🔄 Round Trip
-                </button>
-                <button type="button" class="trip-tab-btn" id="tab-one-way" onclick="setTripType('one_way')">
-                    ➡️ One Way
-                </button>
-                <button type="button" class="trip-tab-btn" id="tab-open-return" onclick="setTripType('open_return')">
-                    ⏳ Open-Ended Stay
-                </button>
-            </div>
-            <div id="db-status-badge" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.775rem; font-weight: 800; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; border-radius: 20px; padding: 4px 12px;">
-                <span id="db-status-dot" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
-                <span id="db-status-text">Hostinger MySQL Live Database Connected</span>
-            </div>
-        </div>
-
-        <!-- Origin, Destination & Date Search Strip (Round-Trip Upazila Model) -->
-        <div class="search-strip" id="search-strip">
-            <div class="search-field" id="field-origin">
-                <label>From (Origin Upazila) <span style="color: #ef4444;">*</span></label>
-                <div class="loc-trigger-card" onclick="openLocationPicker('origin')" title="Click to browse or search across all 495 Upazilas">
-                    <div class="loc-trigger-info">
-                        <i class="material-icons" style="font-size: 20px; color: #0284c7;">place</i>
-                        <div style="min-width: 0;">
-                            <div class="loc-trigger-title" id="origin-display-title">Savar, Dhaka</div>
-                            <div class="loc-trigger-sub" id="origin-display-sub">Dhaka Division • Bangladesh</div>
-                        </div>
-                    </div>
-                    <i class="material-icons" style="font-size: 16px; color: #94a3b8;">unfold_more</i>
+        <!-- Hero Dream Banner Card (Exact Mockup Match) -->
+        <div class="hero-dream-card">
+            <div class="hero-dream-left">
+                <div class="hero-pin-badge">
+                    <i class="material-icons" style="font-size: 26px;">place</i>
                 </div>
-                <input type="hidden" id="origin-select" value="Savar, Dhaka">
+                <div>
+                    <h1 class="hero-dream-title">Create Your Dream Trip</h1>
+                    <p class="hero-dream-sub">Plan, customize and book your perfect journey with TravelUp Global.</p>
+                </div>
+            </div>
+            <div class="hero-dream-right">
+                <div class="hero-script-overlay">
+                    <div>Explore the World</div>
+                    <div>One Trip at a Time <span class="hero-script-plane">✈️</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Filter Strip (6 Fields, Exact Mockup Match) -->
+        <div class="search-strip-mockup" id="search-strip">
+            <!-- Field 1: From (Origin) -->
+            <div class="search-field-pill" id="field-origin" onclick="openLocationPicker('origin')" title="Click to browse 495 Upazilas across Bangladesh">
+                <span class="search-field-label">From (Origin)</span>
+                <div class="search-field-value">
+                    <div class="search-val-left">
+                        <i class="material-icons search-val-icon">place</i>
+                        <span class="search-val-text" id="origin-display-title">Mirpur, Dhaka</span>
+                    </div>
+                    <i class="material-icons search-val-chevron">expand_more</i>
+                </div>
+                <input type="hidden" id="origin-select" value="Mirpur, Dhaka">
                 <input type="hidden" id="origin-upazila-id" value="BD-DIV-06-DIST-08-UPZ-001">
-                <span class="error-hint">Please select origin upazila</span>
             </div>
-            <div class="search-field" id="field-destination">
-                <label>Tour Destination (To) <span style="color: #ef4444;">*</span></label>
-                <div class="loc-trigger-card" onclick="openLocationPicker('destination')" title="Click to browse or search across all 495 Upazilas">
-                    <div class="loc-trigger-info">
-                        <i class="material-icons" style="font-size: 20px; color: #ef4444;">tour</i>
-                        <div style="min-width: 0;">
-                            <div class="loc-trigger-title" id="destination-display-title">Coxsbazar Sadar, Coxsbazar</div>
-                            <div class="loc-trigger-sub" id="destination-display-sub">Chattagram Division • Bangladesh</div>
-                        </div>
+
+            <!-- Field 2: To (Destination) -->
+            <div class="search-field-pill" id="field-destination" onclick="openLocationPicker('destination')" title="Click to browse 495 Upazilas across Bangladesh">
+                <span class="search-field-label">To (Destination)</span>
+                <div class="search-field-value">
+                    <div class="search-val-left">
+                        <i class="material-icons search-val-icon">place</i>
+                        <span class="search-val-text" id="destination-display-title">Cox's Bazar, Chattogram, Bangladesh</span>
                     </div>
-                    <i class="material-icons" style="font-size: 16px; color: #94a3b8;">unfold_more</i>
+                    <i class="material-icons search-val-chevron">expand_more</i>
                 </div>
-                <!-- Preserved for backward compatibility and inventory mapping -->
                 <select id="destination-select" style="display: none;" onchange="onDestinationChanged()">
-                    <option value="coxsbazar" selected>Cox's Bazar (Sea Beach & Marine Drive)</option>
-                    <option value="sajek">Sajek Valley (Cloud Valley & Helipad)</option>
-                    <option value="sreemangal">Sreemangal (Tea Gardens & Eco Trails)</option>
-                    <option value="tetulia">Tetulia, Panchagarh (Himalayan View)</option>
+                    <option value="coxsbazar" selected>Cox's Bazar, Chattogram, Bangladesh</option>
+                    <option value="sajek">Sajek Valley, Rangamati, Bangladesh</option>
+                    <option value="sreemangal">Sreemangal, Moulvibazar, Bangladesh</option>
+                    <option value="tetulia">Tetulia, Panchagarh, Bangladesh</option>
                     <option value="jaflong">Sylhet, Jaflong & Ratargul</option>
                     <option value="saintmartin">Saint Martin's Coral Island</option>
                 </select>
                 <input type="hidden" id="destination-upazila-id" value="BD-DIV-01-DIST-09-UPZ-001">
                 <input type="hidden" id="destination-upazila-name" value="Coxsbazar Sadar, Coxsbazar">
-                <span class="error-hint">Please select tour destination</span>
             </div>
-            <div class="search-field" id="field-dept-date">
-                <label>Departure Date <span style="color: #ef4444;">*</span></label>
-                <input type="date" id="dept-date" onchange="onSearchFieldChanged()">
-                <span class="error-hint">Please select departure date</span>
-            </div>
-            <div class="search-field" id="field-return-date">
-                <label id="return-date-label">Return Date <span style="font-size: 0.75rem; color: #047857; font-weight: 800;" id="nights-count-badge">(3 Nights)</span></label>
-                <input type="date" id="return-date" onchange="onSearchFieldChanged()">
-                <span class="error-hint">Please select return date</span>
-            </div>
-            <div class="search-field" id="field-travelers" style="position: relative;">
-                <label>Travelers & Ages (Scenario 10) <span style="color: #ef4444;">*</span></label>
-                <input type="text" id="traveler-count-display" value="4 Travelers (4 Adults)" readonly onclick="toggleTravelerPopover()" style="cursor: pointer; background: #ffffff;">
-                <input type="hidden" id="traveler-count" value="4">
-                <span class="error-hint">Min 1 traveler</span>
 
-                <!-- Traveler Composition Popover (Problem 4) -->
-                <div id="traveler-popover" style="display: none; position: absolute; top: calc(100% + 5px); right: 0; background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); padding: 1rem; width: 280px; z-index: 100;">
-                    <div style="font-size: 0.85rem; font-weight: 800; color: #1e293b; margin-bottom: 0.75rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Group Composition</span>
-                        <span style="font-size: 0.7rem; color: #64748b; font-weight: normal;">Problem 4 & 10</span>
+            <!-- Field 3: Departure Date -->
+            <div class="search-field-pill" id="field-dept-date" onclick="triggerNativeDatePicker('dept-date')" title="Select Departure Date">
+                <span class="search-field-label">Departure Date</span>
+                <div class="search-field-value">
+                    <div class="search-val-left">
+                        <i class="material-icons search-val-icon">calendar_today</i>
+                        <span class="search-val-text" id="dept-date-display">15 Nov 2025</span>
+                    </div>
+                    <i class="material-icons search-val-chevron">expand_more</i>
+                </div>
+                <input type="date" id="dept-date" style="position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0;" onchange="onDateInputChanged('dept-date')">
+            </div>
+
+            <!-- Field 4: Return Date -->
+            <div class="search-field-pill" id="field-return-date" onclick="triggerNativeDatePicker('return-date')" title="Select Return Date">
+                <span class="search-field-label">Return Date</span>
+                <div class="search-field-value">
+                    <div class="search-val-left">
+                        <i class="material-icons search-val-icon">calendar_today</i>
+                        <span class="search-val-text" id="return-date-display">18 Nov 2025</span>
+                    </div>
+                    <i class="material-icons search-val-chevron">expand_more</i>
+                </div>
+                <input type="date" id="return-date" style="position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0;" onchange="onDateInputChanged('return-date')">
+            </div>
+
+            <!-- Field 5: Travelers & Ages -->
+            <div class="search-field-pill" id="field-travelers" onclick="toggleTravelerPopover()" style="position: relative;" title="Adjust travelers composition">
+                <span class="search-field-label">Travelers & Ages</span>
+                <div class="search-field-value">
+                    <div class="search-val-left">
+                        <i class="material-icons search-val-icon">people</i>
+                        <span class="search-val-text" id="traveler-count-display">4 Travelers (4 Adults)</span>
+                    </div>
+                    <i class="material-icons search-val-chevron">expand_more</i>
+                </div>
+                <input type="hidden" id="traveler-count" value="4">
+
+                <!-- Traveler Composition Popover -->
+                <div id="traveler-popover" style="display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #ffffff; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 15px 35px rgba(15,23,42,0.18); padding: 1.15rem; width: 290px; z-index: 500;" onclick="event.stopPropagation();">
+                    <div style="font-size: 0.85rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Traveler Composition</span>
+                        <span style="font-size: 0.7rem; color: #64748b;">Ages & Rules</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
                         <div>
-                            <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b;">Adults</div>
+                            <div style="font-size: 0.825rem; font-weight: 700; color: #0f172a;">Adults</div>
                             <div style="font-size: 0.7rem; color: #64748b;">Age 12+ (Full Fare)</div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('adults', -1)">-</button>
-                            <span id="count-adults" style="font-weight: 800; font-size: 0.9rem; min-width: 16px; text-align: center;">4</span>
+                            <span id="count-adults" style="font-weight: 800; font-size: 0.9rem; min-width: 18px; text-align: center;">4</span>
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('adults', 1)">+</button>
                         </div>
                     </div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
                         <div>
-                            <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b;">Children</div>
+                            <div style="font-size: 0.825rem; font-weight: 700; color: #0f172a;">Children</div>
                             <div style="font-size: 0.7rem; color: #64748b;">Age 5–11 (Half Seat Fare)</div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('children', -1)">-</button>
-                            <span id="count-children" style="font-weight: 800; font-size: 0.9rem; min-width: 16px; text-align: center;">0</span>
+                            <span id="count-children" style="font-weight: 800; font-size: 0.9rem; min-width: 18px; text-align: center;">0</span>
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('children', 1)">+</button>
                         </div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
                         <div>
-                            <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b;">Infants</div>
+                            <div style="font-size: 0.825rem; font-weight: 700; color: #0f172a;">Infants</div>
                             <div style="font-size: 0.7rem; color: #64748b;">Under 4 yrs (Free Lap Seat)</div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('infants', -1)">-</button>
-                            <span id="count-infants" style="font-weight: 800; font-size: 0.9rem; min-width: 16px; text-align: center;">0</span>
+                            <span id="count-infants" style="font-weight: 800; font-size: 0.9rem; min-width: 18px; text-align: center;">0</span>
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('infants', 1)">+</button>
                         </div>
                     </div>
-                    <button type="button" class="btn-checkout" onclick="closeTravelerPopover()" style="width: 100%; padding: 0.5rem; font-size: 0.8rem;">
+                    <button type="button" class="btn-select-service" onclick="closeTravelerPopover()" style="width: 100%; padding: 0.5rem; font-size: 0.825rem;">
                         Apply Travelers
                     </button>
                 </div>
             </div>
-            <div class="search-field" id="field-budget">
-                <label>Target Budget (BDT)</label>
-                <div style="position: relative; display: flex; align-items: center;">
-                    <span style="position: absolute; left: 8px; font-weight: 800; font-size: 0.72rem; color: #64748b;">BDT</span>
-                    <input type="number" id="target-budget-input" placeholder="e.g. 50,000" min="0" step="500" style="padding-left: 36px;" oninput="onBudgetInputChanged(this.value)">
+
+            <!-- Field 6: Target Budget (BDT) -->
+            <div class="search-field-pill" id="field-budget" onclick="promptBudgetEdit()" title="Set Target Budget">
+                <span class="search-field-label">Target Budget (BDT)</span>
+                <div class="search-field-value">
+                    <div class="search-val-left">
+                        <span class="search-val-icon" style="font-weight: 800; font-size: 16px;">৳</span>
+                        <span class="search-val-text" id="target-budget-display">50,000 - 100,000</span>
+                    </div>
+                    <i class="material-icons search-val-chevron">expand_more</i>
                 </div>
-                <span class="error-hint" id="budget-hint">Target budget amount</span>
-            </div>
-        </div>
-        </div> <!-- /planner-filter-card -->
-
-        <!-- Lock / Status Banner (Hidden per user request) -->
-        <div id="planner-lock-banner" class="lock-banner locked" style="display: none !important;">
-            <span class="lock-badge">
-                <i class="material-icons" id="lock-icon" style="font-size: 18px;">lock</i>
-            </span>
-            <span id="lock-message" style="flex: 1;">
-                <strong>Planner Locked:</strong> Please fill in all 4 travel criteria above (From, To, Departure Date, and Travelers) to unlock and customize components.
-            </span>
-            <button type="button" class="btn-demo-pill" style="margin-left: auto; background: #0284c7; color: #fff; border-color: #0284c7;" onclick="autoFillDemo('coxsbazar', 'Dhaka', 4)">
-                ⚡ Quick Demo
-            </button>
-        </div>
-
-        <!-- Category Quick Jump Strip & Service Search Bar -->
-        <div class="cat-nav-strip" id="cat-nav-strip">
-            <div class="cat-nav-buttons" id="cat-nav-buttons">
-                <button type="button" class="cat-nav-btn active" data-cat="all" onclick="filterCategory('all')">
-                    <span>All Components</span> <span class="badge" id="badge-count-all">25</span>
-                </button>
-                <button type="button" class="cat-nav-btn" data-cat="transit" onclick="filterCategory('transit')">
-                    <span>Transit</span> <span class="badge" id="badge-count-transit">9</span>
-                </button>
-                <button type="button" class="cat-nav-btn" data-cat="accommodation" onclick="filterCategory('accommodation')">
-                    <span>Accommodation</span> <span class="badge" id="badge-count-accommodation">5</span>
-                </button>
-                <button type="button" class="cat-nav-btn" data-cat="dining" onclick="filterCategory('dining')">
-                    <span>Dining & Meals</span> <span class="badge" id="badge-count-dining">4</span>
-                </button>
-                <button type="button" class="cat-nav-btn" data-cat="recreation" onclick="filterCategory('recreation')">
-                    <span>Recreation</span> <span class="badge" id="badge-count-recreation">4</span>
-                </button>
-                <button type="button" class="cat-nav-btn" data-cat="addons" onclick="filterCategory('addons')">
-                    <span>Guides & Addons</span> <span class="badge" id="badge-count-addons">3</span>
-                </button>
-            </div>
-            <div class="cat-search-wrap">
-                <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
-                <input type="text" id="service-search-input" placeholder="Search 25 services by name..." oninput="onServiceSearchChanged(this.value)">
-                <button type="button" id="clear-service-search" style="display: none; background: none; border: none; cursor: pointer; color: #94a3b8; padding: 0;" onclick="clearServiceSearch()">
-                    <i class="material-icons" style="font-size: 16px;">close</i>
-                </button>
+                <input type="hidden" id="target-budget-input" value="100000">
             </div>
         </div>
 
-        <!-- Budget Gauge & Tourist Preferences Row -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
-            <!-- Target Budget Gauge -->
-            <div class="budget-card-wrap" style="margin-bottom: 0;">
-                <div class="budget-info-left">
-                    <div style="width: 36px; height: 36px; border-radius: 8px; background: #eff6ff; display: flex; align-items: center; justify-content: center; color: #0284c7;">
-                        <i class="material-icons" style="font-size: 20px;">account_balance_wallet</i>
-                    </div>
-                    <div>
-                        <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Target Budget Gauge</div>
-                        <div style="font-size: 0.875rem; font-weight: 800; color: #0f172a;" id="budget-status-text">Enter target budget above to track cost</div>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <div class="budget-meter-bar-outer" title="Spent vs Target Budget">
-                        <div class="budget-meter-bar-inner" id="budget-progress-bar" style="width: 0%;"></div>
-                    </div>
-                    <span id="budget-percentage-text" style="font-size: 0.8rem; font-weight: 800; color: #475569; min-width: 45px; text-align: right;">0%</span>
-                </div>
-            </div>
-
-            <!-- Tourist Preferences Strip -->
-            <div class="preferences-bar" style="margin-bottom: 0;">
-                <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;">
-                    <span style="font-size: 0.725rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Preferences:</span>
-                    <span class="pref-pill-tag" id="pref-tag-pace"><i class="material-icons" style="font-size: 13px;">speed</i> <span id="pref-val-pace">Moderate Pace</span></span>
-                    <span class="pref-pill-tag" id="pref-tag-mobility"><i class="material-icons" style="font-size: 13px;">accessible</i> <span id="pref-val-mobility">Standard</span></span>
-                    <span class="pref-pill-tag" id="pref-tag-dietary"><i class="material-icons" style="font-size: 13px;">restaurant</i> <span id="pref-val-dietary">Halal / Standard</span></span>
-                    <span class="pref-pill-tag" id="pref-tag-luggage"><i class="material-icons" style="font-size: 13px;">luggage</i> <span id="pref-val-luggage">Standard</span></span>
-                </div>
-                <button type="button" class="action-btn" onclick="openPreferencesModal()" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;">
-                    <i class="material-icons" style="font-size: 14px;">tune</i> Edit
+        <!-- Category Tabs Row & Live Search Bar (Exact Mockup Match) -->
+        <div class="cat-tabs-mockup">
+            <div class="cat-pills-group" id="category-pills-bar">
+                <button type="button" class="cat-pill-btn active" id="tab-pill-transit" onclick="openCategoryTab('transit')">
+                    <i class="material-icons" style="font-size: 17px;">directions_bus</i>
+                    <span>Transit</span>
+                    <span class="cat-pill-count" id="count-badge-transit">5</span>
+                </button>
+                <button type="button" class="cat-pill-btn" id="tab-pill-accommodation" onclick="openCategoryTab('accommodation')">
+                    <i class="material-icons" style="font-size: 17px;">hotel</i>
+                    <span>Accommodation</span>
+                    <span class="cat-pill-count" id="count-badge-accommodation">4</span>
+                </button>
+                <button type="button" class="cat-pill-btn" id="tab-pill-dining" onclick="openCategoryTab('dining')">
+                    <i class="material-icons" style="font-size: 17px;">restaurant</i>
+                    <span>Dining</span>
+                    <span class="cat-pill-count" id="count-badge-dining">2</span>
+                </button>
+                <button type="button" class="cat-pill-btn" id="tab-pill-recreation" onclick="openCategoryTab('recreation')">
+                    <i class="material-icons" style="font-size: 17px;">surfing</i>
+                    <span>Recreation</span>
+                    <span class="cat-pill-count" id="count-badge-recreation">2</span>
+                </button>
+                <button type="button" class="cat-pill-btn" id="tab-pill-addons" onclick="openCategoryTab('addons')">
+                    <i class="material-icons" style="font-size: 17px;">photo_camera</i>
+                    <span>Guides & Addons</span>
+                    <span class="cat-pill-count" id="count-badge-addons">1</span>
                 </button>
             </div>
-        </div>
-
-        <!-- PCB Builder Container -->
-        <div class="pcb-container is-locked">
-
-            <!-- PCB Head (Larger Logo on Left, Price Stats on Right) -->
-            <div class="pcb-head">
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <img src="images/logo.png" alt="TravelUp Global" style="height: 52px; width: auto; display: block;">
-                    <div>
-                        <div style="font-size: 0.8rem; font-weight: 800; color: #0284c7; text-transform: uppercase; letter-spacing: 0.05em;">Tour Itinerary Builder</div>
-                        <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Custom Multi-Component Disaggregated Travel Plan</div>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                    <button type="button" class="action-btn" onclick="openItineraryModal()" style="background: #0284c7; color: #ffffff; border-color: #0284c7; font-weight: 800;">
-                        <i class="material-icons" style="font-size: 18px;">calendar_month</i>
-                        <span>View Day-by-Day Schedule</span>
-                    </button>
-                    <div class="price-stats-wrap">
-                        <div class="stat-box person-box">
-                            <div class="amount" id="per-person-amount">—</div>
-                            <div class="label">Per Person</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="amount" id="total-amount">—</div>
-                            <div class="label" id="items-count-label">0 Components Selected</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Component Slots (Star Tech Style) -->
-            <div class="pcb-content">
-
-                <!-- Long-Haul Intermodal Transit -->
-                <div class="content-label" data-category-heading="transit">Long-Haul Intermodal Transit (Bus / Flight / Train)</div>
-
-                <!-- Bus Component -->
-                <div class="c-item" id="slot-bus" data-category="transit">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80" alt="Bus (Economy Non-AC)" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Bus (Economy Non-AC)</span>
-                            <span class="status-pill not-added" id="status-bus">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-bus">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-bus"></div>
-                    <div class="actions" id="action-bus">
-                        <button class="btn-choose" onclick="openPicker('bus')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- AC Luxury Coach Component -->
-                <div class="c-item" id="slot-coach" data-category="transit">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=300&q=80" alt="AC Luxury Coach" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>AC Luxury Coach (Scania / Hyundai)</span>
-                            <span class="status-pill not-added" id="status-coach">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-coach">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-coach"></div>
-                    <div class="actions" id="action-coach">
-                        <button class="btn-choose" onclick="openPicker('coach')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Domestic Flight Component -->
-                <div class="c-item" id="slot-flight" data-category="transit">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80" alt="Domestic Flight" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Domestic Flight</span>
-                            <span class="status-pill not-added" id="status-flight">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-flight">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-flight"></div>
-                    <div class="actions" id="action-flight">
-                        <button class="btn-choose" onclick="openPicker('flight')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Intercity Express Train Component -->
-                <div class="c-item" id="slot-train" data-category="transit">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80" alt="Intercity Express Train" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Intercity Express Train</span>
-                            <span class="status-pill not-added" id="status-train">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-train">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-train"></div>
-                    <div class="actions" id="action-train">
-                        <button class="btn-choose" onclick="openPicker('train')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- River Cruise / Passenger Launch Component -->
-                <div class="c-item" id="slot-launch" data-category="transit">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=300&q=80" alt="River Cruise / Launch" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>River Cruise / Passenger Launch</span>
-                            <span class="status-pill not-added" id="status-launch">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-launch">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-launch"></div>
-                    <div class="actions" id="action-launch">
-                        <button class="btn-choose" onclick="openPicker('launch')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Local Ground Transit & Terminal Shuttles -->
-                <div class="content-label" data-category-heading="transit">Local Ground Transit & Terminal Shuttles (Microbus / 4WD Jeep / Auto)</div>
-
-                <!-- Microbus Component -->
-                <div class="c-item" id="slot-microbus" data-category="transit">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=300&q=80" alt="AC Microbus" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>AC Microbus (Toyota HiAce / Noah)</span>
-                            <span class="status-pill not-added" id="status-microbus">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-microbus">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-microbus"></div>
-                    <div class="actions" id="action-microbus">
-                        <button class="btn-choose" onclick="openPicker('microbus')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Chander Gari / Mountain Jeep Component -->
-                <div class="c-item" id="slot-jeep" data-category="transit">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=300&q=80" alt="Chander Gari / 4WD Jeep" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Chander Gari / 4WD Mountain Jeep</span>
-                            <span class="status-pill not-added" id="status-jeep">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-jeep">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-jeep"></div>
-                    <div class="actions" id="action-jeep">
-                        <button class="btn-choose" onclick="openPicker('jeep')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Auto-Rickshaw / CNG Component -->
-                <div class="c-item" id="slot-cng" data-category="transit">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=300&q=80" alt="Auto-Rickshaw / CNG" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Auto-Rickshaw / Electric TomTom / CNG</span>
-                            <span class="status-pill not-added" id="status-cng">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-cng">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-cng"></div>
-                    <div class="actions" id="action-cng">
-                        <button class="btn-choose" onclick="openPicker('cng')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Covered Cargo & Heavy Luggage Truck -->
-                <div class="c-item" id="slot-truck" data-category="transit">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=300&q=80" alt="Luggage & Cargo Truck" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Luggage & Cargo Truck</span>
-                            <span class="status-pill not-added" id="status-truck">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-truck">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-truck"></div>
-                    <div class="actions" id="action-truck">
-                        <button class="btn-choose" onclick="openPicker('truck')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Resort, Hotels & Bedding -->
-                <div class="content-label" data-category-heading="accommodation">Resort, Hotels & Bedding (Accommodation, Bedding & Fresh-Up)</div>
-
-                <!-- Hotel Component -->
-                <div class="c-item" id="slot-hotel" data-category="accommodation">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80" alt="Hotel" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Hotel (City & Standard 3-5 Star Hotels)</span>
-                            <span class="status-pill not-added" id="status-hotel">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-hotel">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-hotel"></div>
-                    <div class="actions" id="action-hotel">
-                        <button class="btn-choose" onclick="openPicker('hotel')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Resort Component -->
-                <div class="c-item" id="slot-resort" data-category="accommodation">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=300&q=80" alt="Resort" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Resort (Beachfront & Scenic Holiday Resorts)</span>
-                            <span class="status-pill not-added" id="status-resort">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-resort">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-resort"></div>
-                    <div class="actions" id="action-resort">
-                        <button class="btn-choose" onclick="openPicker('resort')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Eco Cottage Component -->
-                <div class="c-item" id="slot-cottage" data-category="accommodation">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=300&q=80" alt="Eco Cottage" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Eco Cottage (Nature Wooden Lodges & Bamboo Huts)</span>
-                            <span class="status-pill not-added" id="status-cottage">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-cottage">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-cottage"></div>
-                    <div class="actions" id="action-cottage">
-                        <button class="btn-choose" onclick="openPicker('cottage')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Luxury Villa Component -->
-                <div class="c-item" id="slot-villa" data-category="accommodation">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=300&q=80" alt="Luxury Villa" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Luxury Villa (Private Oceanfront & Hilltop Villas)</span>
-                            <span class="status-pill not-added" id="status-villa">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-villa">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-villa"></div>
-                    <div class="actions" id="action-villa">
-                        <button class="btn-choose" onclick="openPicker('villa')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Early Fresh-Up Room Slot -->
-                <div class="c-item" id="slot-freshup" data-category="accommodation">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=300&q=80" alt="Early Fresh-up Room" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>5:30 AM Early Arrival Fresh-up Room</span>
-                            <span class="status-pill not-added" id="status-freshup">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-freshup">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-freshup"></div>
-                    <div class="actions" id="action-freshup">
-                        <button class="btn-choose" onclick="openPicker('freshup')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Dining & Meal Plans -->
-                <div class="content-label" data-category-heading="dining">Dining & Meal Plans (Breakfast / Lunch / Dinner / Cafe & Snacks)</div>
-
-                <!-- Breakfast Component -->
-                <div class="c-item" id="slot-breakfast" data-category="dining">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=300&q=80" alt="Breakfast" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Breakfast (Morning Breakfast & Continental Buffet)</span>
-                            <span class="status-pill not-added" id="status-breakfast">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-breakfast">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-breakfast"></div>
-                    <div class="actions" id="action-breakfast">
-                        <button class="btn-choose" onclick="openPicker('breakfast')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Lunch Component -->
-                <div class="c-item" id="slot-lunch" data-category="dining">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80" alt="Lunch" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Lunch (Traditional Feast & Local Cuisine)</span>
-                            <span class="status-pill not-added" id="status-lunch">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-lunch">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-lunch"></div>
-                    <div class="actions" id="action-lunch">
-                        <button class="btn-choose" onclick="openPicker('lunch')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Dinner Component -->
-                <div class="c-item" id="slot-dinner" data-category="dining">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300&q=80" alt="Dinner" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Dinner (Live Seafood BBQ & Beachside Dinner)</span>
-                            <span class="status-pill not-added" id="status-dinner">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-dinner">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-dinner"></div>
-                    <div class="actions" id="action-dinner">
-                        <button class="btn-choose" onclick="openPicker('dinner')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Cafe Component -->
-                <div class="c-item" id="slot-cafe" data-category="dining">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=300&q=80" alt="Cafe & Snacks" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Cafe (Artisan Coffee, Snacks & Special Tea)</span>
-                            <span class="status-pill not-added" id="status-cafe">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-cafe">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-cafe"></div>
-                    <div class="actions" id="action-cafe">
-                        <button class="btn-choose" onclick="openPicker('cafe')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Recreation & Activities -->
-                <div class="content-label" data-category-heading="recreation">Recreation & Activities (Recreation - No Forced Bundling / Scenario 8)</div>
-
-                <!-- Parasailing Adventure Component -->
-                <div class="c-item" id="slot-parasailing" data-category="recreation">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=300&q=80" alt="Parasailing Adventure Flight" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Parasailing Adventure Flight</span>
-                            <span class="status-pill not-added" id="status-parasailing">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-parasailing">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-parasailing"></div>
-                    <div class="actions" id="action-parasailing">
-                        <button class="btn-choose" onclick="openPicker('parasailing')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Speedboat Safari Component -->
-                <div class="c-item" id="slot-speedboat" data-category="recreation">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=300&q=80" alt="Speedboat Safari" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Speedboat Safari & Island Cruise</span>
-                            <span class="status-pill not-added" id="status-speedboat">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-speedboat">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-speedboat"></div>
-                    <div class="actions" id="action-speedboat">
-                        <button class="btn-choose" onclick="openPicker('speedboat')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Beach Coconut Lounge Slot -->
-                <div class="c-item" id="slot-lounge" data-category="recreation">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=300&q=80" alt="Beachside Coconut Lounge Relaxation" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Beachside Coconut Lounge Relaxation</span>
-                            <span class="status-pill not-added" id="status-lounge">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-lounge">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-lounge"></div>
-                    <div class="actions" id="action-lounge">
-                        <button class="btn-choose" onclick="openPicker('lounge')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Scuba Diving Slot -->
-                <div class="c-item" id="slot-scuba" data-category="recreation">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=300&q=80" alt="Coral Reef Scuba Diving" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Coral Reef Scuba Diving</span>
-                            <span class="status-pill not-added" id="status-scuba">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-scuba">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-scuba"></div>
-                    <div class="actions" id="action-scuba">
-                        <button class="btn-choose" onclick="openPicker('scuba')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Tour Guides, Permits & Special Addons -->
-                <div class="content-label" data-category-heading="addons">Tour Guides, Permits & Special Addons (Certified Guides & Permits)</div>
-
-                <!-- Tour Guide Slot -->
-                <div class="c-item" id="slot-guide" data-category="addons">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=300&q=80" alt="Certified Local Tour Guide" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Certified Local Tour Guide</span>
-                            <span class="status-pill not-added" id="status-guide">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-guide">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-guide"></div>
-                    <div class="actions" id="action-guide">
-                        <button class="btn-choose" onclick="openPicker('guide')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Boat & Entry Permits Slot -->
-                <div class="c-item" id="slot-permit" data-category="addons">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80" alt="Special Boat & Entry Permits" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Special Boat & Entry Permits</span>
-                            <span class="status-pill not-added" id="status-permit">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-permit">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-permit"></div>
-                    <div class="actions" id="action-permit">
-                        <button class="btn-choose" onclick="openPicker('permit')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Honeymoon Bed Decor Slot -->
-                <div class="c-item" id="slot-honeymoon" data-category="addons">
-                    <div class="img">
-                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=300&q=80" alt="Honeymoon Flower Bed Decoration" loading="lazy">
-                    </div>
-                    <div class="details">
-                        <div class="component-name">
-                            <span>Honeymoon Flower Bed Decoration</span>
-                            <span class="status-pill not-added" id="status-honeymoon">Not Added</span>
-                        </div>
-                        <div class="product-name" id="val-honeymoon">Not Selected</div>
-                    </div>
-                    <div class="item-price" id="price-honeymoon"></div>
-                    <div class="actions" id="action-honeymoon">
-                        <button class="btn-choose" onclick="openPicker('honeymoon')">Choose</button>
-                    </div>
-                </div>
-
-                <!-- Bottom Actions Toolbar (Comprehensive Suite) -->
-                <div class="pcb-bottom-actions">
-                    <button class="action-btn" onclick="openItineraryModal()">
-                        <i class="material-icons">calendar_month</i>
-                        <span>View Day-by-Day Itinerary</span>
-                    </button>
-                    <button class="action-btn" onclick="openSplitBillModal()">
-                        <i class="material-icons">groups</i>
-                        <span>Split Bill (Demo)</span>
-                    </button>
-                    <button class="action-btn" onclick="openPreferencesModal()">
-                        <i class="material-icons">tune</i>
-                        <span>Tourist Preferences</span>
-                    </button>
-                    <button class="action-btn btn-quote" onclick="openB2BQuoteModal()">
-                        <i class="material-icons">receipt_long</i>
-                        <span>Get B2B Quote</span>
-                    </button>
-                    <button class="action-btn" onclick="handlePrintItinerary()">
-                        <i class="material-icons">print</i>
-                        <span>Print Itinerary</span>
-                    </button>
-                    <button class="action-btn btn-checkout" onclick="confirmTourBooking()">
-                        <i class="material-icons">shopping_cart_checkout</i>
-                        <span>Confirm & Book (Demo)</span>
-                    </button>
-                </div>
-
-                <!-- Applied Scenarios Banner -->
-                <div class="applied-scenarios-bar">
-                    <h4>
-                        <i class="material-icons" style="font-size: 18px;">verified</i>
-                        Real-World Algorithmic Scenarios Applied in Real Time:
-                    </h4>
-                    <div class="scenario-tag-list" id="applied-scenarios-list">
-                        <span class="scen-tag">✓ Scenario 5: Multi-Bed Cost Decomposition</span>
-                    </div>
-                </div>
-
+            <div class="cat-search-box">
+                <i class="material-icons" style="color: #94a3b8; font-size: 18px;">search</i>
+                <input type="text" id="live-service-search" placeholder="Search 25 services by name..." oninput="handleLiveServiceSearch(this.value)">
             </div>
         </div>
+
+        <!-- 2-Column Main Planner Grid -->
+        <div class="planner-two-col-grid">
+
+            <!-- LEFT COLUMN: Category Accordion Cards -->
+            <div class="planner-content-col">
+
+                <!-- 1. CATEGORY: TRANSIT (Default Expanded, Mockup Image 1 Match) -->
+                <div class="cat-card-box" id="cat-card-transit">
+                    <div class="cat-card-header" onclick="toggleCategoryAccordion('transit')">
+                        <div class="cat-header-left">
+                            <div class="cat-icon-badge blue">
+                                <i class="material-icons">directions_bus</i>
+                            </div>
+                            <div>
+                                <div class="cat-title-text">Transit</div>
+                                <div class="cat-sub-text">Choose your preferred mode of transport for your journey.</div>
+                            </div>
+                        </div>
+                        <div class="cat-header-right">
+                            <i class="material-icons cat-chevron-icon" id="chevron-transit">expand_less</i>
+                        </div>
+                    </div>
+
+                    <div class="cat-card-body" id="cat-body-transit">
+                        <!-- Sub-filter pills row -->
+                        <div class="sub-filter-row">
+                            <button type="button" class="sub-filter-pill active" id="subpill-transit-bus" onclick="filterSubCategory('transit', 'bus')">
+                                <i class="material-icons" style="font-size: 16px;">directions_bus</i>
+                                <span>Bus</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" id="subpill-transit-coach" onclick="filterSubCategory('transit', 'coach')">
+                                <i class="material-icons" style="font-size: 16px;">airport_shuttle</i>
+                                <span>Coach</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" id="subpill-transit-train" onclick="filterSubCategory('transit', 'train')">
+                                <i class="material-icons" style="font-size: 16px;">train</i>
+                                <span>Train</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" id="subpill-transit-flight" onclick="filterSubCategory('transit', 'flight')">
+                                <i class="material-icons" style="font-size: 16px;">flight</i>
+                                <span>Flight</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" id="subpill-transit-micro" onclick="filterSubCategory('transit', 'micro')">
+                                <i class="material-icons" style="font-size: 16px;">commute</i>
+                                <span>Micro</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" id="subpill-transit-taxi" onclick="filterSubCategory('transit', 'taxi')">
+                                <i class="material-icons" style="font-size: 16px;">local_taxi</i>
+                                <span>Taxi</span>
+                            </button>
+                        </div>
+
+                        <!-- Inner Box with Available Buses -->
+                        <div class="inner-service-section">
+                            <div class="inner-service-header">
+                                <div class="inner-header-title">
+                                    <i class="material-icons" style="font-size: 18px; color: #0284c7;">directions_bus</i>
+                                    <span id="transit-route-header-title">Available Buses (Dhaka ➔ Cox's Bazar)</span>
+                                </div>
+                                <div class="inner-header-count">
+                                    <span id="transit-total-count-text">Total 12 Buses</span>
+                                    <i class="material-icons" style="font-size: 18px; color: #0284c7;">expand_less</i>
+                                </div>
+                            </div>
+
+                            <!-- List of Provider Rows (Mockup Image 1) -->
+                            <div id="service-list-transit">
+                                <!-- Row 1: Green Line Paribahan -->
+                                <div class="provider-service-row" data-sub="bus">
+                                    <div class="provider-logo-wrap">
+                                        <span style="font-family: Arial, sans-serif; font-size: 1.15rem; font-weight: 900; color: #15803d; letter-spacing: -0.02em; border-bottom: 2.5px solid #16a34a; padding-bottom: 1px;">Green Line</span>
+                                    </div>
+                                    <div class="provider-details-wrap">
+                                        <div class="provider-name-text">Green Line Paribahan</div>
+                                        <div class="provider-sub-text">AC / Non-AC (Luxury Bus)</div>
+                                    </div>
+                                    <div class="provider-timing-wrap">
+                                        <div class="provider-time-text">08:00 AM ➔ 02:30 PM</div>
+                                        <div class="provider-duration-text">6h 30m</div>
+                                    </div>
+                                    <div class="provider-amenity-pills">
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
+                                    </div>
+                                    <div class="provider-price-wrap">
+                                        <div class="provider-price-amount">৳ 1,200</div>
+                                        <div class="provider-price-unit">per person</div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn-select-service" id="btn-srv-greenline" onclick="selectMockupService('transit', 'bus', 'Green Line Paribahan', 1200, 'person', this, 1)">Select</button>
+                                    </div>
+                                </div>
+
+                                <!-- Row 2: Hanif Enterprise -->
+                                <div class="provider-service-row" data-sub="bus">
+                                    <div class="provider-logo-wrap">
+                                        <span style="font-family: Georgia, serif; font-size: 1.35rem; font-weight: 900; color: #dc2626; font-style: italic; letter-spacing: -0.01em;">Hanif</span>
+                                    </div>
+                                    <div class="provider-details-wrap">
+                                        <div class="provider-name-text">Hanif Enterprise</div>
+                                        <div class="provider-sub-text">AC / Non-AC (Luxury Bus)</div>
+                                    </div>
+                                    <div class="provider-timing-wrap">
+                                        <div class="provider-time-text">09:30 AM ➔ 04:00 PM</div>
+                                        <div class="provider-duration-text">6h 30m</div>
+                                    </div>
+                                    <div class="provider-amenity-pills">
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
+                                    </div>
+                                    <div class="provider-price-wrap">
+                                        <div class="provider-price-amount">৳ 1,000</div>
+                                        <div class="provider-price-unit">per person</div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn-select-service" id="btn-srv-hanif" onclick="selectMockupService('transit', 'bus', 'Hanif Enterprise', 1000, 'person', this, 2)">Select</button>
+                                    </div>
+                                </div>
+
+                                <!-- Row 3: Shohagh Paribahan -->
+                                <div class="provider-service-row" data-sub="bus">
+                                    <div class="provider-logo-wrap">
+                                        <span style="font-family: 'Trebuchet MS', sans-serif; font-size: 1.2rem; font-weight: 900; color: #1e3a8a; letter-spacing: -0.02em;">Shohagh</span>
+                                    </div>
+                                    <div class="provider-details-wrap">
+                                        <div class="provider-name-text">Shohagh Paribahan</div>
+                                        <div class="provider-sub-text">AC / Non-AC (Luxury Bus)</div>
+                                    </div>
+                                    <div class="provider-timing-wrap">
+                                        <div class="provider-time-text">10:00 AM ➔ 04:30 PM</div>
+                                        <div class="provider-duration-text">6h 30m</div>
+                                    </div>
+                                    <div class="provider-amenity-pills">
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
+                                    </div>
+                                    <div class="provider-price-wrap">
+                                        <div class="provider-price-amount">৳ 900</div>
+                                        <div class="provider-price-unit">per person</div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn-select-service" id="btn-srv-shohagh" onclick="selectMockupService('transit', 'bus', 'Shohagh Paribahan', 900, 'person', this, 3)">Select</button>
+                                    </div>
+                                </div>
+
+                                <!-- Row 4: Ena Transport -->
+                                <div class="provider-service-row" data-sub="bus">
+                                    <div class="provider-logo-wrap">
+                                        <span style="font-family: Arial Black, sans-serif; font-size: 1.35rem; font-weight: 900; color: #1d4ed8; letter-spacing: 0.03em;">ENA</span>
+                                    </div>
+                                    <div class="provider-details-wrap">
+                                        <div class="provider-name-text">Ena Transport</div>
+                                        <div class="provider-sub-text">AC / Non-AC (Standard)</div>
+                                    </div>
+                                    <div class="provider-timing-wrap">
+                                        <div class="provider-time-text">11:30 AM ➔ 06:00 PM</div>
+                                        <div class="provider-duration-text">6h 30m</div>
+                                    </div>
+                                    <div class="provider-amenity-pills">
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
+                                    </div>
+                                    <div class="provider-price-wrap">
+                                        <div class="provider-price-amount">৳ 850</div>
+                                        <div class="provider-price-unit">per person</div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn-select-service" id="btn-srv-ena" onclick="selectMockupService('transit', 'bus', 'Ena Transport', 850, 'person', this, 4)">Select</button>
+                                    </div>
+                                </div>
+
+                                <!-- Row 5: Desh Travels -->
+                                <div class="provider-service-row" data-sub="bus">
+                                    <div class="provider-logo-wrap">
+                                        <span style="font-family: Arial, sans-serif; font-size: 1.1rem; font-weight: 900; color: #ea580c;"><span style="color: #ea580c;">Desh</span><span style="color: #0f172a; margin-left: 2px;">Travels</span></span>
+                                    </div>
+                                    <div class="provider-details-wrap">
+                                        <div class="provider-name-text">Desh Travels</div>
+                                        <div class="provider-sub-text">AC / Non-AC (Standard)</div>
+                                    </div>
+                                    <div class="provider-timing-wrap">
+                                        <div class="provider-time-text">01:00 PM ➔ 07:30 PM</div>
+                                        <div class="provider-duration-text">6h 30m</div>
+                                    </div>
+                                    <div class="provider-amenity-pills">
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
+                                    </div>
+                                    <div class="provider-price-wrap">
+                                        <div class="provider-price-amount">৳ 800</div>
+                                        <div class="provider-price-unit">per person</div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn-select-service" id="btn-srv-desh" onclick="selectMockupService('transit', 'bus', 'Desh Travels', 800, 'person', this, 5)">Select</button>
+                                    </div>
+                                </div>
+
+                                <!-- Alternative Coach Rows (shown when Coach sub-filter active) -->
+                                <div class="provider-service-row" data-sub="coach" style="display: none;">
+                                    <div class="provider-logo-wrap">
+                                        <span style="font-family: Arial, sans-serif; font-size: 1.15rem; font-weight: 900; color: #0369a1;">Scania</span>
+                                    </div>
+                                    <div class="provider-details-wrap">
+                                        <div class="provider-name-text">Scania Multi-Axle Sleeper Coach</div>
+                                        <div class="provider-sub-text">Ultra-Comfort Double Sleeper Cabin</div>
+                                    </div>
+                                    <div class="provider-timing-wrap">
+                                        <div class="provider-time-text">10:30 PM ➔ 06:30 AM</div>
+                                        <div class="provider-duration-text">8h 00m</div>
+                                    </div>
+                                    <div class="provider-amenity-pills">
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">bed</i> Sleeper</span>
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
+                                    </div>
+                                    <div class="provider-price-wrap">
+                                        <div class="provider-price-amount">৳ 1,800</div>
+                                        <div class="provider-price-unit">per person</div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn-select-service" onclick="selectMockupService('transit', 'coach', 'Scania Multi-Axle Sleeper Coach', 1800, 'person', this)">Select</button>
+                                    </div>
+                                </div>
+
+                                <!-- Alternative Flight Rows (shown when Flight sub-filter active) -->
+                                <div class="provider-service-row" data-sub="flight" style="display: none;">
+                                    <div class="provider-logo-wrap">
+                                        <span style="font-family: Arial, sans-serif; font-size: 1.1rem; font-weight: 900; color: #047857;">Biman</span>
+                                    </div>
+                                    <div class="provider-details-wrap">
+                                        <div class="provider-name-text">Biman Bangladesh Airlines (BG-433)</div>
+                                        <div class="provider-sub-text">Boeing 737-800 Jetliner • Fast Direct Flight</div>
+                                    </div>
+                                    <div class="provider-timing-wrap">
+                                        <div class="provider-time-text">11:15 AM ➔ 12:15 PM</div>
+                                        <div class="provider-duration-text">1h 00m</div>
+                                    </div>
+                                    <div class="provider-amenity-pills">
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">flight</i> Fast Flight</span>
+                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">luggage</i> 20kg Bag</span>
+                                    </div>
+                                    <div class="provider-price-wrap">
+                                        <div class="provider-price-amount">৳ 4,500</div>
+                                        <div class="provider-price-unit">per person</div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn-select-service" onclick="selectMockupService('transit', 'flight', 'Biman Bangladesh Airlines Direct', 4500, 'person', this)">Select</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. CATEGORY: ACCOMMODATION (Expanded in Mockup Image 2) -->
+                <div class="cat-card-box collapsed" id="cat-card-accommodation">
+                    <div class="cat-card-header" onclick="toggleCategoryAccordion('accommodation')">
+                        <div class="cat-header-left">
+                            <div class="cat-icon-badge purple">
+                                <i class="material-icons">hotel</i>
+                            </div>
+                            <div>
+                                <div class="cat-title-text">Accommodation</div>
+                                <div class="cat-sub-text">Find and book the best hotels and stays.</div>
+                            </div>
+                        </div>
+                        <div class="cat-header-right">
+                            <div class="cat-minimize-btn" id="btn-minimize-accommodation" style="display: none;" onclick="event.stopPropagation(); toggleCategoryAccordion('accommodation');">
+                                <span>— Minimize</span>
+                                <i class="material-icons" style="font-size: 16px;">remove_circle_outline</i>
+                            </div>
+                            <i class="material-icons cat-chevron-icon" id="chevron-accommodation">chevron_right</i>
+                        </div>
+                    </div>
+
+                    <div class="cat-card-body" id="cat-body-accommodation">
+                        <!-- Sub-filter pills (Mockup Image 2) -->
+                        <div class="sub-filter-row">
+                            <button type="button" class="sub-filter-pill active" id="subpill-acc-hotels" onclick="filterSubCategory('accommodation', 'hotels')">
+                                <i class="material-icons" style="font-size: 16px;">apartment</i>
+                                <span>Hotels</span>
+                                <span class="cat-pill-count">5</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" id="subpill-acc-resorts" onclick="filterSubCategory('accommodation', 'resorts')">
+                                <i class="material-icons" style="font-size: 16px;">holiday_village</i>
+                                <span>Resorts</span>
+                                <span class="cat-pill-count">2</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" id="subpill-acc-guesthouses" onclick="filterSubCategory('accommodation', 'guesthouses')">
+                                <i class="material-icons" style="font-size: 16px;">villa</i>
+                                <span>Guest Houses</span>
+                                <span class="cat-pill-count">1</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" id="subpill-acc-homestays" onclick="filterSubCategory('accommodation', 'homestays')">
+                                <i class="material-icons" style="font-size: 16px;">home</i>
+                                <span>Homestays</span>
+                                <span class="cat-pill-count">1</span>
+                            </button>
+                        </div>
+
+                        <!-- Hotel Service Rows (Mockup Image 2) -->
+                        <div id="service-list-accommodation">
+                            <!-- Hotel 1: Cox's Bazar Sea View Hotel -->
+                            <div class="provider-service-row" data-sub="hotels">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="Cox's Bazar Sea View Hotel" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Cox's Bazar Sea View Hotel</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar, Chattogram</span>
+                                    </div>
+                                    <div class="provider-meta-row" style="margin-top: 0.15rem;">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #64748b;">directions_car</i> 2.5 km from Beach</span>
+                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.2 (124 reviews)</span>
+                                    </div>
+                                </div>
+                                <div></div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> Free WiFi</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Breakfast</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 3,500</div>
+                                    <div class="provider-price-unit">per night</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" id="btn-srv-seaview" onclick="selectMockupService('accommodation', 'hotel', 'Cox's Bazar Sea View Hotel', 3500, 'night', this, 101)">Select</button>
+                                </div>
+                            </div>
+
+                            <!-- Hotel 2: Long Beach Resort & Spa -->
+                            <div class="provider-service-row" data-sub="hotels">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=400&q=80" alt="Long Beach Resort & Spa" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Long Beach Resort & Spa</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar, Chattogram</span>
+                                    </div>
+                                    <div class="provider-meta-row" style="margin-top: 0.15rem;">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #64748b;">directions_car</i> 3.8 km from Beach</span>
+                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.5 (98 reviews)</span>
+                                    </div>
+                                </div>
+                                <div></div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> Free WiFi</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">pool</i> Pool</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Breakfast</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 4,800</div>
+                                    <div class="provider-price-unit">per night</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" id="btn-srv-longbeach" onclick="selectMockupService('accommodation', 'hotel', 'Long Beach Resort & Spa', 4800, 'night', this, 102)">Select</button>
+                                </div>
+                            </div>
+
+                            <!-- Hotel 3: Hotel Sea Palace -->
+                            <div class="provider-service-row" data-sub="hotels">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=400&q=80" alt="Hotel Sea Palace" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Hotel Sea Palace</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar, Chattogram</span>
+                                    </div>
+                                    <div class="provider-meta-row" style="margin-top: 0.15rem;">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #64748b;">directions_car</i> 1.2 km from Beach</span>
+                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.1 (76 reviews)</span>
+                                    </div>
+                                </div>
+                                <div></div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> Free WiFi</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Restaurant</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 3,200</div>
+                                    <div class="provider-price-unit">per night</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" id="btn-srv-seapalace" onclick="selectMockupService('accommodation', 'hotel', 'Hotel Sea Palace', 3200, 'night', this, 103)">Select</button>
+                                </div>
+                            </div>
+
+                            <!-- Hotel 4: Sayeman Beach Resort -->
+                            <div class="provider-service-row" data-sub="hotels">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=400&q=80" alt="Sayeman Beach Resort" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Sayeman Beach Resort</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar, Chattogram</span>
+                                    </div>
+                                    <div class="provider-meta-row" style="margin-top: 0.15rem;">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #64748b;">directions_car</i> 4.5 km from Beach</span>
+                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.7 (205 reviews)</span>
+                                    </div>
+                                </div>
+                                <div></div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> Free WiFi</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">pool</i> Pool</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Breakfast</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 6,500</div>
+                                    <div class="provider-price-unit">per night</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" id="btn-srv-sayeman" onclick="selectMockupService('accommodation', 'hotel', 'Sayeman Beach Resort', 6500, 'night', this, 104)">Select</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- View All Hotels footer button -->
+                        <div class="btn-view-all-foot" onclick="alert('Viewing all 12 verified hotels for this destination.')">
+                            <i class="material-icons" style="font-size: 18px;">apartment</i>
+                            <span>View All Hotels (12)</span>
+                            <i class="material-icons" style="font-size: 18px;">expand_more</i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. CATEGORY: DINING & MEAL PLANS -->
+                <div class="cat-card-box collapsed" id="cat-card-dining">
+                    <div class="cat-card-header" onclick="toggleCategoryAccordion('dining')">
+                        <div class="cat-header-left">
+                            <div class="cat-icon-badge orange">
+                                <i class="material-icons">restaurant</i>
+                            </div>
+                            <div>
+                                <div class="cat-title-text">Dining</div>
+                                <div class="cat-sub-text">Explore top restaurants and local cuisine.</div>
+                            </div>
+                        </div>
+                        <div class="cat-header-right">
+                            <i class="material-icons cat-chevron-icon" id="chevron-dining">chevron_right</i>
+                        </div>
+                    </div>
+
+                    <div class="cat-card-body" id="cat-body-dining">
+                        <div class="sub-filter-row">
+                            <button type="button" class="sub-filter-pill active" onclick="filterSubCategory('dining', 'all')">
+                                <span>All Plans</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('dining', 'breakfast')">
+                                <i class="material-icons" style="font-size: 16px;">bakery_dining</i>
+                                <span>Breakfast</span>
+                                <span class="cat-pill-count">2</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('dining', 'lunch')">
+                                <i class="material-icons" style="font-size: 16px;">lunch_dining</i>
+                                <span>Lunch</span>
+                                <span class="cat-pill-count">3</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('dining', 'dinner')">
+                                <i class="material-icons" style="font-size: 16px;">dinner_dining</i>
+                                <span>Dinner</span>
+                                <span class="cat-pill-count">3</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('dining', 'cafe')">
+                                <i class="material-icons" style="font-size: 16px;">local_cafe</i>
+                                <span>Cafe & Snacks</span>
+                                <span class="cat-pill-count">2</span>
+                            </button>
+                        </div>
+
+                        <div id="service-list-dining">
+                            <!-- Dining Row 1 -->
+                            <div class="provider-service-row" data-sub="dinner">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80" alt="Live Seafood BBQ" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Live Seafood BBQ & Beachside Dinner</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Kolatoli Beach Road</span>
+                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.6 (180 reviews)</span>
+                                    </div>
+                                </div>
+                                <div></div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">check_circle</i> Halal</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">set_meal</i> Seafood</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #ea580c;">outdoor_grill</i> BBQ Buffet</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 850</div>
+                                    <div class="provider-price-unit">per person</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" onclick="selectMockupService('dining', 'dinner', 'Live Seafood BBQ & Beachside Dinner', 850, 'person', this)">Select</button>
+                                </div>
+                            </div>
+
+                            <!-- Dining Row 2 -->
+                            <div class="provider-service-row" data-sub="lunch">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80" alt="Jhaubon Bengali Lunch" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Jhaubon Traditional 24-Bhorta Bengali Lunch</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Main Hotel Road, Cox's Bazar</span>
+                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.5 (340 reviews)</span>
+                                    </div>
+                                </div>
+                                <div></div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">check_circle</i> Halal</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">rice_bowl</i> Authentic</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Lunch</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 600</div>
+                                    <div class="provider-price-unit">per person</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" onclick="selectMockupService('dining', 'lunch', 'Jhaubon Traditional Bengali Lunch', 600, 'person', this)">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. CATEGORY: RECREATION & ACTIVITIES -->
+                <div class="cat-card-box collapsed" id="cat-card-recreation">
+                    <div class="cat-card-header" onclick="toggleCategoryAccordion('recreation')">
+                        <div class="cat-header-left">
+                            <div class="cat-icon-badge green">
+                                <i class="material-icons">surfing</i>
+                            </div>
+                            <div>
+                                <div class="cat-title-text">Recreation</div>
+                                <div class="cat-sub-text">Discover exciting activities and attractions.</div>
+                            </div>
+                        </div>
+                        <div class="cat-header-right">
+                            <i class="material-icons cat-chevron-icon" id="chevron-recreation">chevron_right</i>
+                        </div>
+                    </div>
+
+                    <div class="cat-card-body" id="cat-body-recreation">
+                        <div class="sub-filter-row">
+                            <button type="button" class="sub-filter-pill active" onclick="filterSubCategory('recreation', 'all')">
+                                <span>All Activities</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('recreation', 'watersports')">
+                                <i class="material-icons" style="font-size: 16px;">paragliding</i>
+                                <span>Water Sports</span>
+                                <span class="cat-pill-count">2</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('recreation', 'sightseeing')">
+                                <i class="material-icons" style="font-size: 16px;">explore</i>
+                                <span>Sightseeing</span>
+                                <span class="cat-pill-count">3</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('recreation', 'diving')">
+                                <i class="material-icons" style="font-size: 16px;">scuba_diving</i>
+                                <span>Scuba Diving</span>
+                                <span class="cat-pill-count">2</span>
+                            </button>
+                        </div>
+
+                        <div id="service-list-recreation">
+                            <!-- Recreation Row 1 -->
+                            <div class="provider-service-row" data-sub="watersports">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=400&q=80" alt="Parasailing" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Daria Nagar High-Fly Parasailing Adventure</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Darianagar Marine Drive</span>
+                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.9 (420 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="provider-timing-wrap">
+                                    <div class="provider-time-text">15 Mins Flight</div>
+                                    <div class="provider-duration-text">Speedboat Launch</div>
+                                </div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">verified</i> Certified Pilot</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">security</i> Life Jacket</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 2,000</div>
+                                    <div class="provider-price-unit">per person</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" onclick="selectMockupService('recreation', 'parasailing', 'Daria Nagar Parasailing Adventure', 2000, 'person', this)">Select</button>
+                                </div>
+                            </div>
+
+                            <!-- Recreation Row 2 -->
+                            <div class="provider-service-row" data-sub="watersports">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80" alt="Speedboat Safari" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Himchari Speedboat Safari & Marine Drive Cruise</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Inani to Himchari Coast</span>
+                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.7 (150 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="provider-timing-wrap">
+                                    <div class="provider-time-text">30 Mins Ride</div>
+                                    <div class="provider-duration-text">Twin Engine Boat</div>
+                                </div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">verified</i> Safety Gear</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">speed</i> High Speed</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 1,200</div>
+                                    <div class="provider-price-unit">per person</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" onclick="selectMockupService('recreation', 'speedboat', 'Himchari Speedboat Safari', 1200, 'person', this)">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. CATEGORY: TOUR GUIDES, PERMITS & ADDONS -->
+                <div class="cat-card-box collapsed" id="cat-card-addons">
+                    <div class="cat-card-header" onclick="toggleCategoryAccordion('addons')">
+                        <div class="cat-header-left">
+                            <div class="cat-icon-badge amber">
+                                <i class="material-icons">photo_camera</i>
+                            </div>
+                            <div>
+                                <div class="cat-title-text">Guides & Addons</div>
+                                <div class="cat-sub-text">Add expert guides, tours and special services.</div>
+                            </div>
+                        </div>
+                        <div class="cat-header-right">
+                            <i class="material-icons cat-chevron-icon" id="chevron-addons">chevron_right</i>
+                        </div>
+                    </div>
+
+                    <div class="cat-card-body" id="cat-body-addons">
+                        <div class="sub-filter-row">
+                            <button type="button" class="sub-filter-pill active" onclick="filterSubCategory('addons', 'all')">
+                                <span>All Addons</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('addons', 'guides')">
+                                <i class="material-icons" style="font-size: 16px;">person_outline</i>
+                                <span>Tour Guides</span>
+                                <span class="cat-pill-count">2</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('addons', 'permits')">
+                                <i class="material-icons" style="font-size: 16px;">description</i>
+                                <span>Entry Permits</span>
+                                <span class="cat-pill-count">2</span>
+                            </button>
+                            <button type="button" class="sub-filter-pill" onclick="filterSubCategory('addons', 'special')">
+                                <i class="material-icons" style="font-size: 16px;">favorite_border</i>
+                                <span>Special Addons</span>
+                                <span class="cat-pill-count">2</span>
+                            </button>
+                        </div>
+
+                        <div id="service-list-addons">
+                            <!-- Addon Row 1: Tour Guide -->
+                            <div class="provider-service-row" data-sub="guides">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=400&q=80" alt="Tour Guide" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Certified Tour Guide (Govt & Parjatan Licensed)</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar & Ramu</span>
+                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.9 (95 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="provider-timing-wrap">
+                                    <div class="provider-time-text">Full Day Service</div>
+                                    <div class="provider-duration-text">English & Bangla</div>
+                                </div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">badge</i> Govt Licensed</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">medical_services</i> First-Aid</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 1,800</div>
+                                    <div class="provider-price-unit">per day</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" onclick="selectMockupService('addons', 'guide', 'Certified Local Tour Guide', 1800, 'day', this)">Select</button>
+                                </div>
+                            </div>
+
+                            <!-- Addon Row 2: Honeymoon Bed Decor -->
+                            <div class="provider-service-row" data-sub="special">
+                                <div class="provider-logo-wrap">
+                                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80" alt="Honeymoon Bed Decor" class="provider-thumb-hotel" loading="lazy">
+                                </div>
+                                <div class="provider-details-wrap">
+                                    <div class="provider-name-text">Honeymoon Fresh Rose Bed Decor & Beach Dinner</div>
+                                    <div class="provider-meta-row">
+                                        <span><i class="material-icons" style="font-size: 14px; color: #ec4899;">favorite</i> Room Setup & Candlelight</span>
+                                    </div>
+                                </div>
+                                <div class="provider-timing-wrap">
+                                    <div class="provider-time-text">Romantic Surprise</div>
+                                    <div class="provider-duration-text">Cake & Red Roses</div>
+                                </div>
+                                <div class="provider-amenity-pills">
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #ec4899;">cake</i> Cake Included</span>
+                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">photo_camera</i> Free Photo</span>
+                                </div>
+                                <div class="provider-price-wrap">
+                                    <div class="provider-price-amount">৳ 2,500</div>
+                                    <div class="provider-price-unit">per setup</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn-select-service" onclick="selectMockupService('addons', 'honeymoon', 'Honeymoon Fresh Rose Bed Decor', 2500, 'setup', this)">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Sticky Sidebar (Mockup Match) -->
+            <div class="planner-sidebar-sticky">
+
+                <!-- 1. Trip Summary Card -->
+                <div class="trip-summary-card">
+                    <div class="summary-card-head">
+                        <div class="summary-title-left">
+                            <i class="material-icons" style="color: #0284c7; font-size: 20px;">luggage</i>
+                            <span>Trip Summary</span>
+                        </div>
+                        <button type="button" class="btn-edit-summary" onclick="document.getElementById('search-strip')?.scrollIntoView({ behavior: 'smooth' })">
+                            <i class="material-icons" style="font-size: 14px;">edit</i>
+                            <span>Edit</span>
+                        </button>
+                    </div>
+
+                    <!-- Destination Route Snippet Card -->
+                    <div class="summary-route-box">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80" alt="Destination View" class="summary-route-thumb" id="summary-destination-img">
+                        <div style="min-width: 0;">
+                            <div class="summary-route-title" id="summary-route-text">Savar ➔ Cox's Bazar</div>
+                            <div class="summary-route-meta">
+                                <span><i class="material-icons" style="font-size: 12px; vertical-align: middle; color: #0284c7;">calendar_today</i> <span id="summary-dates-text">15 Nov – 18 Nov 2025</span></span>
+                                <span><i class="material-icons" style="font-size: 12px; vertical-align: middle; color: #0284c7;">people</i> <span id="summary-travelers-text">4 Travelers (4 Adults)</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subtotal Breakdown Rows -->
+                    <div class="summary-breakdown-list">
+                        <div class="summary-row-item">
+                            <div class="summary-row-name">
+                                <i class="material-icons">directions_bus</i>
+                                <span>Transport</span>
+                            </div>
+                            <div class="summary-row-price" id="summary-price-transport">৳ 12,000</div>
+                        </div>
+                        <div class="summary-row-item">
+                            <div class="summary-row-name">
+                                <i class="material-icons">hotel</i>
+                                <span>Accommodation</span>
+                            </div>
+                            <div class="summary-row-price" id="summary-price-accommodation">৳ 18,000</div>
+                        </div>
+                        <div class="summary-row-item">
+                            <div class="summary-row-name">
+                                <i class="material-icons">restaurant</i>
+                                <span>Food & Dining</span>
+                            </div>
+                            <div class="summary-row-price" id="summary-price-dining">৳ 6,000</div>
+                        </div>
+                        <div class="summary-row-item">
+                            <div class="summary-row-name">
+                                <i class="material-icons">surfing</i>
+                                <span>Activities & Others</span>
+                            </div>
+                            <div class="summary-row-price" id="summary-price-activities">৳ 4,000</div>
+                        </div>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <!-- Estimated Total -->
+                    <div class="summary-total-row">
+                        <div class="summary-total-label">Estimated Total</div>
+                        <div class="summary-total-val" id="summary-price-total">৳ 40,000</div>
+                    </div>
+
+                    <!-- Confirm & Book Tour (Solid Blue Button) -->
+                    <button type="button" class="btn-book-tour-main" onclick="confirmTourBooking()">
+                        <span>Confirm & Book Tour</span>
+                    </button>
+
+                    <!-- Secondary Quick Actions Toolbar -->
+                    <div class="summary-secondary-actions">
+                        <button type="button" class="btn-sidebar-sec" onclick="handlePrintItinerary()" title="Print Trip Itinerary">
+                            <i class="material-icons" style="font-size: 14px;">print</i>
+                            <span>Print</span>
+                        </button>
+                        <button type="button" class="btn-sidebar-sec" onclick="openSplitBillModal()" title="Split Bill among Travelers">
+                            <i class="material-icons" style="font-size: 14px;">groups</i>
+                            <span>Split Bill</span>
+                        </button>
+                        <button type="button" class="btn-sidebar-sec" onclick="openB2BQuoteModal()" title="Get Corporate / B2B Quote">
+                            <i class="material-icons" style="font-size: 14px;">receipt_long</i>
+                            <span>B2B Quote</span>
+                        </button>
+                        <button type="button" class="btn-sidebar-sec" onclick="openItineraryModal()" title="Day-by-Day Schedule">
+                            <i class="material-icons" style="font-size: 14px;">calendar_month</i>
+                            <span>Schedule</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Real-World Algorithmic Scenarios Card (Mockup Green Badge) -->
+                <div class="card-green-scenarios" onclick="openPreferencesModal()" title="View and tweak algorithmic preferences">
+                    <div class="scen-check-circle">✓</div>
+                    <div class="scen-info-content">
+                        <div class="scen-info-title">Real-World Algorithmic Scenarios</div>
+                        <div class="scen-info-sub">Get optimized travel plans based on your preferences, budget and travel style.</div>
+                    </div>
+                    <i class="material-icons scen-chevron-right">chevron_right</i>
+                </div>
+
+                <!-- 3. Secure & Reliable Card (Mockup Blue Badge) -->
+                <div class="card-blue-security" onclick="alert('All bookings and payments are secured with end-to-end 256-bit encryption and verified suppliers.')">
+                    <div class="sec-shield-badge">
+                        <i class="material-icons" style="font-size: 18px;">security</i>
+                    </div>
+                    <div class="sec-info-content">
+                        <div class="sec-info-title">Secure & Reliable</div>
+                        <div class="sec-info-sub">Your data is safe with us.</div>
+                    </div>
+                    <i class="material-icons scen-chevron-right">chevron_right</i>
+                </div>
+
+                <!-- 4. Ready for Your Next Adventure? (Mockup Sky Blue Card) -->
+                <div class="card-sky-adventure">
+                    <i class="material-icons adv-plane-icon">flight</i>
+                    <div class="adv-title">Ready for Your Next Adventure?</div>
+                    <div class="adv-sub">Let's turn your travel dreams into reality.</div>
+                    <svg class="adv-mountains-svg" viewBox="0 0 340 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 70L40 45L80 58L140 32L190 52L240 28L290 48L340 30V70H0Z" fill="#93c5fd" fill-opacity="0.5"/>
+                        <path d="M0 70L60 52L110 60L170 38L220 54L280 35L340 50V70H0Z" fill="#60a5fa" fill-opacity="0.6"/>
+                        <path d="M0 70L75 58L150 48L210 62L275 42L340 58V70H0Z" fill="#3b82f6" fill-opacity="0.7"/>
+                    </svg>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
     <!-- Component Selection Modal -->
@@ -6026,6 +7485,38 @@
             document.querySelectorAll('.btn-demo-pill').forEach(btn => {
                 btn.classList.toggle('active', Boolean(btn.getAttribute('onclick')?.includes(dest)));
             });
+            // Sync formatted date displays for mockup
+            if (deptDateInput && deptDateInput.value) {
+                const dObj = new Date(deptDateInput.value + 'T00:00:00');
+                const dDisp = document.getElementById('dept-date-display');
+                if (dDisp) dDisp.textContent = dObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            }
+            if (returnDateInput && returnDateInput.value) {
+                const rObj = new Date(returnDateInput.value + 'T00:00:00');
+                const rDisp = document.getElementById('return-date-display');
+                if (rDisp) rDisp.textContent = rObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            }
+
+            // Sync destination photo in summary card
+            const destImg = document.getElementById('summary-destination-img');
+            if (destImg) {
+                if (dest === 'coxsbazar') destImg.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80';
+                else if (dest === 'sajek') destImg.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80';
+                else if (dest === 'saintmartin') destImg.src = 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=300&q=80';
+                else if (dest === 'sreemangal') destImg.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80';
+            }
+
+            // Update transit header route
+            const transitRouteTitle = document.getElementById('transit-route-header-title');
+            if (transitRouteTitle) {
+                const oClean = (from || 'Dhaka').split(',')[0].trim();
+                const dName = dest === 'coxsbazar' ? "Cox's Bazar" : (dest === 'sajek' ? "Sajek" : (dest === 'saintmartin' ? "Saint Martin" : "Destination"));
+                transitRouteTitle.textContent = `Available Buses (${oClean} ➔ ${dName})`;
+            }
+
+            if (typeof updateSidebarSummary === 'function') {
+                updateSidebarSummary();
+            }
         }
 
         function resetSearchFields() {
@@ -7036,6 +8527,7 @@
                 `).join('') || '<span style="color: #64748b; font-size: 0.8rem;">Select components to activate real-world scenario calculations.</span>';
             }
             updateBudgetMeterUI(grandTotal);
+            if (typeof updateSidebarSummary === "function") updateSidebarSummary();
         }
 
         // ==========================================
@@ -8111,6 +9603,258 @@
             return false;
         }
 
+        // ==============================================================
+        // MOCKUP INTERACTIVE LOGIC (ACCORDIONS, FILTER PILLS & SIDEBAR)
+        // ==============================================================
+
+        const mockupSelections = {
+            transit: { name: 'Green Line Paribahan', price: 1200, subType: 'bus', unit: 'person' },
+            accommodation: { name: 'Cox\'s Bazar Sea View Hotel', price: 3500, subType: 'hotels', unit: 'night' },
+            dining: { name: 'Live Seafood BBQ & Beachside Dinner', price: 850, subType: 'dinner', unit: 'person' },
+            recreation: { name: 'Daria Nagar Parasailing Adventure', price: 2000, subType: 'watersports', unit: 'person' },
+            addons: null
+        };
+
+        function toggleCategoryAccordion(catId) {
+            const card = document.getElementById(`cat-card-${catId}`);
+            if (!card) return;
+            const isCollapsed = card.classList.contains('collapsed');
+            
+            if (isCollapsed) {
+                card.classList.remove('collapsed');
+                const chevron = document.getElementById(`chevron-${catId}`);
+                if (chevron) chevron.textContent = 'expand_less';
+                const minBtn = document.getElementById(`btn-minimize-${catId}`);
+                if (minBtn) minBtn.style.display = 'inline-flex';
+            } else {
+                card.classList.add('collapsed');
+                const chevron = document.getElementById(`chevron-${catId}`);
+                if (chevron) chevron.textContent = 'chevron_right';
+                const minBtn = document.getElementById(`btn-minimize-${catId}`);
+                if (minBtn) minBtn.style.display = 'none';
+            }
+
+            // Sync category pill button
+            document.querySelectorAll('.cat-pill-btn').forEach(btn => btn.classList.remove('active'));
+            const activePill = document.getElementById(`tab-pill-${catId}`);
+            if (activePill && !card.classList.contains('collapsed')) {
+                activePill.classList.add('active');
+            }
+        }
+
+        function openCategoryTab(catId) {
+            const card = document.getElementById(`cat-card-${catId}`);
+            if (!card) return;
+            
+            // Expand this category
+            card.classList.remove('collapsed');
+            const chevron = document.getElementById(`chevron-${catId}`);
+            if (chevron) chevron.textContent = 'expand_less';
+            const minBtn = document.getElementById(`btn-minimize-${catId}`);
+            if (minBtn) minBtn.style.display = 'inline-flex';
+
+            // Set active pill
+            document.querySelectorAll('.cat-pill-btn').forEach(btn => btn.classList.remove('active'));
+            const activePill = document.getElementById(`tab-pill-${catId}`);
+            if (activePill) activePill.classList.add('active');
+
+            // Smooth scroll
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function filterSubCategory(catId, subType) {
+            const card = document.getElementById(`cat-card-${catId}`);
+            if (!card) return;
+
+            // Highlight subpill
+            card.querySelectorAll('.sub-filter-pill').forEach(pill => {
+                pill.classList.remove('active');
+            });
+            if (window.event && window.event.currentTarget) {
+                window.event.currentTarget.classList.add('active');
+            }
+
+            // Filter service rows
+            const rows = card.querySelectorAll('.provider-service-row');
+            rows.forEach(row => {
+                const rowSub = row.getAttribute('data-sub');
+                if (subType === 'all' || rowSub === subType) {
+                    row.style.display = 'grid';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function selectMockupService(catId, subType, name, price, unit, btnEl, slotId) {
+            const isAlreadySelected = btnEl && btnEl.classList.contains('selected');
+
+            // Deselect other buttons in this category
+            const card = document.getElementById(`cat-card-${catId}`);
+            if (card) {
+                card.querySelectorAll('.btn-select-service').forEach(b => {
+                    b.classList.remove('selected');
+                    b.textContent = 'Select';
+                });
+            }
+
+            if (isAlreadySelected) {
+                mockupSelections[catId] = null;
+                if (currentTour[subType]) {
+                    currentTour[subType] = null;
+                }
+            } else {
+                if (btnEl) {
+                    btnEl.classList.add('selected');
+                    btnEl.textContent = 'Selected ✓';
+                }
+                mockupSelections[catId] = { name, price, subType, unit };
+
+                // Map to underlying currentTour for booking modal and MySQL synchronization
+                const itemObj = {
+                    id: slotId || Date.now(),
+                    name: name,
+                    price: price,
+                    sub: subType,
+                    hasSeats: (subType === 'bus' || subType === 'flight' || subType === 'train')
+                };
+                currentTour[subType] = itemObj;
+            }
+
+            updateSidebarSummary();
+        }
+
+        function updateSidebarSummary() {
+            const travelers = getTravelerCount() || 4;
+            const nights = calculateNights() || 3;
+
+            // 1. Transport Price
+            let transportPrice = 12000;
+            if (mockupSelections.transit) {
+                const base = mockupSelections.transit.price;
+                if (mockupSelections.transit.unit === 'person') {
+                    transportPrice = base * travelers * 2; // round-trip
+                } else {
+                    transportPrice = base;
+                }
+            }
+
+            // 2. Accommodation Price
+            let accommodationPrice = 18000;
+            if (mockupSelections.accommodation) {
+                const base = mockupSelections.accommodation.price;
+                const rooms = Math.ceil(travelers / 2);
+                accommodationPrice = base * nights * rooms;
+            }
+
+            // 3. Food & Dining Price
+            let diningPrice = 6000;
+            if (mockupSelections.dining) {
+                const base = mockupSelections.dining.price;
+                diningPrice = base * travelers * nights;
+            }
+
+            // 4. Activities & Others
+            let activitiesPrice = 4000;
+            let extraPrice = 0;
+            if (mockupSelections.recreation) {
+                extraPrice += (mockupSelections.recreation.price * travelers);
+            }
+            if (mockupSelections.addons) {
+                extraPrice += mockupSelections.addons.price;
+            }
+            if (extraPrice > 0) {
+                activitiesPrice = extraPrice;
+            }
+
+            const grandTotal = transportPrice + accommodationPrice + diningPrice + activitiesPrice;
+
+            // Update DOM badges
+            const tEl = document.getElementById('summary-price-transport');
+            const aEl = document.getElementById('summary-price-accommodation');
+            const dEl = document.getElementById('summary-price-dining');
+            const oEl = document.getElementById('summary-price-activities');
+            const totEl = document.getElementById('summary-price-total');
+
+            if (tEl) tEl.textContent = `৳ ${transportPrice.toLocaleString()}`;
+            if (aEl) aEl.textContent = `৳ ${accommodationPrice.toLocaleString()}`;
+            if (dEl) dEl.textContent = `৳ ${diningPrice.toLocaleString()}`;
+            if (oEl) oEl.textContent = `৳ ${activitiesPrice.toLocaleString()}`;
+            if (totEl) totEl.textContent = `৳ ${grandTotal.toLocaleString()}`;
+
+            const oldTotal = document.getElementById('total-amount');
+            if (oldTotal) oldTotal.textContent = `BDT ${grandTotal.toLocaleString()}`;
+
+            // Route & Dates
+            const originTitle = document.getElementById('origin-display-title')?.textContent || 'Savar, Dhaka';
+            const destTitle = document.getElementById('destination-display-title')?.textContent || 'Cox\'s Bazar, Chattogram';
+            const cleanOrigin = originTitle.split(',')[0].trim();
+            const cleanDest = destTitle.split(',')[0].trim();
+            const routeEl = document.getElementById('summary-route-text');
+            if (routeEl) routeEl.textContent = `${cleanOrigin} ➔ ${cleanDest}`;
+
+            const deptStr = document.getElementById('dept-date-display')?.textContent || '15 Nov 2025';
+            const retStr = document.getElementById('return-date-display')?.textContent || '18 Nov 2025';
+            const datesEl = document.getElementById('summary-dates-text');
+            if (datesEl) datesEl.textContent = `${deptStr} – ${retStr}`;
+
+            const travelersEl = document.getElementById('summary-travelers-text');
+            if (travelersEl) travelersEl.textContent = document.getElementById('traveler-count-display')?.value || `${travelers} Travelers (${travelers} Adults)`;
+        }
+
+        function triggerNativeDatePicker(inputId) {
+            const el = document.getElementById(inputId);
+            if (!el) return;
+            try {
+                if (typeof el.showPicker === 'function') {
+                    el.showPicker();
+                } else {
+                    el.focus();
+                }
+            } catch (e) {
+                el.focus();
+            }
+        }
+
+        function onDateInputChanged(inputId) {
+            const el = document.getElementById(inputId);
+            if (!el || !el.value) return;
+            const dateObj = new Date(el.value + 'T00:00:00');
+            const formatted = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            
+            const displayEl = document.getElementById(`${inputId}-display`);
+            if (displayEl) displayEl.textContent = formatted;
+
+            onSearchFieldChanged();
+            updateSidebarSummary();
+        }
+
+        function promptBudgetEdit() {
+            const current = document.getElementById('target-budget-input')?.value || '100000';
+            const userVal = prompt('Enter your Target Budget in BDT:', current);
+            if (userVal !== null && !isNaN(parseInt(userVal))) {
+                const num = parseInt(userVal);
+                document.getElementById('target-budget-input').value = num;
+                document.getElementById('target-budget-display').textContent = `৳ ${num.toLocaleString()}`;
+                if (typeof onBudgetInputChanged === 'function') {
+                    onBudgetInputChanged(num);
+                }
+            }
+        }
+
+        function handleLiveServiceSearch(query) {
+            const q = (query || '').toLowerCase().trim();
+            const rows = document.querySelectorAll('.provider-service-row');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (!q || text.includes(q)) {
+                    row.style.display = 'grid';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', async () => {
             const today = new Date().toISOString().split('T')[0];
             const deptInput = document.getElementById('dept-date');
@@ -8130,6 +9874,7 @@
 
             validateSearchFields(false);
             recalculateTotals();
+            if (typeof updateSidebarSummary === "function") updateSidebarSummary();
         });
     </script>
 
