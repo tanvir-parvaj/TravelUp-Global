@@ -2640,7 +2640,9 @@
             display: grid;
             grid-template-columns: 1.15fr 1.35fr 1fr 1fr 1.15fr 1fr;
             margin-bottom: 1.25rem;
-            overflow: hidden;
+            overflow: visible !important;
+            position: relative;
+            z-index: 60;
         }
 
         .search-field-pill {
@@ -2654,7 +2656,14 @@
             position: relative;
         }
 
+        .search-field-pill:first-child {
+            border-top-left-radius: 14px;
+            border-bottom-left-radius: 14px;
+        }
+
         .search-field-pill:last-child {
+            border-top-right-radius: 14px;
+            border-bottom-right-radius: 14px;
             border-right: none;
         }
 
@@ -4087,7 +4096,7 @@
             gap: 0.15rem;
         }
 
-        /* Category Subtotals Rows */
+        /* Dynamic Trip Summary Component Breakdown */
         .summary-breakdown-list {
             display: flex;
             flex-direction: column;
@@ -4095,30 +4104,152 @@
             margin-bottom: 1rem;
         }
 
-        .summary-row-item {
+        .summary-comp-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.65rem 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            transition: all 0.2s ease;
+        }
+
+        .summary-comp-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        }
+
+        .summary-comp-card.is-empty {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            padding: 0.55rem 0.75rem;
+        }
+
+        .summary-comp-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 0.825rem;
         }
 
-        .summary-row-name {
+        .summary-comp-tag {
             display: flex;
             align-items: center;
-            gap: 0.45rem;
-            color: #475569;
-            font-weight: 600;
-        }
-
-        .summary-row-name i {
-            font-size: 16px;
-            color: #0284c7;
-        }
-
-        .summary-row-price {
+            gap: 0.35rem;
+            font-size: 0.72rem;
             font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .summary-comp-tag i {
+            font-size: 15px;
+        }
+
+        .summary-comp-price {
+            font-weight: 800;
+            font-size: 0.85rem;
             color: #0f172a;
             font-family: var(--font-sans);
+        }
+
+        .summary-comp-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .summary-comp-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .summary-comp-title {
+            font-weight: 700;
+            font-size: 0.825rem;
+            color: #1e293b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .summary-comp-meta {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-top: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .summary-comp-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            flex-shrink: 0;
+        }
+
+        .btn-summary-comp {
+            padding: 0.22rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.15s ease;
+        }
+
+        .btn-summary-comp.edit {
+            background: #eff6ff;
+            color: #0284c7;
+            border-color: #bfdbfe;
+        }
+        .btn-summary-comp.edit:hover {
+            background: #0284c7;
+            color: #ffffff;
+        }
+
+        .btn-summary-comp.remove {
+            background: #fef2f2;
+            color: #dc2626;
+            border-color: #fecaca;
+        }
+        .btn-summary-comp.remove:hover {
+            background: #dc2626;
+            color: #ffffff;
+        }
+
+        .btn-summary-comp.add {
+            background: #f0fdf4;
+            color: #16a34a;
+            border-color: #bbf7d0;
+        }
+        .btn-summary-comp.add:hover {
+            background: #16a34a;
+            color: #ffffff;
+        }
+
+        .btn-budget-chip {
+            padding: 0.4rem 0.25rem;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #1e293b;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.15s ease;
+        }
+
+        .btn-budget-chip:hover {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
         }
 
         .summary-divider {
@@ -4697,7 +4828,7 @@
             </div>
 
             <!-- Field 5: Travelers & Ages -->
-            <div class="search-field-pill" id="field-travelers" onclick="toggleTravelerPopover()" style="position: relative;" title="Adjust travelers composition">
+            <div class="search-field-pill" id="field-travelers" onclick="toggleTravelerPopover(event)" style="position: relative;" title="Adjust travelers composition">
                 <span class="search-field-label">Travelers & Ages</span>
                 <div class="search-field-value">
                     <div class="search-val-left">
@@ -4709,7 +4840,7 @@
                 <input type="hidden" id="traveler-count" value="4">
 
                 <!-- Traveler Composition Popover -->
-                <div id="traveler-popover" style="display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #ffffff; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 15px 35px rgba(15,23,42,0.18); padding: 1.15rem; width: 290px; z-index: 500;" onclick="event.stopPropagation();">
+                <div id="traveler-popover" style="display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; box-shadow: 0 15px 35px rgba(15,23,42,0.2); padding: 1.15rem; width: 300px; z-index: 1000;" onclick="event.stopPropagation();">
                     <div style="font-size: 0.85rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
                         <span>Traveler Composition</span>
                         <span style="font-size: 0.7rem; color: #64748b;">Ages & Rules</span>
@@ -4719,9 +4850,9 @@
                             <div style="font-size: 0.825rem; font-weight: 700; color: #0f172a;">Adults</div>
                             <div style="font-size: 0.7rem; color: #64748b;">Age 12+ (Full Fare)</div>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
+                        <div style="display: flex; align-items: center; gap: 6px;">
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('adults', -1)">-</button>
-                            <span id="count-adults" style="font-weight: 800; font-size: 0.9rem; min-width: 18px; text-align: center;">4</span>
+                            <input type="number" id="inp-adults" min="1" max="50" value="4" style="width: 44px; height: 30px; text-align: center; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: 800; font-size: 0.85rem;" onchange="setGuestDirect('adults', this.value)">
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('adults', 1)">+</button>
                         </div>
                     </div>
@@ -4730,9 +4861,9 @@
                             <div style="font-size: 0.825rem; font-weight: 700; color: #0f172a;">Children</div>
                             <div style="font-size: 0.7rem; color: #64748b;">Age 5–11 (Half Seat Fare)</div>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
+                        <div style="display: flex; align-items: center; gap: 6px;">
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('children', -1)">-</button>
-                            <span id="count-children" style="font-weight: 800; font-size: 0.9rem; min-width: 18px; text-align: center;">0</span>
+                            <input type="number" id="inp-children" min="0" max="50" value="0" style="width: 44px; height: 30px; text-align: center; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: 800; font-size: 0.85rem;" onchange="setGuestDirect('children', this.value)">
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('children', 1)">+</button>
                         </div>
                     </div>
@@ -4741,29 +4872,57 @@
                             <div style="font-size: 0.825rem; font-weight: 700; color: #0f172a;">Infants</div>
                             <div style="font-size: 0.7rem; color: #64748b;">Under 4 yrs (Free Lap Seat)</div>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
+                        <div style="display: flex; align-items: center; gap: 6px;">
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('infants', -1)">-</button>
-                            <span id="count-infants" style="font-weight: 800; font-size: 0.9rem; min-width: 18px; text-align: center;">0</span>
+                            <input type="number" id="inp-infants" min="0" max="50" value="0" style="width: 44px; height: 30px; text-align: center; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: 800; font-size: 0.85rem;" onchange="setGuestDirect('infants', this.value)">
                             <button type="button" class="btn-stepper" onclick="updateGuestCount('infants', 1)">+</button>
                         </div>
                     </div>
-                    <button type="button" class="btn-select-service" onclick="closeTravelerPopover()" style="width: 100%; padding: 0.5rem; font-size: 0.825rem;">
+                    <button type="button" class="btn-select-service" onclick="closeTravelerPopover()" style="width: 100%; padding: 0.55rem; font-size: 0.825rem; font-weight: 800;">
                         Apply Travelers
                     </button>
                 </div>
             </div>
 
             <!-- Field 6: Target Budget (BDT) -->
-            <div class="search-field-pill" id="field-budget" onclick="promptBudgetEdit()" title="Set Target Budget">
+            <div class="search-field-pill" id="field-budget" onclick="toggleBudgetPopover(event)" style="position: relative;" title="Click to set or type Target Budget">
                 <span class="search-field-label">Target Budget (BDT)</span>
                 <div class="search-field-value">
                     <div class="search-val-left">
-                        <span class="search-val-icon" style="font-weight: 800; font-size: 16px;">৳</span>
-                        <span class="search-val-text" id="target-budget-display">50,000 - 100,000</span>
+                        <span class="search-val-icon" style="font-weight: 800; font-size: 16px; color: #0284c7;">৳</span>
+                        <span class="search-val-text" id="target-budget-display">৳ 100,000</span>
                     </div>
                     <i class="material-icons search-val-chevron">expand_more</i>
                 </div>
                 <input type="hidden" id="target-budget-input" value="100000">
+
+                <!-- Target Budget Popover -->
+                <div id="budget-popover" style="display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; box-shadow: 0 15px 35px rgba(15,23,42,0.2); padding: 1.15rem; width: 310px; z-index: 1000;" onclick="event.stopPropagation();">
+                    <div style="font-size: 0.85rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Target Budget (BDT)</span>
+                        <span style="font-size: 0.7rem; color: #0284c7; font-weight: 700;">Expense Tracker</span>
+                    </div>
+                    <div style="margin-bottom: 0.85rem;">
+                        <label style="font-size: 0.75rem; font-weight: 700; color: #64748b; display: block; margin-bottom: 4px;">Enter Custom Amount (BDT)</label>
+                        <div style="position: relative; display: flex; align-items: center;">
+                            <span style="position: absolute; left: 10px; font-weight: 800; color: #0284c7;">৳</span>
+                            <input type="number" id="budget-custom-input" min="5000" step="1000" placeholder="e.g. 80000" value="100000" style="width: 100%; height: 38px; padding-left: 28px; padding-right: 10px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; font-weight: 700;" onkeydown="if(event.key==='Enter') applyBudgetPopover();">
+                        </div>
+                    </div>
+                    <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; margin-bottom: 6px;">Quick Presets:</div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 0.85rem;">
+                        <button type="button" class="btn-budget-chip" onclick="setBudgetPreset(30000)">৳ 30,000</button>
+                        <button type="button" class="btn-budget-chip" onclick="setBudgetPreset(50000)">৳ 50,000</button>
+                        <button type="button" class="btn-budget-chip" onclick="setBudgetPreset(80000)">৳ 80,000</button>
+                        <button type="button" class="btn-budget-chip" onclick="setBudgetPreset(100000)">৳ 100,000</button>
+                        <button type="button" class="btn-budget-chip" onclick="setBudgetPreset(150000)">৳ 150,000</button>
+                        <button type="button" class="btn-budget-chip" onclick="setBudgetPreset(200000)">৳ 200,000</button>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" class="btn-demo-reset" onclick="closeBudgetPopover()" style="flex: 1; padding: 0.5rem; font-size: 0.8rem; justify-content: center;">Cancel</button>
+                        <button type="button" class="btn-select-service" onclick="applyBudgetPopover()" style="flex: 2; padding: 0.5rem; font-size: 0.825rem; font-weight: 800;">Apply Budget</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -5087,9 +5246,9 @@
                             <i class="material-icons" style="color: #0284c7; font-size: 20px;">luggage</i>
                             <span>Trip Summary</span>
                         </div>
-                        <button type="button" class="btn-edit-summary" onclick="document.getElementById('search-strip')?.scrollIntoView({ behavior: 'smooth' })">
-                            <i class="material-icons" style="font-size: 14px;">edit</i>
-                            <span>Edit</span>
+                        <button type="button" class="btn-edit-summary" onclick="openTripSummaryManager()" title="Manage or replace selected trip components">
+                            <i class="material-icons" style="font-size: 14px;">tune</i>
+                            <span>Manage / Edit</span>
                         </button>
                     </div>
 
@@ -5105,44 +5264,20 @@
                         </div>
                     </div>
 
-                    <!-- Subtotal Breakdown Rows -->
-                    <div class="summary-breakdown-list">
-                        <div class="summary-row-item">
-                            <div class="summary-row-name">
-                                <i class="material-icons">directions_bus</i>
-                                <span>Transport</span>
-                            </div>
-                            <div class="summary-row-price" id="summary-price-transport">৳ 12,000</div>
-                        </div>
-                        <div class="summary-row-item">
-                            <div class="summary-row-name">
-                                <i class="material-icons">hotel</i>
-                                <span>Accommodation</span>
-                            </div>
-                            <div class="summary-row-price" id="summary-price-accommodation">৳ 18,000</div>
-                        </div>
-                        <div class="summary-row-item">
-                            <div class="summary-row-name">
-                                <i class="material-icons">restaurant</i>
-                                <span>Food & Dining</span>
-                            </div>
-                            <div class="summary-row-price" id="summary-price-dining">৳ 6,000</div>
-                        </div>
-                        <div class="summary-row-item">
-                            <div class="summary-row-name">
-                                <i class="material-icons">surfing</i>
-                                <span>Activities & Others</span>
-                            </div>
-                            <div class="summary-row-price" id="summary-price-activities">৳ 4,000</div>
-                        </div>
+                    <!-- Dynamic Component Breakdown List (100% Dynamic & Reactive) -->
+                    <div class="summary-breakdown-list" id="summary-components-list">
+                        <!-- Populated dynamically by updateSidebarSummary() -->
                     </div>
 
                     <div class="summary-divider"></div>
 
                     <!-- Estimated Total -->
                     <div class="summary-total-row">
-                        <div class="summary-total-label">Estimated Total</div>
-                        <div class="summary-total-val" id="summary-price-total">৳ 40,000</div>
+                        <div>
+                            <div class="summary-total-label">Estimated Total</div>
+                            <div style="font-size: 0.72rem; color: #64748b;" id="summary-configured-count">0 of 5 Components Selected</div>
+                        </div>
+                        <div class="summary-total-val" id="summary-price-total">৳ 0</div>
                     </div>
 
                     <!-- Confirm & Book Tour (Solid Blue Button) -->
@@ -5615,6 +5750,42 @@
                             Done
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manage Trip Components Modal (Full Component Editor & Excluder) -->
+    <div class="modal-overlay" id="trip-summary-manager-modal" style="display: none;">
+        <div class="modal-box" style="max-width: 680px;">
+            <div class="modal-header" style="background: #0f172a; color: white;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i class="material-icons" style="color: #38bdf8;">tune</i>
+                    <h3 style="color: white; margin: 0; font-size: 1.15rem;">Manage Trip Components</h3>
+                </div>
+                <button class="modal-close-btn" style="color: #94a3b8;" onclick="closeTripSummaryManager()">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; background: #f8fafc; border: 1px solid var(--st-border); border-radius: 8px; padding: 0.75rem 1rem;">
+                    <div>
+                        <div style="font-size: 0.875rem; font-weight: 800; color: #0f172a;" id="mgr-modal-route">Dhaka ➔ Cox's Bazar</div>
+                        <div style="font-size: 0.775rem; color: #64748b;" id="mgr-modal-meta">4 Travelers • 3 Nights</div>
+                    </div>
+                    <button type="button" class="btn-demo-reset" onclick="clearAllTripComponents()" style="font-size: 0.775rem; color: #dc2626; border-color: #fecaca; background: #fff5f5; cursor: pointer;">
+                        <i class="material-icons" style="font-size: 14px;">delete_sweep</i> Clear All Components
+                    </button>
+                </div>
+                <div id="trip-manager-components-container" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <!-- Dynamically populated by renderTripSummaryManager() -->
+                </div>
+                <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--st-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                    <div>
+                        <div style="font-size: 0.75rem; color: #64748b; font-weight: 700;">TOTAL TRIP ESTIMATE</div>
+                        <div style="font-size: 1.35rem; font-weight: 900; color: #0284c7;" id="mgr-modal-total">৳ 0</div>
+                    </div>
+                    <button type="button" class="btn-checkout" onclick="closeTripSummaryManager()" style="padding: 0.6rem 1.5rem; font-size: 0.875rem;">
+                        Done & Return to Plan
+                    </button>
                 </div>
             </div>
         </div>
@@ -7744,9 +7915,21 @@
             onSearchFieldChanged();
         }
 
-        function toggleTravelerPopover() {
+        function toggleTravelerPopover(e) {
+            if (e) e.stopPropagation();
             const pop = document.getElementById('traveler-popover');
-            if (pop) pop.style.display = (pop.style.display === 'none' || !pop.style.display) ? 'block' : 'none';
+            if (!pop) return;
+            const isShowing = (pop.style.display === 'block');
+            closeBudgetPopover();
+            pop.style.display = isShowing ? 'none' : 'block';
+            if (!isShowing) {
+                const inpAdults = document.getElementById('inp-adults');
+                if (inpAdults) inpAdults.value = guestCounts.adults;
+                const inpChildren = document.getElementById('inp-children');
+                if (inpChildren) inpChildren.value = guestCounts.children;
+                const inpInfants = document.getElementById('inp-infants');
+                if (inpInfants) inpInfants.value = guestCounts.infants;
+            }
         }
 
         function closeTravelerPopover() {
@@ -7754,22 +7937,45 @@
             if (pop) pop.style.display = 'none';
         }
 
+        function setGuestDirect(tier, val) {
+            const num = parseInt(val, 10);
+            if (isNaN(num)) return;
+            if (tier === 'adults') {
+                guestCounts.adults = Math.max(1, num);
+            } else if (tier === 'children') {
+                guestCounts.children = Math.max(0, num);
+            } else if (tier === 'infants') {
+                guestCounts.infants = Math.max(0, num);
+            }
+            syncGuestDisplays();
+        }
+
         function updateGuestCount(tier, delta) {
             if (tier === 'adults') {
                 guestCounts.adults = Math.max(1, guestCounts.adults + delta);
-                const el = document.getElementById('count-adults');
-                if (el) el.textContent = guestCounts.adults;
             } else if (tier === 'children') {
                 guestCounts.children = Math.max(0, guestCounts.children + delta);
-                const el = document.getElementById('count-children');
-                if (el) el.textContent = guestCounts.children;
             } else if (tier === 'infants') {
                 guestCounts.infants = Math.max(0, guestCounts.infants + delta);
-                const el = document.getElementById('count-infants');
-                if (el) el.textContent = guestCounts.infants;
             }
+            syncGuestDisplays();
+        }
 
+        function syncGuestDisplays() {
             const total = guestCounts.adults + guestCounts.children + guestCounts.infants;
+            const inpAdults = document.getElementById('inp-adults');
+            const inpChildren = document.getElementById('inp-children');
+            const inpInfants = document.getElementById('inp-infants');
+            const countAdults = document.getElementById('count-adults');
+            const countChildren = document.getElementById('count-children');
+            const countInfants = document.getElementById('count-infants');
+            if (inpAdults) inpAdults.value = guestCounts.adults;
+            if (inpChildren) inpChildren.value = guestCounts.children;
+            if (inpInfants) inpInfants.value = guestCounts.infants;
+            if (countAdults) countAdults.textContent = guestCounts.adults;
+            if (countChildren) countChildren.textContent = guestCounts.children;
+            if (countInfants) countInfants.textContent = guestCounts.infants;
+
             const inputHidden = document.getElementById('traveler-count');
             if (inputHidden) inputHidden.value = total;
 
@@ -7779,9 +7985,63 @@
             summary += ')';
 
             const displayEl = document.getElementById('traveler-count-display');
-            if (displayEl) displayEl.value = summary;
+            if (displayEl) displayEl.textContent = summary;
+
+            const travelersSummaryEl = document.getElementById('summary-travelers-text');
+            if (travelersSummaryEl) travelersSummaryEl.textContent = summary;
 
             onSearchFieldChanged();
+            if (typeof renderAllCategoryServices === 'function') {
+                renderAllCategoryServices();
+            }
+            recalculateTotals();
+            if (typeof updateSidebarSummary === 'function') {
+                updateSidebarSummary();
+            }
+        }
+
+        function toggleBudgetPopover(e) {
+            if (e) e.stopPropagation();
+            const pop = document.getElementById('budget-popover');
+            if (!pop) return;
+            const isShowing = (pop.style.display === 'block');
+            closeTravelerPopover();
+            pop.style.display = isShowing ? 'none' : 'block';
+            if (!isShowing) {
+                const inp = document.getElementById('budget-custom-input');
+                if (inp) {
+                    inp.value = targetBudget || 100000;
+                    setTimeout(() => inp.focus(), 60);
+                }
+            }
+        }
+
+        function closeBudgetPopover() {
+            const pop = document.getElementById('budget-popover');
+            if (pop) pop.style.display = 'none';
+        }
+
+        function setBudgetPreset(val) {
+            const inp = document.getElementById('budget-custom-input');
+            if (inp) inp.value = val;
+            applyBudgetPopover();
+        }
+
+        function applyBudgetPopover() {
+            const inp = document.getElementById('budget-custom-input');
+            const val = parseInt(inp ? inp.value : '100000', 10);
+            if (!isNaN(val) && val > 0) {
+                targetBudget = val;
+                const hiddenInp = document.getElementById('target-budget-input');
+                if (hiddenInp) hiddenInp.value = val;
+                const displayEl = document.getElementById('target-budget-display');
+                if (displayEl) displayEl.textContent = `৳ ${val.toLocaleString()}`;
+                if (typeof onBudgetInputChanged === 'function') {
+                    onBudgetInputChanged(val);
+                }
+                recalculateTotals();
+            }
+            closeBudgetPopover();
         }
 
         // Live MySQL Database Synchronization
@@ -9009,7 +9269,6 @@
             if (returnDateInput) returnDateInput.value = retDateStr;
 
             if (travelerInput) travelerInput.value = travelers;
-            if (travelerDisplay) travelerDisplay.value = `${travelers} Travelers (${travelers} Adults)`;
             guestCounts = { adults: travelers, children: 0, infants: 0 };
             const cAdults = document.getElementById('count-adults');
             const cChildren = document.getElementById('count-children');
@@ -9017,6 +9276,13 @@
             if (cAdults) cAdults.textContent = travelers;
             if (cChildren) cChildren.textContent = 0;
             if (cInfants) cInfants.textContent = 0;
+            const inpAdults = document.getElementById('inp-adults');
+            const inpChildren = document.getElementById('inp-children');
+            const inpInfants = document.getElementById('inp-infants');
+            if (inpAdults) inpAdults.value = travelers;
+            if (inpChildren) inpChildren.value = 0;
+            if (inpInfants) inpInfants.value = 0;
+            if (travelerDisplay) travelerDisplay.textContent = `${travelers} Travelers (${travelers} Adults)`;
 
             // Load live inventory from Hostinger MySQL for selected destination
             loadDatabaseInventory(dest);
@@ -11157,7 +11423,7 @@
                     if (document.getElementById('count-adults')) document.getElementById('count-adults').textContent = guestCounts.adults;
                     if (document.getElementById('count-children')) document.getElementById('count-children').textContent = guestCounts.children;
                     if (document.getElementById('count-infants')) document.getElementById('count-infants').textContent = guestCounts.infants;
-                    if (document.getElementById('traveler-count-display')) document.getElementById('traveler-count-display').value = `${total} Travelers (${guestCounts.adults} Adults)`;
+                    if (document.getElementById('traveler-count-display')) document.getElementById('traveler-count-display').textContent = `${total} Travelers (${guestCounts.adults} Adults)`;
                 }
                 if (draft.trip_type) setTripType(draft.trip_type);
 
@@ -11228,7 +11494,7 @@
                     if (document.getElementById('count-adults')) document.getElementById('count-adults').textContent = guestCounts.adults;
                     if (document.getElementById('count-children')) document.getElementById('count-children').textContent = guestCounts.children;
                     if (document.getElementById('count-infants')) document.getElementById('count-infants').textContent = guestCounts.infants;
-                    if (document.getElementById('traveler-count-display')) document.getElementById('traveler-count-display').value = `${total} Travelers (${guestCounts.adults} Adults)`;
+                    if (document.getElementById('traveler-count-display')) document.getElementById('traveler-count-display').textContent = `${total} Travelers (${guestCounts.adults} Adults)`;
 
                     // Await destination inventory from MySQL
                     await loadDatabaseInventory(t.destination_slug);
@@ -11260,10 +11526,10 @@
         // ==============================================================
 
         const mockupSelections = {
-            transit: { name: 'Green Line Paribahan', price: 1200, subType: 'bus', unit: 'person' },
-            accommodation: { name: 'Cox\'s Bazar Sea View Hotel', price: 3500, subType: 'hotels', unit: 'night' },
-            dining: { name: 'Live Seafood BBQ & Beachside Dinner', price: 850, subType: 'dinner', unit: 'person' },
-            recreation: { name: 'Daria Nagar Parasailing Adventure', price: 2000, subType: 'watersports', unit: 'person' },
+            transit: null,
+            accommodation: null,
+            dining: null,
+            recreation: null,
             addons: null
         };
 
@@ -11832,71 +12098,131 @@
             const travelers = getTravelerCount() || 4;
             const nights = calculateNights() || 3;
 
-            // 1. Transport Price
-            let transportPrice = 0;
-            if (mockupSelections.transit) {
-                const base = mockupSelections.transit.price;
-                if (mockupSelections.transit.unit === 'person') {
-                    const seatsCount = (mockupSelections.transit.selectedSeats && mockupSelections.transit.selectedSeats.length > 0) 
-                        ? mockupSelections.transit.selectedSeats.length 
-                        : travelers;
-                    transportPrice = base * seatsCount * (currentTripType === 'one_way' ? 1 : 2);
+            const listEl = document.getElementById('summary-components-list');
+
+            const originTitle = document.getElementById('origin-display-title')?.textContent || 'Mirpur, Dhaka';
+            const destTitle = document.getElementById('destination-display-title')?.textContent || "Cox's Bazar, Chattogram";
+            const cleanOrigin = originTitle.split(',')[0].trim();
+            const cleanDest = destTitle.split(',')[0].trim();
+
+            const cats = [
+                { id: 'transit', label: 'Transport', icon: 'directions_bus', color: '#0284c7' },
+                { id: 'accommodation', label: 'Accommodation', icon: 'hotel', color: '#8b5cf6' },
+                { id: 'dining', label: 'Food & Dining', icon: 'restaurant', color: '#ea580c' },
+                { id: 'recreation', label: 'Activities', icon: 'surfing', color: '#06b6d4' },
+                { id: 'addons', label: 'Guides & Addons', icon: 'extension', color: '#10b981' }
+            ];
+
+            let grandTotal = 0;
+            let selectedCount = 0;
+            let rowsHtml = '';
+
+            cats.forEach(c => {
+                const sel = mockupSelections[c.id];
+                if (sel && sel.name) {
+                    selectedCount++;
+                    let itemPrice = 0;
+                    let metaInfo = '';
+
+                    if (c.id === 'transit') {
+                        const base = sel.price || 0;
+                        if (sel.unit === 'person') {
+                            const count = (sel.selectedSeats && sel.selectedSeats.length > 0) ? sel.selectedSeats.length : travelers;
+                            itemPrice = base * count * (currentTripType === 'one_way' ? 1 : 2);
+                            const seatStr = (sel.selectedSeats && sel.selectedSeats.length > 0) ? `Seats: ${sel.selectedSeats.join(', ')}` : `${count} Seats`;
+                            const timeStr = sel.selectedTimeSlot ? ` • ${sel.selectedTimeSlot}` : '';
+                            const tripStr = currentTripType === 'one_way' ? ' (One-Way)' : ' (Round-Trip)';
+                            metaInfo = `${seatStr}${timeStr}${tripStr}`;
+                        } else {
+                            itemPrice = base;
+                            metaInfo = `Private Vehicle • ${cleanOrigin} ➔ ${cleanDest}`;
+                        }
+                    } else if (c.id === 'accommodation') {
+                        const base = sel.price || 0;
+                        const capacity = (sel.selectedRoom && sel.selectedRoom.capacity) ? sel.selectedRoom.capacity : 2;
+                        const rooms = Math.ceil(travelers / capacity);
+                        itemPrice = base * nights * rooms;
+                        const roomName = sel.selectedRoom ? sel.selectedRoom.name : 'Standard Room';
+                        const floorStr = (sel.selectedRoom && sel.selectedRoom.chosenFloor) ? ` (${sel.selectedRoom.chosenFloor})` : '';
+                        metaInfo = `${roomName}${floorStr} • ${nights} Nights (${rooms} Room${rooms > 1 ? 's' : ''})`;
+                    } else if (c.id === 'dining') {
+                        const base = sel.price || 0;
+                        itemPrice = base * travelers * nights;
+                        const menuTitle = sel.selectedMenu ? sel.selectedMenu.packageName : 'Full Board Menu';
+                        metaInfo = `${menuTitle} • ${travelers} Persons × ${nights} Days`;
+                    } else if (c.id === 'recreation') {
+                        const base = sel.price || 0;
+                        itemPrice = base * travelers;
+                        const timeStr = sel.selectedTimeSlot ? `${sel.selectedTimeSlot} • ` : '';
+                        metaInfo = `${timeStr}${travelers} Persons`;
+                    } else if (c.id === 'addons') {
+                        itemPrice = sel.price || 0;
+                        metaInfo = `Full Trip Package Inclusion`;
+                    }
+
+                    grandTotal += itemPrice;
+
+                    rowsHtml += `
+                        <div class="summary-comp-card" id="summary-card-${c.id}">
+                            <div class="summary-comp-header">
+                                <div class="summary-comp-tag" style="color: ${c.color};">
+                                    <i class="material-icons">${c.icon}</i>
+                                    <span>${c.label}</span>
+                                </div>
+                                <div class="summary-comp-price">৳ ${itemPrice.toLocaleString()}</div>
+                            </div>
+                            <div class="summary-comp-body">
+                                <div class="summary-comp-info">
+                                    <div class="summary-comp-title" title="${sel.name}">${sel.name}</div>
+                                    <div class="summary-comp-meta">${metaInfo}</div>
+                                </div>
+                                <div class="summary-comp-actions">
+                                    <button type="button" class="btn-summary-comp edit" onclick="openSummaryItemEditor('${c.id}')" title="Replace or reconfigure this selection">
+                                        <i class="material-icons" style="font-size: 13px;">edit</i> Replace
+                                    </button>
+                                    <button type="button" class="btn-summary-comp remove" onclick="removeSummaryComponent('${c.id}')" title="Remove (Bad dewa) from trip">
+                                        <i class="material-icons" style="font-size: 13px;">close</i> Bad
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 } else {
-                    transportPrice = base;
+                    rowsHtml += `
+                        <div class="summary-comp-card is-empty" id="summary-card-${c.id}">
+                            <div class="summary-comp-header">
+                                <div class="summary-comp-tag" style="color: #94a3b8;">
+                                    <i class="material-icons">${c.icon}</i>
+                                    <span>${c.label}</span>
+                                </div>
+                                <div style="font-size: 0.775rem; color: #94a3b8;">—</div>
+                            </div>
+                            <div class="summary-comp-body">
+                                <div class="summary-comp-info">
+                                    <div style="font-size: 0.775rem; color: #94a3b8; font-style: italic;">No service selected yet</div>
+                                </div>
+                                <div class="summary-comp-actions">
+                                    <button type="button" class="btn-summary-comp add" onclick="openCategoryTab('${c.id}')" title="Choose a ${c.label} service">
+                                        <i class="material-icons" style="font-size: 13px;">add</i> Select
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 }
+            });
+
+            if (listEl) {
+                listEl.innerHTML = rowsHtml;
             }
 
-            // 2. Accommodation Price
-            let accommodationPrice = 0;
-            if (mockupSelections.accommodation) {
-                const base = mockupSelections.accommodation.price;
-                const capacity = (mockupSelections.accommodation.selectedRoom && mockupSelections.accommodation.selectedRoom.capacity) ? mockupSelections.accommodation.selectedRoom.capacity : 2;
-                const rooms = Math.ceil(travelers / capacity);
-                accommodationPrice = base * nights * rooms;
-            }
-
-            // 3. Food & Dining Price
-            let diningPrice = 0;
-            if (mockupSelections.dining) {
-                const base = mockupSelections.dining.price;
-                diningPrice = base * travelers * nights;
-            }
-
-            // 4. Activities & Others
-            let activitiesPrice = 0;
-            if (mockupSelections.recreation) {
-                activitiesPrice += (mockupSelections.recreation.price * travelers);
-            }
-            if (mockupSelections.addons) {
-                activitiesPrice += mockupSelections.addons.price;
-            }
-
-            // If nothing selected yet, calculate baseline estimate from inventory items
-            if (!mockupSelections.transit && !mockupSelections.accommodation && !mockupSelections.dining && !mockupSelections.recreation && !mockupSelections.addons) {
-                const defBus = (inventory.bus && inventory.bus[0]) ? inventory.bus[0].price : 1000;
-                const defHotel = (inventory.hotel && inventory.hotel[0]) ? inventory.hotel[0].price : 3000;
-                const defDining = (inventory.lunch && inventory.lunch[0]) ? inventory.lunch[0].price : 500;
-                const defRec = (inventory.parasailing && inventory.parasailing[0]) ? inventory.parasailing[0].price : 1000;
-                transportPrice = defBus * travelers * (currentTripType === 'one_way' ? 1 : 2);
-                accommodationPrice = defHotel * nights * Math.ceil(travelers / 2);
-                diningPrice = defDining * travelers * nights;
-                activitiesPrice = defRec * travelers;
-            }
-
-            const grandTotal = transportPrice + accommodationPrice + diningPrice + activitiesPrice;
-
-            // Update DOM badges
-            const tEl = document.getElementById('summary-price-transport');
-            const aEl = document.getElementById('summary-price-accommodation');
-            const dEl = document.getElementById('summary-price-dining');
-            const oEl = document.getElementById('summary-price-activities');
+            // Update Totals
             const totEl = document.getElementById('summary-price-total');
-
-            if (tEl) tEl.textContent = `৳ ${transportPrice.toLocaleString()}`;
-            if (aEl) aEl.textContent = `৳ ${accommodationPrice.toLocaleString()}`;
-            if (dEl) dEl.textContent = `৳ ${diningPrice.toLocaleString()}`;
-            if (oEl) oEl.textContent = `৳ ${activitiesPrice.toLocaleString()}`;
             if (totEl) totEl.textContent = `৳ ${grandTotal.toLocaleString()}`;
+
+            const countEl = document.getElementById('summary-configured-count');
+            if (countEl) countEl.textContent = `${selectedCount} of 5 Components Selected`;
+
             const mobStickyTotal = document.getElementById('mobile-sticky-total');
             if (mobStickyTotal) mobStickyTotal.textContent = `৳ ${grandTotal.toLocaleString()}`;
 
@@ -11904,10 +12230,6 @@
             if (oldTotal) oldTotal.textContent = `BDT ${grandTotal.toLocaleString()}`;
 
             // Route & Dates
-            const originTitle = document.getElementById('origin-display-title')?.textContent || 'Savar, Dhaka';
-            const destTitle = document.getElementById('destination-display-title')?.textContent || 'Cox\'s Bazar, Chattogram';
-            const cleanOrigin = originTitle.split(',')[0].trim();
-            const cleanDest = destTitle.split(',')[0].trim();
             const routeEl = document.getElementById('summary-route-text');
             if (routeEl) routeEl.textContent = `${cleanOrigin} ➔ ${cleanDest}`;
 
@@ -11917,7 +12239,223 @@
             if (datesEl) datesEl.textContent = `${deptStr} – ${retStr}`;
 
             const travelersEl = document.getElementById('summary-travelers-text');
-            if (travelersEl) travelersEl.textContent = document.getElementById('traveler-count-display')?.value || `${travelers} Travelers (${travelers} Adults)`;
+            const displayVal = document.getElementById('traveler-count-display')?.textContent || `${travelers} Travelers (${travelers} Adults)`;
+            if (travelersEl) travelersEl.textContent = displayVal;
+
+            // Destination Thumbnail Switcher
+            const destThumb = document.getElementById('summary-destination-img');
+            if (destThumb) {
+                const destLower = destTitle.toLowerCase();
+                if (destLower.includes('sajek')) {
+                    destThumb.src = 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=300&q=80';
+                } else if (destLower.includes('saintmartin') || destLower.includes('coral')) {
+                    destThumb.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80';
+                } else if (destLower.includes('sreemangal') || destLower.includes('moulvibazar')) {
+                    destThumb.src = 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80';
+                } else if (destLower.includes('sylhet') || destLower.includes('jaflong')) {
+                    destThumb.src = 'https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=300&q=80';
+                } else {
+                    destThumb.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80';
+                }
+            }
+        }
+
+        // Remove (Bad Dewa) from Trip Summary
+        function removeSummaryComponent(catId) {
+            if (!mockupSelections[catId]) return;
+            const item = mockupSelections[catId];
+            const slotName = item.slotName || item.subType;
+
+            mockupSelections[catId] = null;
+            if (slotName) currentTour[slotName] = null;
+
+            if (catId === 'transit') {
+                ['bus', 'coach', 'flight', 'train', 'microbus', 'cng', 'launch', 'jeep', 'truck'].forEach(s => currentTour[s] = null);
+            } else if (catId === 'accommodation') {
+                ['hotel', 'resort', 'cottage', 'villa'].forEach(s => currentTour[s] = null);
+            } else if (catId === 'dining') {
+                ['breakfast', 'lunch', 'dinner', 'bbq', 'cafe', 'traditionalfood', 'buffet'].forEach(s => currentTour[s] = null);
+            } else if (catId === 'recreation') {
+                ['parasailing', 'speedboat', 'jetski', 'scuba', 'lounge'].forEach(s => currentTour[s] = null);
+            } else if (catId === 'addons') {
+                ['guide', 'permit', 'honeymoon'].forEach(s => currentTour[s] = null);
+            }
+
+            if (typeof renderCategoryServices === 'function') {
+                renderCategoryServices(catId);
+            }
+            recalculateTotals();
+            updateSidebarSummary();
+
+            if (typeof renderTripSummaryManager === 'function') {
+                renderTripSummaryManager();
+            }
+        }
+
+        // Replace / Edit from Trip Summary
+        function openSummaryItemEditor(catId) {
+            const item = mockupSelections[catId];
+            if (item && item.slotName && item.id) {
+                const slotName = item.slotName;
+                const itemId = item.id;
+                if (slotName === 'bus' || slotName === 'coach' || item.hasSeats) {
+                    openSeatPickerFromRow(slotName, itemId);
+                    return;
+                } else if (slotName === 'flight' || item.hasFlightSeats) {
+                    openFlightSeatPickerFromRow(slotName, itemId);
+                    return;
+                } else if (slotName === 'train' || item.hasTrainSeats) {
+                    openTrainSeatPickerFromRow(slotName, itemId);
+                    return;
+                } else if (catId === 'accommodation' || item.hasRooms) {
+                    openRoomPickerFromRow(slotName, itemId);
+                    return;
+                } else if (catId === 'dining' || item.hasMenu) {
+                    openMenuPickerFromRow(slotName, itemId);
+                    return;
+                }
+            }
+
+            openCategoryTab(catId);
+            const card = document.getElementById(`cat-card-${catId}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Trip Components Manager Modal Controller
+        function openTripSummaryManager() {
+            const modal = document.getElementById('trip-summary-manager-modal');
+            if (!modal) return;
+            renderTripSummaryManager();
+            modal.style.display = 'flex';
+        }
+
+        function closeTripSummaryManager() {
+            const modal = document.getElementById('trip-summary-manager-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function renderTripSummaryManager() {
+            const container = document.getElementById('trip-manager-components-container');
+            if (!container) return;
+
+            const originTitle = document.getElementById('origin-display-title')?.textContent || 'Mirpur, Dhaka';
+            const destTitle = document.getElementById('destination-display-title')?.textContent || "Cox's Bazar, Chattogram";
+            const cleanOrigin = originTitle.split(',')[0].trim();
+            const cleanDest = destTitle.split(',')[0].trim();
+            const travelers = getTravelerCount() || 4;
+            const nights = calculateNights() || 3;
+
+            const rEl = document.getElementById('mgr-modal-route');
+            if (rEl) rEl.textContent = `${cleanOrigin} ➔ ${cleanDest}`;
+
+            const mEl = document.getElementById('mgr-modal-meta');
+            if (mEl) mEl.textContent = `${travelers} Travelers • ${nights} Nights`;
+
+            const cats = [
+                { id: 'transit', label: 'Transport', icon: 'directions_bus', color: '#0284c7' },
+                { id: 'accommodation', label: 'Accommodation', icon: 'hotel', color: '#8b5cf6' },
+                { id: 'dining', label: 'Food & Dining', icon: 'restaurant', color: '#ea580c' },
+                { id: 'recreation', label: 'Activities', icon: 'surfing', color: '#06b6d4' },
+                { id: 'addons', label: 'Guides & Addons', icon: 'extension', color: '#10b981' }
+            ];
+
+            let total = 0;
+            container.innerHTML = cats.map(c => {
+                const sel = mockupSelections[c.id];
+                if (sel && sel.name) {
+                    let itemPrice = 0;
+                    let meta = '';
+                    if (c.id === 'transit') {
+                        const base = sel.price || 0;
+                        if (sel.unit === 'person') {
+                            const count = (sel.selectedSeats && sel.selectedSeats.length > 0) ? sel.selectedSeats.length : travelers;
+                            itemPrice = base * count * (currentTripType === 'one_way' ? 1 : 2);
+                            meta = `${(sel.selectedSeats && sel.selectedSeats.length > 0) ? 'Seats: ' + sel.selectedSeats.join(', ') : count + ' Seats'}${sel.selectedTimeSlot ? ' • ' + sel.selectedTimeSlot : ''}`;
+                        } else {
+                            itemPrice = base;
+                            meta = 'Private Vehicle';
+                        }
+                    } else if (c.id === 'accommodation') {
+                        const base = sel.price || 0;
+                        const capacity = (sel.selectedRoom && sel.selectedRoom.capacity) ? sel.selectedRoom.capacity : 2;
+                        const rooms = Math.ceil(travelers / capacity);
+                        itemPrice = base * nights * rooms;
+                        meta = `${sel.selectedRoom ? sel.selectedRoom.name : 'Standard'} • ${nights} Nights (${rooms} Rooms)`;
+                    } else if (c.id === 'dining') {
+                        itemPrice = (sel.price || 0) * travelers * nights;
+                        meta = `${sel.selectedMenu ? sel.selectedMenu.packageName : 'Meal Plan'} • ${travelers} Travelers`;
+                    } else if (c.id === 'recreation') {
+                        itemPrice = (sel.price || 0) * travelers;
+                        meta = `${sel.selectedTimeSlot ? sel.selectedTimeSlot + ' • ' : ''}${travelers} Travelers`;
+                    } else if (c.id === 'addons') {
+                        itemPrice = sel.price || 0;
+                        meta = 'Package Inclusion';
+                    }
+                    total += itemPrice;
+
+                    return `
+                        <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 8px; background: #eff6ff; color: ${c.color}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="material-icons">${c.icon}</i>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.72rem; font-weight: 800; color: ${c.color}; text-transform: uppercase;">${c.label}</div>
+                                    <div style="font-size: 0.9rem; font-weight: 800; color: #0f172a;">${sel.name}</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">${meta}</div>
+                                </div>
+                            </div>
+                            <div style="text-align: right; flex-shrink: 0;">
+                                <div style="font-size: 1rem; font-weight: 900; color: #0f172a; margin-bottom: 4px;">৳ ${itemPrice.toLocaleString()}</div>
+                                <div style="display: flex; gap: 6px;">
+                                    <button type="button" class="btn-summary-comp edit" onclick="closeTripSummaryManager(); openSummaryItemEditor('${c.id}');">
+                                        <i class="material-icons" style="font-size: 13px;">edit</i> Replace
+                                    </button>
+                                    <button type="button" class="btn-summary-comp remove" onclick="removeSummaryComponent('${c.id}');">
+                                        <i class="material-icons" style="font-size: 13px;">delete_outline</i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div style="background: #f8fafc; border: 1.5px dashed #cbd5e1; border-radius: 10px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 8px; background: #f1f5f9; color: #94a3b8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="material-icons">${c.icon}</i>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.72rem; font-weight: 800; color: #94a3b8; text-transform: uppercase;">${c.label}</div>
+                                    <div style="font-size: 0.85rem; font-weight: 700; color: #64748b; font-style: italic;">No component selected</div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-summary-comp add" onclick="closeTripSummaryManager(); openCategoryTab('${c.id}');">
+                                <i class="material-icons" style="font-size: 13px;">add</i> Select ${c.label}
+                            </button>
+                        </div>
+                    `;
+                }
+            }).join('');
+
+            const totEl = document.getElementById('mgr-modal-total');
+            if (totEl) totEl.textContent = `৳ ${total.toLocaleString()}`;
+        }
+
+        function clearAllTripComponents() {
+            if (!confirm('Are you sure you want to remove all selected components from this trip?')) return;
+            for (const k in mockupSelections) {
+                mockupSelections[k] = null;
+            }
+            for (const s in currentTour) {
+                currentTour[s] = null;
+            }
+            renderAllCategoryServices();
+            recalculateTotals();
+            updateSidebarSummary();
+            renderTripSummaryManager();
         }
 
         function triggerNativeDatePicker(inputId) {
@@ -11948,16 +12486,7 @@
         }
 
         function promptBudgetEdit() {
-            const current = document.getElementById('target-budget-input')?.value || '100000';
-            const userVal = prompt('Enter your Target Budget in BDT:', current);
-            if (userVal !== null && !isNaN(parseInt(userVal))) {
-                const num = parseInt(userVal);
-                document.getElementById('target-budget-input').value = num;
-                document.getElementById('target-budget-display').textContent = `৳ ${num.toLocaleString()}`;
-                if (typeof onBudgetInputChanged === 'function') {
-                    onBudgetInputChanged(num);
-                }
-            }
+            toggleBudgetPopover();
         }
 
         function handleLiveServiceSearch(query) {
@@ -12137,6 +12666,16 @@
             const rowId = row.id ? row.id.split('-').pop() : 1;
 
             openMobileServiceSheet(catId, subType, name, price, unit, img, '4.8 (120 reviews)', null, null, btn, rowId);
+        });
+
+        // Close popovers when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#field-travelers')) {
+                closeTravelerPopover();
+            }
+            if (!e.target.closest('#field-budget')) {
+                closeBudgetPopover();
+            }
         });
 
     </script>
