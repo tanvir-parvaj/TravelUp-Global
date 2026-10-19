@@ -1184,34 +1184,6 @@
                 </div>
             </div>
 
-            <!-- PCB Subheader & Controls -->
-            <div class="pcb-top-content">
-                <div class="all-actions">
-                    <button type="button" class="action-btn" onclick="openShareModal()">
-                        <i class="material-icons">share</i>
-                        <span>Split-Bill Link (Scenario 12)</span>
-                    </button>
-                    <button type="button" class="action-btn btn-quote" onclick="openQuoteModal()">
-                        <i class="material-icons">receipt_long</i>
-                        <span>B2B Quotation (Scenario 11)</span>
-                    </button>
-                    <button type="button" class="action-btn" onclick="handlePrintItinerary()">
-                        <i class="material-icons">print</i>
-                        <span>Print Route Slip</span>
-                    </button>
-                </div>
-                <div class="checkbox-group">
-                    <label class="custom-check">
-                        <input type="checkbox" id="skip-transport-check" onchange="toggleSkipTransport()">
-                        <span>Self-Drive / Own Vehicle (Scenario 4)</span>
-                    </label>
-                    <label class="custom-check">
-                        <input type="checkbox" id="hide-unconfigured" onchange="toggleHideUnconfigured()">
-                        <span>Hide Unselected</span>
-                    </label>
-                </div>
-            </div>
-
             <!-- Component Slots: Multimodal Transit & Cargo -->
             <div class="pcb-content">
 
@@ -2996,22 +2968,25 @@
         }
 
         function toggleSkipTransport() {
+            const chk = document.getElementById('skip-transport-check');
+            if (!chk) return;
             if (!validateSearchFields(true)) {
-                document.getElementById('skip-transport-check').checked = false;
+                chk.checked = false;
                 return;
             }
-            const isSkip = document.getElementById('skip-transport-check').checked;
-            if (isSkip) {
+            if (chk.checked) {
                 alert('Scenario 4: Self-Drive / Own Vehicle mode activated.');
             }
         }
 
         function toggleHideUnconfigured() {
+            const chk = document.getElementById('hide-unconfigured');
+            if (!chk) return;
             if (!validateSearchFields(true)) {
-                document.getElementById('hide-unconfigured').checked = false;
+                chk.checked = false;
                 return;
             }
-            const isHide = document.getElementById('hide-unconfigured').checked;
+            const isHide = chk.checked;
             for (const key in currentTour) {
                 const slot = document.getElementById(`slot-${key}`);
                 if (slot) {
