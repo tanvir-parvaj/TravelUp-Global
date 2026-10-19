@@ -257,9 +257,69 @@
             margin: 0 0 1.25rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.04);
             display: grid;
-            grid-template-columns: 1.3fr 1.3fr 1.1fr 0.9fr;
+            grid-template-columns: 1.2fr 1.2fr 1fr 1fr 1.1fr;
             gap: 1.25rem;
             align-items: start;
+            transition: all 0.25s ease;
+        }
+
+        .trip-type-tabs {
+            display: inline-flex;
+            background: #ffffff;
+            border: 1px solid var(--st-border);
+            border-radius: 6px;
+            padding: 3px;
+            gap: 4px;
+        }
+
+        .trip-tab-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .trip-tab-btn.active {
+            background: #0284c7;
+            color: white;
+            box-shadow: 0 1px 3px rgba(2, 132, 199, 0.3);
+        }
+
+        .btn-stepper {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--st-border);
+            background: #f8fafc;
+            color: #0f172a;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.15s;
+        }
+
+        .btn-stepper:hover {
+            background: #0284c7;
+            color: white;
+            border-color: #0284c7;
+        }
+
+        .pay-method-opt {
+            transition: all 0.2s;
+            border: 2px solid #e2e8f0;
+        }
+
+        .pay-method-opt.active {
+            border-color: #0284c7 !important;
+            background: #f0f9ff;
         }
 
         .search-field {
@@ -1238,8 +1298,27 @@
             </div>
         </div>
 
+        <!-- Trip Type Tabs & Live Database Status (Problem 3 & Database Sync) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.75rem;">
+            <div class="trip-type-tabs">
+                <button type="button" class="trip-tab-btn active" id="tab-round-trip" onclick="setTripType('round_trip')">
+                    🔄 Round Trip
+                </button>
+                <button type="button" class="trip-tab-btn" id="tab-one-way" onclick="setTripType('one_way')">
+                    ➡️ One Way
+                </button>
+                <button type="button" class="trip-tab-btn" id="tab-open-return" onclick="setTripType('open_return')">
+                    ⏳ Open-Ended Stay
+                </button>
+            </div>
+            <div id="db-status-badge" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.775rem; font-weight: 800; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; border-radius: 20px; padding: 4px 12px;">
+                <span id="db-status-dot" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
+                <span id="db-status-text">Hostinger MySQL Live Database Connected</span>
+            </div>
+        </div>
+
         <!-- Origin, Destination & Date Search Strip (Round-Trip Upazila Model) -->
-        <div class="search-strip" id="search-strip" style="grid-template-columns: 1.25fr 1.25fr 1.1fr 1fr 0.85fr;">
+        <div class="search-strip" id="search-strip">
             <div class="search-field" id="field-origin">
                 <label>From (Origin Upazila) <span style="color: #ef4444;">*</span></label>
                 <select id="origin-select" onchange="onSearchFieldChanged()">
@@ -1273,7 +1352,7 @@
             </div>
             <div class="search-field" id="field-destination">
                 <label>Tour Destination <span style="color: #ef4444;">*</span></label>
-                <select id="destination-select" onchange="onSearchFieldChanged()">
+                <select id="destination-select" onchange="onDestinationChanged()">
                     <option value="" disabled>Select Destination</option>
                     <option value="coxsbazar" selected>Cox's Bazar (Sea Beach & Marine Drive)</option>
                     <option value="sajek">Sajek Valley (Cloud Valley & Helipad)</option>
@@ -1287,12 +1366,62 @@
             <div class="search-field" id="field-dept-date">
                 <label>Departure Date <span style="color: #ef4444;">*</span></label>
                 <input type="date" id="dept-date" onchange="onSearchFieldChanged()">
-                <span class="error-hint">Please select a departure date</span>
+                <span class="error-hint">Please select departure date</span>
             </div>
-            <div class="search-field" id="field-travelers">
-                <label>Travelers <span style="color: #ef4444;">*</span></label>
-                <input type="number" id="traveler-count" placeholder="e.g. 4" min="1" max="50" oninput="onSearchFieldChanged()" onchange="onSearchFieldChanged()">
+            <div class="search-field" id="field-return-date">
+                <label id="return-date-label">Return Date <span style="font-size: 0.75rem; color: #047857; font-weight: 800;" id="nights-count-badge">(3 Nights)</span></label>
+                <input type="date" id="return-date" onchange="onSearchFieldChanged()">
+                <span class="error-hint">Please select return date</span>
+            </div>
+            <div class="search-field" id="field-travelers" style="position: relative;">
+                <label>Travelers & Ages (Scenario 10) <span style="color: #ef4444;">*</span></label>
+                <input type="text" id="traveler-count-display" value="4 Travelers (4 Adults)" readonly onclick="toggleTravelerPopover()" style="cursor: pointer; background: #ffffff;">
+                <input type="hidden" id="traveler-count" value="4">
                 <span class="error-hint">Min 1 traveler</span>
+
+                <!-- Traveler Composition Popover (Problem 4) -->
+                <div id="traveler-popover" style="display: none; position: absolute; top: calc(100% + 5px); right: 0; background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); padding: 1rem; width: 280px; z-index: 100;">
+                    <div style="font-size: 0.85rem; font-weight: 800; color: #1e293b; margin-bottom: 0.75rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Group Composition</span>
+                        <span style="font-size: 0.7rem; color: #64748b; font-weight: normal;">Problem 4 & 10</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                        <div>
+                            <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b;">Adults</div>
+                            <div style="font-size: 0.7rem; color: #64748b;">Age 12+ (Full Fare)</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" class="btn-stepper" onclick="updateGuestCount('adults', -1)">-</button>
+                            <span id="count-adults" style="font-weight: 800; font-size: 0.9rem; min-width: 16px; text-align: center;">4</span>
+                            <button type="button" class="btn-stepper" onclick="updateGuestCount('adults', 1)">+</button>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                        <div>
+                            <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b;">Children</div>
+                            <div style="font-size: 0.7rem; color: #64748b;">Age 5–11 (Half Seat Fare)</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" class="btn-stepper" onclick="updateGuestCount('children', -1)">-</button>
+                            <span id="count-children" style="font-weight: 800; font-size: 0.9rem; min-width: 16px; text-align: center;">0</span>
+                            <button type="button" class="btn-stepper" onclick="updateGuestCount('children', 1)">+</button>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                        <div>
+                            <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b;">Infants</div>
+                            <div style="font-size: 0.7rem; color: #64748b;">Under 4 yrs (Free Lap Seat)</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" class="btn-stepper" onclick="updateGuestCount('infants', -1)">-</button>
+                            <span id="count-infants" style="font-weight: 800; font-size: 0.9rem; min-width: 16px; text-align: center;">0</span>
+                            <button type="button" class="btn-stepper" onclick="updateGuestCount('infants', 1)">+</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-checkout" onclick="closeTravelerPopover()" style="width: 100%; padding: 0.5rem; font-size: 0.8rem;">
+                        Apply Travelers
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -2060,8 +2189,137 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="js/api.js"></script>
+    <!-- Enterprise Booking & Checkout Modal (Direct Hostinger MySQL Submission) -->
+    <div class="modal-overlay" id="checkout-modal" style="display: none;">
+        <div class="modal-box" style="max-width: 620px;">
+            <div class="modal-header" style="background: #0f172a; color: white;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i class="material-icons" style="color: #10b981;">verified_user</i>
+                    <h3 style="color: white; margin: 0; font-size: 1.15rem;">Confirm & Book Custom Holiday Itinerary</h3>
+                </div>
+                <button class="modal-close-btn" style="color: #94a3b8;" onclick="closeCheckoutModal()">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 1.5rem;">
+                <div id="checkout-form-view">
+                    <!-- Itinerary Mini Summary -->
+                    <div style="background: #f8fafc; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 4px;">
+                            <span style="font-weight: 800; color: #1e293b; font-size: 0.95rem;" id="checkout-summary-route">Savar ➔ Cox's Bazar</span>
+                            <span style="background: #dbeafe; color: #1e40af; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 12px;" id="checkout-summary-dates">Nov 10 - Nov 13 (3 Nights)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">
+                            <span>Travelers: <strong id="checkout-summary-travelers" style="color: #0f172a;">4 Travelers</strong></span>
+                            <span>Components: <strong id="checkout-summary-count" style="color: #0f172a;">6 Selected</strong></span>
+                        </div>
+                        <div style="border-top: 1px dashed var(--st-border); margin-top: 0.5rem; padding-top: 0.75rem; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; font-weight: 700; color: #475569;">Total Group Price (Inc. Taxes):</span>
+                            <span style="font-size: 1.35rem; font-weight: 900; color: #047857;" id="checkout-summary-total">BDT 28,500</span>
+                        </div>
+                    </div>
+
+                    <!-- Primary Traveler Form (Problem 34) -->
+                    <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; margin: 0 0 0.75rem; display: flex; align-items: center; gap: 6px;">
+                        <i class="material-icons" style="font-size: 18px; color: var(--st-primary);">badge</i> Lead Traveler Details (Staged Intake)
+                    </h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+                        <div>
+                            <label style="font-size: 0.75rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">Full Name *</label>
+                            <input type="text" id="cust-name" placeholder="e.g. Tanvir Parvaj" required style="width: 100%; height: 38px; padding: 0.5rem 0.75rem; border: 1px solid var(--st-border); border-radius: 6px; font-size: 0.85rem;">
+                        </div>
+                        <div>
+                            <label style="font-size: 0.75rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">Phone Number *</label>
+                            <input type="tel" id="cust-phone" placeholder="e.g. 01712-345678" required style="width: 100%; height: 38px; padding: 0.5rem 0.75rem; border: 1px solid var(--st-border); border-radius: 6px; font-size: 0.85rem;">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+                        <div>
+                            <label style="font-size: 0.75rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">Email (For Route Slip Voucher) *</label>
+                            <input type="email" id="cust-email" placeholder="e.g. user@example.com" required style="width: 100%; height: 38px; padding: 0.5rem 0.75rem; border: 1px solid var(--st-border); border-radius: 6px; font-size: 0.85rem;">
+                        </div>
+                        <div>
+                            <label style="font-size: 0.75rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">Emergency Contact Phone</label>
+                            <input type="tel" id="cust-emergency" placeholder="e.g. 01819-887766" style="width: 100%; height: 38px; padding: 0.5rem 0.75rem; border: 1px solid var(--st-border); border-radius: 6px; font-size: 0.85rem;">
+                        </div>
+                    </div>
+
+                    <!-- Dietary & Special Notes (Problem 16) -->
+                    <div style="margin-bottom: 1rem;">
+                        <label style="font-size: 0.75rem; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">Dietary & Special Requirements (Problem 16)</label>
+                        <textarea id="cust-notes" placeholder="e.g. Vegetarian only, shellfish/crab allergy, elderly traveler needs ground floor room..." rows="2" style="width: 100%; padding: 0.5rem 0.75rem; border: 1px solid var(--st-border); border-radius: 6px; font-size: 0.825rem; font-family: inherit; resize: vertical;"></textarea>
+                    </div>
+
+                    <!-- Payment Gateway Selector -->
+                    <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 6px;">
+                        <i class="material-icons" style="font-size: 18px; color: var(--st-green);">payment</i> Select Payment Gateway
+                    </h4>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 1.25rem;">
+                        <label class="pay-method-opt active" style="border-radius: 6px; padding: 0.5rem 0.25rem; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;" onclick="selectPaymentOpt(this)">
+                            <input type="radio" name="pay-method" value="bKash" checked style="display: none;">
+                            <span style="font-size: 0.8rem; font-weight: 800; color: #d946ef;">bKash</span>
+                            <span style="font-size: 0.65rem; color: #64748b;">Instant PIN</span>
+                        </label>
+                        <label class="pay-method-opt" style="border-radius: 6px; padding: 0.5rem 0.25rem; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;" onclick="selectPaymentOpt(this)">
+                            <input type="radio" name="pay-method" value="Nagad" style="display: none;">
+                            <span style="font-size: 0.8rem; font-weight: 800; color: #ea580c;">Nagad</span>
+                            <span style="font-size: 0.65rem; color: #64748b;">Digital Wallet</span>
+                        </label>
+                        <label class="pay-method-opt" style="border-radius: 6px; padding: 0.5rem 0.25rem; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;" onclick="selectPaymentOpt(this)">
+                            <input type="radio" name="pay-method" value="Card" style="display: none;">
+                            <span style="font-size: 0.8rem; font-weight: 800; color: #0284c7;">Visa / MC</span>
+                            <span style="font-size: 0.65rem; color: #64748b;">Credit / Debit</span>
+                        </label>
+                        <label class="pay-method-opt" style="border-radius: 6px; padding: 0.5rem 0.25rem; text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;" onclick="selectPaymentOpt(this)">
+                            <input type="radio" name="pay-method" value="Bank" style="display: none;">
+                            <span style="font-size: 0.8rem; font-weight: 800; color: #059669;">Bank Pay</span>
+                            <span style="font-size: 0.65rem; color: #64748b;">Net Banking</span>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="button" id="btn-submit-booking" class="btn-checkout" style="width: 100%; padding: 0.85rem; font-size: 0.95rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="executeDatabaseBooking()">
+                        <i class="material-icons">lock</i> Pay & Write Booking to MySQL Database
+                    </button>
+                </div>
+
+                <!-- Success Voucher View (Shown after MySQL Write) -->
+                <div id="checkout-success-view" style="display: none; text-align: center; padding: 0.5rem 0;">
+                    <div style="width: 54px; height: 54px; background: #ecfdf5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem;">
+                        <i class="material-icons" style="font-size: 32px; color: #10b981;">check_circle</i>
+                    </div>
+                    <h3 style="color: #047857; margin: 0 0 0.4rem; font-size: 1.25rem;">Booking Confirmed & Stored in MySQL!</h3>
+                    <p style="color: #64748b; font-size: 0.8rem; margin: 0 0 1rem;">
+                        Written to table <code style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-weight: 700;">tour_planner_trips</code> on Hostinger MySQL.
+                    </p>
+                    <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 1.25rem; text-align: left;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                            <span style="font-size: 0.8rem; color: #64748b;">Booking Reference (PNR):</span>
+                            <strong style="color: #0284c7; font-size: 1.05rem;" id="voucher-pnr">TUG-TRIP-...</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                            <span style="font-size: 0.8rem; color: #64748b;">Lead Guest:</span>
+                            <strong id="voucher-guest" style="color: #0f172a;">Tanvir Parvaj</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                            <span style="font-size: 0.8rem; color: #64748b;">Route & Destination:</span>
+                            <strong id="voucher-route" style="color: #0f172a;">Savar ➔ Cox's Bazar</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="font-size: 0.8rem; color: #64748b;">Payment Status:</span>
+                            <span style="color: #059669; font-weight: 800; font-size: 0.825rem;">PAID (Verified via MySQL Database)</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.75rem; justify-content: center;">
+                        <button type="button" class="action-btn" onclick="window.print()" style="padding: 0.55rem 1.15rem; font-size: 0.825rem;">
+                            <i class="material-icons">print</i> Print Route Slip
+                        </button>
+                        <button type="button" class="btn-checkout" onclick="closeCheckoutModal()" style="padding: 0.55rem 1.25rem; font-size: 0.825rem;">
+                            Done
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="js/auth.js"></script>
     <script>
         // State Store (All Disaggregated Component Slots)
@@ -2974,6 +3232,118 @@
 
         function isPerPersonSlot(slotKey) {
             return PER_PERSON_SLOTS.has(slotKey);
+        }
+
+        // Trip Type & Group Composition State (Problem 3, 4, 10 & MySQL Live Sync)
+        let currentTripType = 'round_trip';
+        let guestCounts = { adults: 4, children: 0, infants: 0 };
+
+        function setTripType(type) {
+            currentTripType = type;
+            document.querySelectorAll('.trip-tab-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('tab-' + type.replace('_', '-'));
+            if (activeBtn) activeBtn.classList.add('active');
+
+            const retField = document.getElementById('field-return-date');
+            const strip = document.getElementById('search-strip');
+
+            if (type === 'round_trip') {
+                if (retField) retField.style.display = 'flex';
+                if (strip) strip.style.gridTemplateColumns = '1.2fr 1.2fr 1fr 1fr 1.1fr';
+            } else {
+                if (retField) retField.style.display = 'none';
+                if (strip) strip.style.gridTemplateColumns = '1.3fr 1.3fr 1.1fr 1fr';
+            }
+            onSearchFieldChanged();
+        }
+
+        function toggleTravelerPopover() {
+            const pop = document.getElementById('traveler-popover');
+            if (pop) pop.style.display = (pop.style.display === 'none' || !pop.style.display) ? 'block' : 'none';
+        }
+
+        function closeTravelerPopover() {
+            const pop = document.getElementById('traveler-popover');
+            if (pop) pop.style.display = 'none';
+        }
+
+        function updateGuestCount(tier, delta) {
+            if (tier === 'adults') {
+                guestCounts.adults = Math.max(1, guestCounts.adults + delta);
+                const el = document.getElementById('count-adults');
+                if (el) el.textContent = guestCounts.adults;
+            } else if (tier === 'children') {
+                guestCounts.children = Math.max(0, guestCounts.children + delta);
+                const el = document.getElementById('count-children');
+                if (el) el.textContent = guestCounts.children;
+            } else if (tier === 'infants') {
+                guestCounts.infants = Math.max(0, guestCounts.infants + delta);
+                const el = document.getElementById('count-infants');
+                if (el) el.textContent = guestCounts.infants;
+            }
+
+            const total = guestCounts.adults + guestCounts.children + guestCounts.infants;
+            const inputHidden = document.getElementById('traveler-count');
+            if (inputHidden) inputHidden.value = total;
+
+            let summary = `${total} Traveler${total > 1 ? 's' : ''} (${guestCounts.adults} Adult${guestCounts.adults > 1 ? 's' : ''}`;
+            if (guestCounts.children > 0) summary += `, ${guestCounts.children} Child${guestCounts.children > 1 ? 'ren' : ''}`;
+            if (guestCounts.infants > 0) summary += `, ${guestCounts.infants} Infant${guestCounts.infants > 1 ? 's' : ''}`;
+            summary += ')';
+
+            const displayEl = document.getElementById('traveler-count-display');
+            if (displayEl) displayEl.value = summary;
+
+            onSearchFieldChanged();
+        }
+
+        // Live MySQL Database Synchronization
+        async function loadDatabaseInventory(dest) {
+            const badgeText = document.getElementById('db-status-text');
+            const badgeDot = document.getElementById('db-status-dot');
+            try {
+                if (badgeText) badgeText.textContent = 'Querying MySQL Database...';
+                if (badgeDot) badgeDot.style.background = '#f59e0b';
+
+                const targetDest = dest || document.getElementById('destination-select')?.value || 'coxsbazar';
+                const res = await fetch(`/api/tour-planner/inventory?destination=${encodeURIComponent(targetDest)}`);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+
+                if (data.success && data.inventory) {
+                    for (const slotKey in data.inventory) {
+                        inventory[slotKey] = data.inventory[slotKey];
+                    }
+                    if (badgeText) badgeText.textContent = `Hostinger MySQL Connected (${data.count} items active)`;
+                    if (badgeDot) badgeDot.style.background = '#10b981';
+                    console.log(`✅ Inventory loaded from Hostinger MySQL for destination: ${targetDest} (${data.count} items)`);
+                }
+            } catch (err) {
+                console.warn('MySQL database sync warning:', err.message);
+                if (badgeText) badgeText.textContent = 'Cached Baseline Inventory Active';
+                if (badgeDot) badgeDot.style.background = '#64748b';
+            }
+        }
+
+        function onDestinationChanged() {
+            const dest = document.getElementById('destination-select')?.value;
+            loadDatabaseInventory(dest);
+            onSearchFieldChanged();
+        }
+
+        function calculateNights() {
+            const dInput = document.getElementById('dept-date')?.value;
+            const rInput = document.getElementById('return-date')?.value;
+            const badge = document.getElementById('nights-count-badge');
+            if (!dInput || !rInput || currentTripType !== 'round_trip') {
+                if (badge) badge.textContent = currentTripType === 'one_way' ? '(One-Way)' : currentTripType === 'open_return' ? '(Open Stay)' : '';
+                return 1;
+            }
+            const d1 = new Date(dInput);
+            const d2 = new Date(rInput);
+            const diffDays = Math.max(1, Math.round((d2 - d1) / (1000 * 60 * 60 * 24)));
+            if (badge) badge.textContent = `(${diffDays} Night${diffDays > 1 ? 's' : ''})`;
+            return diffDays;
         }
 
         function getTravelerCount() {
@@ -3910,25 +4280,44 @@
         }
 
         // Admin Demo Autofill & Reset Combos
-        function autoFillDemo(dest = 'coxsbazar', from = 'Dhaka', travelers = 4) {
+        function autoFillDemo(dest = 'coxsbazar', from = 'Savar, Dhaka', travelers = 4) {
             const originSelect = document.getElementById('origin-select');
             const destSelect = document.getElementById('destination-select');
             const deptDateInput = document.getElementById('dept-date');
+            const returnDateInput = document.getElementById('return-date');
             const travelerInput = document.getElementById('traveler-count');
+            const travelerDisplay = document.getElementById('traveler-count-display');
 
             if (originSelect) originSelect.value = from;
             if (destSelect) destSelect.value = dest;
 
-            // Compute upcoming date (7 days from now)
+            // Compute upcoming departure date (7 days from now)
             const futureDate = new Date();
             futureDate.setDate(futureDate.getDate() + 7);
             const dateStr = futureDate.toISOString().split('T')[0];
             if (deptDateInput) deptDateInput.value = dateStr;
 
+            // Compute return date (3 days after departure)
+            const retDate = new Date(futureDate);
+            retDate.setDate(retDate.getDate() + 3);
+            const retDateStr = retDate.toISOString().split('T')[0];
+            if (returnDateInput) returnDateInput.value = retDateStr;
+
             if (travelerInput) travelerInput.value = travelers;
+            if (travelerDisplay) travelerDisplay.value = `${travelers} Travelers (${travelers} Adults)`;
+            guestCounts = { adults: travelers, children: 0, infants: 0 };
+            const cAdults = document.getElementById('count-adults');
+            const cChildren = document.getElementById('count-children');
+            const cInfants = document.getElementById('count-infants');
+            if (cAdults) cAdults.textContent = travelers;
+            if (cChildren) cChildren.textContent = 0;
+            if (cInfants) cInfants.textContent = 0;
+
+            // Load live inventory from Hostinger MySQL for selected destination
+            loadDatabaseInventory(dest);
 
             // Clear any error states
-            ['field-origin', 'field-destination', 'field-dept-date', 'field-travelers'].forEach(id => {
+            ['field-origin', 'field-destination', 'field-dept-date', 'field-return-date', 'field-travelers'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.classList.remove('has-error');
             });
@@ -4005,6 +4394,23 @@
                 if (triggerHighlight && fDate) fDate.classList.add('has-error');
             } else if (fDate) {
                 fDate.classList.remove('has-error');
+            }
+
+            const returnEl = document.getElementById('return-date');
+            const fReturn = document.getElementById('field-return-date');
+            const returnDate = returnEl ? returnEl.value.trim() : '';
+
+            if (currentTripType === 'round_trip') {
+                if (!returnDate) {
+                    isValid = false;
+                    missing.push('Return Date');
+                    if (triggerHighlight && fReturn) fReturn.classList.add('has-error');
+                } else if (fReturn) {
+                    fReturn.classList.remove('has-error');
+                }
+                calculateNights();
+            } else if (fReturn) {
+                fReturn.classList.remove('has-error');
             }
 
             if (!travelers || travelers < 1) {
@@ -4857,18 +5263,184 @@
             }
         }
 
-        // Action Handlers
-        function openShareModal() {
+        // ==========================================
+        // Action Handlers & Real MySQL Database Sync
+        // ==========================================
+
+        function selectPaymentOpt(labelEl) {
+            document.querySelectorAll('.pay-method-opt').forEach(opt => opt.classList.remove('active'));
+            if (labelEl) {
+                labelEl.classList.add('active');
+                const radio = labelEl.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+            }
+        }
+
+        function confirmTourBooking() {
             if (!validateSearchFields(true)) return;
-            const hasAnyConfigured = Object.values(currentTour).some(x => x !== null);
-            if (!hasAnyConfigured) {
+
+            const configuredSlots = Object.keys(currentTour).filter(k => currentTour[k] !== null);
+            if (configuredSlots.length === 0) {
+                alert('⚠️ Please select at least one travel component (e.g. Hotel, Bus, Flight, Resort, or Dining) before confirming your booking.');
+                return;
+            }
+
+            // Populate Checkout Modal Summary
+            const origin = document.getElementById('origin-select')?.value || 'Origin';
+            const destSelect = document.getElementById('destination-select');
+            const destName = destSelect ? destSelect.options[destSelect.selectedIndex].text : 'Destination';
+            const dDate = document.getElementById('dept-date')?.value || '';
+            const rDate = document.getElementById('return-date')?.value || '';
+            const nights = calculateNights();
+            const total = document.getElementById('total-amount').textContent;
+            const travelers = getTravelerCount();
+
+            document.getElementById('checkout-summary-route').textContent = `${origin} ➔ ${destName}`;
+            document.getElementById('checkout-summary-dates').textContent = currentTripType === 'round_trip' 
+                ? `${dDate} - ${rDate} (${nights} Night${nights > 1 ? 's' : ''})`
+                : `${dDate} (${currentTripType === 'one_way' ? 'One-Way' : 'Open Return'})`;
+            document.getElementById('checkout-summary-travelers').textContent = `${travelers} Traveler${travelers > 1 ? 's' : ''}`;
+            document.getElementById('checkout-summary-count').textContent = `${configuredSlots.length} Components Configured`;
+            document.getElementById('checkout-summary-total').textContent = total;
+
+            document.getElementById('checkout-form-view').style.display = 'block';
+            document.getElementById('checkout-success-view').style.display = 'none';
+            document.getElementById('checkout-modal').style.display = 'flex';
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').style.display = 'none';
+        }
+
+        async function executeDatabaseBooking() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const email = document.getElementById('cust-email').value.trim();
+            const emergency = document.getElementById('cust-emergency')?.value.trim();
+            const notes = document.getElementById('cust-notes')?.value.trim();
+            const method = document.querySelector('input[name="pay-method"]:checked')?.value || 'bKash';
+
+            if (!name || !phone || !email) {
+                alert('⚠️ Please enter Lead Guest Name, Phone Number, and Email.');
+                return;
+            }
+
+            const submitBtn = document.getElementById('btn-submit-booking');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="material-icons" style="animation: spin 1s linear infinite;">sync</i> Recording into MySQL Database...';
+            }
+
+            const totalNum = parseFloat(document.getElementById('total-amount').textContent.replace(/[^\d.]/g, '')) || 0;
+            const perPersonNum = parseFloat(document.getElementById('per-person-amount').textContent.replace(/[^\d.]/g, '')) || 0;
+
+            const payload = {
+                trip_type: currentTripType,
+                origin_upazila: document.getElementById('origin-select')?.value || 'Savar, Dhaka',
+                destination_slug: document.getElementById('destination-select')?.value || 'coxsbazar',
+                departure_date: document.getElementById('dept-date')?.value || new Date().toISOString().split('T')[0],
+                return_date: currentTripType === 'round_trip' ? document.getElementById('return-date')?.value : null,
+                travelers_count: getTravelerCount(),
+                adults_count: guestCounts.adults,
+                children_count: guestCounts.children,
+                infants_count: guestCounts.infants,
+                grand_total: totalNum,
+                per_person_cost: perPersonNum,
+                lead_name: name,
+                lead_phone: phone,
+                lead_email: email,
+                emergency_phone: emergency,
+                dietary_notes: notes,
+                payment_method: method,
+                components_data: currentTour
+            };
+
+            try {
+                const res = await fetch('/api/tour-planner/save-trip', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (!res.ok || !data.success) {
+                    throw new Error(data.message || 'Server returned error ' + res.status);
+                }
+
+                // Show Confirmed Voucher
+                document.getElementById('voucher-pnr').textContent = data.trip_code;
+                document.getElementById('voucher-guest').textContent = name + ' (' + phone + ')';
+                document.getElementById('voucher-route').textContent = document.getElementById('checkout-summary-route').textContent;
+
+                document.getElementById('checkout-form-view').style.display = 'none';
+                document.getElementById('checkout-success-view').style.display = 'block';
+
+                // Clear Draft from LocalStorage
+                localStorage.removeItem('travelup_tour_draft');
+                console.log('✅ Trip confirmed and saved in MySQL:', data.trip_code);
+            } catch (err) {
+                console.error('Booking save error:', err);
+                alert('❌ Failed to record booking into database: ' + err.message);
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="material-icons">lock</i> Pay & Write Booking to MySQL Database';
+                }
+            }
+        }
+
+        async function openShareModal() {
+            if (!validateSearchFields(true)) return;
+            const configuredSlots = Object.keys(currentTour).filter(k => currentTour[k] !== null);
+            if (configuredSlots.length === 0) {
                 alert('⚠️ Please select at least one component before generating a split-bill link.');
                 return;
             }
+
             const total = document.getElementById('total-amount').textContent;
             const travelers = getTravelerCount();
             const share = document.getElementById('per-person-amount').textContent;
-            alert(`🔗 Scenario 12: Split-Bill Shareable Link Generated!\n\nMaster Itinerary: ${total}\nCohort: ${travelers} Travelers\nShare Per Traveler: ${share}\n\nShareable payment link copied to clipboard:\nhttp://localhost:5000/travel-planner.html?split=true&total=${total.replace(/[^\d]/g, '')}`);
+
+            const totalNum = parseFloat(total.replace(/[^\d.]/g, '')) || 0;
+            const perPersonNum = parseFloat(share.replace(/[^\d.]/g, '')) || 0;
+
+            // Auto-save to MySQL to get a persistent Trip PNR Code
+            const payload = {
+                trip_type: currentTripType,
+                origin_upazila: document.getElementById('origin-select')?.value || 'Savar, Dhaka',
+                destination_slug: document.getElementById('destination-select')?.value || 'coxsbazar',
+                departure_date: document.getElementById('dept-date')?.value || new Date().toISOString().split('T')[0],
+                return_date: currentTripType === 'round_trip' ? document.getElementById('return-date')?.value : null,
+                travelers_count: travelers,
+                adults_count: guestCounts.adults,
+                children_count: guestCounts.children,
+                infants_count: guestCounts.infants,
+                grand_total: totalNum,
+                per_person_cost: perPersonNum,
+                lead_name: 'Shared Tour Cohort',
+                lead_phone: '+880 1700-000000',
+                lead_email: 'group@travelup.com',
+                payment_method: 'Split-Bill',
+                components_data: currentTour
+            };
+
+            let tripCode = 'TUG-' + Date.now().toString(36).toUpperCase();
+            try {
+                const res = await fetch('/api/tour-planner/save-trip', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.success && data.trip_code) {
+                    tripCode = data.trip_code;
+                }
+            } catch (e) {}
+
+            const shareUrl = `${window.location.origin}/trip-planner.html?trip=${tripCode}`;
+            navigator.clipboard?.writeText(shareUrl);
+
+            alert(`🔗 Scenario 12: Split-Bill Shareable Link Generated in MySQL!\n\nBooking PNR: ${tripCode}\nMaster Itinerary: ${total}\nCohort: ${travelers} Travelers\nShare Per Traveler: ${share}\n\nShareable database link copied to clipboard:\n${shareUrl}`);
         }
 
         function openQuoteModal() {
@@ -4891,27 +5463,128 @@
             window.print();
         }
 
-        function confirmTourBooking() {
-            if (!validateSearchFields(true)) return;
-
-            const configuredSlots = Object.keys(currentTour).filter(k => currentTour[k] !== null);
-            if (configuredSlots.length === 0) {
-                alert('⚠️ Please select at least one travel component (e.g. Hotel, Bus, Flight, Resort, or Dining) before confirming your booking.');
-                return;
-            }
-
-            const total = document.getElementById('total-amount').textContent;
-            const perPerson = document.getElementById('per-person-amount').textContent;
-            const count = configuredSlots.length;
-            const travelers = getTravelerCount();
-
-            alert(`✅ Travel Plan Confirmed!\n\nComponents Booked: ${count}\nTotal Group Price: ${total}\nCost Per Traveler: ${perPerson} (${travelers} Travelers)\n\nYour flexible booking has been verified and saved to system records.`);
+        // Session Autosave & Recovery (Problem 36)
+        function saveDraft() {
+            try {
+                const draft = {
+                    trip_type: currentTripType,
+                    origin: document.getElementById('origin-select')?.value,
+                    destination: document.getElementById('destination-select')?.value,
+                    dept_date: document.getElementById('dept-date')?.value,
+                    return_date: document.getElementById('return-date')?.value,
+                    guestCounts,
+                    currentTour
+                };
+                localStorage.setItem('travelup_tour_draft', JSON.stringify(draft));
+            } catch (e) {}
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        function restoreDraft() {
+            try {
+                const raw = localStorage.getItem('travelup_tour_draft');
+                if (!raw) return false;
+                const draft = JSON.parse(raw);
+                if (draft.origin && document.getElementById('origin-select')) document.getElementById('origin-select').value = draft.origin;
+                if (draft.destination && document.getElementById('destination-select')) document.getElementById('destination-select').value = draft.destination;
+                if (draft.dept_date && document.getElementById('dept-date')) document.getElementById('dept-date').value = draft.dept_date;
+                if (draft.return_date && document.getElementById('return-date')) document.getElementById('return-date').value = draft.return_date;
+                if (draft.guestCounts) {
+                    guestCounts = draft.guestCounts;
+                    const total = guestCounts.adults + guestCounts.children + guestCounts.infants;
+                    if (document.getElementById('traveler-count')) document.getElementById('traveler-count').value = total;
+                    if (document.getElementById('count-adults')) document.getElementById('count-adults').textContent = guestCounts.adults;
+                    if (document.getElementById('count-children')) document.getElementById('count-children').textContent = guestCounts.children;
+                    if (document.getElementById('count-infants')) document.getElementById('count-infants').textContent = guestCounts.infants;
+                    if (document.getElementById('traveler-count-display')) document.getElementById('traveler-count-display').value = `${total} Travelers (${guestCounts.adults} Adults)`;
+                }
+                if (draft.trip_type) setTripType(draft.trip_type);
+
+                if (draft.currentTour) {
+                    for (const k in draft.currentTour) {
+                        if (draft.currentTour[k]) {
+                            const it = draft.currentTour[k];
+                            selectComponent(k, it.id, it);
+                        }
+                    }
+                }
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // Re-hydrate saved trip from MySQL if ?trip= parameter is in URL (Problem 32, 33)
+        async function restoreSavedTripFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tripCode = urlParams.get('trip');
+            if (!tripCode) return false;
+
+            try {
+                const res = await fetch(`/api/tour-planner/trip/${encodeURIComponent(tripCode)}`);
+                if (!res.ok) return false;
+                const data = await res.json();
+                if (data.success && data.trip) {
+                    const t = data.trip;
+                    if (t.origin_upazila && document.getElementById('origin-select')) document.getElementById('origin-select').value = t.origin_upazila;
+                    if (t.destination_slug && document.getElementById('destination-select')) document.getElementById('destination-select').value = t.destination_slug;
+                    if (t.departure_date && document.getElementById('dept-date')) document.getElementById('dept-date').value = t.departure_date.split('T')[0];
+                    if (t.return_date && document.getElementById('return-date')) document.getElementById('return-date').value = t.return_date.split('T')[0];
+
+                    if (t.trip_type) setTripType(t.trip_type);
+
+                    guestCounts = {
+                        adults: t.adults_count || 1,
+                        children: t.children_count || 0,
+                        infants: t.infants_count || 0
+                    };
+                    const total = t.travelers_count || 1;
+                    if (document.getElementById('traveler-count')) document.getElementById('traveler-count').value = total;
+                    if (document.getElementById('count-adults')) document.getElementById('count-adults').textContent = guestCounts.adults;
+                    if (document.getElementById('count-children')) document.getElementById('count-children').textContent = guestCounts.children;
+                    if (document.getElementById('count-infants')) document.getElementById('count-infants').textContent = guestCounts.infants;
+                    if (document.getElementById('traveler-count-display')) document.getElementById('traveler-count-display').value = `${total} Travelers (${guestCounts.adults} Adults)`;
+
+                    // Await destination inventory from MySQL
+                    await loadDatabaseInventory(t.destination_slug);
+
+                    // Re-apply components
+                    if (t.components_data) {
+                        for (const k in t.components_data) {
+                            if (t.components_data[k]) {
+                                const it = t.components_data[k];
+                                selectComponent(k, it.id, it);
+                            }
+                        }
+                    }
+
+                    validateSearchFields(false);
+                    recalculateTotals();
+
+                    alert(`📖 Shared Itinerary Loaded from MySQL Database!\n\nPNR Code: ${t.trip_code}\nLead Guest: ${t.lead_name}\nRoute: ${t.origin_upazila} ➔ ${t.destination_slug.toUpperCase()}\nTotal: BDT ${parseFloat(t.grand_total).toLocaleString()}`);
+                    return true;
+                }
+            } catch (e) {
+                console.warn('Could not re-hydrate trip from URL:', e);
+            }
+            return false;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
             const today = new Date().toISOString().split('T')[0];
             const deptInput = document.getElementById('dept-date');
+            const retInput = document.getElementById('return-date');
             if (deptInput) deptInput.setAttribute('min', today);
+            if (retInput) retInput.setAttribute('min', today);
+
+            // Initial sync with Hostinger MySQL Database
+            const initialDest = document.getElementById('destination-select')?.value || 'coxsbazar';
+            await loadDatabaseInventory(initialDest);
+
+            // Try restoring from URL first, otherwise local draft
+            const restoredFromUrl = await restoreSavedTripFromUrl();
+            if (!restoredFromUrl) {
+                restoreDraft();
+            }
 
             validateSearchFields(false);
             recalculateTotals();

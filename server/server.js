@@ -13,6 +13,7 @@ const tripBuilderRoutes = require('./routes/tripBuilderRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const quotationRoutes = require('./routes/quotationRoutes');
 const alertRoutes = require('./routes/alertRoutes');
+const tourPlannerRoutes = require('./routes/tourPlannerRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -34,6 +35,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/destinations', destinationRoutes);
 app.use('/api/packages', packageRoutes);
 app.use('/api/trip-builder', tripBuilderRoutes);
+app.use('/api/tour-planner', tourPlannerRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/quotations', quotationRoutes);
 app.use('/api/alerts', alertRoutes);
