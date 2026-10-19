@@ -232,3 +232,90 @@ exports.holdSeat = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Failed to lock seat', error: error.message });
     }
 };
+
+/**
+ * 5. Get Bangladesh Divisions from MySQL
+ */
+exports.getDivisions = async (req, res) => {
+    try {
+        const [rows] = await pool.query('SELECT * FROM bd_divisions WHERE is_active = 1 ORDER BY name_en ASC');
+        return res.json({ success: true, count: rows.length, divisions: rows });
+    } catch (error) {
+        console.error('Get divisions error:', error);
+        return res.status(500).json({ success: false, message: 'Failed to load divisions', error: error.message });
+    }
+};
+
+/**
+ * 6. Get Bangladesh Districts by Division ID from MySQL
+ */
+exports.getDistricts = async (req, res) => {
+    try {
+        const { division_id } = req.query;
+        let query = 'SELECT * FROM bd_districts WHERE is_active = 1';
+        const params = [];
+        if (division_id) {
+            query += ' AND division_id = ?';
+            params.push(division_id);
+        }
+        query += ' ORDER BY name_en ASC';
+        const [rows] = await pool.query(query, params);
+        return res.json({ success: true, count: rows.length, districts: rows });
+    } catch (error) {
+        console.error('Get districts error:', error);
+        return res.status(500).json({ success: false, message: 'Failed to load districts', error: error.message });
+    }
+};
+
+/**
+ * 7. Get Bangladesh Upazilas by District ID / Division ID from MySQL
+ */
+exports.getUpazilas = async (req, res) => {
+    try {
+        const { district_id, division_id } = req.query;
+        let query = 'SELECT * FROM bd_upazilas WHERE is_active = 1';
+        const params = [];
+        if (district_id) {
+            query += ' AND district_id = ?';
+            params.push(district_id);
+        } else if (division_id) {
+            query += ' AND division_id = ?';
+            params.push(division_id);
+        }
+        query += ' ORDER BY name_en ASC';
+        const [rows] = await pool.query(query, params);
+        return res.json({ success: true, count: rows.length, upazilas: rows });
+    } catch (error) {
+        console.error('Get upazilas error:', error);
+        return res.status(500).json({ success: false, message: 'Failed to load upazilas', error: error.message });
+    }
+};
+
+/**
+ * 8. Search Upazilas, Districts, and Divisions by Keyword from MySQL
+ */
+exports.searchLocations = async (req, res) => {
+    try {
+        const q = (req.query.q || '').trim();
+        if (!q) {
+            return res.json({ success: true, count: 0, results: [] });
+        }
+        const pattern = `%${q}%`;
+        const [rows] = await pool.query(`
+            SELECT upazila_id, name_en, name_bn, district_id, district_name_en, district_name_bn, division_id, division_name_en, division_name_bn
+            FROM bd_upazilas
+            WHERE is_active = 1 
+              AND (name_en LIKE ? OR name_bn LIKE ? OR district_name_en LIKE ? OR district_name_bn LIKE ? OR division_name_en LIKE ? OR division_name_bn LIKE ?)
+            ORDER BY 
+              CASE WHEN name_en LIKE ? THEN 1 WHEN district_name_en LIKE ? THEN 2 ELSE 3 END,
+              name_en ASC
+            LIMIT 40
+        `, [pattern, pattern, pattern, pattern, pattern, pattern, `${q}%`, `${q}%`]);
+
+        return res.json({ success: true, count: rows.length, results: rows });
+    } catch (error) {
+        console.error('Search locations error:', error);
+        return res.status(500).json({ success: false, message: 'Failed to search locations', error: error.message });
+    }
+};
+

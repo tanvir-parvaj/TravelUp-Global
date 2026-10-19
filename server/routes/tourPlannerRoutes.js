@@ -14,4 +14,10 @@ router.get('/trip/:tripCode', tourPlannerController.getTripByCode);
 // 4. Temporary 10-Minute Seat Hold (Scenario 6 Concurrency)
 router.post('/hold-seat', tourPlannerController.holdSeat);
 
+// 5. Bangladesh Cascading Location Hierarchy (Country -> Division -> District -> Upazila)
+router.get('/locations/divisions', tourPlannerController.getDivisions);
+router.get('/locations/districts', tourPlannerController.getDistricts);
+router.get('/locations/upazilas', tourPlannerController.getUpazilas);
+router.get('/locations/search', tourPlannerController.searchLocations);
+
 module.exports = router;

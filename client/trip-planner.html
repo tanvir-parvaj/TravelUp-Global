@@ -1568,6 +1568,220 @@
                 width: 100%;
             }
         }
+
+        /* ==========================================
+           Cascading Location Picker & Trigger Styles
+           ========================================== */
+        .loc-trigger-card {
+            background: #ffffff;
+            border: 1px solid var(--st-border);
+            border-radius: 6px;
+            padding: 0.35rem 0.65rem;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .loc-trigger-card:hover {
+            border-color: #0284c7;
+            background: #f8fafc;
+            box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.1);
+        }
+        .loc-trigger-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            overflow: hidden;
+            text-align: left;
+        }
+        .loc-trigger-title {
+            font-size: 0.825rem;
+            font-weight: 800;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.2;
+        }
+        .loc-trigger-sub {
+            font-size: 0.685rem;
+            color: #64748b;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+        }
+        .loc-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .loc-modal-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 1080px;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: modalFadeIn 0.2s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .loc-cascade-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.05fr 1.15fr 1.25fr;
+            gap: 1px;
+            background: #e2e8f0;
+            height: 390px;
+            overflow: hidden;
+        }
+        .loc-col {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .loc-col-head {
+            background: #f8fafc;
+            padding: 0.55rem 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #334155;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .loc-col-search {
+            padding: 0.4rem 0.6rem;
+            border-bottom: 1px solid #f1f5f9;
+            background: #ffffff;
+        }
+        .loc-col-search input {
+            width: 100%;
+            height: 32px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.785rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            outline: none;
+        }
+        .loc-col-search input:focus {
+            border-color: #0284c7;
+        }
+        .loc-col-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.35rem 0;
+        }
+        .loc-item-btn {
+            width: 100%;
+            padding: 0.55rem 0.75rem;
+            border: none;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #1e293b;
+            transition: all 0.15s ease;
+            gap: 0.5rem;
+            border-bottom: 1px solid #f8fafc;
+        }
+        .loc-item-btn:hover {
+            background: #f1f5f9;
+            color: #0284c7;
+        }
+        .loc-item-btn.active {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-weight: 800;
+            border-left: 3px solid #0284c7;
+        }
+        .loc-item-btn.selected {
+            background: #ecfdf5;
+            color: #047857;
+            font-weight: 800;
+            border-left: 3px solid #10b981;
+        }
+        .loc-global-search-wrap {
+            position: relative;
+            padding: 0.85rem 1.25rem;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .loc-global-search-input {
+            width: 100%;
+            height: 44px;
+            padding: 0.5rem 1rem 0.5rem 2.85rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .loc-global-search-input:focus {
+            border-color: #0284c7;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+        .loc-search-dropdown {
+            position: absolute;
+            top: calc(100% - 6px);
+            left: 1.25rem;
+            right: 1.25rem;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+            max-height: 290px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        .loc-search-row {
+            padding: 0.65rem 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.15s;
+        }
+        .loc-search-row:hover {
+            background: #f0f9ff;
+        }
+        @media (max-width: 900px) {
+            .loc-cascade-grid {
+                grid-template-columns: 1fr 1fr;
+                height: 480px;
+            }
+        }
+        @media (max-width: 550px) {
+            .loc-cascade-grid {
+                grid-template-columns: 1fr;
+                height: 440px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1640,39 +1854,34 @@
         <div class="search-strip" id="search-strip">
             <div class="search-field" id="field-origin">
                 <label>From (Origin Upazila) <span style="color: #ef4444;">*</span></label>
-                <select id="origin-select" onchange="onSearchFieldChanged()">
-                    <option value="" disabled>Select Origin Upazila</option>
-                    <optgroup label="Dhaka Division">
-                        <option value="Savar, Dhaka" selected>Savar, Dhaka</option>
-                        <option value="Mirpur, Dhaka">Mirpur, Dhaka</option>
-                        <option value="Dhanmondi, Dhaka">Dhanmondi, Dhaka</option>
-                        <option value="Uttara, Dhaka">Uttara, Dhaka</option>
-                        <option value="Gazipur Sadar">Gazipur Sadar</option>
-                        <option value="Narayanganj Sadar">Narayanganj Sadar</option>
-                    </optgroup>
-                    <optgroup label="Chittagong Division">
-                        <option value="Chittagong Sadar">Chittagong Sadar</option>
-                        <option value="Hathazari, Chittagong">Hathazari, Chittagong</option>
-                        <option value="Cumilla Adarsha Sadar">Cumilla Adarsha Sadar</option>
-                    </optgroup>
-                    <optgroup label="Sylhet Division">
-                        <option value="Sylhet Sadar">Sylhet Sadar</option>
-                        <option value="Sreemangal, Moulvibazar">Sreemangal, Moulvibazar</option>
-                    </optgroup>
-                    <optgroup label="Rajshahi & Rangpur Division">
-                        <option value="Bogura Sadar">Bogura Sadar</option>
-                        <option value="Rajshahi Sadar">Rajshahi Sadar</option>
-                        <option value="Rangpur Sadar">Rangpur Sadar</option>
-                        <option value="Pirganj, Rangpur">Pirganj, Rangpur</option>
-                        <option value="Panchagarh Sadar">Panchagarh Sadar</option>
-                    </optgroup>
-                </select>
+                <div class="loc-trigger-card" onclick="openLocationPicker('origin')" title="Click to browse or search across all 495 Upazilas">
+                    <div class="loc-trigger-info">
+                        <i class="material-icons" style="font-size: 20px; color: #0284c7;">place</i>
+                        <div style="min-width: 0;">
+                            <div class="loc-trigger-title" id="origin-display-title">Savar, Dhaka</div>
+                            <div class="loc-trigger-sub" id="origin-display-sub">Dhaka Division • Bangladesh</div>
+                        </div>
+                    </div>
+                    <i class="material-icons" style="font-size: 16px; color: #94a3b8;">unfold_more</i>
+                </div>
+                <input type="hidden" id="origin-select" value="Savar, Dhaka">
+                <input type="hidden" id="origin-upazila-id" value="BD-DIV-06-DIST-08-UPZ-001">
                 <span class="error-hint">Please select origin upazila</span>
             </div>
             <div class="search-field" id="field-destination">
-                <label>Tour Destination <span style="color: #ef4444;">*</span></label>
-                <select id="destination-select" onchange="onDestinationChanged()">
-                    <option value="" disabled>Select Destination</option>
+                <label>Tour Destination (To) <span style="color: #ef4444;">*</span></label>
+                <div class="loc-trigger-card" onclick="openLocationPicker('destination')" title="Click to browse or search across all 495 Upazilas">
+                    <div class="loc-trigger-info">
+                        <i class="material-icons" style="font-size: 20px; color: #ef4444;">tour</i>
+                        <div style="min-width: 0;">
+                            <div class="loc-trigger-title" id="destination-display-title">Coxsbazar Sadar, Coxsbazar</div>
+                            <div class="loc-trigger-sub" id="destination-display-sub">Chattagram Division • Bangladesh</div>
+                        </div>
+                    </div>
+                    <i class="material-icons" style="font-size: 16px; color: #94a3b8;">unfold_more</i>
+                </div>
+                <!-- Preserved for backward compatibility and inventory mapping -->
+                <select id="destination-select" style="display: none;" onchange="onDestinationChanged()">
                     <option value="coxsbazar" selected>Cox's Bazar (Sea Beach & Marine Drive)</option>
                     <option value="sajek">Sajek Valley (Cloud Valley & Helipad)</option>
                     <option value="sreemangal">Sreemangal (Tea Gardens & Eco Trails)</option>
@@ -1680,6 +1889,8 @@
                     <option value="jaflong">Sylhet, Jaflong & Ratargul</option>
                     <option value="saintmartin">Saint Martin's Coral Island</option>
                 </select>
+                <input type="hidden" id="destination-upazila-id" value="BD-DIV-01-DIST-09-UPZ-001">
+                <input type="hidden" id="destination-upazila-name" value="Coxsbazar Sadar, Coxsbazar">
                 <span class="error-hint">Please select tour destination</span>
             </div>
             <div class="search-field" id="field-dept-date">
@@ -3029,7 +3240,126 @@
             </div>
         </div>
     </div>
+
+    <!-- Searchable Cascading Location Picker Modal (Country -> Division -> District -> Upazila) -->
+    <div class="loc-modal-overlay" id="location-picker-modal" style="display: none;">
+        <div class="loc-modal-box">
+            <!-- Modal Header -->
+            <div style="background: #0f172a; color: white; padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="material-icons" style="color: #38bdf8; font-size: 24px;">public</i>
+                    <div>
+                        <div style="font-size: 1.05rem; font-weight: 800; color: #ffffff;" id="loc-modal-title">Select Location</div>
+                        <div style="font-size: 0.725rem; color: #94a3b8;">Cascading: Country ➔ Division ➔ District ➔ Upazila (All 495 Upazilas & 64 Districts)</div>
+                    </div>
+                </div>
+                <!-- Mode Switcher & Close -->
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div style="display: flex; background: #1e293b; padding: 3px; border-radius: 6px; border: 1px solid #334155;">
+                        <button type="button" id="loc-mode-btn-origin" onclick="switchLocationPickerMode('origin')" style="background: #0284c7; color: white; border: none; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; cursor: pointer;">
+                            From (Origin)
+                        </button>
+                        <button type="button" id="loc-mode-btn-destination" onclick="switchLocationPickerMode('destination')" style="background: transparent; color: #94a3b8; border: none; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; cursor: pointer;">
+                            To (Destination)
+                        </button>
+                    </div>
+                    <button type="button" class="modal-close-btn" style="color: #94a3b8; background: none; border: none; font-size: 24px; cursor: pointer;" onclick="closeLocationPicker()">&times;</button>
+                </div>
+            </div>
+
+            <!-- Global Instant Search Bar on Top -->
+            <div class="loc-global-search-wrap">
+                <i class="material-icons" style="position: absolute; left: 2.15rem; top: 1.6rem; font-size: 20px; color: #64748b;">search</i>
+                <input type="text" id="loc-global-search-input" class="loc-global-search-input" placeholder="Search any Upazila, District, or Division (e.g. Savar, Cox's Bazar, Tetulia, সীতাকুন্ড)..." oninput="onLocationGlobalSearch(this.value)">
+                <button type="button" id="loc-global-search-clear" onclick="clearLocationGlobalSearch()" style="display: none; position: absolute; right: 2rem; top: 1.55rem; background: none; border: none; cursor: pointer; color: #94a3b8;">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+                <!-- Live Search Results Dropdown -->
+                <div id="loc-global-search-results" class="loc-search-dropdown" style="display: none;"></div>
+            </div>
+
+            <!-- 4-Step Cascading Columns Grid (Country -> Division -> District -> Upazila) -->
+            <div class="loc-cascade-grid">
+                <!-- 1. Country Column -->
+                <div class="loc-col" id="col-country">
+                    <div class="loc-col-head">
+                        <span>1. Country</span>
+                        <span style="font-size: 0.65rem; background: #e2e8f0; padding: 1px 6px; border-radius: 10px; font-weight: 800;">1 Active</span>
+                    </div>
+                    <div class="loc-col-search">
+                        <input type="text" placeholder="Filter Country..." oninput="filterColumnList('country', this.value)">
+                    </div>
+                    <div class="loc-col-list" id="list-country">
+                        <button type="button" class="loc-item-btn active selected" onclick="selectLocationCountry('COUNTRY-BD')">
+                            <div>
+                                <strong style="display: block; font-size: 0.85rem;">🇧🇩 Bangladesh</strong>
+                                <span style="font-size: 0.685rem; color: #64748b;">Default • 8 Divisions</span>
+                            </div>
+                            <i class="material-icons" style="font-size: 18px; color: #0284c7;">check_circle</i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Division Column -->
+                <div class="loc-col" id="col-division">
+                    <div class="loc-col-head">
+                        <span>2. Division</span>
+                        <span id="badge-division-count" style="font-size: 0.65rem; background: #e2e8f0; padding: 1px 6px; border-radius: 10px; font-weight: 800;">8</span>
+                    </div>
+                    <div class="loc-col-search">
+                        <input type="text" id="input-filter-division" placeholder="Filter 8 divisions..." oninput="filterColumnList('division', this.value)">
+                    </div>
+                    <div class="loc-col-list" id="list-division"></div>
+                </div>
+
+                <!-- 3. District Column -->
+                <div class="loc-col" id="col-district">
+                    <div class="loc-col-head">
+                        <span>3. District</span>
+                        <span id="badge-district-count" style="font-size: 0.65rem; background: #e2e8f0; padding: 1px 6px; border-radius: 10px; font-weight: 800;">64</span>
+                    </div>
+                    <div class="loc-col-search">
+                        <input type="text" id="input-filter-district" placeholder="Filter districts..." oninput="filterColumnList('district', this.value)">
+                    </div>
+                    <div class="loc-col-list" id="list-district"></div>
+                </div>
+
+                <!-- 4. Upazila Column -->
+                <div class="loc-col" id="col-upazila">
+                    <div class="loc-col-head">
+                        <span>4. Upazila</span>
+                        <span id="badge-upazila-count" style="font-size: 0.65rem; background: #e2e8f0; padding: 1px 6px; border-radius: 10px; font-weight: 800;">495</span>
+                    </div>
+                    <div class="loc-col-search">
+                        <input type="text" id="input-filter-upazila" placeholder="Filter upazilas..." oninput="filterColumnList('upazila', this.value)">
+                    </div>
+                    <div class="loc-col-list" id="list-upazila"></div>
+                </div>
+            </div>
+
+            <!-- Modal Footer: Breadcrumbs & Confirmation -->
+            <div style="background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 0.75rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex: 1;">
+                    <i class="material-icons" style="font-size: 20px; color: #0284c7;">alt_route</i>
+                    <div style="font-size: 0.825rem; color: #334155;">
+                        <span style="font-weight: 600; color: #64748b;">Hierarchy Path:</span>
+                        <strong id="loc-breadcrumb-text" style="color: #0f172a; margin-left: 4px;">Bangladesh ➔ Dhaka ➔ Dhaka ➔ Savar</strong>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button type="button" class="action-btn" onclick="closeLocationPicker()" style="padding: 0.5rem 1rem; font-size: 0.825rem;">
+                        Cancel
+                    </button>
+                    <button type="button" class="btn-checkout" onclick="confirmLocationPickerSelection()" style="padding: 0.5rem 1.25rem; font-size: 0.825rem;">
+                        Apply Location
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/auth.js"></script>
+    <script src="js/locations_bd.js"></script>
     <script>
         // State Store (All Disaggregated Component Slots)
         const currentTour = {
@@ -3094,6 +3424,427 @@
             permit: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
             honeymoon: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=300&q=80"
         };
+
+        // ==========================================
+        // Cascading Location Hierarchy (Country -> Division -> District -> Upazila)
+        // 495 Upazilas & 64 Districts with Live Instant Search
+        // ==========================================
+        let activeLocationPickerMode = 'origin'; // 'origin' or 'destination'
+        let locPickerActiveCountry = 'COUNTRY-BD';
+        let locPickerActiveDivision = 'BD-DIV-06'; // Dhaka Division Default
+        let locPickerActiveDistrict = 'BD-DIV-06-DIST-08'; // Dhaka District Default
+        let locPickerActiveUpazila = null;
+
+        function getLocationsData() {
+            return window.TRAVELUP_LOCATIONS_BD || {
+                country: { id: 'COUNTRY-BD', name: 'Bangladesh', flag: '🇧🇩' },
+                divisions: [],
+                districts: [],
+                upazilas: []
+            };
+        }
+
+        function openLocationPicker(mode = 'origin') {
+            activeLocationPickerMode = mode;
+            const data = getLocationsData();
+
+            const titleEl = document.getElementById('loc-modal-title');
+            const btnOrigin = document.getElementById('loc-mode-btn-origin');
+            const btnDest = document.getElementById('loc-mode-btn-destination');
+
+            if (titleEl) {
+                titleEl.textContent = mode === 'origin' ? 'Select Origin Location ("From")' : 'Select Tour Destination ("To")';
+            }
+            if (btnOrigin && btnDest) {
+                if (mode === 'origin') {
+                    btnOrigin.style.background = '#0284c7';
+                    btnOrigin.style.color = '#ffffff';
+                    btnDest.style.background = 'transparent';
+                    btnDest.style.color = '#94a3b8';
+                } else {
+                    btnDest.style.background = '#ef4444';
+                    btnDest.style.color = '#ffffff';
+                    btnOrigin.style.background = 'transparent';
+                    btnOrigin.style.color = '#94a3b8';
+                }
+            }
+
+            // Sync active selection from current inputs
+            const currentUpzId = mode === 'origin'
+                ? document.getElementById('origin-upazila-id')?.value
+                : document.getElementById('destination-upazila-id')?.value;
+
+            if (currentUpzId && data.upazilas.length > 0) {
+                const existing = data.upazilas.find(u => u.upazila_id === currentUpzId);
+                if (existing) {
+                    locPickerActiveDivision = existing.division_id;
+                    locPickerActiveDistrict = existing.district_id;
+                    locPickerActiveUpazila = existing;
+                }
+            } else if (mode === 'destination') {
+                // Default destination to Cox's Bazar Sadar
+                const cxb = data.upazilas.find(u => u.upazila_id === 'BD-DIV-01-DIST-09-UPZ-001');
+                if (cxb) {
+                    locPickerActiveDivision = cxb.division_id;
+                    locPickerActiveDistrict = cxb.district_id;
+                    locPickerActiveUpazila = cxb;
+                }
+            } else {
+                // Default origin to Savar
+                const savar = data.upazilas.find(u => u.upazila_id === 'BD-DIV-06-DIST-08-UPZ-001');
+                if (savar) {
+                    locPickerActiveDivision = savar.division_id;
+                    locPickerActiveDistrict = savar.district_id;
+                    locPickerActiveUpazila = savar;
+                }
+            }
+
+            clearLocationGlobalSearch();
+            renderLocationDivisions();
+            renderLocationDistricts();
+            renderLocationUpazilas();
+            updateLocationBreadcrumb();
+
+            const modal = document.getElementById('location-picker-modal');
+            if (modal) modal.style.display = 'flex';
+        }
+
+        function closeLocationPicker() {
+            const modal = document.getElementById('location-picker-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function switchLocationPickerMode(mode) {
+            openLocationPicker(mode);
+        }
+
+        function selectLocationCountry(countryId) {
+            locPickerActiveCountry = countryId;
+            renderLocationDivisions();
+            renderLocationDistricts();
+            renderLocationUpazilas();
+            updateLocationBreadcrumb();
+        }
+
+        function renderLocationDivisions(filterText = '') {
+            const data = getLocationsData();
+            const listEl = document.getElementById('list-division');
+            if (!listEl) return;
+
+            const q = filterText.toLowerCase().trim();
+            const filtered = data.divisions.filter(d => 
+                !q || d.name_en.toLowerCase().includes(q) || (d.name_bn && d.name_bn.includes(q))
+            );
+
+            const distCounts = {};
+            data.districts.forEach(d => {
+                distCounts[d.division_id] = (distCounts[d.division_id] || 0) + 1;
+            });
+
+            listEl.innerHTML = filtered.map(d => {
+                const isActive = (d.division_id === locPickerActiveDivision);
+                const count = distCounts[d.division_id] || 0;
+                return `
+                    <button type="button" class="loc-item-btn ${isActive ? 'active' : ''}" 
+                            onclick="selectLocationDivision('${d.division_id}')">
+                        <div>
+                            <strong style="font-size: 0.825rem; display: block;">${d.name_en}</strong>
+                            <span style="font-size: 0.685rem; color: #64748b;">${d.name_bn || ''}</span>
+                        </div>
+                        <span style="font-size: 0.685rem; background: #e2e8f0; color: #475569; padding: 2px 7px; border-radius: 10px; font-weight: 700;">
+                            ${count} Dist.
+                        </span>
+                    </button>
+                `;
+            }).join('');
+
+            const badge = document.getElementById('badge-division-count');
+            if (badge) badge.textContent = filtered.length;
+        }
+
+        function selectLocationDivision(divisionId) {
+            locPickerActiveDivision = divisionId;
+            const data = getLocationsData();
+
+            const distsInDiv = data.districts.filter(d => d.division_id === divisionId);
+            if (distsInDiv.length > 0) {
+                const exists = distsInDiv.find(d => d.district_id === locPickerActiveDistrict);
+                locPickerActiveDistrict = exists ? exists.district_id : distsInDiv[0].district_id;
+            }
+
+            renderLocationDivisions();
+            renderLocationDistricts();
+            renderLocationUpazilas();
+            updateLocationBreadcrumb();
+        }
+
+        function renderLocationDistricts(filterText = '') {
+            const data = getLocationsData();
+            const listEl = document.getElementById('list-district');
+            if (!listEl) return;
+
+            const q = filterText.toLowerCase().trim();
+            const inDivision = data.districts.filter(d => d.division_id === locPickerActiveDivision);
+            const filtered = inDivision.filter(d => 
+                !q || d.name_en.toLowerCase().includes(q) || (d.name_bn && d.name_bn.includes(q))
+            );
+
+            const upzCounts = {};
+            data.upazilas.forEach(u => {
+                upzCounts[u.district_id] = (upzCounts[u.district_id] || 0) + 1;
+            });
+
+            listEl.innerHTML = filtered.map(d => {
+                const isActive = (d.district_id === locPickerActiveDistrict);
+                const count = upzCounts[d.district_id] || 0;
+                return `
+                    <button type="button" class="loc-item-btn ${isActive ? 'active' : ''}" 
+                            onclick="selectLocationDistrict('${d.district_id}')">
+                        <div>
+                            <strong style="font-size: 0.825rem; display: block;">${d.name_en}</strong>
+                            <span style="font-size: 0.685rem; color: #64748b;">${d.name_bn || ''}</span>
+                        </div>
+                        <span style="font-size: 0.685rem; background: #e2e8f0; color: #475569; padding: 2px 7px; border-radius: 10px; font-weight: 700;">
+                            ${count} Upz.
+                        </span>
+                    </button>
+                `;
+            }).join('') || '<div style="padding: 1rem; color: #94a3b8; font-size: 0.75rem; text-align: center;">No districts found</div>';
+
+            const badge = document.getElementById('badge-district-count');
+            if (badge) badge.textContent = filtered.length;
+        }
+
+        function selectLocationDistrict(districtId) {
+            locPickerActiveDistrict = districtId;
+            renderLocationDistricts();
+            renderLocationUpazilas();
+            updateLocationBreadcrumb();
+        }
+
+        function renderLocationUpazilas(filterText = '') {
+            const data = getLocationsData();
+            const listEl = document.getElementById('list-upazila');
+            if (!listEl) return;
+
+            const q = filterText.toLowerCase().trim();
+            const inDistrict = data.upazilas.filter(u => u.district_id === locPickerActiveDistrict);
+            const filtered = inDistrict.filter(u => 
+                !q || u.name_en.toLowerCase().includes(q) || (u.name_bn && u.name_bn.includes(q))
+            );
+
+            listEl.innerHTML = filtered.map(u => {
+                const isSelected = (locPickerActiveUpazila && locPickerActiveUpazila.upazila_id === u.upazila_id);
+                return `
+                    <button type="button" class="loc-item-btn ${isSelected ? 'selected' : ''}" 
+                            onclick="selectLocationUpazila('${u.upazila_id}')">
+                        <div>
+                            <strong style="font-size: 0.825rem; display: block;">${u.name_en}</strong>
+                            <span style="font-size: 0.685rem; color: #64748b;">${u.name_bn || ''} • Sadar/Thana</span>
+                        </div>
+                        ${isSelected ? '<i class="material-icons" style="font-size: 16px; color: #10b981;">check_circle</i>' : '<i class="material-icons" style="font-size: 16px; color: #cbd5e1;">chevron_right</i>'}
+                    </button>
+                `;
+            }).join('') || '<div style="padding: 1rem; color: #94a3b8; font-size: 0.75rem; text-align: center;">No upazilas found</div>';
+
+            const badge = document.getElementById('badge-upazila-count');
+            if (badge) badge.textContent = filtered.length;
+        }
+
+        function selectLocationUpazila(upazilaId) {
+            const data = getLocationsData();
+            const u = data.upazilas.find(x => x.upazila_id === upazilaId);
+            if (!u) return;
+
+            locPickerActiveUpazila = u;
+            updateLocationBreadcrumb();
+            renderLocationUpazilas();
+
+            confirmLocationPickerSelection();
+        }
+
+        function updateLocationBreadcrumb() {
+            const data = getLocationsData();
+            const div = data.divisions.find(d => d.division_id === locPickerActiveDivision);
+            const dist = data.districts.find(d => d.district_id === locPickerActiveDistrict);
+            const upz = locPickerActiveUpazila;
+
+            const bText = document.getElementById('loc-breadcrumb-text');
+            if (bText) {
+                let path = '🇧🇩 Bangladesh';
+                if (div) path += ` ➔ ${div.name_en} Division`;
+                if (dist) path += ` ➔ ${dist.name_en} District`;
+                if (upz) path += ` ➔ <strong>${upz.name_en} Upazila</strong>`;
+                bText.innerHTML = path;
+            }
+        }
+
+        function onLocationGlobalSearch(val) {
+            const q = (val || '').toLowerCase().trim();
+            const resultsBox = document.getElementById('loc-global-search-results');
+            const clearBtn = document.getElementById('loc-global-search-clear');
+
+            if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
+
+            if (!q || q.length < 2) {
+                if (resultsBox) resultsBox.style.display = 'none';
+                return;
+            }
+
+            const data = getLocationsData();
+            const matches = data.upazilas.filter(u => 
+                u.name_en.toLowerCase().includes(q) || 
+                (u.name_bn && u.name_bn.includes(q)) ||
+                u.district_name_en.toLowerCase().includes(q) ||
+                u.division_name_en.toLowerCase().includes(q)
+            ).slice(0, 30);
+
+            if (!resultsBox) return;
+
+            if (matches.length === 0) {
+                resultsBox.innerHTML = `
+                    <div style="padding: 1rem; color: #64748b; font-size: 0.85rem; text-align: center;">
+                        No Upazilas or Districts found matching "<strong>${val}</strong>". Try another keyword.
+                    </div>
+                `;
+            } else {
+                resultsBox.innerHTML = matches.map(u => `
+                    <div class="loc-search-row" onclick="pickUpazilaFromGlobalSearch('${u.upazila_id}')">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="material-icons" style="color: #0284c7; font-size: 20px;">place</i>
+                            <div>
+                                <div style="font-size: 0.85rem; font-weight: 800; color: #0f172a;">
+                                    ${u.name_en} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">(${u.name_bn || ''})</span>
+                                </div>
+                                <div style="font-size: 0.725rem; color: #64748b; margin-top: 2px;">
+                                    ${u.district_name_en} District ➔ ${u.division_name_en} Division ➔ Bangladesh
+                                </div>
+                            </div>
+                        </div>
+                        <span style="font-size: 0.7rem; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 3px 8px; border-radius: 4px;">
+                            Select
+                        </span>
+                    </div>
+                `).join('');
+            }
+
+            resultsBox.style.display = 'block';
+        }
+
+        function clearLocationGlobalSearch() {
+            const input = document.getElementById('loc-global-search-input');
+            const resultsBox = document.getElementById('loc-global-search-results');
+            const clearBtn = document.getElementById('loc-global-search-clear');
+            if (input) input.value = '';
+            if (resultsBox) resultsBox.style.display = 'none';
+            if (clearBtn) clearBtn.style.display = 'none';
+        }
+
+        function pickUpazilaFromGlobalSearch(upazilaId) {
+            const data = getLocationsData();
+            const u = data.upazilas.find(x => x.upazila_id === upazilaId);
+            if (!u) return;
+
+            locPickerActiveDivision = u.division_id;
+            locPickerActiveDistrict = u.district_id;
+            locPickerActiveUpazila = u;
+
+            confirmLocationPickerSelection();
+        }
+
+        function filterColumnList(col, val) {
+            if (col === 'division') {
+                renderLocationDivisions(val);
+            } else if (col === 'district') {
+                renderLocationDistricts(val);
+            } else if (col === 'upazila') {
+                renderLocationUpazilas(val);
+            }
+        }
+
+        function confirmLocationPickerSelection() {
+            if (!locPickerActiveUpazila) {
+                const data = getLocationsData();
+                const firstUpz = data.upazilas.find(u => u.district_id === locPickerActiveDistrict);
+                if (firstUpz) locPickerActiveUpazila = firstUpz;
+            }
+
+            const upz = locPickerActiveUpazila;
+            if (!upz) {
+                alert('Please select an Upazila to continue.');
+                return;
+            }
+
+            const mode = activeLocationPickerMode;
+            const fullTitle = `${upz.name_en}, ${upz.district_name_en}`;
+            const fullSub = `${upz.division_name_en} Division • Bangladesh`;
+
+            if (mode === 'origin') {
+                const tEl = document.getElementById('origin-display-title');
+                const sEl = document.getElementById('origin-display-sub');
+                const valInput = document.getElementById('origin-select');
+                const idInput = document.getElementById('origin-upazila-id');
+
+                if (tEl) tEl.textContent = fullTitle;
+                if (sEl) sEl.textContent = fullSub;
+                if (valInput) valInput.value = fullTitle;
+                if (idInput) idInput.value = upz.upazila_id;
+
+                onSearchFieldChanged();
+            } else {
+                const tEl = document.getElementById('destination-display-title');
+                const sEl = document.getElementById('destination-display-sub');
+                const valInput = document.getElementById('destination-select');
+                const idInput = document.getElementById('destination-upazila-id');
+                const nameInput = document.getElementById('destination-upazila-name');
+
+                if (tEl) tEl.textContent = fullTitle;
+                if (sEl) sEl.textContent = fullSub;
+                if (idInput) idInput.value = upz.upazila_id;
+                if (nameInput) nameInput.value = fullTitle;
+
+                const slug = mapUpazilaToDestinationSlug(upz);
+                if (valInput) {
+                    let opt = valInput.querySelector(`option[value="${slug}"]`);
+                    if (!opt) {
+                        opt = document.createElement('option');
+                        opt.value = slug;
+                        opt.textContent = `${fullTitle} (${upz.division_name_en})`;
+                        valInput.appendChild(opt);
+                    }
+                    valInput.value = slug;
+                }
+
+                onDestinationChanged();
+            }
+
+            closeLocationPicker();
+        }
+
+        function mapUpazilaToDestinationSlug(upazila) {
+            const upzName = (upazila.name_en || '').toLowerCase();
+            const distName = (upazila.district_name_en || '').toLowerCase();
+
+            if (upzName.includes('saint martin') || upzName.includes('st. martin') || (distName.includes('coxsbazar') && upzName.includes('teknaf'))) {
+                return 'saintmartin';
+            }
+            if (distName.includes('coxsbazar') || distName.includes("cox's bazar")) {
+                return 'coxsbazar';
+            }
+            if (upzName.includes('baghaichari') || upzName.includes('sajek') || distName.includes('rangamati') || distName.includes('khagrachhari')) {
+                return 'sajek';
+            }
+            if (upzName.includes('sreemangal') || distName.includes('moulvibazar')) {
+                return 'sreemangal';
+            }
+            if (upzName.includes('tetulia') || distName.includes('panchagarh')) {
+                return 'tetulia';
+            }
+            if (upzName.includes('jaflong') || upzName.includes('gowainghat') || distName.includes('sylhet')) {
+                return 'jaflong';
+            }
+            return 'coxsbazar';
+        }
 
         // Dynamic Inventory Mapped to Individual Categories
         const inventory = {
@@ -5036,6 +5787,29 @@
             if (originSelect) originSelect.value = from;
             if (destSelect) destSelect.value = dest;
 
+            // Sync visual trigger cards
+            const tOrigin = document.getElementById('origin-display-title');
+            const sOrigin = document.getElementById('origin-display-sub');
+            const tDest = document.getElementById('destination-display-title');
+            const sDest = document.getElementById('destination-display-sub');
+
+            if (tOrigin) tOrigin.textContent = from;
+            if (sOrigin) sOrigin.textContent = from.includes('Dhaka') ? 'Dhaka Division • Bangladesh' : 'Bangladesh';
+
+            if (dest === 'coxsbazar') {
+                if (tDest) tDest.textContent = "Coxsbazar Sadar, Coxsbazar";
+                if (sDest) sDest.textContent = "Chattagram Division • Bangladesh";
+            } else if (dest === 'sajek') {
+                if (tDest) tDest.textContent = "Baghaichari, Rangamati (Sajek)";
+                if (sDest) sDest.textContent = "Chattagram Division • Bangladesh";
+            } else if (dest === 'saintmartin') {
+                if (tDest) tDest.textContent = "Teknaf, Coxsbazar (Saint Martin)";
+                if (sDest) sDest.textContent = "Chattagram Division • Bangladesh";
+            } else if (dest === 'sreemangal') {
+                if (tDest) tDest.textContent = "Sreemangal, Moulvibazar";
+                if (sDest) sDest.textContent = "Sylhet Division • Bangladesh";
+            }
+
             // Compute upcoming departure date (7 days from now)
             const futureDate = new Date();
             futureDate.setDate(futureDate.getDate() + 7);
@@ -5086,6 +5860,15 @@
             if (destSelect) destSelect.value = '';
             if (deptDateInput) deptDateInput.value = '';
             if (travelerInput) travelerInput.value = '';
+
+            const tOrigin = document.getElementById('origin-display-title');
+            const sOrigin = document.getElementById('origin-display-sub');
+            const tDest = document.getElementById('destination-display-title');
+            const sDest = document.getElementById('destination-display-sub');
+            if (tOrigin) tOrigin.textContent = 'Select Origin Upazila';
+            if (sOrigin) sOrigin.textContent = 'Country ➔ Division ➔ District ➔ Upazila';
+            if (tDest) tDest.textContent = 'Select Destination Upazila';
+            if (sDest) sDest.textContent = 'Country ➔ Division ➔ District ➔ Upazila';
 
             document.querySelectorAll('.btn-demo-pill').forEach(btn => btn.classList.remove('active'));
 
@@ -7012,7 +7795,13 @@
                 const draft = {
                     trip_type: currentTripType,
                     origin: document.getElementById('origin-select')?.value,
+                    origin_display: document.getElementById('origin-display-title')?.textContent,
+                    origin_sub: document.getElementById('origin-display-sub')?.textContent,
+                    origin_upazila_id: document.getElementById('origin-upazila-id')?.value,
                     destination: document.getElementById('destination-select')?.value,
+                    destination_display: document.getElementById('destination-display-title')?.textContent,
+                    destination_sub: document.getElementById('destination-display-sub')?.textContent,
+                    destination_upazila_id: document.getElementById('destination-upazila-id')?.value,
                     dept_date: document.getElementById('dept-date')?.value,
                     return_date: document.getElementById('return-date')?.value,
                     guestCounts,
@@ -7028,7 +7817,15 @@
                 if (!raw) return false;
                 const draft = JSON.parse(raw);
                 if (draft.origin && document.getElementById('origin-select')) document.getElementById('origin-select').value = draft.origin;
+                if (draft.origin_display && document.getElementById('origin-display-title')) document.getElementById('origin-display-title').textContent = draft.origin_display;
+                if (draft.origin_sub && document.getElementById('origin-display-sub')) document.getElementById('origin-display-sub').textContent = draft.origin_sub;
+                if (draft.origin_upazila_id && document.getElementById('origin-upazila-id')) document.getElementById('origin-upazila-id').value = draft.origin_upazila_id;
+
                 if (draft.destination && document.getElementById('destination-select')) document.getElementById('destination-select').value = draft.destination;
+                if (draft.destination_display && document.getElementById('destination-display-title')) document.getElementById('destination-display-title').textContent = draft.destination_display;
+                if (draft.destination_sub && document.getElementById('destination-display-sub')) document.getElementById('destination-display-sub').textContent = draft.destination_sub;
+                if (draft.destination_upazila_id && document.getElementById('destination-upazila-id')) document.getElementById('destination-upazila-id').value = draft.destination_upazila_id;
+
                 if (draft.dept_date && document.getElementById('dept-date')) document.getElementById('dept-date').value = draft.dept_date;
                 if (draft.return_date && document.getElementById('return-date')) document.getElementById('return-date').value = draft.return_date;
                 if (draft.guestCounts) {
@@ -7068,8 +7865,32 @@
                 const data = await res.json();
                 if (data.success && data.trip) {
                     const t = data.trip;
-                    if (t.origin_upazila && document.getElementById('origin-select')) document.getElementById('origin-select').value = t.origin_upazila;
-                    if (t.destination_slug && document.getElementById('destination-select')) document.getElementById('destination-select').value = t.destination_slug;
+                    if (t.origin_upazila && document.getElementById('origin-select')) {
+                        document.getElementById('origin-select').value = t.origin_upazila;
+                        if (window.TRAVELUP_LOCATIONS_BD && Array.isArray(window.TRAVELUP_LOCATIONS_BD.upazilas)) {
+                            const found = window.TRAVELUP_LOCATIONS_BD.upazilas.find(u => 
+                                u.name_en.toLowerCase() === t.origin_upazila.toLowerCase() || 
+                                u.upazila_id === t.origin_upazila ||
+                                t.origin_upazila.toLowerCase().includes(u.name_en.toLowerCase())
+                            );
+                            if (found) {
+                                if (document.getElementById('origin-display-title')) document.getElementById('origin-display-title').textContent = found.name_en;
+                                if (document.getElementById('origin-display-sub')) document.getElementById('origin-display-sub').textContent = `${found.district_name_en}, ${found.division_name_en}, Bangladesh`;
+                                if (document.getElementById('origin-upazila-id')) document.getElementById('origin-upazila-id').value = found.upazila_id;
+                            } else {
+                                if (document.getElementById('origin-display-title')) document.getElementById('origin-display-title').textContent = t.origin_upazila;
+                            }
+                        } else {
+                            if (document.getElementById('origin-display-title')) document.getElementById('origin-display-title').textContent = t.origin_upazila;
+                        }
+                    }
+                    if (t.destination_slug && document.getElementById('destination-select')) {
+                        document.getElementById('destination-select').value = t.destination_slug;
+                        const destOpt = document.querySelector(`#destination-select option[value="${t.destination_slug}"]`);
+                        const destName = destOpt ? destOpt.textContent.split('(')[0].trim() : t.destination_slug;
+                        if (document.getElementById('destination-display-title')) document.getElementById('destination-display-title').textContent = destName;
+                        if (document.getElementById('destination-display-sub')) document.getElementById('destination-display-sub').textContent = `${destName}, Bangladesh`;
+                    }
                     if (t.departure_date && document.getElementById('dept-date')) document.getElementById('dept-date').value = t.departure_date.split('T')[0];
                     if (t.return_date && document.getElementById('return-date')) document.getElementById('return-date').value = t.return_date.split('T')[0];
 
