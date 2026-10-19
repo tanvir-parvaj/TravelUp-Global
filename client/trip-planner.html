@@ -1416,7 +1416,7 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>River Cruise / Passenger Launch (লঞ্চ ও রিভার ক্রুজ)</span>
+                            <span>River Cruise / Passenger Launch</span>
                         </div>
                         <div class="product-name" id="val-launch">Not Selected</div>
                     </div>
@@ -1487,7 +1487,7 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>Luggage & Cargo Truck (মালবাহী কাভার্ড ভ্যান / পিকআপ ট্রাক)</span>
+                            <span>Luggage & Cargo Truck</span>
                         </div>
                         <div class="product-name" id="val-truck">Not Selected</div>
                     </div>
@@ -1929,13 +1929,13 @@
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <label style="font-size: 0.85rem; font-weight: 800; color: #1e293b; display: flex; align-items: center; gap: 4px;">
                                 <i class="material-icons" style="font-size: 18px; color: #10b981;">train</i>
-                                Select Bogie (বগি):
+                                Select Coach / Bogie:
                             </label>
                             <select id="train-bogie-select" class="room-floor-select" style="margin-top: 0; font-weight: 700;" onchange="onTrainBogieChanged(this.value)">
-                                <option value="Snigdha-Ka (স্নিগ্ধা-ক)">Snigdha-Ka (স্নিগ্ধা-ক) [AC Chair]</option>
-                                <option value="Snigdha-Kha (স্নিগ্ধা-খ)">Snigdha-Kha (স্নিগ্ধা-খ) [AC Chair]</option>
-                                <option value="Snigdha-Ga (স্নিগ্ধা-গ)">Snigdha-Ga (স্নিগ্ধা-গ) [AC Chair]</option>
-                                <option value="Shovon-Gha (শোভন-ঘ)">Shovon-Gha (শোভন-ঘ) [Non-AC Chair]</option>
+                                <option value="Coach A (AC Chair)">Coach A (AC Chair)</option>
+                                <option value="Coach B (AC Chair)">Coach B (AC Chair)</option>
+                                <option value="Coach C (AC Chair)">Coach C (AC Chair)</option>
+                                <option value="Coach D (Non-AC Chair)">Coach D (Non-AC Chair)</option>
                             </select>
                         </div>
                         <div style="font-size: 0.775rem; color: #64748b; font-weight: 600;">
@@ -1956,7 +1956,7 @@
                     <div class="train-seat-layout">
                         <div class="train-bogie-header">
                             <span>🚪 VESTIBULE DOOR</span>
-                            <span id="train-bogie-indicator" style="font-weight: 900; color: #047857;">COACH: SNIGDHA-KA (স্নিগ্ধা-ক)</span>
+                            <span id="train-bogie-indicator" style="font-weight: 900; color: #047857;">COACH: COACH A (AC CHAIR)</span>
                             <span>RESTROOM 🚻</span>
                         </div>
                         <!-- Train Seats Grid -->
@@ -2905,12 +2905,12 @@
                 { id: 2, name: "Local CNG Rickshaw Terminal Shuttle", sub: "Dedicated one-way transfer from bus terminal to hotel gate", price: 400, img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=150&q=80" }
             ],
             launch: [
-                { id: 1, name: "MV Sundarban 10 Luxury River Cruiser", sub: "বিলাসবহুল ভিআইপি এসি কেবিন • নদীমাতৃক রুটে রাজকীয় রাতযাপন", price: 2400, img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=150&q=80" },
-                { id: 2, name: "MV Parabat 12 Executive River Cruise", sub: "সিঙ্গেল / ডাবল এসি কেবিন • নিরিবিলি নদী ভ্রমণ", price: 1800, img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=150&q=80" }
+                { id: 1, name: "MV Sundarban 10 Luxury River Cruiser", sub: "Luxury VIP AC Cabin • Scenic overnight river voyage", price: 2400, img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=150&q=80" },
+                { id: 2, name: "MV Parabat 12 Executive River Cruise", sub: "Single / Double AC Cabin • Peaceful river journey", price: 1800, img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=150&q=80" }
             ],
             truck: [
-                { id: 1, name: "কাভার্ড ভ্যান / ১.৫ টন পিকআপ ট্রাক (Tata / Mahindra)", sub: "ভ্রমণের অতিরিক্ত ভারী লাগেজ, ক্যাম্পিং সরঞ্জাম ও মালবাহী পরিবহন", price: 5500, img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=150&q=80" },
-                { id: 2, name: "৩ টন হেভি কার্গো ট্রাক (Tata 407 Covered Van)", sub: "বড় টিম, বাণিজ্যিক সরঞ্জাম বা সম্পূর্ণ পারিবারিক শিফটিং মালামাল", price: 8500, img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=150&q=80" }
+                { id: 1, name: "Covered Van / 1.5-Ton Pickup Truck (Tata / Mahindra)", sub: "Heavy tour luggage, group camping gear & cargo transport", price: 5500, img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=150&q=80" },
+                { id: 2, name: "3-Ton Heavy Cargo Truck (Tata 407 Covered Van)", sub: "Large tour group luggage, commercial events or bulk gear", price: 8500, img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=150&q=80" }
             ],
             parasailing: [
                 { id: 1, name: "Inani Beach 15-Minute Parachute Flight", sub: "Scenario 8: 15-minute aerial parachute flight over the Bay of Bengal", price: 2000, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80", scenario: "Scenario 8: Disaggregated Activities" },
@@ -2994,11 +2994,11 @@
                 coach: 'AC Luxury Coach',
                 flight: 'Domestic Flight',
                 train: 'Intercity Express Train',
-                launch: 'River Cruise / Luxury Launch (লঞ্চ ও রিভার ক্রুজ)',
+                launch: 'River Cruise / Luxury Passenger Launch',
                 microbus: 'AC Microbus (Toyota HiAce / Noah)',
                 jeep: 'Chander Gari / 4WD Mountain Jeep',
                 cng: 'Auto-Rickshaw / Electric TomTom / CNG',
-                truck: 'Cargo & Luggage Logistics Truck (মালবাহী ট্রাক / কাভার্ড ভ্যান)',
+                truck: 'Cargo & Luggage Logistics Truck',
                 hotel: 'Hotel (City & Standard 3-5 Star)',
                 resort: 'Resort (Beach & Mountain Scenic)',
                 cottage: 'Eco Cottage (Nature Wooden Lodges)',
@@ -3314,8 +3314,8 @@
         }
 
         // Interactive Bangladesh Railway Train Bogie Seat Picker
-        let trainSelectedSeats = ['ক-1', 'ক-2', 'ক-3', 'ক-4'];
-        let selectedBogie = 'Snigdha-Ka (স্নিগ্ধা-ক)';
+        let trainSelectedSeats = ['A-1', 'A-2', 'A-3', 'A-4'];
+        let selectedBogie = 'Coach A (AC Chair)';
 
         function openTrainSeatPicker(slotName, itemId) {
             const item = (inventory[slotName] || []).find(x => x.id === itemId);
@@ -3350,7 +3350,7 @@
             trainWrap.style.display = 'block';
 
             const travelers = getTravelerCount();
-            const prefix = selectedBogie.includes('Kha') ? 'খ' : selectedBogie.includes('Ga') ? 'গ' : selectedBogie.includes('Gha') ? 'ঘ' : 'ক';
+            const prefix = selectedBogie.includes('Coach B') ? 'B' : selectedBogie.includes('Coach C') ? 'C' : selectedBogie.includes('Coach D') ? 'D' : 'A';
 
             if (!item.selectedSeats || item.selectedSeats.length === 0) {
                 const pool = [`${prefix}-1`, `${prefix}-2`, `${prefix}-3`, `${prefix}-4`, `${prefix}-5`, `${prefix}-6`, `${prefix}-7`, `${prefix}-8`];
@@ -3370,7 +3370,7 @@
                 bogieIndicator.textContent = `COACH: ${selectedBogie.toUpperCase()}`;
             }
 
-            const prefix = selectedBogie.includes('Kha') ? 'খ' : selectedBogie.includes('Ga') ? 'গ' : selectedBogie.includes('Gha') ? 'ঘ' : 'ক';
+            const prefix = selectedBogie.includes('Coach B') ? 'B' : selectedBogie.includes('Coach C') ? 'C' : selectedBogie.includes('Coach D') ? 'D' : 'A';
             const travelers = getTravelerCount();
             trainSelectedSeats = [`${prefix}-1`, `${prefix}-2`, `${prefix}-3`, `${prefix}-4`, `${prefix}-5`, `${prefix}-6`].slice(0, travelers);
 
@@ -3382,7 +3382,7 @@
             const container = document.getElementById('train-seats-container');
             if (!container) return;
 
-            const prefix = selectedBogie.includes('Kha') ? 'খ' : selectedBogie.includes('Ga') ? 'গ' : selectedBogie.includes('Gha') ? 'ঘ' : 'ক';
+            const prefix = selectedBogie.includes('Coach B') ? 'B' : selectedBogie.includes('Coach C') ? 'C' : selectedBogie.includes('Coach D') ? 'D' : 'A';
             const rows = [1, 2, 3, 4, 5, 6, 7, 8];
             let html = '';
 
@@ -3399,7 +3399,7 @@
                     html += `
                         <div class="seat-btn ${isSelected ? 'selected' : ''} ${isBooked ? 'booked' : ''}" 
                              onclick="toggleTrainSeat('${seatId}', this, ${isBooked})"
-                             title="${isBooked ? 'Seat Reserved' : isWindow ? 'Window Seat (জানালা)' : 'Aisle Seat (আইল)'}">
+                             title="${isBooked ? 'Seat Reserved' : isWindow ? 'Window Seat' : 'Aisle Seat'}">
                             ${seatId}${isWindow ? '🪟' : ''}
                         </div>
                     `;

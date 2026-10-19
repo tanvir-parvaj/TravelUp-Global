@@ -5,12 +5,12 @@ let liveAlerts = [
     {
         id: 1,
         title_en: 'Maritime Cautionary Signal No. 3 Issued',
-        title_bn: '৩ নম্বর স্থানীয় সতর্ক সংকেত জারি',
+        title_bn: 'Maritime Cautionary Signal No. 3 Issued',
         destination_id: 1, // Cox's Bazar / Saint Martin
         destination_name: "Saint Martin's Island",
         severity: 'critical',
         message_en: 'Bangladesh Meteorological Department has raised Local Cautionary Signal No. 3 due to deep depression in Bay of Bengal. All tourist trawlers and scuba diving activities are suspended by Bangladesh Coast Guard.',
-        message_bn: 'বঙ্গোপসাগরে গভীর নিম্নচাপের কারণে ৩ নম্বর সতর্কতা সংকেত জারি করা হয়েছে। কোস্টগার্ডের নির্দেশে সকল ট্রলার ও স্কুবা ডাইভিং কার্যক্রম সাময়িক স্থগিত।',
+        message_bn: 'Bangladesh Meteorological Department has raised Local Cautionary Signal No. 3 due to deep depression in Bay of Bengal. All tourist trawlers and scuba diving activities are suspended by Bangladesh Coast Guard.',
         is_active: true,
         created_at: new Date().toISOString()
     }
@@ -46,10 +46,10 @@ exports.broadcastAlert = async (req, res) => {
             destination_id,
             destination_name: "Saint Martin's Island",
             title_en: title_en || 'Maritime Cautionary Signal No. 3 Issued',
-            title_bn: title_bn || '৩ নম্বর সতর্ক সংকেত জারি',
+            title_bn: title_bn || 'Maritime Cautionary Signal No. 3 Issued',
             severity,
             message_en: message_en || 'Coast Guard suspension of marine activities.',
-            message_bn: message_bn || 'কোস্টগার্ডের নির্দেশে নৌযান চলাচল বন্ধ।',
+            message_bn: message_bn || 'Coast Guard suspension of marine activities.',
             is_active: true,
             created_at: new Date().toISOString()
         };
@@ -69,7 +69,7 @@ exports.broadcastAlert = async (req, res) => {
                 sample_refund_voucher: {
                     traveler_name: 'Sujan Barua',
                     activity: 'Guided Scuba Diving (Coral Reef Reef-1)',
-                    refund_amount: '৳3,000',
+                    refund_amount: 'BDT 3,000',
                     destination_wallet: 'bKash (01712-XXXXXX)',
                     reversal_status: 'SUCCESS',
                     trx_id: 'REFUND-BK-' + Date.now().toString(36).toUpperCase()

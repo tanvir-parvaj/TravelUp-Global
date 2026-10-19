@@ -81,7 +81,7 @@ exports.calculateTrip = async (req, res) => {
                 breakdown.applied_scenarios.push({
                     scenario: 10,
                     title: 'Granular Child Bedding & Age-Tiered Fare',
-                    description: `Infant (<4 yrs) free lap seat; Child (5-10 yrs) discounted seat at ৳${childFare}.`
+                    description: `Infant (<4 yrs) free lap seat; Child (5-10 yrs) discounted seat at BDT ${childFare}.`
                 });
             }
         }
@@ -109,7 +109,7 @@ exports.calculateTrip = async (req, res) => {
             breakdown.applied_scenarios.push({
                 scenario: 7,
                 title: 'Early Morning Fresh-up Room (5:30 AM Check-in)',
-                description: `Applied +35% half-day rate (৳${freshupCharge}) avoiding full-day extra billing.`
+                description: `Applied +35% half-day rate (BDT ${freshupCharge}) avoiding full-day extra billing.`
             });
         }
         breakdown.lodging = totalLodging;
@@ -121,7 +121,7 @@ exports.calculateTrip = async (req, res) => {
             breakdown.applied_scenarios.push({
                 scenario: 7,
                 title: 'Honeymoon Flower Bed Decoration',
-                description: 'Added ৳1,500 romantic suite decor setup to resort ledger.'
+                description: 'Added BDT 1,500 romantic suite decor setup to resort ledger.'
             });
         }
         if (addons.beach_bbq) totalAddons += 2000;
@@ -154,7 +154,7 @@ exports.calculateTrip = async (req, res) => {
             breakdown.applied_scenarios.push({
                 scenario: 5,
                 title: 'Multi-Bed Room Allocation & Per-Person Cost Optimization',
-                description: `Optimized group lodging: Total ৳${breakdown.grand_total} translates to just ৳${breakdown.per_person}/person.`
+                description: `Optimized group lodging: Total BDT ${breakdown.grand_total} translates to just BDT ${breakdown.per_person}/person.`
             });
         }
 

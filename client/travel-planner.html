@@ -407,13 +407,6 @@
             gap: 1.25rem;
         }
 
-        .pcb-title-area h1 {
-            font-size: 1.35rem;
-            font-weight: 900;
-            color: var(--st-text);
-            margin-bottom: 0.35rem;
-        }
-
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -493,23 +486,10 @@
             letter-spacing: 0.04em;
             text-transform: uppercase;
             border-left: 4px solid var(--st-primary);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 0.5rem;
         }
 
         .content-label:first-child {
             margin-top: 0;
-        }
-
-        .content-label-sub {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #64748b;
-            text-transform: none;
-            letter-spacing: normal;
         }
 
         .c-item {
@@ -558,8 +538,8 @@
         }
 
         .c-item .mark {
-            background: #e0f2fe;
-            color: #0369a1;
+            background: #fee2e2;
+            color: #dc2626;
             font-size: 0.65rem;
             font-weight: 800;
             padding: 0.15rem 0.45rem;
@@ -567,16 +547,15 @@
             text-transform: uppercase;
         }
 
-        .c-item .role-desc {
-            font-size: 0.775rem;
+        .c-item .mark.optional {
+            background: #f1f5f9;
             color: #64748b;
-            margin-top: 0.15rem;
         }
 
         .c-item .product-name {
             font-size: 0.85rem;
             color: var(--st-text-muted);
-            margin-top: 0.3rem;
+            margin-top: 0.25rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -1075,22 +1054,22 @@
         <div class="demo-preset-strip">
             <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 800; color: #475569;">
                 <span class="demo-badge">ADMIN</span>
-                <span>Upazila-to-Upazila Multimodal Transit Combos:</span>
+                <span>Quick Route Demos:</span>
             </div>
             <div class="demo-buttons">
-                <button type="button" class="btn-demo-pill active" onclick="autoFillDemo('Dhaka - Mirpur', 'Rangpur - Pirganj', 4)" title="Dhaka (Mirpur) -> Rangpur (Pirganj)">
-                    Dhaka (Mirpur) ➔ Rangpur (Pirganj)
+                <button type="button" class="btn-demo-pill active" onclick="autoFillDemo('Dhaka - Mirpur 10', 'Rangpur - Pirganj Bazar', 4)">
+                    Dhaka ➔ Rangpur
                 </button>
-                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('Dhaka - Savar', 'Cox\'s Bazar - Sadar', 2)" title="Savar -> Cox's Bazar">
+                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('Dhaka - Savar', 'Cox\'s Bazar - Kolatoli', 2)">
                     Savar ➔ Cox's Bazar
                 </button>
-                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('Rangpur - Pirganj', 'Cox\'s Bazar - Teknaf', 4)" title="Pirganj -> Teknaf">
-                    Pirganj ➔ Teknaf (Marine Drive)
+                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('Rangpur - Pirganj Bazar', 'Cox\'s Bazar - Teknaf', 4)">
+                    Pirganj ➔ Teknaf
                 </button>
-                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('Dhaka - Uttara', 'Rangamati - Sajek', 10)" title="Dhaka -> Sajek Valley">
-                    Dhaka (Uttara) ➔ Sajek Valley
+                <button type="button" class="btn-demo-pill" onclick="autoFillDemo('Dhaka - Uttara', 'Rangamati - Sajek Valley', 10)">
+                    Dhaka ➔ Sajek Valley
                 </button>
-                <button type="button" class="btn-demo-reset" onclick="resetSearchFields()" title="Reset all fields">
+                <button type="button" class="btn-demo-reset" onclick="resetSearchFields()">
                     <i class="material-icons" style="font-size: 14px;">restart_alt</i> Reset
                 </button>
             </div>
@@ -1099,77 +1078,77 @@
             </div>
         </div>
 
-        <!-- Upazila-to-Upazila Search Filter Strip -->
+        <!-- Search Filter Strip -->
         <div class="search-strip" id="search-strip">
             <div class="search-field" id="field-origin">
-                <label>From (Origin Upazila / Local Market) <span style="color: #ef4444;">*</span></label>
+                <label>From <span style="color: #ef4444;">*</span></label>
                 <select id="origin-select" onchange="onSearchFieldChanged()">
-                    <option value="" disabled selected>Select Origin Upazila / Hub</option>
-                    <optgroup label="Dhaka Division (ঢাকা বিভাগ)">
-                        <option value="Dhaka - Mirpur">মিরপুর-১০ গোলচত্বর / পল্লবী (ঢাকা)</option>
-                        <option value="Dhaka - Savar">সাভার বাসস্ট্যান্ড / নবীনগর (ঢাকা)</option>
-                        <option value="Dhaka - Uttara">উত্তরা হাউজবিল্ডিং / বিমানবন্দর (ঢাকা)</option>
-                        <option value="Dhaka - Dhanmondi">ধানমন্ডি ২৭ / জিগাতলা (ঢাকা)</option>
-                        <option value="Dhaka - Sayedabad / Motijheel">সায়েদাবাদ কেন্দ্রীয় বাস টার্মিনাল (ঢাকা)</option>
+                    <option value="" disabled selected>Select Origin Hub</option>
+                    <optgroup label="Dhaka Division">
+                        <option value="Dhaka - Mirpur 10">Dhaka - Mirpur 10</option>
+                        <option value="Dhaka - Savar">Dhaka - Savar</option>
+                        <option value="Dhaka - Uttara">Dhaka - Uttara (Airport)</option>
+                        <option value="Dhaka - Dhanmondi">Dhaka - Dhanmondi</option>
+                        <option value="Dhaka - Sayedabad">Dhaka - Sayedabad Central</option>
                     </optgroup>
-                    <optgroup label="Rangpur Division (রংপুর বিভাগ)">
-                        <option value="Rangpur - Pirganj">পীরগঞ্জ বাজার মোড় / ডোরস্টেপ (রংপুর)</option>
-                        <option value="Rangpur - Sadar">রংপুর পায়রা চত্বর / টার্মিনাল (রংপুর)</option>
-                        <option value="Panchagarh - Tetulia">তেঁতুলিয়া ডাকবাংলো মোড় (পঞ্চগড়)</option>
+                    <optgroup label="Rangpur Division">
+                        <option value="Rangpur - Pirganj Bazar">Rangpur - Pirganj Bazar</option>
+                        <option value="Rangpur - Sadar">Rangpur - Sadar Terminal</option>
+                        <option value="Panchagarh - Tetulia">Panchagarh - Tetulia</option>
                     </optgroup>
-                    <optgroup label="Rajshahi Division (রাজশাহী বিভাগ)">
-                        <option value="Bogura - Sadar">বগুড়া চারমাথা কেন্দ্রীয় বাস টার্মিনাল (বগুড়া)</option>
-                        <option value="Rajshahi - Sadar">শিরোইল বাস টার্মিনাল / রেলগেট (রাজশাহী)</option>
+                    <optgroup label="Rajshahi Division">
+                        <option value="Bogura - Central">Bogura - Central Bus Terminal</option>
+                        <option value="Rajshahi - Shiroil">Rajshahi - Shiroil Station</option>
                     </optgroup>
-                    <optgroup label="Chittagong Division (চট্টগ্রাম বিভাগ)">
-                        <option value="Chittagong - Kotwali">জিইসি মোড় / দামপাড়া বাস টার্মিনাল (চট্টগ্রাম)</option>
-                        <option value="Cox's Bazar - Sadar">কলাতলী সুগন্ধা বিচ পয়েন্ট (কক্সবাজার)</option>
-                        <option value="Cox's Bazar - Teknaf">টেকনাফ মেরিন ড্রাইভ বাস কাউন্টার (কক্সবাজার)</option>
-                        <option value="Rangamati - Sajek">রুইলুই পাড়া / বাঘাইছড়ি (রাঙ্গামাটি)</option>
+                    <optgroup label="Chittagong Division">
+                        <option value="Chittagong - GEC">Chittagong - GEC Circle</option>
+                        <option value="Cox's Bazar - Kolatoli">Cox's Bazar - Kolatoli</option>
+                        <option value="Cox's Bazar - Teknaf">Cox's Bazar - Teknaf</option>
+                        <option value="Rangamati - Sajek Valley">Rangamati - Sajek Valley</option>
                     </optgroup>
-                    <optgroup label="Sylhet Division (সিলেট বিভাগ)">
-                        <option value="Sylhet - Sadar">আম্বরখানা পয়েন্ট / কদমতলী (সিলেট)</option>
-                        <option value="Moulvibazar - Sreemangal">শ্রীমঙ্গল চৌমুহনা (মৌলভীবাজার)</option>
+                    <optgroup label="Sylhet Division">
+                        <option value="Sylhet - Amberkhana">Sylhet - Amberkhana Point</option>
+                        <option value="Moulvibazar - Sreemangal">Moulvibazar - Sreemangal</option>
                     </optgroup>
-                    <optgroup label="Southern Divisions (বরিশাল ও খুলনা)">
-                        <option value="Barisal - Sadar">নথুল্লাবাদ কেন্দ্রীয় টার্মিনাল / লঞ্চ ঘাট (বরিশাল)</option>
-                        <option value="Khulna - Sadar">সোনাডাঙ্গা কেন্দ্রীয় বাস টার্মিনাল (খুলনা)</option>
+                    <optgroup label="Southern Divisions">
+                        <option value="Barisal - Central">Barisal - Central Terminal</option>
+                        <option value="Khulna - Sonadanga">Khulna - Sonadanga Terminal</option>
                     </optgroup>
                 </select>
-                <span class="error-hint">Please select origin upazila (From)</span>
+                <span class="error-hint">Please select origin city (From)</span>
             </div>
 
             <div class="search-field" id="field-destination">
-                <label>To (Destination Upazila / Drop Point) <span style="color: #ef4444;">*</span></label>
+                <label>To <span style="color: #ef4444;">*</span></label>
                 <select id="destination-select" onchange="onSearchFieldChanged()">
-                    <option value="" disabled selected>Select Destination Upazila / Drop Point</option>
-                    <optgroup label="Rangpur Division (রংপুর বিভাগ)">
-                        <option value="Rangpur - Pirganj">পীরগঞ্জ বাজার মোড় / ডোরস্টেপ (রংপুর)</option>
-                        <option value="Rangpur - Sadar">রংপুর পায়রা চত্বর / টার্মিনাল (রংপুর)</option>
-                        <option value="Panchagarh - Tetulia">তেঁতুলিয়া ডাকবাংলো / বাংলাবান্ধা (পঞ্চগড়)</option>
+                    <option value="" disabled selected>Select Destination</option>
+                    <optgroup label="Rangpur Division">
+                        <option value="Rangpur - Pirganj Bazar">Rangpur - Pirganj Bazar</option>
+                        <option value="Rangpur - Sadar">Rangpur - Sadar Terminal</option>
+                        <option value="Panchagarh - Tetulia">Panchagarh - Tetulia</option>
                     </optgroup>
-                    <optgroup label="Chittagong Division (চট্টগ্রাম বিভাগ)">
-                        <option value="Cox's Bazar - Sadar">কলাতলী সুগন্ধা বিচ পয়েন্ট (কক্সবাজার)</option>
-                        <option value="Cox's Bazar - Teknaf">টেকনাফ জেটি ঘাট / মেরিন ড্রাইভ (কক্সবাজার)</option>
-                        <option value="Rangamati - Sajek">রুইলুই পাড়া / সাজেক ভ্যালি (রাঙ্গামাটি)</option>
-                        <option value="Chittagong - Kotwali">জিইসি মোড় / পতেঙ্গা বিচ (চট্টগ্রাম)</option>
+                    <optgroup label="Chittagong Division">
+                        <option value="Cox's Bazar - Kolatoli">Cox's Bazar - Kolatoli</option>
+                        <option value="Cox's Bazar - Teknaf">Cox's Bazar - Teknaf</option>
+                        <option value="Rangamati - Sajek Valley">Rangamati - Sajek Valley</option>
+                        <option value="Chittagong - GEC">Chittagong - GEC Circle</option>
                     </optgroup>
-                    <optgroup label="Sylhet Division (সিলেট বিভাগ)">
-                        <option value="Sylhet - Sadar">আম্বরখানা পয়েন্ট / জাফলং জিরো পয়েন্ট (সিলেট)</option>
-                        <option value="Moulvibazar - Sreemangal">শ্রীমঙ্গল চা বাগান এলাকা (মৌলভীবাজার)</option>
+                    <optgroup label="Sylhet Division">
+                        <option value="Sylhet - Amberkhana">Sylhet - Amberkhana Point</option>
+                        <option value="Moulvibazar - Sreemangal">Moulvibazar - Sreemangal</option>
                     </optgroup>
-                    <optgroup label="Dhaka Division (ঢাকা বিভাগ)">
-                        <option value="Dhaka - Mirpur">মিরপুর-১০ গোলচত্বর / ডোরস্টেপ (ঢাকা)</option>
-                        <option value="Dhaka - Uttara">উত্তরা হাউজবিল্ডিং / বিমানবন্দর (ঢাকা)</option>
-                        <option value="Dhaka - Savar">সাভার বাসস্ট্যান্ড (ঢাকা)</option>
-                        <option value="Dhaka - Dhanmondi">ধানমন্ডি ২৭ / জিগাতলা (ঢাকা)</option>
+                    <optgroup label="Dhaka Division">
+                        <option value="Dhaka - Mirpur 10">Dhaka - Mirpur 10</option>
+                        <option value="Dhaka - Uttara">Dhaka - Uttara</option>
+                        <option value="Dhaka - Savar">Dhaka - Savar</option>
+                        <option value="Dhaka - Dhanmondi">Dhaka - Dhanmondi</option>
                     </optgroup>
-                    <optgroup label="Southern Divisions (বরিশাল ও খুলনা)">
-                        <option value="Barisal - Sadar">নথুল্লাবাদ টার্মিনাল / লঞ্চ ঘাট (বরিশাল)</option>
-                        <option value="Khulna - Sadar">সোনাডাঙ্গা কেন্দ্রীয় টার্মিনাল (খুলনা)</option>
+                    <optgroup label="Southern Divisions">
+                        <option value="Barisal - Central">Barisal - Central Terminal</option>
+                        <option value="Khulna - Sonadanga">Khulna - Sonadanga Terminal</option>
                     </optgroup>
                 </select>
-                <span class="error-hint">Please select destination upazila (To)</span>
+                <span class="error-hint">Please select destination city (To)</span>
             </div>
 
             <div class="search-field" id="field-dept-date">
@@ -1179,8 +1158,8 @@
             </div>
 
             <div class="search-field" id="field-travelers">
-                <label>Travelers (যাত্রী) <span style="color: #ef4444;">*</span></label>
-                <input type="number" id="traveler-count" placeholder="e.g. 4" min="1" max="50" oninput="onSearchFieldChanged()" onchange="onSearchFieldChanged()">
+                <label>Travelers <span style="color: #ef4444;">*</span></label>
+                <input type="number" id="traveler-count" value="4" min="1" max="50" oninput="onSearchFieldChanged()" onchange="onSearchFieldChanged()">
                 <span class="error-hint">Minimum 1 traveler required</span>
             </div>
         </div>
@@ -1190,12 +1169,8 @@
 
             <!-- PCB Head (Logo on Left, Price Stats on Right) -->
             <div class="pcb-head">
-                <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="display: flex; align-items: center;">
                     <img src="images/logo.png" alt="TravelUp Global" style="height: 52px; width: auto; display: block;">
-                    <div style="border-left: 2px solid var(--st-border); padding-left: 1rem;">
-                        <div style="font-size: 0.95rem; font-weight: 900; color: var(--st-primary);">Upazila-to-Upazila Multimodal Transit</div>
-                        <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Doorstep ➔ Long-Haul Highway/Air/Rail ➔ Last-Mile Drop & Cargo</div>
-                    </div>
                 </div>
                 <div class="price-stats-wrap">
                     <div class="stat-box person-box">
@@ -1237,26 +1212,22 @@
                 </div>
             </div>
 
-            <!-- Component Slots: Pure Vehicles, Multimodal Transit & Cargo -->
+            <!-- Component Slots: Multimodal Transit & Cargo -->
             <div class="pcb-content">
 
-                <!-- TIER 1: ডোরস্টেপ ও লোকাল ফার্স্ট-মাইল পিকআপ -->
-                <div class="content-label">
-                    <span>Tier 1: ডোরস্টেপ ও লোকাল ফার্স্ট-মাইল পিকআপ (First-Mile Local Doorstep Pickup)</span>
-                    <span class="content-label-sub">কাজের বিবরণ: নিজ বাসা/বাজার থেকে নিকটস্থ প্রধান বাসস্ট্যান্ড, স্টেশন বা এয়ারপোর্টে পৌঁছানোর যান</span>
-                </div>
+                <!-- Section 1: First-Mile Local Doorstep Pickup -->
+                <div class="content-label">First-Mile Local Doorstep Pickup</div>
 
-                <!-- 1. First-Mile CNG / Auto / TomTom -->
+                <!-- 1. Auto-Rickshaw / CNG -->
                 <div class="c-item" id="slot-cng">
                     <div class="img">
                         <span class="material-icons">electric_rickshaw</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>অটোরিকশা / সিএনজি / ব্যাটারিচালিত টমটম (Local Auto / CNG)</span>
-                            <span class="mark">লোকাল কানেক্টিভিটি</span>
+                            <span>Auto-Rickshaw / CNG / Electric TomTom</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: যাত্রীর বাড়ি বা লোকাল বাজার থেকে ৩-১৫ কিমি দূরবর্তী প্রধান বাস কাউন্টার বা রেলওয়ে স্টেশনে পৌঁছানোর যান।</div>
                         <div class="product-name" id="val-cng">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-cng"></div>
@@ -1265,17 +1236,16 @@
                     </div>
                 </div>
 
-                <!-- 2. First-Mile Private Sedan Taxi -->
+                <!-- 2. Private AC Sedan Taxi -->
                 <div class="c-item" id="slot-sedan">
                     <div class="img">
                         <span class="material-icons">local_taxi</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>প্রাইভেট এসি সেডান / ট্যাক্সি ক্যাব (Doorstep AC Private Cab)</span>
-                            <span class="mark">ডোরস্টেপ পিকআপ</span>
+                            <span>Private AC Sedan Taxi (Toyota Axio / Allion)</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: যাত্রীর বাসার ড্রাইভওয়ে থেকে আরামদায়ক প্রাইভেট কার ড্রপ — লাগেজসহ সরাসরি বিমানবন্দর বা টার্মিনাল পর্যন্ত।</div>
                         <div class="product-name" id="val-sedan">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-sedan"></div>
@@ -1284,17 +1254,16 @@
                     </div>
                 </div>
 
-                <!-- 3. First-Mile Reserved Microbus -->
+                <!-- 3. Reserved Microbus -->
                 <div class="c-item" id="slot-microbus">
                     <div class="img">
                         <span class="material-icons">airport_shuttle</span>
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>ফ্যামিলি / গ্রুপ এসি মাইক্রোবাস (Toyota HiAce / Noah)</span>
-                            <span class="mark">৭-১২ জন যাত্রী</span>
+                            <span>Reserved AC Microbus (Toyota HiAce / Noah)</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: বড় পরিবার বা সহযাত্রী দলের জন্য বাসার আঙিনা থেকে সরাসরি টার্মিনালে যাওয়ার রিজার্ভ মাইক্রোবাস।</div>
                         <div class="product-name" id="val-microbus">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-microbus"></div>
@@ -1303,11 +1272,8 @@
                     </div>
                 </div>
 
-                <!-- TIER 2: দূরপাল্লার মূল ইন্টারসিটি ট্রানজিট -->
-                <div class="content-label">
-                    <span>Tier 2: দূরপাল্লার মূল ইন্টারসিটি ট্রানজিট (Long-Haul Intercity Main Transit)</span>
-                    <span class="content-label-sub">কাজের বিবরণ: হাইওয়ে, রেলওয়ে, আকাশপথ বা নৌপথে এক জেলা থেকে দূরবর্তী অন্য জেলায় দীর্ঘ যাত্রা</span>
-                </div>
+                <!-- Section 2: Long-Haul Intercity Transit -->
+                <div class="content-label">Long-Haul Intercity Transit (Bus / Flight / Train / Cruise)</div>
 
                 <!-- 4. AC Luxury Coach -->
                 <div class="c-item" id="slot-coach">
@@ -1316,10 +1282,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>এসি লাক্সারি হাইওয়ে কোচ (Scania / Hyundai / Sleeper Coach)</span>
-                            <span class="mark">দূরপাল্লার এক্সপ্রেস</span>
+                            <span>AC Luxury Coach (Scania / Hyundai / Sleeper)</span>
+                            <span class="mark">Required</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: দূরপাল্লার হাইওয়েতে আধুনিক বিজনেস ক্লাস বা স্লিপার বার্থে আরামদায়ক ওভারনাইট এক্সপ্রেস জার্নি।</div>
                         <div class="product-name" id="val-coach">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-coach"></div>
@@ -1335,10 +1300,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>ইকোনমি নন-এসি চেয়ার কোচ বাস (Economy Chair Coach Bus)</span>
-                            <span class="mark">বাজেট হাইওয়ে</span>
+                            <span>Economy Non-AC Chair Coach Bus</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: সাশ্রয়ী খরচে আন্তঃজেলা হাইওয়েতে ৪০-সিটের রেগুলার চেয়ার কোচে ভ্রমণ।</div>
                         <div class="product-name" id="val-bus">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-bus"></div>
@@ -1354,10 +1318,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>অভ্যন্তরীণ বিমান ফ্লাইট (Domestic Flight - Biman / US-Bangla / Air Astra)</span>
-                            <span class="mark">দ্রুততম আকাশপথ</span>
+                            <span>Domestic Flight (Biman / US-Bangla / Air Astra)</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: আকাশপথে দ্রুততম ভ্রমণ — ঢাকা থেকে সৈয়দপুর/রংপুর, কক্সবাজার, সিলেট বা চট্টগ্রামে মাত্র ৫০ মিনিটে যাত্রা।</div>
                         <div class="product-name" id="val-flight">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-flight"></div>
@@ -1373,10 +1336,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>বাংলাদেশ রেলওয়ে ইন্টারসিটি এক্সপ্রেস ট্রেন (Intercity Express Train)</span>
-                            <span class="mark">রেল ট্রানজিট</span>
+                            <span>Intercity Express Train (Bangladesh Railway)</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: যানজটহীন ট্রেন ভ্রমণ — এসি স্নিগ্ধা, শোভন চেয়ার ও বার্থ কোচে আনন্দময় ও নিরাপদ দূরপাল্লার যাত্রা।</div>
                         <div class="product-name" id="val-train">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-train"></div>
@@ -1392,10 +1354,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>বিলাসবহুল রিভার ক্রুজ / ডেকার লঞ্চ (River Cruise / Inland Passenger Launch)</span>
-                            <span class="mark">নদীমাতৃক ট্রানজিট</span>
+                            <span>Luxury River Cruiser / Passenger Launch</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: নদীমাতৃক রুটে (ঢাকা-বরিশাল-পটুয়াখালী-ভোলা) বিলাসবহুল এসি ভিআইপি কেবিন ও ডেকার যাত্রী সেবা।</div>
                         <div class="product-name" id="val-launch">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-launch"></div>
@@ -1404,11 +1365,8 @@
                     </div>
                 </div>
 
-                <!-- TIER 3: টার্মিনাল ইন্টার-কানেক্টিং শাটল -->
-                <div class="content-label">
-                    <span>Tier 3: টার্মিনাল ইন্টার-কানেক্টিং শাটল (Inter-Terminal Transfer Shuttle)</span>
-                    <span class="content-label-sub">কাজের বিবরণ: এয়ারপোর্ট বা রেলস্টেশনে নেমে বাসস্ট্যান্ড বা স্পিডবোট জেটিতে ট্রানজিট ট্রান্সফার</span>
-                </div>
+                <!-- Section 3: Inter-Terminal Transfer Shuttle -->
+                <div class="content-label">Inter-Terminal Transfer Shuttle</div>
 
                 <!-- 9. Inter-Terminal Shuttle Van -->
                 <div class="c-item" id="slot-shuttle">
@@ -1417,10 +1375,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>কানেক্টিং ট্রানজিট শাটল ভ্যান (Airport/Station Express Terminal Transfer)</span>
-                            <span class="mark">ট্রানজিট শাটল</span>
+                            <span>Connecting Terminal Transfer Shuttle Van</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: বিমানবন্দর বা স্টেশন থেকে মূল হাইওয়ে বাস টার্মিনাল অথবা লঞ্চ ঘাটে যাত্রী ও লাগেজ স্থানান্তর।</div>
                         <div class="product-name" id="val-shuttle">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-shuttle"></div>
@@ -1429,11 +1386,8 @@
                     </div>
                 </div>
 
-                <!-- TIER 4: গন্তব্যের লাস্ট-মাইল ড্রপ ও অফ-রোড রাইড -->
-                <div class="content-label">
-                    <span>Tier 4: গন্তব্যের লাস্ট-মাইল ড্রপ ও অফ-রোড রাইড (Last-Mile Destination Drop & Off-Road Transit)</span>
-                    <span class="content-label-sub">কাজের বিবরণ: মূল টার্মিনাল বা স্টেশন থেকে গন্তব্যের শেষ ঠিকানা, বাড়ি, কিংবা দুর্গম পাহাড় ও অফ-রোডে পৌঁছানো</span>
-                </div>
+                <!-- Section 4: Last-Mile Destination Drop & Off-Road Transit -->
+                <div class="content-label">Last-Mile Destination Drop & Off-Road Transit</div>
 
                 <!-- 10. Chander Gari / 4WD Hill Jeep -->
                 <div class="c-item" id="slot-jeep">
@@ -1442,10 +1396,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>চাঁদের গাড়ি / ৪x৪ মাউন্টেন জিপ (Chander Gari / 4WD Mountain Jeep)</span>
-                            <span class="mark">অফ-রোড ও পাহাড়ি পথ</span>
+                            <span>4WD Mountain Jeep / Chander Gari</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: পাহাড়ি আঁকাবাঁকা ও কাঁচা রাস্তায় (সাজেক, বান্দরবান, নীলগিরি) অফ-রোড ভ্রমণের বিশেষ হেভি-ডিউটি জিপ।</div>
                         <div class="product-name" id="val-jeep">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-jeep"></div>
@@ -1461,10 +1414,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>গন্তব্যের লাস্ট-মাইল সিএনজি / লোকাল অটোরিকশা (Destination Last-Mile CNG)</span>
-                            <span class="mark">লাস্ট-মাইল ড্রপ</span>
+                            <span>Destination Local CNG / Auto-Rickshaw</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: টার্মিনাল বা স্টেশন থেকে গন্তব্যের নির্দিষ্ট বাড়ি, আত্মীয়ের বাসা বা লোকাল পয়েন্টে শেষ ধাপের ড্রপ।</div>
                         <div class="product-name" id="val-dest_cng">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-dest_cng"></div>
@@ -1480,10 +1432,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>গন্তব্যে রিজার্ভ মাইক্রোবাস / প্রাইভেট কার (Full-Day Reserved Destination Vehicle)</span>
-                            <span class="mark">ফুল-ডে রিজার্ভ</span>
+                            <span>Full-Day Dedicated Reserve Microbus</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: গন্তব্যে নেমে সারাদিনের জন্য অথবা একাধিক গ্রামীণ পয়েন্ট ঘুরে দেখার জন্য ডেডিকেটেড ব্যক্তিগত গাড়ি।</div>
                         <div class="product-name" id="val-dest_micro">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-dest_micro"></div>
@@ -1492,11 +1443,8 @@
                     </div>
                 </div>
 
-                <!-- TIER 5: মালামাল ও কার্গো পরিবহন -->
-                <div class="content-label">
-                    <span>Tier 5: মালামাল ও কার্গো পরিবহন (Cargo & Heavy Luggage Logistics)</span>
-                    <span class="content-label-sub">কাজের বিবরণ: অতিরিক্ত মালামাল, ভারী ট্রাভেল ট্রাঙ্ক, ক্যাম্পিং গিয়ার, শিফটিং বা বাণিজ্যিক পণ্য পরিবহন</span>
-                </div>
+                <!-- Section 5: Cargo & Heavy Luggage Logistics -->
+                <div class="content-label">Cargo & Heavy Luggage Logistics</div>
 
                 <!-- 13. Covered Cargo Truck / Pickup -->
                 <div class="c-item" id="slot-truck">
@@ -1505,10 +1453,9 @@
                     </div>
                     <div class="details">
                         <div class="component-name">
-                            <span>কাভার্ড ভ্যান / ১-৩ টন পিকআপ ট্রাক (Covered Cargo Pickup / Logistics Truck)</span>
-                            <span class="mark">মালামাল পরিবহন</span>
+                            <span>Covered Cargo Truck / Pickup (1.5 - 3 Ton)</span>
+                            <span class="mark optional">Optional</span>
                         </div>
-                        <div class="role-desc">কাজের বিবরণ: যাত্রীদের ভারী মালামাল, শিফটিং সামগ্রী, ক্যাম্পিং ইকুইপমেন্ট বা ইভেন্টের সামগ্রী নিরাপদে উপজেলা-টু-উপজেলা পৌঁছে দেওয়া।</div>
                         <div class="product-name" id="val-truck">Not Selected</div>
                     </div>
                     <div class="item-price" id="price-truck"></div>
@@ -1537,16 +1484,16 @@
                 <div class="applied-scenarios-bar">
                     <h4>
                         <i class="material-icons" style="font-size: 18px;">auto_awesome</i>
-                        Active Architecture & Intelligent Scenarios
+                        Active Architecture & Real-World Scenarios
                     </h4>
                     <div class="scenario-tag-list" id="applied-scenarios-list">
                         <span class="scen-tag">✓ Scenario 1: Multi-Leg Route Synthesis</span>
                         <span class="scen-tag">✓ Scenario 3: Female Priority Front Seats</span>
-                        <span class="scen-tag">✓ Scenario 5: Multimodal Cohort Decomposition</span>
+                        <span class="scen-tag">✓ Scenario 5: Multi-Passenger Cost Decomposition</span>
                         <span class="scen-tag">✓ Scenario 11: Corporate B2B Quotations</span>
                         <span class="scen-tag">✓ Scenario 12: Split-Bill Link</span>
                         <span class="scen-tag">✓ Scenario 14: Mountain Convoy Navigation</span>
-                        <span class="scen-tag">✓ Upazila-to-Upazila Multimodal Mobility Fleet</span>
+                        <span class="scen-tag">✓ Upazila Multimodal Transit Fleet</span>
                     </div>
                 </div>
 
@@ -1711,7 +1658,7 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script>
-        // State Store: Pure Multimodal Vehicle & Cargo Slots
+        // State Store: Multimodal Vehicle & Cargo Slots
         const currentTour = {
             cng: null,
             sedan: null,
@@ -1728,74 +1675,74 @@
             truck: null
         };
 
-        // Inventory of Bangladeshi Multimodal Vehicles across Upazila routes
+        // Inventory of Multimodal Vehicles across Upazila routes (English Only)
         const inventory = {
             cng: [
                 {
                     id: 1,
                     name: "Local 4-Stroke CNG Auto-Rickshaw",
-                    sub: "ডোরস্টেপ পিকআপ • ৪ জন যাত্রী ক্ষমতা • লোকাল বাজার থেকে টার্মিনাল ট্রান্সফার",
+                    sub: "Doorstep Pickup • 4-Passenger Capacity • Transfer to Main Terminal",
                     price: 450,
                     img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80",
                     details: {
                         type: "4-Stroke Green CNG Auto-Rickshaw (Bajaj / Piaggio)",
-                        schedule: "ডোরস্টেপ রিপোর্ট: যাত্রার ৩০ মিনিট পূর্বে",
-                        duration: "২০-৪০ মিনিট লোকাল রাইড",
+                        schedule: "Reporting: 30 minutes before departure",
+                        duration: "20-40 mins local transfer",
                         routeStops: [
-                            { station: "যাত্রীর বাসা / লোকাল বাজার মোড়", time: "P1", desc: "ডোরস্টেপ থেকে লাগেজ তোলা" },
-                            { station: "প্রধান হাইওয়ে বা বাস কাউন্টার", time: "P2", desc: "টার্মিনাল গেটে সরাসরি ড্রপ" }
+                            { station: "Traveler Doorstep / Local Market Hub", time: "P1", desc: "Baggage loading and passenger boarding" },
+                            { station: "Main Highway / Bus Counter Gate", time: "P2", desc: "Direct terminal drop-off" }
                         ],
-                        amenities: ["৪ জন যাত্রী ধারণক্ষমতা", "পেছনের লাগেজ স্পেস", "সাশ্রয়ী লোকাল ভাড়া", "অভিজ্ঞ লোকাল ড্রাইভার"],
-                        policies: "বুকিং নিশ্চিত হওয়ার সাথে সাথে ড্রাইভারের ফোন নম্বর এসএমএস করা হবে।"
+                        amenities: ["4-Passenger Capacity", "Rear Luggage Storage", "Budget Local Fare", "Experienced Local Driver"],
+                        policies: "Driver contact details will be dispatched via SMS upon confirmation."
                     }
                 },
                 {
                     id: 2,
-                    name: "ইজিবাইক / ব্যাটারিচালিত টমটম (Battery TomTom)",
-                    sub: "শান্ত ও পরিবেশবান্ধব লোকাল বাহন • স্বল্প দূরত্বের ড্রপ",
+                    name: "Electric Battery TomTom Auto",
+                    sub: "Eco-friendly Quiet Transit • Short Distance Neighborhood Drop",
                     price: 300,
                     img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80",
                     details: {
-                        type: "Electric Battery TomTom Auto",
-                        schedule: "তাত্ক্ষণিক লোকাল পিকআপ",
-                        duration: "১৫-২৫ মিনিট",
-                        amenities: ["শান্ত ও ধোঁয়াহীন", "সহজ লোকাল বোর্ডিং", "৫ জন যাত্রী সিট"],
-                        policies: "লোকাল পয়েন্টের জন্য প্রযোজ্য।"
+                        type: "Electric Battery Powered Auto-Rickshaw",
+                        schedule: "Instant local pickup on demand",
+                        duration: "15-25 mins",
+                        amenities: ["Zero Emission", "Comfortable Seating", "5-Passenger Capacity"],
+                        policies: "Applicable for local feeder zones."
                     }
                 }
             ],
             sedan: [
                 {
                     id: 1,
-                    name: "প্রাইভেট এসি সেডান ক্যাব (Toyota Allion / Axio)",
-                    sub: "শীতাতপ নিয়ন্ত্রিত প্রাইভেট ক্যাব • আরামদায়ক ডোরস্টেপ রাইড (৪ সিটার)",
+                    name: "Private AC Sedan Cab (Toyota Allion / Axio)",
+                    sub: "Chilled Air-Conditioned Private Cab • Direct Doorstep Ride (4-Seater)",
                     price: 1800,
                     img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
-                        type: "Air Conditioned Executive Sedan (Toyota Axio / Premio)",
-                        schedule: "ফ্লাইট বা বাসের শিডিউল মিলিয়ে নির্দিষ্ট সময়ে বাসা থেকে পিকআপ",
-                        duration: "ডোরস্টেপ টু টার্মিনাল এক্সপ্রেস",
+                        type: "Executive AC Sedan (Toyota Axio / Premio)",
+                        schedule: "Synchronized with your flight or bus schedule",
+                        duration: "Doorstep to Terminal Express",
                         routeStops: [
-                            { station: "যাত্রীর নির্দিষ্ট ঠিকানা", time: "T0", desc: "ড্রাইভার কর্তৃক লাগেজ লোডিং" },
-                            { station: "প্রধান হাইওয়ে / এক্সপ্রেসওয়ে", time: "T1", desc: "দ্রুত ও আরামদায়ক ট্রানজিট" },
-                            { station: "এয়ারপোর্ট টার্মিনাল / বাস স্টেশন", time: "T2", desc: "যাত্রী ও লাগেজ নামিয়ে দেওয়া" }
+                            { station: "Traveler Home Address", time: "T0", desc: "Luggage handling by chauffeur" },
+                            { station: "Express Corridor / Highway", time: "T1", desc: "Smooth private highway transfer" },
+                            { station: "Airport / Main Terminal Departure Bay", time: "T2", desc: "Direct departure drop" }
                         ],
-                        amenities: ["চিল্ড এয়ার কন্ডিশনিং", "৪ জন যাত্রী সিট", "বড় ট্রাঙ্ক স্পেস (২টি বড় ট্রলি)", "জিপিএস ট্র্যাকিং"],
-                        policies: "ফ্রি ক্যান্সেলেশন যাত্রার ৩ ঘণ্টা পূর্ব পর্যন্ত।"
+                        amenities: ["Climate Control AC", "4-Passenger Seating", "Spacious Boot (2 Large Trolleys)", "Live GPS Tracking"],
+                        policies: "Free cancellation up to 3 hours prior to departure."
                     }
                 },
                 {
                     id: 2,
                     name: "Toyota Corolla Hybrid Premier Taxi",
-                    sub: "আল্ট্রা-স্মুথ হাইব্রিড ক্যাব • ফুল এসি লাগেজ সার্ভিস",
+                    sub: "Ultra-Smooth Hybrid Drive • Luggage Service Included",
                     price: 2200,
                     img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
                         type: "Hybrid Luxury Sedan",
-                        amenities: ["স্মুথ হাইব্রিড ড্রাইভ", "ফোন চার্জিং পোর্ট", "মিনারেল ওয়াটার", "ইউনিফর্ম পরিহিত ড্রাইভার"],
-                        policies: "তাত্ক্ষণিক কনফার্মেশন।"
+                        amenities: ["Quiet Hybrid Drive", "Phone Fast Charging", "Bottled Mineral Water", "Uniformed Driver"],
+                        policies: "Instant booking confirmation."
                     }
                 }
             ],
@@ -1803,34 +1750,34 @@
                 {
                     id: 1,
                     name: "Toyota HiAce Super GL (11-Seater AC)",
-                    sub: "পারিবারিক বা দলবদ্ধ যাত্রীদের জন্য বাড়ির আঙিনা থেকে টার্মিনাল পিকআপ",
+                    sub: "Reserved Private Van for Families and Groups • Direct Terminal Pickup",
                     price: 3500,
                     img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
                         type: "Toyota HiAce Super GL (11 Passenger Capacity)",
-                        schedule: "পিকআপ সময়: যাত্রীর পছন্দ অনুযায়ী",
-                        duration: "ফ্লেক্সিবল ডোরস্টেপ পিকআপ",
+                        schedule: "Flexible pickup time requested by traveler",
+                        duration: "Direct group transfer",
                         routeStops: [
-                            { station: "যাত্রীর বাসার আঙিনা", time: "Start", desc: "গ্রুপ বোর্ডিং ও লাগেজ লোডিং" },
-                            { station: "হাইওয়ে লিংক রোড", time: "Transit", desc: "এসি এক্সিকিউটিভ ড্রাইভ" },
-                            { station: "মূল বাস কাউন্টার / স্টেশন", time: "Drop", desc: "সবাইকে একসাথে নামিয়ে দেওয়া" }
+                            { station: "Traveler Group Assembly Point", time: "Start", desc: "Full team boarding and heavy bag loading" },
+                            { station: "Highway Express Corridor", time: "Transit", desc: "Air-conditioned express transit" },
+                            { station: "Main Bus Terminal / Railway Station", time: "Drop", desc: "Group arrival with helper assistance" }
                         ],
-                        amenities: ["১১ জন রিক্লাইনিং সিট", "ডুয়াল এসি ব্লোয়ার", "প্রচুর মালামাল রাখার জায়গা", "অভিজ্ঞ হাইওয়ে চালক"],
-                        policies: "গ্রুপের একাধিক স্টপ থেকে পিকআপ সুবিধা প্রযোজ্য।"
+                        amenities: ["11 Reclining Seats", "Dual AC Blowers", "Spacious Luggage Area", "Senior Highway Chauffeur"],
+                        policies: "Multiple pickup points along the route are supported."
                     }
                 },
                 {
                     id: 2,
                     name: "Toyota Noah 7-Seater AC Family Van",
-                    sub: "৭ সিটের আরামদায়ক ফ্যামিলি ভ্যান • লাগেজসহ ডোরস্টেপ ড্রপ",
+                    sub: "7-Seater Comfortable Family Van • Doorstep Terminal Drop",
                     price: 2800,
                     img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
-                        type: "Toyota Noah / Voxy 7-Seater",
-                        amenities: ["ক্যাপ্টেন সিট", "এসি", "মাঝারি পরিবারের উপযোগী"],
-                        policies: "ফুল ডে রিজার্ভেশন ও ড্রপ সুবিধা।"
+                        type: "Toyota Noah / Voxy 7-Seater Van",
+                        amenities: ["Captain Seats", "Air Conditioned", "Ideal for Medium Families"],
+                        policies: "Full day reservation and drop options."
                     }
                 }
             ],
@@ -1838,60 +1785,60 @@
                 {
                     id: 1,
                     name: "Green Line Multi-Axle Sleeper Coach",
-                    sub: "বিজনেস ক্লাস স্লিপার বার্থ • ব্যক্তিগত রিডিং ল্যাম্প ও ইউএসবি চার্জার",
+                    sub: "Business Class Sleeper Berths • Personal USB & Reading Lamp",
                     price: 2200,
                     img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=300&q=80",
                     hasSeats: true,
                     scenario: "Scenario 3: Female Priority Front Seats",
                     details: {
                         type: "MAN Multi-Axle Luxury Double-Decker Sleeper Coach",
-                        schedule: "রাত ১০:৪৫ টার্মিনাল ডিপার্চার ➔ সকাল ০৬:৪৫ গন্তব্য টার্মিনাল",
-                        duration: "৮ ঘণ্টা ডিরেক্ট এক্সপ্রেস",
+                        schedule: "Departure: 10:45 PM ➔ Arrival: 06:45 AM",
+                        duration: "8 Hours Express Sleeper",
                         routeStops: [
-                            { station: "ঢাকা আরামবাগ / সায়েদাবাদ VIP লাউঞ্জ", time: "10:45 PM", desc: "বোর্ডিং ও লাগেজ সিকিউরিটি ট্যাগিং" },
-                            { station: "কুমিল্লা হাইওয়ে ইন / পোদ্দার", time: "01:30 AM", desc: "৩০ মিনিট রিফ্রেশমেন্ট ও ডিনার ব্রেক" },
-                            { station: "হাইওয়ে এক্সপ্রেস করিডোর", time: "04:30 AM", desc: "স্মুথ এয়ার-সাসপেনশন নন-স্টপ ট্রানজিট" },
-                            { station: "গন্তব্য কেন্দ্রীয় বাস টার্মিনাল", time: "06:45 AM", desc: "নিরাপদ টার্মিনাল ড্রপ" }
+                            { station: "Dhaka Arambagh VIP Lounge", time: "10:45 PM", desc: "Lounge boarding and luggage tagging" },
+                            { station: "Cumilla Highway Inn", time: "01:30 AM", desc: "30-min refreshment break" },
+                            { station: "Express Highway Corridor", time: "04:30 AM", desc: "Smooth electronically controlled transit" },
+                            { station: "Central Bus Terminal", time: "06:45 AM", desc: "Direct terminal arrival" }
                         ],
                         amenities: [
-                            "ফ্ল্যাট রিক্লাইনিং স্লিপার বার্থ উইথ প্রাইভেসি কার্টেন",
-                            "Scenario 3: নারী যাত্রীদের জন্য সংরক্ষিত সামনের বিশেষ সিট",
-                            "ব্যক্তিগত ইউএসবি ফাস্ট চার্জিং ও রিডিং ল্যাম্প",
-                            "কম্প্লিমেন্টারি মিনারেল ওয়াটার ও স্ন্যাকস বক্স",
-                            "অনবোর্ড স্টুয়ার্ড ও স্যানিটাইজড কম্বল",
-                            "ইলেকট্রনিক্যালি কন্ট্রোল্ড স্মুথ এয়ার সাসপেনশন"
+                            "Flat Reclining Sleeper Berths with Privacy Curtains",
+                            "Scenario 3: Reserved Female Priority Front Berths",
+                            "Individual USB Fast Charging & Night Reading Lamp",
+                            "Complimentary Bottled Mineral Water & Snack Box",
+                            "Onboard Steward & Sanitized Blankets",
+                            "Electronically Controlled Air Suspension"
                         ],
-                        policies: "২৪ ঘণ্টা পূর্বে ফ্রি ক্যান্সেলেশন। যাত্রার ১৫ মিনিট পূর্বে কাউন্টারে রিপোর্ট করতে হবে।"
+                        policies: "Free cancellation up to 24 hours prior to departure."
                     }
                 },
                 {
                     id: 2,
                     name: "Saintmartin Travels Scania Multi-Axle AC",
-                    sub: "স্ক্যানিয়া কে৪১০ মাল্টি-অ্যাক্সেল বিজনেস ক্লাস • লেদার রিক্লাইনিং সিট",
+                    sub: "Scania K410 Multi-Axle Business Class • Reclining Leather Seats",
                     price: 1600,
                     img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
                     hasSeats: true,
                     details: {
                         type: "Scania K410 Multi-Axle AC Business Class",
-                        schedule: "রাত ১১:০০ ডিপার্চার ➔ সকাল ০৭:০০ অ্যারাইভাল",
-                        duration: "৮ ঘণ্টা ওভারনাইট",
-                        amenities: ["১৪০ ডিগ্রি রিক্লাইনিং লেদার সিট", "হাই-স্পিড ওয়াইফাই", "এসি ভেন্ট কন্ট্রোল", "মিনারেল ওয়াটার"],
-                        policies: "তাত্ক্ষণিক ডিজিটাল বোর্ডিং পাস।"
+                        schedule: "Departure: 11:00 PM ➔ Arrival: 07:00 AM",
+                        duration: "8 Hours Overnight Direct",
+                        amenities: ["140° Reclining Leather Seats", "High-Speed WiFi", "AC Vent Control", "Mineral Water"],
+                        policies: "Instant digital boarding pass."
                     }
                 },
                 {
                     id: 3,
                     name: "Hanif Enterprise Hyundai Universe AC",
-                    sub: "হুন্দাই ইউনিভার্স এক্সিকিউটিভ এসি চেয়ার কোচ • সুপার সাসপেনশন",
+                    sub: "Hyundai Universe Executive AC Chair Coach • Air Suspension",
                     price: 1500,
                     img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
                     hasSeats: true,
                     details: {
                         type: "Hyundai Universe AC Coach",
-                        schedule: "রাত ১১:১৫ ডিপার্চার ➔ সকাল ০৭:৩০ অ্যারাইভাল",
-                        duration: "৮ ঘণ্টা ১৫ মিনিট",
-                        amenities: ["আরামদায়ক পুশব্যাক সিট", "এসি", "লাগেজ স্পেস"],
-                        policies: "রেগুলার কাউন্টার বোর্ডিং।"
+                        schedule: "Departure: 11:15 PM ➔ Arrival: 07:30 AM",
+                        duration: "8 Hours 15 Mins",
+                        amenities: ["Comfortable Push-back Seats", "Air Conditioned", "Luggage Tagging"],
+                        policies: "Instant confirmation."
                     }
                 }
             ],
@@ -1899,34 +1846,34 @@
                 {
                     id: 1,
                     name: "Shyamoli NR Travels (Non-AC Economy)",
-                    sub: "হিনো ১জে নন-এসি চেয়ার কোচ • ৪০ সিটের আরামদায়ক পুশব্যাক সিট",
+                    sub: "Hino 1J Economy Chair Coach • 40-Seat Push-back Layout",
                     price: 900,
                     img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
                     hasSeats: true,
                     details: {
                         type: "Hino 1J Economy Chair Coach",
-                        schedule: "রাত ১০:১৫ কাউন্টার ডিপার্চার ➔ সকাল ০৭:১৫ অ্যারাইভাল",
-                        duration: "৯ ঘণ্টা সাশ্রয়ী ট্রানজিট",
+                        schedule: "Departure: 10:15 PM ➔ Arrival: 07:15 AM",
+                        duration: "9 Hours Budget Transit",
                         routeStops: [
-                            { station: "ঢাকা আরামবাগ / সায়েদাবাদ", time: "10:15 PM", desc: "কাউন্টার বোর্ডিং" },
-                            { station: "হাইওয়ে বিরতি পয়েন্ট", time: "01:45 AM", desc: "খাবার ও নামাজের বিরতি" },
-                            { station: "গন্তব্য টার্মিনাল", time: "07:15 AM", desc: "চূড়ান্ত গন্তব্য" }
+                            { station: "Departure Counter", time: "10:15 PM", desc: "Boarding and baggage loading" },
+                            { station: "Midway Rest Stop", time: "01:45 AM", desc: "Food and prayer break" },
+                            { station: "Destination Terminal", time: "07:15 AM", desc: "Final arrival" }
                         ],
-                        amenities: ["২x২ পুশব্যাক সিট", "বড় লাগেজ বক্স (২০ কেজি)", "ফার্স্ট এইড বক্স", "অভিজ্ঞ হাইওয়ে চালক"],
-                        policies: "কাউন্টারে ১৫ মিনিট আগে উপস্থিত হতে হবে।"
+                        amenities: ["2x2 Push-back Seats", "Large Luggage Compartment (20kg)", "First Aid Box", "Senior Highway Driver"],
+                        policies: "Please report to counter 15 minutes before departure."
                     }
                 },
                 {
                     id: 2,
                     name: "Hanif Enterprise Economy Coach",
-                    sub: "বাজেট ফ্রেন্ডলি আন্তঃজেলা নন-এসি বাস • নিয়মিত শিডিউল",
+                    sub: "Budget Friendly Interdistrict Highway Bus • Reliable Service",
                     price: 850,
                     img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=300&q=80",
                     hasSeats: true,
                     details: {
                         type: "Non-AC Highway Bus",
-                        amenities: ["পুশব্যাক সিট", "লাগেজ স্পেস", "নির্ভরযোগ্য সার্ভিস"],
-                        policies: "তাত্ক্ষণিক বুকিং।"
+                        amenities: ["Push-back Seats", "Luggage Space", "Reliable Schedule"],
+                        policies: "Instant booking."
                     }
                 }
             ],
@@ -1934,39 +1881,39 @@
                 {
                     id: 1,
                     name: "Biman Bangladesh Airlines (Boeing 737-800)",
-                    sub: "ডিরেক্ট এক্সপ্রেস জেটলাইনার • মাত্র ৫০ মিনিটে আকাশপথ ভ্রমণ • ২০ কেজি লাগেজ ফ্রি",
+                    sub: "Direct Express Jetliner • 50 Minutes Flight • 20kg Checked Baggage Included",
                     price: 4500,
                     img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=300&q=80",
                     hasFlightSeats: true,
                     details: {
                         type: "Boeing 737-800 Commercial Jetliner (Flight BG-433)",
-                        schedule: "সকাল ০৯:৩০ টেকঅফ (DAC) ➔ সকাল ১০:২০ ল্যান্ডিং",
-                        duration: "৫০ মিনিট নন-স্টপ ফ্লাইট",
+                        schedule: "Take-off: 09:30 AM (DAC) ➔ Landing: 10:20 AM",
+                        duration: "50 Minutes Non-Stop",
                         routeStops: [
-                            { station: "হযরত শাহজালাল আন্তর্জাতিক বিমানবন্দর (DAC)", time: "08:15 AM", desc: "চেক-ইন ও লাগেজ ড্রপ" },
-                            { station: "রানওয়ে টেক-অফ", time: "09:30 AM", desc: "আকাশপথে দ্রুততম এক্সপ্রেস ট্রানজিট" },
-                            { station: "গন্তব্য বিমানবন্দর", time: "10:20 AM", desc: "নিরাপদ ল্যান্ডিং ও লাগেজ বেল্ট সংগ্রহ" }
+                            { station: "Hazrat Shahjalal International (DAC)", time: "08:15 AM", desc: "Check-in and baggage drop" },
+                            { station: "Runway Departure", time: "09:30 AM", desc: "Fastest aerial transit" },
+                            { station: "Destination Airport", time: "10:20 AM", desc: "Landing and baggage claim" }
                         ],
                         amenities: [
-                            "২০ কেজি চেকড-ইন লাগেজ + ৭ কেজি কেবিন ব্যাগ",
-                            "ইন-ফ্লাইট কমপ্লিমেন্টারি জুস ও স্ন্যাকস বক্স",
-                            "লেগস্পেস ও রিক্লাইনিং আরামদায়ক এরোপ্লেন সিট",
-                            "কুইক বোর্ডিং ও প্রায়োরিটি হ্যান্ডলিং"
+                            "20kg Checked Baggage + 7kg Cabin Bag",
+                            "In-Flight Refreshments and Snack Box",
+                            "Ergonomic Reclining Seats with Legroom",
+                            "Priority Boarding"
                         ],
-                        policies: "ফ্লাইট ছাড়ার কমপক্ষে ১ ঘণ্টা পূর্বে বিমানবন্দরে চেক-ইন সম্পন্ন করতে হবে।"
+                        policies: "Check-in closes 45 minutes before departure."
                     }
                 },
                 {
                     id: 2,
                     name: "US-Bangla Airlines (ATR 72-600)",
-                    sub: "দ্রুত ও নির্ভরযোগ্য অভ্যন্তরীণ ফ্লাইট • অন-টাইম ডিপার্চার",
+                    sub: "Fast and Reliable Domestic Flight • On-Time Schedule",
                     price: 4200,
                     img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80",
                     hasFlightSeats: true,
                     details: {
                         type: "ATR 72-600 Twin-Turboprop Aircraft",
-                        amenities: ["২০ কেজি লাগেজ", "অনবোর্ড রিফ্রেশমেন্ট", "অন-টাইম পারফরম্যান্স"],
-                        policies: "জাতীয় পরিচয়পত্র বাধ্যতামূলক।"
+                        amenities: ["20kg Luggage", "Onboard Refreshment", "High On-Time Rating"],
+                        policies: "Valid Government ID required."
                     }
                 }
             ],
@@ -1974,40 +1921,40 @@
                 {
                     id: 1,
                     name: "Bangladesh Railway Intercity Express",
-                    sub: "এসি স্নিগ্ধা ও শোভন চেয়ার • যানজটহীন আরামদায়ক ও নিরাপদ রেল ভ্রমণ",
+                    sub: "Air-Conditioned Snigdha & Shovon Chair • Traffic-Free Reliable Rail Transit",
                     price: 750,
                     img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80",
                     hasTrainSeats: true,
                     details: {
-                        type: "Bangladesh Railway Express (সুনির্দিষ্ট আন্তঃনগর এক্সপ্রেস)",
-                        schedule: "সকাল ০৬:২০ কমলাপুর ডিপার্চার ➔ দুপুর ১২:৪৫ গন্তব্য স্টেশন",
-                        duration: "৬ ঘণ্টা ২৫ মিনিট ট্রানজিট",
+                        type: "Bangladesh Railway Express",
+                        schedule: "Departure: 06:20 AM ➔ Arrival: 12:45 PM",
+                        duration: "6 Hours 25 Mins",
                         routeStops: [
-                            { station: "ঢাকা কমলাপুর কেন্দ্রীয় রেলওয়ে স্টেশন", time: "06:20 AM", desc: "প্ল্যাটফর্ম বোর্ডিং" },
-                            { station: "ঢাকা বিমানবন্দর রেলওয়ে স্টেশন", time: "06:50 AM", desc: "প্যাসেঞ্জার ট্রানজিট স্টপ" },
-                            { station: "প্রধান জংশন স্টেশন", time: "09:30 AM", desc: "রেলওয়ে ট্রানজিট ক্রসিং" },
-                            { station: "গন্তব্য কেন্দ্রীয় রেলওয়ে স্টেশন", time: "12:45 PM", desc: "নিরাপদ আগমন" }
+                            { station: "Kamalapur Central Railway Station", time: "06:20 AM", desc: "Platform boarding" },
+                            { station: "Airport Station", time: "06:50 AM", desc: "Secondary boarding stop" },
+                            { station: "Midway Railway Junction", time: "09:30 AM", desc: "Transit crossing" },
+                            { station: "Destination Central Station", time: "12:45 PM", desc: "Arrival" }
                         ],
                         amenities: [
-                            "এসি স্নিগ্ধা রিক্লাইনিং চেয়ার কোচ",
-                            "অনবোর্ড রেলওয়ে প্যান্ট্রি কার খাবার সার্ভিস",
-                            "পরিস্কার ওয়াশরুম ও চার্জিং সুবিধা",
-                            "প্রাকৃতিক সবুজ গ্রামীন ট্রেইল ভিউ"
+                            "AC Snigdha Reclining Chair Coach",
+                            "Onboard Canteen Meal Service",
+                            "Clean Washroom Facilities",
+                            "Scenic Countryside Views"
                         ],
-                        policies: "রেলওয়ে ই-টিকেটিং নীতিমালা অনুসারে নির্ধারিত।"
+                        policies: "Standard Railway e-ticketing rules apply."
                     }
                 },
                 {
                     id: 2,
                     name: "Intercity Express AC Berth Cabin",
-                    sub: "ওভারনাইট রেল স্লিপার বার্থ • নিরুপদ্রব ঘুমের মধ্যে ভ্রমণ",
+                    sub: "Overnight Sleeper Berths • Rest and Sleep While Traveling",
                     price: 1250,
                     img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80",
                     hasTrainSeats: true,
                     details: {
                         type: "AC Sleeper Berth Train Cabin",
-                        amenities: ["স্লিপার বার্থ", "বেডিং ও বালিশ", "এসি কেবিন"],
-                        policies: "রেলওয়ে রিজার্ভেশন।"
+                        amenities: ["Sleeper Berth Bed", "Pillows and Linens", "Secure Cabin"],
+                        policies: "Advance booking advised."
                     }
                 }
             ],
@@ -2015,39 +1962,39 @@
                 {
                     id: 1,
                     name: "MV Sundarban 10 Luxury River Cruiser",
-                    sub: "বিলাসবহুল ভিআইপি এসি কেবিন • নদীমাতৃক রুটে রাজকীয় রাতযাপন",
+                    sub: "VIP AC Deluxe Cabin • Overnight Scenic Waterway Voyage",
                     price: 2400,
                     img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
                         type: "Multi-Decker Inland Passenger Launch",
-                        schedule: "সন্ধ্যা ০৮:০০ সদরঘাট ঘাট ডিপার্চার ➔ সকাল ০৬:০০ গন্তব্য ঘাট",
-                        duration: "১০ ঘণ্টা নদী ক্রুজ",
+                        schedule: "Departure: 08:00 PM ➔ Arrival: 06:00 AM",
+                        duration: "10 Hours River Cruise",
                         routeStops: [
-                            { station: "ঢাকা সদরঘাট লঞ্চ টার্মিনাল", time: "08:00 PM", desc: "কেবিন চেক-ইন ও লাগেজ লোডিং" },
-                            { station: "পদ্মা-মেঘনা নদী মোহনা", time: "11:30 PM", desc: "শান্ত নদীমাতৃক জলধারা ক্রুজিং" },
-                            { station: "গন্তব্য লঞ্চ ঘাট", time: "06:00 AM", desc: "সকালের সূর্যোদয়ের সাথে ঘাটে অবতরণ" }
+                            { station: "Sadarghat Launch Terminal", time: "08:00 PM", desc: "Cabin check-in and boarding" },
+                            { station: "Padma-Meghna River Confluence", time: "11:30 PM", desc: "Quiet night cruising" },
+                            { station: "Destination River Ghat", time: "06:00 AM", desc: "Morning disembarkation" }
                         ],
                         amenities: [
-                            "ডাবল বেড ভিআইপি এসি কেবিন",
-                            "ব্যক্তিগত ব্যালকনি ও রিভার ভিউ",
-                            "অনবোর্ড ডাইনিং রেস্তোরাঁ ও টাটকা ইলিশ ডিনার",
-                            "লাইফ জ্যাকেট ও আধুনিক নৌ-নিরাপত্তা"
+                            "Double Bed VIP Air-Conditioned Cabin",
+                            "Private Balcony with River View",
+                            "Onboard Restaurant with Fresh Hilsa Dinner",
+                            "Life Jackets and Modern Maritime Safety"
                         ],
-                        policies: "বিআইডব্লিউটিএ নৌ নিরাপত্তা বিধিমালা মেনে পরিচালিত।"
+                        policies: "Governed by BIWTA maritime navigation guidelines."
                     }
                 },
                 {
                     id: 2,
                     name: "MV Parabat 12 Executive River Cruise",
-                    sub: "সিঙ্গেল / ডাবল এসি কেবিন • নিরিবিলি নদী ভ্রমণ",
+                    sub: "Single / Double AC Cabin • Peaceful River Journey",
                     price: 1800,
                     img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
                         type: "Executive Passenger Launch",
-                        amenities: ["এসি কেবিন", "টিভি ও ফ্রিজ", "রুফটপ ডেক ভিউ"],
-                        policies: "সদরঘাট টার্মিনাল রিপোর্টিং।"
+                        amenities: ["AC Cabin", "TV & Mini Fridge", "Rooftop Observation Deck"],
+                        policies: "Sadarghat terminal reporting."
                     }
                 }
             ],
@@ -2055,15 +2002,15 @@
                 {
                     id: 1,
                     name: "Express Terminal Transfer Shuttle Van",
-                    sub: "বিমানবন্দর বা রেলস্টেশন থেকে মূল বাস টার্মিনালে কানেক্টিং এসি শাটল",
+                    sub: "Seamless Transfer Between Airport, Train Station & Bus Terminal",
                     price: 350,
                     img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=300&q=80",
                     details: {
                         type: "Direct Transit Connector Van",
-                        schedule: "ফ্লাইট / ট্রেনের আগমনের সাথে সিঙ্ক করা শিডিউল",
-                        duration: "২৫-৪৫ মিনিট",
-                        amenities: ["লাগেজ ড্রপ", "এয়ার কন্ডিশনড", "নির্বিঘ্ন কানেক্টিভিটি"],
-                        policies: "মিস-কানেকশন ছাড়া পরবর্তী শাটলে ওঠার ফ্রি সুবিধা।"
+                        schedule: "Synchronized with inbound flight and train arrivals",
+                        duration: "25-45 mins",
+                        amenities: ["Luggage Drop", "Air Conditioned", "Direct Gateway Connection"],
+                        policies: "Free transfer to the next available shuttle if flight delayed."
                     }
                 }
             ],
@@ -2071,41 +2018,41 @@
                 {
                     id: 1,
                     name: "4WD Mountain Chander Gari (10-12 Pax)",
-                    sub: "পাহাড়ি আঁকাবাঁকা ও কাঁচা রাস্তায় অফ-রোড ট্রানজিটের জন্য হেভি ডিউটি জিপ",
+                    sub: "Heavy-Duty 4x4 Mountain Jeep for Winding & Hill-Track Terrains",
                     price: 6500,
                     img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     scenario: "Scenario 14: Mountain Convoy Navigation",
                     details: {
                         type: "Four-Wheel Drive Mountain Jeep (Mahindra / Toyota)",
-                        schedule: "আর্মি কনভয় শিডিউল: সকাল ১০:০০ এবং বিকাল ০৩:০০",
-                        duration: "৩.৫ ঘণ্টা পাহাড়ি ড্রাইভ",
+                        schedule: "Convoy Timings: 10:00 AM & 03:00 PM",
+                        duration: "3.5 Hours Hill-Track Drive",
                         routeStops: [
-                            { station: "পাহাড়ি গেটওয়ে চেকপোস্ট", time: "09:30 AM", desc: "কনভয় ফরমেশন ও সিকিউরিটি চেকিং" },
-                            { station: "বাঘাইহাট পুলিশ ক্যাম্প", time: "11:00 AM", desc: "নথি যাচাই ও টোকেন ছাড়করণ" },
-                            { station: "উঁচু পাহাড়ি রিজ ও ঝর্ণা পয়েন্ট", time: "12:15 PM", desc: "৪x৪ পাহাড়ি চড়াই পার হওয়া" },
-                            { station: "গন্তব্য পাহাড়ি ভ্যালি হেলিপ্যাড", time: "01:30 PM", desc: "চূড়ান্ত পাহাড়ি ড্রপ" }
+                            { station: "Mountain Gateway Checkpost", time: "09:30 AM", desc: "Convoy lineup and security pass check" },
+                            { station: "Baghaihat Police Camp", time: "11:00 AM", desc: "Document verification and convoy clearance" },
+                            { station: "Scenic Mountain Ridge Crossing", time: "12:15 PM", desc: "4x4 climb through hill curves" },
+                            { station: "Destination Helipad / Valley Center", time: "01:30 PM", desc: "Final arrival" }
                         ],
                         amenities: [
-                            "পাহাড়ি ট্র্যাকের জন্য ফোর-হুইল ড্রাইভ (4x4)",
-                            "১০-১২ জন যাত্রী ধারণক্ষমতা",
-                            "ছাদে হেভি লাগেজ ক্যারিয়ার ও রেইন কভার",
-                            "পাহাড়ে দীর্ঘদিনের অভিজ্ঞ লাইসেন্সধারী পাহাড়ি ড্রাইভার"
+                            "Heavy-Duty Four-Wheel Drive (4x4)",
+                            "10-12 Passenger Capacity",
+                            "Reinforced Roof Luggage Rack with Weather Cover",
+                            "Experienced Mountain-Certified Driver"
                         ],
-                        policies: "সেনাবাহিনীর কনভয় সময়সূচী মেনে চলা বাধ্যতামূলক।"
+                        policies: "Compliance with military escort convoy timings is mandatory."
                     }
                 },
                 {
                     id: 2,
-                    name: "Mahindra 4x4 Mountain Pickup Carrier",
-                    sub: "পাহাড়ি ট্র্যাকের শক্তিশালী ক্যারিয়ার জিপ • লাগেজ র্যাক",
+                    name: "Mahindra 4x4 Mountain Carrier",
+                    sub: "High-Clearance Hill-Track Certified Carrier Jeep",
                     price: 5500,
                     img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
                         type: "Heavy Suspension Mountain Pickup",
-                        amenities: ["৪x৪ ড্রাইভ", "উন্মুক্ত ও কভার্ড সিট", "পাহাড়ি ট্র্যাক"],
-                        policies: "কনভয় ক্লিয়ারেন্স।"
+                        amenities: ["4x4 Drive", "Covered & Open Seating", "Hill-Track Ready"],
+                        policies: "Convoy clearance required."
                     }
                 }
             ],
@@ -2113,72 +2060,72 @@
                 {
                     id: 1,
                     name: "Destination Last-Mile CNG / TomTom Auto",
-                    sub: "টার্মিনাল থেকে গন্তব্যের বাড়ি, হোটেল বা আত্মীয়ের বাসায় পৌঁছানোর সহজ যান",
+                    sub: "Convenient Transfer from Terminal to Your Exact Doorstep or Hotel",
                     price: 350,
                     img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80",
                     details: {
                         type: "Local Destination Auto / CNG",
-                        schedule: "টার্মিনাল অ্যারাইভালের সাথে সাথেই প্রস্তুত",
-                        duration: "১৫-৩০ মিনিট",
-                        amenities: ["ডোরস্টেপ লাস্ট-মাইল ড্রপ", "লাগেজ স্পেস", "সহজ লোকাল যোগাযোগ"],
-                        policies: "গন্তব্য টার্মিনালে ড্রাইভার নাম-ফলকসহ অপেক্ষা করবে।"
+                        schedule: "Waiting at terminal exit upon arrival",
+                        duration: "15-30 mins",
+                        amenities: ["Last-Mile Drop", "Luggage Storage", "Local Point Navigation"],
+                        policies: "Driver waits with passenger name card at counter."
                     }
                 }
             ],
             dest_micro: [
                 {
                     id: 1,
-                    name: "গন্তব্যে ফুল-ডে রিজার্ভ এসি মাইক্রোবাস (Toyota HiAce)",
-                    sub: "গন্তব্য এলাকায় সারাদিনের জন্য অথবা দর্শনীয় পয়েন্টে ঘোরার ডেডিকেটেড গাড়ি",
+                    name: "Full-Day Dedicated Reserve Microbus (HiAce)",
+                    sub: "12 Hours of Private Travel with Driver for Local Sightseeing & Visits",
                     price: 4500,
                     img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
                         type: "Full-Day Dedicated Passenger Van with Driver",
-                        schedule: "সকাল ০৮:০০ থেকে রাত ০৮:০০ (১২ ঘণ্টা আনলিমিটেড লোকাল মুভমেন্ট)",
-                        duration: "সারাদিনের রিজার্ভেশন",
-                        amenities: ["১২ ঘণ্টা ফুল রিজার্ভেশন", "ফুয়েল ও ড্রাইভার এলাউন্স অন্তর্ভুক্ত", "১১ জন আরামদায়ক সিট", "চিল্ড এসি"],
-                        policies: "গন্তব্যের সবকটি পয়েন্টে অবাধ যাতায়াত।"
+                        schedule: "08:00 AM to 08:00 PM (12 Hours Unlimited Local Movement)",
+                        duration: "Full-Day Private Reservation",
+                        amenities: ["12 Hours Full Reserve", "Fuel and Driver Allowance Included", "11 Comfortable Seats", "Chilled Air Conditioning"],
+                        policies: "Travel anywhere within destination upazila borders."
                     }
                 }
             ],
             truck: [
                 {
                     id: 1,
-                    name: "কাভার্ড ভ্যান / ১.৫ টন পিকআপ ট্রাক (Tata / Mahindra)",
-                    sub: "ভ্রমণের অতিরিক্ত ভারী লাগেজ, ক্যাম্পিং সরঞ্জাম, পণ্য ও শিফটিং সামগ্রী নিরাপদ পরিবহন",
+                    name: "Covered Cargo Pickup (1.5 Ton Tata / Mahindra)",
+                    sub: "Safe Upazila-to-Upazila Delivery for Heavy Luggage, Camping Gear & Goods",
                     price: 5500,
                     img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
                         type: "Covered Weatherproof Cargo Pickup (1.5 Ton Capacity)",
-                        schedule: "লোডিং সময়: যাত্রার পূর্বে ডোরস্টেপ থেকে ➔ ডেলিভারি: গন্তব্যের ডোরস্টেপ",
-                        duration: "উপজেলা টু উপজেলা সরাসরি কার্গো ট্রানজিট",
+                        schedule: "Loading at origin doorstep ➔ Direct delivery to destination address",
+                        duration: "Direct Upazila-to-Upazila Freight",
                         routeStops: [
-                            { station: "যাত্রীর উৎপত্তি উপজেলা ও বাসা", time: "C1", desc: "মালামাল লোডিং ও সুরক্ষিত প্যাকিং সিল" },
-                            { station: "আন্তঃজেলা হাইওয়ে কার্গো করিডোর", time: "C2", desc: "জিপিএস ট্র্যাকিং সহ নন-স্টপ ট্রানজিট" },
-                            { station: "গন্তব্য উপজেলা ও ঠিকানায় ডেলিভারি", time: "C3", desc: "সুরক্ষিত আনলোডিং ও রিসিভিং" }
+                            { station: "Origin Address", time: "C1", desc: "Loading and weatherproof security seal" },
+                            { station: "Highway Freight Corridor", time: "C2", desc: "Non-stop transit with live GPS tracking" },
+                            { station: "Destination Address", time: "C3", desc: "Careful unloading and handover" }
                         ],
                         amenities: [
-                            "১.৫ টন ওজন ধারণক্ষমতা (ভারী বাক্স, ট্রাঙ্ক, সাইকেল, ক্যাম্পিং গিয়ার)",
-                            "বৃষ্টি ও ধুলাবালিমুক্ত ওয়াটারপ্রুফ কাভার্ড বডি",
-                            "রিয়েল-টাইম জিপিএস লাইভ ট্র্যাকিং",
-                            "সহকারী হেল্পার লোডিং ও আনলোডিং সহায়তা"
+                            "1.5 Ton Payload Capacity (Trunks, Gear, Equipment)",
+                            "Weatherproof & Dustproof Covered Body",
+                            "Live GPS Fleet Monitoring",
+                            "Helper Loading and Unloading Assistance"
                         ],
-                        policies: "মালামাল সম্পূর্ণ ইন্স্যুরেন্স ও সিলযুক্ত অবস্থায় পরিবহন করা হয়।"
+                        policies: "Comprehensive transit insurance and sealed handover included."
                     }
                 },
                 {
                     id: 2,
-                    name: "৩ টন হেভি কার্গো ট্রাক (Tata 407 Covered Van)",
-                    sub: "বড় টিম, বাণিজ্যিক সরঞ্জাম বা সম্পূর্ণ পারিবারিক শিফটিং মালামাল পরিবহন",
+                    name: "Heavy Cargo Truck (3-Ton Tata 407 Covered Van)",
+                    sub: "For Large Groups, Commercial Equipment or Complete Relocations",
                     price: 8500,
                     img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=300&q=80",
                     hasSpecs: true,
                     details: {
                         type: "Heavy Duty 3-Ton Covered Van",
-                        amenities: ["৩ টন কার্গো স্পেস", "২ জন লোডিং হেল্পার", "সিকিউরিটি লক"],
-                        policies: "অগ্রিম রসিদ ও ডেলিভারি চালান প্রদান করা হয়।"
+                        amenities: ["3 Ton Cargo Space", "2 Loading Helpers", "Lockable Container"],
+                        policies: "Official consignment note provided."
                     }
                 }
             ]
@@ -2199,19 +2146,19 @@
 
         function formatSlotTitle(slotName) {
             const titles = {
-                cng: 'লোকাল অটোরিকশা / সিএনজি (Local Auto / CNG)',
-                sedan: 'প্রাইভেট এসি সেডান ক্যাব (Doorstep AC Private Cab)',
-                microbus: 'ডোরস্টেপ এসি মাইক্রোবাস (Toyota HiAce / Noah)',
-                coach: 'এসি লাক্সারি হাইওয়ে কোচ (Scania / Hyundai / Sleeper)',
-                bus: 'ইকোনমি নন-এসি চেয়ার কোচ বাস (Economy Highway Bus)',
-                flight: 'অভ্যন্তরীণ বিমান ফ্লাইট (Domestic Flight)',
-                train: 'বাংলাদেশ রেলওয়ে এক্সপ্রেস ট্রেন (Intercity Train)',
-                launch: 'বিলাসবহুল রিভার ক্রুজ / লঞ্চ (Inland River Cruise)',
-                shuttle: 'কানেক্টিং ট্রানজিট শাটল ভ্যান (Terminal Transfer Shuttle)',
-                jeep: 'চাঁদের গাড়ি / ৪x৪ মাউন্টেন জিপ (Chander Gari / 4WD Jeep)',
-                dest_cng: 'গন্তব্যের লাস্ট-মাইল সিএনজি (Destination Last-Mile CNG)',
-                dest_micro: 'গন্তব্যে ফুল-ডে রিজার্ভ মাইক্রোবাস (Full-Day Reserved Van)',
-                truck: 'মালামাল ও লাগেজ কাভার্ড ট্রাক (Cargo & Logistics Truck)'
+                cng: 'Auto-Rickshaw / CNG / Electric TomTom',
+                sedan: 'Private AC Sedan Taxi (Toyota Allion / Axio)',
+                microbus: 'Reserved AC Microbus (Toyota HiAce / Noah)',
+                coach: 'AC Luxury Coach (Scania / Hyundai / Sleeper)',
+                bus: 'Economy Non-AC Highway Bus',
+                flight: 'Domestic Flight (Biman / US-Bangla / Air Astra)',
+                train: 'Intercity Express Train (Bangladesh Railway)',
+                launch: 'Luxury River Cruiser / Passenger Launch',
+                shuttle: 'Connecting Terminal Transfer Shuttle Van',
+                jeep: '4WD Mountain Jeep / Chander Gari',
+                dest_cng: 'Destination Local CNG / Auto-Rickshaw',
+                dest_micro: 'Full-Day Dedicated Reserve Microbus',
+                truck: 'Covered Cargo Truck / Pickup (1.5 - 3 Ton)'
             };
             return titles[slotName] || (slotName ? slotName.toUpperCase() : 'COMPONENT');
         }
@@ -2242,7 +2189,7 @@
         let selectedSeats = ['A1', 'A2', 'B1', 'B2'];
         let selectedFlightSeats = ['2A', '2B', '2C', '2D'];
         let selectedTrainSeats = ['S-12', 'S-13', 'S-14', 'S-15'];
-        let selectedTrainBogie = 'Ka (ক)';
+        let selectedTrainBogie = 'Coach A';
         let pendingSlot = null;
         let pendingItem = null;
 
@@ -2306,7 +2253,7 @@
                 selectedSeats = selectedSeats.filter(s => s !== seatId);
             } else {
                 if (selectedSeats.length >= travelers) {
-                    selectedSeats.shift(); // keep cohort size matched
+                    selectedSeats.shift();
                 }
                 selectedSeats.push(seatId);
             }
@@ -2469,10 +2416,10 @@
             const container = document.getElementById('train-seats-container');
             if (!bogieBox || !container) return;
 
-            const bogies = ['Ka (ক)', 'Kha (খ)', 'Ga (গ)', 'Gha (ঘ)', 'Uma (ঙ)'];
+            const bogies = ['Coach A', 'Coach B', 'Coach C', 'Coach D', 'Coach E'];
             bogieBox.innerHTML = bogies.map(b => `
                 <button type="button" class="bogie-btn ${selectedTrainBogie === b ? 'active' : ''}" onclick="selectTrainBogie('${b}')">
-                    Coach ${b}
+                    ${b}
                 </button>
             `).join('');
 
@@ -2493,7 +2440,7 @@
                         </div>
                     `;
                     if (idx === 1) {
-                        html += `<div class="aisle-gap">🛤️</div>`;
+                        html += `<div class="aisle-gap">||</div>`;
                     }
                 });
             }
@@ -2549,8 +2496,8 @@
             const titleEl = document.getElementById('modal-category-title');
             const opEl = document.getElementById('train-picker-operator-title');
 
-            if (opEl) opEl.textContent = `${item.name} • Snigdha AC Coach`;
-            if (titleEl) titleEl.textContent = `Select Train Bogie & Seats - ${item.name}`;
+            if (opEl) opEl.textContent = `${item.name} • AC Snigdha Coach`;
+            if (titleEl) titleEl.textContent = `Select Train Coach & Seats - ${item.name}`;
 
             listEl.style.display = 'none';
             trainWrap.style.display = 'block';
@@ -2572,14 +2519,7 @@
             });
         }
 
-        // Vehicle Specs Customizer (Sedan / Microbus / Jeep / Truck / Launch)
-        let pendingVehicleSpecs = {
-            airCondition: true,
-            gpsTracking: true,
-            roofCarrier: true,
-            helperAssistance: true
-        };
-
+        // Vehicle Specs Customizer
         function openVehicleSpecsPicker(slotName, itemId) {
             const item = (inventory[slotName] || []).find(x => x.id === itemId);
             if (!item) return;
@@ -2610,13 +2550,13 @@
                             <div style="font-weight: 800; font-size: 1rem; color: var(--st-text);">${item.name}</div>
                             <div style="font-size: 0.8rem; color: var(--st-text-muted);">${item.sub}</div>
                             <div style="font-size: 0.85rem; font-weight: 800; color: var(--st-primary); margin-top: 0.25rem;">
-                                BDT ${item.price.toLocaleString()} (Shared amongst ${travelers} pax = BDT ${perPersonShare.toLocaleString()} / person)
+                                BDT ${item.price.toLocaleString()} (Shared amongst ${travelers} travelers = BDT ${perPersonShare.toLocaleString()} / person)
                             </div>
                         </div>
                     </div>
 
                     <div style="font-size: 0.825rem; font-weight: 800; color: #334155; margin-bottom: 0.65rem;">
-                        Included Verified Specs & Vehicle Features:
+                        Included Verified Features & Vehicle Specs:
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; font-size: 0.825rem;">
                         <label style="display: flex; align-items: center; gap: 0.5rem; background: #ffffff; padding: 0.5rem 0.75rem; border: 1px solid var(--st-border); border-radius: 6px;">
@@ -2696,7 +2636,7 @@
             const scheduleHtml = d.schedule ? `
                 <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 0.85rem 1rem;">
                     <div style="font-size: 0.8rem; font-weight: 800; color: #1e40af; text-transform: uppercase; margin-bottom: 0.25rem;">
-                        🕒 Schedule & Timing:
+                        Schedule & Timing:
                     </div>
                     <div style="font-size: 0.9rem; font-weight: 700; color: #1e293b;">
                         ${d.schedule}
@@ -2742,7 +2682,7 @@
 
             const policiesHtml = d.policies ? `
                 <div style="background: #f8fafc; border: 1px dashed var(--st-border); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.8rem; color: #64748b;">
-                    <strong>📋 Booking & Cancellation Policy:</strong> ${d.policies}
+                    <strong>Booking & Cancellation Policy:</strong> ${d.policies}
                 </div>
             ` : '';
 
@@ -2807,8 +2747,8 @@
                 listEl.innerHTML = `
                     <div style="text-align: center; padding: 2.5rem 1rem; color: #64748b;">
                         <i class="material-icons" style="font-size: 40px; color: #cbd5e1; margin-bottom: 0.5rem;">commute</i>
-                        <div style="font-weight: 700; font-size: 1rem;">No options currently registered for this transit category.</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.25rem;">We are continuously expanding upazila fleet coverage.</div>
+                        <div style="font-weight: 700; font-size: 1rem;">No options currently available for this category.</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.25rem;">Fleet coverage is continuously expanding across routes.</div>
                     </div>
                 `;
             } else {
@@ -2818,7 +2758,7 @@
                         : `BDT ${item.price.toLocaleString()} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">/ vehicle</span>`;
 
                     const totalSubtitle = (isPerPerson && travelers > 1)
-                        ? `<div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Total: BDT ${(item.price * travelers).toLocaleString()} (${travelers} pax)</div>`
+                        ? `<div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Total: BDT ${(item.price * travelers).toLocaleString()} (${travelers} travelers)</div>`
                         : (!isPerPerson && travelers > 1)
                         ? `<div style="font-size: 0.72rem; color: #16a34a; font-weight: 700; margin-top: 2px;">BDT ${Math.round(item.price / travelers).toLocaleString()} / traveler</div>`
                         : '';
@@ -2888,7 +2828,7 @@
 
             let labelSuffix = '';
             if (itemToStore.bogie && itemToStore.selectedSeats && itemToStore.selectedSeats.length > 0) {
-                labelSuffix = ` (Coach: ${itemToStore.bogie}, Seats: ${itemToStore.selectedSeats.join(', ')})`;
+                labelSuffix = ` (${itemToStore.bogie}, Seats: ${itemToStore.selectedSeats.join(', ')})`;
             } else if (itemToStore.selectedSeats && itemToStore.selectedSeats.length > 0) {
                 labelSuffix = ` (Seats: ${itemToStore.selectedSeats.join(', ')})`;
             }
@@ -3008,7 +2948,7 @@
             }
         }
 
-        function autoFillDemo(from = 'Dhaka - Mirpur', to = 'Rangpur - Pirganj', travelers = 4) {
+        function autoFillDemo(from = 'Dhaka - Mirpur 10', to = 'Rangpur - Pirganj Bazar', travelers = 4) {
             const originSelect = document.getElementById('origin-select');
             const destSelect = document.getElementById('destination-select');
             const deptDateInput = document.getElementById('dept-date');
@@ -3043,7 +2983,7 @@
             if (originSelect) originSelect.value = '';
             if (destSelect) destSelect.value = '';
             if (deptDateInput) deptDateInput.value = '';
-            if (travelerInput) travelerInput.value = '';
+            if (travelerInput) travelerInput.value = '4';
 
             document.querySelectorAll('.btn-demo-pill').forEach(btn => btn.classList.remove('active'));
 
@@ -3062,7 +3002,7 @@
             }
             const isSkip = document.getElementById('skip-transport-check').checked;
             if (isSkip) {
-                alert('🚗 Scenario 4 Activated: Traveler using Self-Drive / Own Vehicle. Transit slots marked optional/self-driven.');
+                alert('Scenario 4: Self-Drive / Own Vehicle mode activated.');
             }
         }
 
@@ -3099,7 +3039,7 @@
 
                     let labelSuffix = '';
                     if (item.bogie && item.selectedSeats && item.selectedSeats.length > 0) {
-                        labelSuffix = ` (Coach: ${item.bogie}, Seats: ${item.selectedSeats.join(', ')})`;
+                        labelSuffix = ` (${item.bogie}, Seats: ${item.selectedSeats.join(', ')})`;
                     } else if (item.selectedSeats && item.selectedSeats.length > 0) {
                         labelSuffix = ` (Seats: ${item.selectedSeats.join(', ')})`;
                     }
@@ -3147,30 +3087,30 @@
             if (!validateSearchFields(true)) return;
             const hasAny = Object.values(currentTour).some(x => x !== null);
             if (!hasAny) {
-                alert('⚠️ Please select at least one vehicle or transit component before generating a split-bill link.');
+                alert('Please select at least one vehicle or transit component before generating a split-bill link.');
                 return;
             }
             const total = document.getElementById('total-amount').textContent;
             const travelers = getTravelerCount();
             const share = document.getElementById('per-person-amount').textContent;
-            alert(`🔗 Scenario 12: Split-Bill Shareable Link Generated!\n\nTransit Total: ${total}\nCohort: ${travelers} Passengers\nShare Per Traveler: ${share}\n\nShareable link copied to clipboard:\nhttp://localhost:5000/travel-planner.html?split=true&total=${total.replace(/[^\d]/g, '')}`);
+            alert(`Scenario 12: Split-Bill Shareable Link Generated!\n\nTransit Total: ${total}\nCohort: ${travelers} Passengers\nShare Per Traveler: ${share}\n\nShareable link copied to clipboard:\nhttp://localhost:5000/travel-planner.html?split=true&total=${total.replace(/[^\d]/g, '')}`);
         }
 
         function openQuoteModal() {
             if (!validateSearchFields(true)) return;
             const hasAny = Object.values(currentTour).some(x => x !== null);
             if (!hasAny) {
-                alert('⚠️ Please select at least one vehicle or transit component before generating a B2B quote.');
+                alert('Please select at least one vehicle or transit component before generating a B2B quote.');
                 return;
             }
-            alert('📑 Scenario 11: Multimodal B2B Corporate Transit Quotation Generated!\nIncludes 15% NBR VAT, 5% AIT and corporate invoice breakdown.');
+            alert('Scenario 11: Multimodal B2B Corporate Transit Quotation Generated!\nIncludes 15% NBR VAT, 5% AIT and corporate invoice breakdown.');
         }
 
         function handlePrintItinerary() {
             if (!validateSearchFields(true)) return;
             const hasAny = Object.values(currentTour).some(x => x !== null);
             if (!hasAny) {
-                alert('⚠️ Please select at least one vehicle or transit component before printing route slip.');
+                alert('Please select at least one vehicle or transit component before printing route slip.');
                 return;
             }
             window.print();
@@ -3180,7 +3120,7 @@
             if (!validateSearchFields(true)) return;
             const configuredSlots = Object.keys(currentTour).filter(k => currentTour[k] !== null);
             if (configuredSlots.length === 0) {
-                alert('⚠️ Please select at least one vehicle (e.g. Bus, Coach, Microbus, Flight, Train, or Cargo Truck) before confirming your booking.');
+                alert('Please select at least one vehicle before confirming your booking.');
                 return;
             }
 
@@ -3191,7 +3131,7 @@
             const total = document.getElementById('total-amount').textContent;
             const perPerson = document.getElementById('per-person-amount').textContent;
 
-            alert(`✅ Upazila-to-Upazila Multimodal Transit Booking Confirmed!\n\nRoute: ${origin} ➔ ${dest}\nDeparture Date: ${date}\nPassengers: ${travelers} Pax\nVehicles Booked: ${configuredSlots.length} Components\nTotal Transit Cost: ${total}\nPer Passenger Share: ${perPerson}\n\nYour automated tickets, driver contacts, and live GPS tokens have been generated.`);
+            alert(`Multimodal Transit Booking Confirmed!\n\nRoute: ${origin} ➔ ${dest}\nDeparture Date: ${date}\nPassengers: ${travelers}\nVehicles Booked: ${configuredSlots.length}\nTotal Transit Cost: ${total}\nPer Passenger Share: ${perPerson}\n\nYour automated tickets, driver contacts, and GPS tokens have been generated.`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
