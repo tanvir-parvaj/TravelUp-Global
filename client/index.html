@@ -173,6 +173,8 @@
             padding-top: 5.5rem;
             padding-bottom: 0;
             overflow: visible;
+            z-index: 20;
+            min-height: 520px;
         }
 
         .hero-section::before {
@@ -288,7 +290,8 @@
             padding: 1.25rem 1.75rem 1.25rem;
             width: 100%;
             max-width: 1220px;
-            margin: 2.25rem auto -95px auto;
+            margin: 2.25rem auto 0 auto;
+            transform: translateY(50%);
             position: relative;
             z-index: 30;
             border: 1px solid rgba(226, 232, 240, 0.9);
@@ -440,9 +443,11 @@
            3. SECTION: POPULAR DESTINATIONS
            ============================================================== */
         .section-popular-destinations {
-            padding-top: 8.75rem;
+            padding-top: 8.5rem;
             padding-bottom: 4.5rem;
             background: #ffffff;
+            position: relative;
+            z-index: 10;
         }
 
         .section-header-row {
@@ -1126,6 +1131,14 @@
             }
             .hero-section {
                 padding-top: 3rem;
+                min-height: auto;
+            }
+            .search-card-wrapper {
+                transform: translateY(20%);
+                margin: 1.5rem auto 0 auto;
+            }
+            .section-popular-destinations {
+                padding-top: 5rem;
             }
         }
     </style>
@@ -1156,12 +1169,23 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container hero-inner">
+            <!-- Floating Accessible Travel Card -->
+            <a href="travel-planner.html" class="accessible-badge-card" title="Click to filter wheelchair friendly options">
+                <div class="access-icon-circle">
+                    <i class="material-icons" style="font-size: 20px;">accessible</i>
+                </div>
+                <div class="access-info">
+                    <strong>Accessible Travel</strong>
+                    <span>Filter for wheelchair friendly & special needs</span>
+                </div>
+            </a>
+
             <div class="hero-tag">EXPLORE • PLAN • TRAVEL</div>
             <h1 class="hero-title">
                 Discover the World with <span>TravelUp Global</span>
             </h1>
             <p class="hero-desc">
-                Your all-in-one travel platform to explore amazing destinations, customize your journey, book transport, hotels, food and activities -- all in one place.
+                Your all in one travel platform to explore amazing destinations, customize your journey, book transport, hotels, food and activities all in one place.
             </p>
 
             <!-- Search Card with Tabs -->
@@ -1264,17 +1288,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Floating Accessible Travel Card -->
-            <a href="travel-planner.html" class="accessible-badge-card" title="Click to filter wheelchair friendly options">
-                <div class="access-icon-circle">
-                    <i class="material-icons" style="font-size: 20px;">accessible</i>
-                </div>
-                <div class="access-info">
-                    <strong>Accessible Travel</strong>
-                    <span>Filter for wheelchair friendly & special needs</span>
-                </div>
-            </a>
         </div>
     </section>
 
