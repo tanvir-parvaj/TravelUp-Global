@@ -1893,18 +1893,9 @@
             font-weight: 500;
         }
         .loc-head-search-input::placeholder {
-            col        /* Modal Body (2 Columns: Left Map + Right Cascade) */
-        .loc-modal-body {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 1.25rem;
-            padding: 1.15rem 1.75rem;
-            flex: 1 1 auto;
-            min-height: 0;
-            height: calc(100% - 145px);
-            overflow: hidden;
-            background: #ffffff;
-        } .loc-head-search-dropdown {
+            color: #94a3b8;
+        }
+        .loc-head-search-dropdown {
             position: absolute;
             top: calc(100% + 8px);
             left: 0;
@@ -2802,28 +2793,855 @@
             align-items: start;
         }
 
-        @media (max-width: 1120px) {
-            .planner-two-col-grid {
-                grid-template-columns: 1fr;
+        /* ==============================================================
+           RESPONSIVE BREAKPOINTS (LAPTOP, TABLET, MOBILE - EXACT MOCKUP MATCH)
+           Mockup Reference: media_1792443779421_806edc80.jpg
+           ============================================================== */
+
+        /* Hamburger button & Mobile Drawer default desktop states */
+        .btn-nav-hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #0f172a;
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s;
+        }
+
+        .btn-nav-hamburger:hover {
+            background: #f1f5f9;
+        }
+
+        .mobile-nav-drawer {
+            display: none;
+            position: absolute;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+            z-index: 998;
+        }
+
+        .mobile-nav-drawer.open {
+            display: block;
+            animation: mNavSlideDown 0.22s ease-out;
+        }
+
+        @keyframes mNavSlideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0.5rem 0;
+        }
+
+        .mobile-nav-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.75rem 1.5rem;
+            color: #334155;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-left: 3px solid transparent;
+            transition: all 0.15s;
+        }
+
+        .mobile-nav-links li a.active,
+        .mobile-nav-links li a:hover {
+            background: #f0f9ff;
+            color: #0284c7;
+            border-left-color: #0284c7;
+        }
+
+        .mobile-nav-links li a i {
+            font-size: 20px;
+            color: #64748b;
+        }
+
+        .mobile-nav-links li a.active i,
+        .mobile-nav-links li a:hover i {
+            color: #0284c7;
+        }
+
+        .mobile-nav-footer {
+            padding: 0.85rem 1.5rem;
+            border-top: 1px solid #f1f5f9;
+            background: #fafafa;
+        }
+
+        /* -----------------------------------------------------------------
+           TABLET VIEWPORT (768px - 1024px)
+           Exact Match with Tablet Screen in Mockup media_1792443779421_806edc80.jpg
+           ----------------------------------------------------------------- */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            /* 1. Navbar: logo + search + avatar circle (text links hidden) */
+            .nav-main-menu {
+                display: none !important;
             }
+            .nav-profile-name,
+            .nav-profile-chevron {
+                display: none !important;
+            }
+            .nav-profile-pill {
+                padding: 3px !important;
+                border: none !important;
+                background: transparent !important;
+            }
+            .btn-nav-hamburger {
+                display: none !important;
+            }
+
+            /* 2. Hero banner: scaled panoramic banner */
+            .hero-dream-card {
+                min-height: 125px;
+            }
+            .hero-dream-left {
+                padding: 1.25rem 1.5rem;
+                max-width: 62%;
+            }
+            .hero-dream-title {
+                font-size: 1.25rem;
+            }
+            .hero-dream-sub {
+                font-size: 0.825rem;
+            }
+            .hero-dream-right {
+                width: 40%;
+                padding-right: 1.5rem;
+            }
+            .hero-script-overlay {
+                font-size: 1.35rem;
+            }
+
+            /* 3. Search Filter Strip: 2-Tier Grid (Row 1 = 2 fields, Row 2 = 4 fields) */
             .search-strip-mockup {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(4, 1fr) !important;
+                border-radius: 12px;
+            }
+            #field-origin {
+                grid-column: span 2 !important;
+                border-right: 1px solid #f1f5f9 !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+            }
+            #field-destination {
+                grid-column: span 2 !important;
+                border-right: none !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+            }
+            #field-dept-date {
+                grid-column: span 1 !important;
+                border-right: 1px solid #f1f5f9 !important;
+                border-bottom: none !important;
+            }
+            #field-return-date {
+                grid-column: span 1 !important;
+                border-right: 1px solid #f1f5f9 !important;
+                border-bottom: none !important;
+            }
+            #field-travelers {
+                grid-column: span 1 !important;
+                border-right: 1px solid #f1f5f9 !important;
+                border-bottom: none !important;
+            }
+            #field-budget {
+                grid-column: span 1 !important;
+                border-right: none !important;
+                border-bottom: none !important;
+            }
+
+            /* 4. Main Grid: PRESERVE 2-COLUMN LAYOUT (Sidebar on right ~290px) */
+            .planner-two-col-grid {
+                grid-template-columns: 1fr 290px !important;
+                gap: 1.15rem !important;
+            }
+
+            /* 5. Service rows inside left column */
+            .provider-service-row {
+                grid-template-columns: 85px 1.4fr 1.1fr 95px 85px !important;
+                gap: 0.65rem !important;
+                padding: 0.85rem 1rem !important;
+            }
+            .provider-logo-wrap img {
+                max-width: 80px;
+                max-height: 32px;
+            }
+            .provider-thumb-hotel {
+                width: 75px !important;
+                height: 55px !important;
+            }
+            .provider-name-text {
+                font-size: 0.875rem !important;
+            }
+            .provider-amenity-pills {
+                display: none !important;
+            }
+            .provider-price-amount {
+                font-size: 0.95rem !important;
+            }
+            .btn-select-service {
+                padding: 0.45rem 0.65rem !important;
+                font-size: 0.8rem !important;
             }
         }
 
-        @media (max-width: 768px) {
-            .search-strip-mockup {
-                grid-template-columns: 1fr;
-            }
+        /* -----------------------------------------------------------------
+           MOBILE VIEWPORT (320px - 767px)
+           Exact Match with Mobile Screens A & B in Mockup media_1792443779421_806edc80.jpg
+           ----------------------------------------------------------------- */
+        @media (max-width: 767px) {
+            /* 1. Navbar: logo + search + hamburger icon (links & admin name hidden) */
             .nav-main-menu {
-                display: none;
+                display: none !important;
             }
-            .hero-dream-right {
-                display: none;
+            .nav-profile-pill {
+                display: none !important;
+            }
+            .btn-nav-hamburger {
+                display: inline-flex !important;
+            }
+
+            /* 2. Page Container: compact padding + space for bottom sticky bar */
+            .planner-page-container {
+                padding: 0.75rem 0.75rem 6.5rem !important;
+            }
+
+            /* 3. Hero Card: compact card */
+            .hero-dream-card {
+                min-height: auto !important;
+                padding: 1.15rem 1rem !important;
+                border-radius: 14px !important;
             }
             .hero-dream-left {
-                max-width: 100%;
+                max-width: 100% !important;
+                padding: 0 !important;
+                gap: 0.85rem !important;
             }
+            .hero-pin-badge {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            .hero-dream-title {
+                font-size: 1.15rem !important;
+            }
+            .hero-dream-sub {
+                font-size: 0.78rem !important;
+            }
+            .hero-dream-right {
+                display: none !important;
+            }
+
+            /* 4. Admin demo strip: horizontal swipe */
+            .admin-demo-strip {
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding: 0.45rem 0.65rem !important;
+            }
+            .admin-demo-strip::-webkit-scrollbar {
+                display: none;
+            }
+            .btn-demo-pill {
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+            }
+            #db-status-badge {
+                margin-left: 0 !important;
+                flex-shrink: 0 !important;
+            }
+
+            /* 5. Search Strip: 4 Tiers (From 100%, To 100%, Dep/Ret 50/50, Travelers/Budget 50/50) */
+            .search-strip-mockup {
+                grid-template-columns: repeat(2, 1fr) !important;
+                border-radius: 12px !important;
+            }
+            #field-origin {
+                grid-column: span 2 !important;
+                border-right: none !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+                padding: 0.75rem 0.95rem !important;
+            }
+            #field-destination {
+                grid-column: span 2 !important;
+                border-right: none !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+                padding: 0.75rem 0.95rem !important;
+            }
+            #field-dept-date {
+                grid-column: span 1 !important;
+                border-right: 1px solid #f1f5f9 !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+                padding: 0.75rem 0.95rem !important;
+            }
+            #field-return-date {
+                grid-column: span 1 !important;
+                border-right: none !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+                padding: 0.75rem 0.95rem !important;
+            }
+            #field-travelers {
+                grid-column: span 1 !important;
+                border-right: 1px solid #f1f5f9 !important;
+                border-bottom: none !important;
+                padding: 0.75rem 0.95rem !important;
+            }
+            #field-budget {
+                grid-column: span 1 !important;
+                border-right: none !important;
+                border-bottom: none !important;
+                padding: 0.75rem 0.95rem !important;
+            }
+
+            /* 6. Category Tabs: Horizontal scrollable pills strip */
+            .cat-tabs-mockup {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0.75rem !important;
+            }
+            .cat-pills-group {
+                display: flex !important;
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                gap: 0.5rem !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding-bottom: 4px;
+            }
+            .cat-pills-group::-webkit-scrollbar {
+                display: none;
+            }
+            .cat-pill-btn {
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+                padding: 0.45rem 0.95rem !important;
+                font-size: 0.8rem !important;
+            }
+            .cat-search-box {
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+
+            /* 7. Sub-filter pills row: Horizontal swipeable */
+            .sub-filter-row {
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding: 0.65rem 1rem !important;
+                gap: 0.5rem !important;
+            }
+            .sub-filter-row::-webkit-scrollbar {
+                display: none;
+            }
+            .sub-filter-pill {
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+            }
+
+            /* 8. Main 2-Column Grid: Collapses to 1 column on Mobile */
+            .planner-two-col-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* 9. Provider Service Rows: Compact Mobile Card Layout (Screen 1 Match) */
+            .provider-service-row {
+                display: grid !important;
+                grid-template-columns: 75px 1fr !important;
+                grid-template-rows: auto auto auto auto !important;
+                gap: 0.65rem 0.85rem !important;
+                padding: 0.95rem 1rem !important;
+                align-items: center !important;
+            }
+            .provider-logo-wrap {
+                grid-column: 1 / 2 !important;
+                grid-row: 1 / 2 !important;
+                width: 75px !important;
+                height: 52px !important;
+                background: #f8fafc;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+            .provider-logo-wrap img {
+                max-width: 100% !important;
+                max-height: 100% !important;
+                object-fit: contain !important;
+            }
+            .provider-thumb-hotel {
+                width: 75px !important;
+                height: 52px !important;
+            }
+            .provider-details-wrap {
+                grid-column: 2 / 3 !important;
+                grid-row: 1 / 2 !important;
+                min-width: 0 !important;
+            }
+            .provider-name-text {
+                font-size: 0.885rem !important;
+                white-space: normal !important;
+                line-height: 1.25 !important;
+            }
+            .provider-timing-wrap {
+                grid-column: 1 / 3 !important;
+                grid-row: 2 / 3 !important;
+                background: #f8fafc;
+                border: 1px solid #f1f5f9;
+                border-radius: 6px;
+                padding: 0.4rem 0.65rem !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+            }
+            .provider-time-text {
+                font-size: 0.8rem !important;
+            }
+            .provider-duration-text {
+                font-size: 0.725rem !important;
+            }
+            .provider-amenity-pills {
+                grid-column: 1 / 3 !important;
+                grid-row: 3 / 4 !important;
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                padding-bottom: 2px !important;
+                scrollbar-width: none;
+            }
+            .provider-amenity-pills::-webkit-scrollbar {
+                display: none;
+            }
+            .provider-price-wrap {
+                grid-column: 1 / 2 !important;
+                grid-row: 4 / 5 !important;
+                text-align: left !important;
+            }
+            .provider-price-amount {
+                font-size: 1.05rem !important;
+                color: #0284c7 !important;
+            }
+            .provider-service-row > div:last-child {
+                grid-column: 2 / 3 !important;
+                grid-row: 4 / 5 !important;
+                text-align: right !important;
+            }
+            .btn-select-service {
+                width: auto !important;
+                min-width: 105px !important;
+                padding: 0.5rem 1.15rem !important;
+                font-size: 0.825rem !important;
+                display: inline-block !important;
+                margin-left: auto !important;
+            }
+
+            /* 10. Modals converted to Native Bottom Sheets on Mobile */
+            .modal-overlay {
+                align-items: flex-end !important;
+                padding: 0 !important;
+            }
+            .modal-box {
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 20px 20px 0 0 !important;
+                max-height: 88vh !important;
+                margin: 0 !important;
+                animation: mModalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            }
+            @keyframes mModalSlideUp {
+                from { transform: translateY(100%); }
+                to { transform: translateY(0); }
+            }
+            .loc-modal-overlay {
+                align-items: flex-end !important;
+                padding: 0 !important;
+            }
+            .loc-modal-box {
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 20px 20px 0 0 !important;
+                max-height: 90vh !important;
+                margin: 0 !important;
+                animation: mModalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            }
+            .loc-modal-body {
+                padding: 1rem !important;
+            }
+            .loc-modal-footer {
+                padding: 0.85rem 1rem !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0.65rem !important;
+            }
+            .loc-footer-actions {
+                width: 100% !important;
+                display: flex !important;
+                gap: 0.5rem !important;
+            }
+            .loc-btn-cancel,
+            .loc-btn-apply {
+                flex: 1 !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+        }
+
+        /* -----------------------------------------------------------------
+           MOBILE STICKY BOTTOM SUMMARY BAR (SCREEN 1 MOCKUP MATCH)
+           ----------------------------------------------------------------- */
+        .mobile-sticky-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.12);
+            border-top: 1px solid #e2e8f0;
+            padding: 0.75rem 1.15rem;
+            z-index: 999;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        @media (max-width: 767px) {
+            .mobile-sticky-bar {
+                display: flex;
+            }
+        }
+
+        .mobile-sticky-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-sticky-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .mobile-sticky-amount {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #0284c7;
+            line-height: 1.15;
+        }
+
+        .btn-mobile-view-summary {
+            background: #0284c7;
+            color: #ffffff;
+            border: none;
+            border-radius: 9999px;
+            padding: 0.65rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-mobile-view-summary:hover {
+            background: #0369a1;
+        }
+
+        /* -----------------------------------------------------------------
+           MOBILE SERVICE DETAIL BOTTOM SHEET (SCREEN 2 MOCKUP MATCH)
+           ----------------------------------------------------------------- */
+        .mobile-sheet-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 10001;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            animation: sheetFadeIn 0.2s ease-out;
+        }
+
+        @keyframes sheetFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .mobile-sheet-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 640px;
+            max-height: 90vh;
+            border-radius: 22px 22px 0 0;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+            animation: sheetSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes sheetSlideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .mobile-sheet-handle {
+            width: 44px;
+            height: 5px;
+            background: #cbd5e1;
+            border-radius: 9999px;
+            margin: 10px auto 4px;
+            flex-shrink: 0;
+        }
+
+        .mobile-sheet-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            border: none;
+            color: #1e293b;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .mobile-sheet-hero {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .msheet-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .msheet-badge-pill {
+            position: absolute;
+            bottom: 10px;
+            left: 14px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 9999px;
+        }
+
+        .mobile-sheet-content {
+            padding: 1.15rem 1.25rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .msheet-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.25;
+            margin: 0 0 0.35rem;
+        }
+
+        .msheet-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.78rem;
+            color: #64748b;
+        }
+
+        .msheet-stars {
+            color: #f59e0b;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .msheet-tags-row {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin: 0.85rem 0 1rem;
+        }
+
+        .msheet-route-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 1.15rem;
+        }
+
+        .msheet-route-line {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            position: relative;
+        }
+
+        .msheet-route-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .msheet-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .msheet-dot.start {
+            background: #0284c7;
+            box-shadow: 0 0 0 3px #e0f2fe;
+        }
+
+        .msheet-dot.end {
+            background: #10b981;
+            box-shadow: 0 0 0 3px #d1fae5;
+        }
+
+        .msheet-point-city {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .msheet-point-time {
+            font-size: 0.74rem;
+            color: #64748b;
+            margin-top: 1px;
+        }
+
+        .msheet-route-duration {
+            font-size: 0.72rem;
+            color: #0284c7;
+            font-weight: 700;
+            padding-left: 1.5rem;
+            border-left: 2px dashed #cbd5e1;
+            margin-left: 5px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+
+        .msheet-features-section {
+            margin-bottom: 1rem;
+        }
+
+        .msheet-features-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .msheet-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .msheet-features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #334155;
+        }
+
+        .msheet-features-list li i {
+            font-size: 16px;
+            color: #10b981;
+            flex-shrink: 0;
+        }
+
+        .mobile-sheet-footer {
+            padding: 0.95rem 1.25rem;
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .msheet-footer-price {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .msheet-price-amount {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #0284c7;
+        }
+
+        .msheet-price-unit {
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+
+        .btn-msheet-book {
+            background: #0284c7;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-msheet-book:hover {
+            background: #0369a1;
         }
 
         /* 6. Left Column Category Accordion Card */
@@ -3566,8 +4384,30 @@
                     <div class="nav-avatar-circle">
                         <i class="material-icons" style="font-size: 18px;">person</i>
                     </div>
-                    <span>Admin</span>
-                    <i class="material-icons" style="font-size: 18px; color: #64748b;">expand_more</i>
+                    <span class="nav-profile-name">Admin</span>
+                    <i class="material-icons nav-profile-chevron" style="font-size: 18px; color: #64748b;">expand_more</i>
+                </div>
+                <button type="button" class="btn-nav-hamburger" id="btn-mobile-nav" onclick="toggleMobileNav()" title="Toggle Navigation Menu">
+                    <i class="material-icons" style="font-size: 22px;">menu</i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Navigation Drawer (Dropdown on mobile) -->
+        <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html"><i class="material-icons">home</i> Home</a></li>
+                <li><a href="tour-packages.html"><i class="material-icons">explore</i> Destinations</a></li>
+                <li><a href="trip-planner.html" class="active"><i class="material-icons">map</i> Tour Planner</a></li>
+                <li><a href="travel-planner.html"><i class="material-icons">menu_book</i> Travel Guide</a></li>
+                <li><a href="about.html"><i class="material-icons">info</i> About</a></li>
+            </ul>
+            <div class="mobile-nav-footer">
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                    <div class="nav-avatar-circle"><i class="material-icons">person</i></div>
+                    <div>
+                        <div style="font-weight: 800; font-size: 0.85rem; color: #0f172a;">Admin User</div>
+                        <div style="font-size: 0.72rem; color: #64748b;">admin@travelupglobal.com</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -5537,6 +6377,99 @@
                         <span>Apply Location</span>
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Mobile Sticky Bottom Summary Bar (Mockup Screen 1 Match) -->
+    <div class="mobile-sticky-bar" id="mobile-sticky-bar">
+        <div class="mobile-sticky-info">
+            <span class="mobile-sticky-label">Estimated Total</span>
+            <span class="mobile-sticky-amount" id="mobile-sticky-total">৳ 40,000</span>
+        </div>
+        <button type="button" class="btn-mobile-view-summary" onclick="openMobileSummarySheet()">
+            <i class="material-icons" style="font-size: 18px;">luggage</i>
+            <span>View Summary</span>
+            <i class="material-icons" style="font-size: 16px;">expand_less</i>
+        </button>
+    </div>
+
+    <!-- Mobile Service Detail Bottom Sheet Modal (Mockup Screen 2 Match) -->
+    <div class="mobile-sheet-overlay" id="mobile-service-sheet" style="display: none;" onclick="closeMobileServiceSheet(event)">
+        <div class="mobile-sheet-box" onclick="event.stopPropagation()">
+            <div class="mobile-sheet-handle"></div>
+            <button type="button" class="mobile-sheet-close" onclick="closeMobileServiceSheet()">&times;</button>
+            
+            <div class="mobile-sheet-hero">
+                <img id="msheet-hero-img" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" alt="Service Hero" class="msheet-img">
+                <div class="msheet-badge-pill" id="msheet-cat-badge">AC Deluxe Bus</div>
+            </div>
+            
+            <div class="mobile-sheet-content">
+                <div class="msheet-header-row">
+                    <div>
+                        <h3 class="msheet-title" id="msheet-title">Green Line Paribahan (Double Decker)</h3>
+                        <div class="msheet-rating-row">
+                            <span class="msheet-stars">★★★★★</span>
+                            <span class="msheet-rating-text" id="msheet-rating">4.8 (120 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Amenity tags -->
+                <div class="msheet-tags-row" id="msheet-tags">
+                    <span class="amenity-badge"><i class="material-icons" style="font-size: 13px; color: #0284c7;">ac_unit</i> AC</span>
+                    <span class="amenity-badge"><i class="material-icons" style="font-size: 13px; color: #0284c7;">wifi</i> WiFi</span>
+                    <span class="amenity-badge"><i class="material-icons" style="font-size: 13px; color: #0284c7;">local_drink</i> Water</span>
+                    <span class="amenity-badge"><i class="material-icons" style="font-size: 13px; color: #0284c7;">airline_seat_recline_extra</i> Reclining</span>
+                </div>
+                
+                <!-- Route & Timing Box -->
+                <div class="msheet-route-card">
+                    <div class="msheet-route-line">
+                        <div class="msheet-route-point">
+                            <div class="msheet-dot start"></div>
+                            <div>
+                                <div class="msheet-point-city" id="msheet-origin-text">Dhaka (Sayedabad Counter)</div>
+                                <div class="msheet-point-time" id="msheet-dep-time">Departure: 10:30 PM</div>
+                            </div>
+                        </div>
+                        <div class="msheet-route-duration" id="msheet-duration-text">
+                            <span>⏱️ 9 hrs 30 mins approx.</span>
+                        </div>
+                        <div class="msheet-route-point">
+                            <div class="msheet-dot end"></div>
+                            <div>
+                                <div class="msheet-point-city" id="msheet-dest-text">Cox's Bazar (Kolatoli Beach Point)</div>
+                                <div class="msheet-point-time" id="msheet-arr-time">Arrival: 08:00 AM (Next Day)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Features checklist -->
+                <div class="msheet-features-section">
+                    <div class="msheet-features-title">Highlights & Inclusions</div>
+                    <ul class="msheet-features-list" id="msheet-features-list">
+                        <li><i class="material-icons">check_circle</i> Ergonomic 2+1 luxury seating with foot-rest</li>
+                        <li><i class="material-icons">check_circle</i> High-speed WiFi & individual USB charging port</li>
+                        <li><i class="material-icons">check_circle</i> Fresh mineral water bottle and snack box included</li>
+                        <li><i class="material-icons">check_circle</i> Live telematics tracking link sent via SMS</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Sheet Bottom Action Footer -->
+            <div class="mobile-sheet-footer">
+                <div class="msheet-footer-price">
+                    <div class="msheet-price-amount" id="msheet-price-display">৳ 1,800</div>
+                    <div class="msheet-price-unit" id="msheet-unit-display">per person</div>
+                </div>
+                <button type="button" class="btn-msheet-book" id="msheet-cta-btn" onclick="executeMobileSheetSelection()">
+                    <span id="msheet-cta-label">Select Service</span>
+                    <i class="material-icons">arrow_forward</i>
+                </button>
             </div>
         </div>
     </div>
@@ -10455,6 +11388,8 @@
             if (dEl) dEl.textContent = `৳ ${diningPrice.toLocaleString()}`;
             if (oEl) oEl.textContent = `৳ ${activitiesPrice.toLocaleString()}`;
             if (totEl) totEl.textContent = `৳ ${grandTotal.toLocaleString()}`;
+            const mobStickyTotal = document.getElementById('mobile-sticky-total');
+            if (mobStickyTotal) mobStickyTotal.textContent = `৳ ${grandTotal.toLocaleString()}`;
 
             const oldTotal = document.getElementById('total-amount');
             if (oldTotal) oldTotal.textContent = `BDT ${grandTotal.toLocaleString()}`;
@@ -10550,6 +11485,141 @@
             recalculateTotals();
             if (typeof updateSidebarSummary === "function") updateSidebarSummary();
         });
+
+        /* ==============================================================
+           MOBILE INTERACTION CONTROLLER (NAV, STICKY BAR, BOTTOM SHEET)
+           ============================================================== */
+        function toggleMobileNav() {
+            const drawer = document.getElementById('mobile-nav-drawer');
+            if (drawer) {
+                drawer.classList.toggle('open');
+            }
+        }
+
+        // Close mobile drawer when clicking outside
+        document.addEventListener('click', function(e) {
+            const drawer = document.getElementById('mobile-nav-drawer');
+            const btn = document.getElementById('btn-mobile-nav');
+            if (drawer && drawer.classList.contains('open')) {
+                if (!drawer.contains(e.target) && !btn?.contains(e.target)) {
+                    drawer.classList.remove('open');
+                }
+            }
+        });
+
+        // Active mobile sheet item
+        let activeMobileSheetItem = null;
+
+        function openMobileServiceSheet(category, subType, name, price, unit, imageUrl, rating, badges, features, btnEl, slotId) {
+            activeMobileSheetItem = { category, subType, name, price, unit, btnEl, slotId };
+
+            const sheet = document.getElementById('mobile-service-sheet');
+            if (!sheet) return;
+
+            const imgEl = document.getElementById('msheet-hero-img');
+            if (imgEl && imageUrl) imgEl.src = imageUrl;
+
+            const catBadge = document.getElementById('msheet-cat-badge');
+            if (catBadge) catBadge.textContent = (subType || category).toUpperCase() + ' SERVICE';
+
+            const titleEl = document.getElementById('msheet-title');
+            if (titleEl) titleEl.textContent = name;
+
+            const ratingEl = document.getElementById('msheet-rating');
+            if (ratingEl) ratingEl.textContent = rating || '4.8 (120 reviews)';
+
+            const priceEl = document.getElementById('msheet-price-display');
+            if (priceEl) priceEl.textContent = '৳ ' + Number(price).toLocaleString();
+
+            const unitEl = document.getElementById('msheet-unit-display');
+            if (unitEl) unitEl.textContent = unit === 'person' ? 'per person' : ('per ' + unit);
+
+            const ctaLabel = document.getElementById('msheet-cta-label');
+            if (ctaLabel) {
+                if (subType === 'bus' || subType === 'flight' || subType === 'coach' || subType === 'train') {
+                    ctaLabel.textContent = 'Select ' + (subType.charAt(0).toUpperCase() + subType.slice(1)) + ' & Pick Seats';
+                } else if (category === 'accommodation') {
+                    ctaLabel.textContent = 'Select Hotel & Choose Rooms';
+                } else {
+                    ctaLabel.textContent = 'Select ' + name;
+                }
+            }
+
+            // Route points from search inputs
+            const originTitle = document.getElementById('origin-display-title')?.textContent || 'Dhaka';
+            const destTitle = document.getElementById('destination-display-title')?.textContent || "Cox's Bazar";
+            const origEl = document.getElementById('msheet-origin-text');
+            const destEl = document.getElementById('msheet-dest-text');
+            if (origEl) origEl.textContent = originTitle;
+            if (destEl) destEl.textContent = destTitle;
+
+            sheet.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileServiceSheet(e) {
+            if (e && e.target && e.target.closest('.mobile-sheet-box') && !e.target.classList.contains('mobile-sheet-close')) {
+                return;
+            }
+            const sheet = document.getElementById('mobile-service-sheet');
+            if (sheet) {
+                sheet.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+            activeMobileSheetItem = null;
+        }
+
+        function executeMobileSheetSelection() {
+            if (!activeMobileSheetItem) return;
+            const { category, subType, name, price, unit, btnEl, slotId } = activeMobileSheetItem;
+            closeMobileServiceSheet();
+
+            // Execute selection
+            selectMockupService(category, subType, name, price, unit, btnEl, slotId);
+
+            // If bus or flight, trigger seat picker
+            if (subType === 'bus') {
+                setTimeout(() => openBusSeatPicker(name, price), 200);
+            } else if (subType === 'flight') {
+                setTimeout(() => openFlightSeatPicker(name, price), 200);
+            }
+        }
+
+        function openMobileSummarySheet() {
+            const summaryCard = document.querySelector('.trip-summary-card');
+            if (summaryCard) {
+                summaryCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Attach mobile detail sheet triggers to provider rows
+        document.addEventListener('DOMContentLoaded', () => {
+            const rows = document.querySelectorAll('.provider-service-row');
+            rows.forEach(row => {
+                const detailsWrap = row.querySelector('.provider-details-wrap');
+                const logoWrap = row.querySelector('.provider-logo-wrap');
+                const btn = row.querySelector('.btn-select-service');
+                
+                const openSheetHandler = (e) => {
+                    if (window.innerWidth > 767) return; // Desktop uses inline flow
+                    if (e.target.closest('.btn-select-service')) return; // Allow direct select button tap
+
+                    const name = row.querySelector('.provider-name-text')?.textContent.trim() || 'Service';
+                    const priceText = row.querySelector('.provider-price-amount')?.textContent.replace(/[^0-9]/g, '') || '1000';
+                    const price = parseInt(priceText, 10);
+                    const unit = row.querySelector('.provider-price-unit')?.textContent.replace('per ', '').trim() || 'person';
+                    const img = row.querySelector('img')?.src || 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80';
+                    const subType = row.getAttribute('data-sub') || 'transit';
+                    const catId = row.closest('.cat-card-box')?.id?.replace('cat-card-', '') || 'transit';
+
+                    openMobileServiceSheet(catId, subType, name, price, unit, img, '4.8 (120 reviews)', null, null, btn);
+                };
+
+                if (detailsWrap) detailsWrap.addEventListener('click', openSheetHandler);
+                if (logoWrap) logoWrap.addEventListener('click', openSheetHandler);
+            });
+        });
+
     </script>
 
     <!-- Site Footer -->
