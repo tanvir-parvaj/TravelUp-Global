@@ -4357,6 +4357,176 @@
             display: block;
             margin: 0 auto -2px;
         }
+
+        /* =================================================================
+           DYNAMIC SERVICE ROWS & DETAILS / GALLERY ENHANCEMENTS
+           ================================================================= */
+        .provider-actions-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            align-items: stretch;
+        }
+
+        .btn-details-service {
+            background: #f0f9ff;
+            color: #0284c7;
+            border: 1px solid #bae6fd;
+            border-radius: 6px;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .btn-details-service:hover {
+            background: #e0f2fe;
+            border-color: #0284c7;
+            color: #0369a1;
+        }
+
+        .details-gallery-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .details-cover-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 280px;
+            background: #0f172a;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+        }
+
+        .details-cover-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.25s ease, transform 0.35s ease;
+        }
+
+        .details-gallery-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .details-thumb-btn {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 0;
+            background: #f1f5f9;
+            cursor: pointer;
+            height: 68px;
+            width: 100%;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .details-thumb-btn:hover {
+            border-color: #0284c7;
+            transform: translateY(-1px);
+        }
+
+        .details-thumb-btn.active {
+            border-color: #0284c7;
+            box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.3);
+        }
+
+        .details-thumb-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-thumb-caption {
+            position: absolute;
+            bottom: 2px;
+            right: 4px;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(4px);
+            color: #ffffff;
+            font-size: 0.625rem;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
+
+        /* Time Slot Selection Pills */
+        .time-slots-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .time-slot-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.85rem;
+            border-radius: 8px;
+            border: 1.5px solid #e2e8f0;
+            background: #ffffff;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.18s ease;
+        }
+
+        .time-slot-pill:hover {
+            border-color: #0284c7;
+            background: #f0f9ff;
+        }
+
+        .time-slot-pill.active {
+            border-color: #0284c7;
+            background: #eff6ff;
+            box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+        }
+
+        .time-slot-pill.active .time-slot-title {
+            color: #0284c7;
+            font-weight: 800;
+        }
+
+        .time-slot-title {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #1e293b;
+        }
+
+        .time-slot-desc {
+            font-size: 0.72rem;
+            color: #64748b;
+        }
+
+        /* Responsive row adjustments */
+        @media (max-width: 767px) {
+            .provider-actions-wrap {
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 0.4rem;
+                width: 100%;
+            }
+            .btn-details-service {
+                padding: 0.45rem 0.65rem;
+                font-size: 0.75rem;
+            }
+            .details-cover-container {
+                height: 200px;
+            }
+            .details-thumb-btn {
+                height: 52px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -4699,188 +4869,7 @@
 
                             <!-- List of Provider Rows (Mockup Image 1) -->
                             <div id="service-list-transit">
-                                <!-- Row 1: Green Line Paribahan -->
-                                <div class="provider-service-row" data-sub="bus">
-                                    <div class="provider-logo-wrap">
-                                        <span style="font-family: Arial, sans-serif; font-size: 1.15rem; font-weight: 900; color: #15803d; letter-spacing: -0.02em; border-bottom: 2.5px solid #16a34a; padding-bottom: 1px;">Green Line</span>
-                                    </div>
-                                    <div class="provider-details-wrap">
-                                        <div class="provider-name-text">Green Line Paribahan</div>
-                                        <div class="provider-sub-text">AC / Non-AC (Luxury Bus)</div>
-                                    </div>
-                                    <div class="provider-timing-wrap">
-                                        <div class="provider-time-text">08:00 AM ➔ 02:30 PM</div>
-                                        <div class="provider-duration-text">6h 30m</div>
-                                    </div>
-                                    <div class="provider-amenity-pills">
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
-                                    </div>
-                                    <div class="provider-price-wrap">
-                                        <div class="provider-price-amount">৳ 1,200</div>
-                                        <div class="provider-price-unit">per person</div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn-select-service" id="btn-srv-greenline" onclick="selectMockupService('transit', 'bus', 'Green Line Paribahan', 1200, 'person', this, 1)">Select</button>
-                                    </div>
-                                </div>
-
-                                <!-- Row 2: Hanif Enterprise -->
-                                <div class="provider-service-row" data-sub="bus">
-                                    <div class="provider-logo-wrap">
-                                        <span style="font-family: Georgia, serif; font-size: 1.35rem; font-weight: 900; color: #dc2626; font-style: italic; letter-spacing: -0.01em;">Hanif</span>
-                                    </div>
-                                    <div class="provider-details-wrap">
-                                        <div class="provider-name-text">Hanif Enterprise</div>
-                                        <div class="provider-sub-text">AC / Non-AC (Luxury Bus)</div>
-                                    </div>
-                                    <div class="provider-timing-wrap">
-                                        <div class="provider-time-text">09:30 AM ➔ 04:00 PM</div>
-                                        <div class="provider-duration-text">6h 30m</div>
-                                    </div>
-                                    <div class="provider-amenity-pills">
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
-                                    </div>
-                                    <div class="provider-price-wrap">
-                                        <div class="provider-price-amount">৳ 1,000</div>
-                                        <div class="provider-price-unit">per person</div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn-select-service" id="btn-srv-hanif" onclick="selectMockupService('transit', 'bus', 'Hanif Enterprise', 1000, 'person', this, 2)">Select</button>
-                                    </div>
-                                </div>
-
-                                <!-- Row 3: Shohagh Paribahan -->
-                                <div class="provider-service-row" data-sub="bus">
-                                    <div class="provider-logo-wrap">
-                                        <span style="font-family: 'Trebuchet MS', sans-serif; font-size: 1.2rem; font-weight: 900; color: #1e3a8a; letter-spacing: -0.02em;">Shohagh</span>
-                                    </div>
-                                    <div class="provider-details-wrap">
-                                        <div class="provider-name-text">Shohagh Paribahan</div>
-                                        <div class="provider-sub-text">AC / Non-AC (Luxury Bus)</div>
-                                    </div>
-                                    <div class="provider-timing-wrap">
-                                        <div class="provider-time-text">10:00 AM ➔ 04:30 PM</div>
-                                        <div class="provider-duration-text">6h 30m</div>
-                                    </div>
-                                    <div class="provider-amenity-pills">
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
-                                    </div>
-                                    <div class="provider-price-wrap">
-                                        <div class="provider-price-amount">৳ 900</div>
-                                        <div class="provider-price-unit">per person</div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn-select-service" id="btn-srv-shohagh" onclick="selectMockupService('transit', 'bus', 'Shohagh Paribahan', 900, 'person', this, 3)">Select</button>
-                                    </div>
-                                </div>
-
-                                <!-- Row 4: Ena Transport -->
-                                <div class="provider-service-row" data-sub="bus">
-                                    <div class="provider-logo-wrap">
-                                        <span style="font-family: Arial Black, sans-serif; font-size: 1.35rem; font-weight: 900; color: #1d4ed8; letter-spacing: 0.03em;">ENA</span>
-                                    </div>
-                                    <div class="provider-details-wrap">
-                                        <div class="provider-name-text">Ena Transport</div>
-                                        <div class="provider-sub-text">AC / Non-AC (Standard)</div>
-                                    </div>
-                                    <div class="provider-timing-wrap">
-                                        <div class="provider-time-text">11:30 AM ➔ 06:00 PM</div>
-                                        <div class="provider-duration-text">6h 30m</div>
-                                    </div>
-                                    <div class="provider-amenity-pills">
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
-                                    </div>
-                                    <div class="provider-price-wrap">
-                                        <div class="provider-price-amount">৳ 850</div>
-                                        <div class="provider-price-unit">per person</div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn-select-service" id="btn-srv-ena" onclick="selectMockupService('transit', 'bus', 'Ena Transport', 850, 'person', this, 4)">Select</button>
-                                    </div>
-                                </div>
-
-                                <!-- Row 5: Desh Travels -->
-                                <div class="provider-service-row" data-sub="bus">
-                                    <div class="provider-logo-wrap">
-                                        <span style="font-family: Arial, sans-serif; font-size: 1.1rem; font-weight: 900; color: #ea580c;"><span style="color: #ea580c;">Desh</span><span style="color: #0f172a; margin-left: 2px;">Travels</span></span>
-                                    </div>
-                                    <div class="provider-details-wrap">
-                                        <div class="provider-name-text">Desh Travels</div>
-                                        <div class="provider-sub-text">AC / Non-AC (Standard)</div>
-                                    </div>
-                                    <div class="provider-timing-wrap">
-                                        <div class="provider-time-text">01:00 PM ➔ 07:30 PM</div>
-                                        <div class="provider-duration-text">6h 30m</div>
-                                    </div>
-                                    <div class="provider-amenity-pills">
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
-                                    </div>
-                                    <div class="provider-price-wrap">
-                                        <div class="provider-price-amount">৳ 800</div>
-                                        <div class="provider-price-unit">per person</div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn-select-service" id="btn-srv-desh" onclick="selectMockupService('transit', 'bus', 'Desh Travels', 800, 'person', this, 5)">Select</button>
-                                    </div>
-                                </div>
-
-                                <!-- Alternative Coach Rows (shown when Coach sub-filter active) -->
-                                <div class="provider-service-row" data-sub="coach" style="display: none;">
-                                    <div class="provider-logo-wrap">
-                                        <span style="font-family: Arial, sans-serif; font-size: 1.15rem; font-weight: 900; color: #0369a1;">Scania</span>
-                                    </div>
-                                    <div class="provider-details-wrap">
-                                        <div class="provider-name-text">Scania Multi-Axle Sleeper Coach</div>
-                                        <div class="provider-sub-text">Ultra-Comfort Double Sleeper Cabin</div>
-                                    </div>
-                                    <div class="provider-timing-wrap">
-                                        <div class="provider-time-text">10:30 PM ➔ 06:30 AM</div>
-                                        <div class="provider-duration-text">8h 00m</div>
-                                    </div>
-                                    <div class="provider-amenity-pills">
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">bed</i> Sleeper</span>
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> WiFi</span>
-                                    </div>
-                                    <div class="provider-price-wrap">
-                                        <div class="provider-price-amount">৳ 1,800</div>
-                                        <div class="provider-price-unit">per person</div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn-select-service" onclick="selectMockupService('transit', 'coach', 'Scania Multi-Axle Sleeper Coach', 1800, 'person', this)">Select</button>
-                                    </div>
-                                </div>
-
-                                <!-- Alternative Flight Rows (shown when Flight sub-filter active) -->
-                                <div class="provider-service-row" data-sub="flight" style="display: none;">
-                                    <div class="provider-logo-wrap">
-                                        <span style="font-family: Arial, sans-serif; font-size: 1.1rem; font-weight: 900; color: #047857;">Biman</span>
-                                    </div>
-                                    <div class="provider-details-wrap">
-                                        <div class="provider-name-text">Biman Bangladesh Airlines (BG-433)</div>
-                                        <div class="provider-sub-text">Boeing 737-800 Jetliner • Fast Direct Flight</div>
-                                    </div>
-                                    <div class="provider-timing-wrap">
-                                        <div class="provider-time-text">11:15 AM ➔ 12:15 PM</div>
-                                        <div class="provider-duration-text">1h 00m</div>
-                                    </div>
-                                    <div class="provider-amenity-pills">
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">flight</i> Fast Flight</span>
-                                        <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">luggage</i> 20kg Bag</span>
-                                    </div>
-                                    <div class="provider-price-wrap">
-                                        <div class="provider-price-amount">৳ 4,500</div>
-                                        <div class="provider-price-unit">per person</div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn-select-service" onclick="selectMockupService('transit', 'flight', 'Biman Bangladesh Airlines Direct', 4500, 'person', this)">Select</button>
-                                    </div>
-                                </div>
+                                <!-- Dynamically populated by renderCategoryServices('transit') from MySQL Inventory -->
                             </div>
                         </div>
                     </div>
@@ -4934,133 +4923,13 @@
 
                         <!-- Hotel Service Rows (Mockup Image 2) -->
                         <div id="service-list-accommodation">
-                            <!-- Hotel 1: Cox's Bazar Sea View Hotel -->
-                            <div class="provider-service-row" data-sub="hotels">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="Cox's Bazar Sea View Hotel" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Cox's Bazar Sea View Hotel</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar, Chattogram</span>
-                                    </div>
-                                    <div class="provider-meta-row" style="margin-top: 0.15rem;">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #64748b;">directions_car</i> 2.5 km from Beach</span>
-                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.2 (124 reviews)</span>
-                                    </div>
-                                </div>
-                                <div></div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> Free WiFi</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Breakfast</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 3,500</div>
-                                    <div class="provider-price-unit">per night</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" id="btn-srv-seaview" onclick="selectMockupService('accommodation', 'hotel', 'Cox's Bazar Sea View Hotel', 3500, 'night', this, 101)">Select</button>
-                                </div>
-                            </div>
-
-                            <!-- Hotel 2: Long Beach Resort & Spa -->
-                            <div class="provider-service-row" data-sub="hotels">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=400&q=80" alt="Long Beach Resort & Spa" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Long Beach Resort & Spa</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar, Chattogram</span>
-                                    </div>
-                                    <div class="provider-meta-row" style="margin-top: 0.15rem;">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #64748b;">directions_car</i> 3.8 km from Beach</span>
-                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.5 (98 reviews)</span>
-                                    </div>
-                                </div>
-                                <div></div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> Free WiFi</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">pool</i> Pool</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Breakfast</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 4,800</div>
-                                    <div class="provider-price-unit">per night</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" id="btn-srv-longbeach" onclick="selectMockupService('accommodation', 'hotel', 'Long Beach Resort & Spa', 4800, 'night', this, 102)">Select</button>
-                                </div>
-                            </div>
-
-                            <!-- Hotel 3: Hotel Sea Palace -->
-                            <div class="provider-service-row" data-sub="hotels">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=400&q=80" alt="Hotel Sea Palace" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Hotel Sea Palace</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar, Chattogram</span>
-                                    </div>
-                                    <div class="provider-meta-row" style="margin-top: 0.15rem;">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #64748b;">directions_car</i> 1.2 km from Beach</span>
-                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.1 (76 reviews)</span>
-                                    </div>
-                                </div>
-                                <div></div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> Free WiFi</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Restaurant</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 3,200</div>
-                                    <div class="provider-price-unit">per night</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" id="btn-srv-seapalace" onclick="selectMockupService('accommodation', 'hotel', 'Hotel Sea Palace', 3200, 'night', this, 103)">Select</button>
-                                </div>
-                            </div>
-
-                            <!-- Hotel 4: Sayeman Beach Resort -->
-                            <div class="provider-service-row" data-sub="hotels">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=400&q=80" alt="Sayeman Beach Resort" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Sayeman Beach Resort</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar, Chattogram</span>
-                                    </div>
-                                    <div class="provider-meta-row" style="margin-top: 0.15rem;">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #64748b;">directions_car</i> 4.5 km from Beach</span>
-                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.7 (205 reviews)</span>
-                                    </div>
-                                </div>
-                                <div></div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">wifi</i> Free WiFi</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">ac_unit</i> AC</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">pool</i> Pool</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Breakfast</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 6,500</div>
-                                    <div class="provider-price-unit">per night</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" id="btn-srv-sayeman" onclick="selectMockupService('accommodation', 'hotel', 'Sayeman Beach Resort', 6500, 'night', this, 104)">Select</button>
-                                </div>
-                            </div>
+                            <!-- Dynamically populated by renderCategoryServices('accommodation') from MySQL Inventory -->
                         </div>
 
                         <!-- View All Hotels footer button -->
-                        <div class="btn-view-all-foot" onclick="alert('Viewing all 12 verified hotels for this destination.')">
+                        <div class="btn-view-all-foot" onclick="filterSubCategory('accommodation', 'hotels')">
                             <i class="material-icons" style="font-size: 18px;">apartment</i>
-                            <span>View All Hotels (12)</span>
+                            <span>View All Accommodations</span>
                             <i class="material-icons" style="font-size: 18px;">expand_more</i>
                         </div>
                     </div>
@@ -5111,59 +4980,7 @@
                         </div>
 
                         <div id="service-list-dining">
-                            <!-- Dining Row 1 -->
-                            <div class="provider-service-row" data-sub="dinner">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80" alt="Live Seafood BBQ" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Live Seafood BBQ & Beachside Dinner</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Kolatoli Beach Road</span>
-                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.6 (180 reviews)</span>
-                                    </div>
-                                </div>
-                                <div></div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">check_circle</i> Halal</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">set_meal</i> Seafood</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #ea580c;">outdoor_grill</i> BBQ Buffet</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 850</div>
-                                    <div class="provider-price-unit">per person</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" onclick="selectMockupService('dining', 'dinner', 'Live Seafood BBQ & Beachside Dinner', 850, 'person', this)">Select</button>
-                                </div>
-                            </div>
-
-                            <!-- Dining Row 2 -->
-                            <div class="provider-service-row" data-sub="lunch">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80" alt="Jhaubon Bengali Lunch" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Jhaubon Traditional 24-Bhorta Bengali Lunch</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Main Hotel Road, Cox's Bazar</span>
-                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.5 (340 reviews)</span>
-                                    </div>
-                                </div>
-                                <div></div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">check_circle</i> Halal</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">rice_bowl</i> Authentic</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">restaurant</i> Lunch</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 600</div>
-                                    <div class="provider-price-unit">per person</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" onclick="selectMockupService('dining', 'lunch', 'Jhaubon Traditional Bengali Lunch', 600, 'person', this)">Select</button>
-                                </div>
-                            </div>
+                            <!-- Dynamically populated by renderCategoryServices('dining') from MySQL Inventory -->
                         </div>
                     </div>
                 </div>
@@ -5208,63 +5025,7 @@
                         </div>
 
                         <div id="service-list-recreation">
-                            <!-- Recreation Row 1 -->
-                            <div class="provider-service-row" data-sub="watersports">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=400&q=80" alt="Parasailing" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Daria Nagar High-Fly Parasailing Adventure</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Darianagar Marine Drive</span>
-                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.9 (420 reviews)</span>
-                                    </div>
-                                </div>
-                                <div class="provider-timing-wrap">
-                                    <div class="provider-time-text">15 Mins Flight</div>
-                                    <div class="provider-duration-text">Speedboat Launch</div>
-                                </div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">verified</i> Certified Pilot</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">security</i> Life Jacket</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 2,000</div>
-                                    <div class="provider-price-unit">per person</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" onclick="selectMockupService('recreation', 'parasailing', 'Daria Nagar Parasailing Adventure', 2000, 'person', this)">Select</button>
-                                </div>
-                            </div>
-
-                            <!-- Recreation Row 2 -->
-                            <div class="provider-service-row" data-sub="watersports">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80" alt="Speedboat Safari" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Himchari Speedboat Safari & Marine Drive Cruise</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Inani to Himchari Coast</span>
-                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.7 (150 reviews)</span>
-                                    </div>
-                                </div>
-                                <div class="provider-timing-wrap">
-                                    <div class="provider-time-text">30 Mins Ride</div>
-                                    <div class="provider-duration-text">Twin Engine Boat</div>
-                                </div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">verified</i> Safety Gear</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">speed</i> High Speed</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 1,200</div>
-                                    <div class="provider-price-unit">per person</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" onclick="selectMockupService('recreation', 'speedboat', 'Himchari Speedboat Safari', 1200, 'person', this)">Select</button>
-                                </div>
-                            </div>
+                            <!-- Dynamically populated by renderCategoryServices('recreation') from MySQL Inventory -->
                         </div>
                     </div>
                 </div>
@@ -5309,62 +5070,7 @@
                         </div>
 
                         <div id="service-list-addons">
-                            <!-- Addon Row 1: Tour Guide -->
-                            <div class="provider-service-row" data-sub="guides">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=400&q=80" alt="Tour Guide" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Certified Tour Guide (Govt & Parjatan Licensed)</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ef4444;">place</i> Cox's Bazar & Ramu</span>
-                                        <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.9 (95 reviews)</span>
-                                    </div>
-                                </div>
-                                <div class="provider-timing-wrap">
-                                    <div class="provider-time-text">Full Day Service</div>
-                                    <div class="provider-duration-text">English & Bangla</div>
-                                </div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #16a34a;">badge</i> Govt Licensed</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">medical_services</i> First-Aid</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 1,800</div>
-                                    <div class="provider-price-unit">per day</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" onclick="selectMockupService('addons', 'guide', 'Certified Local Tour Guide', 1800, 'day', this)">Select</button>
-                                </div>
-                            </div>
-
-                            <!-- Addon Row 2: Honeymoon Bed Decor -->
-                            <div class="provider-service-row" data-sub="special">
-                                <div class="provider-logo-wrap">
-                                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80" alt="Honeymoon Bed Decor" class="provider-thumb-hotel" loading="lazy">
-                                </div>
-                                <div class="provider-details-wrap">
-                                    <div class="provider-name-text">Honeymoon Fresh Rose Bed Decor & Beach Dinner</div>
-                                    <div class="provider-meta-row">
-                                        <span><i class="material-icons" style="font-size: 14px; color: #ec4899;">favorite</i> Room Setup & Candlelight</span>
-                                    </div>
-                                </div>
-                                <div class="provider-timing-wrap">
-                                    <div class="provider-time-text">Romantic Surprise</div>
-                                    <div class="provider-duration-text">Cake & Red Roses</div>
-                                </div>
-                                <div class="provider-amenity-pills">
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #ec4899;">cake</i> Cake Included</span>
-                                    <span class="amenity-badge"><i class="material-icons" style="font-size: 12px; color: #0284c7;">photo_camera</i> Free Photo</span>
-                                </div>
-                                <div class="provider-price-wrap">
-                                    <div class="provider-price-amount">৳ 2,500</div>
-                                    <div class="provider-price-unit">per setup</div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-select-service" onclick="selectMockupService('addons', 'honeymoon', 'Honeymoon Fresh Rose Bed Decor', 2500, 'setup', this)">Select</button>
-                                </div>
-                            </div>
+                            <!-- Dynamically populated by renderCategoryServices('addons') from MySQL Inventory -->
                         </div>
                     </div>
                 </div>
@@ -5525,6 +5231,13 @@
                         </button>
                     </div>
 
+                    <div id="bus-time-slot-selector-wrap" style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                        <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b; display: flex; align-items: center; gap: 4px;">
+                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">schedule</i> Departure Slot:
+                        </div>
+                        <div id="bus-time-slots-pills" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+                    </div>
+
                     <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; color: #1e40af; flex-wrap: wrap; gap: 0.5rem;">
                         <div>
                             <i class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 4px;">airline_seat_recline_extra</i>
@@ -5569,6 +5282,13 @@
                         <button type="button" class="btn-demo-reset" onclick="backToItemsList()" style="font-size: 0.8rem; cursor: pointer;">
                             <i class="material-icons" style="font-size: 15px;">arrow_back</i> Back to Flights
                         </button>
+                    </div>
+
+                    <div id="flight-time-slot-selector-wrap" style="background: #ffffff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                        <div style="font-size: 0.825rem; font-weight: 700; color: #1e3a8a; display: flex; align-items: center; gap: 4px;">
+                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">flight_takeoff</i> Flight Schedule:
+                        </div>
+                        <div id="flight-time-slots-pills" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
                     </div>
 
                     <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; color: #166534; flex-wrap: wrap; gap: 0.5rem;">
@@ -5630,6 +5350,13 @@
                         <div style="font-size: 0.775rem; color: #64748b; font-weight: 600;">
                             Bangladesh Railway Intercity Coach
                         </div>
+                    </div>
+
+                    <div id="train-time-slot-selector-wrap" style="background: #ffffff; border: 1px solid #bbf7d0; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                        <div style="font-size: 0.825rem; font-weight: 700; color: #15803d; display: flex; align-items: center; gap: 4px;">
+                            <i class="material-icons" style="font-size: 16px; color: #10b981;">schedule</i> Intercity Train Timing:
+                        </div>
+                        <div id="train-time-slots-pills" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
                     </div>
 
                     <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 0.65rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.825rem; color: #1e40af; flex-wrap: wrap; gap: 0.5rem;">
@@ -6485,10 +6212,15 @@
                     <div class="msheet-price-amount" id="msheet-price-display">৳ 1,800</div>
                     <div class="msheet-price-unit" id="msheet-unit-display">per person</div>
                 </div>
-                <button type="button" class="btn-msheet-book" id="msheet-cta-btn" onclick="executeMobileSheetSelection()">
-                    <span id="msheet-cta-label">Select Service</span>
-                    <i class="material-icons">arrow_forward</i>
-                </button>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <button type="button" class="btn-details-service" onclick="openDetailsFromMobileSheet()" style="padding: 0.65rem 0.85rem; font-size: 0.775rem;">
+                        <i class="material-icons" style="font-size: 15px;">photo_library</i> Photos
+                    </button>
+                    <button type="button" class="btn-msheet-book" id="msheet-cta-btn" onclick="executeMobileSheetSelection()">
+                        <span id="msheet-cta-label">Select Service</span>
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -8077,13 +7809,21 @@
                 console.warn('MySQL database sync warning:', err.message);
                 if (badgeText) badgeText.textContent = 'Cached Baseline Inventory Active';
                 if (badgeDot) badgeDot.style.background = '#64748b';
+            } finally {
+                if (typeof renderAllCategoryServices === 'function') {
+                    renderAllCategoryServices();
+                }
             }
         }
 
-        function onDestinationChanged() {
+        async function onDestinationChanged() {
             const dest = document.getElementById('destination-select')?.value;
-            loadDatabaseInventory(dest);
+            await loadDatabaseInventory(dest);
+            if (typeof renderAllCategoryServices === 'function') {
+                renderAllCategoryServices();
+            }
             onSearchFieldChanged();
+            updateSidebarSummary();
         }
 
         function calculateNights() {
@@ -8194,8 +7934,13 @@
         let selectedSeats = ['A1', 'A2', 'B1', 'B2'];
         let pendingSlot = null;
         let pendingItem = null;
+        let pendingOpenedFromPage = false;
 
         function backToItemsList() {
+            if (pendingOpenedFromPage) {
+                closePicker();
+                return;
+            }
             const listEl = document.getElementById('modal-items-list');
             const busWrap = document.getElementById('bus-seat-picker-wrap');
             const flightWrap = document.getElementById('flight-seat-picker-wrap');
@@ -8290,8 +8035,14 @@
             pendingSlot = slotName;
             pendingItem = item;
 
+            const modalEl = document.getElementById('selection-modal');
             const listEl = document.getElementById('modal-items-list');
             const busSeatWrap = document.getElementById('bus-seat-picker-wrap');
+            const flightWrap = document.getElementById('flight-seat-picker-wrap');
+            const trainWrap = document.getElementById('train-seat-picker-wrap');
+            const roomWrap = document.getElementById('hotel-room-picker-wrap');
+            const menuWrap = document.getElementById('dining-menu-picker-wrap');
+            const detailsWrap = document.getElementById('modal-item-details-view');
             const titleEl = document.getElementById('modal-category-title');
             const nameEl = document.getElementById('seat-bus-name');
             const rateEl = document.getElementById('seat-bus-rate');
@@ -8300,8 +8051,31 @@
             if (rateEl) rateEl.textContent = `BDT ${item.price.toLocaleString()} per seat • ${item.sub}`;
             if (titleEl) titleEl.textContent = `Select Seats - ${item.name}`;
 
-            listEl.style.display = 'none';
-            busSeatWrap.style.display = 'block';
+            if (listEl) listEl.style.display = 'none';
+            if (flightWrap) flightWrap.style.display = 'none';
+            if (trainWrap) trainWrap.style.display = 'none';
+            if (roomWrap) roomWrap.style.display = 'none';
+            if (menuWrap) menuWrap.style.display = 'none';
+            if (detailsWrap) detailsWrap.style.display = 'none';
+            if (busSeatWrap) busSeatWrap.style.display = 'block';
+            if (modalEl) modalEl.style.display = 'flex';
+
+            // Populate departure time slots
+            const timePillsWrap = document.getElementById('bus-time-slots-pills');
+            if (timePillsWrap && typeof getItemTimeSlots === 'function') {
+                const slots = getItemTimeSlots(slotName, item);
+                if (!item.selectedTimeSlot && slots.length > 0) {
+                    item.selectedTimeSlot = slots[0].time;
+                }
+                timePillsWrap.innerHTML = slots.map(s => `
+                    <button type="button" class="time-slot-pill ${item.selectedTimeSlot === s.time ? 'active' : ''}" 
+                            style="padding: 0.35rem 0.75rem; font-size: 0.775rem;" 
+                            onclick="selectItemTimeSlot('${slotName}', ${item.id}, '${s.time}', this)">
+                        <i class="material-icons" style="font-size: 14px; color: #0284c7;">schedule</i>
+                        <span>${s.time}</span>
+                    </button>
+                `).join('');
+            }
 
             const travelers = getTravelerCount();
             if (!item.selectedSeats || item.selectedSeats.length === 0) {
@@ -8322,7 +8096,10 @@
                 return;
             }
 
-            selectComponent(pendingSlot, pendingItem.id, { selectedSeats: [...selectedSeats] });
+            selectComponent(pendingSlot, pendingItem.id, { 
+                selectedSeats: [...selectedSeats],
+                selectedTimeSlot: pendingItem.selectedTimeSlot || null
+            });
         }
 
         // Interactive Flight Cabin Seat Picker
@@ -8335,8 +8112,14 @@
             pendingSlot = slotName;
             pendingItem = item;
 
+            const modalEl = document.getElementById('selection-modal');
             const listEl = document.getElementById('modal-items-list');
+            const busWrap = document.getElementById('bus-seat-picker-wrap');
             const flightWrap = document.getElementById('flight-seat-picker-wrap');
+            const trainWrap = document.getElementById('train-seat-picker-wrap');
+            const roomWrap = document.getElementById('hotel-room-picker-wrap');
+            const menuWrap = document.getElementById('dining-menu-picker-wrap');
+            const detailsWrap = document.getElementById('modal-item-details-view');
             const titleEl = document.getElementById('modal-category-title');
             const nameEl = document.getElementById('seat-flight-name');
             const rateEl = document.getElementById('seat-flight-rate');
@@ -8345,8 +8128,31 @@
             if (rateEl) rateEl.textContent = `BDT ${item.price.toLocaleString()} per passenger seat • 20kg luggage`;
             if (titleEl) titleEl.textContent = `Select Flight Seats - ${item.name}`;
 
-            listEl.style.display = 'none';
-            flightWrap.style.display = 'block';
+            if (listEl) listEl.style.display = 'none';
+            if (busWrap) busWrap.style.display = 'none';
+            if (trainWrap) trainWrap.style.display = 'none';
+            if (roomWrap) roomWrap.style.display = 'none';
+            if (menuWrap) menuWrap.style.display = 'none';
+            if (detailsWrap) detailsWrap.style.display = 'none';
+            if (flightWrap) flightWrap.style.display = 'block';
+            if (modalEl) modalEl.style.display = 'flex';
+
+            // Populate flight time slots
+            const timePillsWrap = document.getElementById('flight-time-slots-pills');
+            if (timePillsWrap && typeof getItemTimeSlots === 'function') {
+                const slots = getItemTimeSlots(slotName, item);
+                if (!item.selectedTimeSlot && slots.length > 0) {
+                    item.selectedTimeSlot = slots[0].time;
+                }
+                timePillsWrap.innerHTML = slots.map(s => `
+                    <button type="button" class="time-slot-pill ${item.selectedTimeSlot === s.time ? 'active' : ''}" 
+                            style="padding: 0.35rem 0.75rem; font-size: 0.775rem;" 
+                            onclick="selectItemTimeSlot('${slotName}', ${item.id}, '${s.time}', this)">
+                        <i class="material-icons" style="font-size: 14px; color: #0284c7;">flight_takeoff</i>
+                        <span>${s.time}</span>
+                    </button>
+                `).join('');
+            }
 
             const travelers = getTravelerCount();
             if (!item.selectedSeats || item.selectedSeats.length === 0) {
@@ -8433,7 +8239,10 @@
                 return;
             }
 
-            selectComponent(pendingSlot, pendingItem.id, { selectedSeats: [...flightSelectedSeats] });
+            selectComponent(pendingSlot, pendingItem.id, { 
+                selectedSeats: [...flightSelectedSeats],
+                selectedTimeSlot: pendingItem.selectedTimeSlot || null
+            });
         }
 
         // Interactive Bangladesh Railway Train Bogie Seat Picker
@@ -8447,8 +8256,14 @@
             pendingSlot = slotName;
             pendingItem = item;
 
+            const modalEl = document.getElementById('selection-modal');
             const listEl = document.getElementById('modal-items-list');
+            const busWrap = document.getElementById('bus-seat-picker-wrap');
+            const flightWrap = document.getElementById('flight-seat-picker-wrap');
             const trainWrap = document.getElementById('train-seat-picker-wrap');
+            const roomWrap = document.getElementById('hotel-room-picker-wrap');
+            const menuWrap = document.getElementById('dining-menu-picker-wrap');
+            const detailsWrap = document.getElementById('modal-item-details-view');
             const titleEl = document.getElementById('modal-category-title');
             const nameEl = document.getElementById('seat-train-name');
             const rateEl = document.getElementById('seat-train-rate');
@@ -8469,8 +8284,31 @@
                 bogieIndicator.textContent = `COACH: ${selectedBogie.toUpperCase()}`;
             }
 
-            listEl.style.display = 'none';
-            trainWrap.style.display = 'block';
+            if (listEl) listEl.style.display = 'none';
+            if (busWrap) busWrap.style.display = 'none';
+            if (flightWrap) flightWrap.style.display = 'none';
+            if (roomWrap) roomWrap.style.display = 'none';
+            if (menuWrap) menuWrap.style.display = 'none';
+            if (detailsWrap) detailsWrap.style.display = 'none';
+            if (trainWrap) trainWrap.style.display = 'block';
+            if (modalEl) modalEl.style.display = 'flex';
+
+            // Populate train time slots
+            const timePillsWrap = document.getElementById('train-time-slots-pills');
+            if (timePillsWrap && typeof getItemTimeSlots === 'function') {
+                const slots = getItemTimeSlots(slotName, item);
+                if (!item.selectedTimeSlot && slots.length > 0) {
+                    item.selectedTimeSlot = slots[0].time;
+                }
+                timePillsWrap.innerHTML = slots.map(s => `
+                    <button type="button" class="time-slot-pill ${item.selectedTimeSlot === s.time ? 'active' : ''}" 
+                            style="padding: 0.35rem 0.75rem; font-size: 0.775rem;" 
+                            onclick="selectItemTimeSlot('${slotName}', ${item.id}, '${s.time}', this)">
+                        <i class="material-icons" style="font-size: 14px; color: #10b981;">schedule</i>
+                        <span>${s.time}</span>
+                    </button>
+                `).join('');
+            }
 
             const travelers = getTravelerCount();
             const prefix = selectedBogie.includes('Coach B') ? 'B' : selectedBogie.includes('Coach C') ? 'C' : selectedBogie.includes('Coach D') ? 'D' : 'A';
@@ -8581,7 +8419,8 @@
 
             selectComponent(pendingSlot, pendingItem.id, {
                 selectedSeats: [...trainSelectedSeats],
-                bogie: selectedBogie
+                bogie: selectedBogie,
+                selectedTimeSlot: pendingItem.selectedTimeSlot || null
             });
         }
 
@@ -8595,8 +8434,14 @@
             pendingSlot = slotName;
             pendingItem = item;
 
+            const modalEl = document.getElementById('selection-modal');
             const listEl = document.getElementById('modal-items-list');
+            const busWrap = document.getElementById('bus-seat-picker-wrap');
+            const flightWrap = document.getElementById('flight-seat-picker-wrap');
+            const trainWrap = document.getElementById('train-seat-picker-wrap');
             const roomWrap = document.getElementById('hotel-room-picker-wrap');
+            const menuWrap = document.getElementById('dining-menu-picker-wrap');
+            const detailsWrap = document.getElementById('modal-item-details-view');
             const titleEl = document.getElementById('modal-category-title');
             const nameEl = document.getElementById('room-hotel-name');
             const subEl = document.getElementById('room-hotel-sub');
@@ -8609,8 +8454,14 @@
             if (subEl) subEl.textContent = item.sub;
             if (titleEl) titleEl.textContent = `Choose Rooms & Rates - ${item.name}`;
 
-            listEl.style.display = 'none';
-            roomWrap.style.display = 'block';
+            if (listEl) listEl.style.display = 'none';
+            if (busWrap) busWrap.style.display = 'none';
+            if (flightWrap) flightWrap.style.display = 'none';
+            if (trainWrap) trainWrap.style.display = 'none';
+            if (menuWrap) menuWrap.style.display = 'none';
+            if (detailsWrap) detailsWrap.style.display = 'none';
+            if (roomWrap) roomWrap.style.display = 'block';
+            if (modalEl) modalEl.style.display = 'flex';
 
             // Default to first room or previously chosen room
             const rooms = item.rooms || [
@@ -8749,8 +8600,14 @@
             pendingSlot = slotName;
             pendingItem = item;
 
+            const modalEl = document.getElementById('selection-modal');
             const listEl = document.getElementById('modal-items-list');
+            const busWrap = document.getElementById('bus-seat-picker-wrap');
+            const flightWrap = document.getElementById('flight-seat-picker-wrap');
+            const trainWrap = document.getElementById('train-seat-picker-wrap');
+            const roomWrap = document.getElementById('hotel-room-picker-wrap');
             const menuWrap = document.getElementById('dining-menu-picker-wrap');
+            const detailsWrap = document.getElementById('modal-item-details-view');
             const titleEl = document.getElementById('modal-category-title');
             const nameEl = document.getElementById('menu-restaurant-name');
             const subEl = document.getElementById('menu-restaurant-sub');
@@ -8763,8 +8620,14 @@
             if (subEl) subEl.textContent = item.sub;
             if (titleEl) titleEl.textContent = `Customize Dining Menu - ${item.name}`;
 
-            listEl.style.display = 'none';
-            menuWrap.style.display = 'block';
+            if (listEl) listEl.style.display = 'none';
+            if (busWrap) busWrap.style.display = 'none';
+            if (flightWrap) flightWrap.style.display = 'none';
+            if (trainWrap) trainWrap.style.display = 'none';
+            if (roomWrap) roomWrap.style.display = 'none';
+            if (detailsWrap) detailsWrap.style.display = 'none';
+            if (menuWrap) menuWrap.style.display = 'block';
+            if (modalEl) modalEl.style.display = 'flex';
 
             pendingSelectedAddons = (item.selectedMenu && item.selectedMenu.addons) ? [...item.selectedMenu.addons] : [];
             renderDiningMenu();
@@ -8895,7 +8758,13 @@
             pendingSlot = slotName;
             pendingItem = item;
 
+            const modalEl = document.getElementById('selection-modal');
             const listEl = document.getElementById('modal-items-list');
+            const busWrap = document.getElementById('bus-seat-picker-wrap');
+            const flightWrap = document.getElementById('flight-seat-picker-wrap');
+            const trainWrap = document.getElementById('train-seat-picker-wrap');
+            const roomWrap = document.getElementById('hotel-room-picker-wrap');
+            const menuWrap = document.getElementById('dining-menu-picker-wrap');
             const detailsWrap = document.getElementById('modal-item-details-view');
             const titleEl = document.getElementById('modal-category-title');
             const itemTitle = document.getElementById('details-item-title');
@@ -8904,7 +8773,7 @@
             const costPreview = document.getElementById('details-cost-preview');
             const proceedBtn = document.getElementById('details-proceed-btn');
 
-            if (titleEl) titleEl.textContent = `Service Details & Roadmap - ${item.name}`;
+            if (titleEl) titleEl.textContent = `Service Details & Photo Gallery - ${item.name}`;
             if (itemTitle) itemTitle.innerHTML = `${item.name} ${item.rating ? `<span style="color: #f59e0b; font-size: 0.9rem;">${item.rating}</span>` : ''}`;
             if (itemSub) itemSub.textContent = item.sub;
 
@@ -8916,13 +8785,13 @@
 
             if (proceedBtn) {
                 if (item.hasSeats || slotName === 'bus' || slotName === 'coach') {
-                    proceedBtn.textContent = 'Proceed to View Seats';
+                    proceedBtn.textContent = 'Proceed to View Seats (40-Seat Layout)';
                 } else if (item.hasFlightSeats || slotName === 'flight') {
                     proceedBtn.textContent = 'Proceed to Flight Seats';
                 } else if (item.hasTrainSeats || slotName === 'train') {
                     proceedBtn.textContent = 'Proceed to Train Seats';
                 } else if (item.hasRooms || slotName === 'hotel' || slotName === 'resort' || slotName === 'cottage' || slotName === 'villa') {
-                    proceedBtn.textContent = 'Proceed to Choose Rooms';
+                    proceedBtn.textContent = 'Proceed to Choose Rooms & Rates';
                 } else if (item.hasMenu || slotName === 'breakfast' || slotName === 'lunch' || slotName === 'dinner') {
                     proceedBtn.textContent = 'Proceed to Customize Menu';
                 } else {
@@ -8931,10 +8800,56 @@
             }
 
             const d = item.details || {};
+            const gallery = typeof getItemGallery === 'function' ? getItemGallery(slotName, item) : [{ url: item.img, caption: 'Exterior View' }];
+            const timeSlots = typeof getItemTimeSlots === 'function' ? getItemTimeSlots(slotName, item) : [];
+
+            if (!item.selectedTimeSlot && timeSlots.length > 0) {
+                item.selectedTimeSlot = timeSlots[0].time;
+            }
+
+            const galleryHtml = `
+                <div class="details-gallery-section">
+                    <div class="details-cover-container">
+                        <img id="details-cover-photo" src="${gallery[0].url}" class="details-cover-img" alt="${item.name}">
+                        <div id="details-cover-caption" class="details-thumb-caption" style="position: absolute; bottom: 12px; left: 16px; font-size: 0.8rem; padding: 4px 10px; background: rgba(15,23,42,0.85); backdrop-filter: blur(4px); border-radius: 6px;">
+                            ${gallery[0].caption}
+                        </div>
+                    </div>
+                    <div class="details-gallery-strip">
+                        ${gallery.map((g, idx) => `
+                            <button type="button" class="details-thumb-btn ${idx === 0 ? 'active' : ''}" onclick="swapGalleryCover('${g.url}', '${g.caption}', this)">
+                                <img src="${g.url}" alt="${g.caption}">
+                                <span class="details-thumb-caption">${g.caption}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            const timeSlotsHtml = timeSlots.length > 0 ? `
+                <div style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                    <div style="font-size: 0.8rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
+                        <i class="material-icons" style="font-size: 16px; color: #0284c7;">schedule</i>
+                        Departure / Service Time Slots:
+                    </div>
+                    <div class="time-slots-container">
+                        ${timeSlots.map(slot => `
+                            <div class="time-slot-pill ${item.selectedTimeSlot === slot.time ? 'active' : ''}" onclick="selectItemTimeSlot('${slotName}', ${item.id}, '${slot.time}', this)">
+                                <i class="material-icons" style="font-size: 16px; color: #0284c7;">schedule</i>
+                                <div>
+                                    <div class="time-slot-title">${slot.time}</div>
+                                    <div class="time-slot-desc">${slot.desc}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : '';
+
             const scheduleHtml = d.schedule ? `
-                <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 0.85rem 1rem;">
+                <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 1rem;">
                     <div style="font-size: 0.8rem; font-weight: 800; color: #1e40af; text-transform: uppercase; margin-bottom: 0.25rem;">
-                        🕒 Schedule & Timing:
+                        🕒 Operational Timing & Frequency:
                     </div>
                     <div style="font-size: 0.9rem; font-weight: 700; color: #1e293b;">
                         ${d.schedule}
@@ -8944,7 +8859,7 @@
             ` : '';
 
             const roadmapHtml = (d.routeStops && d.routeStops.length > 0) ? `
-                <div style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem;">
+                <div style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
                     <div style="font-size: 0.8rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
                         <i class="material-icons" style="font-size: 16px; color: var(--st-primary);">route</i>
                         Route Map & Stops Breakdown:
@@ -8962,7 +8877,7 @@
             ` : '';
 
             const amenitiesHtml = (d.amenities && d.amenities.length > 0) ? `
-                <div style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem;">
+                <div style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
                     <div style="font-size: 0.8rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
                         <i class="material-icons" style="font-size: 16px; color: #16a34a;">verified</i>
                         Key Features & Onboard Amenities:
@@ -8985,10 +8900,11 @@
             ` : '';
 
             bodyEl.innerHTML = `
-                <div class="details-hero">
-                    <img src="${item.img}" class="details-hero-img" alt="${item.name}">
+                ${galleryHtml}
+
+                <div class="details-hero" style="margin-bottom: 1rem;">
                     <div>
-                        <div style="font-weight: 800; font-size: 1.1rem; color: var(--st-text);">${item.name}</div>
+                        <div style="font-weight: 800; font-size: 1.15rem; color: var(--st-text);">${item.name}</div>
                         <div style="font-size: 0.825rem; color: var(--st-text-muted); margin-top: 0.25rem;">${d.type || item.sub}</div>
                         <div style="margin-top: 0.4rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
                             <span class="scen-tag" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe; font-size: 0.75rem;">
@@ -8999,14 +8915,21 @@
                     </div>
                 </div>
 
+                ${timeSlotsHtml}
                 ${scheduleHtml}
                 ${roadmapHtml}
                 ${amenitiesHtml}
                 ${policiesHtml}
             `;
 
-            listEl.style.display = 'none';
-            detailsWrap.style.display = 'block';
+            if (listEl) listEl.style.display = 'none';
+            if (busWrap) busWrap.style.display = 'none';
+            if (flightWrap) flightWrap.style.display = 'none';
+            if (trainWrap) trainWrap.style.display = 'none';
+            if (roomWrap) roomWrap.style.display = 'none';
+            if (menuWrap) menuWrap.style.display = 'none';
+            if (detailsWrap) detailsWrap.style.display = 'block';
+            if (modalEl) modalEl.style.display = 'flex';
         }
 
         function proceedFromDetails() {
@@ -9434,9 +9357,80 @@
                 if (customData.selectedRoom) itemToStore.selectedRoom = { ...customData.selectedRoom };
                 if (customData.selectedMenu) itemToStore.selectedMenu = { ...customData.selectedMenu };
                 if (customData.bogie) itemToStore.bogie = customData.bogie;
+                if (customData.selectedTimeSlot) itemToStore.selectedTimeSlot = customData.selectedTimeSlot;
             }
 
+            // Sync with currentTour
             currentTour[slotName] = itemToStore;
+
+            // Map slot to mockupSelections category
+            let catId = null;
+            if (['bus', 'coach', 'flight', 'train', 'microbus', 'cng', 'launch', 'jeep', 'truck'].includes(slotName)) {
+                catId = 'transit';
+                ['bus', 'coach', 'flight', 'train', 'microbus', 'cng', 'launch', 'jeep', 'truck'].forEach(s => {
+                    if (s !== slotName) currentTour[s] = null;
+                });
+                mockupSelections.transit = {
+                    slotName: slotName,
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    subType: slotName,
+                    unit: (slotName === 'microbus' || slotName === 'cng' || slotName === 'truck' ? 'vehicle' : 'person'),
+                    selectedSeats: itemToStore.selectedSeats || [],
+                    selectedTimeSlot: itemToStore.selectedTimeSlot || null,
+                    bogie: itemToStore.bogie || null
+                };
+            } else if (['hotel', 'resort', 'cottage', 'villa'].includes(slotName)) {
+                catId = 'accommodation';
+                ['hotel', 'resort', 'cottage', 'villa'].forEach(s => {
+                    if (s !== slotName) currentTour[s] = null;
+                });
+                const effectivePrice = itemToStore.selectedRoom ? itemToStore.selectedRoom.price : item.price;
+                mockupSelections.accommodation = {
+                    slotName: slotName,
+                    id: item.id,
+                    name: item.name,
+                    price: effectivePrice,
+                    subType: slotName,
+                    unit: 'night',
+                    selectedRoom: itemToStore.selectedRoom || null
+                };
+            } else if (['breakfast', 'lunch', 'dinner', 'bbq', 'cafe', 'traditionalfood', 'buffet'].includes(slotName)) {
+                catId = 'dining';
+                const effectivePrice = (itemToStore.selectedMenu && itemToStore.selectedMenu.perPersonPrice) ? itemToStore.selectedMenu.perPersonPrice : item.price;
+                mockupSelections.dining = {
+                    slotName: slotName,
+                    id: item.id,
+                    name: item.name,
+                    price: effectivePrice,
+                    subType: slotName,
+                    unit: 'person',
+                    selectedMenu: itemToStore.selectedMenu || null
+                };
+            } else if (['parasailing', 'speedboat', 'jetski', 'scuba', 'lounge'].includes(slotName)) {
+                catId = 'recreation';
+                mockupSelections.recreation = {
+                    slotName: slotName,
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    subType: slotName,
+                    unit: 'person',
+                    selectedTimeSlot: itemToStore.selectedTimeSlot || null
+                };
+            } else if (['guide', 'permit', 'honeymoon'].includes(slotName)) {
+                catId = 'addons';
+                mockupSelections.addons = {
+                    slotName: slotName,
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    subType: slotName,
+                    unit: 'package',
+                    selectedTimeSlot: itemToStore.selectedTimeSlot || null
+                };
+            }
 
             const valEl = document.getElementById(`val-${slotName}`);
             const priceEl = document.getElementById(`price-${slotName}`);
@@ -9490,11 +9484,36 @@
             }
 
             closePicker();
+            if (catId && typeof renderCategoryServices === 'function') {
+                renderCategoryServices(catId);
+            }
+            if (typeof updateSidebarSummary === 'function') {
+                updateSidebarSummary();
+            }
             recalculateTotals();
         }
 
         function removeComponent(slotName) {
             currentTour[slotName] = null;
+
+            // Clear category in mockupSelections
+            let catId = null;
+            if (['bus', 'coach', 'flight', 'train', 'microbus', 'cng', 'launch', 'jeep', 'truck'].includes(slotName)) {
+                catId = 'transit';
+                if (mockupSelections.transit && mockupSelections.transit.slotName === slotName) mockupSelections.transit = null;
+            } else if (['hotel', 'resort', 'cottage', 'villa'].includes(slotName)) {
+                catId = 'accommodation';
+                if (mockupSelections.accommodation && mockupSelections.accommodation.slotName === slotName) mockupSelections.accommodation = null;
+            } else if (['breakfast', 'lunch', 'dinner', 'bbq', 'cafe', 'traditionalfood', 'buffet'].includes(slotName)) {
+                catId = 'dining';
+                if (mockupSelections.dining && mockupSelections.dining.slotName === slotName) mockupSelections.dining = null;
+            } else if (['parasailing', 'speedboat', 'jetski', 'scuba', 'lounge'].includes(slotName)) {
+                catId = 'recreation';
+                if (mockupSelections.recreation && mockupSelections.recreation.slotName === slotName) mockupSelections.recreation = null;
+            } else if (['guide', 'permit', 'honeymoon'].includes(slotName)) {
+                catId = 'addons';
+                if (mockupSelections.addons && mockupSelections.addons.slotName === slotName) mockupSelections.addons = null;
+            }
 
             const valEl = document.getElementById(`val-${slotName}`);
             const priceEl = document.getElementById(`price-${slotName}`);
@@ -9523,6 +9542,12 @@
                 imgEl.src = slotDefaultImages[slotName];
             }
 
+            if (catId && typeof renderCategoryServices === 'function') {
+                renderCategoryServices(catId);
+            }
+            if (typeof updateSidebarSummary === 'function') {
+                updateSidebarSummary();
+            }
             recalculateTotals();
         }
 
@@ -11289,66 +11314,518 @@
             card.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        function filterSubCategory(catId, subType) {
-            const card = document.getElementById(`cat-card-${catId}`);
-            if (!card) return;
+        /* ==============================================================
+           DYNAMIC CATEGORY SERVICES RENDERER & INTERACTIVE GALLERY LOGIC
+           ============================================================== */
 
-            // Highlight subpill
-            card.querySelectorAll('.sub-filter-pill').forEach(pill => {
-                pill.classList.remove('active');
-            });
-            if (window.event && window.event.currentTarget) {
-                window.event.currentTarget.classList.add('active');
+        const activeSubFilters = {
+            transit: 'bus',
+            accommodation: 'hotels',
+            dining: 'all',
+            recreation: 'all',
+            addons: 'all'
+        };
+
+        // Curated 4-Photo High-Resolution Gallery for Every Service
+        function getItemGallery(slotKey, item) {
+            if (!item) return [];
+            if (item.gallery && Array.isArray(item.gallery) && item.gallery.length > 0) {
+                return item.gallery;
             }
 
-            // Filter service rows
-            const rows = card.querySelectorAll('.provider-service-row');
-            rows.forEach(row => {
-                const rowSub = row.getAttribute('data-sub');
-                if (subType === 'all' || rowSub === subType) {
-                    row.style.display = 'grid';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
+            const heroImg = item.img || 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80';
+
+            if (slotKey === 'bus' || slotKey === 'coach') {
+                return [
+                    { url: heroImg, caption: 'Exterior Front & Livery' },
+                    { url: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80', caption: 'Luxury Reclining Seats' },
+                    { url: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80', caption: 'Spacious Cabin Corridor' },
+                    { url: 'https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?auto=format&fit=crop&w=800&q=80', caption: 'Air Suspension Comfort' }
+                ];
+            } else if (slotKey === 'flight') {
+                return [
+                    { url: heroImg, caption: 'Aircraft Exterior Livery' },
+                    { url: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80', caption: 'Boeing 737 Cabin Interior' },
+                    { url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80', caption: 'Window Seating & Legroom' },
+                    { url: 'https://images.unsplash.com/photo-1517400508447-f8dd518b86db?auto=format&fit=crop&w=800&q=80', caption: 'Inflight Service & Luggage' }
+                ];
+            } else if (slotKey === 'train') {
+                return [
+                    { url: heroImg, caption: 'Locomotive & Intercity Bogie' },
+                    { url: 'https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=800&q=80', caption: 'AC Chair / Snigdha Interior' },
+                    { url: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=800&q=80', caption: 'Scenic Railway Corridor' },
+                    { url: 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=800&q=80', caption: 'Bogie Corridor & Amenities' }
+                ];
+            } else if (slotKey === 'microbus' || slotKey === 'cng' || slotKey === 'truck' || slotKey === 'launch' || slotKey === 'jeep') {
+                return [
+                    { url: heroImg, caption: 'Private Vehicle Profile' },
+                    { url: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80', caption: 'Passenger Leather Cabin' },
+                    { url: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80', caption: 'Spacious Luggage Boot' },
+                    { url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80', caption: 'Road Trip Scenic Route' }
+                ];
+            } else if (slotKey === 'hotel' || slotKey === 'resort') {
+                return [
+                    { url: heroImg, caption: 'Property Facade & Architecture' },
+                    { url: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80', caption: 'Master King Bedroom Suite' },
+                    { url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', caption: 'Infinity Pool & Sea Horizon' },
+                    { url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80', caption: 'En-suite Luxury Bathroom' }
+                ];
+            } else if (slotKey === 'cottage' || slotKey === 'villa') {
+                return [
+                    { url: heroImg, caption: 'Cottage Facade & Garden' },
+                    { url: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80', caption: 'Handcrafted Wooden Bedroom' },
+                    { url: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80', caption: 'Private Sunset Balcony' },
+                    { url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', caption: 'Eco-Lounge & Nature View' }
+                ];
+            } else if (['breakfast', 'lunch', 'dinner', 'bbq', 'cafe', 'traditionalfood', 'buffet'].includes(slotKey)) {
+                return [
+                    { url: heroImg, caption: 'Main Course Gourmet Platter' },
+                    { url: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80', caption: 'Fresh Authentic Cuisine' },
+                    { url: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80', caption: 'Restaurant Dining Seating' },
+                    { url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80', caption: 'Dessert & Fresh Beverage' }
+                ];
+            } else if (['parasailing', 'speedboat', 'jetski', 'scuba', 'lounge'].includes(slotKey)) {
+                return [
+                    { url: heroImg, caption: 'Thrilling Action Experience' },
+                    { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', caption: 'Turquoise Ocean Waters' },
+                    { url: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80', caption: 'Certified Safety Gear' },
+                    { url: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80', caption: 'Golden Hour Sunset Panorama' }
+                ];
+            } else {
+                return [
+                    { url: heroImg, caption: 'Service Overview' },
+                    { url: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80', caption: 'Professional Expert Guide' },
+                    { url: 'https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80', caption: 'Historical Landmark Trek' },
+                    { url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80', caption: 'Tourist Group Highlights' }
+                ];
+            }
         }
 
-        function selectMockupService(catId, subType, name, price, unit, btnEl, slotId) {
-            const isAlreadySelected = btnEl && btnEl.classList.contains('selected');
+        // Available Departure / Schedule Timing Slots
+        function getItemTimeSlots(slotKey, item) {
+            if (slotKey === 'bus' || slotKey === 'coach') {
+                return [
+                    { time: '07:30 AM', desc: 'Morning Highway Coach' },
+                    { time: '10:30 AM', desc: 'Midday Express' },
+                    { time: '04:15 PM', desc: 'Evening Sunset Coach' },
+                    { time: '10:30 PM', desc: 'Night Super Express' },
+                    { time: '11:45 PM', desc: 'Midnight Sleeper Berth' }
+                ];
+            } else if (slotKey === 'flight') {
+                return [
+                    { time: '08:15 AM', desc: 'Morning Flight BG-433' },
+                    { time: '01:30 PM', desc: 'Noon Flight VQ-911' },
+                    { time: '06:45 PM', desc: 'Sunset Flight BQ-602' }
+                ];
+            } else if (slotKey === 'train') {
+                return [
+                    { time: '06:15 AM', desc: 'Morning Snigdha Express' },
+                    { time: '10:30 PM', desc: 'Night Mail Express 813' }
+                ];
+            } else if (slotKey === 'microbus' || slotKey === 'cng' || slotKey === 'truck') {
+                return [
+                    { time: '06:00 AM', desc: 'Early Dawn Pickup' },
+                    { time: '09:00 AM', desc: 'Standard Morning Pickup' },
+                    { time: '02:00 PM', desc: 'Afternoon Departure' },
+                    { time: 'On-Demand', desc: 'Tourist Call Anytime' }
+                ];
+            } else if (['hotel', 'resort', 'cottage', 'villa'].includes(slotKey)) {
+                return [
+                    { time: '02:00 PM', desc: 'Standard Check-in' },
+                    { time: '10:00 AM', desc: 'Early Check-in (Subject to Availability)' },
+                    { time: '08:00 PM', desc: 'Late Check-in Assured' }
+                ];
+            } else if (['breakfast', 'lunch', 'dinner', 'bbq', 'cafe'].includes(slotKey)) {
+                return [
+                    { time: '08:00 AM - 10:30 AM', desc: 'Morning Gourmet Buffet' },
+                    { time: '01:00 PM - 03:30 PM', desc: 'Executive Lunch Course' },
+                    { time: '08:00 PM - 11:00 PM', desc: 'Dinner & Live BBQ Feast' }
+                ];
+            } else if (['parasailing', 'speedboat', 'scuba', 'lounge'].includes(slotKey)) {
+                return [
+                    { time: '09:00 AM', desc: 'Morning Calm Tide' },
+                    { time: '02:30 PM', desc: 'Afternoon Adventure Tide' },
+                    { time: '04:45 PM', desc: 'Golden Hour Sunset Tide' }
+                ];
+            } else {
+                return [
+                    { time: '08:30 AM - 06:00 PM', desc: 'Full Day Exploration' },
+                    { time: '02:00 PM - 07:00 PM', desc: 'Half Day Afternoon Session' }
+                ];
+            }
+        }
 
-            // Deselect other buttons in this category
+        // Swap cover photo in Details modal
+        function swapGalleryCover(photoUrl, caption, thumbBtn) {
+            const coverImg = document.getElementById('details-cover-photo');
+            const capEl = document.getElementById('details-cover-caption');
+            if (coverImg) {
+                coverImg.style.opacity = '0.4';
+                setTimeout(() => {
+                    coverImg.src = photoUrl;
+                    coverImg.style.opacity = '1';
+                }, 120);
+            }
+            if (capEl) capEl.textContent = caption || 'Service Photo';
+            if (thumbBtn) {
+                const strip = thumbBtn.closest('.details-gallery-strip');
+                if (strip) {
+                    strip.querySelectorAll('.details-thumb-btn').forEach(btn => btn.classList.remove('active'));
+                    thumbBtn.classList.add('active');
+                }
+            }
+        }
+
+        // Select Time Slot in modal or row
+        function selectItemTimeSlot(slotName, itemId, timeVal, pillEl) {
+            const item = (inventory[slotName] || []).find(x => x.id === itemId);
+            if (item) {
+                item.selectedTimeSlot = timeVal;
+            }
+            if (pendingItem && pendingItem.id === itemId) {
+                pendingItem.selectedTimeSlot = timeVal;
+            }
+            if (pillEl) {
+                const container = pillEl.closest('.time-slots-container') || pillEl.parentElement;
+                if (container) {
+                    container.querySelectorAll('.time-slot-pill').forEach(p => p.classList.remove('active'));
+                    pillEl.classList.add('active');
+                }
+            }
+        }
+
+        // Open View Seats directly from row
+        function openSeatPickerFromRow(slotName, itemId) {
+            pendingOpenedFromPage = true;
+            openSeatPicker(slotName, itemId);
+        }
+
+        function openFlightSeatPickerFromRow(slotName, itemId) {
+            pendingOpenedFromPage = true;
+            openFlightSeatPicker(slotName, itemId);
+        }
+
+        function openTrainSeatPickerFromRow(slotName, itemId) {
+            pendingOpenedFromPage = true;
+            openTrainSeatPicker(slotName, itemId);
+        }
+
+        function openRoomPickerFromRow(slotName, itemId) {
+            pendingOpenedFromPage = true;
+            openRoomPicker(slotName, itemId);
+        }
+
+        function openMenuPickerFromRow(slotName, itemId) {
+            pendingOpenedFromPage = true;
+            openMenuPicker(slotName, itemId);
+        }
+
+        function openDetailsGalleryModal(slotName, itemId) {
+            pendingOpenedFromPage = true;
+            showItemDetails(slotName, itemId);
+        }
+
+        function selectDirectServiceFromRow(catId, slotName, itemId) {
+            const isCurrentlySelected = Boolean(mockupSelections[catId] && mockupSelections[catId].id === itemId && mockupSelections[catId].slotName === slotName);
+            if (isCurrentlySelected) {
+                removeComponent(slotName);
+            } else {
+                selectComponent(slotName, itemId);
+            }
+        }
+
+        // Dynamic Service Rows Renderer
+        function renderCategoryServices(catId, subType) {
+            if (subType) {
+                activeSubFilters[catId] = subType;
+            } else {
+                subType = activeSubFilters[catId] || 'all';
+            }
+
+            const listContainer = document.getElementById(`service-list-${catId}`);
+            if (!listContainer) return;
+
+            // Map category and subType to inventory slot keys
+            let slotKeys = [];
+            if (catId === 'transit') {
+                if (subType === 'bus') slotKeys = ['bus'];
+                else if (subType === 'coach') slotKeys = ['coach'];
+                else if (subType === 'train') slotKeys = ['train'];
+                else if (subType === 'flight') slotKeys = ['flight'];
+                else if (subType === 'micro') slotKeys = ['microbus'];
+                else if (subType === 'taxi') slotKeys = ['cng', 'truck'];
+                else slotKeys = ['bus', 'coach', 'train', 'flight', 'microbus', 'cng'];
+            } else if (catId === 'accommodation') {
+                if (subType === 'hotels') slotKeys = ['hotel'];
+                else if (subType === 'resorts') slotKeys = ['resort'];
+                else if (subType === 'guesthouses') slotKeys = ['cottage'];
+                else if (subType === 'homestays') slotKeys = ['villa'];
+                else slotKeys = ['hotel', 'resort', 'cottage', 'villa'];
+            } else if (catId === 'dining') {
+                if (subType === 'breakfast') slotKeys = ['breakfast'];
+                else if (subType === 'lunch') slotKeys = ['lunch'];
+                else if (subType === 'dinner') slotKeys = ['dinner', 'bbq'];
+                else if (subType === 'cafe') slotKeys = ['cafe', 'traditionalfood', 'buffet'];
+                else slotKeys = ['breakfast', 'lunch', 'dinner', 'bbq', 'cafe', 'traditionalfood', 'buffet'];
+            } else if (catId === 'recreation') {
+                if (subType === 'watersports') slotKeys = ['parasailing', 'speedboat', 'jetski'];
+                else if (subType === 'diving') slotKeys = ['scuba'];
+                else if (subType === 'sightseeing') slotKeys = ['lounge'];
+                else slotKeys = ['parasailing', 'speedboat', 'jetski', 'scuba', 'lounge'];
+            } else if (catId === 'addons') {
+                if (subType === 'guides') slotKeys = ['guide'];
+                else if (subType === 'permits') slotKeys = ['permit'];
+                else if (subType === 'special') slotKeys = ['honeymoon'];
+                else slotKeys = ['guide', 'permit', 'honeymoon'];
+            }
+
+            // Gather items
+            const items = [];
+            slotKeys.forEach(sk => {
+                (inventory[sk] || []).forEach(it => {
+                    items.push({ ...it, slotKey: sk });
+                });
+            });
+
+            if (items.length === 0) {
+                listContainer.innerHTML = `
+                    <div style="text-align: center; padding: 2.5rem 1rem; color: #64748b;">
+                        <i class="material-icons" style="font-size: 40px; color: #cbd5e1; margin-bottom: 0.5rem;">event_busy</i>
+                        <div style="font-weight: 700; font-size: 0.95rem; color: #475569;">No services currently available for this category</div>
+                        <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Try selecting an alternative sub-category or changing destination.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            const travelers = getTravelerCount();
+            const originTitle = document.getElementById('origin-display-title')?.textContent || 'Dhaka';
+            const destTitle = document.getElementById('destination-display-title')?.textContent || "Cox's Bazar";
+            const cleanOrigin = originTitle.split(',')[0].trim();
+            const cleanDest = destTitle.split(',')[0].trim();
+
+            const rowsHtml = items.map(item => {
+                const sk = item.slotKey;
+                const isSelected = Boolean(mockupSelections[catId] && mockupSelections[catId].id === item.id && mockupSelections[catId].slotName === sk);
+
+                // Timing / Schedule
+                let timeText = 'Daily Service';
+                let durationText = `${cleanOrigin} ➔ ${cleanDest}`;
+                if (item.details?.schedule) {
+                    timeText = item.details.schedule.split('➔')[0].replace('Departure:', '').trim();
+                } else if (sk === 'bus' || sk === 'coach') {
+                    timeText = '10:30 PM (Night Coach)';
+                    durationText = '8-9 Hours Direct';
+                } else if (sk === 'flight') {
+                    timeText = '08:15 AM (Direct Flight)';
+                    durationText = '55 Mins Non-stop';
+                } else if (sk === 'train') {
+                    timeText = '10:30 PM (Express Train)';
+                    durationText = '8 Hours Direct Track';
+                } else if (catId === 'accommodation') {
+                    timeText = 'Check-in: 02:00 PM';
+                    durationText = 'Check-out: 12:00 PM';
+                } else if (catId === 'dining') {
+                    timeText = 'Full Course Platter';
+                    durationText = 'Fresh Seasonal Menu';
+                } else if (catId === 'recreation') {
+                    timeText = 'Daily Time Slots';
+                    durationText = 'Certified Safety Tour';
+                }
+
+                // Amenities
+                const amenitiesList = (item.details?.amenities && item.details.amenities.length > 0) 
+                    ? item.details.amenities.slice(0, 3) 
+                    : ['Air Conditioned', 'Free WiFi', 'Guaranteed Service'];
+
+                const amenityPillsHtml = amenitiesList.map(a => `
+                    <span class="amenity-badge">
+                        <i class="material-icons" style="font-size: 11px; color: #16a34a;">check</i>
+                        <span>${a}</span>
+                    </span>
+                `).join('');
+
+                // Price and unit
+                let unitText = 'per person';
+                if (catId === 'accommodation') {
+                    unitText = 'per night';
+                } else if (sk === 'microbus' || sk === 'cng' || sk === 'truck') {
+                    unitText = 'per vehicle';
+                } else if (sk === 'permit' || sk === 'honeymoon') {
+                    unitText = 'per tour';
+                }
+
+                // Action Button handler & label
+                let actionBtnFn = '';
+                let defaultBtnLabel = 'Select';
+                let selectedMeta = '';
+
+                if (item.hasSeats || sk === 'bus' || sk === 'coach') {
+                    actionBtnFn = `openSeatPickerFromRow('${sk}', ${item.id})`;
+                    defaultBtnLabel = 'View Seats';
+                    if (isSelected && mockupSelections.transit) {
+                        const seats = (mockupSelections.transit.selectedSeats || []).join(', ');
+                        const slot = mockupSelections.transit.selectedTimeSlot ? mockupSelections.transit.selectedTimeSlot.split(' ')[0] : '';
+                        selectedMeta = seats ? `Seats: ${seats}${slot ? ' • ' + slot : ''}` : '';
+                    }
+                } else if (item.hasFlightSeats || sk === 'flight') {
+                    actionBtnFn = `openFlightSeatPickerFromRow('${sk}', ${item.id})`;
+                    defaultBtnLabel = 'View Seats';
+                    if (isSelected && mockupSelections.transit) {
+                        const seats = (mockupSelections.transit.selectedSeats || []).join(', ');
+                        selectedMeta = seats ? `Seats: ${seats}` : '';
+                    }
+                } else if (item.hasTrainSeats || sk === 'train') {
+                    actionBtnFn = `openTrainSeatPickerFromRow('${sk}', ${item.id})`;
+                    defaultBtnLabel = 'View Seats';
+                    if (isSelected && mockupSelections.transit) {
+                        const seats = (mockupSelections.transit.selectedSeats || []).join(', ');
+                        const bogie = mockupSelections.transit.bogie ? mockupSelections.transit.bogie.split(' ')[0] : '';
+                        selectedMeta = seats ? `${bogie} • ${seats}` : '';
+                    }
+                } else if (item.hasRooms || catId === 'accommodation') {
+                    actionBtnFn = `openRoomPickerFromRow('${sk}', ${item.id})`;
+                    defaultBtnLabel = 'Select Room';
+                    if (isSelected && mockupSelections.accommodation) {
+                        const r = mockupSelections.accommodation.selectedRoom;
+                        selectedMeta = r ? `${r.name}${r.chosenFloor ? ' (' + r.chosenFloor + ')' : ''}` : '';
+                    }
+                } else if (item.hasMenu || catId === 'dining') {
+                    actionBtnFn = `openMenuPickerFromRow('${sk}', ${item.id})`;
+                    defaultBtnLabel = 'Customize Menu';
+                    if (isSelected && mockupSelections.dining) {
+                        selectedMeta = mockupSelections.dining.selectedMenu ? mockupSelections.dining.selectedMenu.packageName : 'Selected';
+                    }
+                } else {
+                    actionBtnFn = `selectDirectServiceFromRow('${catId}', '${sk}', ${item.id})`;
+                    defaultBtnLabel = 'Select';
+                }
+
+                const buttonText = isSelected 
+                    ? `Selected ✓${selectedMeta ? '<br><small style="font-size: 0.68rem; font-weight: 600; opacity: 0.9;">' + selectedMeta + '</small>' : ''}`
+                    : defaultBtnLabel;
+
+                const isAccom = (catId === 'accommodation');
+
+                return `
+                    <div class="provider-service-row" data-sub="${sk}" id="service-row-${sk}-${item.id}">
+                        <div class="provider-logo-wrap">
+                            <img src="${item.img}" class="${isAccom ? 'provider-thumb-hotel' : ''}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80'">
+                        </div>
+                        <div class="provider-details-wrap">
+                            <div class="provider-name-text">${item.name}</div>
+                            <div class="provider-sub-text">${item.sub || ''}</div>
+                            <div class="provider-meta-row">
+                                <span><i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> ${item.rating || '4.9 (120+)'}</span>
+                                ${item.scenario ? `<span class="scen-tag" style="font-size: 0.68rem; padding: 1px 6px;">${item.scenario.split(':')[0]}</span>` : ''}
+                            </div>
+                        </div>
+                        <div class="provider-timing-wrap">
+                            <div class="provider-time-text">${timeText}</div>
+                            <div class="provider-duration-text">${durationText}</div>
+                        </div>
+                        <div class="provider-amenity-pills">
+                            ${amenityPillsHtml}
+                        </div>
+                        <div class="provider-price-wrap">
+                            <div class="provider-price-amount">৳ ${Number(item.price).toLocaleString()}</div>
+                            <div class="provider-price-unit">${unitText}</div>
+                        </div>
+                        <div class="provider-actions-wrap">
+                            <button type="button" class="btn-select-service ${isSelected ? 'selected' : ''}" onclick="${actionBtnFn}">
+                                ${buttonText}
+                            </button>
+                            <button type="button" class="btn-details-service" onclick="openDetailsGalleryModal('${sk}', ${item.id})">
+                                <i class="material-icons" style="font-size: 13px;">photo_library</i> Details & Gallery
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            listContainer.innerHTML = rowsHtml;
+
+            // Update sub-category header count & title
+            if (catId === 'transit') {
+                const transitRouteTitle = document.getElementById('transit-route-header-title');
+                const transitCountEl = document.getElementById('transit-total-count-text');
+                const typeLabel = subType === 'bus' ? 'Buses' : (subType === 'coach' ? 'Luxury Coaches' : (subType === 'train' ? 'Intercity Trains' : (subType === 'flight' ? 'Direct Flights' : (subType === 'micro' ? 'Microbuses' : 'Taxis & Cabs'))));
+                if (transitRouteTitle) transitRouteTitle.textContent = `Available ${typeLabel} (${cleanOrigin} ➔ ${cleanDest})`;
+                if (transitCountEl) transitCountEl.textContent = `Total ${items.length} ${typeLabel}`;
+            } else if (catId === 'accommodation') {
+                const footBtn = document.querySelector('#cat-body-accommodation .btn-view-all-foot span');
+                if (footBtn) footBtn.textContent = `View All Accommodations (${items.length})`;
+            }
+        }
+
+        // Sub-filter pill handler
+        function filterSubCategory(catId, subType) {
             const card = document.getElementById(`cat-card-${catId}`);
             if (card) {
-                card.querySelectorAll('.btn-select-service').forEach(b => {
-                    b.classList.remove('selected');
-                    b.textContent = 'Select';
-                });
+                card.querySelectorAll('.sub-filter-pill').forEach(pill => pill.classList.remove('active'));
             }
-
-            if (isAlreadySelected) {
-                mockupSelections[catId] = null;
-                if (currentTour[subType]) {
-                    currentTour[subType] = null;
-                }
+            if (window.event && window.event.currentTarget) {
+                window.event.currentTarget.classList.add('active');
             } else {
-                if (btnEl) {
-                    btnEl.classList.add('selected');
-                    btnEl.textContent = 'Selected ✓';
-                }
-                mockupSelections[catId] = { name, price, subType, unit };
-
-                // Map to underlying currentTour for booking modal and MySQL synchronization
-                const itemObj = {
-                    id: slotId || Date.now(),
-                    name: name,
-                    price: price,
-                    sub: subType,
-                    hasSeats: (subType === 'bus' || subType === 'flight' || subType === 'train')
-                };
-                currentTour[subType] = itemObj;
+                const targetPill = document.getElementById(`subpill-${catId}-${subType}`) || document.getElementById(`subpill-acc-${subType}`);
+                if (targetPill) targetPill.classList.add('active');
             }
 
-            updateSidebarSummary();
+            renderCategoryServices(catId, subType);
+        }
+
+        // Renders all 5 categories from MySQL Inventory and updates badge counters
+        function renderAllCategoryServices() {
+            renderCategoryServices('transit');
+            renderCategoryServices('accommodation');
+            renderCategoryServices('dining');
+            renderCategoryServices('recreation');
+            renderCategoryServices('addons');
+
+            // Update pill counts in accommodation
+            const countHotels = (inventory['hotel'] || []).length;
+            const countResorts = (inventory['resort'] || []).length;
+            const countGuesthouses = (inventory['cottage'] || []).length;
+            const countHomestays = (inventory['villa'] || []).length;
+            const pHotels = document.querySelector('#subpill-acc-hotels .cat-pill-count');
+            const pResorts = document.querySelector('#subpill-acc-resorts .cat-pill-count');
+            const pGuest = document.querySelector('#subpill-acc-guesthouses .cat-pill-count');
+            const pHomes = document.querySelector('#subpill-acc-homestays .cat-pill-count');
+            if (pHotels) pHotels.textContent = countHotels;
+            if (pResorts) pResorts.textContent = countResorts;
+            if (pGuest) pGuest.textContent = countGuesthouses;
+            if (pHomes) pHomes.textContent = countHomestays;
+
+            // Update pill counts in dining
+            const pDiningBreakfast = document.querySelector('#cat-body-dining button[onclick*="breakfast"] .cat-pill-count');
+            const pDiningLunch = document.querySelector('#cat-body-dining button[onclick*="lunch"] .cat-pill-count');
+            const pDiningDinner = document.querySelector('#cat-body-dining button[onclick*="dinner"] .cat-pill-count');
+            const pDiningCafe = document.querySelector('#cat-body-dining button[onclick*="cafe"] .cat-pill-count');
+            if (pDiningBreakfast) pDiningBreakfast.textContent = (inventory['breakfast'] || []).length;
+            if (pDiningLunch) pDiningLunch.textContent = (inventory['lunch'] || []).length;
+            if (pDiningDinner) pDiningDinner.textContent = (inventory['dinner'] || []).length + (inventory['bbq'] || []).length;
+            if (pDiningCafe) pDiningCafe.textContent = (inventory['cafe'] || []).length + (inventory['traditionalfood'] || []).length + (inventory['buffet'] || []).length;
+
+            // Update pill counts in recreation
+            const pWater = document.querySelector('#cat-body-recreation button[onclick*="watersports"] .cat-pill-count');
+            const pSight = document.querySelector('#cat-body-recreation button[onclick*="sightseeing"] .cat-pill-count');
+            const pDive = document.querySelector('#cat-body-recreation button[onclick*="diving"] .cat-pill-count');
+            if (pWater) pWater.textContent = (inventory['parasailing'] || []).length + (inventory['speedboat'] || []).length + (inventory['jetski'] || []).length;
+            if (pSight) pSight.textContent = (inventory['lounge'] || []).length;
+            if (pDive) pDive.textContent = (inventory['scuba'] || []).length;
+
+            // Update pill counts in addons
+            const pGuides = document.querySelector('#cat-body-addons button[onclick*="guides"] .cat-pill-count');
+            const pPermits = document.querySelector('#cat-body-addons button[onclick*="permits"] .cat-pill-count');
+            const pSpecial = document.querySelector('#cat-body-addons button[onclick*="special"] .cat-pill-count');
+            if (pGuides) pGuides.textContent = (inventory['guide'] || []).length;
+            if (pPermits) pPermits.textContent = (inventory['permit'] || []).length;
+            if (pSpecial) pSpecial.textContent = (inventory['honeymoon'] || []).length;
+        }
+
+        // Backward compatibility
+        function selectMockupService(catId, subType, name, price, unit, btnEl, slotId) {
+            selectDirectServiceFromRow(catId, subType, slotId);
         }
 
         function updateSidebarSummary() {
@@ -11356,42 +11833,54 @@
             const nights = calculateNights() || 3;
 
             // 1. Transport Price
-            let transportPrice = 12000;
+            let transportPrice = 0;
             if (mockupSelections.transit) {
                 const base = mockupSelections.transit.price;
                 if (mockupSelections.transit.unit === 'person') {
-                    transportPrice = base * travelers * 2; // round-trip
+                    const seatsCount = (mockupSelections.transit.selectedSeats && mockupSelections.transit.selectedSeats.length > 0) 
+                        ? mockupSelections.transit.selectedSeats.length 
+                        : travelers;
+                    transportPrice = base * seatsCount * (currentTripType === 'one_way' ? 1 : 2);
                 } else {
                     transportPrice = base;
                 }
             }
 
             // 2. Accommodation Price
-            let accommodationPrice = 18000;
+            let accommodationPrice = 0;
             if (mockupSelections.accommodation) {
                 const base = mockupSelections.accommodation.price;
-                const rooms = Math.ceil(travelers / 2);
+                const capacity = (mockupSelections.accommodation.selectedRoom && mockupSelections.accommodation.selectedRoom.capacity) ? mockupSelections.accommodation.selectedRoom.capacity : 2;
+                const rooms = Math.ceil(travelers / capacity);
                 accommodationPrice = base * nights * rooms;
             }
 
             // 3. Food & Dining Price
-            let diningPrice = 6000;
+            let diningPrice = 0;
             if (mockupSelections.dining) {
                 const base = mockupSelections.dining.price;
                 diningPrice = base * travelers * nights;
             }
 
             // 4. Activities & Others
-            let activitiesPrice = 4000;
-            let extraPrice = 0;
+            let activitiesPrice = 0;
             if (mockupSelections.recreation) {
-                extraPrice += (mockupSelections.recreation.price * travelers);
+                activitiesPrice += (mockupSelections.recreation.price * travelers);
             }
             if (mockupSelections.addons) {
-                extraPrice += mockupSelections.addons.price;
+                activitiesPrice += mockupSelections.addons.price;
             }
-            if (extraPrice > 0) {
-                activitiesPrice = extraPrice;
+
+            // If nothing selected yet, calculate baseline estimate from inventory items
+            if (!mockupSelections.transit && !mockupSelections.accommodation && !mockupSelections.dining && !mockupSelections.recreation && !mockupSelections.addons) {
+                const defBus = (inventory.bus && inventory.bus[0]) ? inventory.bus[0].price : 1000;
+                const defHotel = (inventory.hotel && inventory.hotel[0]) ? inventory.hotel[0].price : 3000;
+                const defDining = (inventory.lunch && inventory.lunch[0]) ? inventory.lunch[0].price : 500;
+                const defRec = (inventory.parasailing && inventory.parasailing[0]) ? inventory.parasailing[0].price : 1000;
+                transportPrice = defBus * travelers * (currentTripType === 'one_way' ? 1 : 2);
+                accommodationPrice = defHotel * nights * Math.ceil(travelers / 2);
+                diningPrice = defDining * travelers * nights;
+                activitiesPrice = defRec * travelers;
             }
 
             const grandTotal = transportPrice + accommodationPrice + diningPrice + activitiesPrice;
@@ -11502,6 +11991,9 @@
             }
 
             validateSearchFields(false);
+            if (typeof renderAllCategoryServices === 'function') {
+                renderAllCategoryServices();
+            }
             recalculateTotals();
             if (typeof updateSidebarSummary === "function") updateSidebarSummary();
         });
@@ -11594,15 +12086,29 @@
             const { category, subType, name, price, unit, btnEl, slotId } = activeMobileSheetItem;
             closeMobileServiceSheet();
 
-            // Execute selection
-            selectMockupService(category, subType, name, price, unit, btnEl, slotId);
+            const parsedId = parseInt(slotId, 10) || slotId;
 
-            // If bus or flight, trigger seat picker
-            if (subType === 'bus') {
-                setTimeout(() => openBusSeatPicker(name, price), 200);
+            if (subType === 'bus' || subType === 'coach') {
+                openSeatPickerFromRow(subType, parsedId);
             } else if (subType === 'flight') {
-                setTimeout(() => openFlightSeatPicker(name, price), 200);
+                openFlightSeatPickerFromRow(subType, parsedId);
+            } else if (subType === 'train') {
+                openTrainSeatPickerFromRow(subType, parsedId);
+            } else if (category === 'accommodation') {
+                openRoomPickerFromRow(subType, parsedId);
+            } else if (category === 'dining') {
+                openMenuPickerFromRow(subType, parsedId);
+            } else {
+                selectDirectServiceFromRow(category, subType, parsedId);
             }
+        }
+
+        function openDetailsFromMobileSheet() {
+            if (!activeMobileSheetItem) return;
+            const { subType, slotId } = activeMobileSheetItem;
+            closeMobileServiceSheet();
+            const parsedId = parseInt(slotId, 10) || slotId;
+            openDetailsGalleryModal(subType, parsedId);
         }
 
         function openMobileSummarySheet() {
@@ -11612,32 +12118,25 @@
             }
         }
 
-        // Attach mobile detail sheet triggers to provider rows
-        document.addEventListener('DOMContentLoaded', () => {
-            const rows = document.querySelectorAll('.provider-service-row');
-            rows.forEach(row => {
-                const detailsWrap = row.querySelector('.provider-details-wrap');
-                const logoWrap = row.querySelector('.provider-logo-wrap');
-                const btn = row.querySelector('.btn-select-service');
-                
-                const openSheetHandler = (e) => {
-                    if (window.innerWidth > 767) return; // Desktop uses inline flow
-                    if (e.target.closest('.btn-select-service')) return; // Allow direct select button tap
+        // Event delegation for mobile service row tap
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth > 767) return; // Desktop uses inline flow
+            if (e.target.closest('.btn-select-service') || e.target.closest('.btn-details-service')) return; // Allow direct button clicks
 
-                    const name = row.querySelector('.provider-name-text')?.textContent.trim() || 'Service';
-                    const priceText = row.querySelector('.provider-price-amount')?.textContent.replace(/[^0-9]/g, '') || '1000';
-                    const price = parseInt(priceText, 10);
-                    const unit = row.querySelector('.provider-price-unit')?.textContent.replace('per ', '').trim() || 'person';
-                    const img = row.querySelector('img')?.src || 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80';
-                    const subType = row.getAttribute('data-sub') || 'transit';
-                    const catId = row.closest('.cat-card-box')?.id?.replace('cat-card-', '') || 'transit';
+            const row = e.target.closest('.provider-service-row');
+            if (!row) return;
 
-                    openMobileServiceSheet(catId, subType, name, price, unit, img, '4.8 (120 reviews)', null, null, btn);
-                };
+            const name = row.querySelector('.provider-name-text')?.textContent.trim() || 'Service';
+            const priceText = row.querySelector('.provider-price-amount')?.textContent.replace(/[^0-9]/g, '') || '1000';
+            const price = parseInt(priceText, 10);
+            const unit = row.querySelector('.provider-price-unit')?.textContent.replace('per ', '').trim() || 'person';
+            const img = row.querySelector('img')?.src || 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80';
+            const subType = row.getAttribute('data-sub') || 'transit';
+            const catId = row.closest('.cat-card-box')?.id?.replace('cat-card-', '') || 'transit';
+            const btn = row.querySelector('.btn-select-service');
+            const rowId = row.id ? row.id.split('-').pop() : 1;
 
-                if (detailsWrap) detailsWrap.addEventListener('click', openSheetHandler);
-                if (logoWrap) logoWrap.addEventListener('click', openSheetHandler);
-            });
+            openMobileServiceSheet(catId, subType, name, price, unit, img, '4.8 (120 reviews)', null, null, btn, rowId);
         });
 
     </script>
