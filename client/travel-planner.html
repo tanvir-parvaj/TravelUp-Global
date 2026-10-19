@@ -38,21 +38,28 @@
             line-height: 1.5;
         }
 
-        /* Top Brand Navigation */
-        .top-navbar {
-            background: #ffffff;
-            border-bottom: 1px solid var(--st-border);
-            padding: 0.65rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
         .container {
             max-width: 1220px;
             margin: 0 auto;
             padding: 0 1.25rem;
+        }
+
+        /* ==============================================================
+           1. TOP NAVIGATION BAR (UNIFIED TRAVELUP HEADER)
+           ============================================================== */
+        .site-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--st-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            padding: 0.85rem 0;
+        }
+
+        .site-navbar .container {
+            max-width: 1648px;
+            padding: 0 1.5rem;
         }
 
         .nav-inner {
@@ -61,28 +68,108 @@
             justify-content: space-between;
         }
 
-        .brand-logo-img {
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-img {
             height: 44px;
             width: auto;
             display: block;
         }
 
-        .main-menu {
+        .nav-links {
             display: flex;
             align-items: center;
             gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
-        .main-menu a {
-            color: var(--st-text-muted);
-            text-decoration: none;
-            font-weight: 700;
+        .nav-links a {
+            color: #334155;
             font-size: 0.95rem;
-            transition: color 0.2s;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem 0;
         }
 
-        .main-menu a.active, .main-menu a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--st-primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--st-primary);
+            border-radius: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-nav-outline {
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            padding: 0.5rem 1.15rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .btn-nav-outline:hover {
+            background: #f8fafc;
+            color: var(--st-text);
+            border-color: #94a3b8;
+        }
+
+        .btn-nav-primary {
+            background: var(--st-primary);
+            color: #ffffff;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+        }
+
+        .btn-nav-primary:hover {
+            background: var(--st-primary-hover);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .btn-nav-outline {
+                display: none;
+            }
         }
 
         /* Admin Demo Presets Bar */
@@ -1105,21 +1192,24 @@
 </head>
 <body>
 
-    <!-- Top Navigation -->
-    <header class="top-navbar">
+    <!-- Top Navigation Bar -->
+    <header class="site-navbar">
         <div class="container nav-inner">
-            <div style="display: flex; align-items: center; gap: 2rem;">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="TravelUp Global" class="brand-logo-img">
+            <a href="index.html" class="nav-brand">
+                <img src="images/logo.png" alt="TravelUp Global" class="nav-logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#popular-destinations">Destinations</a></li>
+                <li><a href="tour-packages.html">Tour Packages</a></li>
+                <li><a href="travel-planner.html" class="active">Travel Planner</a></li>
+            </ul>
+            <div class="nav-actions" id="nav-auth-slot">
+                <a href="login.html" class="btn-nav-outline">Log In</a>
+                <a href="travel-planner.html" class="btn-nav-primary">
+                    <i class="material-icons" style="font-size: 16px;">tune</i>
+                    <span>Build My Trip</span>
                 </a>
-                <nav class="main-menu">
-                    <a href="index.html">Home</a>
-                    <a href="tour-packages.html">Tour Packages</a>
-                    <a href="travel-planner.html" class="active">Travel Planner</a>
-                </nav>
-            </div>
-            <div style="font-size: 0.85rem; font-weight: 700; color: var(--st-text-muted);">
-                DIU CSE Lab Project • Roll 39, 34, 36
             </div>
         </div>
     </header>
@@ -1145,6 +1235,9 @@
                 <button type="button" class="btn-demo-reset" onclick="resetSearchFields()" title="Reset all fields to test locked state">
                     <i class="material-icons" style="font-size: 14px;">restart_alt</i> Reset
                 </button>
+            </div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; margin-left: auto;">
+                DIU CSE Lab Project • Roll 39, 34, 36
             </div>
         </div>
 
@@ -4755,5 +4848,18 @@
             recalculateTotals();
         });
     </script>
+
+    <!-- Site Footer -->
+    <footer style="background: #0f172a; color: #94a3b8; padding: 2.5rem 0; margin-top: 4rem; border-top: 1px solid #1e293b;">
+        <div class="container" style="max-width: 1648px; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="images/logo.png" alt="TravelUp Global" style="height: 32px; filter: brightness(0) invert(1);">
+                <span>© 2026 TravelUp Global. All rights reserved.</span>
+            </div>
+            <div style="font-weight: 700; color: #cbd5e1;">
+                DIU CSE Lab Project • Roll 39, 34, 36
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

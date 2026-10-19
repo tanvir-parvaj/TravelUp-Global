@@ -40,17 +40,24 @@ const Auth = {
         if (user) {
             authContainer.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <span style="font-weight: 600; font-size: 0.9rem; color: var(--secondary); display: flex; align-items: center; gap: 0.4rem;">
-                        <span style="display:inline-block; width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></span>
+                    <span style="font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="display:inline-block; width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></span>
                         ${user.name.split(' ')[0]}
                     </span>
-                    <button onclick="Auth.logout()" class="btn btn-sm btn-outline" style="padding: 0.35rem 0.65rem;">Logout</button>
+                    <button onclick="Auth.logout()" class="btn-nav-outline" style="cursor: pointer; padding: 0.45rem 0.9rem; font-size: 0.85rem;">Logout</button>
+                    <a href="travel-planner.html" class="btn-nav-primary">
+                        <i class="material-icons" style="font-size: 16px;">tune</i>
+                        <span>Build My Trip</span>
+                    </a>
                 </div>
             `;
         } else {
             authContainer.innerHTML = `
-                <a href="/login.html" class="btn btn-outline btn-sm">Log In</a>
-                <a href="/signup.html" class="btn btn-primary btn-sm">Get Started</a>
+                <a href="login.html" class="btn-nav-outline">Log In</a>
+                <a href="travel-planner.html" class="btn-nav-primary">
+                    <i class="material-icons" style="font-size: 16px;">tune</i>
+                    <span>Build My Trip</span>
+                </a>
             `;
         }
     }

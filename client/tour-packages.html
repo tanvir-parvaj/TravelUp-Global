@@ -67,8 +67,10 @@
             padding: 0 1.5rem;
         }
 
-        /* Top Navigation Bar */
-        .top-navbar {
+        /* ==============================================================
+           1. TOP NAVIGATION BAR (UNIFIED TRAVELUP HEADER)
+           ============================================================== */
+        .site-navbar {
             background: #ffffff;
             border-bottom: 1px solid var(--border);
             position: sticky;
@@ -84,31 +86,82 @@
             justify-content: space-between;
         }
 
-        .brand-logo-img {
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-img {
             height: 44px;
             width: auto;
             display: block;
         }
 
-        .main-menu {
+        .nav-links {
             display: flex;
             align-items: center;
             gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
-        .main-menu a {
-            text-decoration: none;
+        .nav-links a {
             color: #334155;
-            font-weight: 600;
             font-size: 0.95rem;
+            font-weight: 600;
             transition: color 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem 0;
         }
 
-        .main-menu a:hover, .main-menu a.active {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--primary);
         }
 
-        .btn-custom-trip {
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-nav-outline {
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            padding: 0.5rem 1.15rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .btn-nav-outline:hover {
+            background: #f8fafc;
+            color: var(--secondary);
+            border-color: #94a3b8;
+        }
+
+        .btn-nav-primary {
             background: #0284c7;
             color: #ffffff;
             padding: 0.5rem 1.25rem;
@@ -123,7 +176,7 @@
             text-decoration: none;
         }
 
-        .btn-custom-trip:hover {
+        .btn-nav-primary:hover {
             background: #0369a1;
             transform: translateY(-1px);
         }
@@ -740,6 +793,12 @@
         }
 
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .btn-nav-outline {
+                display: none;
+            }
             .packages-grid {
                 grid-template-columns: 1fr;
             }
@@ -755,22 +814,22 @@
 <body>
 
     <!-- Top Navigation Bar -->
-    <header class="top-navbar">
+    <header class="site-navbar">
         <div class="container nav-inner">
-            <div style="display: flex; align-items: center; gap: 2.5rem;">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="TravelUp Global" class="brand-logo-img">
-                </a>
-                <nav class="main-menu">
-                    <a href="index.html">Home</a>
-                    <a href="tour-packages.html" class="active">Tour Packages</a>
-                    <a href="travel-planner.html">Travel Planner</a>
-                </nav>
-            </div>
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <a href="travel-planner.html" class="btn-custom-trip">
+            <a href="index.html" class="nav-brand">
+                <img src="images/logo.png" alt="TravelUp Global" class="nav-logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#popular-destinations">Destinations</a></li>
+                <li><a href="tour-packages.html" class="active">Tour Packages</a></li>
+                <li><a href="travel-planner.html">Travel Planner</a></li>
+            </ul>
+            <div class="nav-actions" id="nav-auth-slot">
+                <a href="login.html" class="btn-nav-outline">Log In</a>
+                <a href="travel-planner.html" class="btn-nav-primary">
                     <i class="material-icons" style="font-size: 16px;">tune</i>
-                    <span>Custom Trip Builder</span>
+                    <span>Build My Trip</span>
                 </a>
             </div>
         </div>
@@ -997,6 +1056,7 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="js/auth.js"></script>
     <script>
         // Master Tour Packages Catalog (With Real-World Operational Metadata)
         const MASTER_PACKAGES = [
