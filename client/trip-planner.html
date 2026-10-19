@@ -623,27 +623,30 @@
         }
 
         .c-item .img {
-            width: 52px;
-            height: 52px;
-            border-radius: 6px;
-            background: #f8fafc;
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            background: #f1f5f9;
             border: 1px solid var(--st-border);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
             overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            position: relative;
         }
 
         .c-item .img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            transition: transform 0.25s ease;
         }
 
-        .c-item .img .material-icons {
-            font-size: 26px;
-            color: #94a3b8;
+        .c-item:hover .img img {
+            transform: scale(1.08);
         }
 
         .c-item .details {
@@ -1467,7 +1470,7 @@
                 <!-- Bus Component -->
                 <div class="c-item" id="slot-bus">
                     <div class="img">
-                        <span class="material-icons">directions_bus</span>
+                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80" alt="Bus (Economy Non-AC)" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1484,7 +1487,7 @@
                 <!-- AC Luxury Coach Component -->
                 <div class="c-item" id="slot-coach">
                     <div class="img">
-                        <span class="material-icons">directions_bus</span>
+                        <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=300&q=80" alt="AC Luxury Coach" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1501,7 +1504,7 @@
                 <!-- Domestic Flight Component -->
                 <div class="c-item" id="slot-flight">
                     <div class="img">
-                        <span class="material-icons">flight</span>
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80" alt="Domestic Flight" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1518,7 +1521,7 @@
                 <!-- Intercity Express Train Component -->
                 <div class="c-item" id="slot-train">
                     <div class="img">
-                        <span class="material-icons">train</span>
+                        <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80" alt="Intercity Express Train" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1535,7 +1538,7 @@
                 <!-- River Cruise / Passenger Launch Component -->
                 <div class="c-item" id="slot-launch">
                     <div class="img">
-                        <span class="material-icons">directions_boat</span>
+                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=300&q=80" alt="River Cruise / Launch" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1555,7 +1558,7 @@
                 <!-- Microbus Component -->
                 <div class="c-item" id="slot-microbus">
                     <div class="img">
-                        <span class="material-icons">airport_shuttle</span>
+                        <img src="https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=300&q=80" alt="AC Microbus" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1572,7 +1575,7 @@
                 <!-- Chander Gari / Mountain Jeep Component -->
                 <div class="c-item" id="slot-jeep">
                     <div class="img">
-                        <span class="material-icons">directions_car</span>
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=300&q=80" alt="Chander Gari / 4WD Jeep" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1589,7 +1592,7 @@
                 <!-- Auto-Rickshaw / CNG Component -->
                 <div class="c-item" id="slot-cng">
                     <div class="img">
-                        <span class="material-icons">electric_rickshaw</span>
+                        <img src="https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=300&q=80" alt="Auto-Rickshaw / CNG" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1606,7 +1609,7 @@
                 <!-- Covered Cargo & Heavy Luggage Truck -->
                 <div class="c-item" id="slot-truck">
                     <div class="img">
-                        <span class="material-icons">local_shipping</span>
+                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=300&q=80" alt="Luggage & Cargo Truck" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1626,7 +1629,7 @@
                 <!-- Hotel Component -->
                 <div class="c-item" id="slot-hotel">
                     <div class="img">
-                        <span class="material-icons">hotel</span>
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80" alt="Hotel" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1643,7 +1646,7 @@
                 <!-- Resort Component -->
                 <div class="c-item" id="slot-resort">
                     <div class="img">
-                        <span class="material-icons">beach_access</span>
+                        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=300&q=80" alt="Resort" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1660,7 +1663,7 @@
                 <!-- Eco Cottage Component -->
                 <div class="c-item" id="slot-cottage">
                     <div class="img">
-                        <span class="material-icons">holiday_village</span>
+                        <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=300&q=80" alt="Eco Cottage" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1677,7 +1680,7 @@
                 <!-- Luxury Villa Component -->
                 <div class="c-item" id="slot-villa">
                     <div class="img">
-                        <span class="material-icons">villa</span>
+                        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=300&q=80" alt="Luxury Villa" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1694,7 +1697,7 @@
                 <!-- Early Fresh-Up Room Slot -->
                 <div class="c-item" id="slot-freshup">
                     <div class="img">
-                        <span class="material-icons">free_breakfast</span>
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=300&q=80" alt="Early Fresh-up Room" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1714,7 +1717,7 @@
                 <!-- Breakfast Component -->
                 <div class="c-item" id="slot-breakfast">
                     <div class="img">
-                        <span class="material-icons">breakfast_dining</span>
+                        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=300&q=80" alt="Breakfast" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1731,7 +1734,7 @@
                 <!-- Lunch Component -->
                 <div class="c-item" id="slot-lunch">
                     <div class="img">
-                        <span class="material-icons">restaurant</span>
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80" alt="Lunch" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1748,7 +1751,7 @@
                 <!-- Dinner Component -->
                 <div class="c-item" id="slot-dinner">
                     <div class="img">
-                        <span class="material-icons">outdoor_grill</span>
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300&q=80" alt="Dinner" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1765,7 +1768,7 @@
                 <!-- Cafe Component -->
                 <div class="c-item" id="slot-cafe">
                     <div class="img">
-                        <span class="material-icons">local_cafe</span>
+                        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=300&q=80" alt="Cafe & Snacks" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1785,7 +1788,7 @@
                 <!-- Parasailing Adventure Component -->
                 <div class="c-item" id="slot-parasailing">
                     <div class="img">
-                        <span class="material-icons">paragliding</span>
+                        <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=300&q=80" alt="Parasailing Adventure Flight" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1802,7 +1805,7 @@
                 <!-- Speedboat Safari Component -->
                 <div class="c-item" id="slot-speedboat">
                     <div class="img">
-                        <span class="material-icons">sailing</span>
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=300&q=80" alt="Speedboat Safari" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1819,7 +1822,7 @@
                 <!-- Beach Coconut Lounge Slot -->
                 <div class="c-item" id="slot-lounge">
                     <div class="img">
-                        <span class="material-icons">beach_access</span>
+                        <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=300&q=80" alt="Beachside Coconut Lounge Relaxation" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1836,7 +1839,7 @@
                 <!-- Scuba Diving Slot -->
                 <div class="c-item" id="slot-scuba">
                     <div class="img">
-                        <span class="material-icons">scuba_diving</span>
+                        <img src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=300&q=80" alt="Coral Reef Scuba Diving" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1856,7 +1859,7 @@
                 <!-- Tour Guide Slot -->
                 <div class="c-item" id="slot-guide">
                     <div class="img">
-                        <span class="material-icons">explore</span>
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=300&q=80" alt="Certified Local Tour Guide" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1873,7 +1876,7 @@
                 <!-- Boat & Entry Permits Slot -->
                 <div class="c-item" id="slot-permit">
                     <div class="img">
-                        <span class="material-icons">confirmation_number</span>
+                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80" alt="Special Boat & Entry Permits" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -1890,7 +1893,7 @@
                 <!-- Honeymoon Bed Decor Slot -->
                 <div class="c-item" id="slot-honeymoon">
                     <div class="img">
-                        <span class="material-icons">favorite</span>
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=300&q=80" alt="Honeymoon Flower Bed Decoration" loading="lazy">
                     </div>
                     <div class="details">
                         <div class="component-name">
@@ -2352,6 +2355,38 @@
             guide: null,
             permit: null,
             honeymoon: null
+        };
+
+        // Real representative photographs for each category slot (Zero emojis/icons)
+        const slotDefaultImages = {
+            bus: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
+            coach: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=300&q=80",
+            flight: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=300&q=80",
+            train: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=300&q=80",
+            launch: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=300&q=80",
+            microbus: "https://images.unsplash.com/photo-1527786356703-4b100091cd2c?auto=format&fit=crop&w=300&q=80",
+            jeep: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=300&q=80",
+            cng: "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=300&q=80",
+            truck: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=300&q=80",
+            hotel: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80",
+            resort: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=300&q=80",
+            cottage: "https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=300&q=80",
+            villa: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=300&q=80",
+            freshup: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=300&q=80",
+            breakfast: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=300&q=80",
+            lunch: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80",
+            dinner: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300&q=80",
+            cafe: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=300&q=80",
+            bbq: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80",
+            traditionalfood: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=300&q=80",
+            buffet: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=300&q=80",
+            parasailing: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=300&q=80",
+            speedboat: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=300&q=80",
+            lounge: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=300&q=80",
+            scuba: "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=300&q=80",
+            guide: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=300&q=80",
+            permit: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80",
+            honeymoon: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=300&q=80"
         };
 
         // Dynamic Inventory Mapped to Individual Categories
@@ -4609,6 +4644,12 @@
                 `;
             }
 
+            // Update slot image to selected item photo
+            const imgEl = document.querySelector(`#slot-${slotName} .img img`);
+            if (imgEl && item.img) {
+                imgEl.src = item.img;
+            }
+
             closePicker();
             recalculateTotals();
         }
@@ -4630,6 +4671,12 @@
                 actionEl.innerHTML = `
                     <button class="btn-choose" onclick="openPicker('${slotName}')">Choose</button>
                 `;
+            }
+
+            // Restore default category representative real image
+            const imgEl = document.querySelector(`#slot-${slotName} .img img`);
+            if (imgEl && slotDefaultImages[slotName]) {
+                imgEl.src = slotDefaultImages[slotName];
             }
 
             recalculateTotals();
