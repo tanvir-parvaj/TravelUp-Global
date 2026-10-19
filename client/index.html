@@ -1154,14 +1154,11 @@
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="tour-packages.html">Tour Packages</a></li>
+                <li><a href="trip-planner.html">Trip Planner</a></li>
                 <li><a href="travel-planner.html">Travel Planner</a></li>
             </ul>
             <div class="nav-actions" id="nav-auth-slot">
                 <a href="login.html" class="btn-nav-outline">Log In</a>
-                <a href="travel-planner.html" class="btn-nav-primary">
-                    <i class="material-icons" style="font-size: 16px;">tune</i>
-                    <span>Build My Trip</span>
-                </a>
             </div>
         </div>
     </header>
@@ -1670,7 +1667,8 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links-list">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="tour-packages.html">Destinations</a></li>
+                        <li><a href="tour-packages.html">Tour Packages</a></li>
+                        <li><a href="trip-planner.html">Trip Planner</a></li>
                         <li><a href="travel-planner.html">Travel Planner</a></li>
                     </ul>
                 </div>
@@ -1748,7 +1746,7 @@
             const travelers = document.getElementById('search-travelers').value;
 
             if (activeTab === 'custom') {
-                window.location.href = `travel-planner.html?dest=${to}&origin=${encodeURIComponent(from)}&pax=${travelers}`;
+                window.location.href = `trip-planner.html?dest=${to}&origin=${encodeURIComponent(from)}&pax=${travelers}`;
             } else if (activeTab === 'packages') {
                 window.location.href = `tour-packages.html?search=${encodeURIComponent(to)}`;
             } else if (activeTab === 'flight') {
