@@ -1738,21 +1738,19 @@
             min-height: 42px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-        .loc-trigger-card:hover {
-            border-color: #0284c7;
-            background: #f8fafc;
-            box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.1);
-        }
-        .loc-trigger-info {
+            jus        .loc-modal-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 1080px;
+            height: 630px;
+            max-height: 92vh;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px -12px rgba(15, 23, 42, 0.28), 0 0 0 1px rgba(226, 232, 240, 0.8);
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            flex-direction: column;
             overflow: hidden;
+            animation: locBoxPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }low: hidden;
             text-align: left;
         }
         .loc-trigger-title {
@@ -1895,22 +1893,18 @@
             font-weight: 500;
         }
         .loc-head-search-input::placeholder {
-            color: #94a3b8;
-        }
-        .loc-head-search-clear {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #94a3b8;
-            display: flex;
-            align-items: center;
-            padding: 0;
-            margin-left: 0.35rem;
-        }
-        .loc-head-search-clear:hover {
-            color: #0f172a;
-        }
-        .loc-head-search-dropdown {
+            col        /* Modal Body (2 Columns: Left Map + Right Cascade) */
+        .loc-modal-body {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 1.25rem;
+            padding: 1.15rem 1.75rem;
+            flex: 1 1 auto;
+            min-height: 0;
+            height: calc(100% - 145px);
+            overflow: hidden;
+            background: #ffffff;
+        } .loc-head-search-dropdown {
             position: absolute;
             top: calc(100% + 8px);
             left: 0;
@@ -2002,77 +1996,19 @@
         .bd-map-svg {
             width: 100%;
             height: 100%;
-            max-height: 410px;
-            display: block;
-        }
-        .map-division-path {
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .map-division-path:hover {
-            filter: brightness(0.93);
-            stroke: #006ce4 !important;
-            stroke-width: 2 !important;
-        }
-        .map-division-path.active {
-            filter: brightness(0.9) drop-shadow(0 3px 6px rgba(0,0,0,0.15));
-            stroke: #006ce4 !important;
-            stroke-width: 2.5 !important;
-        }
-        .loc-map-bottom-badge {
-            position: absolute;
-            bottom: 0.85rem;
-            left: 0.85rem;
-            right: 0.85rem;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border-radius: 12px;
-            padding: 0.65rem 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            z-index: 10;
-        }
-        .loc-map-card-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background: #eff6ff;
-            color: #006ce4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .loc-map-card-icon i {
-            font-size: 18px;
-        }
-        .loc-map-card-title {
-            font-size: 0.825rem;
-            font-weight: 800;
-            color: #0f172a;
-            line-height: 1.1;
-        }
-        .loc-map-card-sub {
-            font-size: 0.725rem;
-            color: #64748b;
-            font-weight: 600;
-            margin-top: 2px;
-        }
-
-        /* Right Column: Cascade Drilldown */
+            /* Right Column: Cascade Drilldown */
         .loc-cascade-panel {
             display: flex;
             flex-direction: column;
+            height: 100%;
+            min-height: 0;
             overflow: hidden;
         }
         /* Top Breadcrumb Tabs */
         .loc-nav-tabs {
             display: flex;
             gap: 0.65rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
             flex-shrink: 0;
         }
         .loc-tab-btn {
@@ -2123,12 +2059,16 @@
             display: grid;
             grid-template-columns: 190px 1fr;
             gap: 1rem;
-            flex: 1;
+            flex: 1 1 auto;
+            height: 100%;
+            min-height: 0;
             overflow: hidden;
         }
         .loc-subcol {
             display: flex;
             flex-direction: column;
+            height: 100%;
+            min-height: 0;
             overflow: hidden;
         }
         .loc-subcol-title {
@@ -2138,7 +2078,7 @@
             display: flex;
             align-items: center;
             gap: 0.45rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.65rem;
             flex-shrink: 0;
         }
         .loc-subcol-title i {
@@ -2218,19 +2158,35 @@
 
         /* List Items (Divisions, Districts, Upazilas) */
         .loc-items-scroll {
-            flex: 1;
-            overflow-y: auto;
-            padding-right: 4px;
+            flex: 1 1 auto;
+            height: 100%;
+            min-height: 0;
+            max-height: 400px;
+            overflow-y: auto !important;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            padding-right: 6px;
             display: flex;
             flex-direction: column;
             gap: 0.45rem;
+            scrollbar-width: thin;
+            scrollbar-color: #94a3b8 #f1f5f9;
         }
         .loc-items-scroll::-webkit-scrollbar {
-            width: 5px;
+            width: 6px;
+            display: block;
+        }
+        .loc-items-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 9999px;
         }
         .loc-items-scroll::-webkit-scrollbar-thumb {
             background: #cbd5e1;
-            border-radius: 4px;
+            border-radius: 9999px;
+        }
+        .loc-items-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
         .loc-card-row {
             display: flex;
@@ -5657,6 +5613,9 @@
         // CASCADING LOCATION HIERARCHY ENGINE (MOCKUP COMPLIANT)
         // 8 Divisions • 64 Districts • 495 Upazilas • Interactive SVG Map
         // ==============================================================
+        // CASCADING LOCATION HIERARCHY ENGINE (MOCKUP COMPLIANT)
+        // 8 Divisions • 64 Districts • 495 Upazilas • Interactive SVG Map
+        // ==============================================================
         let activeLocationPickerMode = 'origin'; // 'origin' or 'destination'
         let locPickerActiveTab = 'division'; // 'country', 'division', 'district', 'upazila'
         let locPickerActiveCountry = 'COUNTRY-BD';
@@ -5715,7 +5674,6 @@
                     locPickerActiveUpazila = existing;
                 }
             } else if (mode === 'destination') {
-                // Default destination to Cox's Bazar Sadar
                 const cxb = data.upazilas.find(u => u.upazila_id === 'BD-DIV-01-DIST-09-UPZ-001') || data.upazilas[0];
                 if (cxb) {
                     locPickerActiveDivision = cxb.division_id;
@@ -5723,7 +5681,6 @@
                     locPickerActiveUpazila = cxb;
                 }
             } else {
-                // Default origin to Mirpur or Savar
                 const mirpur = data.upazilas.find(u => u.name_en.toLowerCase().includes('mirpur')) 
                             || data.upazilas.find(u => u.upazila_id === 'BD-DIV-06-DIST-08-UPZ-001')
                             || data.upazilas[0];
@@ -5741,6 +5698,9 @@
 
             const modal = document.getElementById('location-picker-modal');
             if (modal) modal.style.display = 'flex';
+
+            // Ensure mouse wheel scrolling is attached
+            enableListWheelScroll();
         }
 
         function closeLocationPicker() {
@@ -5833,6 +5793,19 @@
             }
         }
 
+        // Attach mouse wheel scrolling directly to the items container
+        function enableListWheelScroll() {
+            const list = document.getElementById('loc-items-container');
+            if (!list || list._wheelBound) return;
+            list._wheelBound = true;
+            list.addEventListener('wheel', function(e) {
+                if (list.scrollHeight > list.clientHeight) {
+                    list.scrollTop += e.deltaY;
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        }
+
         function renderLocationView() {
             const data = getLocationsData();
 
@@ -5872,6 +5845,9 @@
             const container = document.getElementById('loc-items-container');
             if (!container) return;
 
+            // Reset scroll position to top on view switch
+            container.scrollTop = 0;
+
             if (locPickerActiveTab === 'country' || locPickerActiveTab === 'division') {
                 if (titleEl) titleEl.textContent = 'Regions in Bangladesh';
                 renderDivisionsList(container);
@@ -5888,6 +5864,9 @@
                 }
                 renderUpazilasList(container, upzsInDist);
             }
+
+            // Ensure wheel scroll handler is bound
+            enableListWheelScroll();
 
             // 4. Update Footer Path
             updateFooterSelection();
