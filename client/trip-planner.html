@@ -9345,18 +9345,43 @@
             const cleanOrigin = originTitle.split(',')[0].trim();
             const cleanDest = destTitle.split(',')[0].trim();
 
+            const isTransit = (slotName === 'bus' || slotName === 'coach' || slotName === 'train' || slotName === 'flight' || slotName === 'microbus' || slotName === 'jeep' || slotName === 'cng' || slotName === 'launch' || slotName === 'truck' || Boolean(d.routeStops));
+            const isAccom = ['hotel', 'resort', 'cottage', 'villa', 'freshup'].includes(slotName);
+            const isDining = ['breakfast', 'lunch', 'dinner', 'bbq', 'cafe', 'traditionalfood', 'buffet'].includes(slotName);
+            const isRec = ['parasailing', 'speedboat', 'lounge', 'scuba'].includes(slotName);
+
+            // Clean Subtitle (Vehicle/Service class only, no star symbols, feature bullets or scenario tags)
+            let rawSub = item.sub || d.type || '';
+            rawSub = rawSub.replace(/[★☆]+/g, '').trim();
+            rawSub = rawSub.replace(/^Scenario\s*\d+\s*:\s*/i, '').trim();
+            const cleanSub = rawSub.split('•')[0].split('—')[0].trim() || (d.type || 'Standard Service');
+
+            // Rating badge text
+            let ratingBadgeText = '★ 4.9 (120+ Verified Reviews)';
+            if (item.rating) {
+                ratingBadgeText = item.rating.includes('★') ? item.rating : `★ ${item.rating} (Verified Reviews)`;
+            } else if (isAccom) {
+                ratingBadgeText = '★★★★★ 5-Star (380+ Guest Reviews)';
+            } else if (isDining) {
+                ratingBadgeText = '★ 4.8 (210+ Foodie Reviews)';
+            } else if (isRec) {
+                ratingBadgeText = '★ 4.9 (185+ Adventure Reviews)';
+            } else {
+                ratingBadgeText = '★ 4.9 (95+ Verified Reviews)';
+            }
+
             if (titleEl) titleEl.textContent = `Service Details & Photo Gallery - ${item.name}`;
             if (itemTitle) {
                 itemTitle.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
                         <span>${item.name}</span>
                         <span style="display: inline-flex; align-items: center; gap: 3px; background: #fef3c7; color: #b45309; padding: 2px 9px; border-radius: 9999px; font-size: 0.78rem; font-weight: 700; border: 1px solid #fde68a;">
-                            <i class="material-icons" style="font-size: 13px; color: #f59e0b;">star</i> ${item.rating || '4.9 (120+ Verified Reviews)'}
+                            <i class="material-icons" style="font-size: 13px; color: #f59e0b;">star</i> ${ratingBadgeText}
                         </span>
                     </div>
                 `;
             }
-            if (itemSub) itemSub.textContent = item.sub || d.type || '';
+            if (itemSub) itemSub.textContent = cleanSub;
 
             const travelers = getTravelerCount();
             const calc = getItemPriceCalculation(slotName, item, travelers);
@@ -9371,9 +9396,9 @@
                     proceedBtn.textContent = 'Proceed to Flight Seats';
                 } else if (item.hasTrainSeats || slotName === 'train') {
                     proceedBtn.textContent = 'Proceed to Train Seats';
-                } else if (item.hasRooms || slotName === 'hotel' || slotName === 'resort' || slotName === 'cottage' || slotName === 'villa') {
+                } else if (item.hasRooms || isAccom) {
                     proceedBtn.textContent = 'Proceed to Choose Rooms & Rates';
-                } else if (item.hasMenu || slotName === 'breakfast' || slotName === 'lunch' || slotName === 'dinner') {
+                } else if (item.hasMenu || isDining) {
                     proceedBtn.textContent = 'Proceed to Customize Menu';
                 } else {
                     proceedBtn.textContent = 'Select This Service';
@@ -9426,68 +9451,192 @@
                 </div>
             ` : '';
 
-            // Boarding, Dropping & Route Card
-            let boardingPoint = `${cleanOrigin} Counter`;
-            let droppingPoint = `${cleanDest} Terminal`;
-            let boardingTime = '';
-            let droppingTime = '';
+            // Dedicated Logistics Card for EVERY category
+            let logisticsCardHtml = '';
+            if (isTransit) {
+                let boardingPoint = `${cleanOrigin} Counter`;
+                let droppingPoint = `${cleanDest} Terminal`;
+                let boardingTime = '';
+                let droppingTime = '';
 
-            if (d.routeStops && d.routeStops.length > 0) {
-                const firstStop = d.routeStops[0];
-                const lastStop = d.routeStops[d.routeStops.length - 1];
-                boardingPoint = firstStop.station;
-                boardingTime = firstStop.time ? `Departure: ${firstStop.time}` : '';
-                droppingPoint = lastStop.station;
-                droppingTime = lastStop.time ? `Arrival: ${lastStop.time}` : '';
-            } else if (d.schedule) {
-                const parts = d.schedule.split('➔');
-                if (parts.length > 1) {
-                    const depPart = parts[0].replace(/Departure:/i, '').trim();
-                    const arrPart = parts[1].replace(/Arrival:/i, '').trim();
+                if (d.routeStops && d.routeStops.length > 0) {
+                    const firstStop = d.routeStops[0];
+                    const lastStop = d.routeStops[d.routeStops.length - 1];
+                    boardingPoint = firstStop.station;
+                    boardingTime = firstStop.time ? `Departure: ${firstStop.time}` : '';
+                    droppingPoint = lastStop.station;
+                    droppingTime = lastStop.time ? `Arrival: ${lastStop.time}` : '';
+                } else if (d.schedule) {
+                    const parts = d.schedule.split('➔');
+                    if (parts.length > 1) {
+                        const depPart = parts[0].replace(/Departure:/i, '').trim();
+                        const arrPart = parts[1].replace(/Arrival:/i, '').trim();
 
-                    const depParen = depPart.match(/\((.*?)\)/);
-                    const depTime = depPart.replace(/\(.*?\)/, '').trim();
-                    boardingPoint = depParen ? `${cleanOrigin} (${depParen[1]})` : cleanOrigin;
-                    boardingTime = depTime ? `Departure: ${depTime}` : '';
+                        const depParen = depPart.match(/\((.*?)\)/);
+                        const depTime = depPart.replace(/\(.*?\)/, '').trim();
+                        boardingPoint = depParen ? `${cleanOrigin} (${depParen[1]})` : cleanOrigin;
+                        boardingTime = depTime ? `Departure: ${depTime}` : '';
 
-                    const arrParen = arrPart.match(/\((.*?)\)/);
-                    const arrTime = arrPart.replace(/\(.*?\)/, '').trim();
-                    droppingPoint = arrParen ? `${cleanDest} (${arrParen[1]})` : cleanDest;
-                    droppingTime = arrTime ? `Arrival: ${arrTime}` : '';
+                        const arrParen = arrPart.match(/\((.*?)\)/);
+                        const arrTime = arrPart.replace(/\(.*?\)/, '').trim();
+                        droppingPoint = arrParen ? `${cleanDest} (${arrParen[1]})` : cleanDest;
+                        droppingTime = arrTime ? `Arrival: ${arrTime}` : '';
+                    }
                 }
+
+                logisticsCardHtml = `
+                    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.15rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="display: flex; align-items: center; gap: 0.35rem;">
+                                <i class="material-icons" style="font-size: 16px; color: #0284c7;">alt_route</i>
+                                Boarding, Dropping & Route Breakdown:
+                            </span>
+                            <span style="color: #0284c7; font-weight: 700; text-transform: none; font-size: 0.78rem;">
+                                ${cleanOrigin} ➔ ${cleanDest}
+                            </span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #f8fafc; padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid #f1f5f9;">
+                            <div style="border-right: 1px dashed #e2e8f0; padding-right: 0.75rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #0284c7; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">trip_origin</i> Boarding Point / Counter
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${boardingPoint}</div>
+                                ${boardingTime ? `<div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">${boardingTime}</div>` : ''}
+                            </div>
+                            <div style="padding-left: 0.25rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #16a34a; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">location_on</i> Dropping Point / Terminal
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${droppingPoint}</div>
+                                ${droppingTime ? `<div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">${droppingTime}</div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (isAccom) {
+                logisticsCardHtml = `
+                    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.15rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="display: flex; align-items: center; gap: 0.35rem;">
+                                <i class="material-icons" style="font-size: 16px; color: #7c3aed;">hotel</i>
+                                Stay & Property Overview:
+                            </span>
+                            <span style="color: #7c3aed; font-weight: 700; text-transform: none; font-size: 0.78rem;">
+                                ${cleanDest} Beachfront & City Center
+                            </span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #f8fafc; padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid #f1f5f9;">
+                            <div style="border-right: 1px dashed #e2e8f0; padding-right: 0.75rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #7c3aed; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">place</i> Location & Beach Access
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${cleanDest} Prime Zone • 2-3 Min Walk to Sea Beach</div>
+                                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">Near Marine Drive & Kolatoli Circle</div>
+                            </div>
+                            <div style="padding-left: 0.25rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #16a34a; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">schedule</i> Check-in & Check-out
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">Check-in: 02:00 PM • Check-out: 12:00 PM</div>
+                                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">24/7 Front Desk • Early baggage drop available</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (isDining) {
+                const timing = formatServiceTiming('dining', slotName, item, cleanOrigin, cleanDest);
+                logisticsCardHtml = `
+                    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.15rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="display: flex; align-items: center; gap: 0.35rem;">
+                                <i class="material-icons" style="font-size: 16px; color: #ea580c;">restaurant</i>
+                                Dining & Culinary Highlights:
+                            </span>
+                            <span style="color: #ea580c; font-weight: 700; text-transform: none; font-size: 0.78rem;">
+                                ${cleanDest} Gourmet Zone
+                            </span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #f8fafc; padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid #f1f5f9;">
+                            <div style="border-right: 1px dashed #e2e8f0; padding-right: 0.75rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #ea580c; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">restaurant_menu</i> Cuisine & Serving Style
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${cleanSub}</div>
+                                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">100% Halal • Daily Fresh Catch • Live Cooking</div>
+                            </div>
+                            <div style="padding-left: 0.25rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #16a34a; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">access_time</i> Kitchen & Serving Hours
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${timing.timeText}</div>
+                                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">Instant table booking • Unlimited refills on platter</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (isRec) {
+                const timing = formatServiceTiming('recreation', slotName, item, cleanOrigin, cleanDest);
+                logisticsCardHtml = `
+                    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.15rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="display: flex; align-items: center; gap: 0.35rem;">
+                                <i class="material-icons" style="font-size: 16px; color: #0284c7;">surfing</i>
+                                Adventure & Activity Logistics:
+                            </span>
+                            <span style="color: #0284c7; font-weight: 700; text-transform: none; font-size: 0.78rem;">
+                                Coast Guard Certified Zone
+                            </span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #f8fafc; padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid #f1f5f9;">
+                            <div style="border-right: 1px dashed #e2e8f0; padding-right: 0.75rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #0284c7; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">place</i> Launch & Beach Point
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${cleanDest} Marine Drive & Coastal Zone</div>
+                                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">Equipped launch point with lifeguard station</div>
+                            </div>
+                            <div style="padding-left: 0.25rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #16a34a; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">schedule</i> Operational Hours & Duration
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${timing.timeText} (${timing.durationText})</div>
+                                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">Auto-refund on Signal No. 3+ or maritime clearance</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                const timing = formatServiceTiming('addons', slotName, item, cleanOrigin, cleanDest);
+                logisticsCardHtml = `
+                    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.15rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                        <div style="font-size: 0.75rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="display: flex; align-items: center; gap: 0.35rem;">
+                                <i class="material-icons" style="font-size: 16px; color: #059669;">verified_user</i>
+                                Service Coverage & Credentials:
+                            </span>
+                            <span style="color: #059669; font-weight: 700; text-transform: none; font-size: 0.78rem;">
+                                Government Approved
+                            </span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #f8fafc; padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid #f1f5f9;">
+                            <div style="border-right: 1px dashed #e2e8f0; padding-right: 0.75rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #059669; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">location_city</i> Service Coverage
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${cleanDest} & Nearby Tourist Attractions</div>
+                                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">Dedicated personal support throughout itinerary</div>
+                            </div>
+                            <div style="padding-left: 0.25rem;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #16a34a; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
+                                    <i class="material-icons" style="font-size: 14px;">verified</i> Official Clearance
+                                </div>
+                                <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${timing.timeText} • ${timing.durationText}</div>
+                                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">Instant verified pass • Zero waiting in line</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
             }
-
-            const isTransit = (slotName === 'bus' || slotName === 'coach' || slotName === 'train' || slotName === 'flight' || slotName === 'microbus' || slotName === 'cng' || Boolean(d.routeStops));
-
-            const boardingDroppingHtml = isTransit ? `
-                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.15rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-                    <div style="font-size: 0.75rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
-                        <span style="display: flex; align-items: center; gap: 0.35rem;">
-                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">alt_route</i>
-                            Boarding, Dropping & Route Breakdown:
-                        </span>
-                        <span style="color: #0284c7; font-weight: 700; text-transform: none; font-size: 0.78rem;">
-                            ${cleanOrigin} ➔ ${cleanDest}
-                        </span>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: #f8fafc; padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid #f1f5f9;">
-                        <div style="border-right: 1px dashed #e2e8f0; padding-right: 0.75rem;">
-                            <div style="font-size: 0.7rem; font-weight: 800; color: #0284c7; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
-                                <i class="material-icons" style="font-size: 14px;">trip_origin</i> Boarding Point / Counter
-                            </div>
-                            <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${boardingPoint}</div>
-                            ${boardingTime ? `<div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">${boardingTime}</div>` : ''}
-                        </div>
-                        <div style="padding-left: 0.25rem;">
-                            <div style="font-size: 0.7rem; font-weight: 800; color: #16a34a; text-transform: uppercase; display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.2rem;">
-                                <i class="material-icons" style="font-size: 14px;">location_on</i> Dropping Point / Terminal
-                            </div>
-                            <div style="font-size: 0.875rem; font-weight: 700; color: #0f172a; line-height: 1.35;">${droppingPoint}</div>
-                            ${droppingTime ? `<div style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;">${droppingTime}</div>` : ''}
-                        </div>
-                    </div>
-                </div>
-            ` : '';
 
             const scheduleHtml = d.schedule ? `
                 <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 1rem;">
@@ -9519,18 +9668,111 @@
                 </div>
             ` : '';
 
-            // Combine all rich amenities
-            const combinedAmenities = [...(d.amenities || [])];
+            // Combine all rich amenities for EVERY category
+            let categoryDefaultAmenities = [];
+            if (isAccom) {
+                categoryDefaultAmenities = [
+                    'Rooftop Infinity Swimming Pool & Jacuzzi',
+                    'Complimentary Daily Buffet Breakfast for All Guests',
+                    'Ultra High-speed Fiber WiFi in All Rooms & Lobby',
+                    'Panoramic Sea-Facing Private Balconies',
+                    '24/7 Room Service & Fine Dining Casablanca Restaurant',
+                    'Centralized Climate Control Air Conditioning',
+                    'Modern Fitness Center & Luxury Spa Facility',
+                    'Free Private Parking & Airport Pickup Service'
+                ];
+            } else if (isDining) {
+                categoryDefaultAmenities = [
+                    '100% Halal Certified Ingredients & Clean Kitchen',
+                    'Fresh Catch of the Day from Local Fishermen',
+                    'Air-Conditioned Hygienic Family Dining Hall',
+                    'Unlimited Steamed Fragrant Rice Refills',
+                    'Complimentary Chilled Mineral Water & Chutney',
+                    'Authentic Regional Mustard & Coconut Seasoning',
+                    'Dedicated Prayer Room & Clean Washrooms'
+                ];
+            } else if (isRec) {
+                if (slotName === 'parasailing') {
+                    categoryDefaultAmenities = [
+                        'Coast Guard Approved Aerial Life Harness & Vest',
+                        'Licensed Speedboat Captain & Beach Flight Crew',
+                        'Complimentary 4K Action Camera (Go-Pro) HD Video Included',
+                        'Comprehensive Safety Briefing Before Launch',
+                        'Emergency First-Aid Kit & Certified Rescue Boat Standby',
+                        'Calm Water Marine Channel Clearance Guaranteed'
+                    ];
+                } else if (slotName === 'scuba') {
+                    categoryDefaultAmenities = [
+                        'PADI Certified Deep-Sea Dive Master & Escort',
+                        'Full Oxygen Tank, Regulator & Mask Included',
+                        'Undersea High-Resolution Coral Photos & Video Footage',
+                        '20-Minute Safety Briefing in Shallow Water',
+                        'Programmatic Full Refund in case of Maritime Signal No. 3+',
+                        'Medical Grade Emergency Oxygen Kit Onboard'
+                    ];
+                } else if (slotName === 'speedboat') {
+                    categoryDefaultAmenities = [
+                        'Twin Yamaha 200HP Marine Engines with Safety Clearance',
+                        'Individual Coast Guard Approved Life Jackets for All',
+                        'Experienced Coastal Navigator with Local Waterway Knowledge',
+                        'High-Speed Wave Thrill & Chera Dwip Route Tour',
+                        'Emergency First-Aid Kit Standby'
+                    ];
+                } else {
+                    categoryDefaultAmenities = [
+                        'Exclusive Shaded Seaside Umbrella Sunbed with Cushions',
+                        'Chilled Fresh Green Coconut Served on Arrival',
+                        'Dedicated Beach Attendant Service & Cold Towels',
+                        'Safe Luggage & Shoe Storage Included'
+                    ];
+                }
+            } else if (isTransit) {
+                categoryDefaultAmenities = [
+                    'Comfortable Reclining Seats with Armrests',
+                    'Air Conditioned Clean Cabin Environment',
+                    'Spacious Luggage Compartment (20kg)',
+                    'Emergency First-Aid Kit Onboard',
+                    'Experienced Highway Pilot & Helper',
+                    'Real-Time GPS Fleet Tracking'
+                ];
+            } else {
+                if (slotName === 'guide') {
+                    categoryDefaultAmenities = [
+                        'Government Registered & Certified Regional Tour Guide',
+                        'Local History, Cultural Insights & Hidden Spot Guidance',
+                        'Dedicated Mobile & Camera Photography Assistance',
+                        'Language Translation (Bangla, English & Local Dialects)',
+                        'Assistance with Local Transport Coordination & Bargaining',
+                        '24/7 TravelUp Global Emergency Helpline Support'
+                    ];
+                } else if (slotName === 'permit') {
+                    categoryDefaultAmenities = [
+                        'Official Forest Department & Marine Protected Area Entry Pass',
+                        'Pre-verified Documentation Avoiding Queues at Checkpoints',
+                        'Registered Operator Authorization & Passenger Manifest Token',
+                        'Army Convoy & Police Escort Coordination Support'
+                    ];
+                } else {
+                    categoryDefaultAmenities = [
+                        'Natural Exotic Flower Bed Art & Heart Cushion Arrangement',
+                        'Chilled Welcome Tropical Mocktails on Arrival',
+                        'Romantic Candlelight Beach or Balcony Dinner Table Setup',
+                        'Personalized Cake / Chocolate Box with Greetings Card'
+                    ];
+                }
+            }
+
+            const combinedAmenities = (d.amenities && d.amenities.length > 0) 
+                ? [...d.amenities] 
+                : [...categoryDefaultAmenities];
+
             if (item.sub && item.sub.includes('•')) {
-                const extraFeats = item.sub.split('•').slice(1).map(s => s.trim()).filter(Boolean);
+                const extraFeats = item.sub.split('•').slice(1).map(s => s.replace(/[★☆]+/g, '').trim()).filter(Boolean);
                 extraFeats.forEach(f => {
                     if (!combinedAmenities.some(a => a.toLowerCase() === f.toLowerCase())) {
                         combinedAmenities.unshift(f);
                     }
                 });
-            }
-            if (combinedAmenities.length === 0) {
-                combinedAmenities.push('Guaranteed Confirmed Booking', '24/7 Traveler Assistance', 'Safety Certified');
             }
 
             const amenitiesHtml = `
@@ -9550,11 +9792,26 @@
                 </div>
             `;
 
-            const policiesHtml = d.policies ? `
+            let policyText = d.policies;
+            if (!policyText) {
+                if (isAccom) {
+                    policyText = 'Free cancellation up to 48 hours prior to check-in. Valid Government NID or Passport required at check-in.';
+                } else if (isDining) {
+                    policyText = 'Guaranteed reserved table. 100% Halal certified food. Special dietary requests accommodated on advance notice.';
+                } else if (isRec) {
+                    policyText = 'Coast Guard safety regulations strictly observed. Full programmatic refund in case of bad weather or maritime warning signals.';
+                } else if (isTransit) {
+                    policyText = 'Free cancellation up to 24 hours prior to departure. Reporting time 15 minutes before departure.';
+                } else {
+                    policyText = 'Flexible date rescheduling up to 12 hours prior to scheduled start. Direct coordinator support available 24/7.';
+                }
+            }
+
+            const policiesHtml = `
                 <div style="background: #f8fafc; border: 1px dashed var(--st-border); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.8rem; color: #64748b;">
-                    <strong>📋 Booking & Cancellation Policy:</strong> ${d.policies}
+                    <strong>📋 Booking & Cancellation Policy:</strong> ${policyText}
                 </div>
-            ` : '';
+            `;
 
             bodyEl.innerHTML = `
                 ${galleryHtml}
@@ -9564,11 +9821,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem;">
                             <div>
                                 <div style="font-weight: 800; font-size: 1.2rem; color: var(--st-text);">${item.name}</div>
-                                <div style="font-size: 0.85rem; color: var(--st-text-muted); margin-top: 0.25rem;">${item.sub || d.type || ''}</div>
+                                <div style="font-size: 0.85rem; color: var(--st-text-muted); margin-top: 0.25rem;">${cleanSub}</div>
                                 <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
                                     <span style="display: inline-flex; align-items: center; gap: 4px; background: #fffbeb; border: 1px solid #fef3c7; color: #b45309; padding: 3px 9px; border-radius: 9999px; font-size: 0.78rem; font-weight: 700;">
                                         <i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i>
-                                        ${item.rating || '4.9 (120+ Verified Reviews)'}
+                                        ${ratingBadgeText}
                                     </span>
                                     <span class="scen-tag" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe; font-size: 0.75rem;">
                                         Instant Guaranteed Booking
@@ -9584,7 +9841,7 @@
                 </div>
 
                 ${timeSlotsHtml}
-                ${boardingDroppingHtml}
+                ${logisticsCardHtml}
                 ${scheduleHtml}
                 ${roadmapHtml}
                 ${amenitiesHtml}
@@ -12213,7 +12470,7 @@
             let timeText = 'Daily Service';
             let durationText = item.details?.duration || 'Direct Service';
 
-            if (item.details?.schedule) {
+            if (item.details?.schedule && (sk === 'bus' || sk === 'coach' || sk === 'train' || sk === 'flight' || sk === 'microbus' || sk === 'cng' || sk === 'launch')) {
                 const sched = item.details.schedule;
                 const depMatch = sched.match(/Departure:\s*([0-9]{1,2}:[0-9]{2}\s*(?:AM|PM))/i);
                 const arrMatch = sched.match(/Arrival:\s*([0-9]{1,2}:[0-9]{2}\s*(?:AM|PM))/i);
@@ -12240,18 +12497,60 @@
             } else if (sk === 'train') {
                 timeText = '10:30 PM ➔ 06:30 AM';
                 durationText = '8h direct track';
-            } else if (catId === 'accommodation') {
+            } else if (sk === 'microbus' || sk === 'jeep' || sk === 'cng' || sk === 'launch' || sk === 'truck') {
+                timeText = 'On-Demand / Flexible';
+                durationText = 'Direct Transfer';
+            } else if (catId === 'accommodation' || ['hotel', 'resort', 'cottage', 'villa', 'freshup'].includes(sk)) {
                 timeText = 'Check-in: 02:00 PM';
                 durationText = 'Check-out: 12:00 PM';
-            } else if (catId === 'dining') {
-                timeText = '12:30 PM - 10:00 PM';
-                durationText = 'Lunch & Dinner';
-            } else if (catId === 'recreation') {
-                timeText = 'Morning & Afternoon';
-                durationText = '2 - 3 Hours Tour';
-            } else if (catId === 'addons') {
-                timeText = 'Full Day Coverage';
-                durationText = 'Dedicated Support';
+            } else if (catId === 'dining' || ['breakfast', 'lunch', 'dinner', 'bbq', 'cafe', 'traditionalfood', 'buffet'].includes(sk)) {
+                if (sk === 'breakfast') {
+                    timeText = '07:30 AM - 10:30 AM';
+                    durationText = 'Breakfast Hours';
+                } else if (sk === 'lunch') {
+                    timeText = '12:30 PM - 03:30 PM';
+                    durationText = 'Lunch Hours';
+                } else if (sk === 'dinner' || sk === 'bbq') {
+                    timeText = '07:00 PM - 10:30 PM';
+                    durationText = 'Dinner & BBQ Hours';
+                } else if (sk === 'cafe') {
+                    timeText = '09:00 AM - 11:00 PM';
+                    durationText = 'All-Day Cafe Lounge';
+                } else {
+                    timeText = '12:30 PM - 10:30 PM';
+                    durationText = 'Daily Service Hours';
+                }
+            } else if (catId === 'recreation' || ['parasailing', 'speedboat', 'lounge', 'scuba'].includes(sk)) {
+                if (sk === 'parasailing') {
+                    timeText = '09:00 AM - 05:30 PM';
+                    durationText = '15-20 Mins Flight';
+                } else if (sk === 'speedboat') {
+                    timeText = '08:30 AM - 05:00 PM';
+                    durationText = '30-45 Mins Thrill';
+                } else if (sk === 'scuba') {
+                    timeText = '09:30 AM - 04:00 PM';
+                    durationText = '45 Mins Deep Dive';
+                } else if (sk === 'lounge') {
+                    timeText = '07:00 AM - 08:00 PM';
+                    durationText = 'Full Day Access';
+                } else {
+                    timeText = '09:00 AM - 05:30 PM';
+                    durationText = 'Activity Session';
+                }
+            } else if (catId === 'addons' || ['guide', 'permit', 'honeymoon'].includes(sk)) {
+                if (sk === 'guide') {
+                    timeText = '08:30 AM - 05:30 PM';
+                    durationText = 'Full Day (8 Hours)';
+                } else if (sk === 'permit') {
+                    timeText = 'Instant Verification';
+                    durationText = 'Valid Whole Trip';
+                } else if (sk === 'honeymoon') {
+                    timeText = 'Evening Room Setup';
+                    durationText = 'Romantic Experience';
+                } else {
+                    timeText = 'Full Day Coverage';
+                    durationText = 'Dedicated Support';
+                }
             }
 
             return { timeText, durationText };
@@ -12262,7 +12561,7 @@
             const nameSub = `${item.name} ${item.sub || ''} ${item.details?.type || ''}`.toLowerCase();
             const pills = [];
 
-            if (catId === 'transit') {
+            if (catId === 'transit' || ['bus', 'coach', 'train', 'flight', 'microbus', 'jeep', 'cng', 'launch', 'truck'].includes(sk)) {
                 // Pill 1: Vehicle type / Seating class
                 if (nameSub.includes('non-ac') || nameSub.includes('non ac') || nameSub.includes('chair coach') || sk === 'bus') {
                     pills.push({ icon: 'airline_seat_recline_extra', label: 'Push-back' });
@@ -12272,6 +12571,12 @@
                     pills.push({ icon: 'ac_unit', label: 'AC Snigdha' });
                 } else if (sk === 'flight') {
                     pills.push({ icon: 'flight_class', label: 'Cabin Luggage' });
+                } else if (sk === 'jeep') {
+                    pills.push({ icon: 'terrain', label: '4WD Mountain' });
+                } else if (sk === 'cng') {
+                    pills.push({ icon: 'local_taxi', label: 'Direct Drop' });
+                } else if (sk === 'launch') {
+                    pills.push({ icon: 'directions_boat', label: 'AC Cabin' });
                 } else {
                     pills.push({ icon: 'ac_unit', label: 'AC Coach' });
                 }
@@ -12283,6 +12588,8 @@
                     pills.push({ icon: 'luggage', label: '20kg Luggage' });
                 } else if (sk === 'train') {
                     pills.push({ icon: 'restaurant', label: 'Canteen Car' });
+                } else if (sk === 'jeep') {
+                    pills.push({ icon: 'verified_user', label: 'Army Convoy' });
                 } else if (rawAmenities.some(a => a.toLowerCase().includes('suspension')) || nameSub.includes('suspension')) {
                     pills.push({ icon: 'air', label: 'Air Suspension' });
                 } else if (rawAmenities.some(a => a.toLowerCase().includes('reading light') || a.toLowerCase().includes('lamp'))) {
@@ -12296,26 +12603,96 @@
                 } else {
                     pills.push({ icon: 'verified', label: 'Direct Highway' });
                 }
-            } else if (catId === 'accommodation') {
-                pills.push({ icon: 'wifi', label: 'Free WiFi' });
-                if (rawAmenities.some(a => a.toLowerCase().includes('pool')) || nameSub.includes('pool')) {
+            } else if (catId === 'accommodation' || ['hotel', 'resort', 'cottage', 'villa', 'freshup'].includes(sk)) {
+                // Pill 1: Pool / View / Class
+                if (nameSub.includes('pool') || rawAmenities.some(a => a.toLowerCase().includes('pool'))) {
                     pills.push({ icon: 'pool', label: 'Pool Access' });
-                } else if (rawAmenities.some(a => a.toLowerCase().includes('breakfast')) || nameSub.includes('breakfast')) {
-                    pills.push({ icon: 'restaurant', label: 'Breakfast' });
-                } else if (rawAmenities.some(a => a.toLowerCase().includes('beach') || a.toLowerCase().includes('ocean') || a.toLowerCase().includes('sea view'))) {
+                } else if (nameSub.includes('ocean') || nameSub.includes('beach') || nameSub.includes('sea view') || rawAmenities.some(a => a.toLowerCase().includes('sea') || a.toLowerCase().includes('ocean'))) {
                     pills.push({ icon: 'beach_access', label: 'Sea View' });
+                } else if (nameSub.includes('mountain') || nameSub.includes('cloud') || nameSub.includes('hill')) {
+                    pills.push({ icon: 'filter_drama', label: 'Cloud View' });
+                } else if (sk === 'villa') {
+                    pills.push({ icon: 'villa', label: 'Private Villa' });
+                } else if (sk === 'freshup') {
+                    pills.push({ icon: 'shower', label: 'Hot Shower' });
                 } else {
                     pills.push({ icon: 'ac_unit', label: 'AC Deluxe' });
                 }
-            } else if (catId === 'dining') {
-                pills.push({ icon: 'restaurant', label: 'Set Menu' });
-                pills.push({ icon: 'local_dining', label: 'Halal Fresh' });
-            } else if (catId === 'recreation') {
-                pills.push({ icon: 'security', label: 'Safety Gear' });
-                pills.push({ icon: 'photo_camera', label: 'Photo Spot' });
-            } else {
-                pills.push({ icon: 'verified', label: 'Guaranteed' });
-                pills.push({ icon: 'support_agent', label: '24/7 Support' });
+
+                // Pill 2: Breakfast / WiFi / Luxury
+                if (nameSub.includes('breakfast') || rawAmenities.some(a => a.toLowerCase().includes('breakfast'))) {
+                    pills.push({ icon: 'restaurant', label: 'Breakfast' });
+                } else if (sk === 'freshup') {
+                    pills.push({ icon: 'lock', label: 'Safe Locker' });
+                } else if (nameSub.includes('butler') || nameSub.includes('exclusive')) {
+                    pills.push({ icon: 'room_service', label: 'Butler Call' });
+                } else {
+                    pills.push({ icon: 'wifi', label: 'Free WiFi' });
+                }
+            } else if (catId === 'dining' || ['breakfast', 'lunch', 'dinner', 'bbq', 'cafe', 'traditionalfood', 'buffet'].includes(sk)) {
+                // Pill 1: Meal Highlight
+                if (nameSub.includes('bhorta') || nameSub.includes('bengali') || sk === 'traditionalfood') {
+                    pills.push({ icon: 'restaurant', label: '20 Bhortas' });
+                } else if (nameSub.includes('bbq') || nameSub.includes('grill') || sk === 'bbq') {
+                    pills.push({ icon: 'whatshot', label: 'Live BBQ' });
+                } else if (sk === 'breakfast') {
+                    pills.push({ icon: 'bakery_dining', label: 'Hot Paratha' });
+                } else if (sk === 'cafe') {
+                    pills.push({ icon: 'coffee', label: 'Artisan Brew' });
+                } else if (sk === 'buffet') {
+                    pills.push({ icon: 'brunch_dining', label: 'Buffet Spread' });
+                } else {
+                    pills.push({ icon: 'restaurant', label: 'Set Menu' });
+                }
+
+                // Pill 2: Dietary / Quality
+                if (nameSub.includes('seven-color') || (/\btea\b/i.test(nameSub) && !nameSub.includes('steamed'))) {
+                    pills.push({ icon: 'emoji_food_beverage', label: '7-Color Tea' });
+                } else if (nameSub.includes('pastry') || nameSub.includes('cheesecake')) {
+                    pills.push({ icon: 'cake', label: 'Fresh Pastry' });
+                } else if (nameSub.includes('seafood') || nameSub.includes('coral') || nameSub.includes('lobster') || nameSub.includes('rupchanda')) {
+                    pills.push({ icon: 'phishing', label: 'Fresh Catch' });
+                } else {
+                    pills.push({ icon: 'verified', label: '100% Halal' });
+                }
+            } else if (catId === 'recreation' || ['parasailing', 'speedboat', 'lounge', 'scuba'].includes(sk)) {
+                // Pill 1: Gear / Activity
+                if (sk === 'parasailing') {
+                    pills.push({ icon: 'paragliding', label: 'Flight Harness' });
+                } else if (sk === 'speedboat') {
+                    pills.push({ icon: 'speed', label: '200HP Engine' });
+                } else if (sk === 'scuba') {
+                    pills.push({ icon: 'scuba_diving', label: 'PADI Certified' });
+                } else if (sk === 'lounge') {
+                    pills.push({ icon: 'beach_access', label: 'Seaside Sunbed' });
+                } else {
+                    pills.push({ icon: 'sports_score', label: 'Guided Activity' });
+                }
+
+                // Pill 2: Perk / Highlight
+                if (sk === 'parasailing' || nameSub.includes('gopro') || nameSub.includes('video')) {
+                    pills.push({ icon: 'photo_camera', label: '4K GoPro Video' });
+                } else if (sk === 'scuba' || nameSub.includes('coral')) {
+                    pills.push({ icon: 'waves', label: 'Coral Reef Dive' });
+                } else if (sk === 'lounge' || nameSub.includes('coconut')) {
+                    pills.push({ icon: 'local_drink', label: 'Green Coconut' });
+                } else {
+                    pills.push({ icon: 'security', label: 'Coast Guard Safe' });
+                }
+            } else { // addons (guide, permit, honeymoon)
+                if (sk === 'guide') {
+                    pills.push({ icon: 'badge', label: 'Certified Guide' });
+                    pills.push({ icon: 'camera_alt', label: 'Photography' });
+                } else if (sk === 'permit') {
+                    pills.push({ icon: 'policy', label: 'Official Permit' });
+                    pills.push({ icon: 'verified', label: 'Instant Pass' });
+                } else if (sk === 'honeymoon') {
+                    pills.push({ icon: 'favorite', label: 'Flower Decor' });
+                    pills.push({ icon: 'nightlife', label: 'Candlelight' });
+                } else {
+                    pills.push({ icon: 'verified', label: 'Guaranteed' });
+                    pills.push({ icon: 'support_agent', label: '24/7 Support' });
+                }
             }
 
             return pills.slice(0, 2).map(p => `
@@ -12400,8 +12777,10 @@
                 const sk = item.slotKey;
                 const isSelected = Boolean(mockupSelections[catId] && mockupSelections[catId].id === item.id && mockupSelections[catId].slotName === sk);
 
-                // Clean Subtitle (Vehicle/Service class only, no feature bullets or rating)
-                const rawSub = item.sub || item.details?.type || '';
+                // Clean Subtitle (Vehicle/Service/Room/Cuisine class only, no star symbols, feature bullets or scenario tags)
+                let rawSub = item.sub || item.details?.type || '';
+                rawSub = rawSub.replace(/[★☆]+/g, '').trim();
+                rawSub = rawSub.replace(/^Scenario\s*\d+\s*:\s*/i, '').trim();
                 const cleanSub = rawSub.split('•')[0].split('—')[0].trim() || (item.details?.type || 'Standard Service');
 
                 // Timing & Duration (clean times without counter names or origin/dest route strings)
