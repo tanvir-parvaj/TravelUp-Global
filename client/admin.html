@@ -3430,6 +3430,35 @@
             background: #fecaca;
         }
 
+        /* Location Table Thumbnail - Sleek, Compact & Crisp */
+        .loc-table-thumb {
+            width: 48px !important;
+            height: 36px !important;
+            min-width: 48px !important;
+            max-width: 48px !important;
+            border-radius: 7px !important;
+            object-fit: cover !important;
+            border: 1px solid #e2e8f0;
+            background: #f1f5f9;
+            flex-shrink: 0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.16s ease, box-shadow 0.16s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .loc-table-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            z-index: 5;
+            position: relative;
+        }
+
+        body.dark-theme .loc-table-thumb {
+            border-color: #334155;
+            background: #1e293b;
+        }
+
         /* Drilldown Clickable Links */
         .loc-name-drilldown {
             font-weight: 700;
@@ -8597,20 +8626,89 @@
         };
 
         const KNOWN_LOC_IMAGES = {
+            // Local Assets
             'savar': 'images/locations/thumb_savar.png',
             'dhamrai': 'images/locations/thumb_dhamrai.png',
             'keraniganj': 'images/locations/thumb_keraniganj.png',
             'nawabganj': 'images/locations/thumb_nawabganj.png',
             'dohar': 'images/locations/thumb_dohar.png',
-            'smriti': 'images/locations/thumb_smriti_soudho.png'
+            'smriti': 'images/locations/thumb_smriti_soudho.png',
+
+            // 8 Divisions
+            'dhaka': 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=400&h=280&q=80',
+            'chattagram': 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=400&h=280&q=80',
+            'chittagong': 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=400&h=280&q=80',
+            'sylhet': 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=400&h=280&q=80',
+            'khulna': 'https://images.unsplash.com/photo-1608958435020-e8a7109ba809?auto=format&fit=crop&w=400&h=280&q=80',
+            'barisal': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'rajshahi': 'https://images.unsplash.com/photo-1585123388867-3bfe6dd4bdbf?auto=format&fit=crop&w=400&h=280&q=80',
+            'rangpur': 'https://images.unsplash.com/photo-1566837945700-30057527ade0?auto=format&fit=crop&w=400&h=280&q=80',
+            'mymensingh': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&h=280&q=80',
+
+            // 64 Districts & Major Tourist Hubs
+            'coxsbazar': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'cox': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'bandarban': 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=400&h=280&q=80',
+            'rangamati': 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&h=280&q=80',
+            'khagrachhari': 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&h=280&q=80',
+            'sajek': 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&h=280&q=80',
+            'nilgiri': 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=400&h=280&q=80',
+            'kuakata': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'saintmartin': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'martin': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'bhola': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'monpura': 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=400&h=280&q=80',
+            'sundarban': 'https://images.unsplash.com/photo-1608958435020-e8a7109ba809?auto=format&fit=crop&w=400&h=280&q=80',
+            'bagerhat': 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=400&h=280&q=80',
+            'bogura': 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=400&h=280&q=80',
+            'mahasthan': 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=400&h=280&q=80',
+            'naogaon': 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=400&h=280&q=80',
+            'paharpur': 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=400&h=280&q=80',
+            'natore': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&h=280&q=80',
+            'pabna': 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&h=280&q=80',
+            'sirajganj': 'https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=400&h=280&q=80',
+            'tangail': 'https://images.unsplash.com/photo-1585123388867-3bfe6dd4bdbf?auto=format&fit=crop&w=400&h=280&q=80',
+            'gazipur': 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&h=280&q=80',
+            'narayanganj': 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=400&h=280&q=80',
+            'panam': 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=400&h=280&q=80',
+            'sonargaon': 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=400&h=280&q=80',
+            'munshiganj': 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&h=280&q=80',
+            'manikganj': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&h=280&q=80',
+            'kishoreganj': 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=400&h=280&q=80',
+            'nikli': 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=400&h=280&q=80',
+            'gopalganj': 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=400&h=280&q=80',
+            'faridpur': 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&h=280&q=80',
+            'jashore': 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=400&h=280&q=80',
+            'kushtia': 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=400&h=280&q=80',
+            'dinajpur': 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=400&h=280&q=80',
+            'panchagarh': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&h=280&q=80',
+            'tetulia': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&h=280&q=80',
+            'sunamganj': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&h=280&q=80',
+            'tanguar': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&h=280&q=80',
+            'moulvibazar': 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=400&h=280&q=80',
+            'sreemangal': 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=400&h=280&q=80',
+            'habiganj': 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=400&h=280&q=80',
+            'netrokona': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'birishiri': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'sherpur': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&h=280&q=80',
+            'comilla': 'https://images.unsplash.com/photo-1585123388867-3bfe6dd4bdbf?auto=format&fit=crop&w=400&h=280&q=80',
+            'cumilla': 'https://images.unsplash.com/photo-1585123388867-3bfe6dd4bdbf?auto=format&fit=crop&w=400&h=280&q=80',
+            'noakhali': 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=400&h=280&q=80',
+            'feni': 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=400&h=280&q=80',
+            'chandpur': 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=400&h=280&q=80',
+            'brahmanbaria': 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=400&h=280&q=80',
+            'patuakhali': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80',
+            'jhalakathi': 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=400&h=280&q=80',
+            'pirojpur': 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&h=280&q=80',
+            'barguna': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80'
         };
 
         function getFallbackLocImage(name) {
             const key = (name || '').toLowerCase().replace(/[^a-z]/g, '');
             for (const [k, v] of Object.entries(KNOWN_LOC_IMAGES)) {
-                if (key.includes(k)) return v;
+                if (key.includes(k) || k.includes(key)) return v;
             }
-            return 'images/locations/banner_discover_bd.png';
+            return 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&h=280&q=80';
         }
 
         function formatLocDate(dateStr) {
@@ -9153,7 +9251,8 @@
                     const statusPill = isActive
                         ? '<span class="tp-status-pill status-active">● Active</span>'
                         : '<span class="tp-status-pill status-inactive">● Inactive</span>';
-                    const thumbImg = item.image || getFallbackLocImage(item.name_en || item.name);
+                    const fallbackImg = getFallbackLocImage(item.name_en || item.name || item.district_name_en);
+                    const thumbImg = item.image || fallbackImg;
                     const formattedDate = formatLocDate(item.created_at);
 
                     if (activeTab === 'upazilas') {
@@ -9182,9 +9281,9 @@
                                     <div style="display: flex; align-items: center; gap: 12px;">
                                         ${sectionType === 'tour-planner'
                                             ? `<a href="javascript:void(0)" onclick="drillDownUpazila('${upzId}', '${upzNameEsc}', '${distId}', '${sectionType}')" title="Explore destinations in ${upzName}">
-                                                  <img src="${thumbImg}" alt="${upzName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                                  <img src="${thumbImg}" alt="${upzName}" class="loc-table-thumb" onerror="this.onerror=null; this.src='${fallbackImg}';">
                                                </a>`
-                                            : `<img src="${thumbImg}" alt="${upzName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">`
+                                            : `<img src="${thumbImg}" alt="${upzName}" class="loc-table-thumb" onerror="this.onerror=null; this.src='${fallbackImg}';">`
                                         }
                                         <div>
                                             <div style="display: flex; align-items: center; gap: 6px;">
@@ -9227,7 +9326,7 @@
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 12px;">
                                         <a href="javascript:void(0)" onclick="drillDownDistrict('${distId}', '${distNameEsc}', '${divId}', '${sectionType}')" title="Explore upazilas in ${distName}">
-                                            <img src="${thumbImg}" alt="${distName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                            <img src="${thumbImg}" alt="${distName}" class="loc-table-thumb" onerror="this.onerror=null; this.src='${fallbackImg}';">
                                         </a>
                                         <div>
                                             <div style="display: flex; align-items: center; gap: 6px;">
@@ -9266,7 +9365,7 @@
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 12px;">
                                         <a href="javascript:void(0)" onclick="drillDownDivision('${divId}', '${divNameEsc}', '${sectionType}')" title="Explore districts in ${divName}">
-                                            <img src="${thumbImg}" alt="${divName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                            <img src="${thumbImg}" alt="${divName}" class="loc-table-thumb" onerror="this.onerror=null; this.src='${fallbackImg}';">
                                         </a>
                                         <div>
                                             <div style="display: flex; align-items: center; gap: 6px;">
@@ -9306,9 +9405,16 @@
                                 <td style="font-weight: 600; color: #64748b;">${rowNum}</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 12px;">
-                                        <img src="${thumbImg}" alt="${destName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        <img src="${thumbImg}" alt="${destName}" class="loc-table-thumb" onerror="this.onerror=null; this.src='${fallbackImg}';">
                                         <div>
                                             <div style="display: flex; align-items: center; gap: 6px;">
+                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${destName}</span>
+                                                ${item.top_50_flag ? '<span class="loc-featured-badge" style="background: #fff7ed; color: #ea580c; border-color: #ffedd5;">★ Popular</span>' : ''}
+                                            </div>
+                                            <div style="font-size: 0.77rem; color: #64748b;">${item.name_bn ? item.name_bn + ' • ' : ''}${item.destination_id || ''}</div>
+                                        </div>
+                                    </div>
+                                </td>
                                                 <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${destName}</span>
                                                 ${item.top_50_flag ? '<span class="loc-featured-badge" style="background: #fff7ed; color: #ea580c; border-color: #ffedd5;">★ Popular</span>' : ''}
                                             </div>
