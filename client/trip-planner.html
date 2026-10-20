@@ -2435,6 +2435,7 @@
             justify-content: space-between;
         }
 
+        .nav-brand,
         .nav-logo-group {
             display: flex;
             align-items: center;
@@ -2442,29 +2443,12 @@
             text-decoration: none;
         }
 
-        .nav-logo-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: #0284c7;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
-        }
-
-        .nav-brand-text {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #0284c7;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-
-        .nav-brand-text span {
-            color: #38bdf8;
-            font-weight: 700;
+        .nav-logo-img {
+            height: 46px;
+            max-height: 48px;
+            width: auto;
+            display: block;
+            object-fit: contain;
         }
 
         .nav-main-menu {
@@ -4689,6 +4673,9 @@
             .details-thumb-btn {
                 height: 52px;
             }
+            .nav-logo-img {
+                height: 36px;
+            }
         }
     </style>
 </head>
@@ -4697,11 +4684,8 @@
     <!-- Top Navigation Bar (Mockup Aligned) -->
     <header class="site-navbar">
         <div class="container">
-            <a href="index.html" class="nav-logo-group">
-                <div class="nav-logo-icon">
-                    <i class="material-icons" style="font-size: 22px;">flight_takeoff</i>
-                </div>
-                <div class="nav-brand-text">TravelUp <span>Global</span></div>
+            <a href="index.html" class="nav-brand">
+                <img src="images/logo.png" alt="TravelUp Global" class="nav-logo-img">
             </a>
             <ul class="nav-main-menu">
                 <li><a href="index.html">Home</a></li>
