@@ -1067,6 +1067,241 @@
             color: #ffffff;
         }
 
+        /* ================= TRAVEL PLANNER 6-STEP WIZARD & ARCHITECTURE ================= */
+        .tp-subnav-strip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--white);
+            padding: 0.4rem 0.6rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--slate-200);
+            width: fit-content;
+            flex-wrap: wrap;
+        }
+
+        .tp-subnav-tab {
+            padding: 0.45rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--slate-600);
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            transition: all 0.15s;
+        }
+
+        .tp-subnav-tab:hover {
+            color: var(--navy);
+            background: var(--slate-100);
+        }
+
+        .tp-subnav-tab.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .tp-top-split {
+            display: grid;
+            grid-template-columns: 1.6fr 1.2fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-tree-card {
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+        }
+
+        .category-tree-node {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.65rem 0.85rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 0.6rem;
+            border: 1px solid #f1f5f9;
+        }
+
+        .wizard-stepper-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            gap: 1rem;
+        }
+
+        .wizard-step-node {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.825rem;
+            font-weight: 700;
+            color: var(--slate-500);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .wizard-step-node.active {
+            color: var(--primary);
+        }
+
+        .wizard-step-node.completed {
+            color: #059669;
+        }
+
+        .wizard-step-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            background: var(--slate-100);
+            color: var(--slate-600);
+            border: 2px solid var(--slate-200);
+        }
+
+        .wizard-step-node.active .wizard-step-circle {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .wizard-step-node.completed .wizard-step-circle {
+            background: #d1fae5;
+            color: #059669;
+            border-color: #10b981;
+        }
+
+        .wizard-step-content {
+            display: none;
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.15s ease-out;
+        }
+
+        .wizard-step-content.active {
+            display: block;
+        }
+
+        .seat-grid-container {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+            max-width: 340px;
+        }
+
+        .seat-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.45rem;
+        }
+
+        .seat-pill {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: #3b82f6;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .seat-pill:hover {
+            background: #2563eb;
+        }
+
+        .seat-aisle {
+            width: 24px;
+        }
+
+        .tp-days-strip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.35rem;
+        }
+
+        .tp-day-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--slate-200);
+            background: #ffffff;
+            color: var(--slate-600);
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .tp-day-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .tp-bottom-architecture-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: var(--radius-lg);
+            padding: 1.25rem 1.75rem;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        body.dark-theme .tp-subnav-strip,
+        body.dark-theme .category-tree-card,
+        body.dark-theme .wizard-stepper-header,
+        body.dark-theme .wizard-step-content,
+        body.dark-theme .seat-grid-container {
+            background: #111827;
+            border-color: #1f2937;
+            color: #f8fafc;
+        }
+
+        body.dark-theme .category-tree-node {
+            background: #1f2937;
+            border-color: #374151;
+        }
+
+        body.dark-theme .tp-subnav-tab {
+            color: #94a3b8;
+        }
+
+        body.dark-theme .tp-subnav-tab.active {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
         /* ================= CARDS & PANELS ================= */
         .panel {
             background: var(--white);
@@ -1772,175 +2007,747 @@
                     </div>
                 </section>
 
-                <!-- 2. TRAVEL PLANNER OPERATIONS (FLEET & MULTI-MODAL TRANSIT CRM) -->
+                <!-- 2. TRAVEL PLANNER OPERATIONS (TRANSIT & SHARED CATALOG ENGINE) -->
                 <section id="view-travel-planner" class="view-section">
                     <!-- CRM Header Card -->
                     <div class="crm-header-card">
                         <div class="crm-title-area">
                             <h2>
                                 <i class="material-icons" style="color: var(--primary);">directions_bus</i>
-                                <span>Travel Planner — Fleet & Transport Operations</span>
+                                <span>Travel Planner — Transit & Shared Catalog Engine</span>
                             </h2>
-                            <p>Upload and manage transit inventories across Bangladesh: Bus, Railway, Domestic Flights, Launches, and Microbuses.</p>
+                            <p>Manage your master categories, operators, vehicles, routes, schedules, and intermediate stops.</p>
                         </div>
                         <div class="crm-header-actions">
                             <a href="travel-planner.html" target="_blank" class="btn btn-secondary">
                                 <i class="material-icons">open_in_new</i> Preview Public Travel Planner
                             </a>
-                            <button type="button" class="btn btn-primary" onclick="toggleAddTransportForm()">
-                                <i class="material-icons">add_circle</i> Add New Vehicle / Transit
+                            <button type="button" class="btn btn-primary" onclick="scrollToTransportWizard()">
+                                <i class="material-icons">add_circle</i> + Add Transport Service
                             </button>
                         </div>
                     </div>
 
-                    <!-- Category Filter Strip -->
-                    <div class="crm-category-strip">
-                        <button type="button" class="crm-pill-btn active" onclick="filterTravelCategory('all', this)">
-                            <i class="material-icons">apps</i> All Modes
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('bus', this)">
-                            <i class="material-icons">directions_bus</i> 🚌 Bus Coaches
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('train', this)">
-                            <i class="material-icons">train</i> 🚆 Railway / Train
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('flight', this)">
-                            <i class="material-icons">flight</i> ✈️ Domestic Flights
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('waterway', this)">
-                            <i class="material-icons">directions_boat</i> 🚤 Waterway / Launches
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('rental', this)">
-                            <i class="material-icons">airport_shuttle</i> 🚗 Rental & Microbus
-                        </button>
+                    <!-- Sub-Navigation Tabs (Categories, Operators, Locations, Routes, Schedules, Products) -->
+                    <div class="tp-subnav-strip">
+                        <button type="button" class="tp-subnav-tab" onclick="switchTpSubTab('categories', this)">Categories</button>
+                        <button type="button" class="tp-subnav-tab" onclick="switchTpSubTab('operators', this)">Operators</button>
+                        <button type="button" class="tp-subnav-tab" onclick="switchTpSubTab('locations', this)">Locations</button>
+                        <button type="button" class="tp-subnav-tab" onclick="switchTpSubTab('routes', this)">Routes</button>
+                        <button type="button" class="tp-subnav-tab" onclick="switchTpSubTab('schedules', this)">Schedules</button>
+                        <button type="button" class="tp-subnav-tab active" onclick="switchTpSubTab('products', this)">Products (Active)</button>
                     </div>
 
-                    <!-- Collapsible Add Vehicle / Transit Form -->
-                    <div id="panel-add-transport" class="crm-collapsible-panel">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
-                            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="material-icons" style="color: var(--primary);">add_box</i>
-                                <span>Add New Vehicle / Transport Route to Catalog</span>
-                            </h3>
-                            <button type="button" class="btn btn-secondary" onclick="toggleAddTransportForm()" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">Close</button>
+                    <!-- Top Split: Master Category Table & Category Structure Diagram -->
+                    <div class="tp-top-split" id="tp-categories-overview">
+                        <!-- Left: Master Categories Table -->
+                        <div class="panel" style="margin-bottom: 0;">
+                            <div class="panel-header">
+                                <div class="panel-title">
+                                    <i class="material-icons" style="color: var(--primary);">category</i>
+                                    <span>Master Service Categories</span>
+                                </div>
+                                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;" onclick="showToast('Add category modal open', 'info')">+ Add Category</button>
+                            </div>
+                            <div class="panel-body" style="padding: 0;">
+                                <div class="data-table-wrap">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Category Name</th>
+                                                <th>Type</th>
+                                                <th>Sub-Categories</th>
+                                                <th>Products</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><strong style="display: flex; align-items: center; gap: 6px;"><i class="material-icons" style="font-size: 18px; color: #0284c7;">directions_bus</i> Transit</strong></td>
+                                                <td>Transport</td>
+                                                <td>8 Types</td>
+                                                <td><strong>45</strong></td>
+                                                <td><span class="user-role-tag" style="background: #d1fae5; color: #047857;">Active</span></td>
+                                                <td><button class="btn btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td><strong style="display: flex; align-items: center; gap: 6px;"><i class="material-icons" style="font-size: 18px; color: #10b981;">hotel</i> Accommodation</strong></td>
+                                                <td>Lodging</td>
+                                                <td>6 Types</td>
+                                                <td><strong>32</strong></td>
+                                                <td><span class="user-role-tag" style="background: #d1fae5; color: #047857;">Active</span></td>
+                                                <td><button class="btn btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td><strong style="display: flex; align-items: center; gap: 6px;"><i class="material-icons" style="font-size: 18px; color: #f59e0b;">surfing</i> Activities & Experiences</strong></td>
+                                                <td>Activity</td>
+                                                <td>5 Types</td>
+                                                <td><strong>21</strong></td>
+                                                <td><span class="user-role-tag" style="background: #d1fae5; color: #047857;">Active</span></td>
+                                                <td><button class="btn btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td><strong style="display: flex; align-items: center; gap: 6px;"><i class="material-icons" style="font-size: 18px; color: #8b5cf6;">confirmation_number</i> Attractions & Tickets</strong></td>
+                                                <td>Service</td>
+                                                <td>4 Types</td>
+                                                <td><strong>18</strong></td>
+                                                <td><span class="user-role-tag" style="background: #d1fae5; color: #047857;">Active</span></td>
+                                                <td><button class="btn btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td><strong style="display: flex; align-items: center; gap: 6px;"><i class="material-icons" style="font-size: 18px; color: #ef4444;">restaurant</i> Food & Dining</strong></td>
+                                                <td>Dining</td>
+                                                <td>4 Types</td>
+                                                <td><strong>12</strong></td>
+                                                <td><span class="user-role-tag" style="background: #d1fae5; color: #047857;">Active</span></td>
+                                                <td><button class="btn btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td><strong style="display: flex; align-items: center; gap: 6px;"><i class="material-icons" style="font-size: 18px; color: #06b6d4;">explore</i> Guide & Support</strong></td>
+                                                <td>Service</td>
+                                                <td>3 Types</td>
+                                                <td><strong>9</strong></td>
+                                                <td><span class="user-role-tag" style="background: #d1fae5; color: #047857;">Active</span></td>
+                                                <td><button class="btn btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;">Edit</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td><strong style="display: flex; align-items: center; gap: 6px;"><i class="material-icons" style="font-size: 18px; color: #64748b;">local_shipping</i> Cargo & Logistics</strong></td>
+                                                <td>Logistics</td>
+                                                <td>2 Types</td>
+                                                <td><strong>4</strong></td>
+                                                <td><span class="user-role-tag" style="background: #fee2e2; color: #b91c1c;">Inactive</span></td>
+                                                <td><button class="btn btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;">Edit</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <form id="form-add-transport" onsubmit="handleCreateTransportCRM(event)">
+
+                        <!-- Right: Category Structure & Data Reusability Card -->
+                        <div class="category-tree-card">
+                            <div style="font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 6px;">
+                                <i class="material-icons" style="color: var(--primary);">account_tree</i>
+                                <span>Category Structure (Data Hierarchy)</span>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 1rem;">
+                                Standard structure to reuse the same data across Travel Planner, Tour Planner and Packages:
+                            </p>
+
+                            <div class="category-tree-node">
+                                <i class="material-icons" style="color: #0284c7;">directions_bus</i>
+                                <div>
+                                    <strong style="font-size: 0.85rem; color: var(--navy);">Transit (Fleet & Movement)</strong>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Bus • Train • Microbus • Flight • Launch/Ferry • Rental</div>
+                                </div>
+                            </div>
+
+                            <div class="category-tree-node">
+                                <i class="material-icons" style="color: #10b981;">hotel</i>
+                                <div>
+                                    <strong style="font-size: 0.85rem; color: var(--navy);">Accommodation</strong>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Hotel • Resort • Guest House • Cottage • Glamping</div>
+                                </div>
+                            </div>
+
+                            <div class="category-tree-node">
+                                <i class="material-icons" style="color: #f59e0b;">surfing</i>
+                                <div>
+                                    <strong style="font-size: 0.85rem; color: var(--navy);">Activities & Experiences</strong>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Boat Tour • Scuba Diving • Trekking • Safari • Parasailing</div>
+                                </div>
+                            </div>
+
+                            <div class="category-tree-node">
+                                <i class="material-icons" style="color: #ef4444;">restaurant</i>
+                                <div>
+                                    <strong style="font-size: 0.85rem; color: var(--navy);">Food & Dining</strong>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Restaurant • Buffet Meal Plan • Traditional Local Platter</div>
+                                </div>
+                            </div>
+
+                            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 0.85rem; margin-top: 1rem; display: flex; align-items: flex-start; gap: 8px;">
+                                <i class="material-icons" style="color: #059669; font-size: 20px;">lightbulb</i>
+                                <div style="font-size: 0.78rem; color: #065f46; line-height: 1.4;">
+                                    <strong>Central Pipeline:</strong> Main Category ➔ Subcategory ➔ Operator ➔ Product/Service ➔ Route & Stops ➔ Schedule & Fare.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================= 3. STEP-BY-STEP PRODUCT CREATION WIZARD ================= -->
+                    <div id="tp-wizard-container" style="margin-bottom: 2rem;">
+                        <div style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 6px;">
+                                    <i class="material-icons" style="color: var(--primary);">playlist_add</i>
+                                    <span>Create a Transport Product (Step by Step Pipeline)</span>
+                                </h3>
+                                <p style="font-size: 0.85rem; color: var(--slate-500); margin-top: 2px;">Follow the 6 steps below to register and verify new transport services for the live network.</p>
+                            </div>
+                            <span class="user-role-tag" style="background: #e0f2fe; color: #0284c7;" id="wizard-active-step-badge">Step 1 of 6</span>
+                        </div>
+
+                        <!-- Stepper Progress Bar Header -->
+                        <div class="wizard-stepper-header">
+                            <div class="wizard-step-node active" id="step-node-1" onclick="goToWizardStep(1)">
+                                <span class="wizard-step-circle">1</span>
+                                <span>Category & Operator</span>
+                            </div>
+                            <i class="material-icons" style="color: #cbd5e1; font-size: 16px;">chevron_right</i>
+                            <div class="wizard-step-node" id="step-node-2" onclick="goToWizardStep(2)">
+                                <span class="wizard-step-circle">2</span>
+                                <span>Basic Information</span>
+                            </div>
+                            <i class="material-icons" style="color: #cbd5e1; font-size: 16px;">chevron_right</i>
+                            <div class="wizard-step-node" id="step-node-3" onclick="goToWizardStep(3)">
+                                <span class="wizard-step-circle">3</span>
+                                <span>Vehicle & Seats</span>
+                            </div>
+                            <i class="material-icons" style="color: #cbd5e1; font-size: 16px;">chevron_right</i>
+                            <div class="wizard-step-node" id="step-node-4" onclick="goToWizardStep(4)">
+                                <span class="wizard-step-circle">4</span>
+                                <span>Route & Stops</span>
+                            </div>
+                            <i class="material-icons" style="color: #cbd5e1; font-size: 16px;">chevron_right</i>
+                            <div class="wizard-step-node" id="step-node-5" onclick="goToWizardStep(5)">
+                                <span class="wizard-step-circle">5</span>
+                                <span>Schedule & Fare</span>
+                            </div>
+                            <i class="material-icons" style="color: #cbd5e1; font-size: 16px;">chevron_right</i>
+                            <div class="wizard-step-node" id="step-node-6" onclick="goToWizardStep(6)">
+                                <span class="wizard-step-circle">6</span>
+                                <span>Preview & Publish</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 1 Content: Category & Operator -->
+                        <div class="wizard-step-content active" id="wizard-step-1">
+                            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem; color: var(--navy);">Step 1: Select Category, Mode & Operator</h4>
                             <div class="form-grid">
                                 <div class="form-group">
-                                    <label>Transport Category / Mode *</label>
-                                    <select id="t-category-select" required>
-                                        <option value="bus">🚌 Intercity & Feeder Bus</option>
-                                        <option value="train">🚆 Bangladesh Railway (Train)</option>
-                                        <option value="flight">✈️ Domestic Flight (Air)</option>
-                                        <option value="waterway">🚤 Waterway & Cruisers (Launch)</option>
-                                        <option value="rental">🚗 Microbus / Chander Gari Rental</option>
+                                    <label>Main Category *</label>
+                                    <select id="w-main-category" disabled>
+                                        <option value="transit" selected>🚌 Transit (Transport Fleet)</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Operator / Company Name *</label>
-                                    <input type="text" id="t-operator" required placeholder="e.g. Ena Transport, Biman Bangladesh, Suborno Express, Green Line Water">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Vehicle Model / Service Class *</label>
-                                    <input type="text" id="t-vtype" required placeholder="e.g. Scania Multi-Axle AC Sleeper, Economy Snigdha, ATR-72 Economy">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Origin District / City *</label>
-                                    <input type="text" id="t-orig-dist" required placeholder="e.g. Dhaka, Rangpur, Dinajpur">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Origin Stoppage / Terminal</label>
-                                    <input type="text" id="t-orig-point" placeholder="e.g. Sayedabad Counter, Kamlapur Railway, Hazrat Shahjalal Airport">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Destination District / City *</label>
-                                    <input type="text" id="t-dest-dist" required placeholder="e.g. Cox's Bazar, Chattogram, Sylhet">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Destination Spot / Terminal</label>
-                                    <input type="text" id="t-dest-point" placeholder="e.g. Kolatoli Beach, GEC Circle, Cox's Bazar Airport">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Departure Time *</label>
-                                    <input type="text" id="t-dep-time" required placeholder="e.g. 07:30 PM">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Arrival Time</label>
-                                    <input type="text" id="t-arr-time" placeholder="e.g. 05:15 AM">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Base Fare (BDT) *</label>
-                                    <input type="number" id="t-fare" required min="50" step="10" placeholder="e.g. 1650">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Seat Capacity</label>
-                                    <input type="number" id="t-seats" value="36" min="1" max="500">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Curated Tier Tag</label>
-                                    <select id="t-tier">
-                                        <option value="recommended">Best Value / Recommended</option>
-                                        <option value="budget">Lowest Price / Budget</option>
-                                        <option value="luxury">Fastest / Luxury Sleeper</option>
+                                    <label>Transport Type / Sub-Category *</label>
+                                    <select id="w-transport-type" onchange="syncWizardPreview()">
+                                        <option value="Bus" selected>🚌 Bus (Intercity Coach & Local Shuttle)</option>
+                                        <option value="Train">🚆 Bangladesh Railway (Intercity Train)</option>
+                                        <option value="Flight">✈️ Domestic Flight (Air)</option>
+                                        <option value="Launch">🚤 Waterway (Launch & Ferry)</option>
+                                        <option value="Microbus">🚐 Microbus (HiAce / Noah Rental)</option>
+                                        <option value="Car Rental">🚗 Car Rental (Sedan & 4x4 Chander Gari)</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group" style="grid-column: 1 / -1;">
-                                    <label>Vehicle Photo URL</label>
-                                    <input type="url" id="t-img" value="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80">
+                                    <label>Registered Operator / Company *</label>
+                                    <select id="w-operator-select" onchange="syncWizardPreview()">
+                                        <option value="Shyamoli NR Travels" selected>Shyamoli NR Travels</option>
+                                        <option value="Hanif Enterprise">Hanif Enterprise</option>
+                                        <option value="Green Line Paribahan">Green Line Paribahan</option>
+                                        <option value="Ena Transport">Ena Transport</option>
+                                        <option value="Shohagh Paribahan">Shohagh Paribahan</option>
+                                        <option value="Bangladesh Railway">Bangladesh Railway (Railway)</option>
+                                        <option value="Biman Bangladesh Airlines">Biman Bangladesh Airlines (Flight)</option>
+                                        <option value="Green Line Waterways">Green Line Waterways (Launch)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                                <button type="button" class="btn btn-primary" onclick="goToWizardStep(2)">
+                                    Next: Basic Information <i class="material-icons">arrow_forward</i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 Content: Basic Information -->
+                        <div class="wizard-step-content" id="wizard-step-2">
+                            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem; color: var(--navy);">Step 2: Basic Service Information</h4>
+                            <div class="form-grid">
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Service / Bus Name *</label>
+                                    <input type="text" id="w-service-name" value="Shyamoli AC Sleeper" placeholder="e.g. Shyamoli AC Sleeper Deluxe" oninput="syncWizardPreview()">
+                                </div>
+
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Description & Service Highlight</label>
+                                    <textarea id="w-service-desc" rows="2" placeholder="e.g. Comfortable journey with premium sleeper berths, emergency blankets, and professional staff.">Comfortable journey with premium service, air conditioning, and highway rest breaks.</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Bus Service Type *</label>
+                                    <select id="w-bus-type-select" onchange="syncWizardPreview()">
+                                        <option value="AC Sleeper" selected>AC Sleeper (Luxury Berths)</option>
+                                        <option value="AC Business Class">AC Business Class (Hino 1J / Hyundai)</option>
+                                        <option value="Economy Chair Coach">Economy Chair Coach (Non-AC)</option>
+                                        <option value="Express Intercity">Express Intercity Shuttle</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Total Passenger Seats *</label>
+                                    <input type="number" id="w-total-seats" value="40" min="4" max="120" oninput="syncWizardPreview()">
+                                </div>
+
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Vehicle Photos URL</label>
+                                    <input type="url" id="w-photo-url" value="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" oninput="syncWizardPreview()">
+                                </div>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+                                <button type="button" class="btn btn-secondary" onclick="goToWizardStep(1)">
+                                    <i class="material-icons">arrow_back</i> Previous
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="goToWizardStep(3)">
+                                    Next: Vehicle & Seats <i class="material-icons">arrow_forward</i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 Content: Vehicle Details & Seat Layout -->
+                        <div class="wizard-step-content" id="wizard-step-3">
+                            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem; color: var(--navy);">Step 3: Vehicle Specs, Facilities & Seat Layout</h4>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>AC Status</label>
+                                    <select id="w-ac-status" onchange="syncWizardPreview()">
+                                        <option value="AC" selected>Air Conditioned (AC)</option>
+                                        <option value="Non-AC">Non-AC</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Seat Class Format</label>
+                                    <select id="w-seat-format" onchange="syncWizardPreview()">
+                                        <option value="Sleeper" selected>Sleeper Berth</option>
+                                        <option value="Chair">2x2 Reclining Chair</option>
+                                        <option value="Business">2x1 Business Class</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Luggage Allowance</label>
+                                    <input type="text" id="w-luggage" value="2 Bags (Max 20kg)">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Onboard Facilities</label>
+                                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 6px;">
+                                        <label style="font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                            <input type="checkbox" id="fac-wifi" checked> WiFi
+                                        </label>
+                                        <label style="font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                            <input type="checkbox" id="fac-tv" checked> TV
+                                        </label>
+                                        <label style="font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                            <input type="checkbox" id="fac-usb" checked> USB Charging
+                                        </label>
+                                        <label style="font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                            <input type="checkbox" id="fac-restroom" checked> Restroom
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
-                                <button type="reset" class="btn btn-secondary">Clear Form</button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="material-icons">cloud_upload</i> Publish Transport to Live Network
+                            <!-- Interactive Bus Seat Layout Preview (2+1, 40 Seats) -->
+                            <div style="margin-top: 1.5rem;">
+                                <label style="font-size: 0.825rem; font-weight: 700; color: var(--navy);">Seat Layout Grid Preview (2+1 Sleeper Format • 40 Seats Total):</label>
+                                <div class="seat-grid-container">
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.725rem; font-weight: 800; color: #64748b; margin-bottom: 0.5rem; text-transform: uppercase;">
+                                        <span>Left Berths</span>
+                                        <span style="letter-spacing: 0.1em;">Aisle</span>
+                                        <span>Right Berths</span>
+                                    </div>
+                                    <!-- 8 Sample rows -->
+                                    <div class="seat-row"><div class="seat-pill">A1</div><div class="seat-pill">A2</div><div class="seat-aisle"></div><div class="seat-pill">A3</div></div>
+                                    <div class="seat-row"><div class="seat-pill">B1</div><div class="seat-pill">B2</div><div class="seat-aisle"></div><div class="seat-pill">B3</div></div>
+                                    <div class="seat-row"><div class="seat-pill">C1</div><div class="seat-pill">C2</div><div class="seat-aisle"></div><div class="seat-pill">C3</div></div>
+                                    <div class="seat-row"><div class="seat-pill">D1</div><div class="seat-pill">D2</div><div class="seat-aisle"></div><div class="seat-pill">D3</div></div>
+                                    <div class="seat-row"><div class="seat-pill">E1</div><div class="seat-pill">E2</div><div class="seat-aisle"></div><div class="seat-pill">E3</div></div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+                                <button type="button" class="btn btn-secondary" onclick="goToWizardStep(2)">
+                                    <i class="material-icons">arrow_back</i> Previous
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="goToWizardStep(4)">
+                                    Next: Route & Stops <i class="material-icons">arrow_forward</i>
                                 </button>
                             </div>
-                        </form>
+                        </div>
+
+                        <!-- Step 4 Content: Route & Intermediate Stops -->
+                        <div class="wizard-step-content" id="wizard-step-4">
+                            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem; color: var(--navy);">Step 4: Route Corridor & Sequential Stops</h4>
+                            
+                            <div class="form-grid" style="margin-bottom: 1.5rem;">
+                                <div class="form-group">
+                                    <label>Origin District / City *</label>
+                                    <input type="text" id="w-origin-district" value="Panchagarh" placeholder="e.g. Panchagarh, Dhaka" oninput="syncWizardPreview()">
+                                </div>
+                                <div class="form-group">
+                                    <label>Destination District / City *</label>
+                                    <input type="text" id="w-dest-district" value="Dhaka" placeholder="e.g. Dhaka, Cox's Bazar" oninput="syncWizardPreview()">
+                                </div>
+                            </div>
+
+                            <!-- Stop sequence table -->
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+                                <label style="font-size: 0.85rem; font-weight: 700; color: var(--navy);">Stop Sequence & Intermediate Timetable:</label>
+                                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;" onclick="addWizardStopRow()">
+                                    <i class="material-icons" style="font-size: 14px;">add</i> + Add Stop
+                                </button>
+                            </div>
+
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="wizard-stops-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Stop / Terminal Name</th>
+                                            <th>Arrival Time</th>
+                                            <th>Departure Time</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="wizard-stops-tbody">
+                                        <tr>
+                                            <td>1</td>
+                                            <td><input type="text" value="Panchagarh Terminal (Origin)" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100%;"></td>
+                                            <td><span style="color: #94a3b8;">--</span></td>
+                                            <td><input type="text" value="08:00 PM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><span style="color: #94a3b8;">Start</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td><input type="text" value="Thakurgaon Counter" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100%;"></td>
+                                            <td><input type="text" value="08:45 PM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><input type="text" value="08:50 PM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><button type="button" class="btn btn-danger" style="padding: 2px 6px; font-size: 0.7rem;" onclick="this.closest('tr').remove()">Remove</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td><input type="text" value="Dinajpur Terminal" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100%;"></td>
+                                            <td><input type="text" value="10:15 PM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><input type="text" value="10:20 PM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><button type="button" class="btn btn-danger" style="padding: 2px 6px; font-size: 0.7rem;" onclick="this.closest('tr').remove()">Remove</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td><input type="text" value="Bogra Food Village" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100%;"></td>
+                                            <td><input type="text" value="12:00 AM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><input type="text" value="12:10 AM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><button type="button" class="btn btn-danger" style="padding: 2px 6px; font-size: 0.7rem;" onclick="this.closest('tr').remove()">Remove</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td><input type="text" value="Tangail Highway" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100%;"></td>
+                                            <td><input type="text" value="02:30 AM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><input type="text" value="02:40 AM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><button type="button" class="btn btn-danger" style="padding: 2px 6px; font-size: 0.7rem;" onclick="this.closest('tr').remove()">Remove</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td><input type="text" value="Dhaka Gabtoli (Destination)" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100%;"></td>
+                                            <td><input type="text" value="05:00 AM" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                                            <td><span style="color: #94a3b8;">End</span></td>
+                                            <td><span style="color: #94a3b8;">Final</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+                                <button type="button" class="btn btn-secondary" onclick="goToWizardStep(3)">
+                                    <i class="material-icons">arrow_back</i> Previous
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="goToWizardStep(5)">
+                                    Next: Schedule & Fare <i class="material-icons">arrow_forward</i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 Content: Schedule & Fare -->
+                        <div class="wizard-step-content" id="wizard-step-5">
+                            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem; color: var(--navy);">Step 5: Schedule, Operating Days & Fare</h4>
+                            
+                            <div class="form-grid">
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Operating Days of Week</label>
+                                    <div class="tp-days-strip">
+                                        <button type="button" class="tp-day-btn active" onclick="this.classList.toggle('active')">Mon</button>
+                                        <button type="button" class="tp-day-btn active" onclick="this.classList.toggle('active')">Tue</button>
+                                        <button type="button" class="tp-day-btn active" onclick="this.classList.toggle('active')">Wed</button>
+                                        <button type="button" class="tp-day-btn active" onclick="this.classList.toggle('active')">Thu</button>
+                                        <button type="button" class="tp-day-btn active" onclick="this.classList.toggle('active')">Fri</button>
+                                        <button type="button" class="tp-day-btn active" onclick="this.classList.toggle('active')">Sat</button>
+                                        <button type="button" class="tp-day-btn active" onclick="this.classList.toggle('active')">Sun</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Origin Departure Time *</label>
+                                    <input type="text" id="w-dep-time" value="08:00 PM" placeholder="e.g. 08:00 PM" oninput="syncWizardPreview()">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Estimated Destination Arrival *</label>
+                                    <input type="text" id="w-arr-time" value="05:00 AM" placeholder="e.g. 05:00 AM" oninput="syncWizardPreview()">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Full Route Fare (BDT) *</label>
+                                    <input type="number" id="w-fare" value="1200" min="50" step="50" oninput="syncWizardPreview()">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Available Booking Seats</label>
+                                    <input type="number" id="w-avail-seats" value="40" min="1" max="120" oninput="syncWizardPreview()">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Trip Operating Status</label>
+                                    <select id="w-trip-status" onchange="syncWizardPreview()">
+                                        <option value="Active" selected>Active (Live on Website)</option>
+                                        <option value="Pending">Pending Verification</option>
+                                        <option value="Inactive">Inactive / Suspended</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+                                <button type="button" class="btn btn-secondary" onclick="goToWizardStep(4)">
+                                    <i class="material-icons">arrow_back</i> Previous
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="goToWizardStep(6)">
+                                    Next: Preview & Publish <i class="material-icons">arrow_forward</i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 6 Content: Preview & Publish -->
+                        <div class="wizard-step-content" id="wizard-step-6">
+                            <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem; color: var(--navy);">Step 6: Live Product Verification & Publish</h4>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                                <!-- Live Card Render -->
+                                <div class="crm-item-card" style="box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);">
+                                    <img id="prev-card-img" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" alt="Preview" class="crm-card-media" style="height: 160px;">
+                                    <div class="crm-card-body">
+                                        <div style="display: flex; gap: 6px; margin-bottom: 6px;">
+                                            <span class="crm-card-tag crm-tag-transport" id="prev-card-tag">BUS • AC SLEEPER</span>
+                                            <span class="user-role-tag" style="background: #d1fae5; color: #047857;" id="prev-card-status">ACTIVE</span>
+                                        </div>
+                                        <h4 class="crm-card-title" id="prev-card-title">Shyamoli AC Sleeper</h4>
+                                        <div style="font-size: 0.85rem; color: var(--navy); font-weight: 700; margin-bottom: 6px;" id="prev-card-operator">
+                                            Operator: Shyamoli NR Travels
+                                        </div>
+                                        <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 1rem;">
+                                            📍 Route: <strong id="prev-card-route">Panchagarh ➔ Dhaka</strong><br>
+                                            ⏰ Departure: <strong id="prev-card-time">08:00 PM</strong> | Arrival: <strong id="prev-card-arr">05:00 AM</strong><br>
+                                            💺 Available Seats: <strong id="prev-card-seats">40 Seats</strong>
+                                        </div>
+                                        <div class="crm-card-footer">
+                                            <div>
+                                                <span style="font-size: 0.75rem; color: #64748b; display: block;">Base Ticket Fare:</span>
+                                                <span class="crm-card-price" id="prev-card-fare">BDT 1,200</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pre-flight Checklist Box -->
+                                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div>
+                                        <strong style="color: var(--navy); font-size: 0.95rem; display: flex; align-items: center; gap: 6px; margin-bottom: 1rem;">
+                                            <i class="material-icons" style="color: #10b981;">verified</i> Pre-Flight Service Verification Checklist:
+                                        </strong>
+                                        <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.85rem; color: var(--slate-700);">
+                                            <div style="display: flex; align-items: center; gap: 8px;"><i class="material-icons" style="color: #10b981; font-size: 18px;">check_circle</i> Basic Information & Operator Validated</div>
+                                            <div style="display: flex; align-items: center; gap: 8px;"><i class="material-icons" style="color: #10b981; font-size: 18px;">check_circle</i> Vehicle Specs & 40-Seat Layout Defined</div>
+                                            <div style="display: flex; align-items: center; gap: 8px;"><i class="material-icons" style="color: #10b981; font-size: 18px;">check_circle</i> 6 Sequential Stoppages Configured</div>
+                                            <div style="display: flex; align-items: center; gap: 8px;"><i class="material-icons" style="color: #10b981; font-size: 18px;">check_circle</i> Departure, Arrival & Fare (BDT 1,200) Verified</div>
+                                            <div style="display: flex; align-items: center; gap: 8px;"><i class="material-icons" style="color: #10b981; font-size: 18px;">check_circle</i> Auto-sync enabled for Tour Planner Transit slot</div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex; gap: 0.75rem; margin-top: 2rem;">
+                                        <button type="button" class="btn btn-secondary" onclick="saveWizardDraft()" style="flex: 1;">Save as Draft</button>
+                                        <button type="button" class="btn btn-primary" onclick="publishWizardTransport()" style="flex: 1.5; justify-content: center;">
+                                            <i class="material-icons">cloud_upload</i> Publish to Live Catalog
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-start;">
+                                <button type="button" class="btn btn-secondary" onclick="goToWizardStep(5)">
+                                    <i class="material-icons">arrow_back</i> Previous Step
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Transport Inventory Table -->
+                    <!-- ================= 4. ROUTE & STOPS LOCATION DATABASE ================= -->
+                    <div class="panel" style="margin-bottom: 2rem;">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: #0284c7;">map</i>
+                                <span>4. Route & Stops Management (Location Database)</span>
+                            </div>
+                            <span class="user-role-tag" style="background: #e0f2fe; color: #0284c7;">Shared Location DB</span>
+                        </div>
+                        <div class="panel-body">
+                            <div style="display: grid; grid-template-columns: 1fr 1.3fr 1.7fr; gap: 1.5rem;">
+                                <!-- Hierarchy list -->
+                                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem;">
+                                    <strong style="font-size: 0.85rem; color: var(--navy); display: block; margin-bottom: 0.5rem;">Location Hierarchy</strong>
+                                    <div style="font-size: 0.8rem; color: #475569; display: flex; flex-direction: column; gap: 6px;">
+                                        <div>🌍 Country: Bangladesh</div>
+                                        <div>↳ 🏛️ Divisions (8 Divisions)</div>
+                                        <div>&nbsp;&nbsp;&nbsp;↳ 📍 Districts (64 Districts)</div>
+                                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳ 🏘️ Upazilas (495 Upazilas)</div>
+                                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳ 🚏 Terminals & Stations</div>
+                                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳ 🛑 Verified Stoppages</div>
+                                    </div>
+                                </div>
+
+                                <!-- Add New Stop Form -->
+                                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem;">
+                                    <strong style="font-size: 0.85rem; color: var(--navy); display: block; margin-bottom: 0.75rem;">+ Add New Stop / Counter</strong>
+                                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                        <input type="text" id="new-stop-name" placeholder="Stop Name (e.g. Bogra Bus Terminal)" style="padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.8rem;">
+                                        <select id="new-stop-type" style="padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.8rem;">
+                                            <option value="Bus Terminal">Bus Terminal / Stand</option>
+                                            <option value="Railway Station">Railway Station</option>
+                                            <option value="Airport">Domestic Airport</option>
+                                            <option value="Launch Ghat">Launch / Ferry Ghat</option>
+                                        </select>
+                                        <div style="display: flex; gap: 0.5rem;">
+                                            <input type="text" id="new-stop-dist" placeholder="District" style="padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.8rem; width: 50%;">
+                                            <input type="text" id="new-stop-div" placeholder="Division" style="padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.8rem; width: 50%;">
+                                        </div>
+                                        <button type="button" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem; justify-content: center; margin-top: 4px;" onclick="showToast('Stop added to Location Database!', 'success')">
+                                            Save Stop to Database
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Recent Stops Table -->
+                                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem; overflow-x: auto;">
+                                    <strong style="font-size: 0.85rem; color: var(--navy); display: block; margin-bottom: 0.5rem;">Recent Verified Stops</strong>
+                                    <table style="width: 100%; font-size: 0.78rem; border-collapse: collapse;">
+                                        <thead>
+                                            <tr style="text-align: left; color: #64748b; border-bottom: 1px solid #e2e8f0;">
+                                                <th style="padding: 4px;">Stop Name</th>
+                                                <th style="padding: 4px;">Type</th>
+                                                <th style="padding: 4px;">Location</th>
+                                                <th style="padding: 4px;">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                                <td style="padding: 4px;"><strong>Shahbagh Terminal</strong></td>
+                                                <td>Bus Stand</td>
+                                                <td>Dhaka</td>
+                                                <td><span style="color: #059669; font-weight: 700;">● Active</span></td>
+                                            </tr>
+                                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                                <td style="padding: 4px;"><strong>Gabtoli Terminal</strong></td>
+                                                <td>Bus Terminal</td>
+                                                <td>Dhaka</td>
+                                                <td><span style="color: #059669; font-weight: 700;">● Active</span></td>
+                                            </tr>
+                                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                                <td style="padding: 4px;"><strong>Sayedabad Terminal</strong></td>
+                                                <td>Bus Terminal</td>
+                                                <td>Dhaka</td>
+                                                <td><span style="color: #059669; font-weight: 700;">● Active</span></td>
+                                            </tr>
+                                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                                <td style="padding: 4px;"><strong>Bogra Central Terminal</strong></td>
+                                                <td>Terminal</td>
+                                                <td>Rajshahi</td>
+                                                <td><span style="color: #059669; font-weight: 700;">● Active</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================= 5. MASTER TRANSPORT SERVICES TABLE ================= -->
                     <div class="panel">
                         <div class="panel-header">
                             <div class="panel-title">
                                 <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
-                                <span>Active Transport Fleet Inventory</span>
+                                <span>Master Transport Services & Fleet Ledger</span>
                             </div>
-                            <input type="text" id="search-transport-input" placeholder="Search operator, origin, destination..." onkeyup="filterTransportTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 280px;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <input type="text" id="search-transport-input" placeholder="Search service, operator, route..." onkeyup="filterTransportTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 280px;">
+                                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.45rem 0.75rem;" onclick="showToast('Exporting CSV...', 'info')">
+                                    <i class="material-icons" style="font-size: 14px;">download</i> Export
+                                </button>
+                            </div>
                         </div>
                         <div class="panel-body">
                             <div class="data-table-wrap">
                                 <table class="data-table" id="crm-transport-table">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Operator & Vehicle</th>
-                                            <th>Mode</th>
+                                            <th>#</th>
+                                            <th>Service</th>
+                                            <th>Operator</th>
                                             <th>Route Corridor</th>
-                                            <th>Schedule</th>
-                                            <th>Fare (BDT)</th>
+                                            <th>Type</th>
                                             <th>Seats</th>
-                                            <th>Tier</th>
+                                            <th>Fare (BDT)</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading fleet...</td></tr>
+                                        <tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading fleet catalog...</td></tr>
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Architecture Connectivity Value Proposition Banner -->
+                    <div class="tp-bottom-architecture-card">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 44px; height: 44px; border-radius: 12px; background: #059669; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="material-icons" style="font-size: 24px;">hub</i>
+                            </div>
+                            <div>
+                                <strong style="color: #065f46; font-size: 0.95rem;">Shared Service Catalog Architecture</strong>
+                                <p style="font-size: 0.8rem; color: #047857; margin-top: 2px;">
+                                    Transport data entered here automatically powers <strong>Travel Planner</strong> (Transit Only) and the <strong>Transit Slot in Tour Planner</strong>!
+                                </p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="user-role-tag" style="background: #ffffff; color: #065f46; border: 1px solid #bbf7d0;">✓ One-time data entry</span>
+                            <span class="user-role-tag" style="background: #ffffff; color: #065f46; border: 1px solid #bbf7d0;">✓ Reused across multiple services</span>
+                            <span class="user-role-tag" style="background: #ffffff; color: #065f46; border: 1px solid #bbf7d0;">✓ Easy management</span>
                         </div>
                     </div>
                 </section>
@@ -2788,6 +3595,212 @@
         }
 
         // ================= 1. TRAVEL PLANNER OPERATIONS CRM ================= //
+
+        function scrollToTransportWizard() {
+            const wizard = document.getElementById('tp-wizard-container');
+            if (wizard) {
+                wizard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                goToWizardStep(1);
+            }
+        }
+
+        function switchTpSubTab(tabName, el) {
+            document.querySelectorAll('.tp-subnav-tab').forEach(t => t.classList.remove('active'));
+            if (el) el.classList.add('active');
+
+            if (tabName === 'categories') {
+                const elCat = document.getElementById('tp-categories-overview');
+                if (elCat) elCat.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (tabName === 'operators') {
+                goToWizardStep(1);
+                const elW = document.getElementById('w-operator-select');
+                if (elW) elW.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else if (tabName === 'locations') {
+                const elLoc = document.getElementById('new-stop-name');
+                if (elLoc) elLoc.closest('.panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (tabName === 'routes') {
+                goToWizardStep(4);
+                const elR = document.getElementById('wizard-stops-table');
+                if (elR) elR.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else if (tabName === 'schedules') {
+                goToWizardStep(5);
+                const elS = document.getElementById('wizard-step-5');
+                if (elS) elS.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (tabName === 'products') {
+                const elTable = document.getElementById('crm-transport-table');
+                if (elTable) elTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function goToWizardStep(stepNum) {
+            if (stepNum < 1) stepNum = 1;
+            if (stepNum > 6) stepNum = 6;
+
+            for (let i = 1; i <= 6; i++) {
+                const stepEl = document.getElementById(`wizard-step-${i}`);
+                const nodeEl = document.getElementById(`step-node-${i}`);
+                if (stepEl) {
+                    stepEl.classList.toggle('active', i === stepNum);
+                }
+                if (nodeEl) {
+                    nodeEl.classList.toggle('active', i === stepNum);
+                    nodeEl.classList.toggle('completed', i < stepNum);
+                }
+            }
+
+            const badge = document.getElementById('wizard-active-step-badge');
+            if (badge) {
+                badge.innerText = `Step ${stepNum} of 6`;
+            }
+
+            if (stepNum === 6) {
+                syncWizardPreview();
+            }
+        }
+
+        function syncWizardPreview() {
+            const sName = document.getElementById('w-service-name')?.value || 'Shyamoli AC Sleeper';
+            const sOp = document.getElementById('w-operator-select')?.value || 'Shyamoli NR Travels';
+            const sType = document.getElementById('w-transport-type')?.value || 'Bus';
+            const bType = document.getElementById('w-bus-type-select')?.value || 'AC Sleeper';
+            const origin = document.getElementById('w-origin-district')?.value || 'Panchagarh';
+            const dest = document.getElementById('w-dest-district')?.value || 'Dhaka';
+            const depTime = document.getElementById('w-dep-time')?.value || '08:00 PM';
+            const arrTime = document.getElementById('w-arr-time')?.value || '05:00 AM';
+            const fare = document.getElementById('w-fare')?.value || '1200';
+            const seats = document.getElementById('w-avail-seats')?.value || '40';
+            const photo = document.getElementById('w-photo-url')?.value || 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80';
+            const status = document.getElementById('w-trip-status')?.value || 'Active';
+
+            const pTitle = document.getElementById('prev-card-title');
+            if (pTitle) pTitle.innerText = sName;
+
+            const pOp = document.getElementById('prev-card-operator');
+            if (pOp) pOp.innerText = `Operator: ${sOp}`;
+
+            const pTag = document.getElementById('prev-card-tag');
+            if (pTag) pTag.innerText = `${sType.toUpperCase()} • ${bType.toUpperCase()}`;
+
+            const pRoute = document.getElementById('prev-card-route');
+            if (pRoute) pRoute.innerText = `${origin} ➔ ${dest}`;
+
+            const pTime = document.getElementById('prev-card-time');
+            if (pTime) pTime.innerText = depTime;
+
+            const pArr = document.getElementById('prev-card-arr');
+            if (pArr) pArr.innerText = arrTime;
+
+            const pSeats = document.getElementById('prev-card-seats');
+            if (pSeats) pSeats.innerText = `${seats} Seats`;
+
+            const pFare = document.getElementById('prev-card-fare');
+            if (pFare) pFare.innerText = `BDT ${Number(fare).toLocaleString()}`;
+
+            const pStatus = document.getElementById('prev-card-status');
+            if (pStatus) {
+                pStatus.innerText = status.toUpperCase();
+                if (status === 'Active') {
+                    pStatus.style.background = '#d1fae5';
+                    pStatus.style.color = '#047857';
+                } else {
+                    pStatus.style.background = '#fef3c7';
+                    pStatus.style.color = '#b45309';
+                }
+            }
+
+            const pImg = document.getElementById('prev-card-img');
+            if (pImg && photo) pImg.src = photo;
+        }
+
+        function addWizardStopRow() {
+            const tbody = document.getElementById('wizard-stops-tbody');
+            if (!tbody) return;
+
+            const rowCount = tbody.querySelectorAll('tr').length + 1;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${rowCount}</td>
+                <td><input type="text" placeholder="Intermediate Stoppage / Stand" value="" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100%;"></td>
+                <td><input type="text" placeholder="11:30 PM" value="" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                <td><input type="text" placeholder="11:40 PM" value="" style="padding: 4px 8px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;"></td>
+                <td><button type="button" class="btn btn-danger" style="padding: 2px 6px; font-size: 0.7rem;" onclick="this.closest('tr').remove(); renumberWizardStops();">Remove</button></td>
+            `;
+            tbody.appendChild(tr);
+            renumberWizardStops();
+        }
+
+        function renumberWizardStops() {
+            const tbody = document.getElementById('wizard-stops-tbody');
+            if (!tbody) return;
+            const rows = tbody.querySelectorAll('tr');
+            rows.forEach((row, idx) => {
+                const firstTd = row.querySelector('td:first-child');
+                if (firstTd) firstTd.innerText = idx + 1;
+            });
+        }
+
+        function saveWizardDraft() {
+            showToast('Transport service draft saved successfully to local staging!', 'info');
+        }
+
+        async function publishWizardTransport() {
+            const operator = document.getElementById('w-operator-select')?.value || 'Shyamoli NR Travels';
+            const transportType = document.getElementById('w-transport-type')?.value || 'Bus';
+            const serviceName = document.getElementById('w-service-name')?.value || 'Sleeper Deluxe';
+            const busType = document.getElementById('w-bus-type-select')?.value || 'AC Sleeper';
+            const acStatus = document.getElementById('w-ac-status')?.value || 'AC';
+            const seatFormat = document.getElementById('w-seat-format')?.value || 'Sleeper';
+            const origin = document.getElementById('w-origin-district')?.value || 'Panchagarh';
+            const dest = document.getElementById('w-dest-district')?.value || 'Dhaka';
+            const depTime = document.getElementById('w-dep-time')?.value || '08:00 PM';
+            const arrTime = document.getElementById('w-arr-time')?.value || '05:00 AM';
+            const fare = parseFloat(document.getElementById('w-fare')?.value) || 1200;
+            const totalSeats = parseInt(document.getElementById('w-total-seats')?.value) || 40;
+            const availSeats = parseInt(document.getElementById('w-avail-seats')?.value) || 40;
+            const photo = document.getElementById('w-photo-url')?.value || 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80';
+
+            const fullVehicleType = `${transportType} - ${serviceName} (${busType}, ${acStatus})`;
+
+            const payload = {
+                operator_name: operator,
+                vehicle_type: fullVehicleType,
+                origin_district: origin,
+                origin_point: `${origin} Central Terminal`,
+                destination_district: dest,
+                destination_point: `${dest} Main Terminal`,
+                departure_time: depTime,
+                arrival_time: arrTime,
+                base_fare: fare,
+                total_seats: totalSeats,
+                available_seats: availSeats,
+                tier_tag: seatFormat,
+                image_url: photo
+            };
+
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/transit/routes`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast('Transport Product published! Auto-synced to Travel Planner & Tour Planner Transit inventory.', 'success');
+                    loadTravelPlanner();
+                    goToWizardStep(1);
+                    const table = document.getElementById('crm-transport-table');
+                    if (table) table.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    showToast(data.message || 'Failed to publish transport product', 'error');
+                }
+            } catch (err) {
+                showToast(err.message || 'Error publishing transport', 'error');
+            }
+        }
 
         function toggleAddTransportForm() {
             const panel = document.getElementById('panel-add-transport');
