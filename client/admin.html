@@ -57,94 +57,218 @@
             flex-direction: column;
         }
 
-        /* Top Header Navigation */
+        /* Top Header Navigation - Modern Clean White */
         .admin-header {
-            background: var(--navy);
-            color: var(--white);
-            height: 64px;
+            background: #ffffff;
+            color: var(--navy);
+            height: 68px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 2rem;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border-bottom: 1px solid var(--slate-200);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
         }
 
         .brand-wrap {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            text-decoration: none;
         }
 
         .brand-logo-img {
-            height: 38px;
+            height: 42px;
             width: auto;
-            border-radius: 6px;
+            object-fit: contain;
+            display: block;
         }
 
-        .portal-badge {
-            background: rgba(2, 132, 199, 0.25);
-            border: 1px solid #38bdf8;
-            color: #38bdf8;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.25rem 0.65rem;
-            border-radius: 9999px;
-        }
-
-        .header-actions {
+        /* Center Header Area (Clean and empty for future items) */
+        .admin-header-center {
+            flex: 1;
             display: flex;
             align-items: center;
-            gap: 1.25rem;
+            justify-content: center;
         }
 
-        .user-pill {
+        /* Right Profile Avatar & Dropdown */
+        .admin-header-profile-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .admin-profile-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.35rem 0.85rem 0.35rem 0.4rem;
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: 9999px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+
+        .admin-profile-trigger:hover {
+            border-color: var(--primary);
+            background: var(--slate-50);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .admin-avatar-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 0 1px var(--slate-200);
+        }
+
+        .admin-profile-meta {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .admin-user-name {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .admin-role-pill {
+            font-size: 0.675rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--primary-dark);
+            background: var(--primary-light);
+            padding: 0.15rem 0.45rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-top: 2px;
+            width: fit-content;
+        }
+
+        .role-admin { background: #fee2e2; color: #b91c1c; }
+        .role-uploader { background: #ede9fe; color: #6d28d9; }
+        .role-manager { background: #e0f2fe; color: #0369a1; }
+        .role-accountant { background: #d1fae5; color: #047857; }
+        .role-support { background: #fef3c7; color: #b45309; }
+
+        .admin-profile-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            width: 250px;
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: 14px;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+            padding: 0.75rem 0;
+            z-index: 10001;
+            animation: fadeInDrop 0.18s ease-out;
+        }
+
+        @keyframes fadeInDrop {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-user-header {
+            padding: 0.75rem 1.25rem 0.85rem;
+            border-bottom: 1px solid var(--slate-100);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .dropdown-avatar-large {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--slate-200);
+        }
+
+        .dropdown-user-info {
+            overflow: hidden;
+        }
+
+        .dropdown-user-name {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--navy);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-user-email {
+            font-size: 0.75rem;
+            color: var(--slate-500);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            margin-top: 1px;
+        }
+
+        .dropdown-item-link {
             display: flex;
             align-items: center;
             gap: 0.65rem;
-            background: rgba(255,255,255,0.08);
-            padding: 0.4rem 0.85rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-
-        .user-role-tag {
-            font-size: 0.725rem;
-            font-weight: 800;
-            padding: 0.2rem 0.6rem;
-            border-radius: 9999px;
-            text-transform: uppercase;
-        }
-
-        .role-admin { background: #ef4444; color: white; }
-        .role-uploader { background: #8b5cf6; color: white; }
-        .role-manager { background: #0284c7; color: white; }
-        .role-accountant { background: #10b981; color: white; }
-        .role-support { background: #f59e0b; color: white; }
-
-        .btn-header-logout {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #cbd5e1;
-            padding: 0.4rem 0.85rem;
-            border-radius: 8px;
+            padding: 0.65rem 1.25rem;
+            color: var(--slate-700);
             font-size: 0.85rem;
             font-weight: 600;
+            text-decoration: none;
+            transition: all 0.15s;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            transition: all 0.2s;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
         }
 
-        .btn-header-logout:hover {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: #ef4444;
-            color: #fca5a5;
+        .dropdown-item-link:hover {
+            background: var(--slate-50);
+            color: var(--primary);
+        }
+
+        .dropdown-item-link i {
+            font-size: 1.15rem;
+            color: var(--slate-500);
+        }
+
+        .dropdown-item-link:hover i {
+            color: var(--primary);
+        }
+
+        .dropdown-item-link.danger {
+            color: #ef4444;
+        }
+
+        .dropdown-item-link.danger i {
+            color: #ef4444;
+        }
+
+        .dropdown-item-link.danger:hover {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .dropdown-separator {
+            height: 1px;
+            background: var(--slate-100);
+            margin: 0.4rem 0;
         }
 
         /* Layout Container */
@@ -540,38 +664,60 @@
 </head>
 <body>
 
-    <!-- Top Admin Header -->
+    <!-- Top Admin Header (Modern Crisp White) -->
     <header class="admin-header">
-        <div class="brand-wrap">
-            <a href="index.html" style="display: flex; align-items: center; gap: 0.85rem; text-decoration: none; color: inherit;">
-                <img src="images/travelup_logo_official.png" alt="TravelUp Global" class="brand-logo-img">
-                <span class="portal-badge">Admin & Operations Portal</span>
-            </a>
-        </div>
+        <a href="index.html" class="brand-wrap" title="TravelUp Global">
+            <img src="images/travelup_logo_official.png" alt="TravelUp Global" class="brand-logo-img">
+        </a>
 
-        <div class="header-actions">
-            <a href="index.html" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
-                <i class="material-icons" style="font-size: 1rem;">home</i> Home
-            </a>
-            <a href="travel-planner.html" target="_blank" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
-                <i class="material-icons" style="font-size: 1rem;">directions_bus</i> Travel Planner
-            </a>
-            <a href="trip-planner.html" target="_blank" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
-                <i class="material-icons" style="font-size: 1rem;">luggage</i> Tour Planner
-            </a>
-            <a href="tour-packages.html" target="_blank" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
-                <i class="material-icons" style="font-size: 1rem;">card_travel</i> Packages
-            </a>
+        <!-- Center slot reserved blank for future data/features -->
+        <div class="admin-header-center" id="admin-header-center"></div>
 
-            <div class="user-pill" id="header-user-pill">
-                <i class="material-icons" style="font-size: 1.15rem; color: #94a3b8;">account_circle</i>
-                <span id="current-user-name" style="font-size: 0.85rem; font-weight: 700;">Tanvir Parvaj</span>
-                <span id="current-user-role-badge" class="user-role-tag role-admin">Super Admin</span>
+        <!-- Right Side: User Profile Avatar with Dropdown -->
+        <div class="admin-header-profile-wrap">
+            <div class="admin-profile-trigger" id="admin-profile-trigger" onclick="toggleAdminProfileMenu(event)">
+                <img id="admin-header-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Admin Profile" class="admin-avatar-img">
+                <div class="admin-profile-meta">
+                    <span id="current-user-name" class="admin-user-name">Tanvir Parvaj</span>
+                    <span id="current-user-role-badge" class="admin-role-pill">Super Admin</span>
+                </div>
+                <i class="material-icons" style="font-size: 18px; color: var(--slate-500);">expand_more</i>
             </div>
 
-            <button type="button" class="btn-header-logout" onclick="logoutAdmin()">
-                <i class="material-icons" style="font-size: 1rem;">logout</i> Logout
-            </button>
+            <!-- Profile Dropdown Menu -->
+            <div class="admin-profile-dropdown" id="admin-profile-dropdown" onclick="event.stopPropagation()">
+                <div class="dropdown-user-header">
+                    <img id="dropdown-avatar-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Profile" class="dropdown-avatar-large">
+                    <div class="dropdown-user-info">
+                        <div id="dropdown-user-name" class="dropdown-user-name">Tanvir Parvaj</div>
+                        <span id="dropdown-user-email" class="dropdown-user-email">admin@travelupglobal.com</span>
+                    </div>
+                </div>
+
+                <div style="padding: 0.35rem 0;">
+                    <a href="index.html" target="_blank" class="dropdown-item-link">
+                        <i class="material-icons">home</i>
+                        <span>View Main Website</span>
+                    </a>
+                    <a href="travel-planner.html" target="_blank" class="dropdown-item-link">
+                        <i class="material-icons">directions_bus</i>
+                        <span>Travel Planner</span>
+                    </a>
+                    <a href="trip-planner.html" target="_blank" class="dropdown-item-link">
+                        <i class="material-icons">luggage</i>
+                        <span>Tour Planner</span>
+                    </a>
+                    <a href="tour-packages.html" target="_blank" class="dropdown-item-link">
+                        <i class="material-icons">card_travel</i>
+                        <span>Packages</span>
+                    </a>
+                    <div class="dropdown-separator"></div>
+                    <button type="button" class="dropdown-item-link danger" onclick="logoutAdmin()">
+                        <i class="material-icons">logout</i>
+                        <span>Sign Out / Log Out</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -1272,18 +1418,47 @@
             window.location.href = 'logout.html?from=admin';
         }
 
+        function toggleAdminProfileMenu(e) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById('admin-profile-dropdown');
+            if (menu) {
+                menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+            }
+        }
+
+        document.addEventListener('click', () => {
+            const menu = document.getElementById('admin-profile-dropdown');
+            if (menu) menu.style.display = 'none';
+        });
+
         // Apply Strict RBAC UI Hiding and Navigation Configuration
         function applyUserPermissions() {
             if (!currentUser) return;
 
             const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
             
-            // 1. Update Header Badges
-            document.getElementById('current-user-name').textContent = currentUser.name;
-            document.getElementById('dash-greeting-name').textContent = currentUser.name.split(' ')[0];
+            // 1. Update Header Badges & Dynamic Avatar
+            const avatarUrl = currentUser.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80';
+            const headerAvatar = document.getElementById('admin-header-avatar');
+            if (headerAvatar) headerAvatar.src = avatarUrl;
+            const dropAvatar = document.getElementById('dropdown-avatar-img');
+            if (dropAvatar) dropAvatar.src = avatarUrl;
+
+            const nameEl = document.getElementById('current-user-name');
+            if (nameEl) nameEl.textContent = currentUser.name;
+            const dropName = document.getElementById('dropdown-user-name');
+            if (dropName) dropName.textContent = currentUser.name;
+            const dropEmail = document.getElementById('dropdown-user-email');
+            if (dropEmail) dropEmail.textContent = currentUser.email || '';
+
+            const dashGreeting = document.getElementById('dash-greeting-name');
+            if (dashGreeting) dashGreeting.textContent = currentUser.name.split(' ')[0];
+
             const badgeEl = document.getElementById('current-user-role-badge');
-            badgeEl.textContent = roleCfg.title;
-            badgeEl.className = `user-role-tag ${roleCfg.badgeClass}`;
+            if (badgeEl) {
+                badgeEl.textContent = roleCfg.title;
+                badgeEl.className = `admin-role-pill ${roleCfg.badgeClass}`;
+            }
 
             // 2. Hide or Show Sidebar items strictly according to allowedTabs
             document.querySelectorAll('.sidebar-item').forEach(item => {

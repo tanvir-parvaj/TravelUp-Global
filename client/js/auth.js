@@ -1,9 +1,11 @@
 /**
- * TravelUp Global - Authentication & State Manager
+ * TravelUp Global - Unified Authentication & Navigation State Manager
  */
 const Auth = {
     getUser() {
         try {
+            const adminUser = localStorage.getItem('travelup_admin_user');
+            if (adminUser) return JSON.parse(adminUser);
             const user = localStorage.getItem('travelup_user');
             return user ? JSON.parse(user) : null;
         } catch {
@@ -12,8 +14,18 @@ const Auth = {
     },
 
     setUser(user, token) {
-        if (user) localStorage.setItem('travelup_user', JSON.stringify(user));
-        if (token) localStorage.setItem('travelup_token', token);
+        if (user) {
+            localStorage.setItem('travelup_user', JSON.stringify(user));
+            if (['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(user.role)) {
+                localStorage.setItem('travelup_admin_user', JSON.stringify(user));
+            }
+        }
+        if (token) {
+            localStorage.setItem('travelup_token', token);
+            if (['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(user?.role)) {
+                localStorage.setItem('travelup_admin_token', token);
+            }
+        }
         this.updateNavUI();
     },
 
@@ -26,45 +38,215 @@ const Auth = {
     },
 
     isLoggedIn() {
-        return !!localStorage.getItem('travelup_token');
+        return !!(localStorage.getItem('travelup_token') || localStorage.getItem('travelup_admin_token'));
     },
 
     isAdmin() {
         const user = this.getUser();
-        return user && (user.role === 'admin' || user.role === 'superadmin' || user.role === 'staff');
+        return user && (user.role === 'admin' || user.role === 'superadmin');
+    },
+
+    isStaff() {
+        const user = this.getUser();
+        return user && ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(user.role);
+    },
+
+    toggleDropdown(e) {
+        if (e) e.stopPropagation();
+        const menu = document.getElementById('nav-user-dropdown-menu');
+        if (menu) {
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
     },
 
     updateNavUI() {
         const authContainer = document.getElementById('nav-auth-slot');
         if (!authContainer) return;
 
+        // Ensure dropdown CSS styles exist in document
+        if (!document.getElementById('travelup-nav-auth-styles')) {
+            const style = document.createElement('style');
+            style.id = 'travelup-nav-auth-styles';
+            style.textContent = `
+                .nav-login-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.4rem;
+                    padding: 0.45rem 1.15rem;
+                    border: 1px solid #0284c7;
+                    color: #0284c7;
+                    background: transparent;
+                    border-radius: 9999px;
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    text-decoration: none;
+                    transition: all 0.2s ease;
+                }
+                .nav-login-btn:hover {
+                    background: #f0f9ff;
+                    border-color: #0369a1;
+                    color: #0369a1;
+                }
+                .nav-profile-pill-wrap {
+                    position: relative;
+                }
+                .nav-profile-trigger {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0.3rem 0.75rem 0.3rem 0.35rem;
+                    border: 1px solid #e2e8f0;
+                    background: #ffffff;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    user-select: none;
+                    transition: all 0.2s;
+                }
+                .nav-profile-trigger:hover {
+                    border-color: #0284c7;
+                    background: #f8fafc;
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+                }
+                .nav-user-avatar {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    border: 1px solid #cbd5e1;
+                }
+                .nav-user-name {
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    color: #0f172a;
+                }
+                .nav-user-dropdown {
+                    display: none;
+                    position: absolute;
+                    top: calc(100% + 8px);
+                    right: 0;
+                    width: 230px;
+                    background: #ffffff;
+                    border: 1px solid #e2e8f0;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+                    padding: 0.6rem 0;
+                    z-index: 99999;
+                    animation: navDropFade 0.15s ease-out;
+                }
+                @keyframes navDropFade {
+                    from { opacity: 0; transform: translateY(-4px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .nav-dropdown-header {
+                    padding: 0.5rem 1rem 0.75rem;
+                    border-bottom: 1px solid #f1f5f9;
+                }
+                .nav-dropdown-title {
+                    font-size: 0.875rem;
+                    font-weight: 800;
+                    color: #0f172a;
+                }
+                .nav-dropdown-role {
+                    display: inline-block;
+                    font-size: 0.7rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    padding: 0.15rem 0.5rem;
+                    border-radius: 9999px;
+                    background: #e0f2fe;
+                    color: #0369a1;
+                    margin-top: 0.25rem;
+                }
+                .nav-dropdown-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.65rem;
+                    padding: 0.65rem 1rem;
+                    color: #334155;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: all 0.15s;
+                    border: none;
+                    background: transparent;
+                    width: 100%;
+                    text-align: left;
+                }
+                .nav-dropdown-item:hover {
+                    background: #f8fafc;
+                    color: #0284c7;
+                }
+                .nav-dropdown-item.danger:hover {
+                    background: #fee2e2;
+                    color: #dc2626;
+                }
+                .nav-dropdown-item i {
+                    font-size: 1.15rem;
+                    color: #64748b;
+                }
+                .nav-dropdown-item.danger i {
+                    color: #ef4444;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', () => {
+                const menu = document.getElementById('nav-user-dropdown-menu');
+                if (menu) menu.style.display = 'none';
+            });
+        }
+
         const user = this.getUser();
+
         if (user) {
-            const isStaff = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(user.role);
+            const avatarUrl = user.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80';
+            const isStaffUser = this.isStaff();
+            const roleTitle = (user.role || 'traveler').replace('_', ' ').toUpperCase();
+
             authContainer.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <span style="font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem;">
-                        <span style="display:inline-block; width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></span>
-                        ${user.name.split(' ')[0]}
-                    </span>
-                    ${isStaff ? `
-                        <a href="admin.html" class="btn-nav-outline" style="border-color: #0284c7; color: #0284c7; display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.85rem; border-radius: 9999px; text-decoration: none; font-weight: 700; font-size: 0.85rem;">
-                            <i class="material-icons" style="font-size: 16px;">admin_panel_settings</i>
-                            <span>Admin Portal</span>
+                <div class="nav-profile-pill-wrap">
+                    <div class="nav-profile-trigger" onclick="Auth.toggleDropdown(event)">
+                        <img src="${avatarUrl}" alt="${user.name}" class="nav-user-avatar">
+                        <span class="nav-user-name">${user.name.split(' ')[0]}</span>
+                        <i class="material-icons" style="font-size: 18px; color: #64748b;">expand_more</i>
+                    </div>
+
+                    <div class="nav-user-dropdown" id="nav-user-dropdown-menu" onclick="event.stopPropagation()">
+                        <div class="nav-dropdown-header">
+                            <div class="nav-dropdown-title">${user.name}</div>
+                            <span class="nav-dropdown-role">${roleTitle}</span>
+                        </div>
+                        ${isStaffUser ? `
+                            <a href="admin.html" class="nav-dropdown-item" style="color: #0284c7;">
+                                <i class="material-icons" style="color: #0284c7;">admin_panel_settings</i>
+                                <span>Operations Portal</span>
+                            </a>
+                        ` : ''}
+                        <a href="trip-planner.html" class="nav-dropdown-item">
+                            <i class="material-icons">luggage</i>
+                            <span>Tour Planner</span>
                         </a>
-                    ` : ''}
-                    <button onclick="Auth.logout()" class="btn-nav-outline" style="cursor: pointer; padding: 0.4rem 0.85rem; font-size: 0.85rem; border-radius: 9999px; font-weight: 700;">Logout</button>
+                        <a href="travel-planner.html" class="nav-dropdown-item">
+                            <i class="material-icons">directions_bus</i>
+                            <span>Travel Planner</span>
+                        </a>
+                        <div style="border-top: 1px solid #f1f5f9; margin: 0.35rem 0;"></div>
+                        <button type="button" class="nav-dropdown-item danger" onclick="Auth.logout()">
+                            <i class="material-icons">logout</i>
+                            <span>Log Out</span>
+                        </button>
+                    </div>
                 </div>
             `;
         } else {
+            // When logged out, show ONLY the clean profile/login icon button (NO Admin Portal button!)
             authContainer.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <a href="admin.html" class="btn-nav-outline" style="border-color: #0284c7; color: #0284c7; display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.85rem; border-radius: 9999px; text-decoration: none; font-weight: 700; font-size: 0.85rem;">
-                        <i class="material-icons" style="font-size: 16px;">admin_panel_settings</i>
-                        <span>Admin Portal</span>
-                    </a>
-                    <a href="login.html" class="btn-nav-outline" style="text-decoration: none; padding: 0.4rem 0.85rem; border-radius: 9999px; font-weight: 700; font-size: 0.85rem;">Log In</a>
-                </div>
+                <a href="login.html" class="nav-login-btn">
+                    <i class="material-icons" style="font-size: 18px;">account_circle</i>
+                    <span>Log In</span>
+                </a>
             `;
         }
     }

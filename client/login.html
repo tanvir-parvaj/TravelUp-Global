@@ -594,6 +594,47 @@
             color: var(--primary);
         }
 
+        /* Role Switcher Tabs for Sign In */
+        .signin-role-toggle-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            background: var(--slate-100);
+            padding: 4px;
+            border-radius: var(--radius-md);
+        }
+
+        .btn-role-tab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.55rem 0.65rem;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--slate-600);
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-role-tab:hover {
+            color: var(--navy-dark);
+        }
+
+        .btn-role-tab.active {
+            background: #ffffff;
+            color: var(--primary);
+            border-color: rgba(0, 150, 109, 0.2);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .btn-role-tab i {
+            font-size: 1.1rem;
+        }
+
         /* Responsive Breakpoints */
         @media (max-width: 1024px) {
             .auth-hero-side {
@@ -748,6 +789,27 @@
                 <div class="auth-alert-box" id="signin-alert"></div>
 
                 <form id="form-signin" onsubmit="handleSignInSubmit(event)">
+                    <!-- Role / Portal Selector for Sign In -->
+                    <div style="margin-bottom: 1.15rem;">
+                        <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.45rem;">
+                            Log In As / Account Role:
+                        </label>
+                        <div class="signin-role-toggle-group">
+                            <button type="button" class="btn-role-tab active" id="tab-role-customer" onclick="selectSignInRole('customer')">
+                                <i class="material-icons">travel_explore</i>
+                                <span>Traveler</span>
+                            </button>
+                            <button type="button" class="btn-role-tab" id="tab-role-staff" onclick="selectSignInRole('staff')">
+                                <i class="material-icons">admin_panel_settings</i>
+                                <span>Admin & Staff</span>
+                            </button>
+                        </div>
+                        <div id="signin-role-note" style="margin-top: 0.45rem; font-size: 0.775rem; color: var(--slate-600); background: #f8fafc; padding: 0.45rem 0.75rem; border-radius: 8px; border: 1px solid var(--slate-200); display: flex; align-items: center; gap: 0.45rem;">
+                            <i class="material-icons" style="font-size: 16px; color: var(--primary);" id="signin-role-icon">travel_explore</i>
+                            <span id="signin-role-desc">Logging in as <strong>Traveler / Customer</strong> — routes to your personal travel dashboard & trip planner.</span>
+                        </div>
+                    </div>
+
                     <!-- Email or Phone -->
                     <div class="input-group">
                         <div class="input-field-wrap">
@@ -883,6 +945,30 @@
                         </div>
                     </div>
 
+                    <!-- Account Role Selection (Explicit role specification as requested) -->
+                    <div class="input-group" style="margin-bottom: 1rem;">
+                        <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.45rem;">
+                            Account Role / Type <span style="color: #ef4444;">*</span>
+                        </label>
+                        <div class="input-field-wrap">
+                            <i class="material-icons input-icon-left" style="color: var(--primary);">badge</i>
+                            <select id="signup-role" class="auth-input" style="cursor: pointer; appearance: none; font-weight: 600; padding-left: 2.75rem;" onchange="handleRoleSelectionChange(this.value)">
+                                <option value="customer" selected>🌍 Traveler / Customer (ট্যুর ও ট্রাভেল প্ল্যানার)</option>
+                                <option value="uploader">📦 Product & Transport Uploader (যানবাহন ও তথ্য আপলোডার)</option>
+                                <option value="manager">📋 Operations Manager (ম্যানেজার ও অপারেশনস)</option>
+                                <option value="accountant">💳 Finance & Accounts Officer (পেমেন্ট ও হিসাবরক্ষক)</option>
+                                <option value="support">🎧 Customer Support & Helpdesk (কাস্টমার সেবা)</option>
+                                <option value="admin">👑 Agency Admin / Co-Admin (সুপার অ্যাডমিন এক্সেস)</option>
+                            </select>
+                            <span class="input-icon-right" style="pointer-events: none;">
+                                <i class="material-icons">expand_more</i>
+                            </span>
+                        </div>
+                        <div id="role-description-hint" class="input-hint-text" style="color: var(--primary); font-weight: 600; margin: 0.4rem 0 0.4rem 0.25rem;">
+                            ✓ Personal travel account: Search transit routes, customize itineraries & book tour packages.
+                        </div>
+                    </div>
+
                     <!-- Country Picker -->
                     <div class="input-group">
                         <div class="input-field-wrap">
@@ -1004,8 +1090,54 @@
             }
         }
 
+        // Role Selection Helper for Sign In Mode
+        let currentSignInRoleType = 'customer';
+        function selectSignInRole(type) {
+            currentSignInRoleType = type;
+            const tabCust = document.getElementById('tab-role-customer');
+            const tabStaff = document.getElementById('tab-role-staff');
+            const desc = document.getElementById('signin-role-desc');
+            const icon = document.getElementById('signin-role-icon');
+
+            if (type === 'staff') {
+                if (tabCust) tabCust.classList.remove('active');
+                if (tabStaff) tabStaff.classList.add('active');
+                if (desc) desc.innerHTML = 'Logging in as <strong>Operations / Admin Staff</strong> — directs you to the Operations Portal with role-based access.';
+                if (icon) {
+                    icon.textContent = 'admin_panel_settings';
+                    icon.style.color = '#0284c7';
+                }
+            } else {
+                if (tabStaff) tabStaff.classList.remove('active');
+                if (tabCust) tabCust.classList.add('active');
+                if (desc) desc.innerHTML = 'Logging in as <strong>Traveler / Customer</strong> — routes to your personal travel dashboard & trip planner.';
+                if (icon) {
+                    icon.textContent = 'travel_explore';
+                    icon.style.color = '#00966d';
+                }
+            }
+        }
+
+        // Live Role Description for Sign Up Mode
+        const ROLE_HINTS = {
+            customer: '✓ Personal travel account: Search transit routes, customize itineraries & book tour packages.',
+            uploader: '✓ Transport operations: Upload & maintain vehicles, transit schedules, routes and stop times.',
+            manager: '✓ Operations management: Oversee daily bookings, route dispatches, fleet and operations.',
+            accountant: '✓ Finance management: Audit payouts, payment transactions, revenues and fee structures.',
+            support: '✓ Customer support: Resolve traveler tickets, handle booking questions and live inquiries.',
+            admin: '✓ Super Admin: Full system privileges, manage staff accounts, roles and agency configuration.'
+        };
+
+        function handleRoleSelectionChange(role) {
+            const hintEl = document.getElementById('role-description-hint');
+            if (hintEl && ROLE_HINTS[role]) {
+                hintEl.textContent = ROLE_HINTS[role];
+            }
+        }
+
         // 1-Click Quick Fill & Login
         function quickFillAndLogin(identifier, pass) {
+            selectSignInRole('staff');
             document.getElementById('signin-identifier').value = identifier;
             document.getElementById('signin-password').value = pass;
             handleSignInSubmit();
@@ -1096,6 +1228,7 @@
             const password = document.getElementById('signup-password').value;
             const confirmPassword = document.getElementById('signup-confirm-password').value;
             const country = document.getElementById('signup-country').value;
+            const role = document.getElementById('signup-role') ? document.getElementById('signup-role').value : 'customer';
             const alertBox = document.getElementById('signup-alert');
             const submitBtn = document.getElementById('btn-signup-submit');
 
@@ -1122,7 +1255,7 @@
                 const res = await fetch(`${API_BASE}/api/auth/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, password, phone, country })
+                    body: JSON.stringify({ name, email, password, phone, country, role })
                 });
 
                 const data = await res.json();
@@ -1143,9 +1276,18 @@
                 localStorage.setItem('travelup_token', data.token);
                 localStorage.setItem('travelup_user', JSON.stringify(data.user));
 
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 700);
+                const isStaff = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(data.user.role);
+                if (isStaff) {
+                    localStorage.setItem('travelup_admin_token', data.token);
+                    localStorage.setItem('travelup_admin_user', JSON.stringify(data.user));
+                    setTimeout(() => {
+                        window.location.href = 'admin.html';
+                    }, 700);
+                } else {
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 700);
+                }
             } catch (err) {
                 alertBox.className = 'auth-alert-box error';
                 alertBox.textContent = 'Network or server error: ' + err.message;

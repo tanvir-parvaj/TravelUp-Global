@@ -5080,22 +5080,12 @@
                 <button type="button" class="btn-nav-search-icon" title="Search destinations & tours" onclick="document.getElementById('live-service-search')?.focus()">
                     <i class="material-icons" style="font-size: 20px;">search</i>
                 </button>
-                <a href="admin.html" style="text-decoration: none; padding: 0.4rem 0.85rem; border: 1px solid #0284c7; color: #0284c7; border-radius: 9999px; font-size: 0.825rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.35rem; margin-right: 0.25rem;">
-                    <i class="material-icons" style="font-size: 16px;">admin_panel_settings</i>
-                    <span>Admin Portal</span>
-                </a>
-                <div class="nav-profile-pill" title="User Profile">
-                    <div class="nav-avatar-circle">
-                        <i class="material-icons" style="font-size: 18px;">person</i>
-                    </div>
-                    <span class="nav-profile-name">Admin</span>
-                    <i class="material-icons nav-profile-chevron" style="font-size: 18px; color: #64748b;">expand_more</i>
+                <div class="nav-actions" id="nav-auth-slot">
+                    <a href="login.html" class="nav-login-btn" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.45rem 1.15rem; border: 1px solid #0284c7; color: #0284c7; border-radius: 9999px; font-size: 0.85rem; font-weight: 700; text-decoration: none;">
+                        <i class="material-icons" style="font-size: 18px;">account_circle</i>
+                        <span>Log In</span>
+                    </a>
                 </div>
-                <button type="button" class="btn-nav-hamburger" id="btn-mobile-nav" onclick="toggleMobileNav()" title="Toggle Navigation Menu">
-                    <i class="material-icons" style="font-size: 22px;">menu</i>
-                </button>
-            </div>
-        </div>
         <!-- Mobile Navigation Drawer (Dropdown on mobile) -->
         <div class="mobile-nav-drawer" id="mobile-nav-drawer">
             <ul class="mobile-nav-links">

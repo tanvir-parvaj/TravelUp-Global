@@ -19,22 +19,17 @@ exports.register = async (req, res) => {
             return res.status(409).json({ success: false, message: 'An account with this email already exists' });
         }
 
-        // Role verification (Admin/Staff requires valid security code)
-        let assignedRole = 'customer';
-        if (role === 'admin' || role === 'staff') {
-            const validCodes = ['ADMIN2026', 'ADMIN123', 'STAFF2026'];
-            if (!staff_code || !validCodes.includes(staff_code.trim())) {
-                return res.status(403).json({ success: false, message: 'Invalid Staff/Admin Registration Code' });
-            }
-            assignedRole = 'admin';
-        }
+        // Role assignment: accept selected role from signup or default to 'customer'
+        const allowedRoles = ['customer', 'admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
+        let assignedRole = (role && allowedRoles.includes(role)) ? role : 'customer';
 
         const hashedPassword = await bcrypt.hash(password, 10);
+        const defaultAvatar = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80';
 
         const [result] = await pool.query(
-            `INSERT INTO users (name, email, password, role, phone, preferred_lang) 
-             VALUES (?, ?, ?, ?, ?, ?)`,
-            [name, email, hashedPassword, assignedRole, phone || null, 'en']
+            `INSERT INTO users (name, email, password, role, phone, preferred_lang, avatar_url) 
+             VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [name, email, hashedPassword, assignedRole, phone || null, 'en', defaultAvatar]
         );
 
         const token = jwt.sign(
@@ -47,7 +42,7 @@ exports.register = async (req, res) => {
             success: true,
             message: 'User registered successfully',
             token,
-            user: { id: result.insertId, name, email, role: assignedRole, phone }
+            user: { id: result.insertId, name, email, role: assignedRole, phone, avatar_url: defaultAvatar }
         });
     } catch (error) {
         console.error('Registration Error:', error);
