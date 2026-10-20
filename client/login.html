@@ -321,6 +321,10 @@
     </main>
 
     <script>
+        // Dynamic API Base URL for seamless local, live server, and file:// execution
+        const API_BASE = (window.location.protocol === 'file:' || (window.location.port !== '5000' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')))
+            ? 'http://localhost:5000'
+            : '';
         let currentMode = 'staff';
 
         function switchLoginMode(mode) {
@@ -367,7 +371,7 @@
             submitBtn.innerHTML = `<i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i> Authenticating...`;
 
             try {
-                const res = await fetch('/api/auth/login', {
+                const res = await fetch(`${API_BASE}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -411,7 +415,11 @@
                 }
             } catch (err) {
                 alertBox.className = 'error';
-                alertBox.textContent = 'Network or server error: ' + err.message;
+                if (window.location.protocol === 'file:' || err.message.includes('fetch')) {
+                    alertBox.innerHTML = 'Cannot connect from file:// protocol. Please open via: <a href="http://localhost:5000/login.html" style="color:#b91c1c; font-weight:800; text-decoration:underline;">http://localhost:5000/login.html</a>';
+                } else {
+                    alertBox.textContent = 'Network or server error: ' + err.message;
+                }
                 alertBox.style.display = 'block';
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Sign In`;

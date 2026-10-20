@@ -1038,6 +1038,16 @@
                 <p>Sign in with your authorized staff credentials or Gmail</p>
             </div>
 
+                        <div id="file-protocol-warning" style="display: none; padding: 0.85rem 1rem; background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; border-radius: 8px; font-size: 0.825rem; font-weight: 600; margin-bottom: 1.25rem; line-height: 1.5;">
+                <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                    <i class="material-icons" style="font-size: 1.25rem; color: #0284c7;">info</i>
+                    <div>
+                        <strong>Notice:</strong> You opened this file directly from disk (<code>file://</code>).<br>
+                        For complete database connectivity, please open: <br>
+                        <a href="http://localhost:5000/admin.html" style="color: #0284c7; font-weight: 800; text-decoration: underline; font-size: 0.9rem;">http://localhost:5000/admin.html</a>
+                    </div>
+                </div>
+            </div>
             <div id="login-error-msg" style="display: none; padding: 0.75rem 1rem; background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;"></div>
 
             <form id="form-login" onsubmit="handleLoginSubmit(event)">
@@ -1073,6 +1083,10 @@
 
     <script>
         // App State
+        // Dynamic API Base URL for seamless local, live server, and file:// execution
+        const API_BASE = (window.location.protocol === 'file:' || (window.location.port !== '5000' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')))
+            ? 'http://localhost:5000'
+            : '';
         let currentUser = null;
         let authToken = localStorage.getItem('travelup_admin_token') || '';
         let cachedRoutes = [];
@@ -1177,7 +1191,7 @@
             }
 
             try {
-                const res = await fetch('/api/auth/login', {
+                const res = await fetch(`${API_BASE}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -1230,7 +1244,14 @@
                     submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Enter Portal`;
                 }
             } catch (err) {
-                const msg = 'Login request failed: ' + err.message;
+                let msg = 'Login request failed: ' + err.message;
+                if (window.location.protocol === 'file:' || err.message.includes('fetch')) {
+                    msg = 'Cannot connect from file:// protocol. Please open via local server: <a href="http://localhost:5000/admin.html" style="color: #b91c1c; font-weight: 800; text-decoration: underline;">http://localhost:5000/admin.html</a>';
+                    if (errBox) {
+                        errBox.innerHTML = msg;
+                        errBox.style.display = 'block';
+                    }
+                }
                 if (errBox) {
                     errBox.textContent = msg;
                     errBox.style.display = 'block';
@@ -1331,7 +1352,7 @@
 
         async function loadDashboardData() {
             try {
-                const res = await fetch('/api/admin/metrics', {
+                const res = await fetch(`${API_BASE}/api/admin/metrics`, {
                     headers: { 'Authorization': `Bearer ${authToken}` }
                 });
                 if (!res.ok) return;
@@ -1355,7 +1376,7 @@
 
         async function loadRecentRoutesForDashboard() {
             try {
-                const res = await fetch('/api/admin/transit/routes?limit=5', {
+                const res = await fetch(`${API_BASE}/api/admin/transit/routes?limit=5`, {
                     headers: { 'Authorization': `Bearer ${authToken}` }
                 });
                 if (!res.ok) return;
@@ -1384,7 +1405,7 @@
 
         async function loadTransitRoutes() {
             try {
-                const res = await fetch('/api/admin/transit/routes?limit=100', {
+                const res = await fetch(`${API_BASE}/api/admin/transit/routes?limit=100`, {
                     headers: { 'Authorization': `Bearer ${authToken}` }
                 });
                 if (!res.ok) {
@@ -1465,7 +1486,7 @@
             };
 
             try {
-                const res = await fetch('/api/admin/transit/routes', {
+                const res = await fetch(`${API_BASE}/api/admin/transit/routes`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1490,7 +1511,7 @@
         async function deleteRoute(id) {
             if (!confirm('Are you sure you want to delete this route from the network?')) return;
             try {
-                const res = await fetch(`/api/admin/transit/routes/${id}`, {
+                const res = await fetch(`${API_BASE}/api/admin/transit/routes/${id}`, {
                     method: 'DELETE',
                     headers: { 'Authorization': `Bearer ${authToken}` }
                 });
@@ -1531,7 +1552,7 @@
             formData.append('file', selectedExcelFile);
 
             try {
-                const res = await fetch('/api/admin/transit/import-excel', {
+                const res = await fetch(`${API_BASE}/api/admin/transit/import-excel`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${authToken}` },
                     body: formData
@@ -1560,7 +1581,7 @@
 
         async function loadBookings() {
             try {
-                const res = await fetch('/api/admin/bookings?limit=100', {
+                const res = await fetch(`${API_BASE}/api/admin/bookings?limit=100`, {
                     headers: { 'Authorization': `Bearer ${authToken}` }
                 });
                 if (!res.ok) return;
@@ -1606,7 +1627,7 @@
 
         async function updateBookingStatus(id, newStatus) {
             try {
-                const res = await fetch(`/api/admin/bookings/${id}/status`, {
+                const res = await fetch(`${API_BASE}/api/admin/bookings/${id}/status`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1639,7 +1660,7 @@
 
         async function loadFinance() {
             try {
-                const res = await fetch('/api/admin/finance/transactions', {
+                const res = await fetch(`${API_BASE}/api/admin/finance/transactions`, {
                     headers: { 'Authorization': `Bearer ${authToken}` }
                 });
                 if (!res.ok) return;
@@ -1676,7 +1697,7 @@
 
         async function loadStaff() {
             try {
-                const res = await fetch('/api/admin/staff', {
+                const res = await fetch(`${API_BASE}/api/admin/staff`, {
                     headers: { 'Authorization': `Bearer ${authToken}` }
                 });
                 if (!res.ok) return;
@@ -1730,7 +1751,7 @@
             const phone = document.getElementById('staff-phone').value.trim();
 
             try {
-                const res = await fetch('/api/admin/staff/invite', {
+                const res = await fetch(`${API_BASE}/api/admin/staff/invite`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1754,7 +1775,7 @@
 
         async function changeStaffRole(id, newRole) {
             try {
-                const res = await fetch(`/api/admin/staff/${id}/role`, {
+                const res = await fetch(`${API_BASE}/api/admin/staff/${id}/role`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
