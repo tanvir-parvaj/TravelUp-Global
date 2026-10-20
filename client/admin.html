@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelUp Global — Unified Admin & Operations Portal (RBAC)</title>
+    <title>TravelUp Global — Admin Operations Portal</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -18,9 +18,9 @@
 
     <style>
         :root {
-            --primary: #0284c7;
-            --primary-dark: #0369a1;
-            --primary-light: #e0f2fe;
+            --primary: #00a86b; /* Emerald green from design mockup */
+            --primary-hover: #00935d;
+            --primary-glow: rgba(0, 168, 107, 0.25);
             --accent: #10b981;
             --accent-light: #d1fae5;
             --danger: #ef4444;
@@ -30,138 +30,361 @@
             --slate-700: #334155;
             --slate-600: #475569;
             --slate-500: #64748b;
+            --slate-400: #94a3b8;
+            --slate-300: #cbd5e1;
             --slate-200: #e2e8f0;
             --slate-100: #f1f5f9;
             --slate-50: #f8fafc;
             --white: #ffffff;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --radius-md: 10px;
-            --radius-lg: 14px;
-            --radius-xl: 18px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            background-color: var(--slate-50);
+            background-color: #f3f6fb;
             color: var(--navy);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            transition: background-color 0.2s, color 0.2s;
         }
 
-        /* Top Header Navigation - Modern Clean White */
-        .admin-header {
-            background: #ffffff;
-            color: var(--navy);
-            height: 68px;
+        /* Full Height Application Layout */
+        .admin-app-layout {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* ================= SIDEBAR ================= */
+        .admin-sidebar {
+            width: 250px;
+            min-width: 250px;
+            background: var(--white);
+            border-right: 1px solid #edf2f7;
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem 0.85rem;
             position: sticky;
             top: 0;
+            height: 100vh;
+            box-sizing: border-box;
             z-index: 1000;
-            border-bottom: 1px solid var(--slate-200);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+            transition: background 0.2s, border-color 0.2s;
         }
 
-        .brand-wrap {
+        .sidebar-brand-box {
+            padding: 0.25rem 0.65rem 1.25rem;
+        }
+
+        .sidebar-brand-link {
             display: flex;
             align-items: center;
             text-decoration: none;
         }
 
-        .brand-logo-img {
-            height: 42px;
+        .sidebar-brand-logo {
+            height: 38px;
             width: auto;
             object-fit: contain;
             display: block;
         }
 
-        /* Center Header Area (Clean and empty for future items) */
-        .admin-header-center {
-            flex: 1;
+        .sidebar-menu {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            gap: 0.35rem;
         }
 
-        /* Right Profile Avatar & Dropdown */
-        .admin-header-profile-wrap {
-            position: relative;
+        .sidebar-item {
             display: flex;
             align-items: center;
-        }
-
-        .admin-profile-trigger {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2px;
-            background: #ffffff;
-            border: 2px solid var(--slate-200);
-            border-radius: 50%;
+            gap: 0.75rem;
+            padding: 0.72rem 1rem;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-radius: 12px;
             cursor: pointer;
+            transition: all 0.15s ease-in-out;
             user-select: none;
-            transition: all 0.2s ease;
-            outline: none;
         }
 
-        .admin-profile-trigger:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
-            transform: scale(1.04);
+        .sidebar-item:hover {
+            background: #f1f5f9;
+            color: #0f172a;
         }
 
-        .admin-avatar-img {
-            width: 42px;
-            height: 42px;
+        .sidebar-item.active {
+            background: var(--primary);
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .sidebar-item.active i {
+            color: #ffffff;
+        }
+
+        .sidebar-item i {
+            font-size: 1.25rem;
+            color: #64748b;
+            transition: color 0.15s;
+        }
+
+        .sidebar-bottom-wrap {
+            margin-top: auto;
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        /* Light / Dark Mode Toggle */
+        .theme-toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            padding: 0.35rem 0;
+            color: #94a3b8;
+        }
+
+        .theme-toggle-container i {
+            font-size: 1.15rem;
+        }
+
+        .theme-toggle-switch {
+            width: 38px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 9999px;
+            position: relative;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            padding: 0;
+        }
+
+        .theme-toggle-ball {
+            width: 14px;
+            height: 14px;
+            background: #ffffff;
             border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.2s ease;
+        }
+
+        body.dark-theme .theme-toggle-ball {
+            transform: translateX(18px);
+        }
+
+        /* Scenic Discovery Photo Card in Sidebar */
+        .sidebar-scenic-card {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            height: 145px;
+            background: #e2e8f0;
+            display: block;
+        }
+
+        .sidebar-scenic-img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        .admin-profile-meta {
+        /* ================= VIEWPORT & TOPBAR ================= */
+        .admin-viewport {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            text-align: left;
-            line-height: 1.2;
+            min-width: 0;
+            background: #f3f6fb;
+            transition: background 0.2s;
         }
 
-        .admin-user-name {
-            font-size: 0.875rem;
+        .admin-topbar {
+            background: #ffffff;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            border-bottom: 1px solid #edf2f7;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .topbar-search-wrap {
+            position: relative;
+            width: 380px;
+        }
+
+        .topbar-search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.15rem;
+            pointer-events: none;
+        }
+
+        .topbar-search-input {
+            width: 100%;
+            height: 40px;
+            padding: 0 1rem 0 2.6rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            font-size: 0.88rem;
+            color: var(--navy);
+            outline: none;
+            transition: all 0.15s ease;
+        }
+
+        .topbar-search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 168, 107, 0.12);
+        }
+
+        .topbar-actions-wrap {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .topbar-icon-btn {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            transition: background 0.15s;
+        }
+
+        .topbar-icon-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .topbar-notif-dot {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            width: 7px;
+            height: 7px;
+            background: #ef4444;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+        }
+
+        .topbar-profile-box {
+            position: relative;
+        }
+
+        .topbar-profile-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .topbar-avatar-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e2e8f0;
+            transition: all 0.15s;
+        }
+
+        .topbar-profile-btn:hover .topbar-avatar-img {
+            border-color: var(--primary);
+            transform: scale(1.04);
+        }
+
+        .topbar-chevron-icon {
+            font-size: 1.15rem;
+            color: #64748b;
+        }
+
+        /* Notifications Dropdown */
+        .notif-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            width: 280px;
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: 14px;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12);
+            padding: 0.85rem;
+            z-index: 10001;
+            animation: fadeInDrop 0.18s ease-out;
+        }
+
+        .notif-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--navy);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f1f5f9;
         }
 
-        .admin-role-pill {
-            font-size: 0.675rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--primary-dark);
-            background: var(--primary-light);
-            padding: 0.15rem 0.45rem;
-            border-radius: 9999px;
-            display: inline-block;
-            margin-top: 2px;
-            width: fit-content;
+        .notif-tag {
+            font-size: 0.7rem;
+            background: #d1fae5;
+            color: #047857;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-weight: 700;
         }
 
-        .role-admin { background: #fee2e2; color: #b91c1c; }
-        .role-uploader { background: #ede9fe; color: #6d28d9; }
-        .role-manager { background: #e0f2fe; color: #0369a1; }
-        .role-accountant { background: #d1fae5; color: #047857; }
-        .role-support { background: #fef3c7; color: #b45309; }
+        .notif-empty {
+            padding: 1.25rem 0.5rem 0.75rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.8rem;
+        }
 
+        .notif-empty i {
+            color: #10b981;
+            font-size: 1.75rem;
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+
+        /* Profile Dropdown Menu */
         .admin-profile-dropdown {
             display: none;
             position: absolute;
@@ -221,6 +444,26 @@
             margin-top: 1px;
         }
 
+        .admin-role-pill {
+            font-size: 0.675rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #0369a1;
+            background: #e0f2fe;
+            padding: 0.15rem 0.45rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-top: 2px;
+            width: fit-content;
+        }
+
+        .role-admin { background: #fee2e2; color: #b91c1c; }
+        .role-uploader { background: #ede9fe; color: #6d28d9; }
+        .role-manager { background: #e0f2fe; color: #0369a1; }
+        .role-accountant { background: #d1fae5; color: #047857; }
+        .role-support { background: #fef3c7; color: #b45309; }
+
         .dropdown-item-link {
             display: flex;
             align-items: center;
@@ -271,76 +514,11 @@
             margin: 0.4rem 0;
         }
 
-        /* Layout Container */
-        .admin-layout {
-            display: flex;
-            flex: 1;
-            min-height: calc(100vh - 64px);
-        }
-
-        /* Sidebar */
-        .admin-sidebar {
-            width: 260px;
-            background: var(--white);
-            border-right: 1px solid var(--slate-200);
-            display: flex;
-            flex-direction: column;
-            padding: 1.5rem 1rem;
-            gap: 0.5rem;
-            flex-shrink: 0;
-        }
-
-        .sidebar-section-title {
-            font-size: 0.725rem;
-            font-weight: 800;
-            color: var(--slate-500);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.75rem 0.75rem 0.25rem 0.75rem;
-        }
-
-        .sidebar-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            color: var(--slate-700);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all 0.15s ease-in-out;
-            user-select: none;
-        }
-
-        .sidebar-item:hover {
-            background: var(--slate-100);
-            color: var(--primary);
-        }
-
-        .sidebar-item.active {
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            font-weight: 700;
-        }
-
-        .sidebar-item.active i {
-            color: var(--primary);
-        }
-
-        .sidebar-item i {
-            font-size: 1.25rem;
-            color: var(--slate-500);
-            transition: color 0.15s;
-        }
-
-        /* Main Content Viewport */
+        /* ================= MAIN CONTENT VIEWPORT ================= */
         .admin-main {
             flex: 1;
             padding: 2rem;
             overflow-y: auto;
-            max-width: 1400px;
         }
 
         .view-section {
@@ -357,7 +535,376 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Metric Cards Grid */
+        /* ================= DASHBOARD BLANK SKELETON UI ================= */
+        .dash-skeleton-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .skeleton-pill {
+            background: #dce5ef;
+            border-radius: 9999px;
+            animation: pulseFaint 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .skeleton-pill.title-pill {
+            height: 22px;
+            width: 220px;
+        }
+
+        .skeleton-pill.action-pill {
+            height: 20px;
+            width: 90px;
+            background: #e2e8f0;
+        }
+
+        .skeleton-pill.mini {
+            height: 16px;
+            width: 60px;
+            background: #e2e8f0;
+        }
+
+        .skeleton-bar {
+            background: #e2e8f0;
+            border-radius: 9999px;
+            animation: pulseFaint 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .skeleton-bar.long { width: 100%; height: 10px; margin-bottom: 6px; }
+        .skeleton-bar.medium { width: 65%; height: 12px; margin-bottom: 6px; }
+        .skeleton-bar.short { width: 40%; height: 10px; margin-bottom: 6px; }
+        .skeleton-bar.tiny { width: 28px; height: 8px; margin: 0; }
+
+        @keyframes pulseFaint {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.65; }
+        }
+
+        /* 4 Stat Metric Cards Grid */
+        .dash-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dash-stat-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.25rem;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .dash-stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .dash-stat-icon.emerald { background: #d1fae5; color: #059669; }
+        .dash-stat-icon.blue { background: #dbeafe; color: #2563eb; }
+        .dash-stat-icon.amber { background: #fef3c7; color: #d97706; }
+        .dash-stat-icon.purple { background: #f3e8ff; color: #9333ea; }
+
+        .dash-stat-icon i {
+            font-size: 22px;
+        }
+
+        .dash-stat-content {
+            flex: 1;
+            padding-top: 2px;
+        }
+
+        /* Mid Row: SVG Line Chart & Donut Chart */
+        .dash-mid-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dash-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.25rem;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .dash-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .dash-chart-dots {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .legend-dot.green { background: #10b981; }
+        .legend-dot.blue { background: #3b82f6; }
+        .legend-dot.amber { background: #f59e0b; }
+        .legend-dot.purple { background: #8b5cf6; }
+        .legend-dot.red { background: #ef4444; }
+
+        .dash-chart-body {
+            width: 100%;
+            height: 160px;
+            position: relative;
+        }
+
+        .dash-chart-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .dash-donut-body {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 1.25rem;
+            padding: 0.5rem 0;
+        }
+
+        .donut-chart-wrap {
+            width: 110px;
+            height: 110px;
+            flex-shrink: 0;
+        }
+
+        .donut-svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .donut-legends {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            flex: 1;
+        }
+
+        .donut-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Bottom Row: Table & Right Activity Stack */
+        .dash-bottom-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dash-table-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .dash-table-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .dash-table-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f8fafc;
+        }
+
+        .skeleton-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            flex-shrink: 0;
+        }
+
+        .skeleton-badge {
+            width: 55px;
+            height: 16px;
+            border-radius: 999px;
+            flex-shrink: 0;
+        }
+
+        .skeleton-badge.green { background: #d1fae5; }
+        .skeleton-badge.amber { background: #fef3c7; }
+        .skeleton-badge.blue { background: #dbeafe; }
+        .skeleton-badge.red { background: #fee2e2; }
+
+        .dash-right-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .dash-activity-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .dash-activity-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .skeleton-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .skeleton-avatar.green { background: #d1fae5; color: #059669; }
+        .skeleton-avatar.blue { background: #dbeafe; color: #2563eb; }
+        .skeleton-avatar.purple { background: #f3e8ff; color: #9333ea; }
+        .skeleton-avatar.amber { background: #fef3c7; color: #d97706; }
+
+        .skeleton-avatar i { font-size: 16px; }
+
+        .dash-activity-text {
+            flex: 1;
+        }
+
+        .dash-mini-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .dash-mini-box {
+            padding: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .skeleton-avatar-mini {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #dbeafe;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .skeleton-avatar-mini i { font-size: 14px; }
+
+        .dash-banner-card {
+            background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 50%, #38bdf8 100%);
+            color: #ffffff;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dash-banner-content {
+            flex: 1;
+        }
+
+        .dash-banner-btn-pill {
+            width: 65px;
+            height: 18px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 999px;
+            margin-top: 8px;
+        }
+
+        .dash-banner-icon {
+            font-size: 2.25rem;
+            color: rgba(255,255,255,0.85);
+            margin-left: 0.5rem;
+        }
+
+        .dash-blank-note {
+            text-align: center;
+            padding: 1.5rem 0 0.5rem;
+            color: #94a3b8;
+            font-size: 0.825rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .dash-blank-note i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        /* ================= CARDS & PANELS ================= */
+        .panel {
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--slate-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+        }
+
+        .panel-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .panel-body {
+            padding: 1.5rem;
+        }
+
+        /* Metric Cards for Finance / Old Views */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -370,7 +917,7 @@
             border: 1px solid var(--slate-200);
             border-radius: var(--radius-lg);
             padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -398,45 +945,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--primary-light);
-            color: var(--primary);
+            background: #e0f2fe;
+            color: #0284c7;
         }
 
         .metric-icon-box.green { background: var(--accent-light); color: var(--accent); }
-        .metric-icon-box.purple { background: #ede9fe; color: #8b5cf6; }
         .metric-icon-box.amber { background: #fef3c7; color: #f59e0b; }
-
-        /* Card Panels */
-        .panel {
-            background: var(--white);
-            border: 1px solid var(--slate-200);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-
-        .panel-header {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--slate-200);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--white);
-        }
-
-        .panel-title {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--navy);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .panel-body {
-            padding: 1.5rem;
-        }
 
         /* Data Tables */
         .data-table-wrap {
@@ -488,7 +1002,7 @@
         }
 
         .btn-primary { background: var(--primary); color: var(--white); }
-        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-primary:hover { background: var(--primary-hover); }
 
         .btn-accent { background: var(--accent); color: var(--white); }
         .btn-accent:hover { background: #059669; }
@@ -530,13 +1044,21 @@
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+            box-shadow: 0 0 0 3px rgba(0, 168, 107, 0.15);
         }
 
-        /* Excel Upload Box */
+        .user-role-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            display: inline-block;
+        }
+
+        /* Excel Upload Dropzone */
         .upload-dropzone {
-            border: 2px dashed #93c5fd;
-            background: #eff6ff;
+            border: 2px dashed #a7f3d0;
+            background: #ecfdf5;
             border-radius: var(--radius-xl);
             padding: 3rem 2rem;
             text-align: center;
@@ -545,7 +1067,7 @@
         }
 
         .upload-dropzone:hover {
-            background: #dbeafe;
+            background: #d1fae5;
             border-color: var(--primary);
         }
 
@@ -554,8 +1076,6 @@
             color: var(--primary);
             margin-bottom: 0.5rem;
         }
-
-
 
         /* Toast Notifications */
         #toast-container {
@@ -575,7 +1095,7 @@
             color: var(--white);
             font-size: 0.9rem;
             font-weight: 600;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -590,556 +1110,865 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        /* ================= DARK THEME STYLES ================= */
+        body.dark-theme {
+            background-color: #0b1120;
+            color: #f8fafc;
+        }
+
+        body.dark-theme .admin-sidebar,
+        body.dark-theme .admin-topbar,
+        body.dark-theme .dash-card,
+        body.dark-theme .dash-stat-card,
+        body.dark-theme .panel,
+        body.dark-theme .admin-profile-dropdown,
+        body.dark-theme .notif-dropdown {
+            background: #111827;
+            border-color: #1f2937;
+            color: #f8fafc;
+        }
+
+        body.dark-theme .topbar-search-input {
+            background: #1f2937;
+            border-color: #374151;
+            color: #f8fafc;
+        }
+
+        body.dark-theme .sidebar-item {
+            color: #94a3b8;
+        }
+
+        body.dark-theme .sidebar-item:hover {
+            background: #1f2937;
+            color: #f8fafc;
+        }
+
+        body.dark-theme .sidebar-item.active {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        body.dark-theme .skeleton-bar,
+        body.dark-theme .skeleton-pill,
+        body.dark-theme .skeleton-circle {
+            background: #1f2937 !important;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .dash-stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dash-mid-grid,
+            .dash-bottom-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                display: none;
+            }
+            .dash-stat-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Admin Header (Modern Crisp White) -->
-    <header class="admin-header">
-        <a href="index.html" class="brand-wrap" title="TravelUp Global">
-            <img src="images/travelup_logo_official.png" alt="TravelUp Global" class="brand-logo-img">
-        </a>
-
-        <!-- Center slot reserved blank for future data/features -->
-        <div class="admin-header-center" id="admin-header-center"></div>
-
-        <!-- Right Side: User Profile Avatar with Dropdown (Only Avatar Circle in Topbar) -->
-        <div class="admin-header-profile-wrap">
-            <div class="admin-profile-trigger" id="admin-profile-trigger" onclick="toggleAdminProfileMenu(event)" title="Admin Profile">
-                <img id="admin-header-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Admin Profile" class="admin-avatar-img" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80'">
-            </div>
-
-            <!-- Profile Dropdown Menu -->
-            <div class="admin-profile-dropdown" id="admin-profile-dropdown" onclick="event.stopPropagation()">
-                <div class="dropdown-user-header">
-                    <img id="dropdown-avatar-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Profile" class="dropdown-avatar-large">
-                    <div class="dropdown-user-info">
-                        <div id="dropdown-user-name" class="dropdown-user-name">Tanvir Parvaj</div>
-                        <span id="dropdown-user-email" class="dropdown-user-email">admin@travelupglobal.com</span>
-                        <span id="current-user-role-badge" class="admin-role-pill" style="margin-top: 4px;">Super Admin</span>
-                    </div>
-                </div>
-
-                <div style="padding: 0.35rem 0;">
-                    <a href="profile.html" class="dropdown-item-link">
-                        <i class="material-icons">person</i>
-                        <span>My Profile</span>
-                    </a>
-                    <div class="dropdown-separator"></div>
-                    <button type="button" class="dropdown-item-link danger" onclick="logoutAdmin()">
-                        <i class="material-icons">logout</i>
-                        <span>Log Out</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Admin Layout Container -->
-    <div class="admin-layout">
-        <!-- Sidebar Navigation -->
+    <div class="admin-app-layout">
+        
+        <!-- 1. LEFT SIDEBAR (Matching mockup design) -->
         <aside class="admin-sidebar" id="admin-sidebar">
-            <div class="sidebar-section-title">Operations Menu</div>
-            
-            <div class="sidebar-item active" data-tab="dashboard" onclick="switchTab('dashboard')">
-                <i class="material-icons">dashboard</i>
-                <span>Dashboard Overview</span>
+            <!-- Brand Logo at Top -->
+            <div class="sidebar-brand-box">
+                <a href="index.html" class="sidebar-brand-link" title="TravelUp Global">
+                    <img src="images/travelup_logo_official.png" alt="TravelUp Global" class="sidebar-brand-logo">
+                </a>
             </div>
 
-            <div class="sidebar-item" data-tab="vehicles" onclick="switchTab('vehicles')">
-                <i class="material-icons">directions_bus</i>
-                <span>Vehicle & Routes (Catalog)</span>
-            </div>
+            <!-- Navigation Links (Only existing created pages/sections) -->
+            <nav class="sidebar-menu">
+                <!-- 1. Dashboard -->
+                <div class="sidebar-item active" data-tab="dashboard" onclick="switchTab('dashboard')" id="nav-item-dashboard">
+                    <i class="material-icons">dashboard</i>
+                    <span>Dashboard</span>
+                </div>
 
-            <div class="sidebar-item" data-tab="excel" onclick="switchTab('excel')">
-                <i class="material-icons">upload_file</i>
-                <span>Excel Bulk Importer</span>
-            </div>
+                <!-- 2. Travel Planner -->
+                <a href="travel-planner.html" class="sidebar-item" id="nav-item-travel-planner">
+                    <i class="material-icons">explore</i>
+                    <span>Travel Planner</span>
+                </a>
 
-            <div class="sidebar-item" data-tab="bookings" onclick="switchTab('bookings')">
-                <i class="material-icons">confirmation_number</i>
-                <span>Bookings & Manifest</span>
-            </div>
+                <!-- 3. Tour Planner -->
+                <a href="trip-planner.html" class="sidebar-item" id="nav-item-tour-planner">
+                    <i class="material-icons">event</i>
+                    <span>Tour Planner</span>
+                </a>
 
-            <div class="sidebar-item" data-tab="finance" onclick="switchTab('finance')">
-                <i class="material-icons">payments</i>
-                <span>Payments & Finance</span>
-            </div>
+                <!-- 4. Create Package -->
+                <a href="tour-packages.html" class="sidebar-item" id="nav-item-packages">
+                    <i class="material-icons">card_travel</i>
+                    <span>Create Package</span>
+                </a>
 
-            <div class="sidebar-section-title" id="section-title-admin-only">Access Control</div>
+                <!-- 5. Bookings -->
+                <div class="sidebar-item" data-tab="bookings" onclick="switchTab('bookings')" id="nav-item-bookings">
+                    <i class="material-icons">confirmation_number</i>
+                    <span>Bookings</span>
+                </div>
 
-            <div class="sidebar-item" data-tab="staff" onclick="switchTab('staff')" id="sidebar-staff-item">
-                <i class="material-icons">manage_accounts</i>
-                <span>Team & Roles (RBAC)</span>
+                <!-- 6. Payments & Finance -->
+                <div class="sidebar-item" data-tab="finance" onclick="switchTab('finance')" id="nav-item-finance">
+                    <i class="material-icons">account_balance_wallet</i>
+                    <span>Payments & Finance</span>
+                </div>
+
+                <!-- 7. Members -->
+                <div class="sidebar-item" data-tab="staff" onclick="switchTab('staff')" id="nav-item-staff">
+                    <i class="material-icons">people_outline</i>
+                    <span>Members</span>
+                </div>
+            </nav>
+
+            <!-- Bottom Controls & Scenic Banner -->
+            <div class="sidebar-bottom-wrap">
+                <!-- Theme Switcher: Sun, Pill, Moon -->
+                <div class="theme-toggle-container">
+                    <i class="material-icons">wb_sunny</i>
+                    <button type="button" class="theme-toggle-switch" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <span class="theme-toggle-ball"></span>
+                    </button>
+                    <i class="material-icons">dark_mode</i>
+                </div>
+
+                <!-- Scenic Travel Photo Card -->
+                <div class="sidebar-scenic-card">
+                    <img src="images/sidebar-scenic.jpg" alt="TravelUp Discovery" class="sidebar-scenic-img" onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80'">
+                </div>
             </div>
         </aside>
 
-        <!-- Main Viewport Area -->
-        <main class="admin-main">
-            
-            <!-- 1. DASHBOARD OVERVIEW -->
-            <section id="view-dashboard" class="view-section active">
-                <div style="margin-bottom: 1.5rem;">
-                    <h2 style="font-size: 1.5rem; font-weight: 800;">Welcome back, <span id="dash-greeting-name">Tanvir</span>! 👋</h2>
-                    <p style="color: var(--slate-500); font-size: 0.9rem; margin-top: 0.25rem;">Live system overview and key performance metrics across Bangladesh operations.</p>
+        <!-- 2. RIGHT MAIN VIEWPORT -->
+        <div class="admin-viewport">
+            <!-- Topbar (Pill Search + Notifications + Profile Avatar with chevron) -->
+            <header class="admin-topbar">
+                <!-- Left: Pill Search Bar -->
+                <div class="topbar-search-wrap">
+                    <i class="material-icons topbar-search-icon">search</i>
+                    <input type="text" id="topbar-search-input" class="topbar-search-input" placeholder="Search anything..." autocomplete="off">
                 </div>
 
-                <div class="metrics-grid">
-                    <div class="metric-card" id="metric-card-revenue">
-                        <div class="metric-info">
-                            <h4>Total Revenue</h4>
-                            <p id="stat-revenue">BDT 0</p>
-                        </div>
-                        <div class="metric-icon-box green">
-                            <i class="material-icons">attach_money</i>
-                        </div>
-                    </div>
-
-                    <div class="metric-card">
-                        <div class="metric-info">
-                            <h4>Total Bookings</h4>
-                            <p id="stat-bookings">0</p>
-                        </div>
-                        <div class="metric-icon-box">
-                            <i class="material-icons">airplane_ticket</i>
-                        </div>
-                    </div>
-
-                    <div class="metric-card">
-                        <div class="metric-info">
-                            <h4>Active Routes</h4>
-                            <p id="stat-routes">0</p>
-                        </div>
-                        <div class="metric-icon-box purple">
-                            <i class="material-icons">alt_route</i>
-                        </div>
-                    </div>
-
-                    <div class="metric-card" id="metric-card-staff">
-                        <div class="metric-info">
-                            <h4>Staff Members</h4>
-                            <p id="stat-staff">0</p>
-                        </div>
-                        <div class="metric-icon-box amber">
-                            <i class="material-icons">groups</i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Live Quick Route View -->
-                <div class="panel">
-                    <div class="panel-header">
-                        <div class="panel-title">
-                            <i class="material-icons" style="color: var(--primary);">directions_bus</i>
-                            <span>Recent Transit Routes in Network</span>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="switchTab('vehicles')">
-                            <i class="material-icons">add</i> Add New Vehicle
+                <!-- Right: Notification Bell & Profile Avatar -->
+                <div class="topbar-actions-wrap">
+                    <!-- Notification Bell -->
+                    <div style="position: relative;">
+                        <button type="button" class="topbar-icon-btn" id="notif-btn" onclick="toggleNotifications(event)" title="Notifications">
+                            <i class="material-icons">notifications_none</i>
+                            <span class="topbar-notif-dot"></span>
                         </button>
-                    </div>
-                    <div class="panel-body">
-                        <div class="data-table-wrap">
-                            <table class="data-table" id="dashboard-recent-routes-table">
-                                <thead>
-                                    <tr>
-                                        <th>Operator & Bus</th>
-                                        <th>Origin ➔ Destination</th>
-                                        <th>Departure</th>
-                                        <th>Fare</th>
-                                        <th>Seats</th>
-                                        <th>Tier</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading routes...</td></tr>
-                                </tbody>
-                            </table>
+                        
+                        <!-- Notification Dropdown -->
+                        <div class="notif-dropdown" id="notif-dropdown" onclick="event.stopPropagation()">
+                            <div class="notif-header">
+                                <span>Notifications</span>
+                                <span class="notif-tag">All Clear</span>
+                            </div>
+                            <div class="notif-empty">
+                                <i class="material-icons">check_circle</i>
+                                <p>All operations running normally. No unresolved issues.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <!-- 2. VEHICLE & ROUTE MANAGER (PRODUCT CATALOG) -->
-            <section id="view-vehicles" class="view-section">
-                <div class="panel">
-                    <div class="panel-header">
-                        <div class="panel-title">
-                            <i class="material-icons" style="color: var(--primary);">add_circle</i>
-                            <span>Add New Vehicle / Transport Route Product</span>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <form id="form-add-vehicle" onsubmit="handleCreateVehicle(event)">
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label>Operator Name *</label>
-                                    <input type="text" id="route-operator" required placeholder="e.g. Ena Transport, Shohagh, Shyamoli">
-                                </div>
+                    <!-- Profile Trigger with Chevron & Clean Dropdown -->
+                    <div class="topbar-profile-box">
+                        <button type="button" class="topbar-profile-btn" id="admin-profile-trigger" onclick="toggleAdminProfileMenu(event)" title="User Profile">
+                            <img id="admin-header-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Avatar" class="topbar-avatar-img">
+                            <i class="material-icons topbar-chevron-icon">expand_more</i>
+                        </button>
 
-                                <div class="form-group">
-                                    <label>Vehicle Type / Class *</label>
-                                    <select id="route-vtype" required>
-                                        <option value="AC Sleeper Coach">AC Sleeper Coach (Luxury Sleeper)</option>
-                                        <option value="AC Business Class">AC Business Class (Hino 1J / Hyundai)</option>
-                                        <option value="Economy Non-AC Coach">Economy Non-AC Coach (Standard Chair Coach)</option>
-                                        <option value="Local Feeder Shuttle">Local Feeder Shuttle (Regional Shuttle)</option>
-                                        <option value="HiAce Microbus">HiAce Microbus (Private / Shared Microbus)</option>
-                                        <option value="Intercity Express Train">Intercity Express Train (Railway)</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Origin District *</label>
-                                    <input type="text" id="route-orig-dist" required placeholder="e.g. Rangpur, Dhaka, Dinajpur">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Origin Stoppage / Stand</label>
-                                    <input type="text" id="route-orig-point" placeholder="e.g. Pirganj Stand, Kamlapur, Mirpur 10">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Destination District *</label>
-                                    <input type="text" id="route-dest-dist" required placeholder="e.g. Cox's Bazar, Chattogram, Sylhet">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Destination Stoppage / Spot</label>
-                                    <input type="text" id="route-dest-point" placeholder="e.g. Kolatoli Beach, GEC Circle">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Departure Time *</label>
-                                    <input type="text" id="route-dep-time" required placeholder="e.g. 07:30 PM">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Arrival Time</label>
-                                    <input type="text" id="route-arr-time" placeholder="e.g. 05:15 AM">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Ticket Fare BDT *</label>
-                                    <input type="number" id="route-fare" required min="50" step="10" placeholder="e.g. 1650">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Total Seat Capacity</label>
-                                    <input type="number" id="route-seats" value="36" min="4" max="60">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Curated Smart Tier</label>
-                                    <select id="route-tier">
-                                        <option value="recommended">Best Value / Recommended</option>
-                                        <option value="budget">Lowest Price / Budget</option>
-                                        <option value="luxury">Fastest / Luxury</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Vehicle Photo URL</label>
-                                    <input type="url" id="route-img" value="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80">
+                        <!-- Clean Dropdown Menu -->
+                        <div class="admin-profile-dropdown" id="admin-profile-dropdown" onclick="event.stopPropagation()">
+                            <div class="dropdown-user-header">
+                                <img id="dropdown-avatar-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Profile" class="dropdown-avatar-large">
+                                <div class="dropdown-user-info">
+                                    <div id="dropdown-user-name" class="dropdown-user-name">Tanvir Parvaj</div>
+                                    <span id="dropdown-user-email" class="dropdown-user-email">admin@travelupglobal.com</span>
+                                    <span id="current-user-role-badge" class="admin-role-pill" style="margin-top: 4px;">Super Admin</span>
                                 </div>
                             </div>
 
-                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
-                                <button type="reset" class="btn btn-secondary">Clear Form</button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="material-icons">cloud_upload</i> Publish Vehicle to Live System
+                            <div style="padding: 0.35rem 0;">
+                                <a href="profile.html" class="dropdown-item-link">
+                                    <i class="material-icons">person</i>
+                                    <span>My Profile</span>
+                                </a>
+                                <div class="dropdown-separator"></div>
+                                <button type="button" class="dropdown-item-link danger" onclick="logoutAdmin()">
+                                    <i class="material-icons">logout</i>
+                                    <span>Log Out</span>
                                 </button>
                             </div>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Existing Route List -->
-                <div class="panel">
-                    <div class="panel-header">
-                        <div class="panel-title">
-                            <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
-                            <span>All Registered Vehicles & Routes</span>
-                        </div>
-                        <input type="text" id="search-route-input" placeholder="Search operator, district..." onkeyup="filterRoutesTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 240px;">
-                    </div>
-                    <div class="panel-body">
-                        <div class="data-table-wrap">
-                            <table class="data-table" id="all-routes-table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Operator & Vehicle</th>
-                                        <th>Route Corridor</th>
-                                        <th>Schedule</th>
-                                        <th>Fare</th>
-                                        <th>Seats</th>
-                                        <th>Tier</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading...</td></tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
-            </section>
+            </header>
 
-            <!-- 3. EXCEL BULK IMPORTER -->
-            <section id="view-excel" class="view-section">
-                <div class="panel">
-                    <div class="panel-header">
-                        <div class="panel-title">
-                            <i class="material-icons" style="color: var(--accent);">table_view</i>
-                            <span>One-Click Excel Bulk Route & Timetable Importer</span>
-                        </div>
-                        <a href="data/TravelUp_Transit_Data_Entry_Template.xlsx" download class="btn btn-secondary">
-                            <i class="material-icons">download</i> Download Official Excel Template
-                        </a>
+            <!-- Main Scrollable Content Viewport -->
+            <main class="admin-main">
+                
+                <!-- 1. DASHBOARD VIEW (Blank / Minimal Placeholder Canvas matching user mockup) -->
+                <section id="view-dashboard" class="view-section active">
+                    <!-- Top Skeleton Header Strip -->
+                    <div class="dash-skeleton-topbar">
+                        <div class="skeleton-pill title-pill"></div>
+                        <div class="skeleton-pill action-pill"></div>
                     </div>
-                    <div class="panel-body">
-                        <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6;">
-                            Upload your completed <strong>TravelUp_Transit_Data_Entry_Template.xlsx</strong> spreadsheet. The engine will automatically parse sheets <code>01_Intercity_Routes</code> and <code>03_Upazila_Feeders</code> and insert/update all routes, intermediate stops, and pricing into the live MySQL database.
-                        </p>
 
-                        <div class="upload-dropzone" onclick="document.getElementById('excel-file-input').click()">
-                            <i class="material-icons">cloud_upload</i>
-                            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: 0.35rem;">Click to Select or Drop Excel (.xlsx) File</h3>
-                            <p style="color: var(--slate-500); font-size: 0.85rem;">Supports .xlsx and .xls (Max: 10MB)</p>
-                            <input type="file" id="excel-file-input" accept=".xlsx, .xls" style="display: none;" onchange="handleExcelFileSelected(event)">
+                    <!-- 4 Stat Metric Cards -->
+                    <div class="dash-stat-grid">
+                        <!-- Card 1: Emerald Work/Folder -->
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon emerald">
+                                <i class="material-icons">work_outline</i>
+                            </div>
+                            <div class="dash-stat-content">
+                                <div class="skeleton-bar medium"></div>
+                                <div class="skeleton-bar short"></div>
+                                <div class="skeleton-bar long"></div>
+                            </div>
                         </div>
 
-                        <div id="excel-selected-banner" style="display: none; margin-top: 1.5rem; padding: 1rem 1.25rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; align-items: center; justify-content: space-between;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                <i class="material-icons" style="color: #059669;">check_circle</i>
+                        <!-- Card 2: Sky Blue Users -->
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon blue">
+                                <i class="material-icons">people_outline</i>
+                            </div>
+                            <div class="dash-stat-content">
+                                <div class="skeleton-bar medium"></div>
+                                <div class="skeleton-bar short"></div>
+                                <div class="skeleton-bar long"></div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Amber Coins -->
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon amber">
+                                <i class="material-icons">monetization_on</i>
+                            </div>
+                            <div class="dash-stat-content">
+                                <div class="skeleton-bar medium"></div>
+                                <div class="skeleton-bar short"></div>
+                                <div class="skeleton-bar long"></div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Purple Package -->
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon purple">
+                                <i class="material-icons">inventory_2</i>
+                            </div>
+                            <div class="dash-stat-content">
+                                <div class="skeleton-bar medium"></div>
+                                <div class="skeleton-bar short"></div>
+                                <div class="skeleton-bar long"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mid Row: Smooth Wave Chart + Donut Analytics -->
+                    <div class="dash-mid-grid">
+                        <!-- Chart Card -->
+                        <div class="dash-card dash-chart-card">
+                            <div class="dash-card-header">
+                                <div class="skeleton-bar medium" style="margin: 0;"></div>
+                                <div class="dash-chart-dots">
+                                    <span class="legend-dot green"></span>
+                                    <div class="skeleton-bar tiny"></div>
+                                    <span class="legend-dot blue"></span>
+                                    <div class="skeleton-bar tiny"></div>
+                                </div>
+                            </div>
+                            <div class="dash-chart-body">
+                                <svg class="dash-chart-svg" viewBox="0 0 500 160" preserveAspectRatio="none">
+                                    <defs>
+                                        <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25" />
+                                            <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.0" />
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- Horizontal Gridlines -->
+                                    <line x1="0" y1="40" x2="500" y2="40" stroke="#f1f5f9" stroke-width="1" />
+                                    <line x1="0" y1="80" x2="500" y2="80" stroke="#f1f5f9" stroke-width="1" />
+                                    <line x1="0" y1="120" x2="500" y2="120" stroke="#f1f5f9" stroke-width="1" />
+                                    <!-- Filled wave area -->
+                                    <path d="M 0,110 C 60,110 100,90 150,75 C 200,60 250,95 300,50 C 350,15 420,40 500,20 L 500,160 L 0,160 Z" fill="url(#chartGrad)" />
+                                    <!-- Wave Line -->
+                                    <path d="M 0,110 C 60,110 100,90 150,75 C 200,60 250,95 300,50 C 350,15 420,40 500,20" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Donut Card -->
+                        <div class="dash-card dash-donut-card">
+                            <div class="dash-card-header">
                                 <div>
-                                    <strong id="excel-selected-filename" style="color: #065f46;">filename.xlsx</strong>
-                                    <div id="excel-selected-filesize" style="font-size: 0.8rem; color: #047857;">Ready to import</div>
+                                    <div class="skeleton-bar medium" style="margin: 0 0 6px 0;"></div>
+                                    <div class="skeleton-bar short" style="margin: 0;"></div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-accent" id="btn-start-import" onclick="executeExcelUpload()">
-                                <i class="material-icons">play_arrow</i> Start Sync to Live Database
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 4. BOOKINGS & OPERATIONS -->
-            <section id="view-bookings" class="view-section">
-                <div class="panel">
-                    <div class="panel-header">
-                        <div class="panel-title">
-                            <i class="material-icons" style="color: var(--primary);">confirmation_number</i>
-                            <span>Passenger Manifest & Booking Ledger</span>
-                        </div>
-                        <input type="text" id="search-bookings-input" placeholder="Search customer, booking ref..." onkeyup="filterBookingsTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 260px;">
-                    </div>
-                    <div class="panel-body">
-                        <div class="data-table-wrap">
-                            <table class="data-table" id="all-bookings-table">
-                                <thead>
-                                    <tr>
-                                        <th>Ref Code</th>
-                                        <th>Customer</th>
-                                        <th>Contact</th>
-                                        <th>Date</th>
-                                        <th>Travelers</th>
-                                        <th>Total Fare</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading bookings...</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 5. PAYMENTS & FINANCE (Super Admin & Accountant) -->
-            <section id="view-finance" class="view-section">
-                <div class="panel">
-                    <div class="panel-header">
-                        <div class="panel-title">
-                            <i class="material-icons" style="color: var(--accent);">account_balance_wallet</i>
-                            <span>Financial Reconciliation & Transaction Ledger</span>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="metrics-grid" style="margin-bottom: 1.5rem;">
-                            <div class="metric-card">
-                                <div class="metric-info">
-                                    <h4>Total Collected</h4>
-                                    <p id="fin-collected">BDT 0</p>
+                            <div class="dash-donut-body">
+                                <!-- SVG Donut -->
+                                <div class="donut-chart-wrap">
+                                    <svg viewBox="0 0 100 100" class="donut-svg">
+                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#eef2f6" stroke-width="14" />
+                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#3b82f6" stroke-width="14" stroke-dasharray="80 160" stroke-dashoffset="20" stroke-linecap="round" />
+                                    </svg>
                                 </div>
-                                <div class="metric-icon-box green"><i class="material-icons">verified</i></div>
-                            </div>
-
-                            <div class="metric-card">
-                                <div class="metric-info">
-                                    <h4>Pending Collection</h4>
-                                    <p id="fin-pending">BDT 0</p>
+                                <!-- Legends -->
+                                <div class="donut-legends">
+                                    <div class="donut-legend-item">
+                                        <span class="legend-dot green"></span>
+                                        <div class="skeleton-bar tiny"></div>
+                                    </div>
+                                    <div class="donut-legend-item">
+                                        <span class="legend-dot blue"></span>
+                                        <div class="skeleton-bar tiny"></div>
+                                    </div>
+                                    <div class="donut-legend-item">
+                                        <span class="legend-dot amber"></span>
+                                        <div class="skeleton-bar tiny"></div>
+                                    </div>
+                                    <div class="donut-legend-item">
+                                        <span class="legend-dot purple"></span>
+                                        <div class="skeleton-bar tiny"></div>
+                                    </div>
                                 </div>
-                                <div class="metric-icon-box amber"><i class="material-icons">hourglass_top</i></div>
                             </div>
                         </div>
-
-                        <div class="data-table-wrap">
-                            <table class="data-table" id="finance-table">
-                                <thead>
-                                    <tr>
-                                        <th>Booking Ref</th>
-                                        <th>Customer</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                        <th>Created Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading finance...</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
-                </div>
-            </section>
 
-            <!-- 6. TEAM & ROLES (SUPER ADMIN ONLY) -->
-            <section id="view-staff" class="view-section">
-                <div class="panel">
-                    <div class="panel-header">
-                        <div class="panel-title">
-                            <i class="material-icons" style="color: #ef4444;">verified_user</i>
-                            <span>Assign Access by Gmail / Email (Role-Based Access Control)</span>
+                    <!-- Bottom Row: Table Skeleton + Right Activity Stack -->
+                    <div class="dash-bottom-grid">
+                        <!-- Table Skeleton Card -->
+                        <div class="dash-card dash-table-card">
+                            <div class="dash-table-header">
+                                <div class="skeleton-bar medium"></div>
+                                <div class="skeleton-pill mini"></div>
+                            </div>
+                            <div class="dash-table-rows">
+                                <div class="dash-table-row">
+                                    <div class="skeleton-circle"></div>
+                                    <div class="skeleton-bar long"></div>
+                                    <div class="skeleton-bar medium"></div>
+                                    <div class="skeleton-badge green"></div>
+                                    <div class="skeleton-bar short"></div>
+                                </div>
+                                <div class="dash-table-row">
+                                    <div class="skeleton-circle"></div>
+                                    <div class="skeleton-bar long"></div>
+                                    <div class="skeleton-bar medium"></div>
+                                    <div class="skeleton-badge green"></div>
+                                    <div class="skeleton-bar short"></div>
+                                </div>
+                                <div class="dash-table-row">
+                                    <div class="skeleton-circle"></div>
+                                    <div class="skeleton-bar long"></div>
+                                    <div class="skeleton-bar medium"></div>
+                                    <div class="skeleton-badge amber"></div>
+                                    <div class="skeleton-bar short"></div>
+                                </div>
+                                <div class="dash-table-row">
+                                    <div class="skeleton-circle"></div>
+                                    <div class="skeleton-bar long"></div>
+                                    <div class="skeleton-bar medium"></div>
+                                    <div class="skeleton-badge blue"></div>
+                                    <div class="skeleton-bar short"></div>
+                                </div>
+                                <div class="dash-table-row">
+                                    <div class="skeleton-circle"></div>
+                                    <div class="skeleton-bar long"></div>
+                                    <div class="skeleton-bar medium"></div>
+                                    <div class="skeleton-badge red"></div>
+                                    <div class="skeleton-bar short"></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel-body">
-                        <form id="form-invite-staff" onsubmit="handleInviteStaff(event)">
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label>Staff Gmail / Email Address *</label>
-                                    <input type="email" id="staff-email" required placeholder="e.g. staff.member@gmail.com">
-                                </div>
 
-                                <div class="form-group">
-                                    <label>Staff Full Name *</label>
-                                    <input type="text" id="staff-name" required placeholder="e.g. Rafiqul Islam">
+                        <!-- Right Stack -->
+                        <div class="dash-right-stack">
+                            <!-- 4 Member Activity Rows -->
+                            <div class="dash-card dash-activity-card">
+                                <div class="dash-activity-item">
+                                    <div class="skeleton-avatar green"><i class="material-icons">person</i></div>
+                                    <div class="dash-activity-text">
+                                        <div class="skeleton-bar medium"></div>
+                                        <div class="skeleton-bar short"></div>
+                                    </div>
+                                    <span class="legend-dot green"></span>
                                 </div>
-
-                                <div class="form-group">
-                                    <label>Assigned Operational Role *</label>
-                                    <select id="staff-role" required>
-                                        <option value="uploader">Product & Route Uploader</option>
-                                        <option value="manager">Operations Manager</option>
-                                        <option value="accountant">Finance & Payment Officer</option>
-                                        <option value="support">Customer Support Agent</option>
-                                        <option value="admin">Super Admin</option>
-                                    </select>
+                                <div class="dash-activity-item">
+                                    <div class="skeleton-avatar blue"><i class="material-icons">person</i></div>
+                                    <div class="dash-activity-text">
+                                        <div class="skeleton-bar medium"></div>
+                                        <div class="skeleton-bar short"></div>
+                                    </div>
+                                    <span class="legend-dot blue"></span>
                                 </div>
-
-                                <div class="form-group">
-                                    <label>Mobile Number (Optional)</label>
-                                    <input type="text" id="staff-phone" placeholder="017xxxxxxxx">
+                                <div class="dash-activity-item">
+                                    <div class="skeleton-avatar purple"><i class="material-icons">person</i></div>
+                                    <div class="dash-activity-text">
+                                        <div class="skeleton-bar medium"></div>
+                                        <div class="skeleton-bar short"></div>
+                                    </div>
+                                    <span class="legend-dot purple"></span>
+                                </div>
+                                <div class="dash-activity-item">
+                                    <div class="skeleton-avatar amber"><i class="material-icons">person</i></div>
+                                    <div class="dash-activity-text">
+                                        <div class="skeleton-bar medium"></div>
+                                        <div class="skeleton-bar short"></div>
+                                    </div>
+                                    <span class="legend-dot amber"></span>
                                 </div>
                             </div>
 
-                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
-                                <button type="submit" class="btn btn-primary" style="background: #0f172a;">
-                                    <i class="material-icons">person_add</i> Grant Staff Access
+                            <!-- Bottom Mini Cards Grid -->
+                            <div class="dash-mini-cards-grid">
+                                <div class="dash-card dash-mini-box">
+                                    <div class="skeleton-avatar-mini"><i class="material-icons">person</i></div>
+                                    <div class="skeleton-bar medium"></div>
+                                </div>
+                                <div class="dash-card dash-mini-box">
+                                    <div class="skeleton-avatar-mini"><i class="material-icons">person</i></div>
+                                    <div class="skeleton-bar medium"></div>
+                                </div>
+                                <div class="dash-card dash-mini-box">
+                                    <div class="skeleton-avatar-mini"><i class="material-icons">person</i></div>
+                                    <div class="skeleton-bar medium"></div>
+                                </div>
+                                <div class="dash-card dash-mini-box">
+                                    <div class="skeleton-avatar-mini"><i class="material-icons">person</i></div>
+                                    <div class="skeleton-bar medium"></div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Promo Banner Card -->
+                            <div class="dash-card dash-banner-card">
+                                <div class="dash-banner-content">
+                                    <div class="skeleton-bar medium" style="background: rgba(255,255,255,0.75);"></div>
+                                    <div class="skeleton-bar short" style="background: rgba(255,255,255,0.5);"></div>
+                                    <div class="dash-banner-btn-pill"></div>
+                                </div>
+                                <div class="dash-banner-icon">
+                                    <i class="material-icons">send</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subtle blank workspace notice -->
+                    <div class="dash-blank-note">
+                        <i class="material-icons">info_outline</i>
+                        <span>Dashboard overview workspace is blank and ready. Data metrics and charts will be connected step-by-step.</span>
+                    </div>
+                </section>
+
+                <!-- 2. BOOKINGS & OPERATIONS -->
+                <section id="view-bookings" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">confirmation_number</i>
+                                <span>Passenger Manifest & Booking Ledger</span>
+                            </div>
+                            <input type="text" id="search-bookings-input" placeholder="Search customer, booking ref..." onkeyup="filterBookingsTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 260px;">
+                        </div>
+                        <div class="panel-body">
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="all-bookings-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ref Code</th>
+                                            <th>Customer</th>
+                                            <th>Contact</th>
+                                            <th>Date</th>
+                                            <th>Travelers</th>
+                                            <th>Total Fare</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading bookings...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. PAYMENTS & FINANCE (Super Admin & Accountant) -->
+                <section id="view-finance" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--accent);">account_balance_wallet</i>
+                                <span>Financial Reconciliation & Transaction Ledger</span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="metrics-grid" style="margin-bottom: 1.5rem;">
+                                <div class="metric-card">
+                                    <div class="metric-info">
+                                        <h4>Total Collected</h4>
+                                        <p id="fin-collected">BDT 0</p>
+                                    </div>
+                                    <div class="metric-icon-box green"><i class="material-icons">verified</i></div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-info">
+                                        <h4>Pending Collection</h4>
+                                        <p id="fin-pending">BDT 0</p>
+                                    </div>
+                                    <div class="metric-icon-box amber"><i class="material-icons">hourglass_top</i></div>
+                                </div>
+                            </div>
+
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="finance-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Booking Ref</th>
+                                            <th>Customer</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Created Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading finance...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. MEMBERS & ROLES (SUPER ADMIN ONLY) -->
+                <section id="view-staff" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: #ef4444;">verified_user</i>
+                                <span>Assign Access by Gmail / Email (Role-Based Access Control)</span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form id="form-invite-staff" onsubmit="handleInviteStaff(event)">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Staff Gmail / Email Address *</label>
+                                        <input type="email" id="staff-email" required placeholder="e.g. staff.member@gmail.com">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Staff Full Name *</label>
+                                        <input type="text" id="staff-name" required placeholder="e.g. Rafiqul Islam">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Assigned Operational Role *</label>
+                                        <select id="staff-role" required>
+                                            <option value="uploader">Product & Route Uploader</option>
+                                            <option value="manager">Operations Manager</option>
+                                            <option value="accountant">Finance & Payment Officer</option>
+                                            <option value="support">Customer Support Agent</option>
+                                            <option value="admin">Super Admin</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Mobile Number (Optional)</label>
+                                        <input type="text" id="staff-phone" placeholder="017xxxxxxxx">
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                                    <button type="submit" class="btn btn-primary" style="background: #0f172a;">
+                                        <i class="material-icons">person_add</i> Grant Staff Access
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Existing Staff List -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">group</i>
+                                <span>Active Internal Team Members</span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="all-staff-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email / Gmail</th>
+                                            <th>Current Role</th>
+                                            <th>Status</th>
+                                            <th>Joined</th>
+                                            <th>Change Role</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading team...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. PRESERVED VEHICLES VIEW (Accessible if opened directly) -->
+                <section id="view-vehicles" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">add_circle</i>
+                                <span>Add New Vehicle / Transport Route Product</span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form id="form-add-vehicle" onsubmit="handleCreateVehicle(event)">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Operator Name *</label>
+                                        <input type="text" id="route-operator" required placeholder="e.g. Ena Transport, Shohagh, Shyamoli">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Vehicle Type / Class *</label>
+                                        <select id="route-vtype" required>
+                                            <option value="AC Sleeper Coach">AC Sleeper Coach (Luxury Sleeper)</option>
+                                            <option value="AC Business Class">AC Business Class (Hino 1J / Hyundai)</option>
+                                            <option value="Economy Non-AC Coach">Economy Non-AC Coach (Standard Chair Coach)</option>
+                                            <option value="Local Feeder Shuttle">Local Feeder Shuttle (Regional Shuttle)</option>
+                                            <option value="HiAce Microbus">HiAce Microbus (Private / Shared Microbus)</option>
+                                            <option value="Intercity Express Train">Intercity Express Train (Railway)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Origin District *</label>
+                                        <input type="text" id="route-orig-dist" required placeholder="e.g. Rangpur, Dhaka, Dinajpur">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Origin Stoppage / Stand</label>
+                                        <input type="text" id="route-orig-point" placeholder="e.g. Pirganj Stand, Kamlapur, Mirpur 10">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Destination District *</label>
+                                        <input type="text" id="route-dest-dist" required placeholder="e.g. Cox's Bazar, Chattogram, Sylhet">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Destination Stoppage / Spot</label>
+                                        <input type="text" id="route-dest-point" placeholder="e.g. Kolatoli Beach, GEC Circle">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Departure Time *</label>
+                                        <input type="text" id="route-dep-time" required placeholder="e.g. 07:30 PM">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Arrival Time</label>
+                                        <input type="text" id="route-arr-time" placeholder="e.g. 05:15 AM">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Ticket Fare BDT *</label>
+                                        <input type="number" id="route-fare" required min="50" step="10" placeholder="e.g. 1650">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Total Seat Capacity</label>
+                                        <input type="number" id="route-seats" value="36" min="4" max="60">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Curated Smart Tier</label>
+                                        <select id="route-tier">
+                                            <option value="recommended">Best Value / Recommended</option>
+                                            <option value="budget">Lowest Price / Budget</option>
+                                            <option value="luxury">Fastest / Luxury</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Vehicle Photo URL</label>
+                                        <input type="url" id="route-img" value="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80">
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                                    <button type="reset" class="btn btn-secondary">Clear Form</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="material-icons">cloud_upload</i> Publish Vehicle to Live System
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Existing Route List -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
+                                <span>All Registered Vehicles & Routes</span>
+                            </div>
+                            <input type="text" id="search-route-input" placeholder="Search operator, district..." onkeyup="filterRoutesTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 240px;">
+                        </div>
+                        <div class="panel-body">
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="all-routes-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Operator & Vehicle</th>
+                                            <th>Route Corridor</th>
+                                            <th>Schedule</th>
+                                            <th>Fare</th>
+                                            <th>Seats</th>
+                                            <th>Tier</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. PRESERVED EXCEL BULK IMPORTER -->
+                <section id="view-excel" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--accent);">table_view</i>
+                                <span>One-Click Excel Bulk Route & Timetable Importer</span>
+                            </div>
+                            <a href="data/TravelUp_Transit_Data_Entry_Template.xlsx" download class="btn btn-secondary">
+                                <i class="material-icons">download</i> Download Official Excel Template
+                            </a>
+                        </div>
+                        <div class="panel-body">
+                            <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6;">
+                                Upload your completed <strong>TravelUp_Transit_Data_Entry_Template.xlsx</strong> spreadsheet. The engine will automatically parse sheets <code>01_Intercity_Routes</code> and <code>03_Upazila_Feeders</code> and insert/update all routes, intermediate stops, and pricing into the live MySQL database.
+                            </p>
+
+                            <div class="upload-dropzone" onclick="document.getElementById('excel-file-input').click()">
+                                <i class="material-icons">cloud_upload</i>
+                                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: 0.35rem;">Click to Select or Drop Excel (.xlsx) File</h3>
+                                <p style="color: var(--slate-500); font-size: 0.85rem;">Supports .xlsx and .xls (Max: 10MB)</p>
+                                <input type="file" id="excel-file-input" accept=".xlsx, .xls" style="display: none;" onchange="handleExcelFileSelected(event)">
+                            </div>
+
+                            <div id="excel-selected-banner" style="display: none; margin-top: 1.5rem; padding: 1rem 1.25rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                    <i class="material-icons" style="color: #059669;">check_circle</i>
+                                    <div>
+                                        <strong id="excel-selected-filename" style="color: #065f46;">filename.xlsx</strong>
+                                        <div id="excel-selected-filesize" style="font-size: 0.8rem; color: #047857;">Ready to import</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-accent" id="btn-start-import" onclick="executeExcelUpload()">
+                                    <i class="material-icons">play_arrow</i> Start Sync to Live Database
                                 </button>
                             </div>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Existing Staff List -->
-                <div class="panel">
-                    <div class="panel-header">
-                        <div class="panel-title">
-                            <i class="material-icons" style="color: var(--primary);">group</i>
-                            <span>Active Internal Team Members</span>
                         </div>
                     </div>
-                    <div class="panel-body">
-                        <div class="data-table-wrap">
-                            <table class="data-table" id="all-staff-table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email / Gmail</th>
-                                        <th>Current Role</th>
-                                        <th>Status</th>
-                                        <th>Joined</th>
-                                        <th>Change Role</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading team...</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </main>
+                </section>
+            </main>
+        </div>
     </div>
 
-    <!-- Toast Notifications -->
+    <!-- Global Toast Container -->
     <div id="toast-container"></div>
 
     <script>
-        // App State
-        // Dynamic API Base URL for seamless local, live server, and file:// execution
-        const API_BASE = (window.location.protocol === 'file:' || (window.location.port !== '5000' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')))
+        // API Base configuration
+        const API_BASE = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
             ? 'http://localhost:5000'
             : '';
+
         let currentUser = null;
-        let authToken = localStorage.getItem('travelup_admin_token') || '';
+        let authToken = '';
         let cachedRoutes = [];
         let cachedBookings = [];
         let cachedStaff = [];
 
-        // Role permissions configuration
+        // Role-Based Access Control (RBAC) definitions
         const ROLE_PERMISSIONS = {
             admin: {
                 title: 'Super Admin',
                 badgeClass: 'role-admin',
-                allowedTabs: ['dashboard', 'vehicles', 'excel', 'bookings', 'finance', 'staff']
+                allowedTabs: ['dashboard', 'bookings', 'finance', 'staff', 'vehicles', 'excel']
             },
             uploader: {
                 title: 'Product Uploader',
                 badgeClass: 'role-uploader',
-                allowedTabs: ['vehicles', 'excel']
+                allowedTabs: ['dashboard', 'vehicles', 'excel']
             },
             moderator: {
                 title: 'Product Uploader',
                 badgeClass: 'role-uploader',
-                allowedTabs: ['vehicles', 'excel']
+                allowedTabs: ['dashboard', 'vehicles', 'excel']
             },
             manager: {
                 title: 'Operations Manager',
                 badgeClass: 'role-manager',
-                allowedTabs: ['dashboard', 'vehicles', 'bookings']
+                allowedTabs: ['dashboard', 'bookings', 'vehicles']
             },
             accountant: {
                 title: 'Finance & Payment Officer',
                 badgeClass: 'role-accountant',
-                allowedTabs: ['finance', 'bookings']
+                allowedTabs: ['dashboard', 'finance', 'bookings']
             },
             support: {
                 title: 'Customer Support',
                 badgeClass: 'role-support',
-                allowedTabs: ['bookings']
+                allowedTabs: ['dashboard', 'bookings']
             }
         };
+
+        // Theme Initialization
+        (function initTheme() {
+            const saved = localStorage.getItem('travelup_theme');
+            if (saved === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+        })();
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('travelup_theme', isDark ? 'dark' : 'light');
+        }
 
         // Init on DOM Load - Strict RBAC Authentication Protection
         document.addEventListener('DOMContentLoaded', () => {
@@ -1147,7 +1976,6 @@
             const token = localStorage.getItem('travelup_admin_token') || localStorage.getItem('travelup_token');
 
             if (!token || !savedUserStr) {
-                // Not authenticated -> redirect directly to login page
                 window.location.href = 'login.html';
                 return;
             }
@@ -1156,13 +1984,33 @@
                 currentUser = JSON.parse(savedUserStr);
                 const allowedStaffRoles = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
                 if (!allowedStaffRoles.includes(currentUser.role)) {
-                    // Regular customer accounts cannot access staff operations portal -> redirect to public homepage
                     window.location.href = 'index.html';
                     return;
                 }
                 authToken = token;
                 applyUserPermissions();
-                loadDashboardData();
+
+                // Connect Topbar Search
+                const searchInput = document.getElementById('topbar-search-input');
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        const q = e.target.value.toLowerCase().trim();
+                        const activeSec = document.querySelector('.view-section.active');
+                        if (activeSec && activeSec.id === 'view-bookings') {
+                            const bInput = document.getElementById('search-bookings-input');
+                            if (bInput) {
+                                bInput.value = q;
+                                filterBookingsTable();
+                            }
+                        } else if (activeSec && activeSec.id === 'view-vehicles') {
+                            const rInput = document.getElementById('search-route-input');
+                            if (rInput) {
+                                rInput.value = q;
+                                filterRoutesTable();
+                            }
+                        }
+                    });
+                }
             } catch (e) {
                 logoutAdmin();
             }
@@ -1181,7 +2029,6 @@
             }, 3500);
         }
 
-        // Logout Admin: Thoroughly clears all session tokens and redirects directly to homepage as a regular visitor
         function logoutAdmin() {
             localStorage.removeItem('travelup_admin_token');
             localStorage.removeItem('travelup_admin_user');
@@ -1194,39 +2041,50 @@
 
         function toggleAdminProfileMenu(e) {
             if (e) e.stopPropagation();
+            const notif = document.getElementById('notif-dropdown');
+            if (notif) notif.style.display = 'none';
+
             const menu = document.getElementById('admin-profile-dropdown');
             if (menu) {
                 menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
             }
         }
 
+        function toggleNotifications(e) {
+            if (e) e.stopPropagation();
+            const profile = document.getElementById('admin-profile-dropdown');
+            if (profile) profile.style.display = 'none';
+
+            const notif = document.getElementById('notif-dropdown');
+            if (notif) {
+                notif.style.display = (notif.style.display === 'block') ? 'none' : 'block';
+            }
+        }
+
         document.addEventListener('click', () => {
             const menu = document.getElementById('admin-profile-dropdown');
             if (menu) menu.style.display = 'none';
+            const notif = document.getElementById('notif-dropdown');
+            if (notif) notif.style.display = 'none';
         });
 
-        // Apply Strict RBAC UI Hiding and Navigation Configuration
+        // Apply RBAC UI Configuration
         function applyUserPermissions() {
             if (!currentUser) return;
 
             const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
             
-            // 1. Update Header Badges & Dynamic Avatar
+            // Update Avatars & Meta
             const avatarUrl = currentUser.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80';
             const headerAvatar = document.getElementById('admin-header-avatar');
             if (headerAvatar) headerAvatar.src = avatarUrl;
             const dropAvatar = document.getElementById('dropdown-avatar-img');
             if (dropAvatar) dropAvatar.src = avatarUrl;
 
-            const nameEl = document.getElementById('current-user-name');
-            if (nameEl) nameEl.textContent = currentUser.name;
             const dropName = document.getElementById('dropdown-user-name');
             if (dropName) dropName.textContent = currentUser.name;
             const dropEmail = document.getElementById('dropdown-user-email');
             if (dropEmail) dropEmail.textContent = currentUser.email || '';
-
-            const dashGreeting = document.getElementById('dash-greeting-name');
-            if (dashGreeting) dashGreeting.textContent = currentUser.name.split(' ')[0];
 
             const badgeEl = document.getElementById('current-user-role-badge');
             if (badgeEl) {
@@ -1234,9 +2092,14 @@
                 badgeEl.className = `admin-role-pill ${roleCfg.badgeClass}`;
             }
 
-            // 2. Hide or Show Sidebar items strictly according to allowedTabs
+            // Hide or Show Sidebar tabs strictly according to allowedTabs
             document.querySelectorAll('.sidebar-item').forEach(item => {
                 const tab = item.getAttribute('data-tab');
+                if (!tab) {
+                    // External link items (Travel Planner, Tour Planner, Create Package)
+                    item.style.display = 'flex';
+                    return;
+                }
                 if (roleCfg.allowedTabs.includes(tab)) {
                     item.style.display = 'flex';
                 } else {
@@ -1244,38 +2107,20 @@
                 }
             });
 
-            // 3. Hide Super Admin Access Control section header if not admin
-            const adminSectionTitle = document.getElementById('section-title-admin-only');
-            if (adminSectionTitle) {
-                adminSectionTitle.style.display = currentUser.role === 'admin' ? 'block' : 'none';
-            }
-
-            // 4. Hide Financial Cards on Dashboard if not admin or accountant
-            const revCard = document.getElementById('metric-card-revenue');
-            if (revCard) {
-                revCard.style.display = (currentUser.role === 'admin' || currentUser.role === 'accountant') ? 'flex' : 'none';
-            }
-
-            const staffCard = document.getElementById('metric-card-staff');
-            if (staffCard) {
-                staffCard.style.display = (currentUser.role === 'admin') ? 'flex' : 'none';
-            }
-
-            // 5. Default to the first allowed tab
-            switchTab(roleCfg.allowedTabs[0]);
+            // Default to Dashboard
+            switchTab('dashboard');
         }
 
         function switchTab(tabId) {
             if (!currentUser) return;
             const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
             
-            // RBAC Guard
             if (!roleCfg.allowedTabs.includes(tabId)) {
                 showToast('Access Restricted: Your role cannot view this section.', 'error');
                 return;
             }
 
-            // Update sidebar state
+            // Update sidebar active state
             document.querySelectorAll('.sidebar-item').forEach(el => {
                 if (el.getAttribute('data-tab') === tabId) {
                     el.classList.add('active');
@@ -1290,67 +2135,13 @@
             if (targetSec) targetSec.classList.add('active');
 
             // Trigger specific fetchers
-            if (tabId === 'dashboard') loadDashboardData();
             if (tabId === 'vehicles') loadTransitRoutes();
             if (tabId === 'bookings') loadBookings();
             if (tabId === 'finance') loadFinance();
             if (tabId === 'staff') loadStaff();
         }
 
-        // ================= DATA FETCHERS ================= //
-
-        async function loadDashboardData() {
-            try {
-                const res = await fetch(`${API_BASE}/api/admin/metrics`, {
-                    headers: { 'Authorization': `Bearer ${authToken}` }
-                });
-                if (!res.ok) return;
-                const data = await res.json();
-                if (data.success && data.metrics) {
-                    const m = data.metrics;
-                    if (document.getElementById('stat-routes')) document.getElementById('stat-routes').textContent = m.total_routes || '0';
-                    if (document.getElementById('stat-bookings')) document.getElementById('stat-bookings').textContent = m.total_bookings || '0';
-                    if (document.getElementById('stat-revenue') && m.total_revenue_bdt !== undefined) {
-                        document.getElementById('stat-revenue').textContent = `BDT ${m.total_revenue_bdt.toLocaleString()}`;
-                    }
-                    if (document.getElementById('stat-staff') && m.total_staff !== undefined) {
-                        document.getElementById('stat-staff').textContent = m.total_staff;
-                    }
-                }
-                loadRecentRoutesForDashboard();
-            } catch (err) {
-                console.error(err);
-            }
-        }
-
-        async function loadRecentRoutesForDashboard() {
-            try {
-                const res = await fetch(`${API_BASE}/api/admin/transit/routes?limit=5`, {
-                    headers: { 'Authorization': `Bearer ${authToken}` }
-                });
-                if (!res.ok) return;
-                const data = await res.json();
-                const tbody = document.querySelector('#dashboard-recent-routes-table tbody');
-                if (data.success && data.routes && tbody) {
-                    if (data.routes.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">No routes yet. Click 'Add New Vehicle' to create one.</td></tr>`;
-                        return;
-                    }
-                    tbody.innerHTML = data.routes.map(r => `
-                        <tr>
-                            <td><strong>${r.operator_name}</strong><br><span style="font-size: 0.775rem; color: #64748b;">${r.vehicle_type}</span></td>
-                            <td>${r.origin_district} ➔ ${r.destination_district}</td>
-                            <td><span style="font-weight: 700;">${r.departure_time}</span></td>
-                            <td><strong style="color: #0284c7;">BDT ${r.base_fare}</strong></td>
-                            <td>${r.available_seats} / ${r.total_seats}</td>
-                            <td><span class="user-role-tag" style="background: #e0f2fe; color: #0369a1;">${r.tier_tag}</span></td>
-                        </tr>
-                    `).join('');
-                }
-            } catch (e) {
-                console.error(e);
-            }
-        }
+        // ================= TRANSIT ROUTES ================= //
 
         async function loadTransitRoutes() {
             try {
@@ -1555,7 +2346,7 @@
 
             tbody.innerHTML = bookings.map(b => `
                 <tr>
-                    <td><strong style="color: #0284c7;">${b.booking_ref}</strong></td>
+                    <td><strong style="color: var(--primary);">${b.booking_ref}</strong></td>
                     <td><strong>${b.customer_name || 'Traveler'}</strong></td>
                     <td>${b.customer_phone || b.customer_email || 'N/A'}</td>
                     <td>${b.start_date ? b.start_date.split('T')[0] : 'N/A'}</td>
