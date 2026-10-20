@@ -2219,6 +2219,536 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ==============================================================
+           SUB CATEGORY PAGE REDESIGN (Pixel-Perfect Match with Mockup)
+           ============================================================== */
+        .tp-subcat-breadcrumb-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1.15rem;
+            font-size: 0.835rem;
+            color: #64748b;
+        }
+
+        .tp-subcat-bc-link {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s ease;
+            cursor: pointer;
+        }
+
+        .tp-subcat-bc-link:hover {
+            color: #0284c7;
+        }
+
+        .tp-subcat-bc-home-icon {
+            font-size: 17px;
+            color: #0284c7;
+        }
+
+        .tp-subcat-bc-sep {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        .tp-subcat-bc-active {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        /* Panoramic Hero Banner Card */
+        .tp-subcat-hero-banner {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            min-height: 125px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.85rem;
+            background-color: #ebf5fe;
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow: 0 2px 14px rgba(15, 23, 42, 0.04);
+            border: 1px solid rgba(226, 232, 240, 0.85);
+            margin-bottom: 1.5rem;
+        }
+
+        .tp-subcat-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #ebf5fe 0%, #ebf5fe 38%, rgba(235, 245, 254, 0.94) 52%, rgba(235, 245, 254, 0) 78%);
+            pointer-events: none;
+        }
+
+        .tp-subcat-hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            max-width: 65%;
+        }
+
+        .tp-subcat-hero-avatar-wrap {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3.5px solid #ffffff;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+            overflow: hidden;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tp-subcat-hero-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tp-subcat-hero-badge {
+            background: #d1fae5;
+            color: #059669;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2.5px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            letter-spacing: 0.2px;
+            margin-bottom: 4px;
+        }
+
+        .tp-subcat-hero-title {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 4px 0;
+            line-height: 1.2;
+        }
+
+        .tp-subcat-hero-desc {
+            font-size: 0.84rem;
+            color: #475569;
+            margin: 0;
+            line-height: 1.45;
+            max-width: 480px;
+        }
+
+        /* Sub-Categories Section Header & Toolbar */
+        .tp-subcat-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.15rem;
+        }
+
+        .tp-subcat-title-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tp-subcat-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tp-subcat-heading {
+            font-size: 1.28rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0;
+        }
+
+        .tp-subcat-count-badge {
+            background: #dbeafe;
+            color: #1e40af;
+            font-size: 0.775rem;
+            font-weight: 700;
+            padding: 1.5px 8.5px;
+            border-radius: 10px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .tp-subcat-subtitle {
+            font-size: 0.825rem;
+            color: #64748b;
+            margin: 3px 0 0 0;
+        }
+
+        .tp-subcat-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tp-subcat-search-box {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.48rem 0.9rem;
+            min-width: 220px;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .tp-subcat-search-box:focus-within {
+            border-color: #00875a;
+            box-shadow: 0 0 0 3px rgba(0, 135, 90, 0.1);
+        }
+
+        .tp-subcat-search-box input {
+            border: none;
+            outline: none;
+            font-size: 0.835rem;
+            color: #1e293b;
+            width: 100%;
+            background: transparent;
+        }
+
+        .tp-subcat-search-box input::placeholder {
+            color: #94a3b8;
+        }
+
+        .tp-subcat-sort-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.48rem 0.9rem;
+        }
+
+        .tp-subcat-sort-box select {
+            border: none;
+            outline: none;
+            font-size: 0.835rem;
+            font-weight: 600;
+            color: #334155;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .tp-btn-add-subcat {
+            background: #00875a;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 0.54rem 1.25rem;
+            font-size: 0.84rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 135, 90, 0.25);
+            transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+
+        .tp-btn-add-subcat:hover {
+            background: #00704a;
+            transform: translateY(-1px);
+        }
+
+        /* Ledger Table Card */
+        .tp-subcat-table-card {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 14px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .tp-subcat-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .tp-subcat-table thead th {
+            background: #fafbfc;
+            padding: 0.85rem 1rem;
+            font-size: 0.775rem;
+            font-weight: 700;
+            color: #475569;
+            border-bottom: 1px solid #e2e8f0;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        .tp-subcat-table thead th.sortable {
+            cursor: pointer;
+        }
+
+        .tp-subcat-table thead th.sortable:hover {
+            color: #00875a;
+        }
+
+        .tp-subcat-table tbody td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        .tp-subcat-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tp-subcat-table tbody tr:hover td {
+            background: #f8fafc;
+        }
+
+        .tp-subcat-num {
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: #0284c7;
+            text-align: center;
+        }
+
+        .tp-subcat-thumb {
+            width: 62px;
+            height: 36px;
+            border-radius: 8px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+
+        .tp-subcat-name-cell {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tp-subcat-name-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.25;
+            cursor: pointer;
+        }
+
+        .tp-subcat-name-title:hover {
+            color: #00875a;
+        }
+
+        .tp-subcat-name-desc {
+            font-size: 0.775rem;
+            color: #64748b;
+            margin-top: 2px;
+            line-height: 1.35;
+        }
+
+        .tp-subcat-operators-pill {
+            background: #e0f2fe;
+            color: #0284c7;
+            font-size: 0.775rem;
+            font-weight: 600;
+            padding: 3.5px 9.5px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4.5px;
+            white-space: nowrap;
+        }
+
+        .tp-subcat-date-text {
+            font-size: 0.825rem;
+            color: #475569;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .tp-subcat-status-pill {
+            font-size: 0.775rem;
+            font-weight: 600;
+            padding: 3.5px 10px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5.5px;
+            white-space: nowrap;
+        }
+
+        .tp-subcat-status-pill.active {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .tp-subcat-status-pill.inactive {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .tp-subcat-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .tp-subcat-action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .tp-subcat-action-btn:hover {
+            background: #f1f5f9;
+            color: #334155;
+        }
+
+        /* Pagination Footer */
+        .tp-subcat-pagination-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.25rem;
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tp-subcat-showing-text {
+            font-size: 0.815rem;
+            color: #64748b;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tp-subcat-page-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tp-subcat-page-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .tp-subcat-page-btn:hover:not(:disabled) {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            color: #0f172a;
+        }
+
+        .tp-subcat-page-btn.active {
+            background: #00875a;
+            color: #ffffff;
+            border-color: #00875a;
+        }
+
+        .tp-subcat-page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Dark Theme Support for Sub Category Page */
+        body.dark-theme .tp-subcat-breadcrumb-bar {
+            color: #94a3b8;
+        }
+        body.dark-theme .tp-subcat-bc-link {
+            color: #cbd5e1;
+        }
+        body.dark-theme .tp-subcat-bc-active {
+            color: #f8fafc;
+        }
+        body.dark-theme .tp-subcat-hero-banner {
+            background-color: #0f172a;
+            border-color: #1e293b;
+        }
+        body.dark-theme .tp-subcat-hero-overlay {
+            background: linear-gradient(90deg, #0f172a 0%, #0f172a 38%, rgba(15, 23, 42, 0.94) 52%, rgba(15, 23, 42, 0) 78%);
+        }
+        body.dark-theme .tp-subcat-hero-title {
+            color: #f8fafc;
+        }
+        body.dark-theme .tp-subcat-hero-desc {
+            color: #94a3b8;
+        }
+        body.dark-theme .tp-subcat-heading {
+            color: #f8fafc;
+        }
+        body.dark-theme .tp-subcat-table-card,
+        body.dark-theme .tp-subcat-pagination-footer {
+            background: #111827;
+            border-color: #1f2937;
+        }
+        body.dark-theme .tp-subcat-table thead th {
+            background: #1f2937;
+            color: #cbd5e1;
+            border-color: #374151;
+        }
+        body.dark-theme .tp-subcat-table tbody td {
+            border-color: #1f2937;
+        }
+        body.dark-theme .tp-subcat-table tbody tr:hover td {
+            background: #1e293b;
+        }
+        body.dark-theme .tp-subcat-name-title {
+            color: #f8fafc;
+        }
+        body.dark-theme .tp-subcat-name-desc {
+            color: #94a3b8;
+        }
+        body.dark-theme .tp-subcat-search-box,
+        body.dark-theme .tp-subcat-sort-box {
+            background: #1f2937;
+            border-color: #374151;
+        }
+        body.dark-theme .tp-subcat-search-box input,
+        body.dark-theme .tp-subcat-sort-box select {
+            color: #f8fafc;
+        }
+        body.dark-theme .tp-subcat-page-btn {
+            background: #1f2937;
+            border-color: #374151;
+            color: #94a3b8;
+        }
     </style>
 </head>
 <body>
@@ -2710,77 +3240,101 @@
                         </div>
                     </div>
 
-                    <!-- Category Detail View Container for Travel Planner -->
+                    <!-- Sub Category Page View Container for Travel Planner (Mockup Match) -->
                     <div id="tp-category-detail-view" style="display: none;">
-                        <!-- Category Detail Header & Controls -->
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 0.65rem;">
-                                <button type="button" class="tp-btn-back" onclick="closeCategoryDetailView('travel-planner')">
-                                    <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Categories
-                                </button>
-                                <span style="color: #cbd5e1;">/</span>
-                                <span style="font-size: 0.9rem; font-weight: 700; color: #0f172a;" id="tp-cat-detail-breadcrumb">Category</span>
-                            </div>
-                            <button type="button" class="tp-btn-add-category" onclick="openAddProductModal('travel-planner')">
-                                <i class="material-icons" style="font-size: 19px;">add</i>
-                                <span id="tp-cat-detail-add-btn">+ Add Product</span>
-                            </button>
+                        <!-- Top Breadcrumb Bar -->
+                        <div class="tp-subcat-breadcrumb-bar">
+                            <a href="javascript:void(0)" onclick="closeCategoryDetailView('travel-planner')" class="tp-subcat-bc-link">
+                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
+                            </a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" onclick="closeCategoryDetailView('travel-planner')" class="tp-subcat-bc-link">Categories</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <span class="tp-subcat-bc-active" id="tp-cat-detail-breadcrumb">Transit</span>
                         </div>
 
-                        <!-- Hero Info Card -->
-                        <div class="tp-cat-hero-card">
-                            <div style="display: flex; align-items: center; gap: 1.25rem;">
-                                <div class="tp-cat-icon-box" id="tp-cat-hero-icon" style="width: 54px; height: 54px; border-radius: 14px; font-size: 28px;">
-                                    <i class="material-icons" id="tp-cat-hero-icon-i">category</i>
+                        <!-- Panoramic Hero Banner Card -->
+                        <div class="tp-subcat-hero-banner" id="tp-subcat-hero-banner" style="background-image: url('images/subcategories/transit_banner_scenic.png');">
+                            <div class="tp-subcat-hero-overlay"></div>
+                            <div class="tp-subcat-hero-content">
+                                <div class="tp-subcat-hero-avatar-wrap">
+                                    <img id="tp-subcat-hero-avatar" class="tp-subcat-hero-avatar-img" src="images/categories/cat_transit.png" alt="Category Avatar">
                                 </div>
                                 <div>
-                                    <div style="display: flex; align-items: center; gap: 8px;">
-                                        <h2 style="font-size: 1.45rem; font-weight: 800; color: #0f172a; margin: 0;" id="tp-cat-hero-title">Category Title</h2>
-                                        <span class="tp-status-pill active" id="tp-cat-hero-status">Active</span>
-                                    </div>
-                                    <p style="font-size: 0.85rem; color: #64748b; margin: 4px 0 0 0;" id="tp-cat-hero-desc">Category overview and services</p>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 1.75rem; align-items: center;">
-                                <div style="text-align: right;">
-                                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; display: block;">Total Products</span>
-                                    <strong style="font-size: 1.4rem; color: #0f172a;" id="tp-cat-hero-prods">0</strong>
-                                </div>
-                                <div style="text-align: right;">
-                                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; display: block;">Sub-Categories</span>
-                                    <strong style="font-size: 1.4rem; color: #00875a;" id="tp-cat-hero-subs">0</strong>
+                                    <span class="tp-subcat-hero-badge">Category</span>
+                                    <h1 class="tp-subcat-hero-title" id="tp-cat-hero-title">Transit</h1>
+                                    <p class="tp-subcat-hero-desc" id="tp-cat-hero-desc">Move around with ease. Find and book the best transport options for your journey, from buses and trains to flights and more.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Sub-Category Filter Strip & Search Input -->
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
-                            <div class="tp-nav-tabs-group" id="tp-cat-subfilter-tabs" style="margin-bottom: 0;">
-                                <!-- Dynamic Sub-category Filter Buttons -->
+                        <!-- Sub-Categories Section Toolbar -->
+                        <div class="tp-subcat-toolbar">
+                            <div class="tp-subcat-title-group">
+                                <div class="tp-subcat-title-row">
+                                    <h2 class="tp-subcat-heading">Sub Categories</h2>
+                                    <span class="tp-subcat-count-badge" id="tp-subcat-count-badge">6</span>
+                                </div>
+                                <p class="tp-subcat-subtitle">Choose a sub-category to see available options.</p>
                             </div>
-                            <input type="text" id="tp-cat-search-input" placeholder="Search in this category..." oninput="filterCatProductsUI('travel-planner')" style="padding: 0.5rem 0.85rem; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.85rem; width: 260px;">
+                            <div class="tp-subcat-controls">
+                                <div class="tp-subcat-search-box">
+                                    <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
+                                    <input type="text" id="tp-subcat-search-input" placeholder="Search subcategories..." oninput="onSubCatSearchChange('travel-planner')">
+                                </div>
+                                <div class="tp-subcat-sort-box">
+                                    <i class="material-icons" style="font-size: 16px; color: #64748b;">tune</i>
+                                    <select id="tp-subcat-sort-select" onchange="onSubCatSortChange('travel-planner')">
+                                        <option value="name_asc">Sort by: Name (A-Z)</option>
+                                        <option value="name_desc">Sort by: Name (Z-A)</option>
+                                        <option value="operators_desc">Sort by: Operators (High-Low)</option>
+                                        <option value="date_desc">Sort by: Created Date (Newest)</option>
+                                        <option value="status">Sort by: Status</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="tp-btn-add-subcat" onclick="openAddSubCategoryModal('travel-planner')">
+                                    <i class="material-icons" style="font-size: 18px;">add</i>
+                                    <span>Add Sub Category</span>
+                                </button>
+                            </div>
                         </div>
 
-                        <!-- Products Table Card -->
-                        <div class="tp-table-card">
+                        <!-- Sub-Categories Ledger Table Card -->
+                        <div class="tp-subcat-table-card">
                             <div style="overflow-x: auto;">
-                                <table class="tp-custom-table" id="tp-cat-products-table">
+                                <table class="tp-subcat-table" id="tp-subcat-table">
                                     <thead>
                                         <tr>
-                                            <th style="width: 50px;">#</th>
-                                            <th>Product / Service Name</th>
-                                            <th>Provider / Operator</th>
-                                            <th>Location / Corridor</th>
-                                            <th>Format / Class</th>
-                                            <th>Price / Fare (BDT)</th>
-                                            <th>Status</th>
+                                            <th style="width: 45px; text-align: center;">#</th>
+                                            <th style="width: 86px;">Image</th>
+                                            <th class="sortable" onclick="toggleSubCatSortColumn('travel-planner', 'name')">Sub Category Name <span style="font-size: 11px; opacity: 0.6;">⬍</span></th>
+                                            <th class="sortable" onclick="toggleSubCatSortColumn('travel-planner', 'operators')">Operators <span style="font-size: 11px; opacity: 0.6;">⬍</span></th>
+                                            <th class="sortable" onclick="toggleSubCatSortColumn('travel-planner', 'date')">Created Date <span style="font-size: 11px; opacity: 0.6;">⬍</span></th>
+                                            <th class="sortable" onclick="toggleSubCatSortColumn('travel-planner', 'status')">Status <span style="font-size: 11px; opacity: 0.6;">⬍</span></th>
                                             <th style="width: 70px; text-align: center;">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tp-cat-products-tbody">
-                                        <!-- Product rows -->
+                                    <tbody id="tp-subcat-tbody">
+                                        <!-- Subcategory Rows dynamically populated -->
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <!-- Pagination Footer -->
+                            <div class="tp-subcat-pagination-footer">
+                                <div class="tp-subcat-showing-text" id="tp-subcat-showing-text">
+                                    <i class="material-icons" style="font-size: 16px; color: #94a3b8;">format_list_bulleted</i>
+                                    <span>Showing 1-6 of 6 subcategories</span>
+                                </div>
+                                <div class="tp-subcat-page-controls">
+                                    <button type="button" class="tp-subcat-page-btn" id="tp-subcat-prev-btn" onclick="changeSubCatPage('travel-planner', -1)">
+                                        <i class="material-icons" style="font-size: 16px;">chevron_left</i>
+                                    </button>
+                                    <button type="button" class="tp-subcat-page-btn active" id="tp-subcat-page-1">1</button>
+                                    <button type="button" class="tp-subcat-page-btn" id="tp-subcat-next-btn" onclick="changeSubCatPage('travel-planner', 1)">
+                                        <i class="material-icons" style="font-size: 16px;">chevron_right</i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2901,7 +3455,7 @@
                     <!-- Floating Action Dropdown Menu -->
                     <div id="tp-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
                         <button type="button" class="tp-action-item" onclick="handleCategoryViewProducts('travel-planner')">
-                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Products
+                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Sub Categories
                         </button>
                         <button type="button" class="tp-action-item" onclick="handleCategoryEdit()">
                             <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
@@ -3002,79 +3556,192 @@
                         </div>
                     </div>
 
-                    <!-- Category Detail View Container for Tour Planner -->
+                    <!-- Sub Category Page View Container for Tour Planner (Mockup Match) -->
                     <div id="tour-category-detail-view" style="display: none;">
-                        <!-- Category Detail Header & Controls -->
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 0.65rem;">
-                                <button type="button" class="tp-btn-back" onclick="closeCategoryDetailView('tour-planner')">
-                                    <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Categories
-                                </button>
-                                <span style="color: #cbd5e1;">/</span>
-                                <span style="font-size: 0.9rem; font-weight: 700; color: #0f172a;" id="tour-cat-detail-breadcrumb">Category</span>
-                            </div>
-                            <button type="button" class="tp-btn-add-category" onclick="openAddProductModal('tour-planner')">
-                                <i class="material-icons" style="font-size: 19px;">add</i>
-                                <span id="tour-cat-detail-add-btn">+ Add Product</span>
-                            </button>
+                        <!-- Top Breadcrumb Bar -->
+                        <div class="tp-subcat-breadcrumb-bar">
+                            <a href="javascript:void(0)" onclick="closeCategoryDetailView('tour-planner')" class="tp-subcat-bc-link">
+                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
+                            </a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" onclick="closeCategoryDetailView('tour-planner')" class="tp-subcat-bc-link">Categories</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <span class="tp-subcat-bc-active" id="tour-cat-detail-breadcrumb">Transit</span>
                         </div>
 
-                        <!-- Hero Info Card -->
-                        <div class="tp-cat-hero-card">
-                            <div style="display: flex; align-items: center; gap: 1.25rem;">
-                                <div class="tp-cat-icon-box" id="tour-cat-hero-icon" style="width: 54px; height: 54px; border-radius: 14px; font-size: 28px;">
-                                    <i class="material-icons" id="tour-cat-hero-icon-i">category</i>
+                        <!-- Panoramic Hero Banner Card -->
+                        <div class="tp-subcat-hero-banner" id="tour-subcat-hero-banner" style="background-image: url('images/subcategories/transit_banner_scenic.png');">
+                            <div class="tp-subcat-hero-overlay"></div>
+                            <div class="tp-subcat-hero-content">
+                                <div class="tp-subcat-hero-avatar-wrap">
+                                    <img id="tour-subcat-hero-avatar" class="tp-subcat-hero-avatar-img" src="images/categories/cat_transit.png" alt="Category Avatar">
                                 </div>
                                 <div>
-                                    <div style="display: flex; align-items: center; gap: 8px;">
-                                        <h2 style="font-size: 1.45rem; font-weight: 800; color: #0f172a; margin: 0;" id="tour-cat-hero-title">Category Title</h2>
-                                        <span class="tp-status-pill active" id="tour-cat-hero-status">Active</span>
-                                    </div>
-                                    <p style="font-size: 0.85rem; color: #64748b; margin: 4px 0 0 0;" id="tour-cat-hero-desc">Category overview and services</p>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 1.75rem; align-items: center;">
-                                <div style="text-align: right;">
-                                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; display: block;">Total Products</span>
-                                    <strong style="font-size: 1.4rem; color: #0f172a;" id="tour-cat-hero-prods">0</strong>
-                                </div>
-                                <div style="text-align: right;">
-                                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; display: block;">Sub-Categories</span>
-                                    <strong style="font-size: 1.4rem; color: #00875a;" id="tour-cat-hero-subs">0</strong>
+                                    <span class="tp-subcat-hero-badge">Category</span>
+                                    <h1 class="tp-subcat-hero-title" id="tour-cat-hero-title">Transit</h1>
+                                    <p class="tp-subcat-hero-desc" id="tour-cat-hero-desc">Move around with ease. Find and book the best transport options for your journey, from buses and trains to flights and more.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Sub-Category Filter Strip & Search Input -->
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
-                            <div class="tp-nav-tabs-group" id="tour-cat-subfilter-tabs" style="margin-bottom: 0;">
-                                <!-- Dynamic Sub-category Filter Buttons -->
+                        <!-- Sub-Categories Section Toolbar -->
+                        <div class="tp-subcat-toolbar">
+                            <div class="tp-subcat-title-group">
+                                <div class="tp-subcat-title-row">
+                                    <h2 class="tp-subcat-heading">Sub Categories</h2>
+                                    <span class="tp-subcat-count-badge" id="tour-subcat-count-badge">6</span>
+                                </div>
+                                <p class="tp-subcat-subtitle">Choose a sub-category to see available options.</p>
                             </div>
-                            <input type="text" id="tour-cat-search-input" placeholder="Search in this category..." oninput="filterCatProductsUI('tour-planner')" style="padding: 0.5rem 0.85rem; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.85rem; width: 260px;">
+                            <div class="tp-subcat-controls">
+                                <div class="tp-subcat-search-box">
+                                    <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
+                                    <input type="text" id="tour-subcat-search-input" placeholder="Search subcategories..." oninput="onSubCatSearchChange('tour-planner')">
+                                </div>
+                                <div class="tp-subcat-sort-box">
+                                    <i class="material-icons" style="font-size: 16px; color: #64748b;">tune</i>
+                                    <select id="tour-subcat-sort-select" onchange="onSubCatSortChange('tour-planner')">
+                                        <option value="name_asc">Sort by: Name (A-Z)</option>
+                                        <option value="name_desc">Sort by: Name (Z-A)</option>
+                                        <option value="operators_desc">Sort by: Operators (High-Low)</option>
+                                        <option value="date_desc">Sort by: Created Date (Newest)</option>
+                                        <option value="status">Sort by: Status</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="tp-btn-add-subcat" onclick="openAddSubCategoryModal('tour-planner')">
+                                    <i class="material-icons" style="font-size: 18px;">add</i>
+                                    <span>Add Sub Category</span>
+                                </button>
+                            </div>
                         </div>
 
-                        <!-- Products Table Card -->
-                        <div class="tp-table-card">
+                        <!-- Sub-Categories Ledger Table Card -->
+                        <div class="tp-subcat-table-card">
                             <div style="overflow-x: auto;">
-                                <table class="tp-custom-table" id="tour-cat-products-table">
+                                <table class="tp-subcat-table" id="tour-subcat-table">
                                     <thead>
                                         <tr>
-                                            <th style="width: 50px;">#</th>
-                                            <th>Product / Service Name</th>
-                                            <th>Provider / Operator</th>
-                                            <th>Location / Corridor</th>
-                                            <th>Format / Class</th>
-                                            <th>Price / Fare (BDT)</th>
-                                            <th>Status</th>
+                                            <th style="width: 45px; text-align: center;">#</th>
+                                            <th style="width: 86px;">Image</th>
+                                            <th class="sortable" onclick="toggleSubCatSortColumn('tour-planner', 'name')">Sub Category Name <span style="font-size: 11px; opacity: 0.6;">⬍</span></th>
+                                            <th class="sortable" onclick="toggleSubCatSortColumn('tour-planner', 'operators')">Operators <span style="font-size: 11px; opacity: 0.6;">⬍</span></th>
+                                            <th class="sortable" onclick="toggleSubCatSortColumn('tour-planner', 'date')">Created Date <span style="font-size: 11px; opacity: 0.6;">⬍</span></th>
+                                            <th class="sortable" onclick="toggleSubCatSortColumn('tour-planner', 'status')">Status <span style="font-size: 11px; opacity: 0.6;">⬍</span></th>
                                             <th style="width: 70px; text-align: center;">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tour-cat-products-tbody">
-                                        <!-- Product rows -->
+                                    <tbody id="tour-subcat-tbody">
+                                        <!-- Subcategory Rows dynamically populated -->
                                     </tbody>
                                 </table>
                             </div>
+
+                            <!-- Pagination Footer -->
+                            <div class="tp-subcat-pagination-footer">
+                                <div class="tp-subcat-showing-text" id="tour-subcat-showing-text">
+                                    <i class="material-icons" style="font-size: 16px; color: #94a3b8;">format_list_bulleted</i>
+                                    <span>Showing 1-6 of 6 subcategories</span>
+                                </div>
+                                <div class="tp-subcat-page-controls">
+                                    <button type="button" class="tp-subcat-page-btn" id="tour-subcat-prev-btn" onclick="changeSubCatPage('tour-planner', -1)">
+                                        <i class="material-icons" style="font-size: 16px;">chevron_left</i>
+                                    </button>
+                                    <button type="button" class="tp-subcat-page-btn active" id="tour-subcat-page-1">1</button>
+                                    <button type="button" class="tp-subcat-page-btn" id="tour-subcat-next-btn" onclick="changeSubCatPage('tour-planner', 1)">
+                                        <i class="material-icons" style="font-size: 16px;">chevron_right</i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Add / Edit Sub Category Modal -->
+                    <div class="tp-modal-overlay" id="subcat-crud-modal" onclick="closeSubCategoryModal(event)">
+                        <div class="tp-modal-card" style="max-width: 530px; width: 100%; border-radius: 18px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);" onclick="event.stopPropagation()">
+                            <div class="tp-modal-header" style="background: linear-gradient(135deg, #00875a 0%, #006040 100%); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; color: #ffffff;">
+                                        <i class="material-icons" id="subcat-modal-header-icon" style="font-size: 24px;">directions_bus</i>
+                                    </div>
+                                    <div>
+                                        <h3 id="subcat-modal-title" style="margin: 0; color: #ffffff; font-size: 1.15rem; font-weight: 800;">Add Sub Category</h3>
+                                        <p id="subcat-modal-subtitle" style="margin: 3px 0 0 0; color: rgba(255,255,255,0.85); font-size: 0.775rem;">Create a new sub-category offering under Transit</p>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="closeSubCategoryModal()" style="color: #ffffff; background: rgba(255,255,255,0.18); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                    <i class="material-icons" style="font-size: 18px;">close</i>
+                                </button>
+                            </div>
+                            <form id="subcat-crud-form" onsubmit="handleSubCategoryFormSubmit(event)" style="padding: 1.35rem 1.6rem;">
+                                <input type="hidden" id="subcat-modal-id">
+                                <input type="hidden" id="subcat-modal-section">
+
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Parent Category</label>
+                                    <input type="text" id="subcat-modal-parent-display" readonly style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #e2e8f0; border-radius: 10px; background: #f8fafc; font-size: 0.85rem; font-weight: 700; color: #0f172a;">
+                                </div>
+
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Sub Category Name <span style="color: #ef4444;">*</span></label>
+                                    <div style="position: relative;">
+                                        <i class="material-icons" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #94a3b8;">label</i>
+                                        <input type="text" id="subcat-modal-name" required placeholder="e.g., Bus, Luxury Sleeper, Train, Ferry" style="width: 100%; padding: 0.52rem 0.85rem 0.52rem 2.25rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none;">
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Description <span style="color: #ef4444;">*</span></label>
+                                    <textarea id="subcat-modal-desc" required rows="2" placeholder="Brief description of transport or service offered..." style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.825rem; outline: none; resize: vertical;"></textarea>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                    <div>
+                                        <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Operators Count</label>
+                                        <div style="position: relative;">
+                                            <i class="material-icons" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #94a3b8;">people</i>
+                                            <input type="number" id="subcat-modal-operators" min="0" value="1" style="width: 100%; padding: 0.52rem 0.85rem 0.52rem 2.25rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none;">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Status</label>
+                                        <select id="subcat-modal-status" style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none; background: #ffffff;">
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 1.25rem;">
+                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Thumbnail Image</label>
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <img id="subcat-modal-thumb-preview" src="images/subcategories/sub_transit_bus.png" alt="Preview" style="width: 62px; height: 36px; border-radius: 8px; object-fit: cover; border: 1px solid #cbd5e1;">
+                                        <div style="flex: 1;">
+                                            <input type="file" id="subcat-modal-thumb-file" accept="image/*" onchange="previewSubCategoryThumbnail(event)" style="font-size: 0.775rem;">
+                                            <input type="hidden" id="subcat-modal-thumb-data">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; justify-content: flex-end; gap: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #f1f5f9;">
+                                    <button type="button" class="tp-btn-cancel" onclick="closeSubCategoryModal()" style="padding: 0.5rem 1.15rem; border: 1px solid #cbd5e1; border-radius: 10px; background: #ffffff; color: #475569; font-weight: 600; cursor: pointer;">Cancel</button>
+                                    <button type="submit" style="background: #00875a; color: #ffffff; padding: 0.5rem 1.4rem; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 6px rgba(0, 135, 90, 0.25);">Save Sub Category</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Floating Action Dropdown Menu for Sub Categories -->
+                    <div id="subcat-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+                        <button type="button" class="tp-action-item" onclick="handleSubCatAction('edit')">
+                            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
+                        </button>
+                        <button type="button" class="tp-action-item" onclick="handleSubCatAction('toggle')">
+                            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
+                        </button>
+                        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
+                        <button type="button" class="tp-action-item danger" onclick="handleSubCatAction('delete')">
+                            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete
+                        </button>
                     </div>
 
                     <!-- Tour Category Modal handled universally by universal-category-modal -->
@@ -3082,7 +3749,7 @@
                     <!-- Floating Action Dropdown Menu for Tour Planner -->
                     <div id="tour-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
                         <button type="button" class="tp-action-item" onclick="handleCategoryViewProducts('tour-planner')">
-                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Products
+                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Sub Categories
                         </button>
                         <button type="button" class="tp-action-item" onclick="handleTourCategoryEdit()">
                             <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
@@ -3956,14 +4623,14 @@
 
         // ================= 1. TRAVEL PLANNER (CATEGORY & SERVICE MANAGER) ================= //
 
-                const DEFAULT_TP_CATEGORIES = [
-            { id: 1, name: 'Transit', subtitle: 'Transport services for your journey', type: 'Transport', typeClass: 'pill-transport', typeIcon: 'directions_bus', image: 'images/categories/cat_transit.png', subCategories: 8, products: 45, status: 'Active', createdDate: '12 May 2025' },
-            { id: 2, name: 'Accommodation', subtitle: 'Hotels, resorts and stays', type: 'Accommodation', typeClass: 'pill-accommodation', typeIcon: 'hotel', image: 'images/categories/cat_accommodation.png', subCategories: 6, products: 32, status: 'Active', createdDate: '10 May 2025' },
-            { id: 3, name: 'Activities & Experiences', subtitle: 'Tours, adventure and experiences', type: 'Activity', typeClass: 'pill-activity', typeIcon: 'landscape', image: 'images/categories/cat_activities.png', subCategories: 5, products: 21, status: 'Active', createdDate: '08 May 2025' },
+        const DEFAULT_TP_CATEGORIES = [
+            { id: 1, name: 'Transit', subtitle: 'Transport services for your journey', type: 'Transport', typeClass: 'pill-transport', typeIcon: 'directions_bus', image: 'images/categories/cat_transit.png', subCategories: 6, products: 45, status: 'Active', createdDate: '12 May 2025' },
+            { id: 2, name: 'Accommodation', subtitle: 'Hotels, resorts and stays', type: 'Accommodation', typeClass: 'pill-accommodation', typeIcon: 'hotel', image: 'images/categories/cat_accommodation.png', subCategories: 4, products: 32, status: 'Active', createdDate: '10 May 2025' },
+            { id: 3, name: 'Activities & Experiences', subtitle: 'Tours, adventure and experiences', type: 'Activity', typeClass: 'pill-activity', typeIcon: 'landscape', image: 'images/categories/cat_activities.png', subCategories: 4, products: 21, status: 'Active', createdDate: '08 May 2025' },
             { id: 4, name: 'Attractions & Tickets', subtitle: 'Attractions, parks and entry tickets', type: 'Service', typeClass: 'pill-service-amber', typeIcon: 'confirmation_number', image: 'images/categories/cat_attractions.png', subCategories: 4, products: 18, status: 'Active', createdDate: '05 May 2025' },
             { id: 5, name: 'Food & Dining', subtitle: 'Restaurants, cafes and local food', type: 'Service', typeClass: 'pill-service-rose', typeIcon: 'restaurant', image: 'images/categories/cat_food.png', subCategories: 4, products: 12, status: 'Active', createdDate: '02 May 2025' },
             { id: 6, name: 'Guide & Support', subtitle: 'Tour guide and travel support', type: 'Service', typeClass: 'pill-service-blue', typeIcon: 'support_agent', image: 'images/categories/cat_guide.png', subCategories: 3, products: 9, status: 'Active', createdDate: '01 May 2025' },
-            { id: 7, name: 'Cargo & Logistics', subtitle: 'Shipping and cargo services', type: 'Logistics', typeClass: 'pill-logistics', typeIcon: 'local_shipping', image: 'images/categories/cat_cargo.png', subCategories: 2, products: 4, status: 'Inactive', createdDate: '28 Apr 2025' }
+            { id: 7, name: 'Cargo & Logistics', subtitle: 'Shipping and cargo services', type: 'Logistics', typeClass: 'pill-logistics', typeIcon: 'local_shipping', image: 'images/categories/cat_cargo.png', subCategories: 3, products: 4, status: 'Inactive', createdDate: '28 Apr 2025' }
         ];
 
         function getTypePillMarkup(cat) {
@@ -4122,6 +4789,206 @@
                         <h3 style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; text-transform: capitalize;">${tabName} Management</h3>
                         <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Manage and configure your registered ${tabName} catalog data directly synchronized with Travel Planner.</p>
                         <button type="button" class="tp-btn-add-category" onclick="switchTpMainTab('categories', document.querySelector('#tp-nav-tabs .tp-tab-pill:first-child'))">
+                            <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Categories
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // ================= TOUR PLANNER CATEGORIES ENGINE ================= //
+
+        function getStoredTourCategories() {
+            try {
+                const stored = localStorage.getItem('travelup_tour_categories');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        return parsed.map(cat => {
+                            const def = DEFAULT_TP_CATEGORIES.find(d => d.name.toLowerCase() === (cat.name || '').toLowerCase());
+                            return {
+                                ...cat,
+                                subtitle: cat.subtitle || (def ? def.subtitle : 'Tour offerings and services'),
+                                image: cat.image || (def ? def.image : 'images/categories/cat_transit.png'),
+                                typeClass: cat.typeClass || (def ? def.typeClass : 'pill-transport'),
+                                typeIcon: cat.typeIcon || (def ? def.typeIcon : 'category')
+                            };
+                        });
+                    }
+                }
+            } catch (err) {
+                console.error('Failed to load tour categories:', err);
+            }
+            try {
+                localStorage.setItem('travelup_tour_categories', JSON.stringify(DEFAULT_TP_CATEGORIES));
+            } catch (err) {}
+            return JSON.parse(JSON.stringify(DEFAULT_TP_CATEGORIES));
+        }
+
+        function saveStoredTourCategories() {
+            try {
+                localStorage.setItem('travelup_tour_categories', JSON.stringify(tourCategories));
+            } catch (err) {
+                console.error('Failed to save tour categories to localStorage:', err);
+            }
+        }
+
+        let tourCategories = getStoredTourCategories();
+        let activeTourCategoryActionId = null;
+
+        function loadTourPlanner() {
+            tourCategories = getStoredTourCategories();
+            renderTourCategoriesTable(tourCategories);
+        }
+
+        function renderTourCategoriesTable(list = tourCategories) {
+            const tbody = document.getElementById('tour-categories-tbody');
+            if (!tbody) return;
+
+            const badge = document.getElementById('tour-cat-tab-badge');
+            if (badge) badge.textContent = list.length;
+            const footerCount = document.getElementById('tour-footer-count');
+            if (footerCount) footerCount.textContent = `Showing 1-${list.length} of ${list.length} categories`;
+
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2.5rem;">No categories found matching your search.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = list.map((cat, idx) => {
+                const isActive = (cat.status || '').toLowerCase() === 'active';
+                const escapedName = (cat.name || '').replace(/'/g, "\\'");
+                const typePill = getTypePillMarkup(cat);
+                return `
+                    <tr>
+                        <td style="text-align: center;"><strong style="color: #102a43; font-size: 0.95rem;">${idx + 1}</strong></td>
+                        <td>
+                            <div class="tp-category-cell" onclick="openCategoryDetailView('${escapedName}', 'tour-planner')" title="Click to view ${cat.name} subcategories">
+                                <img src="${cat.image || 'images/categories/cat_transit.png'}" alt="${cat.name}" class="tp-cat-thumb-img" onerror="this.src='images/categories/cat_transit.png'">
+                                <div style="min-width: 0;">
+                                    <div class="tp-cat-name">${cat.name}</div>
+                                    <div class="tp-cat-subtitle">${cat.subtitle || 'Transport services for your journey'}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${typePill}</td>
+                        <td><span style="color: #334e68; font-weight: 600;">${cat.subCategories}</span></td>
+                        <td><span style="color: #334e68; font-weight: 600;">${cat.products}</span></td>
+                        <td>
+                            <span class="tp-status-pill-modern ${isActive ? 'active' : 'inactive'}">
+                                <span class="status-dot"></span>
+                                <span>${cat.status}</span>
+                            </span>
+                        </td>
+                        <td>
+                            <span style="display: inline-flex; align-items: center; gap: 6px; color: #486581; font-size: 0.85rem; font-weight: 500;">
+                                <i class="material-icons" style="font-size: 16px; color: #829ab1;">calendar_today</i>
+                                <span>${cat.createdDate}</span>
+                            </span>
+                        </td>
+                        <td style="text-align: center; position: relative;">
+                            <button type="button" class="tp-action-btn-circle" onclick="openTourCategoryActionMenu(${cat.id}, event)" title="Actions">
+                                <i class="material-icons" style="font-size: 18px;">more_horiz</i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function openTourCategoryActionMenu(catId, e) {
+            e.stopPropagation();
+            const menu = document.getElementById('tour-action-dropdown-menu');
+            if (!menu) return;
+
+            if (activeTourCategoryActionId === catId && menu.classList.contains('show')) {
+                menu.classList.remove('show');
+                activeTourCategoryActionId = null;
+                return;
+            }
+
+            activeTourCategoryActionId = catId;
+
+            const btn = e.currentTarget;
+            const rect = btn.getBoundingClientRect();
+
+            menu.style.top = `${rect.bottom + window.scrollY + 4}px`;
+            menu.style.left = `${rect.right + window.scrollX - 160}px`;
+            menu.classList.add('show');
+        }
+
+        function handleTourCategoryEdit() {
+            const menu = document.getElementById('tour-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+
+            if (activeTourCategoryActionId) {
+                openCategoryModal({
+                    mode: 'edit',
+                    sectionType: 'tour-planner',
+                    catId: activeTourCategoryActionId
+                });
+            }
+        }
+
+        function handleTourCategoryToggleStatus() {
+            const menu = document.getElementById('tour-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+
+            const cat = tourCategories.find(c => c.id === activeTourCategoryActionId);
+            if (cat) {
+                cat.status = cat.status === 'Active' ? 'Inactive' : 'Active';
+                saveStoredTourCategories();
+                renderTourCategoriesTable(tourCategories);
+                showToast(`Category "${cat.name}" status changed to ${cat.status}`, 'info');
+            }
+        }
+
+        function handleTourCategoryDelete() {
+            const menu = document.getElementById('tour-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+
+            const catIndex = tourCategories.findIndex(c => c.id === activeTourCategoryActionId);
+            if (catIndex !== -1) {
+                const catName = tourCategories[catIndex].name;
+                if (confirm(`Are you sure you want to delete the category "${catName}"?`)) {
+                    tourCategories.splice(catIndex, 1);
+                    saveStoredTourCategories();
+                    renderTourCategoriesTable(tourCategories);
+                    showToast(`Category "${catName}" has been deleted.`, 'warning');
+                }
+            }
+        }
+
+        function switchTourMainTab(tabName, el) {
+            document.querySelectorAll('#tour-nav-tabs .tp-tab-pill').forEach(btn => btn.classList.remove('active'));
+            if (el) el.classList.add('active');
+
+            const tableCard = document.getElementById('tour-table-container');
+            let placeholder = document.getElementById('tour-tab-placeholder');
+
+            if (tabName === 'categories') {
+                if (tableCard) tableCard.style.display = 'block';
+                if (placeholder) placeholder.style.display = 'none';
+                renderTourCategoriesTable(tourCategories);
+            } else {
+                if (tableCard) tableCard.style.display = 'none';
+                if (!placeholder) {
+                    placeholder = document.createElement('div');
+                    placeholder.id = 'tour-tab-placeholder';
+                    placeholder.className = 'tp-table-card';
+                    placeholder.style.padding = '3.5rem 2rem';
+                    placeholder.style.textAlign = 'center';
+                    tableCard.parentNode.insertBefore(placeholder, tableCard.nextSibling);
+                }
+                placeholder.style.display = 'block';
+                placeholder.innerHTML = `
+                    <div style="max-width: 440px; margin: 0 auto;">
+                        <div style="width: 58px; height: 58px; border-radius: 16px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+                            <i class="material-icons" style="font-size: 30px;">folder_open</i>
+                        </div>
+                        <h3 style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; text-transform: capitalize;">${tabName} Management</h3>
+                        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Manage and configure your registered ${tabName} catalog data directly synchronized with Tour Planner.</p>
+                        <button type="button" class="tp-btn-add-category" onclick="switchTourMainTab('categories', document.querySelector('#tour-nav-tabs .tp-tab-pill:first-child'))">
                             <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Categories
                         </button>
                     </div>
@@ -4531,93 +5398,227 @@
             }
         }
 
+        // ==============================================================
+        // SUB CATEGORY DATA & ENGINE (Matching Mockup Pixel-for-Pixel)
+        // ==============================================================
+
+        const CATEGORY_METADATA = {
+            'transit': {
+                title: 'Transit',
+                desc: 'Move around with ease. Find and book the best transport options for your journey, from buses and trains to flights and more.',
+                avatar: 'images/categories/cat_transit.png',
+                banner: 'images/subcategories/transit_banner_scenic.png'
+            },
+            'accommodation': {
+                title: 'Accommodation',
+                desc: 'Find your perfect stay. Choose from luxury hotels, beach resorts, cozy cottages and private villas.',
+                avatar: 'images/categories/cat_accommodation.png',
+                banner: 'images/hero-bg.jpg'
+            },
+            'activities & experiences': {
+                title: 'Activities & Experiences',
+                desc: 'Unforgettable adventures. Discover thrilling outdoor activities, scuba diving, trekking, and boat tours.',
+                avatar: 'images/categories/cat_activities.png',
+                banner: 'images/auth-scenic-bg.jpg'
+            },
+            'attractions': {
+                title: 'Attractions',
+                desc: 'Explore breathtaking destinations. Visit national parks, waterfalls, heritage sites, and scenic coastlines.',
+                avatar: 'images/categories/cat_attractions.png',
+                banner: 'images/auth-bg.jpg'
+            },
+            'attractions & tickets': {
+                title: 'Attractions & Tickets',
+                desc: 'Explore breathtaking destinations. Visit national parks, waterfalls, heritage sites, and scenic coastlines.',
+                avatar: 'images/categories/cat_attractions.png',
+                banner: 'images/auth-bg.jpg'
+            },
+            'food & dining': {
+                title: 'Food & Dining',
+                desc: 'Savor exceptional tastes. Experience fine dining, authentic local cuisines, and fresh seafood specialties.',
+                avatar: 'images/categories/cat_food.png',
+                banner: 'images/dash-promo-banner.jpg'
+            },
+            'guide & escort': {
+                title: 'Guide & Escort',
+                desc: 'Travel with trusted experts. Connect with certified city guides, adventure leaders, and naturalists.',
+                avatar: 'images/categories/cat_guide.png',
+                banner: 'images/sidebar-scenic.jpg'
+            },
+            'guide & support': {
+                title: 'Guide & Support',
+                desc: 'Travel with trusted experts. Connect with certified city guides, adventure leaders, and naturalists.',
+                avatar: 'images/categories/cat_guide.png',
+                banner: 'images/sidebar-scenic.jpg'
+            },
+            'cargo & baggage': {
+                title: 'Cargo & Baggage',
+                desc: 'Reliable parcel and baggage transit. Secure luggage transfers, express courier, and heavy freight.',
+                avatar: 'images/categories/cat_cargo.png',
+                banner: 'images/subcategories/transit_banner_scenic.png'
+            },
+            'cargo & logistics': {
+                title: 'Cargo & Logistics',
+                desc: 'Reliable parcel and cargo logistics. Secure parcel deliveries, intercity haulage, and freight.',
+                avatar: 'images/categories/cat_cargo.png',
+                banner: 'images/subcategories/transit_banner_scenic.png'
+            }
+        };
+
+        const DEFAULT_SUBCATEGORIES = {
+            'Transit': [
+                { id: 'sub-transit-1', name: 'Bus', desc: 'Comfortable and affordable bus services for your journey.', operators: 8, createdDate: '12 May 2025', status: 'Active', image: 'images/subcategories/sub_transit_bus.png' },
+                { id: 'sub-transit-2', name: 'Train', desc: 'Fast and reliable train services across the country.', operators: 3, createdDate: '10 May 2025', status: 'Active', image: 'images/subcategories/sub_transit_train.png' },
+                { id: 'sub-transit-3', name: 'Flight', desc: 'Fly to your dream destinations with trusted airlines.', operators: 4, createdDate: '08 May 2025', status: 'Active', image: 'images/subcategories/sub_transit_flight.png' },
+                { id: 'sub-transit-4', name: 'Ferry', desc: 'Scenic and convenient ferry services for your next adventure.', operators: 2, createdDate: '06 May 2025', status: 'Active', image: 'images/subcategories/sub_transit_ferry.png' },
+                { id: 'sub-transit-5', name: 'Taxi', desc: 'Quick and safe taxi services, anytime, anywhere.', operators: 3, createdDate: '05 May 2025', status: 'Active', image: 'images/subcategories/sub_transit_taxi.png' },
+                { id: 'sub-transit-6', name: 'Van & Car', desc: 'Private van and car rentals for a comfortable ride.', operators: 2, createdDate: '02 May 2025', status: 'Active', image: 'images/subcategories/sub_transit_vancar.png' }
+            ],
+            'Accommodation': [
+                { id: 'sub-acc-1', name: 'Hotel', desc: 'Luxury and boutique hotels for a relaxing stay.', operators: 12, createdDate: '14 May 2025', status: 'Active', image: 'images/subcategories/sub_acc_hotel.png' },
+                { id: 'sub-acc-2', name: 'Resort', desc: 'Scenic beachfront and mountain luxury resorts.', operators: 6, createdDate: '11 May 2025', status: 'Active', image: 'images/subcategories/sub_acc_resort.png' },
+                { id: 'sub-acc-3', name: 'Homestay', desc: 'Authentic local stays and guest houses.', operators: 5, createdDate: '09 May 2025', status: 'Active', image: 'images/subcategories/sub_acc_homestay.png' },
+                { id: 'sub-acc-4', name: 'Villa', desc: 'Private villas and executive suites for groups.', operators: 3, createdDate: '07 May 2025', status: 'Active', image: 'images/subcategories/sub_acc_villa.png' }
+            ],
+            'Activities & Experiences': [
+                { id: 'sub-act-1', name: 'Scuba Diving', desc: 'Explore vibrant coral reefs and marine life.', operators: 4, createdDate: '12 May 2025', status: 'Active', image: 'images/subcategories/sub_act_scuba.png' },
+                { id: 'sub-act-2', name: 'Trekking & Hiking', desc: 'Guided mountain trails and hill trekking tours.', operators: 5, createdDate: '10 May 2025', status: 'Active', image: 'images/subcategories/sub_act_trekking.png' },
+                { id: 'sub-act-3', name: 'Parasailing', desc: 'High-flying ocean parasailing experiences.', operators: 3, createdDate: '08 May 2025', status: 'Active', image: 'images/subcategories/sub_act_parasailing.png' },
+                { id: 'sub-act-4', name: 'Boat Cruise', desc: 'Relaxing sunset river and bay cruises.', operators: 4, createdDate: '05 May 2025', status: 'Active', image: 'images/subcategories/sub_act_cruise.png' }
+            ],
+            'Attractions': [
+                { id: 'sub-att-1', name: 'Historical Sites', desc: 'Centuries-old monuments, forts, and heritage sites.', operators: 6, createdDate: '15 May 2025', status: 'Active', image: 'images/subcategories/sub_att_history.png' },
+                { id: 'sub-att-2', name: 'National Parks', desc: 'Protected wildlife sanctuaries and green rainforests.', operators: 4, createdDate: '11 May 2025', status: 'Active', image: 'images/subcategories/sub_att_parks.png' },
+                { id: 'sub-att-3', name: 'Waterfalls', desc: 'Stunning cascading mountain waterfalls.', operators: 3, createdDate: '08 May 2025', status: 'Active', image: 'images/subcategories/sub_att_waterfalls.png' },
+                { id: 'sub-att-4', name: 'Beaches', desc: 'Pristine white sand coastal beaches and bays.', operators: 5, createdDate: '04 May 2025', status: 'Active', image: 'images/subcategories/sub_att_beaches.png' }
+            ],
+            'Attractions & Tickets': [
+                { id: 'sub-atkt-1', name: 'Historical Sites', desc: 'Centuries-old monuments, forts, and heritage sites.', operators: 6, createdDate: '15 May 2025', status: 'Active', image: 'images/subcategories/sub_att_history.png' },
+                { id: 'sub-atkt-2', name: 'National Parks', desc: 'Protected wildlife sanctuaries and green rainforests.', operators: 4, createdDate: '11 May 2025', status: 'Active', image: 'images/subcategories/sub_att_parks.png' },
+                { id: 'sub-atkt-3', name: 'Waterfalls', desc: 'Stunning cascading mountain waterfalls.', operators: 3, createdDate: '08 May 2025', status: 'Active', image: 'images/subcategories/sub_att_waterfalls.png' },
+                { id: 'sub-atkt-4', name: 'Beaches', desc: 'Pristine white sand coastal beaches and bays.', operators: 5, createdDate: '04 May 2025', status: 'Active', image: 'images/subcategories/sub_att_beaches.png' }
+            ],
+            'Food & Dining': [
+                { id: 'sub-food-1', name: 'Fine Dining', desc: 'Award-winning gourmet restaurants and culinary dining.', operators: 7, createdDate: '13 May 2025', status: 'Active', image: 'images/categories/cat_food.png' },
+                { id: 'sub-food-2', name: 'Traditional Local', desc: 'Authentic indigenous cuisines and regional flavors.', operators: 9, createdDate: '10 May 2025', status: 'Active', image: 'images/categories/cat_food.png' },
+                { id: 'sub-food-3', name: 'Seafood Specialty', desc: 'Fresh ocean catch grilled and prepared fresh.', operators: 6, createdDate: '07 May 2025', status: 'Active', image: 'images/categories/cat_food.png' },
+                { id: 'sub-food-4', name: 'Cafes & Bistros', desc: 'Specialty coffee, bakeries, and casual bistros.', operators: 4, createdDate: '04 May 2025', status: 'Active', image: 'images/categories/cat_food.png' }
+            ],
+            'Guide & Escort': [
+                { id: 'sub-guide-1', name: 'Certified City Guide', desc: 'Licensed multilingual guides for heritage cities.', operators: 8, createdDate: '12 May 2025', status: 'Active', image: 'images/categories/cat_guide.png' },
+                { id: 'sub-guide-2', name: 'Adventure Leader', desc: 'Experienced mountaineering and trekking leaders.', operators: 5, createdDate: '09 May 2025', status: 'Active', image: 'images/categories/cat_guide.png' },
+                { id: 'sub-guide-3', name: 'Wildlife Naturalist', desc: 'Expert naturalists for jungle and mangrove tours.', operators: 3, createdDate: '06 May 2025', status: 'Active', image: 'images/categories/cat_guide.png' }
+            ],
+            'Guide & Support': [
+                { id: 'sub-gs-1', name: 'Certified City Guide', desc: 'Licensed multilingual guides for heritage cities.', operators: 8, createdDate: '12 May 2025', status: 'Active', image: 'images/categories/cat_guide.png' },
+                { id: 'sub-gs-2', name: 'Adventure Leader', desc: 'Experienced mountaineering and trekking leaders.', operators: 5, createdDate: '09 May 2025', status: 'Active', image: 'images/categories/cat_guide.png' },
+                { id: 'sub-gs-3', name: 'Wildlife Naturalist', desc: 'Expert naturalists for jungle and mangrove tours.', operators: 3, createdDate: '06 May 2025', status: 'Active', image: 'images/categories/cat_guide.png' }
+            ],
+            'Cargo & Baggage': [
+                { id: 'sub-cargo-1', name: 'Express Parcel', desc: 'Same-day express intercity parcel delivery.', operators: 5, createdDate: '14 May 2025', status: 'Active', image: 'images/categories/cat_cargo.png' },
+                { id: 'sub-cargo-2', name: 'Luggage Transfer', desc: 'Door-to-door luggage transit and storage.', operators: 4, createdDate: '10 May 2025', status: 'Active', image: 'images/categories/cat_cargo.png' },
+                { id: 'sub-cargo-3', name: 'Secure Freight', desc: 'Heavy cargo and equipment logistics.', operators: 3, createdDate: '05 May 2025', status: 'Active', image: 'images/categories/cat_cargo.png' }
+            ],
+            'Cargo & Logistics': [
+                { id: 'sub-cl-1', name: 'Express Parcel', desc: 'Same-day express intercity parcel delivery.', operators: 5, createdDate: '14 May 2025', status: 'Active', image: 'images/categories/cat_cargo.png' },
+                { id: 'sub-cl-2', name: 'Luggage Transfer', desc: 'Door-to-door luggage transit and storage.', operators: 4, createdDate: '10 May 2025', status: 'Active', image: 'images/categories/cat_cargo.png' },
+                { id: 'sub-cl-3', name: 'Secure Freight', desc: 'Heavy cargo and equipment logistics.', operators: 3, createdDate: '05 May 2025', status: 'Active', image: 'images/categories/cat_cargo.png' }
+            ]
+        };
+
+        function getStoredSubCategoriesMap() {
+            try {
+                const stored = localStorage.getItem('travelup_stored_subcategories_v2');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (typeof parsed === 'object' && parsed !== null) return parsed;
+                }
+            } catch (err) {
+                console.error('Failed to load subcategories:', err);
+            }
+            try {
+                localStorage.setItem('travelup_stored_subcategories_v2', JSON.stringify(DEFAULT_SUBCATEGORIES));
+            } catch (err) {}
+            return JSON.parse(JSON.stringify(DEFAULT_SUBCATEGORIES));
+        }
+
+        function saveStoredSubCategoriesMap(map) {
+            try {
+                localStorage.setItem('travelup_stored_subcategories_v2', JSON.stringify(map));
+            } catch (err) {
+                console.error('Failed to save subcategories:', err);
+            }
+        }
+
+        let activeSubCatActionId = null;
+        let activeSubCatActionSection = null;
+
         function openCategoryDetailView(catName, sectionType = 'travel-planner') {
             const isTour = sectionType === 'tour-planner';
             const prefix = isTour ? 'tour' : 'tp';
             const categoriesList = isTour ? tourCategories : tpCategories;
 
-            // Find category in list (case-insensitive)
-            const cat = categoriesList.find(c => c.name.toLowerCase() === (catName || '').toLowerCase()) || {
+            // Find category or construct fallback
+            const cat = categoriesList.find(c => (c.name || '').toLowerCase() === (catName || '').toLowerCase()) || {
                 id: 999,
                 name: catName,
                 type: 'Service',
-                subCategories: 3,
+                subCategories: 6,
                 products: 0,
                 status: 'Active',
-                icon: 'category',
-                bg: '#e0f2fe',
-                color: '#0284c7'
+                image: 'images/categories/cat_transit.png'
+            };
+
+            const catKey = (cat.name || '').toLowerCase();
+            const meta = CATEGORY_METADATA[catKey] || {
+                title: cat.name,
+                desc: 'Move around with ease. Find and book the best transport options for your journey.',
+                avatar: cat.image || 'images/categories/cat_transit.png',
+                banner: 'images/subcategories/transit_banner_scenic.png'
             };
 
             activeDetailCategory = {
                 name: cat.name,
                 sectionType: sectionType,
-                subCat: 'All',
-                search: ''
+                search: '',
+                sort: 'name_asc',
+                page: 1,
+                pageSize: 10
             };
 
-            // Update Breadcrumb
+            // 1. Breadcrumb
             const bc = document.getElementById(`${prefix}-cat-detail-breadcrumb`);
             if (bc) bc.textContent = cat.name;
 
-            // Update Hero Card elements
+            // 2. Hero Banner elements
+            const heroBanner = document.getElementById(`${prefix}-subcat-hero-banner`);
+            if (heroBanner) {
+                heroBanner.style.backgroundImage = `url('${meta.banner || 'images/subcategories/transit_banner_scenic.png'}')`;
+            }
+
+            const heroAvatar = document.getElementById(`${prefix}-subcat-hero-avatar`);
+            if (heroAvatar) {
+                heroAvatar.src = meta.avatar || cat.image || 'images/categories/cat_transit.png';
+                heroAvatar.alt = cat.name;
+            }
+
             const heroTitle = document.getElementById(`${prefix}-cat-hero-title`);
-            if (heroTitle) heroTitle.textContent = cat.name;
-
-            const heroIcon = document.getElementById(`${prefix}-cat-hero-icon`);
-            if (heroIcon) {
-                heroIcon.style.background = cat.bg || '#e0f2fe';
-                heroIcon.style.color = cat.color || '#0284c7';
-            }
-
-            const heroIconI = document.getElementById(`${prefix}-cat-hero-icon-i`);
-            if (heroIconI) heroIconI.textContent = cat.icon || 'category';
-
-            const heroStatus = document.getElementById(`${prefix}-cat-hero-status`);
-            if (heroStatus) {
-                const isActive = (cat.status || '').toLowerCase() === 'active';
-                heroStatus.textContent = cat.status || 'Active';
-                heroStatus.className = `tp-status-pill ${isActive ? 'active' : 'inactive'}`;
-            }
+            if (heroTitle) heroTitle.textContent = meta.title || cat.name;
 
             const heroDesc = document.getElementById(`${prefix}-cat-hero-desc`);
-            if (heroDesc) {
-                heroDesc.textContent = `Browse, search and manage all ${cat.name} inventory registered for ${isTour ? 'Tour Planner' : 'Travel Planner'}.`;
-            }
+            if (heroDesc) heroDesc.textContent = meta.desc;
 
-            const heroSubs = document.getElementById(`${prefix}-cat-hero-subs`);
-            if (heroSubs) heroSubs.textContent = cat.subCategories || 1;
-
-            // Get products for this category
-            const productsMap = getStoredCategoryProductsMap();
-            let prods = productsMap[cat.name];
-            if (!prods) {
-                prods = [];
-                productsMap[cat.name] = prods;
-                saveStoredCategoryProductsMap(productsMap);
-            }
-
-            // Sync master category count if needed
-            if (cat.products !== prods.length) {
-                cat.products = prods.length;
-                if (isTour) saveStoredTourCategories();
-                else saveStoredTpCategories();
-            }
-
-            const heroProds = document.getElementById(`${prefix}-cat-hero-prods`);
-            if (heroProds) heroProds.textContent = prods.length;
-
-            // Render Sub-Category Filter Buttons
-            renderCatSubFilters(sectionType, cat.name, prods);
-
-            // Clear search input
-            const searchInput = document.getElementById(`${prefix}-cat-search-input`);
+            // 3. Clear search and reset sort
+            const searchInput = document.getElementById(`${prefix}-subcat-search-input`);
             if (searchInput) searchInput.value = '';
 
-            // Render Products Table
-            renderCatProductsTable(sectionType, prods);
+            const sortSelect = document.getElementById(`${prefix}-subcat-sort-select`);
+            if (sortSelect) sortSelect.value = 'name_asc';
 
-            // Hide master table and tabs, display category view
+            // 4. Render Table
+            renderSubCategoriesTable(sectionType);
+
+            // 5. Toggle Views
             const masterTable = document.getElementById(`${prefix}-table-container`);
             if (masterTable) masterTable.style.display = 'none';
 
@@ -4676,116 +5677,122 @@
             }
         }
 
-        function renderCatSubFilters(sectionType, catName, prods) {
-            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
-            const container = document.getElementById(`${prefix}-cat-subfilter-tabs`);
-            if (!container) return;
-
-            // Collect unique subcategories
-            const subCats = new Set(['All']);
-            prods.forEach(p => {
-                if (p.subCategory) subCats.add(p.subCategory);
-            });
-
-            const activeSub = activeDetailCategory ? activeDetailCategory.subCat : 'All';
-
-            container.innerHTML = Array.from(subCats).map(sub => {
-                const count = sub === 'All' ? prods.length : prods.filter(p => p.subCategory === sub).length;
-                const isActive = (sub === activeSub) ? 'active' : '';
-                const escSub = sub.replace(/'/g, "\\'");
-                return `
-                    <button type="button" class="tp-tab-pill ${isActive}" onclick="filterCatProductsUI('${sectionType}', '${escSub}', this)">
-                        ${sub} <span style="opacity: 0.7; font-size: 0.75rem; font-weight: 600;">(${count})</span>
-                    </button>
-                `;
-            }).join('');
-        }
-
-        function filterCatProductsUI(sectionType, subCategory, btnEl) {
+        function renderSubCategoriesTable(sectionType = 'travel-planner') {
             if (!activeDetailCategory) return;
-            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+            const catName = activeDetailCategory.name;
 
-            if (subCategory !== undefined) {
-                activeDetailCategory.subCat = subCategory;
-                if (btnEl) {
-                    const tabs = document.querySelectorAll(`#${prefix}-cat-subfilter-tabs .tp-tab-pill`);
-                    tabs.forEach(t => t.classList.remove('active'));
-                    btnEl.classList.add('active');
-                }
+            const subcatsMap = getStoredSubCategoriesMap();
+            let subcats = subcatsMap[catName];
+            if (!subcats) {
+                subcats = DEFAULT_SUBCATEGORIES[catName] || [];
+                subcatsMap[catName] = subcats;
+                saveStoredSubCategoriesMap(subcatsMap);
             }
 
-            const searchInput = document.getElementById(`${prefix}-cat-search-input`);
-            const q = (searchInput ? searchInput.value : '').toLowerCase().trim();
-            activeDetailCategory.search = q;
+            // Update badge count
+            const countBadge = document.getElementById(`${prefix}-subcat-count-badge`);
+            if (countBadge) countBadge.textContent = subcats.length;
 
-            const productsMap = getStoredCategoryProductsMap();
-            let prods = productsMap[activeDetailCategory.name] || [];
-
-            // Filter by subcategory
-            if (activeDetailCategory.subCat && activeDetailCategory.subCat !== 'All') {
-                prods = prods.filter(p => (p.subCategory || '').toLowerCase() === activeDetailCategory.subCat.toLowerCase());
+            // Sync with parent category subcategories count
+            const categoriesList = isTour ? tourCategories : tpCategories;
+            const parentCat = categoriesList.find(c => (c.name || '').toLowerCase() === catName.toLowerCase());
+            if (parentCat && parentCat.subCategories !== subcats.length) {
+                parentCat.subCategories = subcats.length;
+                if (isTour) saveStoredTourCategories();
+                else saveStoredTpCategories();
             }
 
-            // Filter by search query
+            // Apply search filtering
+            let list = [...subcats];
+            const q = (activeDetailCategory.search || '').toLowerCase().trim();
             if (q) {
-                prods = prods.filter(p => 
-                    (p.name || '').toLowerCase().includes(q) || 
-                    (p.operator || '').toLowerCase().includes(q) || 
-                    (p.location || '').toLowerCase().includes(q) || 
-                    (p.specs || '').toLowerCase().includes(q) || 
-                    (p.subCategory || '').toLowerCase().includes(q)
+                list = list.filter(s => 
+                    (s.name || '').toLowerCase().includes(q) || 
+                    (s.desc || '').toLowerCase().includes(q) || 
+                    (s.status || '').toLowerCase().includes(q)
                 );
             }
 
-            renderCatProductsTable(sectionType, prods);
-        }
+            // Apply sorting
+            const sortMode = activeDetailCategory.sort || 'name_asc';
+            if (sortMode === 'name_asc') {
+                list.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+            } else if (sortMode === 'name_desc') {
+                list.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
+            } else if (sortMode === 'operators_desc') {
+                list.sort((a, b) => (b.operators || 0) - (a.operators || 0));
+            } else if (sortMode === 'operators_asc') {
+                list.sort((a, b) => (a.operators || 0) - (b.operators || 0));
+            } else if (sortMode === 'date_desc') {
+                list.sort((a, b) => (b.createdDate || '').localeCompare(a.createdDate || ''));
+            } else if (sortMode === 'status') {
+                list.sort((a, b) => (a.status || '').localeCompare(b.status || ''));
+            }
 
-        function renderCatProductsTable(sectionType, prods) {
-            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
-            const tbody = document.getElementById(`${prefix}-cat-products-tbody`);
+            const total = list.length;
+            const tbody = document.getElementById(`${prefix}-subcat-tbody`);
             if (!tbody) return;
 
-            if (!prods || prods.length === 0) {
+            if (total === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="8" style="text-align: center; color: #94a3b8; padding: 3rem 1.5rem;">
-                            <i class="material-icons" style="font-size: 38px; display: block; margin-bottom: 0.5rem; opacity: 0.4;">inventory_2</i>
-                            No products found in this category. Click <strong>+ Add Product</strong> above to add one.
+                        <td colspan="7" style="text-align: center; color: #94a3b8; padding: 3rem 1.5rem;">
+                            <i class="material-icons" style="font-size: 38px; display: block; margin-bottom: 0.5rem; opacity: 0.4;">category</i>
+                            No subcategories found. Click <strong>+ Add Sub Category</strong> above to create one.
                         </td>
                     </tr>
                 `;
+                const showingText = document.getElementById(`${prefix}-subcat-showing-text`);
+                if (showingText) showingText.innerHTML = `<i class="material-icons" style="font-size: 16px; color: #94a3b8;">format_list_bulleted</i> <span>Showing 0 of 0 subcategories</span>`;
                 return;
             }
 
-            tbody.innerHTML = prods.map((p, idx) => {
-                const isActive = (p.status || '').toLowerCase() === 'active';
+            // Update footer showing text
+            const showingText = document.getElementById(`${prefix}-subcat-showing-text`);
+            if (showingText) {
+                showingText.innerHTML = `<i class="material-icons" style="font-size: 16px; color: #94a3b8;">format_list_bulleted</i> <span>Showing 1-${total} of ${total} subcategories</span>`;
+            }
+
+            tbody.innerHTML = list.map((sub, idx) => {
+                const isActive = (sub.status || '').toLowerCase() === 'active';
+                const statusClass = isActive ? 'active' : 'inactive';
+                const statusDot = `<span class="tp-subcat-status-dot"></span>`;
+                const thumbImg = sub.image || 'images/subcategories/sub_transit_bus.png';
+                const escId = (sub.id || '').replace(/'/g, "\\'");
+                const escName = (sub.name || '').replace(/'/g, "\\'");
+
                 return `
                     <tr>
-                        <td><strong>${idx + 1}</strong></td>
+                        <td class="tp-subcat-num">${idx + 1}</td>
                         <td>
-                            <div style="font-weight: 700; color: #0f172a;">${p.name}</div>
-                            <div style="font-size: 0.775rem; color: #64748b; margin-top: 2px;">
-                                <span style="display: inline-block; padding: 1px 7px; border-radius: 4px; background: #f1f5f9; color: #475569; font-weight: 600;">${p.subCategory || 'General'}</span>
+                            <img src="${thumbImg}" alt="${escName}" class="tp-subcat-thumb" onerror="this.src='images/categories/cat_transit.png'">
+                        </td>
+                        <td>
+                            <div class="tp-subcat-name-cell">
+                                <span class="tp-subcat-name-title" onclick="openEditSubCategoryModal('${escId}', '${sectionType}')">${sub.name}</span>
+                                <span class="tp-subcat-name-desc">${sub.desc || 'No description provided.'}</span>
                             </div>
                         </td>
                         <td>
-                            <span style="font-weight: 600; color: #334155;">${p.operator || '—'}</span>
+                            <span class="tp-subcat-operators-pill">
+                                <i class="material-icons" style="font-size: 15px;">people</i> ${sub.operators || 1} Operators
+                            </span>
                         </td>
                         <td>
-                            <span style="color: #475569; font-size: 0.85rem;"><i class="material-icons" style="font-size: 14px; vertical-align: middle; color: #00875a;">place</i> ${p.location || '—'}</span>
+                            <span class="tp-subcat-date-text">
+                                <i class="material-icons" style="font-size: 15px; color: #94a3b8;">calendar_today</i> ${sub.createdDate || '12 May 2025'}
+                            </span>
                         </td>
                         <td>
-                            <span style="font-size: 0.825rem; color: #64748b;">${p.specs || 'Standard'}</span>
-                        </td>
-                        <td>
-                            <strong style="color: #0f172a; font-size: 0.95rem;">৳${Number(p.price || 0).toLocaleString()}</strong>
-                        </td>
-                        <td>
-                            <span class="tp-status-pill ${isActive ? 'active' : 'inactive'}">${p.status || 'Active'}</span>
+                            <span class="tp-subcat-status-pill ${statusClass}">
+                                ${statusDot} ${sub.status || 'Active'}
+                            </span>
                         </td>
                         <td style="text-align: center;">
-                            <button type="button" class="tp-action-btn" style="color: #ef4444; border-color: #fee2e2; background: #fff5f5;" onclick="deleteCatProduct('${p.id}', '${sectionType}')" title="Delete Product">
-                                <i class="material-icons" style="font-size: 16px;">delete</i>
+                            <button type="button" class="tp-subcat-action-btn" onclick="toggleSubCatActionMenu(event, '${escId}', '${sectionType}')" title="Actions">
+                                <i class="material-icons" style="font-size: 20px;">more_horiz</i>
                             </button>
                         </td>
                     </tr>
@@ -4793,123 +5800,250 @@
             }).join('');
         }
 
-        function openAddProductModal(sectionType = 'travel-planner') {
-            modalAddProductSectionType = sectionType;
-            const modal = document.getElementById('cat-product-add-modal');
-            if (!modal) return;
+        function toggleSubCatActionMenu(e, subcatId, sectionType) {
+            e.stopPropagation();
+            const menu = document.getElementById('subcat-action-dropdown-menu');
+            if (!menu) return;
 
-            const catName = activeDetailCategory ? activeDetailCategory.name : 'Category';
-            const modalTitle = document.getElementById('modal-product-title');
-            if (modalTitle) modalTitle.textContent = `Add Product in ${catName}`;
-
-            const modalSub = document.getElementById('modal-product-sub');
-            if (modalSub) modalSub.textContent = `Register a new ${catName} offering for ${sectionType === 'tour-planner' ? 'Tour Planner' : 'Travel Planner'}`;
-
-            const form = document.getElementById('cat-product-add-form');
-            if (form) form.reset();
-
-            const subcatInput = document.getElementById('p-prod-subcat');
-            if (subcatInput) {
-                subcatInput.value = (activeDetailCategory && activeDetailCategory.subCat !== 'All') ? activeDetailCategory.subCat : '';
+            if (activeSubCatActionId === subcatId && menu.classList.contains('show')) {
+                menu.classList.remove('show');
+                activeSubCatActionId = null;
+                return;
             }
 
-            modal.style.display = 'flex';
-            document.getElementById('p-prod-name')?.focus();
+            activeSubCatActionId = subcatId;
+            activeSubCatActionSection = sectionType;
+
+            const btn = e.currentTarget;
+            const rect = btn.getBoundingClientRect();
+
+            menu.style.top = `${rect.bottom + window.scrollY + 4}px`;
+            menu.style.left = `${rect.right + window.scrollX - 160}px`;
+            menu.classList.add('show');
         }
 
-        function closeAddProductModal(e) {
-            if (e && e.target !== e.currentTarget && !e.target.classList.contains('tp-modal-close')) return;
-            const modal = document.getElementById('cat-product-add-modal');
+        function handleSubCatAction(action) {
+            const menu = document.getElementById('subcat-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+
+            const subcatId = activeSubCatActionId;
+            const sectionType = activeSubCatActionSection || 'travel-planner';
+            if (!subcatId) return;
+
+            if (action === 'edit') {
+                openEditSubCategoryModal(subcatId, sectionType);
+            } else if (action === 'toggle') {
+                toggleSubCategoryStatus(subcatId, sectionType);
+            } else if (action === 'delete') {
+                deleteSubCategory(subcatId, sectionType);
+            }
+        }
+
+        function openAddSubCategoryModal(sectionType = 'travel-planner') {
+            if (!activeDetailCategory) return;
+            const catName = activeDetailCategory.name;
+
+            const modal = document.getElementById('subcat-crud-modal');
+            if (!modal) return;
+
+            document.getElementById('subcat-modal-id').value = '';
+            document.getElementById('subcat-modal-section').value = sectionType;
+            document.getElementById('subcat-modal-parent-display').value = catName;
+            document.getElementById('subcat-modal-name').value = '';
+            document.getElementById('subcat-modal-desc').value = '';
+            document.getElementById('subcat-modal-operators').value = 1;
+            document.getElementById('subcat-modal-status').value = 'Active';
+            document.getElementById('subcat-modal-thumb-data').value = '';
+
+            const preview = document.getElementById('subcat-modal-thumb-preview');
+            if (preview) preview.src = 'images/subcategories/sub_transit_bus.png';
+
+            document.getElementById('subcat-modal-title').textContent = 'Add Sub Category';
+            document.getElementById('subcat-modal-subtitle').textContent = `Create a new sub-category offering under ${catName}`;
+
+            modal.style.display = 'flex';
+            setTimeout(() => document.getElementById('subcat-modal-name')?.focus(), 50);
+        }
+
+        function openEditSubCategoryModal(subcatId, sectionType = 'travel-planner') {
+            if (!activeDetailCategory) return;
+            const catName = activeDetailCategory.name;
+            const subcatsMap = getStoredSubCategoriesMap();
+            const list = subcatsMap[catName] || [];
+            const sub = list.find(s => s.id === subcatId);
+            if (!sub) return;
+
+            const modal = document.getElementById('subcat-crud-modal');
+            if (!modal) return;
+
+            document.getElementById('subcat-modal-id').value = sub.id;
+            document.getElementById('subcat-modal-section').value = sectionType;
+            document.getElementById('subcat-modal-parent-display').value = catName;
+            document.getElementById('subcat-modal-name').value = sub.name || '';
+            document.getElementById('subcat-modal-desc').value = sub.desc || '';
+            document.getElementById('subcat-modal-operators').value = sub.operators || 1;
+            document.getElementById('subcat-modal-status').value = sub.status || 'Active';
+            document.getElementById('subcat-modal-thumb-data').value = sub.image || '';
+
+            const preview = document.getElementById('subcat-modal-thumb-preview');
+            if (preview) preview.src = sub.image || 'images/subcategories/sub_transit_bus.png';
+
+            document.getElementById('subcat-modal-title').textContent = 'Edit Sub Category';
+            document.getElementById('subcat-modal-subtitle').textContent = `Update sub-category details for ${sub.name}`;
+
+            modal.style.display = 'flex';
+            setTimeout(() => document.getElementById('subcat-modal-name')?.focus(), 50);
+        }
+
+        function closeSubCategoryModal(e) {
+            if (e && e.target !== e.currentTarget && !e.target.closest('.tp-modal-close-btn')) return;
+            const modal = document.getElementById('subcat-crud-modal');
             if (modal) modal.style.display = 'none';
         }
 
-        function handleSaveNewCatProduct(e) {
-            e.preventDefault();
-            if (!activeDetailCategory) return;
+        function previewSubCategoryThumbnail(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
 
-            const sectionType = modalAddProductSectionType || activeDetailCategory.sectionType || 'travel-planner';
-            const isTour = sectionType === 'tour-planner';
-            const prefix = isTour ? 'tour' : 'tp';
-            const catName = activeDetailCategory.name;
-
-            const name = document.getElementById('p-prod-name').value.trim();
-            const subCategory = document.getElementById('p-prod-subcat').value.trim();
-            const operator = document.getElementById('p-prod-operator').value.trim();
-            const location = document.getElementById('p-prod-location').value.trim();
-            const specs = document.getElementById('p-prod-specs').value.trim() || 'Standard Spec';
-            const price = parseFloat(document.getElementById('p-prod-price').value) || 0;
-            const status = document.getElementById('p-prod-status').value;
-
-            const newProd = {
-                id: `prod_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
-                name,
-                category: catName,
-                subCategory,
-                operator,
-                location,
-                specs,
-                price,
-                status
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('subcat-modal-thumb-preview');
+                if (preview) preview.src = e.target.result;
+                document.getElementById('subcat-modal-thumb-data').value = e.target.result;
             };
-
-            const productsMap = getStoredCategoryProductsMap();
-            if (!productsMap[catName]) productsMap[catName] = [];
-            productsMap[catName].unshift(newProd);
-            saveStoredCategoryProductsMap(productsMap);
-
-            // Update Category products count in memory and localStorage
-            const categoriesList = isTour ? tourCategories : tpCategories;
-            const catObj = categoriesList.find(c => c.name.toLowerCase() === catName.toLowerCase());
-            if (catObj) {
-                catObj.products = productsMap[catName].length;
-                if (isTour) saveStoredTourCategories();
-                else saveStoredTpCategories();
-            }
-
-            // Update Hero Card products count
-            const heroProds = document.getElementById(`${prefix}-cat-hero-prods`);
-            if (heroProds) heroProds.textContent = productsMap[catName].length;
-
-            closeAddProductModal();
-            renderCatSubFilters(sectionType, catName, productsMap[catName]);
-            filterCatProductsUI(sectionType);
-            showToast(`Product "${name}" added to ${catName}!`, 'success');
+            reader.readAsDataURL(file);
         }
 
-        function deleteCatProduct(productId, sectionType = 'travel-planner') {
+        function handleSubCategoryFormSubmit(event) {
+            event.preventDefault();
             if (!activeDetailCategory) return;
-            const isTour = sectionType === 'tour-planner';
-            const prefix = isTour ? 'tour' : 'tp';
+
             const catName = activeDetailCategory.name;
+            const sectionType = document.getElementById('subcat-modal-section').value || activeDetailCategory.sectionType || 'travel-planner';
+            const subcatId = document.getElementById('subcat-modal-id').value.trim();
+            const name = document.getElementById('subcat-modal-name').value.trim();
+            const desc = document.getElementById('subcat-modal-desc').value.trim();
+            const operators = parseInt(document.getElementById('subcat-modal-operators').value, 10) || 1;
+            const status = document.getElementById('subcat-modal-status').value;
+            const thumbData = document.getElementById('subcat-modal-thumb-data').value.trim();
 
-            const productsMap = getStoredCategoryProductsMap();
-            let prods = productsMap[catName] || [];
-            const prodIdx = prods.findIndex(p => p.id === productId);
-            if (prodIdx === -1) return;
+            const subcatsMap = getStoredSubCategoriesMap();
+            if (!subcatsMap[catName]) subcatsMap[catName] = [];
 
-            const prodName = prods[prodIdx].name;
-            if (confirm(`Are you sure you want to delete "${prodName}"?`)) {
-                prods.splice(prodIdx, 1);
-                productsMap[catName] = prods;
-                saveStoredCategoryProductsMap(productsMap);
-
-                // Update Category products count
-                const categoriesList = isTour ? tourCategories : tpCategories;
-                const catObj = categoriesList.find(c => c.name.toLowerCase() === catName.toLowerCase());
-                if (catObj) {
-                    catObj.products = prods.length;
-                    if (isTour) saveStoredTourCategories();
-                    else saveStoredTpCategories();
+            if (subcatId) {
+                // Edit existing
+                const idx = subcatsMap[catName].findIndex(s => s.id === subcatId);
+                if (idx !== -1) {
+                    subcatsMap[catName][idx].name = name;
+                    subcatsMap[catName][idx].desc = desc;
+                    subcatsMap[catName][idx].operators = operators;
+                    subcatsMap[catName][idx].status = status;
+                    if (thumbData) subcatsMap[catName][idx].image = thumbData;
                 }
+                showToast(`Sub-category "${name}" updated successfully!`, 'success');
+            } else {
+                // Add new
+                const defaultThumb = (catName.toLowerCase().includes('transit')) ? 'images/subcategories/sub_transit_bus.png' : 'images/categories/cat_transit.png';
+                const newSub = {
+                    id: `sub_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+                    name,
+                    desc,
+                    operators,
+                    createdDate: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+                    status,
+                    image: thumbData || defaultThumb
+                };
+                subcatsMap[catName].unshift(newSub);
+                showToast(`Sub-category "${name}" added to ${catName}!`, 'success');
+            }
 
-                const heroProds = document.getElementById(`${prefix}-cat-hero-prods`);
-                if (heroProds) heroProds.textContent = prods.length;
+            saveStoredSubCategoriesMap(subcatsMap);
+            closeSubCategoryModal();
+            renderSubCategoriesTable(sectionType);
+        }
 
-                renderCatSubFilters(sectionType, catName, prods);
-                filterCatProductsUI(sectionType);
-                showToast(`Product "${prodName}" deleted.`, 'warning');
+        function toggleSubCategoryStatus(subcatId, sectionType = 'travel-planner') {
+            if (!activeDetailCategory) return;
+            const catName = activeDetailCategory.name;
+            const subcatsMap = getStoredSubCategoriesMap();
+            const list = subcatsMap[catName] || [];
+            const sub = list.find(s => s.id === subcatId);
+            if (!sub) return;
+
+            sub.status = (sub.status === 'Active') ? 'Inactive' : 'Active';
+            saveStoredSubCategoriesMap(subcatsMap);
+            renderSubCategoriesTable(sectionType);
+            showToast(`Status of "${sub.name}" changed to ${sub.status}.`, 'info');
+        }
+
+        function deleteSubCategory(subcatId, sectionType = 'travel-planner') {
+            if (!activeDetailCategory) return;
+            const catName = activeDetailCategory.name;
+            const subcatsMap = getStoredSubCategoriesMap();
+            const list = subcatsMap[catName] || [];
+            const sub = list.find(s => s.id === subcatId);
+            if (!sub) return;
+
+            if (confirm(`Are you sure you want to delete the sub-category "${sub.name}"?`)) {
+                subcatsMap[catName] = list.filter(s => s.id !== subcatId);
+                saveStoredSubCategoriesMap(subcatsMap);
+                renderSubCategoriesTable(sectionType);
+                showToast(`Sub-category "${sub.name}" has been deleted.`, 'warning');
             }
         }
+
+        function onSubCatSearchChange(sectionType = 'travel-planner') {
+            if (!activeDetailCategory) return;
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const searchInput = document.getElementById(`${prefix}-subcat-search-input`);
+            activeDetailCategory.search = searchInput ? searchInput.value : '';
+            renderSubCategoriesTable(sectionType);
+        }
+
+        function onSubCatSortChange(sectionType = 'travel-planner') {
+            if (!activeDetailCategory) return;
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const sortSelect = document.getElementById(`${prefix}-subcat-sort-select`);
+            activeDetailCategory.sort = sortSelect ? sortSelect.value : 'name_asc';
+            renderSubCategoriesTable(sectionType);
+        }
+
+        function toggleSubCatSortColumn(sectionType = 'travel-planner', colKey) {
+            if (!activeDetailCategory) return;
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const currentSort = activeDetailCategory.sort || 'name_asc';
+
+            let newSort = 'name_asc';
+            if (colKey === 'name') {
+                newSort = (currentSort === 'name_asc') ? 'name_desc' : 'name_asc';
+            } else if (colKey === 'operators') {
+                newSort = (currentSort === 'operators_desc') ? 'operators_asc' : 'operators_desc';
+            } else if (colKey === 'date') {
+                newSort = (currentSort === 'date_desc') ? 'name_asc' : 'date_desc';
+            } else if (colKey === 'status') {
+                newSort = (currentSort === 'status') ? 'name_asc' : 'status';
+            }
+
+            activeDetailCategory.sort = newSort;
+            const sortSelect = document.getElementById(`${prefix}-subcat-sort-select`);
+            if (sortSelect) sortSelect.value = newSort;
+            renderSubCategoriesTable(sectionType);
+        }
+
+        function changeSubCatPage(sectionType = 'travel-planner', delta) {
+            showToast('Showing all subcategories on page 1', 'info');
+        }
+
+        // Close subcategory action dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('subcat-action-dropdown-menu');
+            if (menu && menu.classList.contains('show')) {
+                if (!e.target.closest('#subcat-action-dropdown-menu') && !e.target.closest('.tp-subcat-action-btn')) {
+                    menu.classList.remove('show');
+                    activeSubCatActionId = null;
+                }
+            }
+        });
 
         function handleCategoryViewProducts(sectionType = 'travel-planner') {
             const isTour = sectionType === 'tour-planner';
