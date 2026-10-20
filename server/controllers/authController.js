@@ -127,3 +127,31 @@ exports.getProfile = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Failed to fetch profile', error: error.message });
     }
 };
+
+// Update Current Profile
+exports.updateProfile = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { name, phone, preferred_lang, avatar_url } = req.body;
+
+        await pool.query(
+            `UPDATE users 
+             SET name = COALESCE(?, name),
+                 phone = COALESCE(?, phone),
+                 preferred_lang = COALESCE(?, preferred_lang),
+                 avatar_url = COALESCE(?, avatar_url)
+             WHERE id = ?`,
+            [name || null, phone || null, preferred_lang || null, avatar_url || null, userId]
+        );
+
+        const [users] = await pool.query(
+            'SELECT id, name, email, role, phone, preferred_lang, avatar_url, budget_range, created_at FROM users WHERE id = ?',
+            [userId]
+        );
+
+        return res.json({ success: true, message: 'Profile updated successfully', user: users[0] });
+    } catch (error) {
+        console.error('Update Profile Error:', error);
+        return res.status(500).json({ success: false, message: 'Failed to update profile', error: error.message });
+    }
+};

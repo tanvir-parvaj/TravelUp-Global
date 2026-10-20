@@ -214,20 +214,16 @@ const Auth = {
                             <div class="nav-dropdown-title">${user.name}</div>
                             <span class="nav-dropdown-role">${roleTitle}</span>
                         </div>
+                        <a href="profile.html" class="nav-dropdown-item">
+                            <i class="material-icons">person</i>
+                            <span>My Profile</span>
+                        </a>
                         ${isStaffUser ? `
                             <a href="admin.html" class="nav-dropdown-item" style="color: #0284c7;">
                                 <i class="material-icons" style="color: #0284c7;">admin_panel_settings</i>
                                 <span>Operations Portal</span>
                             </a>
                         ` : ''}
-                        <a href="trip-planner.html" class="nav-dropdown-item">
-                            <i class="material-icons">luggage</i>
-                            <span>Tour Planner</span>
-                        </a>
-                        <a href="travel-planner.html" class="nav-dropdown-item">
-                            <i class="material-icons">directions_bus</i>
-                            <span>Travel Planner</span>
-                        </a>
                         <div style="border-top: 1px solid #f1f5f9; margin: 0.35rem 0;"></div>
                         <button type="button" class="nav-dropdown-item danger" onclick="Auth.logout()">
                             <i class="material-icons">logout</i>

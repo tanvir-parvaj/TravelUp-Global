@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile — TravelUp Global</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --primary-light: #e0f2fe;
+            --accent: #10b981;
+            --accent-light: #d1fae5;
+            --navy: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-500: #64748b;
+            --slate-300: #cbd5e1;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --white: #ffffff;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.03);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--slate-50);
+            color: var(--navy);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--slate-200);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo-img {
+            height: 38px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--slate-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.15s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Main Container */
+        .profile-container {
+            max-width: 1080px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-strip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--slate-500);
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb-strip a {
+            color: var(--slate-600);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .breadcrumb-strip a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Header Card */
+        .profile-hero-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0369a1 100%);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 15px 30px -10px rgba(15, 23, 42, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-hero-card::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(2, 132, 199, 0.3) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-user-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-avatar-wrap {
+            position: relative;
+        }
+
+        .hero-avatar-img {
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+        }
+
+        .hero-info-text h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.35rem;
+        }
+
+        .hero-role-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(2, 132, 199, 0.35);
+            border: 1px solid #38bdf8;
+            color: #7dd3fc;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-email-line {
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hero-action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-portal-shortcut {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 0.65rem 1.25rem;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+        }
+
+        .btn-portal-shortcut:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Two-Column Grid */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 1.75rem;
+            align-items: start;
+        }
+
+        /* Cards */
+        .profile-card {
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--slate-100);
+        }
+
+        .card-header-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .card-header-title i {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        /* Form Controls */
+        .form-row {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-row label {
+            display: block;
+            font-size: 0.825rem;
+            font-weight: 700;
+            color: var(--slate-700);
+            margin-bottom: 0.45rem;
+        }
+
+        .form-control-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-control-wrap i.field-icon {
+            position: absolute;
+            left: 0.9rem;
+            color: var(--slate-400);
+            font-size: 1.15rem;
+            pointer-events: none;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 46px;
+            padding: 0 1rem 0 2.6rem;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            color: var(--navy);
+            background: #ffffff;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+        }
+
+        .form-input:disabled {
+            background: var(--slate-50);
+            color: var(--slate-500);
+            cursor: not-allowed;
+        }
+
+        .badge-verified {
+            position: absolute;
+            right: 0.75rem;
+            font-size: 0.725rem;
+            font-weight: 700;
+            background: #dcfce7;
+            color: #15803d;
+            padding: 0.2rem 0.5rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Avatar Picker Strip */
+        .avatar-preset-strip {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.65rem;
+            flex-wrap: wrap;
+        }
+
+        .avatar-preset-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--slate-200);
+            padding: 2px;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+
+        .avatar-preset-btn img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .avatar-preset-btn:hover {
+            border-color: var(--primary);
+            transform: scale(1.08);
+        }
+
+        .avatar-preset-btn.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+        }
+
+        /* Buttons */
+        .btn-save-profile {
+            height: 46px;
+            padding: 0 1.5rem;
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+        }
+
+        .btn-save-profile:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-save-profile:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        /* Security Info Card */
+        .info-detail-box {
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-md);
+            padding: 1.15rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .info-detail-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            font-size: 0.85rem;
+        }
+
+        .info-detail-row:not(:last-child) {
+            border-bottom: 1px dashed var(--slate-200);
+        }
+
+        .info-detail-label {
+            color: var(--slate-500);
+            font-weight: 500;
+        }
+
+        .info-detail-val {
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .btn-logout-card {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: transparent;
+            color: #ef4444;
+            border: 1px solid #fecaca;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            transition: all 0.2s;
+        }
+
+        .btn-logout-card:hover {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #b91c1c;
+        }
+
+        /* Toast Container */
+        #toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .toast-bubble {
+            background: #ffffff;
+            color: var(--navy);
+            padding: 0.85rem 1.25rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            border: 1px solid var(--slate-200);
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: slideToast 0.2s ease;
+        }
+
+        .toast-bubble.success {
+            border-left: 4px solid #10b981;
+        }
+
+        .toast-bubble.error {
+            border-left: 4px solid #ef4444;
+        }
+
+        @keyframes slideToast {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 860px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-hero-card {
+                padding: 1.75rem;
+            }
+            .hero-user-meta {
+                flex-direction: column;
+                text-align: center;
+                width: 100%;
+            }
+            .hero-action-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Header -->
+    <header class="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="images/logo.png" alt="TravelUp Global" class="nav-logo-img">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="travel-planner.html">Travel Planner</a></li>
+                <li><a href="trip-planner.html">Tour Planner</a></li>
+                <li><a href="tour-packages.html">Tour Packages</a></li>
+            </ul>
+
+            <!-- Dynamic Profile Avatar Slot -->
+            <div class="nav-actions" id="nav-auth-slot">
+                <a href="login.html" class="nav-login-btn" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.45rem 1.15rem; border: 1px solid #0284c7; color: #0284c7; border-radius: 9999px; font-size: 0.85rem; font-weight: 700; text-decoration: none;">
+                    <i class="material-icons" style="font-size: 18px;">account_circle</i>
+                    <span>Log In</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Profile Container -->
+    <main class="profile-container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-strip">
+            <a href="index.html">Home</a>
+            <i class="material-icons" style="font-size: 14px;">chevron_right</i>
+            <span>My Profile</span>
+        </div>
+
+        <!-- Hero Header Card -->
+        <div class="profile-hero-card">
+            <div class="hero-user-meta">
+                <div class="hero-avatar-wrap">
+                    <img id="hero-avatar-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Profile" class="hero-avatar-img" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80'">
+                </div>
+                <div class="hero-info-text">
+                    <h1 id="hero-user-name">Loading Profile...</h1>
+                    <div>
+                        <span id="hero-role-pill" class="hero-role-pill">Traveler & Tourist</span>
+                    </div>
+                    <div class="hero-email-line">
+                        <i class="material-icons" style="font-size: 16px;">mail</i>
+                        <span id="hero-user-email">user@travelupglobal.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-action-buttons" id="hero-action-buttons">
+                <!-- Dynamically populated shortcut -->
+            </div>
+        </div>
+
+        <!-- Profile Details & Settings Grid -->
+        <div class="profile-grid">
+            <!-- Left Card: Personal Details Form -->
+            <div class="profile-card">
+                <div class="card-header-row">
+                    <div class="card-header-title">
+                        <i class="material-icons">manage_accounts</i>
+                        <span>Personal Information</span>
+                    </div>
+                    <span style="font-size: 0.775rem; color: var(--slate-500); font-weight: 600;">Edit & Update</span>
+                </div>
+
+                <form id="form-edit-profile" onsubmit="handleSaveProfile(event)">
+                    <!-- Full Name -->
+                    <div class="form-row">
+                        <label>Full Name *</label>
+                        <div class="form-control-wrap">
+                            <i class="material-icons field-icon">person</i>
+                            <input type="text" id="input-profile-name" class="form-input" required placeholder="Your full name">
+                        </div>
+                    </div>
+
+                    <!-- Email Address (Read-only) -->
+                    <div class="form-row">
+                        <label>Email Address</label>
+                        <div class="form-control-wrap">
+                            <i class="material-icons field-icon">mail_outline</i>
+                            <input type="email" id="input-profile-email" class="form-input" disabled>
+                            <span class="badge-verified">
+                                <i class="material-icons" style="font-size: 14px;">verified</i> Verified
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-row">
+                        <label>Phone Number</label>
+                        <div class="form-control-wrap">
+                            <i class="material-icons field-icon">phone</i>
+                            <input type="tel" id="input-profile-phone" class="form-input" placeholder="e.g. +880 1700-000000">
+                        </div>
+                    </div>
+
+                    <!-- Account Role (Read-only badge) -->
+                    <div class="form-row">
+                        <label>Account Role</label>
+                        <div class="form-control-wrap">
+                            <i class="material-icons field-icon">badge</i>
+                            <input type="text" id="input-profile-role" class="form-input" disabled style="font-weight: 700; color: var(--primary-dark);">
+                        </div>
+                    </div>
+
+                    <!-- Avatar URL & Quick Presets -->
+                    <div class="form-row">
+                        <label>Profile Avatar Image URL</label>
+                        <div class="form-control-wrap">
+                            <i class="material-icons field-icon">image</i>
+                            <input type="url" id="input-profile-avatar" class="form-input" placeholder="https://..." onchange="updateAvatarPreview(this.value)">
+                        </div>
+                        <div style="font-size: 0.75rem; color: var(--slate-500); margin-top: 0.5rem; font-weight: 600;">
+                            Quick Preset Avatars:
+                        </div>
+                        <div class="avatar-preset-strip">
+                            <button type="button" class="avatar-preset-btn" onclick="applyPresetAvatar('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80')">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Preset 1">
+                            </button>
+                            <button type="button" class="avatar-preset-btn" onclick="applyPresetAvatar('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80')">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Preset 2">
+                            </button>
+                            <button type="button" class="avatar-preset-btn" onclick="applyPresetAvatar('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80')">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="Preset 3">
+                            </button>
+                            <button type="button" class="avatar-preset-btn" onclick="applyPresetAvatar('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80')">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Preset 4">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div style="margin-top: 1.75rem;">
+                        <button type="submit" id="btn-save-submit" class="btn-save-profile">
+                            <i class="material-icons">check_circle</i>
+                            <span>Save Changes</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Card: Account Overview & Actions -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div class="profile-card">
+                    <div class="card-header-row">
+                        <div class="card-header-title">
+                            <i class="material-icons">security</i>
+                            <span>Account & Access</span>
+                        </div>
+                    </div>
+
+                    <div class="info-detail-box">
+                        <div class="info-detail-row">
+                            <span class="info-detail-label">Account Status</span>
+                            <span class="info-detail-val" style="color: #16a34a; display: inline-flex; align-items: center; gap: 0.25rem;">
+                                <i class="material-icons" style="font-size: 14px;">check_circle</i> Active
+                            </span>
+                        </div>
+                        <div class="info-detail-row">
+                            <span class="info-detail-label">Assigned Role</span>
+                            <span class="info-detail-val" id="detail-assigned-role">Traveler & Tourist</span>
+                        </div>
+                        <div class="info-detail-row">
+                            <span class="info-detail-label">Account ID</span>
+                            <span class="info-detail-val" id="detail-account-id">#--</span>
+                        </div>
+                    </div>
+
+                    <div id="role-permission-summary" style="font-size: 0.825rem; color: var(--slate-600); line-height: 1.5; margin-bottom: 1.5rem; background: #f0f9ff; border: 1px solid #bae6fd; padding: 0.85rem; border-radius: var(--radius-md);">
+                        Loading account permissions...
+                    </div>
+
+                    <button type="button" class="btn-logout-card" onclick="handleLogoutClick()">
+                        <i class="material-icons">logout</i>
+                        <span>Log Out</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="images/logo.png" alt="TravelUp Global" style="height: 30px; filter: brightness(0) invert(1);">
+                <span>© 2026 TravelUp Global. All rights reserved.</span>
+            </div>
+            <div style="color: #cbd5e1; font-weight: 600;">
+                Algorithmic Travel & Unified Tourism Portal
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Anchor -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script>
+        const API_BASE = (window.location.protocol === 'file:' || (window.location.port !== '5000' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')))
+            ? 'http://localhost:5000'
+            : '';
+
+        let userProfile = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = Auth.getUser();
+            if (!user) {
+                // If not logged in, redirect directly to login page
+                window.location.href = 'login.html';
+                return;
+            }
+            userProfile = user;
+            populateProfileUI(user);
+            fetchFreshProfile();
+        });
+
+        function populateProfileUI(user) {
+            const avatarUrl = user.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80';
+            const roleName = (user.role === 'admin') ? 'Administrator' : ((user.role || 'customer').replace('_', ' ').toUpperCase());
+
+            document.getElementById('hero-avatar-img').src = avatarUrl;
+            document.getElementById('hero-user-name').textContent = user.name || 'Traveler';
+            document.getElementById('hero-role-pill').textContent = roleName;
+            document.getElementById('hero-user-email').textContent = user.email || '';
+
+            document.getElementById('input-profile-name').value = user.name || '';
+            document.getElementById('input-profile-email').value = user.email || '';
+            document.getElementById('input-profile-phone').value = user.phone || '';
+            document.getElementById('input-profile-role').value = roleName;
+            document.getElementById('input-profile-avatar').value = user.avatar_url || '';
+
+            document.getElementById('detail-assigned-role').textContent = roleName;
+            document.getElementById('detail-account-id').textContent = '#' + (user.id || '101');
+
+            const isStaff = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(user.role);
+            const shortcutWrap = document.getElementById('hero-action-buttons');
+            const summaryBox = document.getElementById('role-permission-summary');
+
+            if (isStaff) {
+                shortcutWrap.innerHTML = `
+                    <a href="admin.html" class="btn-portal-shortcut">
+                        <i class="material-icons">admin_panel_settings</i>
+                        <span>Go to Operations Portal</span>
+                    </a>
+                `;
+                summaryBox.innerHTML = `
+                    <strong style="color: #0369a1;">Administrative Account:</strong><br>
+                    You have authorized staff privileges. You can manage transport vehicles, transit schedules, and system operations via the Operations Portal.
+                `;
+            } else {
+                shortcutWrap.innerHTML = `
+                    <a href="travel-planner.html" class="btn-portal-shortcut">
+                        <i class="material-icons">directions_bus</i>
+                        <span>Plan a Trip</span>
+                    </a>
+                `;
+                summaryBox.innerHTML = `
+                    <strong style="color: #0284c7;">Traveler Account:</strong><br>
+                    You can search connecting bus and train transit routes across Bangladesh, create multi-leg trip itineraries, and explore curated tour packages.
+                `;
+            }
+        }
+
+        async function fetchFreshProfile() {
+            const token = localStorage.getItem('travelup_token') || localStorage.getItem('travelup_admin_token');
+            if (!token) return;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/profile`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await res.json();
+                if (res.ok && data.success && data.user) {
+                    userProfile = data.user;
+                    localStorage.setItem('travelup_user', JSON.stringify(data.user));
+                    if (['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(data.user.role)) {
+                        localStorage.setItem('travelup_admin_user', JSON.stringify(data.user));
+                    }
+                    populateProfileUI(data.user);
+                    Auth.updateNavUI();
+                }
+            } catch(e) {}
+        }
+
+        function updateAvatarPreview(url) {
+            if (url) {
+                document.getElementById('hero-avatar-img').src = url;
+            }
+        }
+
+        function applyPresetAvatar(url) {
+            document.getElementById('input-profile-avatar').value = url;
+            document.getElementById('hero-avatar-img').src = url;
+            showToast('Preset avatar selected. Click "Save Changes" to apply.', 'info');
+        }
+
+        async function handleSaveProfile(e) {
+            if (e && e.preventDefault) e.preventDefault();
+
+            const name = document.getElementById('input-profile-name').value.trim();
+            const phone = document.getElementById('input-profile-phone').value.trim();
+            const avatar_url = document.getElementById('input-profile-avatar').value.trim();
+            const submitBtn = document.getElementById('btn-save-submit');
+            const token = localStorage.getItem('travelup_token') || localStorage.getItem('travelup_admin_token');
+
+            if (!name) {
+                showToast('Please enter your full name.', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i> <span>Saving...</span>`;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/profile`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ name, phone, avatar_url })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok || !data.success) {
+                    showToast(data.message || 'Failed to update profile.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="material-icons">check_circle</i> <span>Save Changes</span>`;
+                    return;
+                }
+
+                // Update Local State
+                const updated = data.user;
+                localStorage.setItem('travelup_user', JSON.stringify(updated));
+                if (['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(updated.role)) {
+                    localStorage.setItem('travelup_admin_user', JSON.stringify(updated));
+                }
+
+                populateProfileUI(updated);
+                Auth.updateNavUI();
+
+                showToast('Profile updated successfully!', 'success');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="material-icons">check_circle</i> <span>Save Changes</span>`;
+            } catch (err) {
+                showToast('Error saving profile: ' + err.message, 'error');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="material-icons">check_circle</i> <span>Save Changes</span>`;
+            }
+        }
+
+        function handleLogoutClick() {
+            Auth.logout();
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const bubble = document.createElement('div');
+            bubble.className = `toast-bubble ${type}`;
+            bubble.innerHTML = `<i class="material-icons" style="font-size: 18px; color: ${type === 'success' ? '#10b981' : (type === 'error' ? '#ef4444' : '#0284c7')}">${type === 'success' ? 'check_circle' : (type === 'error' ? 'error' : 'info')}</i> <span>${message}</span>`;
+            container.appendChild(bubble);
+            setTimeout(() => {
+                bubble.style.opacity = '0';
+                bubble.style.transition = 'opacity 0.25s ease';
+                setTimeout(() => bubble.remove(), 250);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
