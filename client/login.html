@@ -797,16 +797,16 @@
                         <div class="signin-role-toggle-group">
                             <button type="button" class="btn-role-tab active" id="tab-role-customer" onclick="selectSignInRole('customer')">
                                 <i class="material-icons">travel_explore</i>
-                                <span>Traveler</span>
+                                <span>Traveler & Tourist</span>
                             </button>
                             <button type="button" class="btn-role-tab" id="tab-role-staff" onclick="selectSignInRole('staff')">
                                 <i class="material-icons">admin_panel_settings</i>
-                                <span>Admin & Staff</span>
+                                <span>Administrator</span>
                             </button>
                         </div>
                         <div id="signin-role-note" style="margin-top: 0.45rem; font-size: 0.775rem; color: var(--slate-600); background: #f8fafc; padding: 0.45rem 0.75rem; border-radius: 8px; border: 1px solid var(--slate-200); display: flex; align-items: center; gap: 0.45rem;">
                             <i class="material-icons" style="font-size: 16px; color: var(--primary);" id="signin-role-icon">travel_explore</i>
-                            <span id="signin-role-desc">Logging in as <strong>Traveler / Customer</strong> — routes to your personal travel dashboard & trip planner.</span>
+                            <span id="signin-role-desc">Logging in as <strong>Traveler & Tourist</strong> — access personalized itinerary and trip planner.</span>
                         </div>
                     </div>
 
@@ -945,7 +945,7 @@
                         </div>
                     </div>
 
-                    <!-- Account Role Selection (Explicit role specification as requested) -->
+                    <!-- Account Role Selection (Two distinct roles: Traveler & Tourist vs Administrator) -->
                     <div class="input-group" style="margin-bottom: 1rem;">
                         <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.45rem;">
                             Account Role / Type <span style="color: #ef4444;">*</span>
@@ -953,19 +953,15 @@
                         <div class="input-field-wrap">
                             <i class="material-icons input-icon-left" style="color: var(--primary);">badge</i>
                             <select id="signup-role" class="auth-input" style="cursor: pointer; appearance: none; font-weight: 600; padding-left: 2.75rem;" onchange="handleRoleSelectionChange(this.value)">
-                                <option value="customer" selected>🌍 Traveler / Customer (ট্যুর ও ট্রাভেল প্ল্যানার)</option>
-                                <option value="uploader">📦 Product & Transport Uploader (যানবাহন ও তথ্য আপলোডার)</option>
-                                <option value="manager">📋 Operations Manager (ম্যানেজার ও অপারেশনস)</option>
-                                <option value="accountant">💳 Finance & Accounts Officer (পেমেন্ট ও হিসাবরক্ষক)</option>
-                                <option value="support">🎧 Customer Support & Helpdesk (কাস্টমার সেবা)</option>
-                                <option value="admin">👑 Agency Admin / Co-Admin (সুপার অ্যাডমিন এক্সেস)</option>
+                                <option value="customer" selected>Traveler & Tourist</option>
+                                <option value="admin">Administrator</option>
                             </select>
                             <span class="input-icon-right" style="pointer-events: none;">
                                 <i class="material-icons">expand_more</i>
                             </span>
                         </div>
                         <div id="role-description-hint" class="input-hint-text" style="color: var(--primary); font-weight: 600; margin: 0.4rem 0 0.4rem 0.25rem;">
-                            ✓ Personal travel account: Search transit routes, customize itineraries & book tour packages.
+                            ✓ Plan trips, search connecting transit routes, and book tour packages.
                         </div>
                     </div>
 
@@ -1102,7 +1098,7 @@
             if (type === 'staff') {
                 if (tabCust) tabCust.classList.remove('active');
                 if (tabStaff) tabStaff.classList.add('active');
-                if (desc) desc.innerHTML = 'Logging in as <strong>Operations / Admin Staff</strong> — directs you to the Operations Portal with role-based access.';
+                if (desc) desc.innerHTML = 'Logging in as <strong>Administrator</strong> — directs you to the Operations & Admin Portal with full controls.';
                 if (icon) {
                     icon.textContent = 'admin_panel_settings';
                     icon.style.color = '#0284c7';
@@ -1110,7 +1106,7 @@
             } else {
                 if (tabStaff) tabStaff.classList.remove('active');
                 if (tabCust) tabCust.classList.add('active');
-                if (desc) desc.innerHTML = 'Logging in as <strong>Traveler / Customer</strong> — routes to your personal travel dashboard & trip planner.';
+                if (desc) desc.innerHTML = 'Logging in as <strong>Traveler & Tourist</strong> — routes to your personal travel dashboard & trip planner.';
                 if (icon) {
                     icon.textContent = 'travel_explore';
                     icon.style.color = '#00966d';
@@ -1118,14 +1114,10 @@
             }
         }
 
-        // Live Role Description for Sign Up Mode
+        // Live Role Description for Sign Up Mode (Two distinct roles: Traveler & Tourist vs Administrator)
         const ROLE_HINTS = {
             customer: '✓ Personal travel account: Search transit routes, customize itineraries & book tour packages.',
-            uploader: '✓ Transport operations: Upload & maintain vehicles, transit schedules, routes and stop times.',
-            manager: '✓ Operations management: Oversee daily bookings, route dispatches, fleet and operations.',
-            accountant: '✓ Finance management: Audit payouts, payment transactions, revenues and fee structures.',
-            support: '✓ Customer support: Resolve traveler tickets, handle booking questions and live inquiries.',
-            admin: '✓ Super Admin: Full system privileges, manage staff accounts, roles and agency configuration.'
+            admin: '✓ Administrator account: Full management over portal operations, transit fleet, and bookings.'
         };
 
         function handleRoleSelectionChange(role) {

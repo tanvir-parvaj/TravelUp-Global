@@ -787,73 +787,73 @@
                         <form id="form-add-vehicle" onsubmit="handleCreateVehicle(event)">
                             <div class="form-grid">
                                 <div class="form-group">
-                                    <label>Operator Name (অপারেটরের নাম) *</label>
+                                    <label>Operator Name *</label>
                                     <input type="text" id="route-operator" required placeholder="e.g. Ena Transport, Shohagh, Shyamoli">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Vehicle Type / Class (গাড়ির ধরন) *</label>
+                                    <label>Vehicle Type / Class *</label>
                                     <select id="route-vtype" required>
-                                        <option value="AC Sleeper Coach">AC Sleeper Coach (লাক্সারি স্লিপার)</option>
-                                        <option value="AC Business Class">AC Business Class (হিনো ১জে / হুন্দাই)</option>
-                                        <option value="Economy Non-AC Coach">Economy Non-AC Coach (সাধারণ চেয়ার কোচ)</option>
-                                        <option value="Local Feeder Shuttle">Local Feeder Shuttle (পীরগঞ্জ/উপজেলা ফিডার)</option>
-                                        <option value="HiAce Microbus">HiAce Microbus (প্রাইভেট বা শেয়ার মাইক্রো)</option>
-                                        <option value="Intercity Express Train">Intercity Express Train (বাংলাদেশ রেলওয়ে)</option>
+                                        <option value="AC Sleeper Coach">AC Sleeper Coach (Luxury Sleeper)</option>
+                                        <option value="AC Business Class">AC Business Class (Hino 1J / Hyundai)</option>
+                                        <option value="Economy Non-AC Coach">Economy Non-AC Coach (Standard Chair Coach)</option>
+                                        <option value="Local Feeder Shuttle">Local Feeder Shuttle (Regional Shuttle)</option>
+                                        <option value="HiAce Microbus">HiAce Microbus (Private / Shared Microbus)</option>
+                                        <option value="Intercity Express Train">Intercity Express Train (Railway)</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Origin District (শুরুর জেলা) *</label>
+                                    <label>Origin District *</label>
                                     <input type="text" id="route-orig-dist" required placeholder="e.g. Rangpur, Dhaka, Dinajpur">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Origin Stoppage / Stand (নির্দিষ্ট কাউন্টার)</label>
+                                    <label>Origin Stoppage / Stand</label>
                                     <input type="text" id="route-orig-point" placeholder="e.g. Pirganj Stand, Kamlapur, Mirpur 10">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Destination District (গন্তব্যের জেলা) *</label>
+                                    <label>Destination District *</label>
                                     <input type="text" id="route-dest-dist" required placeholder="e.g. Cox's Bazar, Chattogram, Sylhet">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Destination Stoppage / Spot (গন্তব্যের স্পট)</label>
+                                    <label>Destination Stoppage / Spot</label>
                                     <input type="text" id="route-dest-point" placeholder="e.g. Kolatoli Beach, GEC Circle">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Departure Time (ছাড়ার সময়) *</label>
+                                    <label>Departure Time *</label>
                                     <input type="text" id="route-dep-time" required placeholder="e.g. 07:30 PM">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Arrival Time (পৌঁছানোর সময়)</label>
+                                    <label>Arrival Time</label>
                                     <input type="text" id="route-arr-time" placeholder="e.g. 05:15 AM">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Ticket Fare BDT (ভাড়া) *</label>
+                                    <label>Ticket Fare BDT *</label>
                                     <input type="number" id="route-fare" required min="50" step="10" placeholder="e.g. 1650">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Total Seat Capacity (মোট সিট)</label>
+                                    <label>Total Seat Capacity</label>
                                     <input type="number" id="route-seats" value="36" min="4" max="60">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Curated Smart Tier (৩-সুইচ ক্যাটাগরি)</label>
+                                    <label>Curated Smart Tier</label>
                                     <select id="route-tier">
-                                        <option value="recommended">Best Value / Recommended (আরামদায়ক)</option>
-                                        <option value="budget">Lowest Price / Budget (সর্বনিম্ন খরচ)</option>
-                                        <option value="luxury">Fastest / Luxury (লাক্সারি স্লিপার)</option>
+                                        <option value="recommended">Best Value / Recommended</option>
+                                        <option value="budget">Lowest Price / Budget</option>
+                                        <option value="luxury">Fastest / Luxury</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Vehicle Photo URL (ছবির লিঙ্ক)</label>
+                                    <label>Vehicle Photo URL</label>
                                     <input type="url" id="route-img" value="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80">
                                 </div>
                             </div>
@@ -1048,16 +1048,16 @@
                                 <div class="form-group">
                                     <label>Assigned Operational Role *</label>
                                     <select id="staff-role" required>
-                                        <option value="uploader">Product & Route Uploader (প্রোডাক্ট আপলোডার)</option>
-                                        <option value="manager">Operations Manager (বুকিং ও ট্রিপ ম্যানেজার)</option>
-                                        <option value="accountant">Finance & Payment Officer (অ্যাকাউন্টস অফিসার)</option>
-                                        <option value="support">Customer Support Agent (কাস্টমার সাপোর্ট)</option>
-                                        <option value="admin">Super Admin (পূর্ণ নিয়ন্ত্রণ ও মালিকানা)</option>
+                                        <option value="uploader">Product & Route Uploader</option>
+                                        <option value="manager">Operations Manager</option>
+                                        <option value="accountant">Finance & Payment Officer</option>
+                                        <option value="support">Customer Support Agent</option>
+                                        <option value="admin">Super Admin</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Mobile Number (ঐচ্ছিক)</label>
+                                    <label>Mobile Number (Optional)</label>
                                     <input type="text" id="staff-phone" placeholder="017xxxxxxxx">
                                 </div>
                             </div>
