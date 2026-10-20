@@ -356,9 +356,15 @@ exports.searchLocations = async (req, res) => {
  */
 exports.getTourDestinations = async (req, res) => {
     try {
-        const { district_id, division_id, top_50, type, q } = req.query;
-        let query = 'SELECT * FROM bd_tour_destinations WHERE is_active = 1';
+        const { district_id, division_id, top_50, type, q, status } = req.query;
+        let query = 'SELECT * FROM bd_tour_destinations WHERE 1=1';
         const params = [];
+
+        if (status === 'inactive') {
+            query += ' AND is_active = 0';
+        } else if (status === 'active' || (!status && status !== 'all')) {
+            query += ' AND is_active = 1';
+        }
 
         if (district_id) {
             query += ' AND district_id = ?';
