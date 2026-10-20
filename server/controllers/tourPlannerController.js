@@ -367,8 +367,20 @@ exports.getTourDestinations = async (req, res) => {
         }
 
         if (upazila_id) {
-            query += ' AND upazila_id = ?';
-            params.push(upazila_id);
+            // Check if there are destinations for this specific upazila
+            const [exactUpz] = await pool.query('SELECT count(*) as count FROM bd_tour_destinations WHERE upazila_id = ?' + (status === 'all' ? '' : ' AND is_active = 1'), [upazila_id]);
+            if (exactUpz[0] && exactUpz[0].count > 0) {
+                query += ' AND upazila_id = ?';
+                params.push(upazila_id);
+            } else if (district_id) {
+                // If a rural upazila does not have a destination directly inside it,
+                // return the district destinations so the user can explore!
+                query += ' AND district_id = ?';
+                params.push(district_id);
+            } else {
+                query += ' AND upazila_id = ?';
+                params.push(upazila_id);
+            }
         } else if (district_id) {
             query += ' AND district_id = ?';
             params.push(district_id);

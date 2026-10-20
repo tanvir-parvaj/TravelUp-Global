@@ -8840,6 +8840,7 @@
             st.divisionFilter = divisionId;
             st.districtFilter = '';
             st.upazilaFilter = '';
+            st.upazilaName = '';
             st.searchQuery = '';
             st.page = 1;
 
@@ -8873,6 +8874,7 @@
 
             st.districtFilter = districtId;
             st.upazilaFilter = '';
+            st.upazilaName = '';
             st.searchQuery = '';
             st.page = 1;
 
@@ -8906,11 +8908,15 @@
             }
 
             st.upazilaFilter = upazilaId;
-            st.searchQuery = (upazilaName || '').trim().toLowerCase();
+            st.upazilaName = upazilaName;
+            st.searchQuery = '';
             st.page = 1;
 
             const searchInput = document.getElementById('tour-loc-search-input');
-            if (searchInput) searchInput.value = upazilaName || '';
+            if (searchInput) {
+                searchInput.value = '';
+                searchInput.placeholder = `Search destinations in ${upazilaName}...`;
+            }
 
             switchLocSubTab('destinations', 'tour-planner');
             showToast(`Viewing tour destinations in ${upazilaName}`, 'info');
@@ -8923,6 +8929,7 @@
             st.divisionFilter = '';
             st.districtFilter = '';
             st.upazilaFilter = '';
+            st.upazilaName = '';
             st.searchQuery = '';
             st.page = 1;
 
@@ -8989,7 +8996,9 @@
 
             if (activeTab === 'destinations') {
                 crumbs.push(`<span class="loc-bc-sep">&gt;</span>`);
-                if (st.searchQuery) {
+                if (st.upazilaName) {
+                    crumbs.push(`<span class="loc-bc-item current">${st.upazilaName} Upazila (Destinations)</span>`);
+                } else if (st.searchQuery) {
                     crumbs.push(`<span class="loc-bc-item current">Destinations in "${st.searchQuery}"</span>`);
                 } else {
                     crumbs.push(`<span class="loc-bc-item current">Tour Destinations</span>`);
@@ -9025,6 +9034,7 @@
                     locationState[sectionType].divisionFilter = '';
                     locationState[sectionType].districtFilter = '';
                     locationState[sectionType].upazilaFilter = '';
+                    locationState[sectionType].upazilaName = '';
                     locationState[sectionType].searchQuery = '';
                     const divSel = document.getElementById(`${prefix}-loc-division-select`);
                     if (divSel) divSel.value = '';
@@ -9036,6 +9046,7 @@
                 } else if (tabName === 'districts') {
                     locationState[sectionType].districtFilter = '';
                     locationState[sectionType].upazilaFilter = '';
+                    locationState[sectionType].upazilaName = '';
                     locationState[sectionType].searchQuery = '';
                     const distSel = document.getElementById(`${prefix}-loc-district-select`);
                     if (distSel) distSel.value = '';
@@ -9043,6 +9054,10 @@
                     if (sInp) sInp.value = '';
                 } else if (tabName === 'upazilas') {
                     locationState[sectionType].upazilaFilter = '';
+                    locationState[sectionType].upazilaName = '';
+                } else if (tabName === 'destinations') {
+                    locationState[sectionType].upazilaFilter = '';
+                    locationState[sectionType].upazilaName = '';
                 }
             }
 
@@ -9408,13 +9423,6 @@
                                         <img src="${thumbImg}" alt="${destName}" class="loc-table-thumb" onerror="this.onerror=null; this.src='${fallbackImg}';">
                                         <div>
                                             <div style="display: flex; align-items: center; gap: 6px;">
-                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${destName}</span>
-                                                ${item.top_50_flag ? '<span class="loc-featured-badge" style="background: #fff7ed; color: #ea580c; border-color: #ffedd5;">★ Popular</span>' : ''}
-                                            </div>
-                                            <div style="font-size: 0.77rem; color: #64748b;">${item.name_bn ? item.name_bn + ' • ' : ''}${item.destination_id || ''}</div>
-                                        </div>
-                                    </div>
-                                </td>
                                                 <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${destName}</span>
                                                 ${item.top_50_flag ? '<span class="loc-featured-badge" style="background: #fff7ed; color: #ea580c; border-color: #ffedd5;">★ Popular</span>' : ''}
                                             </div>
