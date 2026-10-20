@@ -2293,133 +2293,140 @@
                     </div>
                 </section>
 
-                <!-- 3. TOUR PLANNER OPERATIONS (TOUR COMPONENTS & SUPPLIER STUDIO) -->
+                <!-- 3. TOUR PLANNER (CATEGORY & SERVICE MANAGER) -->
                 <section id="view-tour-planner" class="view-section">
-                    <!-- CRM Header Card -->
-                    <div class="crm-header-card">
-                        <div class="crm-title-area">
-                            <h2>
-                                <i class="material-icons" style="color: #0284c7;">hotel</i>
-                                <span>Tour Planner — Component & Supplier Studio</span>
-                            </h2>
-                            <p>Curate building blocks for custom holiday itineraries: Transits, Accommodations, Dining, Recreation, and Tour Guides.</p>
+                    <!-- Top Page Header -->
+                    <div class="tp-header-container">
+                        <div class="tp-title-area">
+                            <h1>Tour Planner</h1>
+                            <p>Manage your categories, operators, services and more</p>
                         </div>
-                        <div class="crm-header-actions">
-                            <a href="trip-planner.html" target="_blank" class="btn btn-secondary">
-                                <i class="material-icons">open_in_new</i> Preview Public Tour Planner
-                            </a>
-                            <button type="button" class="btn btn-primary" onclick="toggleAddComponentForm()">
-                                <i class="material-icons">add_circle</i> Add Tour Component
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 5 Core Categories Strip (Transit, Hotel, Dining, Recreation, Guide) -->
-                    <div class="crm-category-strip">
-                        <button type="button" class="crm-pill-btn active" onclick="filterTourCategory('all', this)">
-                            <i class="material-icons">dashboard</i> All Components
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('transport', this)">
-                            <i class="material-icons">directions_bus</i> 🚍 Transit & Transfers
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('hotel', this)">
-                            <i class="material-icons">hotel</i> 🏨 Accommodation & Hotels
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('dining', this)">
-                            <i class="material-icons">restaurant</i> 🍽️ Dining & Restaurants
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('recreation', this)">
-                            <i class="material-icons">surfing</i> 🏄 Activities & Recreation
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('guide', this)">
-                            <i class="material-icons">explore</i> 🧭 Guides & Assistance
+                        <button type="button" class="tp-btn-add-category" onclick="openTourAddCategoryModal()">
+                            <i class="material-icons" style="font-size: 20px;">add</i>
+                            <span>Add Category</span>
                         </button>
                     </div>
 
-                    <!-- Collapsible Add Tour Component Form -->
-                    <div id="panel-add-component" class="crm-collapsible-panel">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
-                            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="material-icons" style="color: var(--primary);">library_add</i>
-                                <span>Add New Supplier Component / Inventory Item</span>
-                            </h3>
-                            <button type="button" class="btn btn-secondary" onclick="toggleAddComponentForm()" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">Close</button>
-                        </div>
-                        <form id="form-add-component" onsubmit="handleCreateComponentCRM(event)">
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label>Core Component Category *</label>
-                                    <select id="comp-slot-key" required onchange="onComponentCategoryChange(this.value)">
-                                        <option value="hotel">🏨 Accommodation & Hotels (Resorts, Cottages, 3-Star/5-Star)</option>
-                                        <option value="transport">🚍 Transit & Local Transfers (Jeep, Chander Gari, Coach, Boat)</option>
-                                        <option value="dining">🍽️ Dining & Restaurants (Buffets, Local Cuisine, Meals)</option>
-                                        <option value="recreation">🏄 Activities & Recreation (Water sports, Trekking, Tickets)</option>
-                                        <option value="guide">🧭 Tour Guides & Assistance (Certified Local Guides)</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Destination / Region *</label>
-                                    <select id="comp-destination" required>
-                                        <option value="all">🌐 All Regions (Universal)</option>
-                                        <option value="cox-s-bazar">Cox's Bazar Beach</option>
-                                        <option value="sajek-valley">Sajek Valley & Khagrachari</option>
-                                        <option value="saint-martin">Saint Martin Coral Island</option>
-                                        <option value="sylhet">Sylhet & Sreemangal</option>
-                                        <option value="bandarban">Bandarban Hill Tracts</option>
-                                        <option value="sundarbans">Sundarbans Mangrove</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group" style="grid-column: 1 / -1;">
-                                    <label id="lbl-comp-name">Component / Supplier Name *</label>
-                                    <input type="text" id="comp-name" required placeholder="e.g. Sayeman Beach Resort, Nilgiri Cloud Cottage, PADI Scuba Experience, Tribal Buffet">
-                                </div>
-
-                                <div class="form-group" style="grid-column: 1 / -1;">
-                                    <label>Description & Features *</label>
-                                    <input type="text" id="comp-sub" required placeholder="e.g. Ocean view balcony, complimentary breakfast, infinite swimming pool">
-                                </div>
-
-                                <div class="form-group">
-                                    <label id="lbl-comp-price">Unit Price (BDT) *</label>
-                                    <input type="number" id="comp-price" required min="0" step="50" placeholder="e.g. 4500">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Image Photo URL</label>
-                                    <input type="url" id="comp-img" value="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80">
-                                </div>
-
-                                <div class="form-group" id="group-comp-amenities" style="grid-column: 1 / -1;">
-                                    <label>Key Amenities / Features (Comma separated)</label>
-                                    <input type="text" id="comp-amenities" placeholder="e.g. Free WiFi, Breakfast Included, Air Conditioning, Mountain View">
-                                </div>
-                            </div>
-
-                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
-                                <button type="reset" class="btn btn-secondary">Clear Form</button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="material-icons">save</i> Save Component to Tour Planner Inventory
-                                </button>
-                            </div>
-                        </form>
+                    <!-- Sub-Navigation Tabs -->
+                    <div class="tp-nav-tabs-group" id="tour-nav-tabs">
+                        <button type="button" class="tp-tab-pill active" onclick="switchTourMainTab('categories', this)">Categories</button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('operators', this)">Operators</button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('locations', this)">Locations</button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('routes', this)">Routes</button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('schedules', this)">Schedules</button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('products', this)">Products</button>
                     </div>
 
-                    <!-- Components Live Cards Grid -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                <i class="material-icons" style="color: var(--primary);">grid_view</i>
-                                <span id="crm-components-count-label">Supplier Components Directory</span>
-                            </div>
-                            <input type="text" id="search-components-input" placeholder="Search component name, location..." onkeyup="filterComponentsUI()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 280px;">
+                    <!-- Master Categories Table Card -->
+                    <div class="tp-table-card" id="tour-table-container">
+                        <div style="overflow-x: auto;">
+                            <table class="tp-custom-table" id="tour-categories-master-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px;">#</th>
+                                        <th style="min-width: 240px;">Category Name</th>
+                                        <th style="min-width: 140px;">Type</th>
+                                        <th style="min-width: 130px;">Sub Categories</th>
+                                        <th style="min-width: 110px;">Products</th>
+                                        <th style="min-width: 110px;">Status</th>
+                                        <th style="min-width: 140px;">Created Date</th>
+                                        <th style="width: 70px; text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tour-categories-tbody">
+                                    <!-- Populated dynamically by renderTourCategoriesTable() -->
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="panel-body">
-                            <div id="crm-components-grid" class="crm-grid-cards">
-                                <div style="text-align: center; color: #94a3b8; padding: 2rem; grid-column: 1 / -1;">Loading components...</div>
+                    </div>
+
+                    <!-- Add Category Modal for Tour Planner -->
+                    <div id="tour-add-category-modal" class="tp-modal-overlay" onclick="closeTourAddCategoryModal(event)">
+                        <div class="tp-modal-card" onclick="event.stopPropagation()">
+                            <div class="tp-modal-header">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 38px; height: 38px; border-radius: 10px; background: #d1fae5; color: #059669; display: flex; align-items: center; justify-content: center;">
+                                        <i class="material-icons" style="font-size: 22px;">category</i>
+                                    </div>
+                                    <div>
+                                        <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0;">Add New Category</h3>
+                                        <p style="font-size: 0.8rem; color: #64748b; margin: 0;">Create a master service classification for Tour Planner</p>
+                                    </div>
+                                </div>
+                                <button type="button" class="tp-modal-close" onclick="closeTourAddCategoryModal()">&times;</button>
                             </div>
+                            <form id="tour-add-category-form" onsubmit="handleTourSaveNewCategory(event)">
+                                <div class="tp-modal-body">
+                                    <div class="form-group">
+                                        <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Category Name *</label>
+                                        <input type="text" id="tour-new-cat-name" required placeholder="e.g. Desert Safari & Camping" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <div class="form-group">
+                                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Type *</label>
+                                            <select id="tour-new-cat-type" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                                                <option value="Transport">Transport</option>
+                                                <option value="Accommodation">Accommodation</option>
+                                                <option value="Activity" selected>Activity</option>
+                                                <option value="Service">Service</option>
+                                                <option value="Logistics">Logistics</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Status *</label>
+                                            <select id="tour-new-cat-status" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                                                <option value="Active" selected>Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <div class="form-group">
+                                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Sub Categories Count</label>
+                                            <input type="number" id="tour-new-cat-subs" value="1" min="0" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Products Count</label>
+                                            <input type="number" id="tour-new-cat-prods" value="0" min="0" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Visual Icon & Theme</label>
+                                        <select id="tour-new-cat-icon" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                                            <option value="eco|#d1fae5|#059669">🌿 Activities & Experiences (Emerald)</option>
+                                            <option value="directions_bus|#e0f2fe|#0284c7">🚌 Bus / Transport (Blue)</option>
+                                            <option value="hotel|#e0e7ff|#4338ca">🏨 Hotel / Accommodation (Indigo)</option>
+                                            <option value="confirmation_number|#fef3c7|#d97706">🎟️ Attractions & Tickets (Amber)</option>
+                                            <option value="restaurant|#ffe4e6|#e11d48">🍽️ Food & Dining (Rose)</option>
+                                            <option value="support_agent|#e0f2fe|#2563eb">🎧 Guide & Support (Blue)</option>
+                                            <option value="local_shipping|#f1f5f9|#475569">🚚 Cargo & Logistics (Slate)</option>
+                                            <option value="hiking|#ede9fe|#7c3aed">🧗 Hiking & Adventure (Purple)</option>
+                                            <option value="beach_access|#cffafe|#0891b2">🏖️ Beach & Islands (Cyan)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="tp-modal-footer">
+                                    <button type="button" class="btn btn-secondary" onclick="closeTourAddCategoryModal()">Cancel</button>
+                                    <button type="submit" class="tp-btn-add-category" style="padding: 0.6rem 1.35rem;">
+                                        <i class="material-icons" style="font-size: 18px;">check</i> Save Category
+                                    </button>
+                                </div>
+                            </form>
                         </div>
+                    </div>
+
+                    <!-- Floating Action Dropdown Menu for Tour Planner -->
+                    <div id="tour-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+                        <button type="button" class="tp-action-item" onclick="handleTourCategoryEdit()">
+                            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
+                        </button>
+                        <button type="button" class="tp-action-item" onclick="handleTourCategoryToggleStatus()">
+                            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
+                        </button>
+                        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
+                        <button type="button" class="tp-action-item danger" onclick="handleTourCategoryDelete()">
+                            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete
+                        </button>
                     </div>
                 </section>
 
@@ -3101,6 +3108,7 @@
             // Default to Dashboard
             switchTab('dashboard');
             loadTravelPlanner();
+            loadTourPlanner();
         }
 
         function switchTab(tabId) {
@@ -3348,208 +3356,217 @@
                     renderTpCategoriesTable(filtered);
                 }
             }
+
+            const tourSection = document.getElementById('view-tour-planner');
+            if (tourSection && tourSection.classList.contains('active')) {
+                if (!q) {
+                    renderTourCategoriesTable(tourCategories);
+                } else {
+                    const filtered = tourCategories.filter(c => 
+                        c.name.toLowerCase().includes(q) || 
+                        c.type.toLowerCase().includes(q) || 
+                        c.status.toLowerCase().includes(q)
+                    );
+                    renderTourCategoriesTable(filtered);
+                }
+            }
         });
 
-        // ================= 2. TOUR PLANNER OPERATIONS CRM ================= //
+        // ================= 2. TOUR PLANNER (CATEGORY & SERVICE MANAGER) ================= //
 
-        function toggleAddComponentForm() {
-            const panel = document.getElementById('panel-add-component');
-            if (panel) {
-                const isOpen = panel.style.display === 'block';
-                panel.style.display = isOpen ? 'none' : 'block';
-                if (!isOpen) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
+        let tourCategories = [
+            { id: 1, name: 'Transit', type: 'Transport', subCategories: 8, products: 45, status: 'Active', createdDate: '12 May 2025', icon: 'directions_bus', bg: '#e0f2fe', color: '#0284c7' },
+            { id: 2, name: 'Accommodation', type: 'Accommodation', subCategories: 6, products: 32, status: 'Active', createdDate: '10 May 2025', icon: 'hotel', bg: '#e0e7ff', color: '#4338ca' },
+            { id: 3, name: 'Activities & Experiences', type: 'Activity', subCategories: 5, products: 21, status: 'Active', createdDate: '08 May 2025', icon: 'eco', bg: '#d1fae5', color: '#059669' },
+            { id: 4, name: 'Attractions & Tickets', type: 'Service', subCategories: 4, products: 18, status: 'Active', createdDate: '05 May 2025', icon: 'confirmation_number', bg: '#fef3c7', color: '#d97706' },
+            { id: 5, name: 'Food & Dining', type: 'Service', subCategories: 4, products: 12, status: 'Active', createdDate: '02 May 2025', icon: 'restaurant', bg: '#ffe4e6', color: '#e11d48' },
+            { id: 6, name: 'Guide & Support', type: 'Service', subCategories: 3, products: 9, status: 'Active', createdDate: '01 May 2025', icon: 'support_agent', bg: '#e0f2fe', color: '#2563eb' },
+            { id: 7, name: 'Cargo & Logistics', type: 'Logistics', subCategories: 2, products: 4, status: 'Inactive', createdDate: '28 Apr 2025', icon: 'local_shipping', bg: '#f1f5f9', color: '#475569' }
+        ];
+
+        let activeTourCategoryActionId = null;
+
+        function loadTourPlanner() {
+            renderTourCategoriesTable(tourCategories);
         }
 
-        function filterTourCategory(slotKey, btnEl) {
-            activeTourSlotKey = slotKey;
-            if (btnEl) {
-                document.querySelectorAll('#view-tour-planner .crm-pill-btn').forEach(b => b.classList.remove('active'));
-                btnEl.classList.add('active');
-            }
-            loadTourPlanner(slotKey);
-        }
+        function renderTourCategoriesTable(list = tourCategories) {
+            const tbody = document.getElementById('tour-categories-tbody');
+            if (!tbody) return;
 
-        function onComponentCategoryChange(slotKey) {
-            const nameLbl = document.getElementById('lbl-comp-name');
-            const priceLbl = document.getElementById('lbl-comp-price');
-            const nameInput = document.getElementById('comp-name');
-            const subInput = document.getElementById('comp-sub');
-
-            if (slotKey === 'hotel') {
-                if (nameLbl) nameLbl.textContent = 'Hotel / Resort Name & Room Type *';
-                if (priceLbl) priceLbl.textContent = 'Room Rate per Night (BDT) *';
-                if (nameInput) nameInput.placeholder = 'e.g. Sayeman Beach Resort — Deluxe Ocean Balcony';
-                if (subInput) subInput.placeholder = 'e.g. 5-Star Beachfront, Buffet Breakfast included, Infinity Pool';
-            } else if (slotKey === 'dining') {
-                if (nameLbl) nameLbl.textContent = 'Restaurant / Meal Package Name *';
-                if (priceLbl) priceLbl.textContent = 'Meal Price per Person (BDT) *';
-                if (nameInput) nameInput.placeholder = 'e.g. Nilgiri Traditional Tribal Lunch Platter';
-                if (subInput) subInput.placeholder = 'e.g. 12-item authentic indigenous cuisine, Bamboo Chicken';
-            } else if (slotKey === 'recreation') {
-                if (nameLbl) nameLbl.textContent = 'Activity / Experience Title *';
-                if (priceLbl) priceLbl.textContent = 'Activity Ticket / Fee (BDT) *';
-                if (nameInput) nameInput.placeholder = 'e.g. Saint Martin Coral Reef Scuba Diving';
-                if (subInput) subInput.placeholder = 'e.g. 45-minute dive with PADI certified master, underwater photos included';
-            } else if (slotKey === 'guide') {
-                if (nameLbl) nameLbl.textContent = 'Tour Guide Full Name & Badges *';
-                if (priceLbl) priceLbl.textContent = 'Daily Guide Fee (BDT) *';
-                if (nameInput) nameInput.placeholder = 'e.g. Rafiqul Hasan (Certified Hill Trekker Guide)';
-                if (subInput) subInput.placeholder = 'e.g. Fluent in English, Bengali, Chakma • 7 Years Trekking Experience';
-            } else {
-                if (nameLbl) nameLbl.textContent = 'Transport / Vehicle Transfer Name *';
-                if (priceLbl) priceLbl.textContent = 'Transfer Rate (BDT) *';
-                if (nameInput) nameInput.placeholder = 'e.g. Sajek 4x4 Chander Gari Mountain Jeep';
-                if (subInput) subInput.placeholder = 'e.g. Reserved round-trip Khagrachari to Sajek Valley, 12 passengers max';
-            }
-        }
-
-        async function loadTourPlanner(slotKey = 'all') {
-            try {
-                const url = slotKey && slotKey !== 'all' 
-                    ? `${API_BASE}/api/admin/inventory/components?slot_key=${slotKey}`
-                    : `${API_BASE}/api/admin/inventory/components`;
-
-                const res = await fetch(url, {
-                    headers: { 'Authorization': `Bearer ${authToken}` }
-                });
-                if (!res.ok) return;
-                const data = await res.json();
-                if (data.success && data.items) {
-                    cachedTourComponents = data.items;
-                    renderComponentsUI(cachedTourComponents);
-                }
-            } catch (err) {
-                console.error(err);
-            }
-        }
-
-        function renderComponentsUI(items) {
-            const grid = document.getElementById('crm-components-grid');
-            const countLabel = document.getElementById('crm-components-count-label');
-            if (!grid) return;
-
-            const q = (document.getElementById('search-components-input')?.value || '').toLowerCase().trim();
-            let filtered = items;
-            if (q) {
-                filtered = items.filter(c => 
-                    (c.name || '').toLowerCase().includes(q) ||
-                    (c.sub || '').toLowerCase().includes(q) ||
-                    (c.destination_slug || '').toLowerCase().includes(q)
-                );
-            }
-
-            if (countLabel) {
-                countLabel.textContent = `Supplier Components Directory (${filtered.length} Items)`;
-            }
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `<div style="text-align: center; color: #94a3b8; padding: 2.5rem; grid-column: 1 / -1;">No components found for this category. Click 'Add Tour Component' to create one.</div>`;
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2.5rem;">No categories found matching your search.</td></tr>';
                 return;
             }
 
-            grid.innerHTML = filtered.map(item => {
-                let tagClass = 'crm-tag-hotel';
-                let tagLabel = 'Hotel / Resort';
-                if (item.slot_key === 'transport') { tagClass = 'crm-tag-transport'; tagLabel = 'Transit & Transfer'; }
-                if (item.slot_key === 'dining') { tagClass = 'crm-tag-dining'; tagLabel = 'Dining & Restaurant'; }
-                if (item.slot_key === 'recreation') { tagClass = 'crm-tag-recreation'; tagLabel = 'Activity & Sports'; }
-                if (item.slot_key === 'guide') { tagClass = 'crm-tag-guide'; tagLabel = 'Tour Guide'; }
-
+            tbody.innerHTML = list.map((cat, idx) => {
+                const isActive = (cat.status || '').toLowerCase() === 'active';
                 return `
-                    <div class="crm-item-card">
-                        <img src="${item.img || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'}" alt="${item.name}" class="crm-card-media" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'">
-                        <div class="crm-card-body">
-                            <span class="crm-card-tag ${tagClass}">${tagLabel}</span>
-                            <h4 class="crm-card-title">${item.name}</h4>
-                            <p class="crm-card-sub">${item.sub || 'No description provided.'}</p>
-                            <div style="font-size: 0.775rem; color: #64748b; margin-bottom: 0.5rem;">
-                                📍 Region: <strong>${item.destination_slug ? item.destination_slug.toUpperCase() : 'UNIVERSAL'}</strong>
+                    <tr>
+                        <td><strong>${idx + 1}</strong></td>
+                        <td>
+                            <div class="tp-category-cell">
+                                <div class="tp-cat-icon-box" style="background: ${cat.bg || '#e0f2fe'}; color: ${cat.color || '#0284c7'};">
+                                    <i class="material-icons">${cat.icon || 'category'}</i>
+                                </div>
+                                <span class="tp-cat-name">${cat.name}</span>
                             </div>
-                            <div class="crm-card-footer">
-                                <span class="crm-card-price">BDT ${item.price.toLocaleString()}</span>
-                                <button type="button" class="btn btn-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="deleteComponent(${item.id})">
-                                    <i class="material-icons" style="font-size: 0.9rem;">delete</i> Remove
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                        </td>
+                        <td>${cat.type}</td>
+                        <td>${cat.subCategories}</td>
+                        <td>${cat.products}</td>
+                        <td>
+                            <span class="tp-status-pill ${isActive ? 'active' : 'inactive'}">${cat.status}</span>
+                        </td>
+                        <td>${cat.createdDate}</td>
+                        <td style="text-align: center; position: relative;">
+                            <button type="button" class="tp-action-btn" onclick="openTourCategoryActionMenu(${cat.id}, event)" title="Actions">···</button>
+                        </td>
+                    </tr>
                 `;
             }).join('');
         }
 
-        function filterComponentsUI() {
-            renderComponentsUI(cachedTourComponents);
+        function switchTourMainTab(tabName, el) {
+            document.querySelectorAll('#tour-nav-tabs .tp-tab-pill').forEach(btn => btn.classList.remove('active'));
+            if (el) el.classList.add('active');
+
+            const tableCard = document.getElementById('tour-table-container');
+            let placeholder = document.getElementById('tour-tab-placeholder');
+
+            if (tabName === 'categories') {
+                if (tableCard) tableCard.style.display = 'block';
+                if (placeholder) placeholder.style.display = 'none';
+                renderTourCategoriesTable(tourCategories);
+            } else {
+                if (tableCard) tableCard.style.display = 'none';
+                if (!placeholder) {
+                    placeholder = document.createElement('div');
+                    placeholder.id = 'tour-tab-placeholder';
+                    placeholder.className = 'tp-table-card';
+                    placeholder.style.padding = '3.5rem 2rem';
+                    placeholder.style.textAlign = 'center';
+                    tableCard.parentNode.insertBefore(placeholder, tableCard.nextSibling);
+                }
+                placeholder.style.display = 'block';
+                placeholder.innerHTML = `
+                    <div style="max-width: 440px; margin: 0 auto;">
+                        <div style="width: 58px; height: 58px; border-radius: 16px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+                            <i class="material-icons" style="font-size: 30px;">folder_open</i>
+                        </div>
+                        <h3 style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; text-transform: capitalize;">${tabName} Management</h3>
+                        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Manage and configure your registered ${tabName} catalog data directly synchronized with Tour Planner.</p>
+                        <button type="button" class="tp-btn-add-category" onclick="switchTourMainTab('categories', document.querySelector('#tour-nav-tabs .tp-tab-pill:first-child'))">
+                            <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Categories
+                        </button>
+                    </div>
+                `;
+            }
         }
 
-        async function handleCreateComponentCRM(e) {
+        function openTourAddCategoryModal() {
+            const modal = document.getElementById('tour-add-category-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.getElementById('tour-new-cat-name')?.focus();
+            }
+        }
+
+        function closeTourAddCategoryModal(e) {
+            if (e && e.target !== e.currentTarget && !e.target.classList.contains('tp-modal-close')) return;
+            const modal = document.getElementById('tour-add-category-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function handleTourSaveNewCategory(e) {
             e.preventDefault();
-            const slotKey = document.getElementById('comp-slot-key').value;
-            const dest = document.getElementById('comp-destination').value;
-            const name = document.getElementById('comp-name').value.trim();
-            const sub = document.getElementById('comp-sub').value.trim();
-            const price = parseFloat(document.getElementById('comp-price').value);
-            const img = document.getElementById('comp-img').value.trim();
-            const amenities = document.getElementById('comp-amenities').value.trim();
+            const name = document.getElementById('tour-new-cat-name').value.trim();
+            const type = document.getElementById('tour-new-cat-type').value;
+            const status = document.getElementById('tour-new-cat-status').value;
+            const subs = parseInt(document.getElementById('tour-new-cat-subs').value) || 1;
+            const prods = parseInt(document.getElementById('tour-new-cat-prods').value) || 0;
+            const iconParts = (document.getElementById('tour-new-cat-icon').value || '').split('|');
+            const icon = iconParts[0] || 'category';
+            const bg = iconParts[1] || '#e0f2fe';
+            const color = iconParts[2] || '#0284c7';
 
-            const payload = {
-                slot_key: slotKey,
-                destination_slug: dest,
-                name: name,
-                sub: sub,
-                price: price,
-                img: img,
-                has_seats: slotKey === 'transport' ? 1 : 0,
-                has_rooms: slotKey === 'hotel' ? 1 : 0,
-                details: {
-                    amenities: amenities ? amenities.split(',').map(s => s.trim()) : [],
-                    category: slotKey,
-                    region: dest
-                }
-            };
+            const newId = tourCategories.length > 0 ? Math.max(...tourCategories.map(c => c.id)) + 1 : 1;
+            const today = new Date();
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const createdDate = `${String(today.getDate()).padStart(2, '0')} ${monthNames[today.getMonth()]} ${today.getFullYear()}`;
 
-            try {
-                const res = await fetch(`${API_BASE}/api/admin/inventory/components`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${authToken}`
-                    },
-                    body: JSON.stringify(payload)
-                });
+            tourCategories.unshift({
+                id: newId,
+                name,
+                type,
+                subCategories: subs,
+                products: prods,
+                status,
+                createdDate,
+                icon,
+                bg,
+                color
+            });
 
-                const data = await res.json();
-                if (res.ok && data.success) {
-                    showToast(data.message || 'Component saved to Tour Planner inventory!', 'success');
-                    document.getElementById('form-add-component').reset();
-                    toggleAddComponentForm();
-                    loadTourPlanner(activeTourSlotKey);
-                } else {
-                    showToast(data.message || 'Failed to create component', 'error');
-                }
-            } catch (err) {
-                showToast(err.message, 'error');
+            closeTourAddCategoryModal();
+            document.getElementById('tour-add-category-form').reset();
+            renderTourCategoriesTable(tourCategories);
+            showToast(`Category "${name}" successfully created for Tour Planner!`, 'success');
+        }
+
+        function openTourCategoryActionMenu(id, e) {
+            e.stopPropagation();
+            activeTourCategoryActionId = id;
+            const menu = document.getElementById('tour-action-dropdown-menu');
+            if (!menu) return;
+
+            const rect = e.currentTarget.getBoundingClientRect();
+            menu.style.top = `${rect.bottom + window.scrollY + 6}px`;
+            menu.style.left = `${rect.left + window.scrollX - 110}px`;
+            menu.classList.add('show');
+        }
+
+        function handleTourCategoryEdit() {
+            const menu = document.getElementById('tour-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+            const cat = tourCategories.find(c => c.id === activeTourCategoryActionId);
+            if (!cat) return;
+            const newName = prompt('Edit Category Name:', cat.name);
+            if (newName && newName.trim()) {
+                cat.name = newName.trim();
+                renderTourCategoriesTable(tourCategories);
+                showToast('Category updated successfully!', 'success');
             }
         }
 
-        async function deleteComponent(id) {
-            if (!confirm('Are you sure you want to remove this supplier component from Tour Planner?')) return;
-            try {
-                const res = await fetch(`${API_BASE}/api/admin/inventory/components/${id}`, {
-                    method: 'DELETE',
-                    headers: { 'Authorization': `Bearer ${authToken}` }
-                });
-                const data = await res.json();
-                if (res.ok && data.success) {
-                    showToast('Component removed successfully', 'success');
-                    loadTourPlanner(activeTourSlotKey);
-                } else {
-                    showToast(data.message || 'Failed to delete component', 'error');
-                }
-            } catch (err) {
-                showToast(err.message, 'error');
+        function handleTourCategoryToggleStatus() {
+            const menu = document.getElementById('tour-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+            const cat = tourCategories.find(c => c.id === activeTourCategoryActionId);
+            if (!cat) return;
+            cat.status = cat.status === 'Active' ? 'Inactive' : 'Active';
+            renderTourCategoriesTable(tourCategories);
+            showToast(`Category "${cat.name}" is now ${cat.status}!`, 'info');
+        }
+
+        function handleTourCategoryDelete() {
+            const menu = document.getElementById('tour-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+            const catIndex = tourCategories.findIndex(c => c.id === activeTourCategoryActionId);
+            if (catIndex === -1) return;
+            const catName = tourCategories[catIndex].name;
+            if (confirm(`Are you sure you want to delete "${catName}" category?`)) {
+                tourCategories.splice(catIndex, 1);
+                renderTourCategoriesTable(tourCategories);
+                showToast(`Category "${catName}" removed.`, 'warning');
             }
         }
+
+        // Close tour action menu on window click
+        window.addEventListener('click', () => {
+            const menu = document.getElementById('tour-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+        });
 
         // ================= 3. TOUR PACKAGE STUDIO CRM ================= //
 
