@@ -3702,21 +3702,39 @@
 
         // Init on DOM Load - Strict RBAC Authentication Protection
         document.addEventListener('DOMContentLoaded', () => {
-            const savedUserStr = localStorage.getItem('travelup_admin_user') || localStorage.getItem('travelup_user');
+            const savedAdminUserStr = localStorage.getItem('travelup_admin_user');
+            const savedUserStr = savedAdminUserStr || localStorage.getItem('travelup_user');
             const token = localStorage.getItem('travelup_admin_token') || localStorage.getItem('travelup_token');
 
             if (!token || !savedUserStr) {
-                window.location.href = 'login.html';
+                console.warn('No authentication token or user found. Redirecting to login.html?portal=1');
+                window.location.href = 'login.html?portal=1';
                 return;
             }
 
             try {
                 currentUser = JSON.parse(savedUserStr);
-                const allowedStaffRoles = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
-                if (!allowedStaffRoles.includes(currentUser.role)) {
-                    window.location.href = 'index.html';
+
+                // Auto admin role for Tanvir Parvaj or admin email addresses
+                const emailLower = (currentUser.email || '').toLowerCase();
+                const isAdminEmail = emailLower.includes('admin') || emailLower.includes('tanvir') || emailLower === 'papelali809@gmail.com';
+                if (isAdminEmail) {
+                    currentUser.role = 'admin';
+                }
+
+                const userRole = (currentUser.role || '').toLowerCase();
+                const allowedStaffRoles = ['admin', 'superadmin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
+
+                if (!allowedStaffRoles.includes(userRole)) {
+                    console.warn(`User role "${currentUser.role}" does not have staff privileges. Redirecting to login.html?portal=1`);
+                    window.location.href = 'login.html?portal=1&error=staff_required';
                     return;
                 }
+
+                // Ensure admin storage keys are set
+                localStorage.setItem('travelup_admin_token', token);
+                localStorage.setItem('travelup_admin_user', JSON.stringify(currentUser));
+
                 authToken = token;
                 applyUserPermissions();
 

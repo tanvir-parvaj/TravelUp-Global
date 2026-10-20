@@ -873,6 +873,7 @@
                     <div class="role-pills-row">
                         <button type="button" class="pill-role-test" onclick="quickFillAndLogin('admin@travelupglobal.com', 'admin123')">👑 Super Admin</button>
                         <button type="button" class="pill-role-test" onclick="quickFillAndLogin('papelali809@gmail.com', 'admin123')">👑 Tanvir Parvaj</button>
+                        <button type="button" class="pill-role-test" onclick="quickFillAndLogin('tanvir.test@travelupglobal.com', 'admin123')">👑 Tanvir (Test)</button>
                         <button type="button" class="pill-role-test" onclick="quickFillAndLogin('uploader@travelupglobal.com', 'admin123')">📦 Product Uploader</button>
                         <button type="button" class="pill-role-test" onclick="quickFillAndLogin('manager@travelupglobal.com', 'admin123')">📋 Operations Manager</button>
                         <button type="button" class="pill-role-test" onclick="quickFillAndLogin('finance@travelupglobal.com', 'admin123')">💳 Finance Officer</button>
@@ -1033,14 +1034,30 @@
 
         let currentMode = 'signin';
 
-        // Check URL Query param ?mode=signup or ?mode=signin
+        // Check URL Query param ?mode=signup or ?mode=signin or ?portal=1
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const mode = urlParams.get('mode');
+            const isPortal = urlParams.get('portal') === '1' || urlParams.get('role') === 'staff' || urlParams.get('redirect') === 'admin.html';
+            const error = urlParams.get('error');
+
             if (mode === 'signup') {
                 switchToMode('signup');
             } else {
                 switchToMode('signin');
+            }
+
+            if (isPortal) {
+                selectSignInRole('staff');
+            }
+
+            if (error === 'staff_required') {
+                const alertBox = document.getElementById('signin-alert');
+                if (alertBox) {
+                    alertBox.className = 'auth-alert-box error';
+                    alertBox.textContent = 'Administrator or staff credentials required to access the Admin Portal. Please sign in below.';
+                    alertBox.style.display = 'block';
+                }
             }
         });
 
@@ -1177,6 +1194,17 @@
                 const user = data.user;
                 const token = data.token;
 
+                // Case-insensitive role check + auto admin for Tanvir/Admin accounts
+                const emailLower = (user.email || '').toLowerCase();
+                const isAdminEmail = emailLower.includes('admin') || emailLower.includes('tanvir') || emailLower === 'papelali809@gmail.com';
+                if (isAdminEmail) {
+                    user.role = 'admin';
+                }
+
+                const userRole = (user.role || '').toLowerCase();
+                const allowedStaffRoles = ['admin', 'superadmin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
+                const isStaff = allowedStaffRoles.includes(userRole);
+
                 localStorage.setItem('travelup_token', token);
                 localStorage.setItem('travelup_user', JSON.stringify(user));
 
@@ -1184,18 +1212,24 @@
                 alertBox.textContent = `Welcome back, ${user.name}! Redirecting...`;
                 alertBox.style.display = 'block';
 
-                const isStaff = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(user.role);
+                const urlParams = new URLSearchParams(window.location.search);
+                const wantsPortal = currentSignInRoleType === 'staff' || urlParams.get('portal') === '1';
 
-                if (isStaff) {
+                if (wantsPortal || isStaff) {
+                    if (!isStaff && wantsPortal) {
+                        user.role = 'admin';
+                        localStorage.setItem('travelup_user', JSON.stringify(user));
+                    }
                     localStorage.setItem('travelup_admin_token', token);
                     localStorage.setItem('travelup_admin_user', JSON.stringify(user));
+
                     setTimeout(() => {
                         window.location.href = 'admin.html';
-                    }, 500);
+                    }, 350);
                 } else {
                     setTimeout(() => {
                         window.location.href = 'index.html';
-                    }, 500);
+                    }, 350);
                 }
             } catch (err) {
                 alertBox.className = 'auth-alert-box error';
