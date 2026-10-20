@@ -3122,6 +3122,586 @@
         body.dark-theme .tp-operators-list-table tbody tr:hover td {
             background: #1e293b;
         }
+
+        /* ==============================================================
+           LOCATION MANAGEMENT SYSTEM (MOCKUP PIXEL-PERFECT STYLES)
+           ============================================================== */
+        .loc-management-card {
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            border-radius: 20px;
+            padding: 1.6rem 1.85rem;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+            margin-bottom: 2rem;
+        }
+
+        /* Header Row */
+        .loc-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding-bottom: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .loc-header-title-box {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .loc-header-icon-circle {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #ecfdf5;
+            color: #059669;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(5, 150, 105, 0.15);
+            flex-shrink: 0;
+        }
+
+        .loc-header-heading {
+            margin: 0;
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+        }
+
+        .loc-header-subtitle {
+            margin: 3px 0 0 0;
+            font-size: 0.84rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .loc-header-banner-img {
+            max-height: 76px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Stat Summary Cards Grid */
+        .loc-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .loc-stat-card {
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 1px 4px rgba(15, 23, 42, 0.02);
+        }
+
+        .loc-stat-card:hover {
+            transform: translateY(-2px);
+            border-color: #cbd5e1;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+        }
+
+        .loc-stat-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .loc-stat-icon-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .loc-stat-icon-divisions {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .loc-stat-icon-districts {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .loc-stat-icon-upazilas {
+            background: #f5f3ff;
+            color: #7c3aed;
+        }
+
+        .loc-stat-icon-destinations {
+            background: #fff7ed;
+            color: #ea580c;
+        }
+
+        .loc-stat-num {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.1;
+        }
+
+        .loc-stat-label {
+            font-size: 0.785rem;
+            font-weight: 600;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .loc-stat-arrow {
+            color: #94a3b8;
+            font-size: 18px;
+            transition: transform 0.15s;
+        }
+
+        .loc-stat-card:hover .loc-stat-arrow {
+            transform: translateX(2px);
+            color: #0f172a;
+        }
+
+        /* Action Buttons Row */
+        .loc-actions-bar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .btn-loc-import {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+            font-size: 0.84rem;
+            font-weight: 700;
+            padding: 0.52rem 1.15rem;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn-loc-import:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        .btn-loc-add {
+            background: #00875a;
+            color: #ffffff;
+            font-size: 0.84rem;
+            font-weight: 700;
+            padding: 0.52rem 1.35rem;
+            border: none;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 2px 8px rgba(0, 135, 90, 0.25);
+        }
+
+        .btn-loc-add:hover {
+            background: #00704a;
+            transform: translateY(-1px);
+        }
+
+        /* Nav Tabs Strip */
+        .loc-tabs-strip {
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+            border-bottom: 2px solid #f1f5f9;
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+
+        .loc-tab-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.75rem 0.25rem;
+            font-size: 0.885rem;
+            font-weight: 600;
+            color: #64748b;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .loc-tab-item:hover {
+            color: #00875a;
+        }
+
+        .loc-tab-item.active {
+            color: #00875a;
+            border-bottom-color: #00875a;
+            font-weight: 700;
+        }
+
+        .loc-tab-item.active .material-icons {
+            color: #00875a !important;
+        }
+
+        /* Filter Controls Toolbar */
+        .loc-filters-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .loc-filters-group {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .loc-filter-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .loc-filter-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        .loc-filter-select {
+            padding: 0.5rem 0.85rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 0.835rem;
+            font-weight: 600;
+            color: #0f172a;
+            background: #ffffff;
+            outline: none;
+            min-width: 140px;
+            transition: border-color 0.15s;
+        }
+
+        .loc-filter-select:focus {
+            border-color: #00875a;
+        }
+
+        .loc-search-box {
+            position: relative;
+            min-width: 240px;
+        }
+
+        .loc-search-input {
+            width: 100%;
+            padding: 0.5rem 0.85rem 0.5rem 2.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 0.835rem;
+            outline: none;
+            background: #ffffff;
+            transition: border-color 0.15s;
+        }
+
+        .loc-search-input:focus {
+            border-color: #00875a;
+        }
+
+        /* Locations Table */
+        .loc-table-container {
+            border: 1px solid #eef2f6;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-top: 1.25rem;
+            background: #ffffff;
+        }
+
+        .loc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.84rem;
+        }
+
+        .loc-table thead th {
+            background: #fafbfc;
+            color: #475569;
+            font-size: 0.765rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid #eef2f6;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .loc-table tbody tr {
+            transition: background-color 0.1s ease;
+        }
+
+        .loc-table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .loc-table tbody td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+            vertical-align: middle;
+        }
+
+        .loc-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .loc-thumb-img {
+            width: 42px;
+            height: 32px;
+            border-radius: 7px;
+            object-fit: cover;
+            border: 1px solid #e2e8f0;
+            background: #f1f5f9;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .loc-name-cell {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .loc-name-title {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 0.885rem;
+            cursor: pointer;
+        }
+
+        .loc-name-title:hover {
+            color: #00875a;
+        }
+
+        .loc-featured-badge {
+            background: #ecfdf5;
+            color: #059669;
+            font-size: 0.685rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            margin-left: 8px;
+        }
+
+        .loc-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2.5px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .loc-status-pill.active {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .loc-status-pill.inactive {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .loc-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .loc-status-pill.active .loc-status-dot {
+            background: #10b981;
+        }
+
+        .loc-status-pill.inactive .loc-status-dot {
+            background: #94a3b8;
+        }
+
+        .loc-date-text {
+            color: #64748b;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .loc-action-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            transition: color 0.15s, background-color 0.15s;
+        }
+
+        .loc-action-btn:hover {
+            color: #0f172a;
+            background: #f1f5f9;
+        }
+
+        /* Type Segment Group (Add / Edit Modal) */
+        .loc-type-segment-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .loc-type-segment-btn {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.65rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 0.785rem;
+            font-weight: 700;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .loc-type-segment-btn:hover {
+            border-color: #cbd5e1;
+            background: #ffffff;
+        }
+
+        .loc-type-segment-btn.active {
+            background: #ecfdf5;
+            border-color: #00875a;
+            color: #00875a;
+            box-shadow: 0 0 0 1px #00875a;
+        }
+
+        .loc-info-callout {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 0.65rem 0.85rem;
+            font-size: 0.745rem;
+            color: #1e40af;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.4;
+            margin-top: 6px;
+        }
+
+        .loc-dropzone-box {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 1.15rem;
+            text-align: center;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .loc-dropzone-box:hover {
+            border-color: #00875a;
+            background: #ffffff;
+        }
+
+        .loc-char-counter {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            text-align: right;
+            margin-top: 2px;
+        }
+
+        /* Dark Theme Support */
+        body.dark-theme .loc-management-card,
+        body.dark-theme .loc-stat-card,
+        body.dark-theme .loc-table-container,
+        body.dark-theme .loc-table {
+            background: #111827;
+            border-color: #1f2937;
+        }
+
+        body.dark-theme .loc-header-heading,
+        body.dark-theme .loc-stat-num,
+        body.dark-theme .loc-name-title {
+            color: #f8fafc;
+        }
+
+        body.dark-theme .loc-table thead th {
+            background: #1f2937;
+            color: #cbd5e1;
+            border-color: #374151;
+        }
+
+        body.dark-theme .loc-table tbody td {
+            border-color: #1f2937;
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .loc-table tbody tr:hover {
+            background-color: #1e293b;
+        }
+
+        body.dark-theme .loc-filter-select,
+        body.dark-theme .loc-search-input,
+        body.dark-theme .btn-loc-import {
+            background: #1f2937;
+            border-color: #374151;
+            color: #f8fafc;
+        }
+
+        body.dark-theme .loc-tabs-strip {
+            border-color: #1f2937;
+        }
+
+        body.dark-theme .loc-type-segment-btn {
+            background: #1f2937;
+            border-color: #374151;
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .loc-type-segment-btn.active {
+            background: #064e3b;
+            border-color: #10b981;
+            color: #6ee7b7;
+        }
     </style>
 </head>
 <body>
@@ -3597,6 +4177,161 @@
                         </div>
                     </div>
 
+                    <!-- Location Management Page View for Travel Planner (Mockup Match) -->
+                    <div id="tp-location-container" style="display: none;">
+                        <div class="loc-management-card">
+                            <!-- Header Row with Title and Bangladesh Tourism Banner -->
+                            <div class="loc-header-row">
+                                <div class="loc-header-title-box">
+                                    <div class="loc-header-icon-circle">
+                                        <i class="material-icons" style="font-size: 24px;">location_on</i>
+                                    </div>
+                                    <div>
+                                        <h2 class="loc-header-heading">Location Management</h2>
+                                        <p class="loc-header-subtitle">Manage divisions, districts and upazilas of Bangladesh.</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img src="images/locations/banner_discover_bd.png" alt="Discover Explore Bangladesh" class="loc-header-banner-img">
+                                </div>
+                            </div>
+
+                            <!-- Stat Summary Cards Row (3 Cards for Travel Planner) -->
+                            <div class="loc-stats-grid">
+                                <div class="loc-stat-card" onclick="switchLocSubTab('divisions', 'travel-planner')">
+                                    <div class="loc-stat-left">
+                                        <div class="loc-stat-icon-wrap loc-stat-icon-divisions">
+                                            <i class="material-icons" style="font-size: 22px;">map</i>
+                                        </div>
+                                        <div>
+                                            <div class="loc-stat-num" id="tp-loc-divisions-count">8</div>
+                                            <div class="loc-stat-label">Divisions</div>
+                                        </div>
+                                    </div>
+                                    <i class="material-icons loc-stat-arrow">chevron_right</i>
+                                </div>
+
+                                <div class="loc-stat-card" onclick="switchLocSubTab('districts', 'travel-planner')">
+                                    <div class="loc-stat-left">
+                                        <div class="loc-stat-icon-wrap loc-stat-icon-districts">
+                                            <i class="material-icons" style="font-size: 22px;">place</i>
+                                        </div>
+                                        <div>
+                                            <div class="loc-stat-num" id="tp-loc-districts-count">64</div>
+                                            <div class="loc-stat-label">Districts</div>
+                                        </div>
+                                    </div>
+                                    <i class="material-icons loc-stat-arrow">chevron_right</i>
+                                </div>
+
+                                <div class="loc-stat-card" onclick="switchLocSubTab('upazilas', 'travel-planner')">
+                                    <div class="loc-stat-left">
+                                        <div class="loc-stat-icon-wrap loc-stat-icon-upazilas">
+                                            <i class="material-icons" style="font-size: 22px;">near_me</i>
+                                        </div>
+                                        <div>
+                                            <div class="loc-stat-num" id="tp-loc-upazilas-count">495+</div>
+                                            <div class="loc-stat-label">Upazilas</div>
+                                        </div>
+                                    </div>
+                                    <i class="material-icons loc-stat-arrow">chevron_right</i>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons Row -->
+                            <div class="loc-actions-bar">
+                                <button type="button" class="btn-loc-import" onclick="handleImportLocationsPrompt('travel-planner')">
+                                    <i class="material-icons" style="font-size: 17px; color: #2563eb;">cloud_upload</i>
+                                    <span>Import Locations</span>
+                                </button>
+                                <button type="button" class="btn-loc-add" onclick="openAddLocationModal('travel-planner')">
+                                    <i class="material-icons" style="font-size: 18px;">add</i>
+                                    <span>Add Location</span>
+                                </button>
+                            </div>
+
+                            <!-- Tabs Strip: Divisions, Districts, Upazilas -->
+                            <div class="loc-tabs-strip" id="tp-loc-tabs-strip">
+                                <button type="button" class="loc-tab-item" data-tab="divisions" onclick="switchLocSubTab('divisions', 'travel-planner', this)">
+                                    <i class="material-icons" style="font-size: 18px; color: #627d98;">map</i>
+                                    <span>Divisions</span>
+                                </button>
+                                <button type="button" class="loc-tab-item" data-tab="districts" onclick="switchLocSubTab('districts', 'travel-planner', this)">
+                                    <i class="material-icons" style="font-size: 18px; color: #627d98;">place</i>
+                                    <span>Districts</span>
+                                </button>
+                                <button type="button" class="loc-tab-item active" data-tab="upazilas" onclick="switchLocSubTab('upazilas', 'travel-planner', this)">
+                                    <i class="material-icons" style="font-size: 18px; color: #00875a;">near_me</i>
+                                    <span>Upazilas</span>
+                                </button>
+                            </div>
+
+                            <!-- Filter Controls Toolbar -->
+                            <div class="loc-filters-row">
+                                <div class="loc-filters-group">
+                                    <div class="loc-filter-field" id="tp-filter-division-wrap">
+                                        <label class="loc-filter-label">Division</label>
+                                        <select id="tp-loc-division-select" class="loc-filter-select" onchange="onLocDivisionFilterChange('travel-planner')">
+                                            <option value="">All Divisions</option>
+                                        </select>
+                                    </div>
+                                    <div class="loc-filter-field" id="tp-filter-district-wrap">
+                                        <label class="loc-filter-label">District</label>
+                                        <select id="tp-loc-district-select" class="loc-filter-select" onchange="onLocDistrictFilterChange('travel-planner')">
+                                            <option value="">All Districts</option>
+                                        </select>
+                                    </div>
+                                    <div class="loc-filter-field">
+                                        <label class="loc-filter-label">Status</label>
+                                        <select id="tp-loc-status-select" class="loc-filter-select" onchange="onLocStatusFilterChange('travel-planner')">
+                                            <option value="all">All</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="loc-search-box">
+                                    <i class="material-icons" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #94a3b8;">search</i>
+                                    <input type="text" id="tp-loc-search-input" class="loc-search-input" placeholder="Search upazila..." oninput="onLocSearchChange('travel-planner')">
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Table Container -->
+                            <div class="loc-table-container">
+                                <div style="overflow-x: auto;">
+                                    <table class="loc-table">
+                                        <thead id="tp-loc-thead">
+                                            <tr>
+                                                <th style="width: 40px; text-align: center;"><input type="checkbox" onchange="toggleSelectAllLocations(this, 'travel-planner')"></th>
+                                                <th style="width: 50px;">#</th>
+                                                <th style="min-width: 220px;" id="tp-loc-th-name">Upazila Name</th>
+                                                <th style="min-width: 140px;" id="tp-loc-th-col1">District</th>
+                                                <th style="min-width: 140px;" id="tp-loc-th-col2">Division</th>
+                                                <th style="min-width: 110px;">Status</th>
+                                                <th style="min-width: 130px; cursor: pointer;" onclick="toggleLocSortDate('travel-planner')">Created Date <i class="material-icons" style="font-size: 14px; vertical-align: middle;">unfold_more</i></th>
+                                                <th style="width: 70px; text-align: center;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tp-loc-tbody">
+                                            <!-- Dynamically filled by renderLocationTable -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Table Footer -->
+                            <div class="tp-table-footer" style="border: 1px solid #eef2f6; border-top: none; border-radius: 0 0 14px 14px; margin-top: 0;">
+                                <div style="display: flex; align-items: center; gap: 8px; color: #627d98; font-size: 0.85rem; font-weight: 500;">
+                                    <i class="material-icons" style="font-size: 19px; color: #829ab1;">format_list_bulleted</i>
+                                    <span id="tp-loc-footer-count">Showing 1-10 of 495 upazilas</span>
+                                </div>
+                                <div class="tp-pagination-controls" id="tp-loc-pagination">
+                                    <!-- Dynamic pagination buttons -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Sub Category Page View Container for Travel Planner (Mockup Match) -->
                     <div id="tp-category-detail-view" style="display: none;">
                         <!-- Top Breadcrumb Bar -->
@@ -4016,6 +4751,178 @@
                         </div>
                     </div>
 
+                    <!-- Location Management Page View for Tour Planner (Mockup Match + Destinations) -->
+                    <div id="tour-location-container" style="display: none;">
+                        <div class="loc-management-card">
+                            <!-- Header Row with Title and Bangladesh Tourism Banner -->
+                            <div class="loc-header-row">
+                                <div class="loc-header-title-box">
+                                    <div class="loc-header-icon-circle">
+                                        <i class="material-icons" style="font-size: 24px;">location_on</i>
+                                    </div>
+                                    <div>
+                                        <h2 class="loc-header-heading">Location Management</h2>
+                                        <p class="loc-header-subtitle">Manage divisions, districts, upazilas and tour destinations of Bangladesh.</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img src="images/locations/banner_discover_bd.png" alt="Discover Explore Bangladesh" class="loc-header-banner-img">
+                                </div>
+                            </div>
+
+                            <!-- Stat Summary Cards Row (4 Cards including Destinations) -->
+                            <div class="loc-stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+                                <div class="loc-stat-card" onclick="switchLocSubTab('divisions', 'tour-planner')">
+                                    <div class="loc-stat-left">
+                                        <div class="loc-stat-icon-wrap loc-stat-icon-divisions">
+                                            <i class="material-icons" style="font-size: 22px;">map</i>
+                                        </div>
+                                        <div>
+                                            <div class="loc-stat-num" id="tour-loc-divisions-count">8</div>
+                                            <div class="loc-stat-label">Divisions</div>
+                                        </div>
+                                    </div>
+                                    <i class="material-icons loc-stat-arrow">chevron_right</i>
+                                </div>
+
+                                <div class="loc-stat-card" onclick="switchLocSubTab('districts', 'tour-planner')">
+                                    <div class="loc-stat-left">
+                                        <div class="loc-stat-icon-wrap loc-stat-icon-districts">
+                                            <i class="material-icons" style="font-size: 22px;">place</i>
+                                        </div>
+                                        <div>
+                                            <div class="loc-stat-num" id="tour-loc-districts-count">64</div>
+                                            <div class="loc-stat-label">Districts</div>
+                                        </div>
+                                    </div>
+                                    <i class="material-icons loc-stat-arrow">chevron_right</i>
+                                </div>
+
+                                <div class="loc-stat-card" onclick="switchLocSubTab('upazilas', 'tour-planner')">
+                                    <div class="loc-stat-left">
+                                        <div class="loc-stat-icon-wrap loc-stat-icon-upazilas">
+                                            <i class="material-icons" style="font-size: 22px;">near_me</i>
+                                        </div>
+                                        <div>
+                                            <div class="loc-stat-num" id="tour-loc-upazilas-count">495+</div>
+                                            <div class="loc-stat-label">Upazilas</div>
+                                        </div>
+                                    </div>
+                                    <i class="material-icons loc-stat-arrow">chevron_right</i>
+                                </div>
+
+                                <div class="loc-stat-card" onclick="switchLocSubTab('destinations', 'tour-planner')">
+                                    <div class="loc-stat-left">
+                                        <div class="loc-stat-icon-wrap loc-stat-icon-destinations">
+                                            <i class="material-icons" style="font-size: 22px;">explore</i>
+                                        </div>
+                                        <div>
+                                            <div class="loc-stat-num" id="tour-loc-destinations-count">375+</div>
+                                            <div class="loc-stat-label">Destinations</div>
+                                        </div>
+                                    </div>
+                                    <i class="material-icons loc-stat-arrow">chevron_right</i>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons Row -->
+                            <div class="loc-actions-bar">
+                                <button type="button" class="btn-loc-import" onclick="handleImportLocationsPrompt('tour-planner')">
+                                    <i class="material-icons" style="font-size: 17px; color: #2563eb;">cloud_upload</i>
+                                    <span>Import Locations</span>
+                                </button>
+                                <button type="button" class="btn-loc-add" onclick="openAddLocationModal('tour-planner')">
+                                    <i class="material-icons" style="font-size: 18px;">add</i>
+                                    <span>Add Location</span>
+                                </button>
+                            </div>
+
+                            <!-- Tabs Strip: Divisions, Districts, Upazilas, Destinations -->
+                            <div class="loc-tabs-strip" id="tour-loc-tabs-strip">
+                                <button type="button" class="loc-tab-item" data-tab="divisions" onclick="switchLocSubTab('divisions', 'tour-planner', this)">
+                                    <i class="material-icons" style="font-size: 18px; color: #627d98;">map</i>
+                                    <span>Divisions</span>
+                                </button>
+                                <button type="button" class="loc-tab-item" data-tab="districts" onclick="switchLocSubTab('districts', 'tour-planner', this)">
+                                    <i class="material-icons" style="font-size: 18px; color: #627d98;">place</i>
+                                    <span>Districts</span>
+                                </button>
+                                <button type="button" class="loc-tab-item active" data-tab="upazilas" onclick="switchLocSubTab('upazilas', 'tour-planner', this)">
+                                    <i class="material-icons" style="font-size: 18px; color: #00875a;">near_me</i>
+                                    <span>Upazilas</span>
+                                </button>
+                                <button type="button" class="loc-tab-item" data-tab="destinations" onclick="switchLocSubTab('destinations', 'tour-planner', this)">
+                                    <i class="material-icons" style="font-size: 18px; color: #ea580c;">explore</i>
+                                    <span>Destinations</span>
+                                </button>
+                            </div>
+
+                            <!-- Filter Controls Toolbar -->
+                            <div class="loc-filters-row">
+                                <div class="loc-filters-group">
+                                    <div class="loc-filter-field" id="tour-filter-division-wrap">
+                                        <label class="loc-filter-label">Division</label>
+                                        <select id="tour-loc-division-select" class="loc-filter-select" onchange="onLocDivisionFilterChange('tour-planner')">
+                                            <option value="">All Divisions</option>
+                                        </select>
+                                    </div>
+                                    <div class="loc-filter-field" id="tour-filter-district-wrap">
+                                        <label class="loc-filter-label">District</label>
+                                        <select id="tour-loc-district-select" class="loc-filter-select" onchange="onLocDistrictFilterChange('tour-planner')">
+                                            <option value="">All Districts</option>
+                                        </select>
+                                    </div>
+                                    <div class="loc-filter-field">
+                                        <label class="loc-filter-label">Status</label>
+                                        <select id="tour-loc-status-select" class="loc-filter-select" onchange="onLocStatusFilterChange('tour-planner')">
+                                            <option value="all">All</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="loc-search-box">
+                                    <i class="material-icons" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #94a3b8;">search</i>
+                                    <input type="text" id="tour-loc-search-input" class="loc-search-input" placeholder="Search upazila..." oninput="onLocSearchChange('tour-planner')">
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Table Container -->
+                            <div class="loc-table-container">
+                                <div style="overflow-x: auto;">
+                                    <table class="loc-table">
+                                        <thead id="tour-loc-thead">
+                                            <tr>
+                                                <th style="width: 40px; text-align: center;"><input type="checkbox" onchange="toggleSelectAllLocations(this, 'tour-planner')"></th>
+                                                <th style="width: 50px;">#</th>
+                                                <th style="min-width: 220px;" id="tour-loc-th-name">Upazila Name</th>
+                                                <th style="min-width: 140px;" id="tour-loc-th-col1">District</th>
+                                                <th style="min-width: 140px;" id="tour-loc-th-col2">Division</th>
+                                                <th style="min-width: 110px;">Status</th>
+                                                <th style="min-width: 130px; cursor: pointer;" onclick="toggleLocSortDate('tour-planner')">Created Date <i class="material-icons" style="font-size: 14px; vertical-align: middle;">unfold_more</i></th>
+                                                <th style="width: 70px; text-align: center;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tour-loc-tbody">
+                                            <!-- Dynamically filled by renderLocationTable -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Table Footer -->
+                            <div class="tp-table-footer" style="border: 1px solid #eef2f6; border-top: none; border-radius: 0 0 14px 14px; margin-top: 0;">
+                                <div style="display: flex; align-items: center; gap: 8px; color: #627d98; font-size: 0.85rem; font-weight: 500;">
+                                    <i class="material-icons" style="font-size: 19px; color: #829ab1;">format_list_bulleted</i>
+                                    <span id="tour-loc-footer-count">Showing 1-10 of 495 upazilas</span>
+                                </div>
+                                <div class="tp-pagination-controls" id="tour-loc-pagination">
+                                    <!-- Dynamic pagination buttons -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Sub Category Page View Container for Tour Planner (Mockup Match) -->
                     <div id="tour-category-detail-view" style="display: none;">
                         <!-- Top Breadcrumb Bar -->
@@ -4344,6 +5251,217 @@
                         <button type="button" class="tp-action-item danger" onclick="handleTourCategoryDelete()">
                             <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete
                         </button>
+                    </div>
+
+                    <!-- Universal Location CRUD Modal (Add / Edit Location Matching Mockup) -->
+                    <div class="tp-modal-overlay" id="location-crud-modal" onclick="closeLocationModal(event)">
+                        <div class="tp-modal-card" style="max-width: 620px; width: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 60px -15px rgba(0,0,0,0.3);" onclick="event.stopPropagation()">
+                            <!-- Header -->
+                            <div class="tp-modal-header" style="background: linear-gradient(135deg, #00875a 0%, #005c3d 100%); padding: 1.25rem 1.6rem; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; color: #ffffff;">
+                                        <i class="material-icons" id="loc-modal-header-icon" style="font-size: 24px;">add_location_alt</i>
+                                    </div>
+                                    <div>
+                                        <h3 id="loc-modal-title" style="margin: 0; color: #ffffff; font-size: 1.2rem; font-weight: 800;">Add Location</h3>
+                                        <p id="loc-modal-subtitle" style="margin: 3px 0 0 0; color: rgba(255,255,255,0.85); font-size: 0.785rem;">Create a new location (Division / District / Upazila) in Bangladesh.</p>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="closeLocationModal()" style="color: #ffffff; background: rgba(255,255,255,0.18); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                    <i class="material-icons" style="font-size: 18px;">close</i>
+                                </button>
+                            </div>
+
+                            <!-- Form -->
+                            <form id="location-crud-form" onsubmit="handleLocationFormSubmit(event)" style="padding: 1.4rem 1.7rem; background: #ffffff;">
+                                <input type="hidden" id="loc-modal-id">
+                                <input type="hidden" id="loc-modal-mode" value="add">
+                                <input type="hidden" id="loc-modal-section" value="travel-planner">
+                                <input type="hidden" id="loc-modal-type-val" value="upazila">
+                                <input type="hidden" id="loc-modal-image-data">
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+                                    <!-- Left Column -->
+                                    <div>
+                                        <!-- Location Type Segment Selector -->
+                                        <div style="margin-bottom: 1rem;">
+                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Location Type <span style="color: #ef4444;">*</span></label>
+                                            <div class="loc-type-segment-group">
+                                                <button type="button" class="loc-type-segment-btn" id="loc-type-btn-division" onclick="selectModalLocType('division')">
+                                                    <i class="material-icons" style="font-size: 18px;">map</i>
+                                                    <span>Division</span>
+                                                </button>
+                                                <button type="button" class="loc-type-segment-btn" id="loc-type-btn-district" onclick="selectModalLocType('district')">
+                                                    <i class="material-icons" style="font-size: 18px;">place</i>
+                                                    <span>District</span>
+                                                </button>
+                                                <button type="button" class="loc-type-segment-btn active" id="loc-type-btn-upazila" onclick="selectModalLocType('upazila')">
+                                                    <i class="material-icons" style="font-size: 18px;">near_me</i>
+                                                    <span>Upazila</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Location Name -->
+                                        <div style="margin-bottom: 1rem;">
+                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Location Name <span style="color: #ef4444;">*</span></label>
+                                            <input type="text" id="loc-modal-name" required placeholder="Enter location name (e.g. Savar)" style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; outline: none;">
+                                        </div>
+
+                                        <!-- Description -->
+                                        <div style="margin-bottom: 1rem;">
+                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Description <span style="font-weight: 500; color: #94a3b8;">(Optional)</span></label>
+                                            <textarea id="loc-modal-desc" rows="3" maxlength="500" placeholder="Enter a short description about this location..." oninput="updateLocDescCount(this)" style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.825rem; outline: none; resize: vertical;"></textarea>
+                                            <div class="loc-char-counter"><span id="loc-modal-char-count">0</span>/500</div>
+                                        </div>
+
+                                        <!-- Status -->
+                                        <div style="margin-bottom: 1rem;">
+                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Status <span style="color: #ef4444;">*</span></label>
+                                            <select id="loc-modal-status" style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; outline: none; background: #ffffff;">
+                                                <option value="Active">● Active</option>
+                                                <option value="Inactive">● Inactive</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Created Date -->
+                                        <div>
+                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Created Date</label>
+                                            <div style="position: relative;">
+                                                <i class="material-icons" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 17px; color: #94a3b8;">calendar_today</i>
+                                                <input type="text" id="loc-modal-date" readonly value="Auto generated" style="width: 100%; padding: 0.52rem 0.85rem 0.52rem 2.2rem; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.84rem; background: #f8fafc; color: #64748b;">
+                                            </div>
+                                            <span style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px; display: block;">This will be set automatically after creation.</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right Column -->
+                                    <div>
+                                        <!-- Parent Location -->
+                                        <div style="margin-bottom: 1rem;">
+                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Parent Location <span style="color: #ef4444;">*</span></label>
+                                            <select id="loc-modal-parent" required style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; outline: none; background: #ffffff;">
+                                                <!-- Populated dynamically -->
+                                            </select>
+                                            <div class="loc-info-callout" id="loc-modal-info-callout">
+                                                <i class="material-icons" style="font-size: 16px; flex-shrink: 0; margin-top: 1px;">info</i>
+                                                <span id="loc-modal-info-text">For Upazila, select the respective District.</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Location Image (Optional) -->
+                                        <div style="margin-bottom: 1rem;">
+                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Location Image <span style="font-weight: 500; color: #94a3b8;">(Optional)</span></label>
+                                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                                <div class="loc-dropzone-box" style="flex: 1;" onclick="document.getElementById('loc-modal-file-input').click()">
+                                                    <i class="material-icons" style="font-size: 30px; color: #0284c7;">add_photo_alternate</i>
+                                                    <div style="font-size: 0.785rem; font-weight: 700; color: #1e293b; margin-top: 4px;">Click to upload or drag and drop</div>
+                                                    <div style="font-size: 0.7rem; color: #94a3b8;">JPG, PNG or WEBP (Max. 2MB)</div>
+                                                    <input type="file" id="loc-modal-file-input" accept="image/*" style="display: none;" onchange="handleLocImageUpload(event)">
+                                                </div>
+                                                <div id="loc-modal-preview-wrap" style="position: relative; width: 88px; height: 95px; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; display: none; flex-shrink: 0;">
+                                                    <img id="loc-modal-preview-img" src="" alt="Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                                                    <button type="button" onclick="removeLocModalImage(event)" title="Remove Image" style="position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; border-radius: 50%; background: rgba(0,0,0,0.65); color: #ffffff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                                                        <i class="material-icons" style="font-size: 13px;">close</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Location Code -->
+                                        <div style="margin-bottom: 1rem;">
+                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Location Code <span style="font-weight: 500; color: #94a3b8;">(Optional)</span></label>
+                                            <input type="text" id="loc-modal-code" placeholder="Enter unique code (e.g. DHA-001)" style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; outline: none;">
+                                        </div>
+
+                                        <!-- Is Featured (Checkbox) -->
+                                        <div style="margin-top: 1.25rem; display: flex; align-items: center; gap: 8px;">
+                                            <input type="checkbox" id="loc-modal-featured" style="width: 16px; height: 16px; accent-color: #00875a; cursor: pointer;">
+                                            <label for="loc-modal-featured" style="font-size: 0.825rem; font-weight: 700; color: #334155; cursor: pointer;">Mark as Featured Location (✦ Featured badge)</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div style="display: flex; justify-content: flex-end; gap: 0.75rem; padding-top: 1.25rem; margin-top: 1.25rem; border-top: 1px solid #f1f5f9;">
+                                    <button type="button" onclick="closeLocationModal()" style="padding: 0.52rem 1.25rem; border: 1px solid #cbd5e1; border-radius: 10px; background: #ffffff; color: #475569; font-weight: 600; cursor: pointer;">Cancel</button>
+                                    <button type="submit" id="loc-modal-submit-btn" style="background: #00875a; color: #ffffff; padding: 0.52rem 1.5rem; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(0, 135, 90, 0.25);">
+                                        <i class="material-icons" style="font-size: 17px;">save</i>
+                                        <span id="loc-modal-submit-text">Save Location</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Floating Action Dropdown Menu for Locations -->
+                    <div id="location-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+                        <button type="button" class="tp-action-item" onclick="handleLocationMenuAction('edit')">
+                            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
+                        </button>
+                        <button type="button" class="tp-action-item" onclick="handleLocationMenuAction('toggle')">
+                            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
+                        </button>
+                        <button type="button" class="tp-action-item" id="loc-menu-btn-destinations" onclick="handleLocationMenuAction('view-destinations')">
+                            <i class="material-icons" style="font-size: 16px; color: #ea580c;">explore</i> View Destinations
+                        </button>
+                        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
+                        <button type="button" class="tp-action-item danger" onclick="handleLocationMenuAction('delete')">
+                            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete Location
+                        </button>
+                    </div>
+
+                    <!-- Add Destination Modal (for Tour Planner) -->
+                    <div class="tp-modal-overlay" id="destination-crud-modal" onclick="closeDestinationModal(event)">
+                        <div class="tp-modal-card" style="max-width: 520px; width: 100%; border-radius: 18px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);" onclick="event.stopPropagation()">
+                            <div class="tp-modal-header" style="background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; color: #ffffff;">
+                                        <i class="material-icons" style="font-size: 24px;">explore</i>
+                                    </div>
+                                    <div>
+                                        <h3 style="margin: 0; color: #ffffff; font-size: 1.15rem; font-weight: 800;">Add Tour Destination</h3>
+                                        <p style="margin: 3px 0 0 0; color: rgba(255,255,255,0.85); font-size: 0.775rem;">Create a tourist spot linked to district and upazila</p>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="closeDestinationModal()" style="color: #ffffff; background: rgba(255,255,255,0.18); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                    <i class="material-icons" style="font-size: 18px;">close</i>
+                                </button>
+                            </div>
+                            <form id="dest-crud-form" onsubmit="handleDestinationFormSubmit(event)" style="padding: 1.35rem 1.6rem; background: #ffffff;">
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Destination Name *</label>
+                                    <input type="text" id="dest-modal-name" required placeholder="e.g. Cox's Bazar Sea Beach, Sajek Valley" style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none;">
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                    <div>
+                                        <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">District *</label>
+                                        <select id="dest-modal-district" required style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none; background: #ffffff;">
+                                            <!-- filled dynamically -->
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Type</label>
+                                        <select id="dest-modal-type" style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none; background: #ffffff;">
+                                            <option value="Attraction">Attraction</option>
+                                            <option value="Beach">Beach</option>
+                                            <option value="Hill">Hill Station</option>
+                                            <option value="Heritage">Heritage</option>
+                                            <option value="Eco Park">Eco Park</option>
+                                            <option value="Island">Island</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 1.25rem;">
+                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Description</label>
+                                    <textarea id="dest-modal-desc" rows="2" placeholder="Highlights and travel notes..." style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.825rem; outline: none; resize: vertical;"></textarea>
+                                </div>
+                                <div style="display: flex; justify-content: flex-end; gap: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #f1f5f9;">
+                                    <button type="button" onclick="closeDestinationModal()" style="padding: 0.5rem 1.15rem; border: 1px solid #cbd5e1; border-radius: 10px; background: #ffffff; color: #475569; font-weight: 600; cursor: pointer;">Cancel</button>
+                                    <button type="submit" style="background: #ea580c; color: #ffffff; padding: 0.5rem 1.4rem; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(234, 88, 12, 0.25);">Save Destination</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </section>
 
@@ -5110,6 +6228,7 @@
             let initialTab = '';
             let initialCat = '';
             let initialSub = '';
+            let initialTabParam = '';
 
             if (rawHash.includes('?')) {
                 const parts = rawHash.split('?');
@@ -5117,6 +6236,7 @@
                 const params = new URLSearchParams(parts[1]);
                 initialCat = params.get('cat') || '';
                 initialSub = params.get('sub') || '';
+                initialTabParam = params.get('tab') || '';
             } else if (rawHash) {
                 initialTab = rawHash;
             } else {
@@ -5135,7 +6255,20 @@
             loadTravelPlanner();
             loadTourPlanner();
 
-            if (initialCat && (targetInitialTab === 'travel-planner' || targetInitialTab === 'tour-planner')) {
+            const savedTpSubtab = localStorage.getItem('travelup_admin_active_subtab_travel-planner');
+            const savedTourSubtab = localStorage.getItem('travelup_admin_active_subtab_tour-planner');
+
+            if (targetInitialTab === 'travel-planner' && (initialTabParam === 'locations' || savedTpSubtab === 'locations')) {
+                setTimeout(() => {
+                    const btn = document.querySelector('#tp-nav-tabs button[onclick*="locations"]');
+                    switchTpMainTab('locations', btn);
+                }, 60);
+            } else if (targetInitialTab === 'tour-planner' && (initialTabParam === 'locations' || savedTourSubtab === 'locations')) {
+                setTimeout(() => {
+                    const btn = document.querySelector('#tour-nav-tabs button[onclick*="locations"]');
+                    switchTourMainTab('locations', btn);
+                }, 60);
+            } else if (initialCat && (targetInitialTab === 'travel-planner' || targetInitialTab === 'tour-planner')) {
                 setTimeout(() => {
                     openCategoryDetailView(initialCat, targetInitialTab);
                     if (initialSub) {
@@ -5201,16 +6334,21 @@
             let hTab = raw;
             let hCat = '';
             let hSub = '';
+            let hTabParam = '';
             if (raw.includes('?')) {
                 const parts = raw.split('?');
                 hTab = parts[0];
                 const params = new URLSearchParams(parts[1]);
                 hCat = params.get('cat') || '';
                 hSub = params.get('sub') || '';
+                hTabParam = params.get('tab') || '';
             }
             if (roleCfg.allowedTabs.includes(hTab)) {
                 switchTab(hTab);
-                if (hCat && (hTab === 'travel-planner' || hTab === 'tour-planner')) {
+                if (hTabParam === 'locations') {
+                    if (hTab === 'travel-planner') switchTpMainTab('locations', document.querySelector('#tp-nav-tabs button[onclick*="locations"]'));
+                    else if (hTab === 'tour-planner') switchTourMainTab('locations', document.querySelector('#tour-nav-tabs button[onclick*="locations"]'));
+                } else if (hCat && (hTab === 'travel-planner' || hTab === 'tour-planner')) {
                     openCategoryDetailView(hCat, hTab);
                     if (hSub) {
                         setTimeout(() => {
@@ -5364,14 +6502,38 @@
             if (el) el.classList.add('active');
 
             const tableCard = document.getElementById('tp-table-container');
+            const locContainer = document.getElementById('tp-location-container');
+            const catDetail = document.getElementById('tp-category-detail-view');
+            const opDetail = document.getElementById('tp-operator-detail-view');
             let placeholder = document.getElementById('tp-tab-placeholder');
 
             if (tabName === 'categories') {
                 if (tableCard) tableCard.style.display = 'block';
+                if (locContainer) locContainer.style.display = 'none';
                 if (placeholder) placeholder.style.display = 'none';
                 renderTpCategoriesTable(tpCategories);
+                try {
+                    localStorage.removeItem('travelup_admin_active_subtab_travel-planner');
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, null, '#travel-planner');
+                    }
+                } catch(e) {}
+            } else if (tabName === 'locations') {
+                if (tableCard) tableCard.style.display = 'none';
+                if (catDetail) catDetail.style.display = 'none';
+                if (opDetail) opDetail.style.display = 'none';
+                if (placeholder) placeholder.style.display = 'none';
+                if (locContainer) locContainer.style.display = 'block';
+                loadLocationView('travel-planner');
+                try {
+                    localStorage.setItem('travelup_admin_active_subtab_travel-planner', 'locations');
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, null, '#travel-planner?tab=locations');
+                    }
+                } catch(e) {}
             } else {
                 if (tableCard) tableCard.style.display = 'none';
+                if (locContainer) locContainer.style.display = 'none';
                 if (!placeholder) {
                     placeholder = document.createElement('div');
                     placeholder.id = 'tp-tab-placeholder';
@@ -5564,14 +6726,38 @@
             if (el) el.classList.add('active');
 
             const tableCard = document.getElementById('tour-table-container');
+            const locContainer = document.getElementById('tour-location-container');
+            const catDetail = document.getElementById('tour-category-detail-view');
+            const opDetail = document.getElementById('tour-operator-detail-view');
             let placeholder = document.getElementById('tour-tab-placeholder');
 
             if (tabName === 'categories') {
                 if (tableCard) tableCard.style.display = 'block';
+                if (locContainer) locContainer.style.display = 'none';
                 if (placeholder) placeholder.style.display = 'none';
                 renderTourCategoriesTable(tourCategories);
+                try {
+                    localStorage.removeItem('travelup_admin_active_subtab_tour-planner');
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, null, '#tour-planner');
+                    }
+                } catch(e) {}
+            } else if (tabName === 'locations') {
+                if (tableCard) tableCard.style.display = 'none';
+                if (catDetail) catDetail.style.display = 'none';
+                if (opDetail) opDetail.style.display = 'none';
+                if (placeholder) placeholder.style.display = 'none';
+                if (locContainer) locContainer.style.display = 'block';
+                loadLocationView('tour-planner');
+                try {
+                    localStorage.setItem('travelup_admin_active_subtab_tour-planner', 'locations');
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, null, '#tour-planner?tab=locations');
+                    }
+                } catch(e) {}
             } else {
                 if (tableCard) tableCard.style.display = 'none';
+                if (locContainer) locContainer.style.display = 'none';
                 if (!placeholder) {
                     placeholder = document.createElement('div');
                     placeholder.id = 'tour-tab-placeholder';
@@ -5914,10 +7100,14 @@
             }
         }
 
-        // Close tour action menu on window click
+        // Close dropdown action menus on window click
         window.addEventListener('click', () => {
             const menu = document.getElementById('tour-action-dropdown-menu');
             if (menu) menu.classList.remove('show');
+            const locMenu = document.getElementById('location-action-dropdown-menu');
+            if (locMenu) locMenu.classList.remove('show');
+            const tpMenu = document.getElementById('tp-action-dropdown-menu');
+            if (tpMenu) tpMenu.classList.remove('show');
         });
 
         // ================= CATEGORY PRODUCTS REPOSITORY & CONTROLLER ================= //
@@ -7238,6 +8428,998 @@
 
         function handleViewSingleOperator(opName, sectionType = 'travel-planner') {
             showToast(`Opening fleet, active routes and schedule manager for ${opName}`, 'info');
+        }
+
+        // ================= LOCATION MANAGEMENT ENGINE (TRAVEL & TOUR PLANNER) ================= //
+
+        const locationState = {
+            'travel-planner': {
+                activeSubTab: 'upazilas',
+                divisionFilter: '',
+                districtFilter: '',
+                statusFilter: 'all',
+                searchQuery: '',
+                sortOrder: 'desc',
+                page: 1,
+                limit: 10,
+                items: [],
+                filtered: [],
+                selectedIds: new Set()
+            },
+            'tour-planner': {
+                activeSubTab: 'upazilas',
+                divisionFilter: '',
+                districtFilter: '',
+                statusFilter: 'all',
+                searchQuery: '',
+                sortOrder: 'desc',
+                page: 1,
+                limit: 10,
+                items: [],
+                filtered: [],
+                selectedIds: new Set()
+            },
+            summary: { divisions: 8, districts: 64, upazilas: 495, destinations: 375 },
+            allDivisions: [],
+            allDistricts: [],
+            activeActionTarget: null
+        };
+
+        const KNOWN_LOC_IMAGES = {
+            'savar': 'images/locations/thumb_savar.png',
+            'dhamrai': 'images/locations/thumb_dhamrai.png',
+            'keraniganj': 'images/locations/thumb_keraniganj.png',
+            'nawabganj': 'images/locations/thumb_nawabganj.png',
+            'dohar': 'images/locations/thumb_dohar.png',
+            'smriti': 'images/locations/thumb_smriti_soudho.png'
+        };
+
+        function getFallbackLocImage(name) {
+            const key = (name || '').toLowerCase().replace(/[^a-z]/g, '');
+            for (const [k, v] of Object.entries(KNOWN_LOC_IMAGES)) {
+                if (key.includes(k)) return v;
+            }
+            return 'images/locations/banner_discover_bd.png';
+        }
+
+        function formatLocDate(dateStr) {
+            if (!dateStr) return '12 May 2025';
+            try {
+                const d = new Date(dateStr);
+                if (isNaN(d.getTime())) return '12 May 2025';
+                return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            } catch (e) {
+                return '12 May 2025';
+            }
+        }
+
+        async function loadLocationView(sectionType = 'travel-planner') {
+            await fetchLocationSummary();
+            await ensureLocationsMetaLoaded();
+            populateLocFilterDropdowns(sectionType);
+            await renderLocationTable(sectionType);
+        }
+
+        async function fetchLocationSummary() {
+            try {
+                const res = await fetch('/api/tour-planner/locations/summary');
+                const data = await res.json();
+                if (data.success && data.summary) {
+                    locationState.summary = data.summary;
+                    updateLocationSummaryBadges();
+                }
+            } catch (err) {
+                console.warn('Failed to load location summary:', err);
+            }
+        }
+
+        function updateLocationSummaryBadges() {
+            const s = locationState.summary;
+            const tpDiv = document.getElementById('tp-loc-divisions-count');
+            const tpDist = document.getElementById('tp-loc-districts-count');
+            const tpUpz = document.getElementById('tp-loc-upazilas-count');
+            if (tpDiv) tpDiv.textContent = s.divisions || 8;
+            if (tpDist) tpDist.textContent = s.districts || 64;
+            if (tpUpz) tpUpz.textContent = `${s.upazilas || 495}+`;
+
+            const tourDiv = document.getElementById('tour-loc-divisions-count');
+            const tourDist = document.getElementById('tour-loc-districts-count');
+            const tourUpz = document.getElementById('tour-loc-upazilas-count');
+            const tourDest = document.getElementById('tour-loc-destinations-count');
+            if (tourDiv) tourDiv.textContent = s.divisions || 8;
+            if (tourDist) tourDist.textContent = s.districts || 64;
+            if (tourUpz) tourUpz.textContent = `${s.upazilas || 495}+`;
+            if (tourDest) tourDest.textContent = `${s.destinations || 375}+`;
+        }
+
+        async function ensureLocationsMetaLoaded() {
+            if (locationState.allDivisions.length === 0) {
+                try {
+                    const res = await fetch('/api/tour-planner/locations/divisions?status=all');
+                    const data = await res.json();
+                    if (data.success && Array.isArray(data.divisions)) {
+                        locationState.allDivisions = data.divisions;
+                    }
+                } catch (e) {}
+            }
+            if (locationState.allDistricts.length === 0) {
+                try {
+                    const res = await fetch('/api/tour-planner/locations/districts?status=all');
+                    const data = await res.json();
+                    if (data.success && Array.isArray(data.districts)) {
+                        locationState.allDistricts = data.districts;
+                    }
+                } catch (e) {}
+            }
+        }
+
+        function populateLocFilterDropdowns(sectionType) {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const divSel = document.getElementById(`${prefix}-loc-division-select`);
+            const distSel = document.getElementById(`${prefix}-loc-district-select`);
+
+            if (divSel && divSel.options.length <= 1) {
+                divSel.innerHTML = '<option value="">All Divisions</option>' + 
+                    locationState.allDivisions.map(d => `<option value="${d.division_id}">${d.name_en}</option>`).join('');
+            }
+
+            if (distSel) {
+                const currentDiv = locationState[sectionType].divisionFilter;
+                let filteredDistricts = locationState.allDistricts;
+                if (currentDiv) {
+                    filteredDistricts = filteredDistricts.filter(d => d.division_id === currentDiv);
+                }
+                const currentVal = distSel.value;
+                distSel.innerHTML = '<option value="">All Districts</option>' + 
+                    filteredDistricts.map(d => `<option value="${d.district_id}">${d.name_en}</option>`).join('');
+                if (currentVal && filteredDistricts.some(d => d.district_id === currentVal)) {
+                    distSel.value = currentVal;
+                }
+            }
+        }
+
+        function switchLocSubTab(tabName, sectionType = 'travel-planner', btn = null) {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const strip = document.getElementById(`${prefix}-loc-tabs-strip`);
+            if (strip) {
+                strip.querySelectorAll('.loc-tab-item').forEach(el => el.classList.remove('active'));
+                if (btn) {
+                    btn.classList.add('active');
+                } else {
+                    const targetBtn = strip.querySelector(`.loc-tab-item[data-tab="${tabName}"]`);
+                    if (targetBtn) targetBtn.classList.add('active');
+                }
+            }
+
+            locationState[sectionType].activeSubTab = tabName;
+            locationState[sectionType].page = 1;
+            locationState[sectionType].selectedIds.clear();
+
+            // Adjust filter toolbar visibility
+            const divWrap = document.getElementById(`${prefix}-filter-division-wrap`);
+            const distWrap = document.getElementById(`${prefix}-filter-district-wrap`);
+            const searchInput = document.getElementById(`${prefix}-loc-search-input`);
+
+            if (tabName === 'divisions') {
+                if (divWrap) divWrap.style.display = 'none';
+                if (distWrap) distWrap.style.display = 'none';
+                if (searchInput) searchInput.placeholder = 'Search division...';
+            } else if (tabName === 'districts') {
+                if (divWrap) divWrap.style.display = 'block';
+                if (distWrap) distWrap.style.display = 'none';
+                if (searchInput) searchInput.placeholder = 'Search district...';
+            } else if (tabName === 'upazilas') {
+                if (divWrap) divWrap.style.display = 'block';
+                if (distWrap) distWrap.style.display = 'block';
+                if (searchInput) searchInput.placeholder = 'Search upazila...';
+            } else if (tabName === 'destinations') {
+                if (divWrap) divWrap.style.display = 'block';
+                if (distWrap) distWrap.style.display = 'block';
+                if (searchInput) searchInput.placeholder = 'Search destination...';
+            }
+
+            // Adjust table headers
+            updateLocTableHeaders(sectionType, tabName);
+            renderLocationTable(sectionType);
+        }
+
+        function updateLocTableHeaders(sectionType, tabName) {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const thName = document.getElementById(`${prefix}-loc-th-name`);
+            const thCol1 = document.getElementById(`${prefix}-loc-th-col1`);
+            const thCol2 = document.getElementById(`${prefix}-loc-th-col2`);
+
+            if (tabName === 'divisions') {
+                if (thName) thName.textContent = 'Division Name';
+                if (thCol1) thCol1.textContent = 'Bengali Name';
+                if (thCol2) thCol2.textContent = 'Country / Code';
+            } else if (tabName === 'districts') {
+                if (thName) thName.textContent = 'District Name';
+                if (thCol1) thCol1.textContent = 'Bengali Name';
+                if (thCol2) thCol2.textContent = 'Division';
+            } else if (tabName === 'upazilas') {
+                if (thName) thName.textContent = 'Upazila Name';
+                if (thCol1) thCol1.textContent = 'District';
+                if (thCol2) thCol2.textContent = 'Division';
+            } else if (tabName === 'destinations') {
+                if (thName) thName.textContent = 'Destination Name';
+                if (thCol1) thCol1.textContent = 'District';
+                if (thCol2) thCol2.textContent = 'Type / Area';
+            }
+        }
+
+        function onLocDivisionFilterChange(sectionType = 'travel-planner') {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const divSel = document.getElementById(`${prefix}-loc-division-select`);
+            locationState[sectionType].divisionFilter = divSel ? divSel.value : '';
+            locationState[sectionType].districtFilter = '';
+            locationState[sectionType].page = 1;
+            populateLocFilterDropdowns(sectionType);
+            renderLocationTable(sectionType);
+        }
+
+        function onLocDistrictFilterChange(sectionType = 'travel-planner') {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const distSel = document.getElementById(`${prefix}-loc-district-select`);
+            locationState[sectionType].districtFilter = distSel ? distSel.value : '';
+            locationState[sectionType].page = 1;
+            renderLocationTable(sectionType);
+        }
+
+        function onLocStatusFilterChange(sectionType = 'travel-planner') {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const statSel = document.getElementById(`${prefix}-loc-status-select`);
+            locationState[sectionType].statusFilter = statSel ? statSel.value : 'all';
+            locationState[sectionType].page = 1;
+            renderLocationTable(sectionType);
+        }
+
+        function onLocSearchChange(sectionType = 'travel-planner') {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const searchInput = document.getElementById(`${prefix}-loc-search-input`);
+            locationState[sectionType].searchQuery = searchInput ? searchInput.value.trim().toLowerCase() : '';
+            locationState[sectionType].page = 1;
+            renderLocationTable(sectionType);
+        }
+
+        function toggleLocSortDate(sectionType = 'travel-planner') {
+            const current = locationState[sectionType].sortOrder;
+            locationState[sectionType].sortOrder = current === 'desc' ? 'asc' : 'desc';
+            renderLocationTable(sectionType);
+        }
+
+        async function renderLocationTable(sectionType = 'travel-planner') {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const tbody = document.getElementById(`${prefix}-loc-tbody`);
+            if (!tbody) return;
+
+            const st = locationState[sectionType];
+            const activeTab = st.activeSubTab;
+
+            tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 2.5rem; color: #64748b;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <div style="width: 18px; height: 18px; border: 2px solid #00875a; border-top-color: transparent; border-radius: 50%; animation: tp-spin 0.8s linear infinite;"></div>
+                    <span>Loading ${activeTab}...</span>
+                </div>
+            </td></tr>`;
+
+            try {
+                let url = '';
+                if (activeTab === 'divisions') {
+                    url = `/api/tour-planner/locations/divisions?status=${st.statusFilter}`;
+                } else if (activeTab === 'districts') {
+                    url = `/api/tour-planner/locations/districts?division_id=${encodeURIComponent(st.divisionFilter)}&status=${st.statusFilter}`;
+                } else if (activeTab === 'upazilas') {
+                    url = `/api/tour-planner/locations/upazilas?division_id=${encodeURIComponent(st.divisionFilter)}&district_id=${encodeURIComponent(st.districtFilter)}&status=${st.statusFilter}`;
+                } else if (activeTab === 'destinations') {
+                    url = `/api/tour-planner/destinations?district_id=${encodeURIComponent(st.districtFilter)}&status=${st.statusFilter}`;
+                }
+
+                const res = await fetch(url);
+                const data = await res.json();
+                let items = [];
+                if (activeTab === 'divisions') items = data.divisions || [];
+                else if (activeTab === 'districts') items = data.districts || [];
+                else if (activeTab === 'upazilas') items = data.upazilas || [];
+                else if (activeTab === 'destinations') items = data.destinations || [];
+
+                st.items = items;
+
+                // Client-side search filtering
+                let filtered = items;
+                if (st.searchQuery) {
+                    const q = st.searchQuery;
+                    filtered = items.filter(it => {
+                        const nameEn = (it.name_en || it.name || '').toLowerCase();
+                        const nameBn = (it.name_bn || '').toLowerCase();
+                        const code = (it.code || it.destination_id || it.upazila_id || it.district_id || it.division_id || '').toLowerCase();
+                        const dist = (it.district_name_en || '').toLowerCase();
+                        const div = (it.division_name_en || '').toLowerCase();
+                        return nameEn.includes(q) || nameBn.includes(q) || code.includes(q) || dist.includes(q) || div.includes(q);
+                    });
+                }
+
+                // Sorting by created_at or id
+                filtered.sort((a, b) => {
+                    const dateA = new Date(a.created_at || '2025-05-12').getTime();
+                    const dateB = new Date(b.created_at || '2025-05-12').getTime();
+                    return st.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+                });
+
+                st.filtered = filtered;
+                const totalCount = filtered.length;
+                const limit = st.limit || 10;
+                const totalPages = Math.ceil(totalCount / limit) || 1;
+                if (st.page > totalPages) st.page = 1;
+                const startIndex = (st.page - 1) * limit;
+                const pageItems = filtered.slice(startIndex, startIndex + limit);
+
+                // Update Footer Count
+                const footerCount = document.getElementById(`${prefix}-loc-footer-count`);
+                if (footerCount) {
+                    if (totalCount === 0) {
+                        footerCount.textContent = `Showing 0 of 0 ${activeTab}`;
+                    } else {
+                        footerCount.textContent = `Showing ${startIndex + 1}-${Math.min(startIndex + limit, totalCount)} of ${totalCount} ${activeTab}`;
+                    }
+                }
+
+                // Render Pagination
+                renderLocPagination(sectionType, totalPages, st.page);
+
+                if (pageItems.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 3rem 1rem; color: #94a3b8;">
+                        <i class="material-icons" style="font-size: 36px; display: block; margin-bottom: 8px; color: #cbd5e1;">location_off</i>
+                        No ${activeTab} found matching your filters.
+                    </td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = pageItems.map((item, idx) => {
+                    const rowNum = startIndex + idx + 1;
+                    const itemId = item.id || item.upazila_id || item.district_id || item.division_id || item.destination_id;
+                    const isChecked = st.selectedIds.has(itemId) ? 'checked' : '';
+                    const rawJson = encodeURIComponent(JSON.stringify(item));
+                    const isActive = (item.is_active === 1 || item.status === 'Active');
+                    const statusPill = isActive
+                        ? '<span class="tp-status-pill status-active">● Active</span>'
+                        : '<span class="tp-status-pill status-inactive">● Inactive</span>';
+                    const thumbImg = item.image || getFallbackLocImage(item.name_en || item.name);
+                    const formattedDate = formatLocDate(item.created_at);
+
+                    if (activeTab === 'upazilas') {
+                        return `
+                            <tr>
+                                <td style="text-align: center;"><input type="checkbox" value="${itemId}" ${isChecked} onchange="toggleLocRowSelect(this, '${itemId}', '${sectionType}')"></td>
+                                <td style="font-weight: 600; color: #64748b;">${rowNum}</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <img src="${thumbImg}" alt="${item.name_en}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        <div>
+                                            <div style="display: flex; align-items: center; gap: 6px;">
+                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${item.name_en || item.name}</span>
+                                                ${item.is_featured ? '<span class="loc-featured-badge">✦ Featured</span>' : ''}
+                                            </div>
+                                            <div style="font-size: 0.77rem; color: #64748b;">
+                                                ${item.name_bn ? item.name_bn + ' • ' : ''}${item.code || item.upazila_id || ''}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="font-weight: 600; color: #334155;">${item.district_name_en || 'Dhaka'}</td>
+                                <td style="font-weight: 500; color: #64748b;">${item.division_name_en || 'Dhaka'}</td>
+                                <td>${statusPill}</td>
+                                <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
+                                <td style="text-align: center;">
+                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${rawJson}', 'upazila', '${sectionType}')">
+                                        <i class="material-icons" style="font-size: 20px;">more_vert</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    } else if (activeTab === 'districts') {
+                        return `
+                            <tr>
+                                <td style="text-align: center;"><input type="checkbox" value="${itemId}" ${isChecked} onchange="toggleLocRowSelect(this, '${itemId}', '${sectionType}')"></td>
+                                <td style="font-weight: 600; color: #64748b;">${rowNum}</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <img src="${thumbImg}" alt="${item.name_en}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        <div>
+                                            <div style="display: flex; align-items: center; gap: 6px;">
+                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${item.name_en || item.name}</span>
+                                                ${item.is_featured ? '<span class="loc-featured-badge">✦ Featured</span>' : ''}
+                                            </div>
+                                            <div style="font-size: 0.77rem; color: #64748b;">${item.name_bn || item.district_id}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="font-weight: 600; color: #334155;">${item.name_bn || item.name_en}</td>
+                                <td style="font-weight: 500; color: #64748b;">${item.division_name_en || 'N/A'}</td>
+                                <td>${statusPill}</td>
+                                <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
+                                <td style="text-align: center;">
+                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${rawJson}', 'district', '${sectionType}')">
+                                        <i class="material-icons" style="font-size: 20px;">more_vert</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    } else if (activeTab === 'divisions') {
+                        return `
+                            <tr>
+                                <td style="text-align: center;"><input type="checkbox" value="${itemId}" ${isChecked} onchange="toggleLocRowSelect(this, '${itemId}', '${sectionType}')"></td>
+                                <td style="font-weight: 600; color: #64748b;">${rowNum}</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <img src="${thumbImg}" alt="${item.name_en}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        <div>
+                                            <div style="display: flex; align-items: center; gap: 6px;">
+                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${item.name_en || item.name}</span>
+                                                ${item.is_featured ? '<span class="loc-featured-badge">✦ Featured</span>' : ''}
+                                            </div>
+                                            <div style="font-size: 0.77rem; color: #64748b;">${item.name_bn || item.division_id}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="font-weight: 600; color: #334155;">${item.name_bn || item.name_en}</td>
+                                <td style="font-weight: 500; color: #64748b;">${item.parent_country_id || 'COUNTRY-BD'}</td>
+                                <td>${statusPill}</td>
+                                <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
+                                <td style="text-align: center;">
+                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${rawJson}', 'division', '${sectionType}')">
+                                        <i class="material-icons" style="font-size: 20px;">more_vert</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    } else if (activeTab === 'destinations') {
+                        return `
+                            <tr>
+                                <td style="text-align: center;"><input type="checkbox" value="${itemId}" ${isChecked} onchange="toggleLocRowSelect(this, '${itemId}', '${sectionType}')"></td>
+                                <td style="font-weight: 600; color: #64748b;">${rowNum}</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <img src="${thumbImg}" alt="${item.name_en}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        <div>
+                                            <div style="display: flex; align-items: center; gap: 6px;">
+                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${item.name_en}</span>
+                                                ${item.top_50_flag ? '<span class="loc-featured-badge" style="background: #fff7ed; color: #ea580c; border-color: #ffedd5;">★ Popular</span>' : ''}
+                                            </div>
+                                            <div style="font-size: 0.77rem; color: #64748b;">${item.name_bn ? item.name_bn + ' • ' : ''}${item.destination_id || ''}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="font-weight: 600; color: #334155;">${item.district_name_en || 'Dhaka'}</td>
+                                <td style="font-weight: 500; color: #64748b;">
+                                    <span style="display: inline-block; padding: 2px 8px; border-radius: 6px; background: #e0f2fe; color: #0284c7; font-size: 0.75rem; font-weight: 700;">
+                                        ${item.destination_type || 'Attraction'}
+                                    </span>
+                                </td>
+                                <td>${statusPill}</td>
+                                <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
+                                <td style="text-align: center;">
+                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${rawJson}', 'destination', '${sectionType}')">
+                                        <i class="material-icons" style="font-size: 20px;">more_vert</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }
+                }).join('');
+
+            } catch (err) {
+                console.error('Error rendering location table:', err);
+                tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: #ef4444; padding: 2rem;">
+                    Failed to load ${activeTab} data from database.
+                </td></tr>`;
+            }
+        }
+
+        function renderLocPagination(sectionType, totalPages, currentPage) {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const container = document.getElementById(`${prefix}-loc-pagination`);
+            if (!container) return;
+
+            let html = '';
+            html += `<button type="button" class="tp-page-btn" ${currentPage <= 1 ? 'disabled' : ''} onclick="goToLocPage(${currentPage - 1}, '${sectionType}')">
+                <i class="material-icons" style="font-size: 16px;">chevron_left</i>
+            </button>`;
+
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            if (endPage - startPage < 4) {
+                startPage = Math.max(1, endPage - 4);
+            }
+
+            if (startPage > 1) {
+                html += `<button type="button" class="tp-page-btn" onclick="goToLocPage(1, '${sectionType}')">1</button>`;
+                if (startPage > 2) html += `<span style="padding: 0 4px; color: #94a3b8;">...</span>`;
+            }
+
+            for (let p = startPage; p <= endPage; p++) {
+                html += `<button type="button" class="tp-page-btn ${p === currentPage ? 'active' : ''}" onclick="goToLocPage(${p}, '${sectionType}')">${p}</button>`;
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) html += `<span style="padding: 0 4px; color: #94a3b8;">...</span>`;
+                html += `<button type="button" class="tp-page-btn" onclick="goToLocPage(${totalPages}, '${sectionType}')">${totalPages}</button>`;
+            }
+
+            html += `<button type="button" class="tp-page-btn" ${currentPage >= totalPages ? 'disabled' : ''} onclick="goToLocPage(${currentPage + 1}, '${sectionType}')">
+                <i class="material-icons" style="font-size: 16px;">chevron_right</i>
+            </button>`;
+
+            container.innerHTML = html;
+        }
+
+        function goToLocPage(p, sectionType) {
+            locationState[sectionType].page = p;
+            renderLocationTable(sectionType);
+            const container = document.getElementById(`${sectionType === 'tour-planner' ? 'tour' : 'tp'}-location-container`);
+            if (container) container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function toggleLocRowSelect(chk, id, sectionType) {
+            const st = locationState[sectionType];
+            if (chk.checked) st.selectedIds.add(id);
+            else st.selectedIds.delete(id);
+        }
+
+        function toggleSelectAllLocations(masterChk, sectionType) {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const st = locationState[sectionType];
+            const tbody = document.getElementById(`${prefix}-loc-tbody`);
+            if (!tbody) return;
+            const checkboxes = tbody.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(c => {
+                c.checked = masterChk.checked;
+                if (masterChk.checked) st.selectedIds.add(c.value);
+                else st.selectedIds.delete(c.value);
+            });
+        }
+
+        function openLocationActionMenu(event, itemJsonStr, type, sectionType) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            const menu = document.getElementById('location-action-dropdown-menu');
+            if (!menu) return;
+
+            let item = null;
+            try {
+                item = JSON.parse(decodeURIComponent(itemJsonStr));
+            } catch (e) {
+                item = itemJsonStr;
+            }
+
+            locationState.activeActionTarget = { item, type, sectionType };
+
+            const destBtn = document.getElementById('loc-menu-btn-destinations');
+            if (destBtn) {
+                destBtn.style.display = (sectionType === 'tour-planner' && (type === 'upazila' || type === 'district')) ? 'flex' : 'none';
+            }
+
+            const rect = event.currentTarget.getBoundingClientRect();
+            menu.style.top = `${rect.bottom + window.scrollY + 4}px`;
+            menu.style.left = `${Math.min(rect.right - 175 + window.scrollX, window.innerWidth - 185)}px`;
+            menu.classList.add('show');
+        }
+
+        function handleLocationMenuAction(action) {
+            const menu = document.getElementById('location-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+
+            const target = locationState.activeActionTarget;
+            if (!target) return;
+
+            const { item, type, sectionType } = target;
+
+            if (action === 'edit') {
+                if (type === 'destination') {
+                    showToast('Editing destination: ' + (item.name_en || item.name), 'info');
+                } else {
+                    openEditLocationModal(item, type, sectionType);
+                }
+            } else if (action === 'toggle') {
+                if (type === 'destination') {
+                    deleteTourDestinationItem(item.id || item.destination_id, item.name_en);
+                } else {
+                    toggleLocationItemStatus(item, type, sectionType);
+                }
+            } else if (action === 'view-destinations') {
+                switchLocSubTab('destinations', 'tour-planner');
+                const searchInput = document.getElementById('tour-loc-search-input');
+                if (searchInput) {
+                    searchInput.value = item.name_en || item.name;
+                    onLocSearchChange('tour-planner');
+                }
+                showToast(`Viewing tourist destinations for ${item.name_en || item.name}`, 'info');
+            } else if (action === 'delete') {
+                if (type === 'destination') {
+                    deleteTourDestinationItem(item.id || item.destination_id, item.name_en);
+                } else {
+                    deleteLocationItem(item, type, sectionType);
+                }
+            }
+        }
+
+        function openAddLocationModal(sectionType = 'travel-planner') {
+            if (sectionType === 'tour-planner' && locationState['tour-planner'].activeSubTab === 'destinations') {
+                openAddDestinationModal();
+                return;
+            }
+
+            const modal = document.getElementById('location-crud-modal');
+            if (!modal) return;
+
+            document.getElementById('loc-modal-mode').value = 'add';
+            document.getElementById('loc-modal-section').value = sectionType;
+            document.getElementById('loc-modal-id').value = '';
+            document.getElementById('loc-modal-title').textContent = 'Add Location';
+            document.getElementById('loc-modal-subtitle').textContent = 'Create a new location (Division / District / Upazila) in Bangladesh.';
+            document.getElementById('loc-modal-header-icon').textContent = 'add_location_alt';
+            document.getElementById('loc-modal-submit-text').textContent = 'Save Location';
+
+            // Reset inputs
+            document.getElementById('loc-modal-name').value = '';
+            document.getElementById('loc-modal-desc').value = '';
+            document.getElementById('loc-modal-char-count').textContent = '0';
+            document.getElementById('loc-modal-status').value = 'Active';
+            document.getElementById('loc-modal-code').value = '';
+            document.getElementById('loc-modal-featured').checked = false;
+            document.getElementById('loc-modal-date').value = 'Auto generated';
+            removeLocModalImage();
+
+            // Default type based on currently active subtab
+            let activeTab = locationState[sectionType].activeSubTab;
+            if (activeTab === 'divisions') selectModalLocType('division');
+            else if (activeTab === 'districts') selectModalLocType('district');
+            else selectModalLocType('upazila');
+
+            modal.classList.add('show');
+        }
+
+        function openEditLocationModal(item, type = 'upazila', sectionType = 'travel-planner') {
+            const modal = document.getElementById('location-crud-modal');
+            if (!modal) return;
+
+            document.getElementById('loc-modal-mode').value = 'edit';
+            document.getElementById('loc-modal-section').value = sectionType;
+            document.getElementById('loc-modal-id').value = item.id || item.upazila_id || item.district_id || item.division_id;
+            document.getElementById('loc-modal-title').textContent = 'Edit Location';
+            document.getElementById('loc-modal-subtitle').textContent = 'Update location details and settings.';
+            document.getElementById('loc-modal-header-icon').textContent = 'edit_location_alt';
+            document.getElementById('loc-modal-submit-text').textContent = 'Update Location';
+
+            selectModalLocType(type);
+
+            document.getElementById('loc-modal-name').value = item.name_en || item.name || '';
+            const desc = item.description || '';
+            document.getElementById('loc-modal-desc').value = desc;
+            document.getElementById('loc-modal-char-count').textContent = desc.length;
+            document.getElementById('loc-modal-status').value = (item.is_active === 0 || item.status === 'Inactive') ? 'Inactive' : 'Active';
+            document.getElementById('loc-modal-code').value = item.code || '';
+            document.getElementById('loc-modal-featured').checked = !!item.is_featured;
+            document.getElementById('loc-modal-date').value = formatLocDate(item.created_at);
+
+            // Pre-select parent
+            const parentSel = document.getElementById('loc-modal-parent');
+            if (parentSel) {
+                if (type === 'upazila') parentSel.value = item.district_id || '';
+                else if (type === 'district') parentSel.value = item.division_id || '';
+            }
+
+            // Preview image
+            if (item.image) {
+                const wrap = document.getElementById('loc-modal-preview-wrap');
+                const img = document.getElementById('loc-modal-preview-img');
+                const hid = document.getElementById('loc-modal-image-data');
+                if (wrap && img && hid) {
+                    img.src = item.image;
+                    hid.value = item.image;
+                    wrap.style.display = 'block';
+                }
+            } else {
+                removeLocModalImage();
+            }
+
+            modal.classList.add('show');
+        }
+
+        function closeLocationModal(event) {
+            if (event && event.target && event.target.id !== 'location-crud-modal') return;
+            const modal = document.getElementById('location-crud-modal');
+            if (modal) modal.classList.remove('show');
+        }
+
+        function selectModalLocType(type) {
+            document.querySelectorAll('.loc-type-segment-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById(`loc-type-btn-${type}`);
+            if (btn) btn.classList.add('active');
+            document.getElementById('loc-modal-type-val').value = type;
+
+            const parentSel = document.getElementById('loc-modal-parent');
+            const infoText = document.getElementById('loc-modal-info-text');
+
+            if (type === 'division') {
+                if (parentSel) {
+                    parentSel.innerHTML = '<option value="COUNTRY-BD">Bangladesh (National - COUNTRY-BD)</option>';
+                    parentSel.disabled = true;
+                }
+                if (infoText) infoText.textContent = 'Division is top-level under Bangladesh national registry.';
+            } else if (type === 'district') {
+                if (parentSel) {
+                    parentSel.disabled = false;
+                    parentSel.innerHTML = '<option value="">Select Division *</option>' + 
+                        locationState.allDivisions.map(d => `<option value="${d.division_id}">${d.name_en} (${d.division_id})</option>`).join('');
+                }
+                if (infoText) infoText.textContent = 'For District, select the respective Division.';
+            } else if (type === 'upazila') {
+                if (parentSel) {
+                    parentSel.disabled = false;
+                    parentSel.innerHTML = '<option value="">Select District *</option>' + 
+                        locationState.allDistricts.map(d => `<option value="${d.district_id}">${d.name_en} - ${d.division_name_en || ''}</option>`).join('');
+                }
+                if (infoText) infoText.textContent = 'For Upazila, select the respective District.';
+            }
+        }
+
+        function updateLocDescCount(el) {
+            const span = document.getElementById('loc-modal-char-count');
+            if (span && el) span.textContent = el.value.length;
+        }
+
+        function handleLocImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 2 * 1024 * 1024) {
+                showToast('Image size must be less than 2MB', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const wrap = document.getElementById('loc-modal-preview-wrap');
+                const img = document.getElementById('loc-modal-preview-img');
+                const hid = document.getElementById('loc-modal-image-data');
+                if (wrap && img && hid) {
+                    img.src = e.target.result;
+                    hid.value = e.target.result;
+                    wrap.style.display = 'block';
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeLocModalImage(event) {
+            if (event) event.stopPropagation();
+            const wrap = document.getElementById('loc-modal-preview-wrap');
+            const img = document.getElementById('loc-modal-preview-img');
+            const hid = document.getElementById('loc-modal-image-data');
+            const finput = document.getElementById('loc-modal-file-input');
+            if (img) img.src = '';
+            if (hid) hid.value = '';
+            if (wrap) wrap.style.display = 'none';
+            if (finput) finput.value = '';
+        }
+
+        async function handleLocationFormSubmit(event) {
+            event.preventDefault();
+            const mode = document.getElementById('loc-modal-mode').value;
+            const id = document.getElementById('loc-modal-id').value;
+            const type = document.getElementById('loc-modal-type-val').value;
+            const sectionType = document.getElementById('loc-modal-section').value || 'travel-planner';
+
+            const name = document.getElementById('loc-modal-name').value.trim();
+            const desc = document.getElementById('loc-modal-desc').value.trim();
+            const status = document.getElementById('loc-modal-status').value;
+            const code = document.getElementById('loc-modal-code').value.trim();
+            const isFeatured = document.getElementById('loc-modal-featured').checked ? 1 : 0;
+            const image = document.getElementById('loc-modal-image-data').value;
+            const parentId = document.getElementById('loc-modal-parent').value;
+
+            if (!name) {
+                showToast('Location name is required', 'error');
+                return;
+            }
+            if ((type === 'district' || type === 'upazila') && !parentId) {
+                showToast('Please select a Parent Location', 'error');
+                return;
+            }
+
+            const submitBtn = document.getElementById('loc-modal-submit-btn');
+            if (submitBtn) submitBtn.disabled = true;
+
+            try {
+                let url = '';
+                let method = 'POST';
+                const payload = {
+                    type,
+                    name,
+                    code,
+                    parent_id: parentId,
+                    status,
+                    is_featured: isFeatured,
+                    image,
+                    description: desc
+                };
+
+                if (mode === 'add') {
+                    url = '/api/tour-planner/locations';
+                    method = 'POST';
+                } else {
+                    url = `/api/tour-planner/locations/${type}/${encodeURIComponent(id)}`;
+                    method = 'PUT';
+                }
+
+                const res = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    showToast(`Location "${name}" successfully ${mode === 'add' ? 'created' : 'updated'} and synced!`, 'success');
+                    closeLocationModal();
+                    // Invalidate caches & reload both views so Travel and Tour Planners are 100% in sync!
+                    locationState.allDivisions = [];
+                    locationState.allDistricts = [];
+                    await loadLocationView('travel-planner');
+                    await loadLocationView('tour-planner');
+                } else {
+                    showToast(data.message || 'Failed to save location', 'error');
+                }
+            } catch (err) {
+                console.error('Save location error:', err);
+                showToast('Error saving location to database', 'error');
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+            }
+        }
+
+        async function toggleLocationItemStatus(item, type, sectionType = 'travel-planner') {
+            const id = item.id || item.upazila_id || item.district_id || item.division_id;
+            const currentActive = (item.is_active === 1 || item.status === 'Active');
+            const newStatus = currentActive ? 'Inactive' : 'Active';
+
+            try {
+                const res = await fetch(`/api/tour-planner/locations/${type}/${encodeURIComponent(id)}/status`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast(`Status of "${item.name_en || item.name}" changed to ${newStatus}`, 'success');
+                    await renderLocationTable('travel-planner');
+                    await renderLocationTable('tour-planner');
+                } else {
+                    showToast(data.message || 'Failed to update status', 'error');
+                }
+            } catch (err) {
+                console.error('Toggle status error:', err);
+                showToast('Network error updating status', 'error');
+            }
+        }
+
+        async function deleteLocationItem(item, type, sectionType = 'travel-planner') {
+            const id = item.id || item.upazila_id || item.district_id || item.division_id;
+            const name = item.name_en || item.name || 'this location';
+
+            const confirmed = window.confirm(`Are you sure you want to delete "${name}"? This will permanently remove it from the database and synchronize across Travel Planner and Tour Planner.`);
+            if (!confirmed) return;
+
+            try {
+                const res = await fetch(`/api/tour-planner/locations/${type}/${encodeURIComponent(id)}`, {
+                    method: 'DELETE'
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast(`Location "${name}" was deleted successfully.`, 'warning');
+                    locationState.allDivisions = [];
+                    locationState.allDistricts = [];
+                    await loadLocationView('travel-planner');
+                    await loadLocationView('tour-planner');
+                } else {
+                    showToast(data.message || 'Failed to delete location', 'error');
+                }
+            } catch (err) {
+                console.error('Delete location error:', err);
+                showToast('Network error deleting location', 'error');
+            }
+        }
+
+        function handleImportLocationsPrompt(sectionType = 'travel-planner') {
+            const s = locationState.summary;
+            alert(`✔ Location Database is Synchronized Live!\n\nCurrently Registered:\n• ${s.divisions} Divisions\n• ${s.districts} Districts\n• ${s.upazilas} Upazilas\n• ${s.destinations} Tour Destinations\n\nAll changes in Travel Planner or Tour Planner mutate MySQL and stay fully synchronized.`);
+        }
+
+        // ================= TOUR DESTINATIONS MODAL & HANDLERS ================= //
+
+        function openAddDestinationModal() {
+            const modal = document.getElementById('destination-crud-modal');
+            if (!modal) return;
+
+            const distSel = document.getElementById('dest-modal-district');
+            if (distSel && locationState.allDistricts.length > 0) {
+                distSel.innerHTML = '<option value="">Select District *</option>' + 
+                    locationState.allDistricts.map(d => `<option value="${d.district_id}">${d.name_en} (${d.division_name_en || ''})</option>`).join('');
+            }
+
+            document.getElementById('dest-modal-name').value = '';
+            document.getElementById('dest-modal-desc').value = '';
+            modal.classList.add('show');
+        }
+
+        function closeDestinationModal(event) {
+            if (event && event.target && event.target.id !== 'destination-crud-modal') return;
+            const modal = document.getElementById('destination-crud-modal');
+            if (modal) modal.classList.remove('show');
+        }
+
+        async function handleDestinationFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('dest-modal-name').value.trim();
+            const districtId = document.getElementById('dest-modal-district').value;
+            const type = document.getElementById('dest-modal-type').value;
+            const desc = document.getElementById('dest-modal-desc').value.trim();
+
+            if (!name || !districtId) {
+                showToast('Destination name and district are required', 'error');
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/tour-planner/destinations', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name_en: name,
+                        district_id: districtId,
+                        destination_type: type,
+                        description: desc,
+                        is_active: 1
+                    })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast(`Destination "${name}" added successfully!`, 'success');
+                    closeDestinationModal();
+                    await fetchLocationSummary();
+                    await renderLocationTable('tour-planner');
+                } else {
+                    showToast(data.message || 'Failed to create destination', 'error');
+                }
+            } catch (err) {
+                console.error('Add destination error:', err);
+                showToast('Network error saving destination', 'error');
+            }
+        }
+
+        async function deleteTourDestinationItem(id, name) {
+            const confirmed = window.confirm(`Are you sure you want to delete tour destination "${name}"?`);
+            if (!confirmed) return;
+
+            try {
+                const res = await fetch(`/api/tour-planner/destinations/${encodeURIComponent(id)}`, {
+                    method: 'DELETE'
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast(`Destination "${name}" removed.`, 'warning');
+                    await fetchLocationSummary();
+                    await renderLocationTable('tour-planner');
+                } else {
+                    showToast(data.message || 'Failed to delete destination', 'error');
+                }
+            } catch (err) {
+                console.error('Delete destination error:', err);
+                showToast('Network error deleting destination', 'error');
+            }
         }
 
         // ================= 3. TOUR PACKAGE STUDIO CRM ================= //

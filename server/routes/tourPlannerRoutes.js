@@ -15,14 +15,22 @@ router.get('/trip/:tripCode', tourPlannerController.getTripByCode);
 router.post('/hold-seat', tourPlannerController.holdSeat);
 
 // 5. Bangladesh Cascading Location Hierarchy (Country -> Division -> District -> Upazila)
+router.get('/locations/summary', tourPlannerController.getLocationSummary);
 router.get('/locations/divisions', tourPlannerController.getDivisions);
 router.get('/locations/districts', tourPlannerController.getDistricts);
 router.get('/locations/upazilas', tourPlannerController.getUpazilas);
 router.get('/locations/search', tourPlannerController.searchLocations);
+router.post('/locations', tourPlannerController.createLocation);
+router.put('/locations/:type/:id', tourPlannerController.updateLocation);
+router.delete('/locations/:type/:id', tourPlannerController.deleteLocation);
+router.patch('/locations/:type/:id/status', tourPlannerController.toggleLocationStatus);
 
 // 6. Tour Destination Places (Country -> Division -> District -> Tourist Destinations)
+router.get('/destinations', tourPlannerController.getTourDestinations);
 router.get('/destinations/places', tourPlannerController.getTourDestinations);
 router.get('/destinations/search', tourPlannerController.searchTourDestinations);
+router.post('/destinations', tourPlannerController.createTourDestination);
+router.delete('/destinations/:id', tourPlannerController.deleteTourDestination);
 
 module.exports = router;
 
