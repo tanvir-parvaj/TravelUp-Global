@@ -448,3 +448,181 @@ exports.getFinancialTransactions = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Failed to fetch financial transactions', error: err.message });
     }
 };
+
+/**
+ * 7. Tour Planner Inventory Management (CRM Component Catalog)
+ * Covers Transit, Hotel/Resort, Dining/Restaurant, Recreation/Activity, Tourist Guide
+ */
+exports.getInventoryComponents = async (req, res) => {
+    try {
+        const { slot_key, search } = req.query;
+        let query = 'SELECT * FROM tour_planner_inventory WHERE is_active = 1';
+        const params = [];
+
+        if (slot_key && slot_key !== 'all') {
+            query += ' AND slot_key = ?';
+            params.push(slot_key);
+        }
+
+        if (search) {
+            query += ' AND (name LIKE ? OR sub LIKE ? OR destination_slug LIKE ?)';
+            const s = `%${search}%`;
+            params.push(s, s, s);
+        }
+
+        query += ' ORDER BY id DESC LIMIT 150';
+        const [rows] = await pool.query(query, params);
+
+        const items = rows.map(r => {
+            let details = null;
+            if (r.details_json) {
+                try { details = JSON.parse(r.details_json); } catch(e) {}
+            }
+            return {
+                id: r.id,
+                slot_key: r.slot_key,
+                destination_slug: r.destination_slug,
+                name: r.name,
+                sub: r.sub,
+                price: parseFloat(r.price),
+                img: r.img,
+                has_seats: Boolean(r.has_seats),
+                has_rooms: Boolean(r.has_rooms),
+                details: details,
+                created_at: r.created_at
+            };
+        });
+
+        return res.json({ success: true, count: items.length, items });
+    } catch (err) {
+        console.error('getInventoryComponents error:', err);
+        return res.status(500).json({ success: false, message: 'Failed to fetch inventory components', error: err.message });
+    }
+};
+
+exports.createInventoryComponent = async (req, res) => {
+    try {
+        const {
+            slot_key,
+            destination_slug = 'all',
+            name,
+            sub = '',
+            price = 0,
+            img = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
+            has_seats = 0,
+            has_rooms = 0,
+            details = {}
+        } = req.body;
+
+        if (!slot_key || !name) {
+            return res.status(400).json({ success: false, message: 'Slot key and component name are required.' });
+        }
+
+        const detailsJson = typeof details === 'string' ? details : JSON.stringify(details);
+
+        const [result] = await pool.query(`
+            INSERT INTO tour_planner_inventory 
+            (slot_key, destination_slug, name, sub, price, img, has_seats, has_rooms, details_json, is_active)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
+        `, [
+            slot_key,
+            destination_slug,
+            name,
+            sub,
+            parseFloat(price) || 0,
+            img,
+            has_seats ? 1 : 0,
+            has_rooms ? 1 : 0,
+            detailsJson
+        ]);
+
+        return res.status(201).json({
+            success: true,
+            message: `${slot_key.toUpperCase()} component added successfully!`,
+            id: result.insertId
+        });
+    } catch (err) {
+        console.error('createInventoryComponent error:', err);
+        return res.status(500).json({ success: false, message: 'Failed to create inventory component', error: err.message });
+    }
+};
+
+exports.deleteInventoryComponent = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await pool.query('DELETE FROM tour_planner_inventory WHERE id = ?', [id]);
+        return res.json({ success: true, message: 'Inventory item removed successfully' });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: 'Failed to delete component', error: err.message });
+    }
+};
+
+/**
+ * 8. Tour Packages Management (Package Creator & Studio)
+ */
+exports.getAdminPackages = async (req, res) => {
+    try {
+        const [packages] = await pool.query(`
+            SELECT p.*, d.name_en AS destination_name, d.image_url AS destination_image
+            FROM packages p
+            LEFT JOIN destinations d ON p.destination_id = d.id
+            ORDER BY p.id DESC
+        `);
+        return res.json({ success: true, count: packages.length, packages });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: 'Failed to load packages', error: err.message });
+    }
+};
+
+exports.createAdminPackage = async (req, res) => {
+    try {
+        const {
+            destination_id = 9,
+            title_en,
+            title_bn = '',
+            duration_days = 3,
+            price_bdt = 10000,
+            price_usd = 100,
+            included_services = 'AC Bus Transport, Luxury Hotel Stay, Breakfast, Sightseeing Guide',
+            discount_percent = 0
+        } = req.body;
+
+        if (!title_en) {
+            return res.status(400).json({ success: false, message: 'Package title is required.' });
+        }
+
+        const [result] = await pool.query(`
+            INSERT INTO packages 
+            (destination_id, title_en, title_bn, duration_days, price_bdt, price_usd, included_services, discount_percent, is_active)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
+        `, [
+            destination_id,
+            title_en,
+            title_bn || title_en,
+            parseInt(duration_days) || 3,
+            parseFloat(price_bdt) || 0,
+            parseFloat(price_usd) || 0,
+            included_services,
+            parseFloat(discount_percent) || 0
+        ]);
+
+        return res.status(201).json({
+            success: true,
+            message: 'Tour Package created and published successfully!',
+            package_id: result.insertId
+        });
+    } catch (err) {
+        console.error('createAdminPackage error:', err);
+        return res.status(500).json({ success: false, message: 'Failed to create tour package', error: err.message });
+    }
+};
+
+exports.deleteAdminPackage = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await pool.query('DELETE FROM packages WHERE id = ?', [id]);
+        return res.json({ success: true, message: 'Package deleted successfully' });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: 'Failed to delete package', error: err.message });
+    }
+};

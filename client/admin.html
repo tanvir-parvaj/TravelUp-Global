@@ -872,6 +872,201 @@
             color: var(--primary);
         }
 
+        /* ================= CRM CATEGORY & INVENTORY STYLES ================= */
+        .crm-header-card {
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .crm-title-area h2 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .crm-title-area p {
+            font-size: 0.88rem;
+            color: var(--slate-500);
+            margin-top: 0.25rem;
+        }
+
+        .crm-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .crm-category-strip {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .crm-pill-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.55rem 1.15rem;
+            border-radius: 9999px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+
+        .crm-pill-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #f8fafc;
+        }
+
+        .crm-pill-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px var(--primary-glow);
+        }
+
+        .crm-pill-btn i {
+            font-size: 1.1rem;
+        }
+
+        .crm-collapsible-panel {
+            display: none;
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .crm-grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .crm-item-card {
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            transition: transform 0.15s, box-shadow 0.15s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .crm-item-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        }
+
+        .crm-card-media {
+            height: 140px;
+            width: 100%;
+            object-fit: cover;
+            background: #e2e8f0;
+            display: block;
+        }
+
+        .crm-card-body {
+            padding: 1.15rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .crm-card-tag {
+            font-size: 0.725rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            width: fit-content;
+        }
+
+        .crm-tag-transport { background: #d1fae5; color: #047857; }
+        .crm-tag-hotel { background: #e0f2fe; color: #0369a1; }
+        .crm-tag-dining { background: #fef3c7; color: #b45309; }
+        .crm-tag-recreation { background: #f3e8ff; color: #7e22ce; }
+        .crm-tag-guide { background: #fee2e2; color: #b91c1c; }
+
+        .crm-card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.35rem;
+            line-height: 1.3;
+        }
+
+        .crm-card-sub {
+            font-size: 0.8rem;
+            color: var(--slate-500);
+            line-height: 1.4;
+            margin-bottom: 0.85rem;
+            flex: 1;
+        }
+
+        .crm-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--slate-100);
+        }
+
+        .crm-card-price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        body.dark-theme .crm-header-card,
+        body.dark-theme .crm-collapsible-panel,
+        body.dark-theme .crm-item-card {
+            background: #111827;
+            border-color: #1f2937;
+            color: #f8fafc;
+        }
+
+        body.dark-theme .crm-pill-btn {
+            background: #1f2937;
+            border-color: #374151;
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .crm-pill-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
         /* ================= CARDS & PANELS ================= */
         .panel {
             background: var(--white);
@@ -1196,23 +1391,23 @@
                     <span>Dashboard</span>
                 </div>
 
-                <!-- 2. Travel Planner -->
-                <a href="travel-planner.html" class="sidebar-item" id="nav-item-travel-planner">
+                <!-- 2. Travel Planner (Fleet & Transit CRM) -->
+                <div class="sidebar-item" data-tab="travel-planner" onclick="switchTab('travel-planner')" id="nav-item-travel-planner">
                     <i class="material-icons">explore</i>
                     <span>Travel Planner</span>
-                </a>
+                </div>
 
-                <!-- 3. Tour Planner -->
-                <a href="trip-planner.html" class="sidebar-item" id="nav-item-tour-planner">
+                <!-- 3. Tour Planner (Components & Suppliers CRM) -->
+                <div class="sidebar-item" data-tab="tour-planner" onclick="switchTab('tour-planner')" id="nav-item-tour-planner">
                     <i class="material-icons">event</i>
                     <span>Tour Planner</span>
-                </a>
+                </div>
 
-                <!-- 4. Create Package -->
-                <a href="tour-packages.html" class="sidebar-item" id="nav-item-packages">
+                <!-- 4. Create Package (Package Studio CRM) -->
+                <div class="sidebar-item" data-tab="package-creator" onclick="switchTab('package-creator')" id="nav-item-packages">
                     <i class="material-icons">card_travel</i>
                     <span>Create Package</span>
-                </a>
+                </div>
 
                 <!-- 5. Bookings -->
                 <div class="sidebar-item" data-tab="bookings" onclick="switchTab('bookings')" id="nav-item-bookings">
@@ -1577,7 +1772,450 @@
                     </div>
                 </section>
 
-                <!-- 2. BOOKINGS & OPERATIONS -->
+                <!-- 2. TRAVEL PLANNER OPERATIONS (FLEET & MULTI-MODAL TRANSIT CRM) -->
+                <section id="view-travel-planner" class="view-section">
+                    <!-- CRM Header Card -->
+                    <div class="crm-header-card">
+                        <div class="crm-title-area">
+                            <h2>
+                                <i class="material-icons" style="color: var(--primary);">directions_bus</i>
+                                <span>Travel Planner — Fleet & Transport Operations</span>
+                            </h2>
+                            <p>Upload and manage transit inventories across Bangladesh: Bus, Railway, Domestic Flights, Launches, and Microbuses.</p>
+                        </div>
+                        <div class="crm-header-actions">
+                            <a href="travel-planner.html" target="_blank" class="btn btn-secondary">
+                                <i class="material-icons">open_in_new</i> Preview Public Travel Planner
+                            </a>
+                            <button type="button" class="btn btn-primary" onclick="toggleAddTransportForm()">
+                                <i class="material-icons">add_circle</i> Add New Vehicle / Transit
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Category Filter Strip -->
+                    <div class="crm-category-strip">
+                        <button type="button" class="crm-pill-btn active" onclick="filterTravelCategory('all', this)">
+                            <i class="material-icons">apps</i> All Modes
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('bus', this)">
+                            <i class="material-icons">directions_bus</i> 🚌 Bus Coaches
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('train', this)">
+                            <i class="material-icons">train</i> 🚆 Railway / Train
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('flight', this)">
+                            <i class="material-icons">flight</i> ✈️ Domestic Flights
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('waterway', this)">
+                            <i class="material-icons">directions_boat</i> 🚤 Waterway / Launches
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTravelCategory('rental', this)">
+                            <i class="material-icons">airport_shuttle</i> 🚗 Rental & Microbus
+                        </button>
+                    </div>
+
+                    <!-- Collapsible Add Vehicle / Transit Form -->
+                    <div id="panel-add-transport" class="crm-collapsible-panel">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="material-icons" style="color: var(--primary);">add_box</i>
+                                <span>Add New Vehicle / Transport Route to Catalog</span>
+                            </h3>
+                            <button type="button" class="btn btn-secondary" onclick="toggleAddTransportForm()" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">Close</button>
+                        </div>
+                        <form id="form-add-transport" onsubmit="handleCreateTransportCRM(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Transport Category / Mode *</label>
+                                    <select id="t-category-select" required>
+                                        <option value="bus">🚌 Intercity & Feeder Bus</option>
+                                        <option value="train">🚆 Bangladesh Railway (Train)</option>
+                                        <option value="flight">✈️ Domestic Flight (Air)</option>
+                                        <option value="waterway">🚤 Waterway & Cruisers (Launch)</option>
+                                        <option value="rental">🚗 Microbus / Chander Gari Rental</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Operator / Company Name *</label>
+                                    <input type="text" id="t-operator" required placeholder="e.g. Ena Transport, Biman Bangladesh, Suborno Express, Green Line Water">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Vehicle Model / Service Class *</label>
+                                    <input type="text" id="t-vtype" required placeholder="e.g. Scania Multi-Axle AC Sleeper, Economy Snigdha, ATR-72 Economy">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Origin District / City *</label>
+                                    <input type="text" id="t-orig-dist" required placeholder="e.g. Dhaka, Rangpur, Dinajpur">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Origin Stoppage / Terminal</label>
+                                    <input type="text" id="t-orig-point" placeholder="e.g. Sayedabad Counter, Kamlapur Railway, Hazrat Shahjalal Airport">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Destination District / City *</label>
+                                    <input type="text" id="t-dest-dist" required placeholder="e.g. Cox's Bazar, Chattogram, Sylhet">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Destination Spot / Terminal</label>
+                                    <input type="text" id="t-dest-point" placeholder="e.g. Kolatoli Beach, GEC Circle, Cox's Bazar Airport">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Departure Time *</label>
+                                    <input type="text" id="t-dep-time" required placeholder="e.g. 07:30 PM">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Arrival Time</label>
+                                    <input type="text" id="t-arr-time" placeholder="e.g. 05:15 AM">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Base Fare (BDT) *</label>
+                                    <input type="number" id="t-fare" required min="50" step="10" placeholder="e.g. 1650">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Seat Capacity</label>
+                                    <input type="number" id="t-seats" value="36" min="1" max="500">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Curated Tier Tag</label>
+                                    <select id="t-tier">
+                                        <option value="recommended">Best Value / Recommended</option>
+                                        <option value="budget">Lowest Price / Budget</option>
+                                        <option value="luxury">Fastest / Luxury Sleeper</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Vehicle Photo URL</label>
+                                    <input type="url" id="t-img" value="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80">
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                                <button type="reset" class="btn btn-secondary">Clear Form</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="material-icons">cloud_upload</i> Publish Transport to Live Network
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Transport Inventory Table -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
+                                <span>Active Transport Fleet Inventory</span>
+                            </div>
+                            <input type="text" id="search-transport-input" placeholder="Search operator, origin, destination..." onkeyup="filterTransportTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 280px;">
+                        </div>
+                        <div class="panel-body">
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="crm-transport-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Operator & Vehicle</th>
+                                            <th>Mode</th>
+                                            <th>Route Corridor</th>
+                                            <th>Schedule</th>
+                                            <th>Fare (BDT)</th>
+                                            <th>Seats</th>
+                                            <th>Tier</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading fleet...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. TOUR PLANNER OPERATIONS (TOUR COMPONENTS & SUPPLIER STUDIO) -->
+                <section id="view-tour-planner" class="view-section">
+                    <!-- CRM Header Card -->
+                    <div class="crm-header-card">
+                        <div class="crm-title-area">
+                            <h2>
+                                <i class="material-icons" style="color: #0284c7;">hotel</i>
+                                <span>Tour Planner — Component & Supplier Studio</span>
+                            </h2>
+                            <p>Curate building blocks for custom holiday itineraries: Transits, Accommodations, Dining, Recreation, and Tour Guides.</p>
+                        </div>
+                        <div class="crm-header-actions">
+                            <a href="trip-planner.html" target="_blank" class="btn btn-secondary">
+                                <i class="material-icons">open_in_new</i> Preview Public Tour Planner
+                            </a>
+                            <button type="button" class="btn btn-primary" onclick="toggleAddComponentForm()">
+                                <i class="material-icons">add_circle</i> Add Tour Component
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 5 Core Categories Strip (Transit, Hotel, Dining, Recreation, Guide) -->
+                    <div class="crm-category-strip">
+                        <button type="button" class="crm-pill-btn active" onclick="filterTourCategory('all', this)">
+                            <i class="material-icons">dashboard</i> All Components
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('transport', this)">
+                            <i class="material-icons">directions_bus</i> 🚍 Transit & Transfers
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('hotel', this)">
+                            <i class="material-icons">hotel</i> 🏨 Accommodation & Hotels
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('dining', this)">
+                            <i class="material-icons">restaurant</i> 🍽️ Dining & Restaurants
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('recreation', this)">
+                            <i class="material-icons">surfing</i> 🏄 Activities & Recreation
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterTourCategory('guide', this)">
+                            <i class="material-icons">explore</i> 🧭 Guides & Assistance
+                        </button>
+                    </div>
+
+                    <!-- Collapsible Add Tour Component Form -->
+                    <div id="panel-add-component" class="crm-collapsible-panel">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="material-icons" style="color: var(--primary);">library_add</i>
+                                <span>Add New Supplier Component / Inventory Item</span>
+                            </h3>
+                            <button type="button" class="btn btn-secondary" onclick="toggleAddComponentForm()" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">Close</button>
+                        </div>
+                        <form id="form-add-component" onsubmit="handleCreateComponentCRM(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Core Component Category *</label>
+                                    <select id="comp-slot-key" required onchange="onComponentCategoryChange(this.value)">
+                                        <option value="hotel">🏨 Accommodation & Hotels (Resorts, Cottages, 3-Star/5-Star)</option>
+                                        <option value="transport">🚍 Transit & Local Transfers (Jeep, Chander Gari, Coach, Boat)</option>
+                                        <option value="dining">🍽️ Dining & Restaurants (Buffets, Local Cuisine, Meals)</option>
+                                        <option value="recreation">🏄 Activities & Recreation (Water sports, Trekking, Tickets)</option>
+                                        <option value="guide">🧭 Tour Guides & Assistance (Certified Local Guides)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Destination / Region *</label>
+                                    <select id="comp-destination" required>
+                                        <option value="all">🌐 All Regions (Universal)</option>
+                                        <option value="cox-s-bazar">Cox's Bazar Beach</option>
+                                        <option value="sajek-valley">Sajek Valley & Khagrachari</option>
+                                        <option value="saint-martin">Saint Martin Coral Island</option>
+                                        <option value="sylhet">Sylhet & Sreemangal</option>
+                                        <option value="bandarban">Bandarban Hill Tracts</option>
+                                        <option value="sundarbans">Sundarbans Mangrove</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label id="lbl-comp-name">Component / Supplier Name *</label>
+                                    <input type="text" id="comp-name" required placeholder="e.g. Sayeman Beach Resort, Nilgiri Cloud Cottage, PADI Scuba Experience, Tribal Buffet">
+                                </div>
+
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Description & Features *</label>
+                                    <input type="text" id="comp-sub" required placeholder="e.g. Ocean view balcony, complimentary breakfast, infinite swimming pool">
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lbl-comp-price">Unit Price (BDT) *</label>
+                                    <input type="number" id="comp-price" required min="0" step="50" placeholder="e.g. 4500">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Image Photo URL</label>
+                                    <input type="url" id="comp-img" value="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80">
+                                </div>
+
+                                <div class="form-group" id="group-comp-amenities" style="grid-column: 1 / -1;">
+                                    <label>Key Amenities / Features (Comma separated)</label>
+                                    <input type="text" id="comp-amenities" placeholder="e.g. Free WiFi, Breakfast Included, Air Conditioning, Mountain View">
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                                <button type="reset" class="btn btn-secondary">Clear Form</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="material-icons">save</i> Save Component to Tour Planner Inventory
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Components Live Cards Grid -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">grid_view</i>
+                                <span id="crm-components-count-label">Supplier Components Directory</span>
+                            </div>
+                            <input type="text" id="search-components-input" placeholder="Search component name, location..." onkeyup="filterComponentsUI()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 280px;">
+                        </div>
+                        <div class="panel-body">
+                            <div id="crm-components-grid" class="crm-grid-cards">
+                                <div style="text-align: center; color: #94a3b8; padding: 2rem; grid-column: 1 / -1;">Loading components...</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. TOUR PACKAGE STUDIO (PACKAGE CREATOR & CATALOG) -->
+                <section id="view-package-creator" class="view-section">
+                    <!-- CRM Header Card -->
+                    <div class="crm-header-card">
+                        <div class="crm-title-area">
+                            <h2>
+                                <i class="material-icons" style="color: #f59e0b;">card_travel</i>
+                                <span>Tour Package Studio — Create & Publish Packages</span>
+                            </h2>
+                            <p>Assemble and publish all-inclusive holiday packages with linked hotels, transport routes, and guided itineraries.</p>
+                        </div>
+                        <div class="crm-header-actions">
+                            <a href="tour-packages.html" target="_blank" class="btn btn-secondary">
+                                <i class="material-icons">open_in_new</i> Preview Public Packages
+                            </a>
+                            <button type="button" class="btn btn-primary" onclick="toggleAddPackageForm()">
+                                <i class="material-icons">add_circle</i> Create New Tour Package
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Package Theme Categories -->
+                    <div class="crm-category-strip">
+                        <button type="button" class="crm-pill-btn active" onclick="filterPackageTheme('all', this)">
+                            <i class="material-icons">apps</i> All Categories
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('beach', this)">
+                            <i class="material-icons">beach_access</i> 🏖️ Beach & Coastal
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('mountain', this)">
+                            <i class="material-icons">landscape</i> ⛰️ Mountain & Hills
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('nature', this)">
+                            <i class="material-icons">forest</i> 🌿 Tea Gardens & Nature
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('wildlife', this)">
+                            <i class="material-icons">pets</i> 🐅 Wildlife & Mangrove
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('heritage', this)">
+                            <i class="material-icons">museum</i> 🏛️ Heritage & Culture
+                        </button>
+                    </div>
+
+                    <!-- Collapsible Create Package Form -->
+                    <div id="panel-add-package" class="crm-collapsible-panel">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="material-icons" style="color: var(--primary);">post_add</i>
+                                <span>Create & Publish New Tour Package</span>
+                            </h3>
+                            <button type="button" class="btn btn-secondary" onclick="toggleAddPackageForm()" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">Close</button>
+                        </div>
+                        <form id="form-create-package" onsubmit="handleCreatePackageCRM(event)">
+                            <div class="form-grid">
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Package Title *</label>
+                                    <input type="text" id="pkg-title" required placeholder="e.g. Sajek Valley Cloud Kingdom — 3 Days 2 Nights All-Inclusive">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Primary Destination / District *</label>
+                                    <select id="pkg-destination" required>
+                                        <option value="9">Cox's Bazar Beach</option>
+                                        <option value="11">Sajek Valley & Khagrachari</option>
+                                        <option value="10">Saint Martin Coral Island</option>
+                                        <option value="12">Sylhet & Sreemangal</option>
+                                        <option value="13">Bandarban Hill Tracts</option>
+                                        <option value="14">Sundarbans Mangrove</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Duration (Days) *</label>
+                                    <input type="number" id="pkg-duration" required min="1" max="30" value="3">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Regular Price BDT *</label>
+                                    <input type="number" id="pkg-price-bdt" required min="500" step="100" placeholder="e.g. 8500">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Promo Discount (%)</label>
+                                    <input type="number" id="pkg-discount" min="0" max="80" value="10">
+                                </div>
+
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Included Services & Amenities (Comma separated)</label>
+                                    <input type="text" id="pkg-services" value="AC Sleeper Bus Transport, 3-Star Resort Stay, Daily Breakfast & Dinner, Certified Guide, Sightseeing Tickets">
+                                </div>
+
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Cover Photo URL</label>
+                                    <input type="url" id="pkg-img" value="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80">
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                                <button type="reset" class="btn btn-secondary">Clear Form</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="material-icons">publish</i> Publish Package to Live Website
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Packages Catalog Table -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
+                                <span>Published Tour Packages</span>
+                            </div>
+                            <input type="text" id="search-packages-input" placeholder="Search package title, destination..." onkeyup="filterPackagesTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 280px;">
+                        </div>
+                        <div class="panel-body">
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="crm-packages-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Package Title</th>
+                                            <th>Destination</th>
+                                            <th>Duration</th>
+                                            <th>Price (BDT)</th>
+                                            <th>Discount</th>
+                                            <th>Included Services</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading packages...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. BOOKINGS & OPERATIONS -->
                 <section id="view-bookings" class="view-section">
                     <div class="panel">
                         <div class="panel-header">
@@ -1921,38 +2559,43 @@
         let cachedRoutes = [];
         let cachedBookings = [];
         let cachedStaff = [];
+        let cachedTourComponents = [];
+        let cachedAdminPackages = [];
+        let activeTravelCategory = 'all';
+        let activeTourSlotKey = 'all';
+        let activePackageTheme = 'all';
 
         // Role-Based Access Control (RBAC) definitions
         const ROLE_PERMISSIONS = {
             admin: {
                 title: 'Super Admin',
                 badgeClass: 'role-admin',
-                allowedTabs: ['dashboard', 'bookings', 'finance', 'staff', 'vehicles', 'excel']
+                allowedTabs: ['dashboard', 'travel-planner', 'tour-planner', 'package-creator', 'bookings', 'finance', 'staff', 'vehicles', 'excel']
             },
             uploader: {
                 title: 'Product Uploader',
                 badgeClass: 'role-uploader',
-                allowedTabs: ['dashboard', 'vehicles', 'excel']
+                allowedTabs: ['dashboard', 'travel-planner', 'tour-planner', 'package-creator', 'vehicles', 'excel']
             },
             moderator: {
                 title: 'Product Uploader',
                 badgeClass: 'role-uploader',
-                allowedTabs: ['dashboard', 'vehicles', 'excel']
+                allowedTabs: ['dashboard', 'travel-planner', 'tour-planner', 'package-creator', 'vehicles', 'excel']
             },
             manager: {
                 title: 'Operations Manager',
                 badgeClass: 'role-manager',
-                allowedTabs: ['dashboard', 'bookings', 'vehicles']
+                allowedTabs: ['dashboard', 'travel-planner', 'tour-planner', 'package-creator', 'bookings', 'vehicles']
             },
             accountant: {
                 title: 'Finance & Payment Officer',
                 badgeClass: 'role-accountant',
-                allowedTabs: ['dashboard', 'finance', 'bookings']
+                allowedTabs: ['dashboard', 'travel-planner', 'tour-planner', 'package-creator', 'finance', 'bookings']
             },
             support: {
                 title: 'Customer Support',
                 badgeClass: 'role-support',
-                allowedTabs: ['dashboard', 'bookings']
+                allowedTabs: ['dashboard', 'travel-planner', 'tour-planner', 'package-creator', 'bookings']
             }
         };
 
@@ -2135,10 +2778,535 @@
             if (targetSec) targetSec.classList.add('active');
 
             // Trigger specific fetchers
+            if (tabId === 'travel-planner') loadTravelPlanner();
+            if (tabId === 'tour-planner') loadTourPlanner();
+            if (tabId === 'package-creator') loadAdminPackages();
             if (tabId === 'vehicles') loadTransitRoutes();
             if (tabId === 'bookings') loadBookings();
             if (tabId === 'finance') loadFinance();
             if (tabId === 'staff') loadStaff();
+        }
+
+        // ================= 1. TRAVEL PLANNER OPERATIONS CRM ================= //
+
+        function toggleAddTransportForm() {
+            const panel = document.getElementById('panel-add-transport');
+            if (panel) {
+                const isOpen = panel.style.display === 'block';
+                panel.style.display = isOpen ? 'none' : 'block';
+                if (!isOpen) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function filterTravelCategory(category, btnEl) {
+            activeTravelCategory = category;
+            if (btnEl) {
+                document.querySelectorAll('#view-travel-planner .crm-pill-btn').forEach(b => b.classList.remove('active'));
+                btnEl.classList.add('active');
+            }
+            renderTransportTable(cachedRoutes);
+        }
+
+        async function loadTravelPlanner() {
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/transit/routes?limit=150`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success && data.routes) {
+                    cachedRoutes = data.routes;
+                    renderTransportTable(cachedRoutes);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderTransportTable(routes) {
+            const tbody = document.querySelector('#crm-transport-table tbody');
+            if (!tbody) return;
+
+            // Apply category filter
+            let filtered = routes;
+            if (activeTravelCategory === 'bus') {
+                filtered = routes.filter(r => (r.vehicle_type || '').toLowerCase().includes('bus') || (r.vehicle_type || '').toLowerCase().includes('coach'));
+            } else if (activeTravelCategory === 'train') {
+                filtered = routes.filter(r => (r.vehicle_type || '').toLowerCase().includes('train') || (r.vehicle_type || '').toLowerCase().includes('rail'));
+            } else if (activeTravelCategory === 'flight') {
+                filtered = routes.filter(r => (r.vehicle_type || '').toLowerCase().includes('air') || (r.vehicle_type || '').toLowerCase().includes('flight'));
+            } else if (activeTravelCategory === 'waterway') {
+                filtered = routes.filter(r => (r.vehicle_type || '').toLowerCase().includes('launch') || (r.vehicle_type || '').toLowerCase().includes('water') || (r.vehicle_type || '').toLowerCase().includes('boat'));
+            } else if (activeTravelCategory === 'rental') {
+                filtered = routes.filter(r => (r.vehicle_type || '').toLowerCase().includes('micro') || (r.vehicle_type || '').toLowerCase().includes('rent') || (r.vehicle_type || '').toLowerCase().includes('hiace') || (r.vehicle_type || '').toLowerCase().includes('gari'));
+            }
+
+            // Apply search input query
+            const q = (document.getElementById('search-transport-input')?.value || '').toLowerCase().trim();
+            if (q) {
+                filtered = filtered.filter(r => 
+                    (r.operator_name || '').toLowerCase().includes(q) ||
+                    (r.origin_district || '').toLowerCase().includes(q) ||
+                    (r.destination_district || '').toLowerCase().includes(q) ||
+                    (r.vehicle_type || '').toLowerCase().includes(q)
+                );
+            }
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 2rem;">No vehicles found for the selected category. Click 'Add New Vehicle' to add one.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(r => {
+                let modeIcon = 'directions_bus';
+                let modeLabel = 'Bus';
+                const vt = (r.vehicle_type || '').toLowerCase();
+                if (vt.includes('train') || vt.includes('rail')) { modeIcon = 'train'; modeLabel = 'Train'; }
+                else if (vt.includes('flight') || vt.includes('air')) { modeIcon = 'flight'; modeLabel = 'Flight'; }
+                else if (vt.includes('launch') || vt.includes('water') || vt.includes('boat')) { modeIcon = 'directions_boat'; modeLabel = 'Waterway'; }
+                else if (vt.includes('micro') || vt.includes('rent') || vt.includes('hiace')) { modeIcon = 'airport_shuttle'; modeLabel = 'Microbus'; }
+
+                return `
+                    <tr>
+                        <td><strong>#${r.id}</strong></td>
+                        <td>
+                            <strong style="color: var(--navy);">${r.operator_name}</strong>
+                            <div style="font-size: 0.775rem; color: #64748b;">${r.vehicle_type}</div>
+                        </td>
+                        <td>
+                            <span class="crm-card-tag crm-tag-transport" style="margin: 0; display: inline-flex; align-items: center; gap: 3px;">
+                                <i class="material-icons" style="font-size: 13px;">${modeIcon}</i> ${modeLabel}
+                            </span>
+                        </td>
+                        <td>
+                            <strong>${r.origin_district}</strong> <span style="color: #64748b;">(${r.origin_point || r.origin_district})</span><br>
+                            ➔ <strong>${r.destination_district}</strong> <span style="color: #64748b;">(${r.destination_point || r.destination_district})</span>
+                        </td>
+                        <td>
+                            <span style="font-weight: 700; color: var(--navy);">${r.departure_time}</span>
+                            <div style="font-size: 0.775rem; color: #64748b;">Arr: ${r.arrival_time || 'N/A'}</div>
+                        </td>
+                        <td><strong style="color: var(--primary);">BDT ${r.base_fare}</strong></td>
+                        <td>${r.available_seats} / ${r.total_seats}</td>
+                        <td>
+                            <span class="user-role-tag" style="background: #e0f2fe; color: #0284c7;">${r.tier_tag || 'Standard'}</span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="deleteRoute(${r.id})">
+                                <i class="material-icons" style="font-size: 0.9rem;">delete</i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterTransportTable() {
+            renderTransportTable(cachedRoutes);
+        }
+
+        async function handleCreateTransportCRM(e) {
+            e.preventDefault();
+            const category = document.getElementById('t-category-select').value;
+            let defaultVType = document.getElementById('t-vtype').value.trim();
+            if (category === 'train' && !defaultVType.toLowerCase().includes('train')) defaultVType += ' (Train)';
+            if (category === 'flight' && !defaultVType.toLowerCase().includes('flight')) defaultVType += ' (Air)';
+            if (category === 'waterway' && !defaultVType.toLowerCase().includes('launch')) defaultVType += ' (Launch)';
+
+            const payload = {
+                operator_name: document.getElementById('t-operator').value.trim(),
+                vehicle_type: defaultVType,
+                origin_district: document.getElementById('t-orig-dist').value.trim(),
+                origin_point: document.getElementById('t-orig-point').value.trim(),
+                destination_district: document.getElementById('t-dest-dist').value.trim(),
+                destination_point: document.getElementById('t-dest-point').value.trim(),
+                departure_time: document.getElementById('t-dep-time').value.trim(),
+                arrival_time: document.getElementById('t-arr-time').value.trim(),
+                base_fare: parseFloat(document.getElementById('t-fare').value),
+                total_seats: parseInt(document.getElementById('t-seats').value),
+                available_seats: parseInt(document.getElementById('t-seats').value),
+                tier_tag: document.getElementById('t-tier').value,
+                image_url: document.getElementById('t-img').value.trim()
+            };
+
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/transit/routes`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast('Vehicle / Transit route successfully added to network!', 'success');
+                    document.getElementById('form-add-transport').reset();
+                    toggleAddTransportForm();
+                    loadTravelPlanner();
+                } else {
+                    showToast(data.message || 'Failed to add transport', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        // ================= 2. TOUR PLANNER OPERATIONS CRM ================= //
+
+        function toggleAddComponentForm() {
+            const panel = document.getElementById('panel-add-component');
+            if (panel) {
+                const isOpen = panel.style.display === 'block';
+                panel.style.display = isOpen ? 'none' : 'block';
+                if (!isOpen) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function filterTourCategory(slotKey, btnEl) {
+            activeTourSlotKey = slotKey;
+            if (btnEl) {
+                document.querySelectorAll('#view-tour-planner .crm-pill-btn').forEach(b => b.classList.remove('active'));
+                btnEl.classList.add('active');
+            }
+            loadTourPlanner(slotKey);
+        }
+
+        function onComponentCategoryChange(slotKey) {
+            const nameLbl = document.getElementById('lbl-comp-name');
+            const priceLbl = document.getElementById('lbl-comp-price');
+            const nameInput = document.getElementById('comp-name');
+            const subInput = document.getElementById('comp-sub');
+
+            if (slotKey === 'hotel') {
+                if (nameLbl) nameLbl.textContent = 'Hotel / Resort Name & Room Type *';
+                if (priceLbl) priceLbl.textContent = 'Room Rate per Night (BDT) *';
+                if (nameInput) nameInput.placeholder = 'e.g. Sayeman Beach Resort — Deluxe Ocean Balcony';
+                if (subInput) subInput.placeholder = 'e.g. 5-Star Beachfront, Buffet Breakfast included, Infinity Pool';
+            } else if (slotKey === 'dining') {
+                if (nameLbl) nameLbl.textContent = 'Restaurant / Meal Package Name *';
+                if (priceLbl) priceLbl.textContent = 'Meal Price per Person (BDT) *';
+                if (nameInput) nameInput.placeholder = 'e.g. Nilgiri Traditional Tribal Lunch Platter';
+                if (subInput) subInput.placeholder = 'e.g. 12-item authentic indigenous cuisine, Bamboo Chicken';
+            } else if (slotKey === 'recreation') {
+                if (nameLbl) nameLbl.textContent = 'Activity / Experience Title *';
+                if (priceLbl) priceLbl.textContent = 'Activity Ticket / Fee (BDT) *';
+                if (nameInput) nameInput.placeholder = 'e.g. Saint Martin Coral Reef Scuba Diving';
+                if (subInput) subInput.placeholder = 'e.g. 45-minute dive with PADI certified master, underwater photos included';
+            } else if (slotKey === 'guide') {
+                if (nameLbl) nameLbl.textContent = 'Tour Guide Full Name & Badges *';
+                if (priceLbl) priceLbl.textContent = 'Daily Guide Fee (BDT) *';
+                if (nameInput) nameInput.placeholder = 'e.g. Rafiqul Hasan (Certified Hill Trekker Guide)';
+                if (subInput) subInput.placeholder = 'e.g. Fluent in English, Bengali, Chakma • 7 Years Trekking Experience';
+            } else {
+                if (nameLbl) nameLbl.textContent = 'Transport / Vehicle Transfer Name *';
+                if (priceLbl) priceLbl.textContent = 'Transfer Rate (BDT) *';
+                if (nameInput) nameInput.placeholder = 'e.g. Sajek 4x4 Chander Gari Mountain Jeep';
+                if (subInput) subInput.placeholder = 'e.g. Reserved round-trip Khagrachari to Sajek Valley, 12 passengers max';
+            }
+        }
+
+        async function loadTourPlanner(slotKey = 'all') {
+            try {
+                const url = slotKey && slotKey !== 'all' 
+                    ? `${API_BASE}/api/admin/inventory/components?slot_key=${slotKey}`
+                    : `${API_BASE}/api/admin/inventory/components`;
+
+                const res = await fetch(url, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success && data.items) {
+                    cachedTourComponents = data.items;
+                    renderComponentsUI(cachedTourComponents);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderComponentsUI(items) {
+            const grid = document.getElementById('crm-components-grid');
+            const countLabel = document.getElementById('crm-components-count-label');
+            if (!grid) return;
+
+            const q = (document.getElementById('search-components-input')?.value || '').toLowerCase().trim();
+            let filtered = items;
+            if (q) {
+                filtered = items.filter(c => 
+                    (c.name || '').toLowerCase().includes(q) ||
+                    (c.sub || '').toLowerCase().includes(q) ||
+                    (c.destination_slug || '').toLowerCase().includes(q)
+                );
+            }
+
+            if (countLabel) {
+                countLabel.textContent = `Supplier Components Directory (${filtered.length} Items)`;
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div style="text-align: center; color: #94a3b8; padding: 2.5rem; grid-column: 1 / -1;">No components found for this category. Click 'Add Tour Component' to create one.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => {
+                let tagClass = 'crm-tag-hotel';
+                let tagLabel = 'Hotel / Resort';
+                if (item.slot_key === 'transport') { tagClass = 'crm-tag-transport'; tagLabel = 'Transit & Transfer'; }
+                if (item.slot_key === 'dining') { tagClass = 'crm-tag-dining'; tagLabel = 'Dining & Restaurant'; }
+                if (item.slot_key === 'recreation') { tagClass = 'crm-tag-recreation'; tagLabel = 'Activity & Sports'; }
+                if (item.slot_key === 'guide') { tagClass = 'crm-tag-guide'; tagLabel = 'Tour Guide'; }
+
+                return `
+                    <div class="crm-item-card">
+                        <img src="${item.img || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'}" alt="${item.name}" class="crm-card-media" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'">
+                        <div class="crm-card-body">
+                            <span class="crm-card-tag ${tagClass}">${tagLabel}</span>
+                            <h4 class="crm-card-title">${item.name}</h4>
+                            <p class="crm-card-sub">${item.sub || 'No description provided.'}</p>
+                            <div style="font-size: 0.775rem; color: #64748b; margin-bottom: 0.5rem;">
+                                📍 Region: <strong>${item.destination_slug ? item.destination_slug.toUpperCase() : 'UNIVERSAL'}</strong>
+                            </div>
+                            <div class="crm-card-footer">
+                                <span class="crm-card-price">BDT ${item.price.toLocaleString()}</span>
+                                <button type="button" class="btn btn-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="deleteComponent(${item.id})">
+                                    <i class="material-icons" style="font-size: 0.9rem;">delete</i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterComponentsUI() {
+            renderComponentsUI(cachedTourComponents);
+        }
+
+        async function handleCreateComponentCRM(e) {
+            e.preventDefault();
+            const slotKey = document.getElementById('comp-slot-key').value;
+            const dest = document.getElementById('comp-destination').value;
+            const name = document.getElementById('comp-name').value.trim();
+            const sub = document.getElementById('comp-sub').value.trim();
+            const price = parseFloat(document.getElementById('comp-price').value);
+            const img = document.getElementById('comp-img').value.trim();
+            const amenities = document.getElementById('comp-amenities').value.trim();
+
+            const payload = {
+                slot_key: slotKey,
+                destination_slug: dest,
+                name: name,
+                sub: sub,
+                price: price,
+                img: img,
+                has_seats: slotKey === 'transport' ? 1 : 0,
+                has_rooms: slotKey === 'hotel' ? 1 : 0,
+                details: {
+                    amenities: amenities ? amenities.split(',').map(s => s.trim()) : [],
+                    category: slotKey,
+                    region: dest
+                }
+            };
+
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/inventory/components`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast(data.message || 'Component saved to Tour Planner inventory!', 'success');
+                    document.getElementById('form-add-component').reset();
+                    toggleAddComponentForm();
+                    loadTourPlanner(activeTourSlotKey);
+                } else {
+                    showToast(data.message || 'Failed to create component', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        async function deleteComponent(id) {
+            if (!confirm('Are you sure you want to remove this supplier component from Tour Planner?')) return;
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/inventory/components/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast('Component removed successfully', 'success');
+                    loadTourPlanner(activeTourSlotKey);
+                } else {
+                    showToast(data.message || 'Failed to delete component', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        // ================= 3. TOUR PACKAGE STUDIO CRM ================= //
+
+        function toggleAddPackageForm() {
+            const panel = document.getElementById('panel-add-package');
+            if (panel) {
+                const isOpen = panel.style.display === 'block';
+                panel.style.display = isOpen ? 'none' : 'block';
+                if (!isOpen) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function filterPackageTheme(theme, btnEl) {
+            activePackageTheme = theme;
+            if (btnEl) {
+                document.querySelectorAll('#view-package-creator .crm-pill-btn').forEach(b => b.classList.remove('active'));
+                btnEl.classList.add('active');
+            }
+            renderPackagesTable(cachedAdminPackages);
+        }
+
+        async function loadAdminPackages() {
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/packages`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success && data.packages) {
+                    cachedAdminPackages = data.packages;
+                    renderPackagesTable(cachedAdminPackages);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderPackagesTable(packages) {
+            const tbody = document.querySelector('#crm-packages-table tbody');
+            if (!tbody) return;
+
+            const q = (document.getElementById('search-packages-input')?.value || '').toLowerCase().trim();
+            let filtered = packages;
+
+            if (q) {
+                filtered = filtered.filter(p => 
+                    (p.title_en || '').toLowerCase().includes(q) ||
+                    (p.destination_name || '').toLowerCase().includes(q)
+                );
+            }
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 2rem;">No tour packages found. Click 'Create Tour Package' to publish one.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(p => `
+                <tr>
+                    <td><strong>#${p.id}</strong></td>
+                    <td>
+                        <strong style="color: var(--navy);">${p.title_en}</strong>
+                        <div style="font-size: 0.775rem; color: #64748b;">${p.title_bn || ''}</div>
+                    </td>
+                    <td>
+                        <span class="user-role-tag" style="background: #e0f2fe; color: #0284c7;">
+                            📍 ${p.destination_name || 'Bangladesh'}
+                        </span>
+                    </td>
+                    <td>${p.duration_days} Days</td>
+                    <td><strong style="color: var(--primary);">BDT ${parseFloat(p.price_bdt).toLocaleString()}</strong></td>
+                    <td>${p.discount_percent ? `${p.discount_percent}% OFF` : 'None'}</td>
+                    <td>
+                        <span style="font-size: 0.8rem; color: #475569; display: block; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${p.included_services || ''}">
+                            ${p.included_services || 'Standard package'}
+                        </span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 700; color: ${p.is_active ? '#059669' : '#dc2626'};">
+                            ● ${p.is_active ? 'PUBLISHED' : 'DRAFT'}
+                        </span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="deletePackage(${p.id})">
+                            <i class="material-icons" style="font-size: 0.9rem;">delete</i> Delete
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterPackagesTable() {
+            renderPackagesTable(cachedAdminPackages);
+        }
+
+        async function handleCreatePackageCRM(e) {
+            e.preventDefault();
+            const title = document.getElementById('pkg-title').value.trim();
+            const destinationId = parseInt(document.getElementById('pkg-destination').value);
+            const duration = parseInt(document.getElementById('pkg-duration').value);
+            const priceBdt = parseFloat(document.getElementById('pkg-price-bdt').value);
+            const discount = parseFloat(document.getElementById('pkg-discount').value) || 0;
+            const services = document.getElementById('pkg-services').value.trim();
+
+            const payload = {
+                title_en: title,
+                destination_id: destinationId,
+                duration_days: duration,
+                price_bdt: priceBdt,
+                price_usd: Math.round(priceBdt / 120),
+                discount_percent: discount,
+                included_services: services
+            };
+
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/packages`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast('Tour Package published successfully to the website!', 'success');
+                    document.getElementById('form-create-package').reset();
+                    toggleAddPackageForm();
+                    loadAdminPackages();
+                } else {
+                    showToast(data.message || 'Failed to create package', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        async function deletePackage(id) {
+            if (!confirm('Are you sure you want to delete this tour package from the live website?')) return;
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/packages/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast('Package deleted successfully', 'success');
+                    loadAdminPackages();
+                } else {
+                    showToast(data.message || 'Failed to delete package', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
         }
 
         // ================= TRANSIT ROUTES ================= //

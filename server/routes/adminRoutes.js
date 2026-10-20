@@ -40,4 +40,14 @@ router.patch('/bookings/:id/status', verifyToken, requireManagerOrAdmin, adminCo
 // 5. Finance & Payments (Admin, Accountant)
 router.get('/finance/transactions', verifyToken, requireFinance, adminController.getFinancialTransactions);
 
+// 6. Tour Planner Inventory & Component Management (Admin, Uploader, Moderator)
+router.get('/inventory/components', verifyToken, requireStaff, adminController.getInventoryComponents);
+router.post('/inventory/components', verifyToken, requireUploaderOrAdmin, adminController.createInventoryComponent);
+router.delete('/inventory/components/:id', verifyToken, requireUploaderOrAdmin, adminController.deleteInventoryComponent);
+
+// 7. Tour Packages Studio & Management (Admin, Uploader, Moderator)
+router.get('/packages', verifyToken, requireStaff, adminController.getAdminPackages);
+router.post('/packages', verifyToken, requireUploaderOrAdmin, adminController.createAdminPackage);
+router.delete('/packages/:id', verifyToken, requireUploaderOrAdmin, adminController.deleteAdminPackage);
+
 module.exports = router;
