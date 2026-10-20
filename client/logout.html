@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out — TravelUp Global</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --primary-light: #e0f2fe;
+            --accent: #10b981;
+            --navy: #0f172a;
+            --slate-700: #334155;
+            --slate-500: #64748b;
+            --slate-200: #e2e8f0;
+            --slate-50: #f8fafc;
+            --white: #ffffff;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0369a1 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--navy);
+        }
+
+        .logout-nav {
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            height: 42px;
+            width: auto;
+            border-radius: 6px;
+        }
+
+        .logout-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .logout-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 480px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: #ecfdf5;
+            color: #059669;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .icon-circle i {
+            font-size: 2.5rem;
+        }
+
+        .logout-card h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .logout-card p {
+            font-size: 0.95rem;
+            color: var(--slate-500);
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.15s ease-in-out;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--slate-700);
+            border: 1px solid var(--slate-200);
+        }
+
+        .btn-outline:hover {
+            background: var(--slate-50);
+            border-color: var(--slate-500);
+        }
+
+        .countdown-notice {
+            font-size: 0.8rem;
+            color: var(--slate-500);
+            margin-top: 1.5rem;
+        }
+
+        .countdown-notice strong {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="logout-nav">
+        <a href="index.html">
+            <img src="images/travelup_logo_official.png" alt="TravelUp Global" class="brand-logo">
+        </a>
+    </nav>
+
+    <main class="logout-container">
+        <div class="logout-card">
+            <div class="icon-circle">
+                <i class="material-icons">check_circle</i>
+            </div>
+
+            <h2>You Have Safely Logged Out</h2>
+            <p>
+                আপনার সেশনটি নিরাপদে বন্ধ করা হয়েছে। আপনার সমস্ত সংরক্ষিত ডেটা সুরক্ষিত রয়েছে।
+            </p>
+
+            <div class="action-buttons">
+                <a href="login.html" id="btn-relogin" class="btn btn-primary">
+                    <i class="material-icons">login</i>
+                    <span>Sign In Again (পুনরায় লগইন করুন)</span>
+                </a>
+
+                <a href="index.html" class="btn btn-outline">
+                    <i class="material-icons">home</i>
+                    <span>Back to Homepage (হোমপেজে ফিরে যান)</span>
+                </a>
+            </div>
+
+            <div class="countdown-notice" id="countdown-wrap">
+                Redirecting to homepage in <strong id="timer">5</strong> seconds...
+                <button type="button" onclick="cancelRedirect()" style="background: none; border: none; color: #ef4444; font-size: 0.8rem; font-weight: 700; cursor: pointer; text-decoration: underline; margin-left: 0.35rem;">Cancel</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 1. Thoroughly Clear All Client Authentication & Session Tokens
+        ['travelup_token', 'travelup_user', 'travelup_admin_token', 'travelup_admin_user', 'travelup_role', 'token'].forEach(key => {
+            try {
+                localStorage.removeItem(key);
+                sessionStorage.removeItem(key);
+            } catch(e) {}
+        });
+
+        // 2. Determine redirect destination based on 'from' query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const fromSource = urlParams.get('from');
+
+        if (fromSource === 'admin') {
+            document.getElementById('btn-relogin').href = 'admin.html';
+        }
+
+        // 3. Auto Countdown Redirect to Homepage
+        let secondsLeft = 5;
+        let timerInterval = null;
+
+        const timerEl = document.getElementById('timer');
+        timerInterval = setInterval(() => {
+            secondsLeft--;
+            if (timerEl) timerEl.textContent = secondsLeft;
+            if (secondsLeft <= 0) {
+                clearInterval(timerInterval);
+                window.location.href = (fromSource === 'admin') ? 'admin.html' : 'index.html';
+            }
+        }, 1000);
+
+        function cancelRedirect() {
+            if (timerInterval) clearInterval(timerInterval);
+            const notice = document.getElementById('countdown-wrap');
+            if (notice) notice.innerHTML = '<span style="color: #64748b;">Automatic redirect cancelled.</span>';
+        }
+    </script>
+</body>
+</html>

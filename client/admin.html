@@ -1269,7 +1269,7 @@
             localStorage.removeItem('travelup_admin_user');
             authToken = '';
             currentUser = null;
-            document.getElementById('auth-overlay').style.display = 'flex';
+            window.location.href = 'logout.html?from=admin';
         }
 
         // Apply Strict RBAC UI Hiding and Navigation Configuration
