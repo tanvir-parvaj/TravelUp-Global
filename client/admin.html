@@ -2749,6 +2749,379 @@
             border-color: #374151;
             color: #94a3b8;
         }
+
+        /* ==============================================================
+           OPERATOR PAGE DESIGN (100% Mockup Match + Grid/List Toggle)
+           ============================================================== */
+        .tp-subcat-nav-strip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.45rem;
+            flex-wrap: wrap;
+        }
+
+        .tp-subcat-nav-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0.52rem 1.15rem;
+            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            font-size: 0.835rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .tp-subcat-nav-pill:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .tp-subcat-nav-pill.active {
+            background: #00875a;
+            border-color: #00875a;
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 135, 90, 0.25);
+        }
+
+        .tp-subcat-nav-pill.active i {
+            color: #ffffff !important;
+        }
+
+        /* View Mode Switcher (Grid / List) */
+        .tp-view-mode-toggle {
+            display: inline-flex;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .tp-view-btn {
+            border: none;
+            background: transparent;
+            padding: 5px 11px;
+            border-radius: 7px;
+            font-size: 0.775rem;
+            font-weight: 600;
+            color: #64748b;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .tp-view-btn.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Operators 4-Column Grid */
+        .tp-operators-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.15rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 1280px) {
+            .tp-operators-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .tp-operators-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .tp-operators-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Operator Card */
+        .tp-operator-card {
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            border-radius: 16px;
+            padding: 1.15rem;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+        }
+
+        .tp-operator-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+            border-color: #cbd5e1;
+        }
+
+        /* Card Header */
+        .tp-op-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tp-op-logo-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+
+        .tp-op-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tp-op-meta {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tp-op-name {
+            font-size: 0.885rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tp-op-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 3px;
+            flex-wrap: wrap;
+        }
+
+        .tp-op-rating {
+            font-size: 0.735rem;
+            font-weight: 700;
+            color: #d97706;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .tp-op-rating-star {
+            font-size: 13px;
+            color: #f59e0b;
+        }
+
+        .tp-op-reviews {
+            font-size: 0.72rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .tp-op-verified-pill {
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 0.685rem;
+            font-weight: 700;
+            padding: 1.5px 6.5px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .tp-op-verified-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        /* Tagline */
+        .tp-op-tagline {
+            font-size: 0.735rem;
+            color: #64748b;
+            font-style: italic;
+            margin: 0.2rem 0 0.65rem 0;
+            line-height: 1.35;
+            min-height: 18px;
+        }
+
+        /* Amenities Feature Pills */
+        .tp-op-amenities {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-bottom: 0.85rem;
+        }
+
+        .tp-op-pill {
+            background: #e0f2fe;
+            color: #0284c7;
+            font-size: 0.685rem;
+            font-weight: 600;
+            padding: 2.5px 7px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            white-space: nowrap;
+        }
+
+        /* Bus Photo */
+        .tp-op-photo-wrap {
+            width: 100%;
+            height: 98px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tp-op-photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.2s ease;
+        }
+
+        .tp-operator-card:hover .tp-op-photo-img {
+            transform: scale(1.03);
+        }
+
+        /* View Operator Action Button */
+        .tp-btn-view-operator {
+            width: 100%;
+            background: #00875a;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.48rem 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+
+        .tp-btn-view-operator:hover {
+            background: #00704a;
+            transform: translateY(-1px);
+        }
+
+        /* List / Table View for Operators */
+        .tp-operators-list-table-card {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            margin-bottom: 1.5rem;
+        }
+
+        .tp-operators-list-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tp-operators-list-table thead th {
+            background: #fafbfc;
+            padding: 0.85rem 1rem;
+            font-size: 0.775rem;
+            font-weight: 700;
+            color: #475569;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        .tp-operators-list-table tbody td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        .tp-operators-list-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tp-operators-list-table tbody tr:hover td {
+            background: #f8fafc;
+        }
+
+        /* Dark Theme Support for Operator Page */
+        body.dark-theme .tp-operator-card,
+        body.dark-theme .tp-operators-list-table-card {
+            background: #111827;
+            border-color: #1f2937;
+        }
+
+        body.dark-theme .tp-op-name {
+            color: #f8fafc;
+        }
+
+        body.dark-theme .tp-op-tagline {
+            color: #94a3b8;
+        }
+
+        body.dark-theme .tp-subcat-nav-pill {
+            background: #1f2937;
+            border-color: #374151;
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .tp-subcat-nav-pill.active {
+            background: #00875a;
+            color: #ffffff;
+        }
+
+        body.dark-theme .tp-view-mode-toggle {
+            background: #1f2937;
+        }
+
+        body.dark-theme .tp-view-btn.active {
+            background: #374151;
+            color: #f8fafc;
+        }
+
+        body.dark-theme .tp-operators-list-table thead th {
+            background: #1f2937;
+            color: #cbd5e1;
+            border-color: #374151;
+        }
+
+        body.dark-theme .tp-operators-list-table tbody td {
+            border-color: #1f2937;
+        }
+
+        body.dark-theme .tp-operators-list-table tbody tr:hover td {
+            background: #1e293b;
+        }
     </style>
 </head>
 <body>
@@ -3323,8 +3696,127 @@
                         </div>
                     </div>
 
-                    
-    <!-- Universal Add & Edit Category Modal Matching Exact User Mockup -->
+                    <!-- Operator Detail View Container for Travel Planner (Mockup Match) -->
+                    <div id="tp-operator-detail-view" style="display: none;">
+                        <!-- Top Breadcrumb Bar -->
+                        <div class="tp-subcat-breadcrumb-bar">
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('travel-planner')" class="tp-subcat-bc-link">
+                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
+                            </a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('travel-planner')" class="tp-subcat-bc-link">Categories</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tp-op-parent-cat-link" onclick="backToCategoryDetailView('travel-planner')" class="tp-subcat-bc-link">Transit</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <span class="tp-subcat-bc-active" id="tp-op-detail-breadcrumb">Bus</span>
+                        </div>
+
+                        <!-- Panoramic Hero Banner Card -->
+                        <div class="tp-subcat-hero-banner" id="tp-op-hero-banner" style="background-image: url('images/operators/bus_banner_scenic.png');">
+                            <div class="tp-subcat-hero-overlay"></div>
+                            <div class="tp-subcat-hero-content">
+                                <div class="tp-subcat-hero-avatar-wrap" style="background: #e6f9f0; border-color: #ffffff;">
+                                    <img id="tp-op-hero-avatar" class="tp-subcat-hero-avatar-img" src="images/operators/bus_avatar_circle.png" alt="Sub Category Avatar">
+                                </div>
+                                <div>
+                                    <span class="tp-subcat-hero-badge" style="background: #e2e8f0; color: #475569;">Sub Category</span>
+                                    <h1 class="tp-subcat-hero-title" id="tp-op-hero-title">Bus</h1>
+                                    <p class="tp-subcat-hero-desc" id="tp-op-hero-desc">Find and compare the best bus operators for your journey.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subcategory Navigation Strip (Operators, Routes, Schedules, Products) -->
+                        <div class="tp-subcat-nav-strip">
+                            <button type="button" class="tp-subcat-nav-pill active" onclick="switchOpSubTab('operators', this, 'travel-planner')">
+                                <i class="material-icons" style="font-size: 18px;">directions_bus</i>
+                                <span>Operators</span>
+                            </button>
+                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('routes', this, 'travel-planner')">
+                                <i class="material-icons" style="font-size: 18px; color: #627d98;">alt_route</i>
+                                <span>Routes</span>
+                            </button>
+                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('schedules', this, 'travel-planner')">
+                                <i class="material-icons" style="font-size: 18px; color: #627d98;">calendar_month</i>
+                                <span>Schedules</span>
+                            </button>
+                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('products', this, 'travel-planner')">
+                                <i class="material-icons" style="font-size: 18px; color: #627d98;">inventory_2</i>
+                                <span>Products</span>
+                            </button>
+                        </div>
+
+                        <!-- Operators Toolbar (Title, Count, Search, Filter, Grid/List Switcher) -->
+                        <div class="tp-subcat-toolbar">
+                            <div class="tp-subcat-title-group">
+                                <h2 class="tp-subcat-heading" id="tp-op-heading">Bus Operators (8)</h2>
+                                <p class="tp-subcat-subtitle" id="tp-op-subtitle">Choose from the top bus operators and book your journey with ease.</p>
+                            </div>
+                            <div class="tp-subcat-controls">
+                                <div class="tp-subcat-search-box">
+                                    <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
+                                    <input type="text" id="tp-op-search-input" placeholder="Search operator..." oninput="onOperatorSearchChange('travel-planner')">
+                                </div>
+                                <button type="button" class="tp-subcat-nav-pill" style="padding: 0.48rem 0.95rem;" onclick="toggleOperatorFilterDropdown('travel-planner')">
+                                    <i class="material-icons" style="font-size: 17px; color: #64748b;">tune</i>
+                                    <span>Filter</span>
+                                </button>
+                                <!-- Grid / List View Toggle -->
+                                <div class="tp-view-mode-toggle">
+                                    <button type="button" class="tp-view-btn active" id="tp-op-grid-btn" onclick="setOperatorViewMode('grid', 'travel-planner')">
+                                        <i class="material-icons" style="font-size: 16px;">grid_view</i> Grid
+                                    </button>
+                                    <button type="button" class="tp-view-btn" id="tp-op-list-btn" onclick="setOperatorViewMode('list', 'travel-planner')">
+                                        <i class="material-icons" style="font-size: 16px;">view_list</i> List
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid View Container -->
+                        <div class="tp-operators-grid" id="tp-op-grid-container">
+                            <!-- Dynamic 4-Column Cards -->
+                        </div>
+
+                        <!-- List (Table) View Container -->
+                        <div class="tp-operators-list-table-card" id="tp-op-list-container" style="display: none;">
+                            <div style="overflow-x: auto;">
+                                <table class="tp-operators-list-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 45px; text-align: center;">#</th>
+                                            <th style="min-width: 200px;">Operator</th>
+                                            <th style="min-width: 140px;">Rating & Trust</th>
+                                            <th style="min-width: 180px;">Key Amenities</th>
+                                            <th style="min-width: 130px;">Fleet / Photo</th>
+                                            <th style="min-width: 90px;">Routes</th>
+                                            <th style="min-width: 100px; text-align: center;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tp-op-table-tbody">
+                                        <!-- Dynamic Table Rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Pagination Footer -->
+                        <div class="tp-subcat-pagination-footer" style="border-radius: 14px; border: 1px solid #f1f5f9;">
+                            <div class="tp-subcat-showing-text" id="tp-op-showing-text">
+                                <i class="material-icons" style="font-size: 16px; color: #94a3b8;">table_rows</i>
+                                <span>Showing 1-8 of 8 operators</span>
+                            </div>
+                            <div class="tp-subcat-page-controls">
+                                <button type="button" class="tp-subcat-page-btn" disabled>
+                                    <i class="material-icons" style="font-size: 16px;">chevron_left</i>
+                                </button>
+                                <button type="button" class="tp-subcat-page-btn active">1</button>
+                                <button type="button" class="tp-subcat-page-btn" disabled>
+                                    <i class="material-icons" style="font-size: 16px;">chevron_right</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
     <div id="universal-category-modal" class="tp-modal-overlay" onclick="closeCategoryModal(event)">
         <div class="tp-modal-card" style="max-width: 540px; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);" onclick="event.stopPropagation()">
             <!-- Modal Header -->
@@ -3623,7 +4115,127 @@
                         </div>
                     </div>
 
-                    <!-- Add / Edit Sub Category Modal -->
+                    <!-- Operator Detail View Container for Tour Planner (Mockup Match) -->
+                    <div id="tour-operator-detail-view" style="display: none;">
+                        <!-- Top Breadcrumb Bar -->
+                        <div class="tp-subcat-breadcrumb-bar">
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('tour-planner')" class="tp-subcat-bc-link">
+                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
+                            </a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('tour-planner')" class="tp-subcat-bc-link">Categories</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tour-op-parent-cat-link" onclick="backToCategoryDetailView('tour-planner')" class="tp-subcat-bc-link">Transit</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <span class="tp-subcat-bc-active" id="tour-op-detail-breadcrumb">Bus</span>
+                        </div>
+
+                        <!-- Panoramic Hero Banner Card -->
+                        <div class="tp-subcat-hero-banner" id="tour-op-hero-banner" style="background-image: url('images/operators/bus_banner_scenic.png');">
+                            <div class="tp-subcat-hero-overlay"></div>
+                            <div class="tp-subcat-hero-content">
+                                <div class="tp-subcat-hero-avatar-wrap" style="background: #e6f9f0; border-color: #ffffff;">
+                                    <img id="tour-op-hero-avatar" class="tp-subcat-hero-avatar-img" src="images/operators/bus_avatar_circle.png" alt="Sub Category Avatar">
+                                </div>
+                                <div>
+                                    <span class="tp-subcat-hero-badge" style="background: #e2e8f0; color: #475569;">Sub Category</span>
+                                    <h1 class="tp-subcat-hero-title" id="tour-op-hero-title">Bus</h1>
+                                    <p class="tp-subcat-hero-desc" id="tour-op-hero-desc">Find and compare the best bus operators for your journey.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subcategory Navigation Strip (Operators, Routes, Schedules, Products) -->
+                        <div class="tp-subcat-nav-strip">
+                            <button type="button" class="tp-subcat-nav-pill active" onclick="switchOpSubTab('operators', this, 'tour-planner')">
+                                <i class="material-icons" style="font-size: 18px;">directions_bus</i>
+                                <span>Operators</span>
+                            </button>
+                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('routes', this, 'tour-planner')">
+                                <i class="material-icons" style="font-size: 18px; color: #627d98;">alt_route</i>
+                                <span>Routes</span>
+                            </button>
+                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('schedules', this, 'tour-planner')">
+                                <i class="material-icons" style="font-size: 18px; color: #627d98;">calendar_month</i>
+                                <span>Schedules</span>
+                            </button>
+                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('products', this, 'tour-planner')">
+                                <i class="material-icons" style="font-size: 18px; color: #627d98;">inventory_2</i>
+                                <span>Products</span>
+                            </button>
+                        </div>
+
+                        <!-- Operators Toolbar (Title, Count, Search, Filter, Grid/List Switcher) -->
+                        <div class="tp-subcat-toolbar">
+                            <div class="tp-subcat-title-group">
+                                <h2 class="tp-subcat-heading" id="tour-op-heading">Bus Operators (8)</h2>
+                                <p class="tp-subcat-subtitle" id="tour-op-subtitle">Choose from the top bus operators and book your journey with ease.</p>
+                            </div>
+                            <div class="tp-subcat-controls">
+                                <div class="tp-subcat-search-box">
+                                    <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
+                                    <input type="text" id="tour-op-search-input" placeholder="Search operator..." oninput="onOperatorSearchChange('tour-planner')">
+                                </div>
+                                <button type="button" class="tp-subcat-nav-pill" style="padding: 0.48rem 0.95rem;" onclick="toggleOperatorFilterDropdown('tour-planner')">
+                                    <i class="material-icons" style="font-size: 17px; color: #64748b;">tune</i>
+                                    <span>Filter</span>
+                                </button>
+                                <!-- Grid / List View Toggle -->
+                                <div class="tp-view-mode-toggle">
+                                    <button type="button" class="tp-view-btn active" id="tour-op-grid-btn" onclick="setOperatorViewMode('grid', 'tour-planner')">
+                                        <i class="material-icons" style="font-size: 16px;">grid_view</i> Grid
+                                    </button>
+                                    <button type="button" class="tp-view-btn" id="tour-op-list-btn" onclick="setOperatorViewMode('list', 'tour-planner')">
+                                        <i class="material-icons" style="font-size: 16px;">view_list</i> List
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid View Container -->
+                        <div class="tp-operators-grid" id="tour-op-grid-container">
+                            <!-- Dynamic 4-Column Cards -->
+                        </div>
+
+                        <!-- List (Table) View Container -->
+                        <div class="tp-operators-list-table-card" id="tour-op-list-container" style="display: none;">
+                            <div style="overflow-x: auto;">
+                                <table class="tp-operators-list-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 45px; text-align: center;">#</th>
+                                            <th style="min-width: 200px;">Operator</th>
+                                            <th style="min-width: 140px;">Rating & Trust</th>
+                                            <th style="min-width: 180px;">Key Amenities</th>
+                                            <th style="min-width: 130px;">Fleet / Photo</th>
+                                            <th style="min-width: 90px;">Routes</th>
+                                            <th style="min-width: 100px; text-align: center;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tour-op-table-tbody">
+                                        <!-- Dynamic Table Rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Pagination Footer -->
+                        <div class="tp-subcat-pagination-footer" style="border-radius: 14px; border: 1px solid #f1f5f9;">
+                            <div class="tp-subcat-showing-text" id="tour-op-showing-text">
+                                <i class="material-icons" style="font-size: 16px; color: #94a3b8;">table_rows</i>
+                                <span>Showing 1-8 of 8 operators</span>
+                            </div>
+                            <div class="tp-subcat-page-controls">
+                                <button type="button" class="tp-subcat-page-btn" disabled>
+                                    <i class="material-icons" style="font-size: 16px;">chevron_left</i>
+                                </button>
+                                <button type="button" class="tp-subcat-page-btn active">1</button>
+                                <button type="button" class="tp-subcat-page-btn" disabled>
+                                    <i class="material-icons" style="font-size: 16px;">chevron_right</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="tp-modal-overlay" id="subcat-crud-modal" onclick="closeSubCategoryModal(event)">
                         <div class="tp-modal-card" style="max-width: 530px; width: 100%; border-radius: 18px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);" onclick="event.stopPropagation()">
                             <div class="tp-modal-header" style="background: linear-gradient(135deg, #00875a 0%, #006040 100%); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between;">
@@ -3700,6 +4312,9 @@
 
                     <!-- Floating Action Dropdown Menu for Sub Categories -->
                     <div id="subcat-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+                        <button type="button" class="tp-action-item" onclick="handleSubCatAction('view-operators')">
+                            <i class="material-icons" style="font-size: 16px; color: #00875a;">directions_bus</i> View Operators
+                        </button>
                         <button type="button" class="tp-action-item" onclick="handleSubCatAction('edit')">
                             <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
                         </button>
@@ -4490,16 +5105,18 @@
                 }
             });
 
-            // Restore active tab & category from URL hash or localStorage, fallback to dashboard
+            // Restore active tab, category & subcategory from URL hash or localStorage, fallback to dashboard
             const rawHash = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
             let initialTab = '';
             let initialCat = '';
+            let initialSub = '';
 
             if (rawHash.includes('?')) {
                 const parts = rawHash.split('?');
                 initialTab = parts[0];
                 const params = new URLSearchParams(parts[1]);
                 initialCat = params.get('cat') || '';
+                initialSub = params.get('sub') || '';
             } else if (rawHash) {
                 initialTab = rawHash;
             } else {
@@ -4508,6 +5125,9 @@
 
             if (!initialCat && (initialTab === 'travel-planner' || initialTab === 'tour-planner')) {
                 initialCat = localStorage.getItem('travelup_admin_active_category_' + initialTab) || '';
+            }
+            if (!initialSub && (initialTab === 'travel-planner' || initialTab === 'tour-planner')) {
+                initialSub = localStorage.getItem('travelup_admin_active_sub_' + initialTab) || '';
             }
 
             const targetInitialTab = roleCfg.allowedTabs.includes(initialTab) ? initialTab : 'dashboard';
@@ -4518,6 +5138,11 @@
             if (initialCat && (targetInitialTab === 'travel-planner' || targetInitialTab === 'tour-planner')) {
                 setTimeout(() => {
                     openCategoryDetailView(initialCat, targetInitialTab);
+                    if (initialSub) {
+                        setTimeout(() => {
+                            openSubCategoryOperatorsView(initialSub, initialCat, targetInitialTab);
+                        }, 50);
+                    }
                 }, 80);
             }
         }
@@ -4535,7 +5160,7 @@
             try {
                 localStorage.setItem('travelup_admin_active_tab', tabId);
                 const currentHash = window.location.hash || '';
-                if (!currentHash.startsWith(`#${tabId}?cat=`)) {
+                if (!currentHash.startsWith(`#${tabId}?`)) {
                     if (window.history && window.history.replaceState) {
                         window.history.replaceState(null, null, `#${tabId}`);
                     }
@@ -4568,23 +5193,30 @@
             if (tabId === 'staff') loadStaff();
         }
 
-        // Listen for browser back / forward / hash changes (supports ?cat= query param)
+        // Listen for browser back / forward / hash changes (supports ?cat= and ?sub= query params)
         window.addEventListener('hashchange', () => {
             const raw = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
             if (!raw || !currentUser) return;
             const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
             let hTab = raw;
             let hCat = '';
+            let hSub = '';
             if (raw.includes('?')) {
                 const parts = raw.split('?');
                 hTab = parts[0];
                 const params = new URLSearchParams(parts[1]);
                 hCat = params.get('cat') || '';
+                hSub = params.get('sub') || '';
             }
             if (roleCfg.allowedTabs.includes(hTab)) {
                 switchTab(hTab);
                 if (hCat && (hTab === 'travel-planner' || hTab === 'tour-planner')) {
                     openCategoryDetailView(hCat, hTab);
+                    if (hSub) {
+                        setTimeout(() => {
+                            openSubCategoryOperatorsView(hSub, hCat, hTab);
+                        }, 50);
+                    }
                 }
             }
         });
@@ -5618,6 +6250,9 @@
             const isTour = sectionType === 'tour-planner';
             const prefix = isTour ? 'tour' : 'tp';
 
+            const opView = document.getElementById(`${prefix}-operator-detail-view`);
+            if (opView) opView.style.display = 'none';
+
             const detailView = document.getElementById(`${prefix}-category-detail-view`);
             if (detailView) detailView.style.display = 'none';
 
@@ -5637,6 +6272,7 @@
 
             try {
                 localStorage.removeItem(`travelup_admin_active_category_${sectionType}`);
+                localStorage.removeItem(`travelup_admin_active_sub_${sectionType}`);
                 if (window.history && window.history.replaceState) {
                     window.history.replaceState(null, null, `#${sectionType}`);
                 }
@@ -5730,21 +6366,22 @@
                 const thumbImg = sub.image || 'images/subcategories/sub_transit_bus.png';
                 const escId = (sub.id || '').replace(/'/g, "\\'");
                 const escName = (sub.name || '').replace(/'/g, "\\'");
+                const escCatName = (catName || '').replace(/'/g, "\\'");
 
                 return `
                     <tr>
                         <td class="tp-subcat-num">${idx + 1}</td>
                         <td>
-                            <img src="${thumbImg}" alt="${escName}" class="tp-subcat-thumb" onerror="this.src='images/categories/cat_transit.png'">
+                            <img src="${thumbImg}" alt="${escName}" class="tp-subcat-thumb" onerror="this.src='images/categories/cat_transit.png'" style="cursor: pointer;" onclick="openSubCategoryOperatorsView('${escName}', '${escCatName}', '${sectionType}')" title="Click to view ${sub.name} operators">
                         </td>
                         <td>
                             <div class="tp-subcat-name-cell">
-                                <span class="tp-subcat-name-title" onclick="openEditSubCategoryModal('${escId}', '${sectionType}')">${sub.name}</span>
+                                <span class="tp-subcat-name-title" onclick="openSubCategoryOperatorsView('${escName}', '${escCatName}', '${sectionType}')" title="Click to view ${sub.name} operators">${sub.name}</span>
                                 <span class="tp-subcat-name-desc">${sub.desc || 'No description provided.'}</span>
                             </div>
                         </td>
                         <td>
-                            <span class="tp-subcat-operators-pill">
+                            <span class="tp-subcat-operators-pill" onclick="openSubCategoryOperatorsView('${escName}', '${escCatName}', '${sectionType}')" style="cursor: pointer;" title="Click to view ${sub.name} operators">
                                 <i class="material-icons" style="font-size: 15px;">people</i> ${sub.operators || 1} Operators
                             </span>
                         </td>
@@ -5798,7 +6435,15 @@
             const sectionType = activeSubCatActionSection || 'travel-planner';
             if (!subcatId) return;
 
-            if (action === 'edit') {
+            if (action === 'view-operators') {
+                const subcatsMap = getStoredSubCategoriesMap();
+                const catName = activeDetailCategory ? activeDetailCategory.name : 'Transit';
+                const subList = subcatsMap[catName] || [];
+                const sub = subList.find(s => s.id === subcatId);
+                if (sub) {
+                    openSubCategoryOperatorsView(sub.name, catName, sectionType);
+                }
+            } else if (action === 'edit') {
                 openEditSubCategoryModal(subcatId, sectionType);
             } else if (action === 'toggle') {
                 toggleSubCategoryStatus(subcatId, sectionType);
@@ -6025,6 +6670,574 @@
             if (cat) {
                 openCategoryDetailView(cat.name, sectionType);
             }
+        }
+
+        // ================= 2.5 OPERATOR & FLEET MANAGER (GRID & LIST VIEW) ================= //
+
+        let activeOperatorState = {
+            subCatName: 'Bus',
+            parentCatName: 'Transit',
+            sectionType: 'travel-planner',
+            viewMode: 'grid', // 'grid' or 'list'
+            search: '',
+            activeSubTab: 'operators',
+            filterRating: 0
+        };
+
+        const DEFAULT_OPERATORS = {
+            'Bus': [
+                {
+                    id: 'op-bus-1',
+                    name: 'GreenLine Transport',
+                    logo: 'images/operators/logo_greenline.png',
+                    photo: 'images/operators/bus_greenline.png',
+                    rating: 4.8,
+                    reviews: '1.2k reviews',
+                    tagline: 'Safe journey, green tomorrow.',
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'],
+                    routesCount: 34,
+                    verified: true
+                },
+                {
+                    id: 'op-bus-2',
+                    name: 'SkyRoute',
+                    logo: 'images/operators/logo_skyroute.png',
+                    photo: 'images/operators/bus_skyroute.png',
+                    rating: 4.6,
+                    reviews: '980 reviews',
+                    tagline: 'Comfort on every mile.',
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats'],
+                    routesCount: 28,
+                    verified: true
+                },
+                {
+                    id: 'op-bus-3',
+                    name: 'Hanif Enterprise',
+                    logo: 'images/operators/logo_hanif.png',
+                    photo: 'images/operators/bus_hanif.png',
+                    rating: 4.3,
+                    reviews: '640 reviews',
+                    tagline: 'Trusted by millions.',
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'],
+                    routesCount: 52,
+                    verified: true
+                },
+                {
+                    id: 'op-bus-4',
+                    name: 'Biman Bangladesh',
+                    logo: 'images/operators/logo_biman.png',
+                    photo: 'images/operators/bus_biman.png',
+                    rating: 4.4,
+                    reviews: '762 reviews',
+                    tagline: 'Comfort, Safety, Always.',
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats'],
+                    routesCount: 22,
+                    verified: true
+                },
+                {
+                    id: 'op-bus-5',
+                    name: 'Shyamoli Paribahan',
+                    logo: 'images/operators/logo_shyamoli.png',
+                    photo: 'images/operators/bus_shyamoli.png',
+                    rating: 4.2,
+                    reviews: '485 reviews',
+                    tagline: 'Your trusted travel partner.',
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'],
+                    routesCount: 40,
+                    verified: true
+                },
+                {
+                    id: 'op-bus-6',
+                    name: 'Desh Travels',
+                    logo: 'images/operators/logo_desh.png',
+                    photo: 'images/operators/bus_desh.png',
+                    rating: 4.1,
+                    reviews: '320 reviews',
+                    tagline: 'Travel with trust.',
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats'],
+                    routesCount: 18,
+                    verified: true
+                },
+                {
+                    id: 'op-bus-7',
+                    name: 'Saintmartin Paribahan',
+                    logo: 'images/operators/logo_saintmartin.png',
+                    photo: 'images/operators/bus_saintmartin.png',
+                    rating: 4.0,
+                    reviews: '280 reviews',
+                    tagline: 'Comfortable & On-time.',
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'],
+                    routesCount: 16,
+                    verified: true
+                },
+                {
+                    id: 'op-bus-8',
+                    name: 'Ena Transport',
+                    logo: 'images/operators/logo_ena.png',
+                    photo: 'images/operators/bus_ena.png',
+                    rating: 3.9,
+                    reviews: '240 reviews',
+                    tagline: 'Journey with comfort.',
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats'],
+                    routesCount: 46,
+                    verified: true
+                }
+            ],
+            'Train': [
+                {
+                    id: 'op-train-1',
+                    name: 'Bangladesh Railway (Suborno)',
+                    logo: 'images/operators/logo_greenline.png',
+                    photo: 'images/subcategories/sub_transit_train.png',
+                    rating: 4.5,
+                    reviews: '2.1k reviews',
+                    tagline: 'Connecting Bangladesh swiftly.',
+                    amenities: ['🚆 AC Chair', '📶 Wi-Fi', '🍱 Pantry Car'],
+                    routesCount: 12,
+                    verified: true
+                },
+                {
+                    id: 'op-train-2',
+                    name: 'Sonar Bangla Express',
+                    logo: 'images/operators/logo_skyroute.png',
+                    photo: 'images/subcategories/sub_transit_train.png',
+                    rating: 4.6,
+                    reviews: '1.4k reviews',
+                    tagline: 'Premier non-stop rail experience.',
+                    amenities: ['🚆 Snigdha AC', '💺 Luxury Recline', '📍 On-time'],
+                    routesCount: 8,
+                    verified: true
+                },
+                {
+                    id: 'op-train-3',
+                    name: 'Maitree Express',
+                    logo: 'images/operators/logo_hanif.png',
+                    photo: 'images/subcategories/sub_transit_train.png',
+                    rating: 4.7,
+                    reviews: '890 reviews',
+                    tagline: 'International rail link with comfort.',
+                    amenities: ['🚆 AC Cabin', '🛡️ High Security', '🛂 Immigration'],
+                    routesCount: 4,
+                    verified: true
+                }
+            ],
+            'Flight': [
+                {
+                    id: 'op-flight-1',
+                    name: 'Biman Bangladesh Airlines',
+                    logo: 'images/operators/logo_biman.png',
+                    photo: 'images/subcategories/sub_transit_flight.png',
+                    rating: 4.4,
+                    reviews: '3.2k reviews',
+                    tagline: 'Your home in the sky.',
+                    amenities: ['✈️ Boeing 787', '🍱 Free Meal', '🧳 30kg Baggage'],
+                    routesCount: 38,
+                    verified: true
+                },
+                {
+                    id: 'op-flight-2',
+                    name: 'US-Bangla Airlines',
+                    logo: 'images/operators/logo_skyroute.png',
+                    photo: 'images/subcategories/sub_transit_flight.png',
+                    rating: 4.6,
+                    reviews: '2.8k reviews',
+                    tagline: 'Fly fast, fly safe.',
+                    amenities: ['✈️ Jet Fleet', '⏱️ 99% On-time', '📶 Mobile Check-in'],
+                    routesCount: 42,
+                    verified: true
+                },
+                {
+                    id: 'op-flight-3',
+                    name: 'Novoair',
+                    logo: 'images/operators/logo_greenline.png',
+                    photo: 'images/subcategories/sub_transit_flight.png',
+                    rating: 4.5,
+                    reviews: '1.1k reviews',
+                    tagline: 'Truly your best choice.',
+                    amenities: ['✈️ ATR 72-500', '🧳 20kg Baggage', '☕ Refreshments'],
+                    routesCount: 16,
+                    verified: true
+                },
+                {
+                    id: 'op-flight-4',
+                    name: 'Air Astra',
+                    logo: 'images/operators/logo_desh.png',
+                    photo: 'images/subcategories/sub_transit_flight.png',
+                    rating: 4.3,
+                    reviews: '670 reviews',
+                    tagline: 'Safe, reliable and punctual.',
+                    amenities: ['✈️ Modern ATR', '⭐ Premium Service', '📍 Real-time Radar'],
+                    routesCount: 12,
+                    verified: true
+                }
+            ],
+            'Ferry': [
+                {
+                    id: 'op-ferry-1',
+                    name: 'Sundarban Navigation',
+                    logo: 'images/operators/logo_greenline.png',
+                    photo: 'images/subcategories/sub_transit_ferry.png',
+                    rating: 4.5,
+                    reviews: '850 reviews',
+                    tagline: 'Majestic river cruises on Meghna & Padma.',
+                    amenities: ['🚢 VIP Cabin', '🍽️ Multi-cuisine Dining', '📶 Wi-Fi'],
+                    routesCount: 8,
+                    verified: true
+                },
+                {
+                    id: 'op-ferry-2',
+                    name: 'Green Line Water Bus',
+                    logo: 'images/operators/logo_skyroute.png',
+                    photo: 'images/subcategories/sub_transit_ferry.png',
+                    rating: 4.7,
+                    reviews: '920 reviews',
+                    tagline: 'Catamaran high-speed coastal cruise.',
+                    amenities: ['🚢 Twin-Hull AC', '💺 Leather Recliner', '⚡ Express Transit'],
+                    routesCount: 6,
+                    verified: true
+                }
+            ]
+        };
+
+        function openSubCategoryOperatorsView(subCatName, parentCatName, sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            activeOperatorState.subCatName = subCatName;
+            activeOperatorState.parentCatName = parentCatName;
+            activeOperatorState.sectionType = sectionType;
+            activeOperatorState.search = '';
+
+            // 1. Update Breadcrumbs
+            const parentLink = document.getElementById(`${prefix}-op-parent-cat-link`);
+            if (parentLink) {
+                parentLink.textContent = parentCatName;
+                parentLink.onclick = () => backToCategoryDetailView(sectionType);
+            }
+
+            const subBc = document.getElementById(`${prefix}-op-detail-breadcrumb`);
+            if (subBc) {
+                subBc.textContent = subCatName;
+            }
+
+            // 2. Update Hero Banner & Avatar
+            const banner = document.getElementById(`${prefix}-op-hero-banner`);
+            const avatar = document.getElementById(`${prefix}-op-hero-avatar`);
+            const heroTitle = document.getElementById(`${prefix}-op-hero-title`);
+            const heroDesc = document.getElementById(`${prefix}-op-hero-desc`);
+            const heading = document.getElementById(`${prefix}-op-heading`);
+            const subtitle = document.getElementById(`${prefix}-op-subtitle`);
+            const searchInput = document.getElementById(`${prefix}-op-search-input`);
+
+            if (searchInput) searchInput.value = '';
+
+            if (heroTitle) heroTitle.textContent = subCatName;
+            if (heroDesc) heroDesc.textContent = `Find and compare the best ${subCatName.toLowerCase()} operators for your journey.`;
+            if (subtitle) subtitle.textContent = `Choose from the top ${subCatName.toLowerCase()} operators and book your journey with ease.`;
+
+            if (subCatName.toLowerCase() === 'bus') {
+                if (banner) banner.style.backgroundImage = "url('images/operators/bus_banner_scenic.png')";
+                if (avatar) avatar.src = "images/operators/bus_avatar_circle.png";
+            } else {
+                if (banner) banner.style.backgroundImage = "url('images/subcategories/transit_banner_scenic.png')";
+                if (avatar) avatar.src = "images/subcategories/sub_transit_" + subCatName.toLowerCase().replace(/[^a-z0-9]/g, '') + ".png";
+            }
+
+            // 3. Hide Category view & Master table, Show Operator view
+            const catDetailView = document.getElementById(`${prefix}-category-detail-view`);
+            if (catDetailView) catDetailView.style.display = 'none';
+
+            const masterTable = document.getElementById(`${prefix}-table-container`);
+            if (masterTable) masterTable.style.display = 'none';
+
+            const opView = document.getElementById(`${prefix}-operator-detail-view`);
+            if (opView) opView.style.display = 'block';
+
+            // 4. Render Grid / Table based on current view mode
+            setOperatorViewMode(activeOperatorState.viewMode || 'grid', sectionType);
+
+            // 5. Persist state to URL and localStorage
+            try {
+                localStorage.setItem(`travelup_admin_active_sub_${sectionType}`, subCatName);
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCatName)}&sub=${encodeURIComponent(subCatName)}`);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            // 6. Smooth scroll to top of view
+            const viewSection = document.getElementById(`view-${sectionType}`);
+            if (viewSection) viewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function backToCategoryDetailView(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const opView = document.getElementById(`${prefix}-operator-detail-view`);
+            if (opView) opView.style.display = 'none';
+
+            const catDetailView = document.getElementById(`${prefix}-category-detail-view`);
+            if (catDetailView) catDetailView.style.display = 'block';
+
+            try {
+                localStorage.removeItem(`travelup_admin_active_sub_${sectionType}`);
+                const parentCat = activeOperatorState.parentCatName || 'Transit';
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCat)}`);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            const viewSection = document.getElementById(`view-${sectionType}`);
+            if (viewSection) viewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function closeAllDetailViews(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const opView = document.getElementById(`${prefix}-operator-detail-view`);
+            if (opView) opView.style.display = 'none';
+
+            closeCategoryDetailView(sectionType);
+            try {
+                localStorage.removeItem(`travelup_admin_active_sub_${sectionType}`);
+            } catch (err) {}
+        }
+
+        function setOperatorViewMode(mode, sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+            activeOperatorState.viewMode = mode;
+
+            const gridBtn = document.getElementById(`${prefix}-op-grid-btn`);
+            const listBtn = document.getElementById(`${prefix}-op-list-btn`);
+            const gridContainer = document.getElementById(`${prefix}-op-grid-container`);
+            const listContainer = document.getElementById(`${prefix}-op-list-container`);
+
+            if (mode === 'grid') {
+                if (gridBtn) gridBtn.classList.add('active');
+                if (listBtn) listBtn.classList.remove('active');
+                if (gridContainer) gridContainer.style.display = 'grid';
+                if (listContainer) listContainer.style.display = 'none';
+            } else {
+                if (listBtn) listBtn.classList.add('active');
+                if (gridBtn) gridBtn.classList.remove('active');
+                if (gridContainer) gridContainer.style.display = 'none';
+                if (listContainer) listContainer.style.display = 'block';
+            }
+
+            renderOperatorsView(sectionType);
+        }
+
+        function renderOperatorsView(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+            const subCat = activeOperatorState.subCatName || 'Bus';
+
+            const rawList = DEFAULT_OPERATORS[subCat] || DEFAULT_OPERATORS['Bus'];
+            let list = [...rawList];
+
+            // Apply search filter
+            const q = (activeOperatorState.search || '').toLowerCase().trim();
+            if (q) {
+                list = list.filter(op => 
+                    (op.name || '').toLowerCase().includes(q) ||
+                    (op.tagline || '').toLowerCase().includes(q) ||
+                    (op.amenities || []).some(a => a.toLowerCase().includes(q))
+                );
+            }
+
+            // Apply rating filter if set
+            if (activeOperatorState.filterRating > 0) {
+                list = list.filter(op => op.rating >= activeOperatorState.filterRating);
+            }
+
+            // Update Heading & Counter
+            const heading = document.getElementById(`${prefix}-op-heading`);
+            if (heading) heading.textContent = `${subCat} Operators (${list.length})`;
+
+            const showingText = document.getElementById(`${prefix}-op-showing-text`);
+            if (showingText) {
+                showingText.innerHTML = `<i class="material-icons" style="font-size: 16px; color: #94a3b8;">table_rows</i> <span>Showing 1-${list.length} of ${list.length} operators</span>`;
+            }
+
+            const gridContainer = document.getElementById(`${prefix}-op-grid-container`);
+            const tableBody = document.getElementById(`${prefix}-op-table-tbody`);
+
+            // 1. Render Grid Cards View
+            if (gridContainer) {
+                if (list.length === 0) {
+                    gridContainer.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem 1.5rem; background: #ffffff; border-radius: 16px; border: 1px dashed #cbd5e1; color: #64748b;">
+                            <i class="material-icons" style="font-size: 42px; color: #94a3b8; display: block; margin-bottom: 0.5rem;">search_off</i>
+                            <h3 style="font-size: 1.1rem; color: #1e293b; margin: 0 0 4px 0;">No operators found</h3>
+                            <p style="font-size: 0.85rem; margin: 0;">Try adjusting your search query or reset filter.</p>
+                        </div>
+                    `;
+                } else {
+                    gridContainer.innerHTML = list.map(op => {
+                        const escName = (op.name || '').replace(/'/g, "\\'");
+                        const amenitiesHtml = (op.amenities || []).map(a => `<span class="tp-op-pill">${a}</span>`).join('');
+                        return `
+                            <div class="tp-operator-card">
+                                <div>
+                                    <!-- Header: Logo, Name, Rating & Verified Pill -->
+                                    <div class="tp-op-header">
+                                        <div class="tp-op-logo-wrap">
+                                            <img src="${op.logo}" alt="${escName}" class="tp-op-logo-img" onerror="this.src='images/operators/logo_greenline.png'">
+                                        </div>
+                                        <div class="tp-op-meta">
+                                            <div class="tp-op-name" title="${op.name}">${op.name}</div>
+                                            <div class="tp-op-rating-row">
+                                                <span class="tp-op-rating">
+                                                    <i class="material-icons tp-op-rating-star">star</i>
+                                                    ${op.rating.toFixed(1)}
+                                                </span>
+                                                <span class="tp-op-reviews">(${op.reviews})</span>
+                                                <span class="tp-op-verified-pill">
+                                                    <span class="tp-op-verified-dot"></span> Verified
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tagline -->
+                                    <p class="tp-op-tagline">"${op.tagline}"</p>
+
+                                    <!-- Amenities Feature Pills -->
+                                    <div class="tp-op-amenities">
+                                        ${amenitiesHtml}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <!-- Bus Fleet Photo -->
+                                    <div class="tp-op-photo-wrap">
+                                        <img src="${op.photo}" alt="${escName}" class="tp-op-photo-img" onerror="this.src='images/operators/bus_greenline.png'">
+                                    </div>
+
+                                    <!-- View Operator Action Button -->
+                                    <button type="button" class="tp-btn-view-operator" onclick="handleViewSingleOperator('${escName}', '${sectionType}')">
+                                        <span>View Operator</span>
+                                        <i class="material-icons" style="font-size: 16px;">arrow_forward</i>
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+
+            // 2. Render List Table View
+            if (tableBody) {
+                if (list.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: #94a3b8; padding: 3rem 1.5rem;">
+                                <i class="material-icons" style="font-size: 38px; display: block; margin-bottom: 0.5rem; opacity: 0.4;">search_off</i>
+                                No matching operators found.
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    tableBody.innerHTML = list.map((op, idx) => {
+                        const escName = (op.name || '').replace(/'/g, "\\'");
+                        const amenitiesHtml = (op.amenities || []).map(a => `<span class="tp-op-pill" style="margin: 2px;">${a}</span>`).join('');
+                        return `
+                            <tr>
+                                <td style="text-align: center; font-weight: 700; color: #94a3b8; font-size: 0.85rem;">${idx + 1}</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="tp-op-logo-wrap" style="width: 38px; height: 38px;">
+                                            <img src="${op.logo}" alt="${escName}" class="tp-op-logo-img" onerror="this.src='images/operators/logo_greenline.png'">
+                                        </div>
+                                        <div style="min-width: 0;">
+                                            <div style="font-weight: 700; color: #0f172a; font-size: 0.885rem;">${op.name}</div>
+                                            <div style="font-size: 0.735rem; color: #64748b; font-style: italic;">"${op.tagline}"</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 6px;">
+                                        <span class="tp-op-rating">
+                                            <i class="material-icons tp-op-rating-star">star</i>
+                                            ${op.rating.toFixed(1)}
+                                        </span>
+                                        <span class="tp-op-reviews">(${op.reviews})</span>
+                                    </div>
+                                    <span class="tp-op-verified-pill" style="margin-top: 3px;">
+                                        <span class="tp-op-verified-dot"></span> Verified
+                                    </span>
+                                </td>
+                                <td>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+                                        ${amenitiesHtml}
+                                    </div>
+                                </td>
+                                <td>
+                                    <img src="${op.photo}" alt="${escName}" style="width: 76px; height: 46px; border-radius: 8px; object-fit: cover; border: 1px solid #e2e8f0;" onerror="this.src='images/operators/bus_greenline.png'">
+                                </td>
+                                <td>
+                                    <span style="display: inline-flex; align-items: center; gap: 4px; background: #f1f5f9; color: #334155; font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 8px;">
+                                        <i class="material-icons" style="font-size: 14px; color: #64748b;">alt_route</i>
+                                        ${op.routesCount || 24} Routes
+                                    </span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <button type="button" class="tp-btn-view-operator" style="padding: 0.38rem 0.65rem; font-size: 0.75rem;" onclick="handleViewSingleOperator('${escName}', '${sectionType}')">
+                                        <span>View</span>
+                                        <i class="material-icons" style="font-size: 14px;">arrow_forward</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            }
+        }
+
+        function onOperatorSearchChange(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+            const input = document.getElementById(`${prefix}-op-search-input`);
+            activeOperatorState.search = input ? input.value : '';
+            renderOperatorsView(sectionType);
+        }
+
+        function toggleOperatorFilterDropdown(sectionType = 'travel-planner') {
+            // Cycle filter: All -> 4.5+ Rating -> All
+            if (activeOperatorState.filterRating === 0) {
+                activeOperatorState.filterRating = 4.5;
+                showToast('Filter Applied: Showing top-rated operators (4.5★ and above)', 'info');
+            } else {
+                activeOperatorState.filterRating = 0;
+                showToast('Filter Cleared: Showing all operators', 'info');
+            }
+            renderOperatorsView(sectionType);
+        }
+
+        function switchOpSubTab(tabName, btn, sectionType = 'travel-planner') {
+            if (btn) {
+                const parent = btn.parentElement;
+                if (parent) {
+                    parent.querySelectorAll('.tp-subcat-nav-pill').forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                }
+            }
+            activeOperatorState.activeSubTab = tabName;
+            if (tabName === 'operators') {
+                renderOperatorsView(sectionType);
+            } else {
+                showToast(`Viewing ${activeOperatorState.subCatName} ${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`, 'info');
+            }
+        }
+
+        function handleViewSingleOperator(opName, sectionType = 'travel-planner') {
+            showToast(`Opening fleet, active routes and schedule manager for ${opName}`, 'info');
         }
 
         // ================= 3. TOUR PACKAGE STUDIO CRM ================= //
