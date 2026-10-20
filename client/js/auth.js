@@ -89,35 +89,33 @@ const Auth = {
                 }
                 .nav-profile-pill-wrap {
                     position: relative;
+                    display: flex;
+                    align-items: center;
                 }
                 .nav-profile-trigger {
                     display: inline-flex;
                     align-items: center;
-                    gap: 0.5rem;
-                    padding: 0.3rem 0.75rem 0.3rem 0.35rem;
-                    border: 1px solid #e2e8f0;
+                    justify-content: center;
+                    padding: 2px;
+                    border: 2px solid #e2e8f0;
                     background: #ffffff;
-                    border-radius: 9999px;
+                    border-radius: 50%;
                     cursor: pointer;
                     user-select: none;
-                    transition: all 0.2s;
+                    transition: all 0.2s ease;
+                    outline: none;
                 }
                 .nav-profile-trigger:hover {
                     border-color: #0284c7;
-                    background: #f8fafc;
-                    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+                    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+                    transform: scale(1.04);
                 }
                 .nav-user-avatar {
-                    width: 32px;
-                    height: 32px;
+                    width: 38px;
+                    height: 38px;
                     border-radius: 50%;
                     object-fit: cover;
-                    border: 1px solid #cbd5e1;
-                }
-                .nav-user-name {
-                    font-size: 0.85rem;
-                    font-weight: 700;
-                    color: #0f172a;
+                    display: block;
                 }
                 .nav-user-dropdown {
                     display: none;
@@ -207,11 +205,9 @@ const Auth = {
 
             authContainer.innerHTML = `
                 <div class="nav-profile-pill-wrap">
-                    <div class="nav-profile-trigger" onclick="Auth.toggleDropdown(event)">
-                        <img src="${avatarUrl}" alt="${user.name}" class="nav-user-avatar">
-                        <span class="nav-user-name">${user.name.split(' ')[0]}</span>
-                        <i class="material-icons" style="font-size: 18px; color: #64748b;">expand_more</i>
-                    </div>
+                    <button type="button" class="nav-profile-trigger" onclick="Auth.toggleDropdown(event)" title="${user.name} (${roleTitle})">
+                        <img src="${avatarUrl}" alt="${user.name}" class="nav-user-avatar" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80'">
+                    </button>
 
                     <div class="nav-user-dropdown" id="nav-user-dropdown-menu" onclick="event.stopPropagation()">
                         <div class="nav-dropdown-header">
