@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelUp Global — Unified Admin & Operations Portal (RBAC)</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --primary-light: #e0f2fe;
+            --accent: #10b981;
+            --accent-light: #d1fae5;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --navy: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-500: #64748b;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--slate-50);
+            color: var(--navy);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Header Navigation */
+        .admin-header {
+            background: var(--navy);
+            color: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-logo-img {
+            height: 38px;
+            width: auto;
+            border-radius: 6px;
+        }
+
+        .portal-badge {
+            background: rgba(2, 132, 199, 0.25);
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            background: rgba(255,255,255,0.08);
+            padding: 0.4rem 0.85rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .user-role-tag {
+            font-size: 0.725rem;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+        }
+
+        .role-admin { background: #ef4444; color: white; }
+        .role-uploader { background: #8b5cf6; color: white; }
+        .role-manager { background: #0284c7; color: white; }
+        .role-accountant { background: #10b981; color: white; }
+        .role-support { background: #f59e0b; color: white; }
+
+        .btn-header-logout {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #cbd5e1;
+            padding: 0.4rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.2s;
+        }
+
+        .btn-header-logout:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #fca5a5;
+        }
+
+        /* Layout Container */
+        .admin-layout {
+            display: flex;
+            flex: 1;
+            min-height: calc(100vh - 64px);
+        }
+
+        /* Sidebar */
+        .admin-sidebar {
+            width: 260px;
+            background: var(--white);
+            border-right: 1px solid var(--slate-200);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 1rem;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-section-title {
+            font-size: 0.725rem;
+            font-weight: 800;
+            color: var(--slate-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.75rem 0.75rem 0.25rem 0.75rem;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--slate-700);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+            user-select: none;
+        }
+
+        .sidebar-item:hover {
+            background: var(--slate-100);
+            color: var(--primary);
+        }
+
+        .sidebar-item.active {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .sidebar-item.active i {
+            color: var(--primary);
+        }
+
+        .sidebar-item i {
+            font-size: 1.25rem;
+            color: var(--slate-500);
+            transition: color 0.15s;
+        }
+
+        /* Main Content Viewport */
+        .admin-main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            max-width: 1400px;
+        }
+
+        .view-section {
+            display: none;
+            animation: fadeIn 0.2s ease-in;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Metric Cards Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .metric-info h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--slate-500);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.35rem;
+        }
+
+        .metric-info p {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--navy);
+        }
+
+        .metric-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .metric-icon-box.green { background: var(--accent-light); color: var(--accent); }
+        .metric-icon-box.purple { background: #ede9fe; color: #8b5cf6; }
+        .metric-icon-box.amber { background: #fef3c7; color: #f59e0b; }
+
+        /* Card Panels */
+        .panel {
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--slate-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+        }
+
+        .panel-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .panel-body {
+            padding: 1.5rem;
+        }
+
+        /* Data Tables */
+        .data-table-wrap {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .data-table th {
+            background: var(--slate-50);
+            padding: 0.85rem 1rem;
+            font-weight: 700;
+            color: var(--slate-600);
+            border-bottom: 1px solid var(--slate-200);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--slate-100);
+            color: var(--slate-700);
+            vertical-align: middle;
+        }
+
+        .data-table tr:hover td {
+            background: #f8fafc;
+        }
+
+        /* Buttons & Forms */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+            text-decoration: none;
+        }
+
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: var(--primary-dark); }
+
+        .btn-accent { background: var(--accent); color: var(--white); }
+        .btn-accent:hover { background: #059669; }
+
+        .btn-secondary { background: var(--slate-100); color: var(--slate-700); border: 1px solid var(--slate-200); }
+        .btn-secondary:hover { background: var(--slate-200); }
+
+        .btn-danger { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }
+        .btn-danger:hover { background: #fecaca; }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.825rem;
+            font-weight: 700;
+            color: var(--slate-700);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.75rem 0.9rem;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            color: var(--navy);
+            outline: none;
+            background: var(--white);
+            transition: border-color 0.15s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        /* Excel Upload Box */
+        .upload-dropzone {
+            border: 2px dashed #93c5fd;
+            background: #eff6ff;
+            border-radius: var(--radius-xl);
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .upload-dropzone:hover {
+            background: #dbeafe;
+            border-color: var(--primary);
+        }
+
+        .upload-dropzone i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Login Screen Overlay */
+        #auth-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .login-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 440px;
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header img {
+            height: 48px;
+            margin-bottom: 1rem;
+        }
+
+        .login-header h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .login-header p {
+            font-size: 0.85rem;
+            color: var(--slate-500);
+            margin-top: 0.35rem;
+        }
+
+        .quick-role-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--slate-200);
+        }
+
+        .role-demo-btn {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.35rem 0.65rem;
+            border-radius: 9999px;
+            border: 1px solid var(--slate-200);
+            background: var(--slate-50);
+            color: var(--slate-700);
+            cursor: pointer;
+        }
+
+        .role-demo-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        /* Toast Notifications */
+        #toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .toast {
+            padding: 0.85rem 1.25rem;
+            border-radius: var(--radius-md);
+            background: var(--navy);
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: slideIn 0.2s ease-out;
+        }
+
+        .toast.success { background: #059669; }
+        .toast.error { background: #dc2626; }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Admin Header -->
+    <header class="admin-header">
+        <div class="brand-wrap">
+            <img src="images/travelup_logo_official.png" alt="TravelUp Global" class="brand-logo-img">
+            <span class="portal-badge">Admin & Operations Portal</span>
+        </div>
+
+        <div class="header-actions">
+            <a href="travel-planner.html" target="_blank" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+                <i class="material-icons" style="font-size: 1rem;">open_in_new</i> View Travel Planner
+            </a>
+            <a href="trip-planner.html" target="_blank" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+                <i class="material-icons" style="font-size: 1rem;">open_in_new</i> View Tour Planner
+            </a>
+
+            <div class="user-pill" id="header-user-pill">
+                <i class="material-icons" style="font-size: 1.15rem; color: #94a3b8;">account_circle</i>
+                <span id="current-user-name" style="font-size: 0.85rem; font-weight: 700;">Tanvir Parvaj</span>
+                <span id="current-user-role-badge" class="user-role-tag role-admin">Super Admin</span>
+            </div>
+
+            <button type="button" class="btn-header-logout" onclick="logoutAdmin()">
+                <i class="material-icons" style="font-size: 1rem;">logout</i> Logout
+            </button>
+        </div>
+    </header>
+
+    <!-- Admin Layout Container -->
+    <div class="admin-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar" id="admin-sidebar">
+            <div class="sidebar-section-title">Operations Menu</div>
+            
+            <div class="sidebar-item active" data-tab="dashboard" onclick="switchTab('dashboard')">
+                <i class="material-icons">dashboard</i>
+                <span>Dashboard Overview</span>
+            </div>
+
+            <div class="sidebar-item" data-tab="vehicles" onclick="switchTab('vehicles')">
+                <i class="material-icons">directions_bus</i>
+                <span>Vehicle & Routes (Catalog)</span>
+            </div>
+
+            <div class="sidebar-item" data-tab="excel" onclick="switchTab('excel')">
+                <i class="material-icons">upload_file</i>
+                <span>Excel Bulk Importer</span>
+            </div>
+
+            <div class="sidebar-item" data-tab="bookings" onclick="switchTab('bookings')">
+                <i class="material-icons">confirmation_number</i>
+                <span>Bookings & Manifest</span>
+            </div>
+
+            <div class="sidebar-item" data-tab="finance" onclick="switchTab('finance')">
+                <i class="material-icons">payments</i>
+                <span>Payments & Finance</span>
+            </div>
+
+            <div class="sidebar-section-title" id="section-title-admin-only">Access Control</div>
+
+            <div class="sidebar-item" data-tab="staff" onclick="switchTab('staff')" id="sidebar-staff-item">
+                <i class="material-icons">manage_accounts</i>
+                <span>Team & Roles (RBAC)</span>
+            </div>
+        </aside>
+
+        <!-- Main Viewport Area -->
+        <main class="admin-main">
+            
+            <!-- 1. DASHBOARD OVERVIEW -->
+            <section id="view-dashboard" class="view-section active">
+                <div style="margin-bottom: 1.5rem;">
+                    <h2 style="font-size: 1.5rem; font-weight: 800;">Welcome back, <span id="dash-greeting-name">Tanvir</span>! 👋</h2>
+                    <p style="color: var(--slate-500); font-size: 0.9rem; margin-top: 0.25rem;">Live system overview and key performance metrics across Bangladesh operations.</p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card" id="metric-card-revenue">
+                        <div class="metric-info">
+                            <h4>Total Revenue</h4>
+                            <p id="stat-revenue">BDT 0</p>
+                        </div>
+                        <div class="metric-icon-box green">
+                            <i class="material-icons">attach_money</i>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-info">
+                            <h4>Total Bookings</h4>
+                            <p id="stat-bookings">0</p>
+                        </div>
+                        <div class="metric-icon-box">
+                            <i class="material-icons">airplane_ticket</i>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-info">
+                            <h4>Active Routes</h4>
+                            <p id="stat-routes">0</p>
+                        </div>
+                        <div class="metric-icon-box purple">
+                            <i class="material-icons">alt_route</i>
+                        </div>
+                    </div>
+
+                    <div class="metric-card" id="metric-card-staff">
+                        <div class="metric-info">
+                            <h4>Staff Members</h4>
+                            <p id="stat-staff">0</p>
+                        </div>
+                        <div class="metric-icon-box amber">
+                            <i class="material-icons">groups</i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Quick Route View -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i class="material-icons" style="color: var(--primary);">directions_bus</i>
+                            <span>Recent Transit Routes in Network</span>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="switchTab('vehicles')">
+                            <i class="material-icons">add</i> Add New Vehicle
+                        </button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="data-table-wrap">
+                            <table class="data-table" id="dashboard-recent-routes-table">
+                                <thead>
+                                    <tr>
+                                        <th>Operator & Bus</th>
+                                        <th>Origin ➔ Destination</th>
+                                        <th>Departure</th>
+                                        <th>Fare</th>
+                                        <th>Seats</th>
+                                        <th>Tier</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading routes...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. VEHICLE & ROUTE MANAGER (PRODUCT CATALOG) -->
+            <section id="view-vehicles" class="view-section">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i class="material-icons" style="color: var(--primary);">add_circle</i>
+                            <span>Add New Vehicle / Transport Route Product</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form id="form-add-vehicle" onsubmit="handleCreateVehicle(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Operator Name (অপারেটরের নাম) *</label>
+                                    <input type="text" id="route-operator" required placeholder="e.g. Ena Transport, Shohagh, Shyamoli">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Vehicle Type / Class (গাড়ির ধরন) *</label>
+                                    <select id="route-vtype" required>
+                                        <option value="AC Sleeper Coach">AC Sleeper Coach (লাক্সারি স্লিপার)</option>
+                                        <option value="AC Business Class">AC Business Class (হিনো ১জে / হুন্দাই)</option>
+                                        <option value="Economy Non-AC Coach">Economy Non-AC Coach (সাধারণ চেয়ার কোচ)</option>
+                                        <option value="Local Feeder Shuttle">Local Feeder Shuttle (পীরগঞ্জ/উপজেলা ফিডার)</option>
+                                        <option value="HiAce Microbus">HiAce Microbus (প্রাইভেট বা শেয়ার মাইক্রো)</option>
+                                        <option value="Intercity Express Train">Intercity Express Train (বাংলাদেশ রেলওয়ে)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Origin District (শুরুর জেলা) *</label>
+                                    <input type="text" id="route-orig-dist" required placeholder="e.g. Rangpur, Dhaka, Dinajpur">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Origin Stoppage / Stand (নির্দিষ্ট কাউন্টার)</label>
+                                    <input type="text" id="route-orig-point" placeholder="e.g. Pirganj Stand, Kamlapur, Mirpur 10">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Destination District (গন্তব্যের জেলা) *</label>
+                                    <input type="text" id="route-dest-dist" required placeholder="e.g. Cox's Bazar, Chattogram, Sylhet">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Destination Stoppage / Spot (গন্তব্যের স্পট)</label>
+                                    <input type="text" id="route-dest-point" placeholder="e.g. Kolatoli Beach, GEC Circle">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Departure Time (ছাড়ার সময়) *</label>
+                                    <input type="text" id="route-dep-time" required placeholder="e.g. 07:30 PM">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Arrival Time (পৌঁছানোর সময়)</label>
+                                    <input type="text" id="route-arr-time" placeholder="e.g. 05:15 AM">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Ticket Fare BDT (ভাড়া) *</label>
+                                    <input type="number" id="route-fare" required min="50" step="10" placeholder="e.g. 1650">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Total Seat Capacity (মোট সিট)</label>
+                                    <input type="number" id="route-seats" value="36" min="4" max="60">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Curated Smart Tier (৩-সুইচ ক্যাটাগরি)</label>
+                                    <select id="route-tier">
+                                        <option value="recommended">Best Value / Recommended (আরামদায়ক)</option>
+                                        <option value="budget">Lowest Price / Budget (সর্বনিম্ন খরচ)</option>
+                                        <option value="luxury">Fastest / Luxury (লাক্সারি স্লিপার)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Vehicle Photo URL (ছবির লিঙ্ক)</label>
+                                    <input type="url" id="route-img" value="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80">
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                                <button type="reset" class="btn btn-secondary">Clear Form</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="material-icons">cloud_upload</i> Publish Vehicle to Live System
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Existing Route List -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
+                            <span>All Registered Vehicles & Routes</span>
+                        </div>
+                        <input type="text" id="search-route-input" placeholder="Search operator, district..." onkeyup="filterRoutesTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 240px;">
+                    </div>
+                    <div class="panel-body">
+                        <div class="data-table-wrap">
+                            <table class="data-table" id="all-routes-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Operator & Vehicle</th>
+                                        <th>Route Corridor</th>
+                                        <th>Schedule</th>
+                                        <th>Fare</th>
+                                        <th>Seats</th>
+                                        <th>Tier</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. EXCEL BULK IMPORTER -->
+            <section id="view-excel" class="view-section">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i class="material-icons" style="color: var(--accent);">table_view</i>
+                            <span>One-Click Excel Bulk Route & Timetable Importer</span>
+                        </div>
+                        <a href="data/TravelUp_Transit_Data_Entry_Template.xlsx" download class="btn btn-secondary">
+                            <i class="material-icons">download</i> Download Official Excel Template
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6;">
+                            Upload your completed <strong>TravelUp_Transit_Data_Entry_Template.xlsx</strong> spreadsheet. The engine will automatically parse sheets <code>01_Intercity_Routes</code> and <code>03_Upazila_Feeders</code> and insert/update all routes, intermediate stops, and pricing into the live MySQL database.
+                        </p>
+
+                        <div class="upload-dropzone" onclick="document.getElementById('excel-file-input').click()">
+                            <i class="material-icons">cloud_upload</i>
+                            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: 0.35rem;">Click to Select or Drop Excel (.xlsx) File</h3>
+                            <p style="color: var(--slate-500); font-size: 0.85rem;">Supports .xlsx and .xls (Max: 10MB)</p>
+                            <input type="file" id="excel-file-input" accept=".xlsx, .xls" style="display: none;" onchange="handleExcelFileSelected(event)">
+                        </div>
+
+                        <div id="excel-selected-banner" style="display: none; margin-top: 1.5rem; padding: 1rem 1.25rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="material-icons" style="color: #059669;">check_circle</i>
+                                <div>
+                                    <strong id="excel-selected-filename" style="color: #065f46;">filename.xlsx</strong>
+                                    <div id="excel-selected-filesize" style="font-size: 0.8rem; color: #047857;">Ready to import</div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-accent" id="btn-start-import" onclick="executeExcelUpload()">
+                                <i class="material-icons">play_arrow</i> Start Sync to Live Database
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. BOOKINGS & OPERATIONS -->
+            <section id="view-bookings" class="view-section">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i class="material-icons" style="color: var(--primary);">confirmation_number</i>
+                            <span>Passenger Manifest & Booking Ledger</span>
+                        </div>
+                        <input type="text" id="search-bookings-input" placeholder="Search customer, booking ref..." onkeyup="filterBookingsTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 260px;">
+                    </div>
+                    <div class="panel-body">
+                        <div class="data-table-wrap">
+                            <table class="data-table" id="all-bookings-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ref Code</th>
+                                        <th>Customer</th>
+                                        <th>Contact</th>
+                                        <th>Date</th>
+                                        <th>Travelers</th>
+                                        <th>Total Fare</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading bookings...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. PAYMENTS & FINANCE (Super Admin & Accountant) -->
+            <section id="view-finance" class="view-section">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i class="material-icons" style="color: var(--accent);">account_balance_wallet</i>
+                            <span>Financial Reconciliation & Transaction Ledger</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="metrics-grid" style="margin-bottom: 1.5rem;">
+                            <div class="metric-card">
+                                <div class="metric-info">
+                                    <h4>Total Collected</h4>
+                                    <p id="fin-collected">BDT 0</p>
+                                </div>
+                                <div class="metric-icon-box green"><i class="material-icons">verified</i></div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-info">
+                                    <h4>Pending Collection</h4>
+                                    <p id="fin-pending">BDT 0</p>
+                                </div>
+                                <div class="metric-icon-box amber"><i class="material-icons">hourglass_top</i></div>
+                            </div>
+                        </div>
+
+                        <div class="data-table-wrap">
+                            <table class="data-table" id="finance-table">
+                                <thead>
+                                    <tr>
+                                        <th>Booking Ref</th>
+                                        <th>Customer</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Created Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading finance...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. TEAM & ROLES (SUPER ADMIN ONLY) -->
+            <section id="view-staff" class="view-section">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i class="material-icons" style="color: #ef4444;">verified_user</i>
+                            <span>Assign Access by Gmail / Email (Role-Based Access Control)</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form id="form-invite-staff" onsubmit="handleInviteStaff(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Staff Gmail / Email Address *</label>
+                                    <input type="email" id="staff-email" required placeholder="e.g. staff.member@gmail.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Staff Full Name *</label>
+                                    <input type="text" id="staff-name" required placeholder="e.g. Rafiqul Islam">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Assigned Operational Role *</label>
+                                    <select id="staff-role" required>
+                                        <option value="uploader">Product & Route Uploader (প্রোডাক্ট আপলোডার)</option>
+                                        <option value="manager">Operations Manager (বুকিং ও ট্রিপ ম্যানেজার)</option>
+                                        <option value="accountant">Finance & Payment Officer (অ্যাকাউন্টস অফিসার)</option>
+                                        <option value="support">Customer Support Agent (কাস্টমার সাপোর্ট)</option>
+                                        <option value="admin">Super Admin (পূর্ণ নিয়ন্ত্রণ ও মালিকানা)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Mobile Number (ঐচ্ছিক)</label>
+                                    <input type="text" id="staff-phone" placeholder="017xxxxxxxx">
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                                <button type="submit" class="btn btn-primary" style="background: #0f172a;">
+                                    <i class="material-icons">person_add</i> Grant Staff Access
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Existing Staff List -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i class="material-icons" style="color: var(--primary);">group</i>
+                            <span>Active Internal Team Members</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="data-table-wrap">
+                            <table class="data-table" id="all-staff-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email / Gmail</th>
+                                        <th>Current Role</th>
+                                        <th>Status</th>
+                                        <th>Joined</th>
+                                        <th>Change Role</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading team...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Login Modal Dialog Overlay -->
+    <div id="auth-overlay">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="images/travelup_logo_official.png" alt="TravelUp Global">
+                <h2>Operations Portal Login</h2>
+                <p>Sign in with your authorized staff credentials or Gmail</p>
+            </div>
+
+            <form id="form-login" onsubmit="handleLoginSubmit(event)">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Email / Gmail Address</label>
+                    <input type="email" id="login-email" required placeholder="name@travelupglobal.com" value="admin@travelupglobal.com">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label>Security Password</label>
+                    <input type="password" id="login-password" required placeholder="••••••••" value="Tahomina;123@">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem;">
+                    <i class="material-icons">lock_open</i> Enter Portal
+                </button>
+            </form>
+
+            <!-- Quick Demo Role Switcher for instant testing -->
+            <div class="quick-role-pills">
+                <span style="font-size: 0.725rem; font-weight: 700; color: var(--slate-500); width: 100%;">Quick Role Test:</span>
+                <button type="button" class="role-demo-btn" onclick="quickFillRole('admin@travelupglobal.com', 'Tahomina;123@')">👑 Super Admin</button>
+                <button type="button" class="role-demo-btn" onclick="quickFillRole('staff_1791378097936@test.com', 'TravelUp@2026')">📦 Product Uploader</button>
+                <button type="button" class="role-demo-btn" onclick="quickFillRole('approvedadmin@travelupglobal.com', 'TravelUp@2026')">💳 Finance Officer</button>
+                <button type="button" class="role-demo-btn" onclick="quickFillRole('testadmin@travelupglobal.com', 'TravelUp@2026')">📋 Operations Manager</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <script>
+        // App State
+        let currentUser = null;
+        let authToken = localStorage.getItem('travelup_admin_token') || '';
+        let cachedRoutes = [];
+        let cachedBookings = [];
+        let cachedStaff = [];
+
+        // Role permissions configuration
+        const ROLE_PERMISSIONS = {
+            admin: {
+                title: 'Super Admin',
+                badgeClass: 'role-admin',
+                allowedTabs: ['dashboard', 'vehicles', 'excel', 'bookings', 'finance', 'staff']
+            },
+            uploader: {
+                title: 'Product Uploader',
+                badgeClass: 'role-uploader',
+                allowedTabs: ['vehicles', 'excel']
+            },
+            moderator: {
+                title: 'Product Uploader',
+                badgeClass: 'role-uploader',
+                allowedTabs: ['vehicles', 'excel']
+            },
+            manager: {
+                title: 'Operations Manager',
+                badgeClass: 'role-manager',
+                allowedTabs: ['dashboard', 'vehicles', 'bookings']
+            },
+            accountant: {
+                title: 'Finance & Payment Officer',
+                badgeClass: 'role-accountant',
+                allowedTabs: ['finance', 'bookings']
+            },
+            support: {
+                title: 'Customer Support',
+                badgeClass: 'role-support',
+                allowedTabs: ['bookings']
+            }
+        };
+
+        // Init on DOM Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedUserStr = localStorage.getItem('travelup_admin_user');
+            if (authToken && savedUserStr) {
+                try {
+                    currentUser = JSON.parse(savedUserStr);
+                    applyUserPermissions();
+                    document.getElementById('auth-overlay').style.display = 'none';
+                    loadDashboardData();
+                } catch (e) {
+                    logoutAdmin();
+                }
+            } else {
+                document.getElementById('auth-overlay').style.display = 'flex';
+            }
+        });
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="material-icons" style="font-size: 1.15rem;">${type === 'success' ? 'check_circle' : (type === 'error' ? 'error' : 'info')}</i> <span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function quickFillRole(email, pass) {
+            document.getElementById('login-email').value = email;
+            document.getElementById('login-password').value = pass;
+        }
+
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+                if (!res.ok || !data.success) {
+                    showToast(data.message || 'Invalid login credentials', 'error');
+                    return;
+                }
+
+                // Check role
+                const user = data.user;
+                if (user.role === 'customer') {
+                    showToast('Access Denied: Customer accounts cannot access the Operations Portal.', 'error');
+                    return;
+                }
+
+                authToken = data.token;
+                currentUser = user;
+                localStorage.setItem('travelup_admin_token', authToken);
+                localStorage.setItem('travelup_admin_user', JSON.stringify(currentUser));
+
+                document.getElementById('auth-overlay').style.display = 'none';
+                applyUserPermissions();
+                loadDashboardData();
+                showToast(`Signed in successfully as ${currentUser.name} (${currentUser.role})`, 'success');
+            } catch (err) {
+                showToast('Login request failed: ' + err.message, 'error');
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('travelup_admin_token');
+            localStorage.removeItem('travelup_admin_user');
+            authToken = '';
+            currentUser = null;
+            document.getElementById('auth-overlay').style.display = 'flex';
+        }
+
+        // Apply Strict RBAC UI Hiding and Navigation Configuration
+        function applyUserPermissions() {
+            if (!currentUser) return;
+
+            const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
+            
+            // 1. Update Header Badges
+            document.getElementById('current-user-name').textContent = currentUser.name;
+            document.getElementById('dash-greeting-name').textContent = currentUser.name.split(' ')[0];
+            const badgeEl = document.getElementById('current-user-role-badge');
+            badgeEl.textContent = roleCfg.title;
+            badgeEl.className = `user-role-tag ${roleCfg.badgeClass}`;
+
+            // 2. Hide or Show Sidebar items strictly according to allowedTabs
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                const tab = item.getAttribute('data-tab');
+                if (roleCfg.allowedTabs.includes(tab)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // 3. Hide Super Admin Access Control section header if not admin
+            const adminSectionTitle = document.getElementById('section-title-admin-only');
+            if (adminSectionTitle) {
+                adminSectionTitle.style.display = currentUser.role === 'admin' ? 'block' : 'none';
+            }
+
+            // 4. Hide Financial Cards on Dashboard if not admin or accountant
+            const revCard = document.getElementById('metric-card-revenue');
+            if (revCard) {
+                revCard.style.display = (currentUser.role === 'admin' || currentUser.role === 'accountant') ? 'flex' : 'none';
+            }
+
+            const staffCard = document.getElementById('metric-card-staff');
+            if (staffCard) {
+                staffCard.style.display = (currentUser.role === 'admin') ? 'flex' : 'none';
+            }
+
+            // 5. Default to the first allowed tab
+            switchTab(roleCfg.allowedTabs[0]);
+        }
+
+        function switchTab(tabId) {
+            if (!currentUser) return;
+            const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
+            
+            // RBAC Guard
+            if (!roleCfg.allowedTabs.includes(tabId)) {
+                showToast('Access Restricted: Your role cannot view this section.', 'error');
+                return;
+            }
+
+            // Update sidebar state
+            document.querySelectorAll('.sidebar-item').forEach(el => {
+                if (el.getAttribute('data-tab') === tabId) {
+                    el.classList.add('active');
+                } else {
+                    el.classList.remove('active');
+                }
+            });
+
+            // Switch views
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+            const targetSec = document.getElementById(`view-${tabId}`);
+            if (targetSec) targetSec.classList.add('active');
+
+            // Trigger specific fetchers
+            if (tabId === 'dashboard') loadDashboardData();
+            if (tabId === 'vehicles') loadTransitRoutes();
+            if (tabId === 'bookings') loadBookings();
+            if (tabId === 'finance') loadFinance();
+            if (tabId === 'staff') loadStaff();
+        }
+
+        // ================= DATA FETCHERS ================= //
+
+        async function loadDashboardData() {
+            try {
+                const res = await fetch('/api/admin/metrics', {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success && data.metrics) {
+                    const m = data.metrics;
+                    if (document.getElementById('stat-routes')) document.getElementById('stat-routes').textContent = m.total_routes || '0';
+                    if (document.getElementById('stat-bookings')) document.getElementById('stat-bookings').textContent = m.total_bookings || '0';
+                    if (document.getElementById('stat-revenue') && m.total_revenue_bdt !== undefined) {
+                        document.getElementById('stat-revenue').textContent = `BDT ${m.total_revenue_bdt.toLocaleString()}`;
+                    }
+                    if (document.getElementById('stat-staff') && m.total_staff !== undefined) {
+                        document.getElementById('stat-staff').textContent = m.total_staff;
+                    }
+                }
+                loadRecentRoutesForDashboard();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function loadRecentRoutesForDashboard() {
+            try {
+                const res = await fetch('/api/admin/transit/routes?limit=5', {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                const tbody = document.querySelector('#dashboard-recent-routes-table tbody');
+                if (data.success && data.routes && tbody) {
+                    if (data.routes.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">No routes yet. Click 'Add New Vehicle' to create one.</td></tr>`;
+                        return;
+                    }
+                    tbody.innerHTML = data.routes.map(r => `
+                        <tr>
+                            <td><strong>${r.operator_name}</strong><br><span style="font-size: 0.775rem; color: #64748b;">${r.vehicle_type}</span></td>
+                            <td>${r.origin_district} ➔ ${r.destination_district}</td>
+                            <td><span style="font-weight: 700;">${r.departure_time}</span></td>
+                            <td><strong style="color: #0284c7;">BDT ${r.base_fare}</strong></td>
+                            <td>${r.available_seats} / ${r.total_seats}</td>
+                            <td><span class="user-role-tag" style="background: #e0f2fe; color: #0369a1;">${r.tier_tag}</span></td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function loadTransitRoutes() {
+            try {
+                const res = await fetch('/api/admin/transit/routes?limit=100', {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) {
+                    showToast('Failed to load transit routes', 'error');
+                    return;
+                }
+                const data = await res.json();
+                if (data.success && data.routes) {
+                    cachedRoutes = data.routes;
+                    renderRoutesTable(cachedRoutes);
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        function renderRoutesTable(routes) {
+            const tbody = document.querySelector('#all-routes-table tbody');
+            if (!tbody) return;
+
+            if (routes.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">No routes found.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = routes.map(r => `
+                <tr>
+                    <td>#${r.id}</td>
+                    <td>
+                        <strong style="color: #0f172a;">${r.operator_name}</strong>
+                        <div style="font-size: 0.775rem; color: #64748b;">${r.vehicle_type} • ${r.service_class}</div>
+                    </td>
+                    <td>
+                        <strong>${r.origin_district}</strong> (${r.origin_point})<br>
+                        ➔ <strong>${r.destination_district}</strong> (${r.destination_point})
+                    </td>
+                    <td>${r.departure_time} - ${r.arrival_time}</td>
+                    <td><strong style="color: #0284c7;">BDT ${r.base_fare}</strong></td>
+                    <td>${r.available_seats} / ${r.total_seats}</td>
+                    <td>
+                        <span class="user-role-tag" style="background: #e0f2fe; color: #0284c7;">${r.tier_tag}</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="deleteRoute(${r.id})">
+                            <i class="material-icons" style="font-size: 0.9rem;">delete</i> Delete
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterRoutesTable() {
+            const q = document.getElementById('search-route-input').value.toLowerCase();
+            const filtered = cachedRoutes.filter(r => 
+                r.operator_name.toLowerCase().includes(q) ||
+                r.origin_district.toLowerCase().includes(q) ||
+                r.destination_district.toLowerCase().includes(q)
+            );
+            renderRoutesTable(filtered);
+        }
+
+        async function handleCreateVehicle(e) {
+            e.preventDefault();
+            const payload = {
+                operator_name: document.getElementById('route-operator').value.trim(),
+                vehicle_type: document.getElementById('route-vtype').value,
+                origin_district: document.getElementById('route-orig-dist').value.trim(),
+                origin_point: document.getElementById('route-orig-point').value.trim(),
+                destination_district: document.getElementById('route-dest-dist').value.trim(),
+                destination_point: document.getElementById('route-dest-point').value.trim(),
+                departure_time: document.getElementById('route-dep-time').value.trim(),
+                arrival_time: document.getElementById('route-arr-time').value.trim(),
+                base_fare: parseFloat(document.getElementById('route-fare').value),
+                total_seats: parseInt(document.getElementById('route-seats').value),
+                available_seats: parseInt(document.getElementById('route-seats').value),
+                tier_tag: document.getElementById('route-tier').value,
+                image_url: document.getElementById('route-img').value.trim()
+            };
+
+            try {
+                const res = await fetch('/api/admin/transit/routes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast('Vehicle & Route Product Published Successfully!', 'success');
+                    document.getElementById('form-add-vehicle').reset();
+                    loadTransitRoutes();
+                } else {
+                    showToast(data.message || 'Failed to create route', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        async function deleteRoute(id) {
+            if (!confirm('Are you sure you want to delete this route from the network?')) return;
+            try {
+                const res = await fetch(`/api/admin/transit/routes/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast('Route deleted successfully', 'success');
+                    loadTransitRoutes();
+                } else {
+                    showToast(data.message, 'error');
+                }
+            } catch (e) {
+                showToast(e.message, 'error');
+            }
+        }
+
+        // ================= EXCEL BULK IMPORTER ================= //
+
+        let selectedExcelFile = null;
+
+        function handleExcelFileSelected(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            selectedExcelFile = file;
+            document.getElementById('excel-selected-filename').textContent = file.name;
+            document.getElementById('excel-selected-filesize').textContent = `${(file.size / 1024).toFixed(1)} KB — Ready to Sync`;
+            document.getElementById('excel-selected-banner').style.display = 'flex';
+        }
+
+        async function executeExcelUpload() {
+            if (!selectedExcelFile) return;
+
+            const btn = document.getElementById('btn-start-import');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i> Importing into Database...`;
+
+            const formData = new FormData();
+            formData.append('file', selectedExcelFile);
+
+            try {
+                const res = await fetch('/api/admin/transit/import-excel', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${authToken}` },
+                    body: formData
+                });
+
+                const data = await res.json();
+                btn.disabled = false;
+                btn.innerHTML = `<i class="material-icons">play_arrow</i> Start Sync to Live Database`;
+
+                if (res.ok && data.success) {
+                    showToast(data.message, 'success');
+                    document.getElementById('excel-selected-banner').style.display = 'none';
+                    selectedExcelFile = null;
+                    document.getElementById('excel-file-input').value = '';
+                } else {
+                    showToast(data.message || 'Import failed', 'error');
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="material-icons">play_arrow</i> Start Sync to Live Database`;
+                showToast('Upload error: ' + err.message, 'error');
+            }
+        }
+
+        // ================= BOOKINGS LEDGER ================= //
+
+        async function loadBookings() {
+            try {
+                const res = await fetch('/api/admin/bookings?limit=100', {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success && data.bookings) {
+                    cachedBookings = data.bookings;
+                    renderBookingsTable(cachedBookings);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderBookingsTable(bookings) {
+            const tbody = document.querySelector('#all-bookings-table tbody');
+            if (!tbody) return;
+
+            if (bookings.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">No bookings recorded yet.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = bookings.map(b => `
+                <tr>
+                    <td><strong style="color: #0284c7;">${b.booking_ref}</strong></td>
+                    <td><strong>${b.customer_name || 'Traveler'}</strong></td>
+                    <td>${b.customer_phone || b.customer_email || 'N/A'}</td>
+                    <td>${b.start_date ? b.start_date.split('T')[0] : 'N/A'}</td>
+                    <td>${b.travelers_count} Passenger(s)</td>
+                    <td><strong style="color: #059669;">BDT ${b.total_price}</strong></td>
+                    <td>
+                        <span class="user-role-tag" style="background: ${b.status === 'confirmed' ? '#d1fae5' : '#fef3c7'}; color: ${b.status === 'confirmed' ? '#047857' : '#b45309'};">
+                            ${b.status}
+                        </span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-secondary" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="updateBookingStatus(${b.id}, 'confirmed')">Confirm</button>
+                        <button type="button" class="btn btn-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="updateBookingStatus(${b.id}, 'cancelled')">Cancel</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function updateBookingStatus(id, newStatus) {
+            try {
+                const res = await fetch(`/api/admin/bookings/${id}/status`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast(`Booking marked as ${newStatus}`, 'success');
+                    loadBookings();
+                } else {
+                    showToast(data.message, 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        function filterBookingsTable() {
+            const q = document.getElementById('search-bookings-input').value.toLowerCase();
+            const filtered = cachedBookings.filter(b => 
+                b.booking_ref.toLowerCase().includes(q) ||
+                (b.customer_name && b.customer_name.toLowerCase().includes(q))
+            );
+            renderBookingsTable(filtered);
+        }
+
+        // ================= PAYMENTS & FINANCE ================= //
+
+        async function loadFinance() {
+            try {
+                const res = await fetch('/api/admin/finance/transactions', {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success) {
+                    if (data.summary) {
+                        document.getElementById('fin-collected').textContent = `BDT ${data.summary.total_collected.toLocaleString()}`;
+                        document.getElementById('fin-pending').textContent = `BDT ${data.summary.pending_collection.toLocaleString()}`;
+                    }
+
+                    const tbody = document.querySelector('#finance-table tbody');
+                    if (tbody && data.transactions) {
+                        tbody.innerHTML = data.transactions.map(t => `
+                            <tr>
+                                <td><strong>${t.booking_ref}</strong></td>
+                                <td>${t.customer_name || 'Customer'}</td>
+                                <td><strong style="color: #059669;">BDT ${t.total_price}</strong></td>
+                                <td>
+                                    <span class="user-role-tag" style="background: ${t.status === 'confirmed' ? '#d1fae5' : '#fef3c7'}; color: ${t.status === 'confirmed' ? '#047857' : '#b45309'};">
+                                        ${t.status === 'confirmed' ? 'PAID' : 'PENDING'}
+                                    </span>
+                                </td>
+                                <td>${t.created_at ? t.created_at.split('T')[0] : 'N/A'}</td>
+                            </tr>
+                        `).join('');
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // ================= STAFF & ROLES (SUPER ADMIN ONLY) ================= //
+
+        async function loadStaff() {
+            try {
+                const res = await fetch('/api/admin/staff', {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.success && data.staff) {
+                    cachedStaff = data.staff;
+                    renderStaffTable(cachedStaff);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderStaffTable(staffList) {
+            const tbody = document.querySelector('#all-staff-table tbody');
+            if (!tbody) return;
+
+            tbody.innerHTML = staffList.map(s => `
+                <tr>
+                    <td><strong>${s.name}</strong></td>
+                    <td><code>${s.email}</code></td>
+                    <td>
+                        <span class="user-role-tag ${ROLE_PERMISSIONS[s.role]?.badgeClass || 'role-support'}">
+                            ${ROLE_PERMISSIONS[s.role]?.title || s.role}
+                        </span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 700; color: ${s.status === 'active' ? '#059669' : '#dc2626'};">
+                            ● ${s.status}
+                        </span>
+                    </td>
+                    <td>${s.created_at ? s.created_at.split('T')[0] : 'N/A'}</td>
+                    <td>
+                        <select onchange="changeStaffRole(${s.id}, this.value)" style="padding: 0.35rem 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">
+                            <option value="admin" ${s.role === 'admin' ? 'selected' : ''}>Super Admin</option>
+                            <option value="uploader" ${s.role === 'uploader' || s.role === 'moderator' ? 'selected' : ''}>Product Uploader</option>
+                            <option value="manager" ${s.role === 'manager' ? 'selected' : ''}>Operations Manager</option>
+                            <option value="accountant" ${s.role === 'accountant' ? 'selected' : ''}>Finance Officer</option>
+                            <option value="support" ${s.role === 'support' ? 'selected' : ''}>Customer Support</option>
+                        </select>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function handleInviteStaff(e) {
+            e.preventDefault();
+            const email = document.getElementById('staff-email').value.trim();
+            const name = document.getElementById('staff-name').value.trim();
+            const role = document.getElementById('staff-role').value;
+            const phone = document.getElementById('staff-phone').value.trim();
+
+            try {
+                const res = await fetch('/api/admin/staff/invite', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ email, name, role, phone })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast(data.message, 'success');
+                    document.getElementById('form-invite-staff').reset();
+                    loadStaff();
+                } else {
+                    showToast(data.message || 'Failed to grant access', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        async function changeStaffRole(id, newRole) {
+            try {
+                const res = await fetch(`/api/admin/staff/${id}/role`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ role: newRole })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast(`Staff role successfully updated to ${newRole}`, 'success');
+                    loadStaff();
+                } else {
+                    showToast(data.message, 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+    </script>
+</body>
+</html>

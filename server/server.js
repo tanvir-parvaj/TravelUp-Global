@@ -14,6 +14,7 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const quotationRoutes = require('./routes/quotationRoutes');
 const alertRoutes = require('./routes/alertRoutes');
 const tourPlannerRoutes = require('./routes/tourPlannerRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -39,6 +40,7 @@ app.use('/api/tour-planner', tourPlannerRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/quotations', quotationRoutes);
 app.use('/api/alerts', alertRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Health Check API
 app.get('/api/health', (req, res) => {
