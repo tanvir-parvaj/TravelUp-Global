@@ -64,9 +64,9 @@ exports.login = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Email and password are required' });
         }
 
-        const [users] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+        const [users] = await pool.query('SELECT * FROM users WHERE email = ? OR phone = ?', [email.trim(), email.trim()]);
         if (users.length === 0) {
-            return res.status(401).json({ success: false, message: 'Invalid email or password' });
+            return res.status(401).json({ success: false, message: 'Invalid email/phone or password' });
         }
 
         const user = users[0];

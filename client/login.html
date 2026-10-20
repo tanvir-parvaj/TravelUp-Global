@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelUp Global — Unified Portal Login</title>
+    <title>TravelUp — Sign In & Sign Up</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
-    <!-- Fonts & Icons -->
+    <!-- Google Fonts & Material Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #0284c7;
-            --primary-dark: #0369a1;
-            --primary-light: #e0f2fe;
-            --accent: #10b981;
-            --navy: #0f172a;
-            --slate-700: #334155;
+            --primary: #00966d;
+            --primary-hover: #007a58;
+            --primary-light: #e6f7f2;
+            --teal-accent: #00a884;
+            --navy-dark: #0f2942;
+            --slate-800: #1e293b;
+            --slate-600: #475569;
             --slate-500: #64748b;
+            --slate-400: #94a3b8;
             --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
             --slate-50: #f8fafc;
             --white: #ffffff;
             --radius-md: 10px;
-            --radius-lg: 14px;
-            --radius-xl: 18px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
         }
 
         * {
@@ -41,365 +44,1022 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0369a1 100%);
             min-height: 100vh;
             display: flex;
+            background-color: #f7fafc;
+            color: var(--navy-dark);
+            overflow-x: hidden;
+        }
+
+        /* Full Screen Split Container */
+        .auth-split-wrapper {
+            display: flex;
+            width: 100vw;
+            min-height: 100vh;
+        }
+
+        /* ================= LEFT SCENIC HERO SIDE ================= */
+        .auth-hero-side {
+            flex: 1.15;
+            position: relative;
+            background: url('images/auth-scenic-bg.jpg') center center / cover no-repeat;
+            display: flex;
             flex-direction: column;
-            color: var(--navy);
-        }
-
-        .login-nav {
-            padding: 1.25rem 2rem;
-            display: flex;
-            align-items: center;
             justify-content: space-between;
+            padding: 3rem 4rem;
+            color: var(--navy-dark);
         }
 
-        .login-brand-logo {
-            height: 40px;
-            width: auto;
-            border-radius: 6px;
+        /* Subtle Light Gradient Vignette on Top-Left for crisp readability */
+        .auth-hero-side::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 42%, rgba(255,255,255,0) 80%);
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .login-nav-links {
-            display: flex;
+        .auth-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 580px;
+        }
+
+        /* Brand Logo Top Left */
+        .brand-header-link {
+            display: inline-flex;
             align-items: center;
-            gap: 1.5rem;
-        }
-
-        .login-nav-links a {
-            color: #e2e8f0;
+            gap: 0.75rem;
             text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            transition: color 0.15s;
+            margin-bottom: 2.5rem;
         }
 
-        .login-nav-links a:hover {
-            color: #38bdf8;
-        }
-
-        .login-main-container {
-            flex: 1;
+        .brand-logo-symbol {
+            width: 42px;
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem 1rem;
         }
 
-        .login-card {
+        .brand-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--navy-dark);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-title span {
+            color: var(--teal-accent);
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--slate-600);
+            letter-spacing: 0.04em;
+            margin-top: 2px;
+        }
+
+        /* Large Headings */
+        .hero-main-title {
+            font-size: 2.55rem;
+            font-weight: 900;
+            color: var(--navy-dark);
+            line-height: 1.18;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-main-title span {
+            color: var(--teal-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--slate-600);
+            line-height: 1.55;
+            margin-bottom: 2.25rem;
+            font-weight: 500;
+        }
+
+        /* Features List / Grid */
+        .hero-features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 1.75rem;
+            margin-top: 1rem;
+        }
+
+        .hero-features-stacked {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .feature-pill-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+        }
+
+        .feature-icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e6f7f2;
+            color: #00966d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 150, 109, 0.15);
+        }
+
+        .feature-icon-circle i {
+            font-size: 1.2rem;
+        }
+
+        .feature-text-block strong {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--navy-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .feature-text-block p {
+            font-size: 0.8rem;
+            color: var(--slate-600);
+            line-height: 1.4;
+        }
+
+        /* Explore More Badge Bottom Left */
+        .hero-explore-more {
+            position: relative;
+            z-index: 2;
+            margin-top: 3rem;
+            padding-bottom: 1rem;
+        }
+
+        .explore-badge-text {
+            font-family: 'Caveat', cursive;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 0.95;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+            display: inline-block;
+            transform: rotate(-4deg);
+        }
+
+        .explore-badge-text span {
+            font-size: 2.8rem;
+            display: block;
+            margin-left: 0.5rem;
+        }
+
+        /* ================= RIGHT FORM CARD SIDE ================= */
+        .auth-form-side {
+            flex: 0.95;
+            background: #f4fbf8;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 2rem;
+            overflow-y: auto;
+        }
+
+        /* Background Dotted Flight Path */
+        .auth-form-side::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 25px;
+            width: 130px;
+            height: 100px;
+            background: radial-gradient(circle at 100% 100%, transparent 60px, rgba(0, 168, 132, 0.2) 61px, transparent 63px);
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .top-language-select {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--slate-600);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Pure White Floating Card */
+        .auth-card {
             background: var(--white);
             border-radius: var(--radius-xl);
             width: 100%;
-            max-width: 440px;
+            max-width: 480px;
             padding: 2.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 20px 45px -10px rgba(15, 41, 66, 0.08);
+            position: relative;
+            z-index: 5;
+            animation: fadeInCard 0.25s ease-out;
         }
 
-        .login-header {
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .card-brand-header {
             text-align: center;
-            margin-bottom: 1.75rem;
-        }
-
-        .login-header h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--navy);
-        }
-
-        .login-header p {
-            font-size: 0.875rem;
-            color: var(--slate-500);
-            margin-top: 0.35rem;
-        }
-
-        .role-switch-tabs {
-            display: flex;
-            background: #f1f5f9;
-            border-radius: 10px;
-            padding: 0.25rem;
             margin-bottom: 1.5rem;
         }
 
-        .role-tab-btn {
-            flex: 1;
-            padding: 0.6rem;
-            text-align: center;
-            border: none;
-            background: transparent;
+        .card-logo-center {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .card-title {
+            font-size: 1.65rem;
+            font-weight: 900;
+            color: var(--navy-dark);
+            margin-bottom: 0.35rem;
+            letter-spacing: -0.02em;
+        }
+
+        .card-subtitle {
             font-size: 0.85rem;
-            font-weight: 700;
             color: var(--slate-500);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.15s;
+            font-weight: 500;
         }
 
-        .role-tab-btn.active {
-            background: var(--white);
-            color: var(--navy);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        /* Form Controls */
+        .form-row-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
         }
 
-        .form-group {
+        .input-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            display: none;
+        }
+
+        .input-field-wrap {
+            position: relative;
             display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-            margin-bottom: 1.15rem;
+            align-items: center;
         }
 
-        .form-group label {
-            font-size: 0.825rem;
-            font-weight: 700;
-            color: var(--slate-700);
+        .input-icon-left {
+            position: absolute;
+            left: 1rem;
+            color: var(--slate-400);
+            font-size: 1.15rem;
+            pointer-events: none;
+            transition: color 0.15s;
         }
 
-        .form-group input {
-            padding: 0.75rem 0.9rem;
+        .auth-input {
+            width: 100%;
+            height: 48px;
+            padding: 0 2.75rem 0 2.85rem;
             border: 1px solid var(--slate-200);
             border-radius: var(--radius-md);
             font-size: 0.9rem;
-            color: var(--navy);
+            color: var(--navy-dark);
             outline: none;
-            transition: border-color 0.15s;
+            background: #ffffff;
+            transition: all 0.2s ease;
         }
 
-        .form-group input:focus {
+        .auth-input::placeholder {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        .auth-input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+            box-shadow: 0 0 0 3px rgba(0, 150, 109, 0.12);
         }
 
-        .btn-submit-login {
+        .auth-input:focus ~ .input-icon-left {
+            color: var(--primary);
+        }
+
+        .input-icon-right {
+            position: absolute;
+            right: 0.85rem;
+            color: var(--slate-400);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.25rem;
+            font-size: 1.15rem;
+            user-select: none;
+        }
+
+        .input-icon-right:hover {
+            color: var(--navy-dark);
+        }
+
+        .input-hint-text {
+            font-size: 0.725rem;
+            color: var(--slate-500);
+            margin: 0.35rem 0 0.85rem 0.25rem;
+            line-height: 1.35;
+        }
+
+        /* Checkbox & Links Row */
+        .form-options-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            font-size: 0.825rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--slate-600);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            accent-color: var(--primary);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .link-text {
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.15s;
+        }
+
+        .link-text:hover {
+            text-decoration: underline;
+            color: #0369a1;
+        }
+
+        /* Primary Emerald Submit Button */
+        .btn-auth-submit {
             width: 100%;
+            height: 50px;
             background: var(--primary);
             color: var(--white);
             border: none;
-            padding: 0.85rem;
             border-radius: var(--radius-md);
-            font-size: 0.95rem;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 800;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            transition: background 0.15s;
-            margin-top: 0.5rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 150, 109, 0.25);
         }
 
-        .btn-submit-login:hover {
-            background: var(--primary-dark);
+        .btn-auth-submit:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 6px 16px rgba(0, 150, 109, 0.35);
+            transform: translateY(-1px);
         }
 
-        .quick-accounts-strip {
-            margin-top: 1.5rem;
-            padding-top: 1.25rem;
-            border-top: 1px dashed var(--slate-200);
-        }
-
-        .quick-accounts-title {
-            font-size: 0.725rem;
-            font-weight: 800;
-            color: var(--slate-500);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.65rem;
-        }
-
-        .quick-pills-wrap {
+        /* OR Divider */
+        .or-divider {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .pill-acc {
+            align-items: center;
+            text-align: center;
+            margin: 1.35rem 0;
+            color: var(--slate-400);
             font-size: 0.75rem;
             font-weight: 700;
-            padding: 0.35rem 0.65rem;
-            border-radius: 9999px;
+            letter-spacing: 0.05em;
+        }
+
+        .or-divider::before, .or-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--slate-200);
+        }
+
+        .or-divider span {
+            padding: 0 0.85rem;
+        }
+
+        /* Social Auth Buttons Grid */
+        .social-buttons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-social {
+            height: 44px;
             border: 1px solid var(--slate-200);
-            background: var(--slate-50);
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.785rem;
+            font-weight: 700;
             color: var(--slate-700);
             cursor: pointer;
-            transition: all 0.15s;
+            transition: all 0.15s ease;
         }
 
-        .pill-acc:hover {
-            border-color: var(--primary);
-            background: var(--primary-light);
-            color: var(--primary-dark);
+        .btn-social:hover {
+            background: var(--slate-50);
+            border-color: var(--slate-400);
         }
 
-        #login-alert-box {
+        /* Bottom Switch Banner */
+        .auth-switch-banner {
+            text-align: center;
+            background: #f0fdf9;
+            border-radius: var(--radius-md);
+            padding: 0.85rem;
+            font-size: 0.85rem;
+            color: var(--slate-600);
+            font-weight: 600;
+        }
+
+        .btn-switch-action {
+            color: var(--primary);
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 0.25rem;
+        }
+
+        .btn-switch-action:hover {
+            text-decoration: underline;
+        }
+
+        /* Alert Box */
+        .auth-alert-box {
             display: none;
             padding: 0.75rem 1rem;
             border-radius: 8px;
-            font-size: 0.85rem;
+            font-size: 0.825rem;
             font-weight: 600;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
         }
 
-        #login-alert-box.error {
+        .auth-alert-box.error {
             background: #fee2e2;
             border: 1px solid #fca5a5;
             color: #b91c1c;
         }
 
-        #login-alert-box.success {
+        .auth-alert-box.success {
             background: #d1fae5;
             border: 1px solid #6ee7b7;
             color: #047857;
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        /* Quick Role Testing Pills (Discreet Dropdown/Toggle) */
+        .quick-role-strip {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--slate-200);
+            text-align: center;
+        }
+
+        .quick-role-title {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--slate-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .role-pills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            justify-content: center;
+        }
+
+        .pill-role-test {
+            font-size: 0.725rem;
+            font-weight: 700;
+            padding: 0.25rem 0.55rem;
+            border-radius: 9999px;
+            border: 1px solid var(--slate-200);
+            background: var(--slate-50);
+            color: var(--slate-600);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .pill-role-test:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .auth-hero-side {
+                display: none;
+            }
+            .auth-form-side {
+                flex: 1;
+                background: linear-gradient(135deg, #f0fdf9 0%, #e0f2fe 100%);
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav class="login-nav">
-        <a href="index.html">
-            <img src="images/travelup_logo_official.png" alt="TravelUp Global" class="login-brand-logo">
-        </a>
-        <div class="login-nav-links">
-            <a href="index.html">Home</a>
-            <a href="travel-planner.html">Travel Planner</a>
-            <a href="trip-planner.html">Tour Planner</a>
-            <a href="tour-packages.html">Tour Packages</a>
-            <a href="admin.html" style="color: #38bdf8;">Admin Portal</a>
+    <div class="auth-split-wrapper">
+        
+        <!-- ================= 1. LEFT HERO SIDE ================= -->
+        <div class="auth-hero-side">
+            <div class="auth-hero-content">
+                <!-- Brand Logo Top Left -->
+                <a href="index.html" class="brand-header-link">
+                    <div class="brand-logo-symbol">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 38C20 38 33 24.5 33 15C33 7.82 27.18 2 20 2C12.82 2 7 7.82 7 15C7 24.5 20 38 20 38Z" fill="#00A884"/>
+                            <path d="M20 7L28 17H21L19 23L16 17H12L20 7Z" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                    <div class="brand-logo-text">
+                        <div class="brand-title">Travel<span>Up</span></div>
+                        <div class="brand-tagline">Plan • Explore • Experience</div>
+                    </div>
+                </a>
+
+                <!-- Dynamic Heading (Toggles between Login & Signup) -->
+                <h1 class="hero-main-title" id="hero-title">
+                    Your Next <span>Adventure</span><br>Starts Here
+                </h1>
+
+                <p class="hero-subtitle" id="hero-subtitle">
+                    Discover amazing places, plan your perfect trip, and create unforgettable memories.
+                </p>
+
+                <!-- Feature Badges: Login Mode (3 Items) -->
+                <div class="hero-features-stacked" id="features-login-mode">
+                    <div class="feature-pill-item">
+                        <div class="feature-icon-circle">
+                            <i class="material-icons">place</i>
+                        </div>
+                        <div class="feature-text-block">
+                            <strong>Smart Trip Planning</strong>
+                            <p>Find the best routes, transit & stay options</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-pill-item">
+                        <div class="feature-icon-circle">
+                            <i class="material-icons">directions_bus</i>
+                        </div>
+                        <div class="feature-text-block">
+                            <strong>Multiple Transport Options</strong>
+                            <p>Bus, Train, Launch, Flight & more</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-pill-item">
+                        <div class="feature-icon-circle">
+                            <i class="material-icons">hotel</i>
+                        </div>
+                        <div class="feature-text-block">
+                            <strong>Handpicked Stays</strong>
+                            <p>Stay at the best hotels and accommodations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature Badges: Signup Mode (2x2 Grid) -->
+                <div class="hero-features-grid" id="features-signup-mode" style="display: none;">
+                    <div class="feature-pill-item">
+                        <div class="feature-icon-circle">
+                            <i class="material-icons">explore</i>
+                        </div>
+                        <div class="feature-text-block">
+                            <strong>Plan Your Trips</strong>
+                            <p>Build your perfect itinerary with ease.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-pill-item">
+                        <div class="feature-icon-circle">
+                            <i class="material-icons">map</i>
+                        </div>
+                        <div class="feature-text-block">
+                            <strong>Discover Destinations</strong>
+                            <p>Explore top places, hidden gems and local experiences.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-pill-item">
+                        <div class="feature-icon-circle">
+                            <i class="material-icons">favorite</i>
+                        </div>
+                        <div class="feature-text-block">
+                            <strong>Save Your Favorites</strong>
+                            <p>Keep your dream places in one place.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-pill-item">
+                        <div class="feature-icon-circle">
+                            <i class="material-icons">groups</i>
+                        </div>
+                        <div class="feature-text-block">
+                            <strong>Get the Best Deals</strong>
+                            <p>Access exclusive offers and travel discounts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explore More Handwritten Script Badge -->
+            <div class="hero-explore-more">
+                <div class="explore-badge-text">
+                    Explore
+                    <span>More</span>
+                </div>
+            </div>
         </div>
-    </nav>
 
-    <main class="login-main-container">
-        <div class="login-card">
-            <div class="login-header">
-                <h2>Welcome Back</h2>
-                <p>Sign in to your TravelUp Global account</p>
+        <!-- ================= 2. RIGHT FORM SIDE ================= -->
+        <div class="auth-form-side">
+            <!-- Top Language Selector -->
+            <div class="top-language-select">
+                <i class="material-icons" style="font-size: 1.15rem; color: var(--slate-400);">language</i>
+                <span>English</span>
+                <i class="material-icons" style="font-size: 1rem;">expand_more</i>
             </div>
 
-            <!-- Role Switch Tabs -->
-            <div class="role-switch-tabs">
-                <button type="button" class="role-tab-btn active" id="tab-staff" onclick="switchLoginMode('staff')">
-                    Staff & Operations
-                </button>
-                <button type="button" class="role-tab-btn" id="tab-traveler" onclick="switchLoginMode('traveler')">
-                    Traveler / Customer
-                </button>
+            <!-- ================= VIEW A: SIGN IN (LOG IN) ================= -->
+            <div class="auth-card" id="card-signin-view">
+                <div class="card-brand-header">
+                    <div class="card-logo-center">
+                        <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 38C20 38 33 24.5 33 15C33 7.82 27.18 2 20 2C12.82 2 7 7.82 7 15C7 24.5 20 38 20 38Z" fill="#00A884"/>
+                            <path d="M20 7L28 17H21L19 23L16 17H12L20 7Z" fill="#FFFFFF"/>
+                        </svg>
+                        <div class="brand-title" style="font-size: 1.45rem;">Travel<span>Up</span></div>
+                    </div>
+                    <h2 class="card-title">Welcome Back</h2>
+                    <p class="card-subtitle">Log in to your account to continue your journey</p>
+                </div>
+
+                <div class="auth-alert-box" id="signin-alert"></div>
+
+                <form id="form-signin" onsubmit="handleSignInSubmit(event)">
+                    <!-- Email or Phone -->
+                    <div class="input-group">
+                        <div class="input-field-wrap">
+                            <i class="material-icons input-icon-left">mail_outline</i>
+                            <input type="text" id="signin-identifier" class="auth-input" required placeholder="Email or Phone Number" value="admin@travelupglobal.com">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-group">
+                        <div class="input-field-wrap">
+                            <i class="material-icons input-icon-left">lock_outline</i>
+                            <input type="password" id="signin-password" class="auth-input" required placeholder="Password" value="admin123">
+                            <span class="input-icon-right" onclick="togglePasswordVisibility('signin-password', this)">
+                                <i class="material-icons">visibility_off</i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Remember me & Forgot password -->
+                    <div class="form-options-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="signin-remember" checked>
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" onclick="alert('Password reset link has been dispatched.'); return false;" class="link-text">Forgot password?</a>
+                    </div>
+
+                    <!-- Primary Emerald CTA Button -->
+                    <button type="submit" id="btn-signin-submit" class="btn-auth-submit">
+                        <span>Log In</span>
+                        <i class="material-icons" style="font-size: 1.15rem;">arrow_forward</i>
+                    </button>
+                </form>
+
+                <!-- OR Divider -->
+                <div class="or-divider">
+                    <span>OR</span>
+                </div>
+
+                <!-- Social Login Buttons -->
+                <div class="social-buttons-grid">
+                    <button type="button" class="btn-social" onclick="simulateSocialAuth('Google')">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+                        <span>Continue with Google</span>
+                    </button>
+                    <button type="button" class="btn-social" onclick="simulateSocialAuth('Facebook')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        <span>Continue with Facebook</span>
+                    </button>
+                </div>
+
+                <!-- Bottom Switch to Signup -->
+                <div class="auth-switch-banner">
+                    Don't have an account? <span class="btn-switch-action" onclick="switchToMode('signup')">Sign Up ➔</span>
+                </div>
+
+                <!-- Quick Role Test Pills for testing internal roles -->
+                <div class="quick-role-strip">
+                    <div class="quick-role-title">1-Click Staff Role Test:</div>
+                    <div class="role-pills-row">
+                        <button type="button" class="pill-role-test" onclick="quickFillAndLogin('admin@travelupglobal.com', 'admin123')">👑 Super Admin</button>
+                        <button type="button" class="pill-role-test" onclick="quickFillAndLogin('papelali809@gmail.com', 'admin123')">👑 Tanvir Parvaj</button>
+                        <button type="button" class="pill-role-test" onclick="quickFillAndLogin('uploader@travelupglobal.com', 'admin123')">📦 Product Uploader</button>
+                        <button type="button" class="pill-role-test" onclick="quickFillAndLogin('manager@travelupglobal.com', 'admin123')">📋 Operations Manager</button>
+                        <button type="button" class="pill-role-test" onclick="quickFillAndLogin('finance@travelupglobal.com', 'admin123')">💳 Finance Officer</button>
+                    </div>
+                </div>
             </div>
 
-            <div id="login-alert-box"></div>
-
-            <form id="login-form" onsubmit="handleUnifiedLogin(event)">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="user-email" required placeholder="name@travelupglobal.com" value="admin@travelupglobal.com">
+            <!-- ================= VIEW B: CREATE ACCOUNT (SIGN UP) ================= -->
+            <div class="auth-card" id="card-signup-view" style="display: none;">
+                <div class="card-brand-header">
+                    <div class="card-logo-center">
+                        <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 38C20 38 33 24.5 33 15C33 7.82 27.18 2 20 2C12.82 2 7 7.82 7 15C7 24.5 20 38 20 38Z" fill="#00A884"/>
+                            <path d="M20 7L28 17H21L19 23L16 17H12L20 7Z" fill="#FFFFFF"/>
+                        </svg>
+                        <div class="brand-title" style="font-size: 1.45rem;">Travel<span>Up</span></div>
+                    </div>
+                    <h2 class="card-title">Create Your Account</h2>
+                    <p class="card-subtitle">It's quick and easy. Join us and start exploring!</p>
                 </div>
 
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="user-password" required placeholder="••••••••" value="admin123">
+                <div class="auth-alert-box" id="signup-alert"></div>
+
+                <form id="form-signup" onsubmit="handleSignUpSubmit(event)">
+                    <!-- Row 1: Full Name & Email -->
+                    <div class="form-row-grid-2">
+                        <div class="input-group">
+                            <div class="input-field-wrap">
+                                <i class="material-icons input-icon-left">person_outline</i>
+                                <input type="text" id="signup-name" class="auth-input" required placeholder="Full Name" style="padding-left: 2.6rem;">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-field-wrap">
+                                <i class="material-icons input-icon-left">mail_outline</i>
+                                <input type="email" id="signup-email" class="auth-input" required placeholder="Email Address" style="padding-left: 2.6rem;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="input-group">
+                        <div class="input-field-wrap">
+                            <i class="material-icons input-icon-left">phone</i>
+                            <input type="tel" id="signup-phone" class="auth-input" required placeholder="Phone Number (e.g. 017xxxxxxxx)">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-group" style="margin-bottom: 0.25rem;">
+                        <div class="input-field-wrap">
+                            <i class="material-icons input-icon-left">lock_outline</i>
+                            <input type="password" id="signup-password" class="auth-input" required minlength="8" placeholder="Password">
+                            <span class="input-icon-right" onclick="togglePasswordVisibility('signup-password', this)">
+                                <i class="material-icons">visibility_off</i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="input-hint-text">Use at least 8 characters with a mix of letters and numbers.</div>
+
+                    <!-- Confirm Password -->
+                    <div class="input-group">
+                        <div class="input-field-wrap">
+                            <i class="material-icons input-icon-left">lock_outline</i>
+                            <input type="password" id="signup-confirm-password" class="auth-input" required minlength="8" placeholder="Confirm Password">
+                            <span class="input-icon-right" onclick="togglePasswordVisibility('signup-confirm-password', this)">
+                                <i class="material-icons">visibility_off</i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Country Picker -->
+                    <div class="input-group">
+                        <div class="input-field-wrap">
+                            <i class="material-icons input-icon-left">place</i>
+                            <select id="signup-country" class="auth-input" style="cursor: pointer; appearance: none;">
+                                <option value="Bangladesh" selected>Bangladesh</option>
+                                <option value="India">India</option>
+                                <option value="Nepal">Nepal</option>
+                                <option value="Thailand">Thailand</option>
+                                <option value="Malaysia">Malaysia</option>
+                                <option value="Singapore">Singapore</option>
+                                <option value="United Arab Emirates">United Arab Emirates</option>
+                            </select>
+                            <span class="input-icon-right" style="pointer-events: none;">
+                                <i class="material-icons">expand_more</i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Agreement Checkbox -->
+                    <div class="form-options-row" style="margin-bottom: 1.25rem;">
+                        <label class="checkbox-label" style="font-size: 0.8rem; line-height: 1.4;">
+                            <input type="checkbox" id="signup-terms" required checked>
+                            <span>I agree to the <a href="#" class="link-text">Terms & Conditions</a> and <a href="#" class="link-text">Privacy Policy</a></span>
+                        </label>
+                    </div>
+
+                    <!-- Primary Emerald CTA Button -->
+                    <button type="submit" id="btn-signup-submit" class="btn-auth-submit">
+                        <span>Create Account</span>
+                        <i class="material-icons" style="font-size: 1.15rem;">arrow_forward</i>
+                    </button>
+                </form>
+
+                <!-- OR Divider -->
+                <div class="or-divider">
+                    <span>OR</span>
                 </div>
 
-                <button type="submit" id="btn-submit" class="btn-submit-login">
-                    <i class="material-icons">lock_open</i> Sign In
-                </button>
-            </form>
+                <!-- Social Login Buttons -->
+                <div class="social-buttons-grid">
+                    <button type="button" class="btn-social" onclick="simulateSocialAuth('Google')">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+                        <span>Continue with Google</span>
+                    </button>
+                    <button type="button" class="btn-social" onclick="simulateSocialAuth('Facebook')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        <span>Continue with Facebook</span>
+                    </button>
+                </div>
 
-            <!-- Quick Demo Accounts -->
-            <div class="quick-accounts-strip">
-                <div class="quick-accounts-title">Quick 1-Click Role Login:</div>
-                <div class="quick-pills-wrap">
-                    <button type="button" class="pill-acc" onclick="quickLogin('admin@travelupglobal.com', 'admin123')">👑 Super Admin</button>
-                    <button type="button" class="pill-acc" onclick="quickLogin('papelali809@gmail.com', 'admin123')">👑 Tanvir Parvaj</button>
-                    <button type="button" class="pill-acc" onclick="quickLogin('uploader@travelupglobal.com', 'admin123')">📦 Product Uploader</button>
-                    <button type="button" class="pill-acc" onclick="quickLogin('manager@travelupglobal.com', 'admin123')">📋 Operations Manager</button>
-                    <button type="button" class="pill-acc" onclick="quickLogin('finance@travelupglobal.com', 'admin123')">💳 Finance Officer</button>
+                <!-- Bottom Switch to Signin -->
+                <div style="text-align: center; font-size: 0.85rem; color: var(--slate-600); font-weight: 600;">
+                    Already have an account? <span class="btn-switch-action" onclick="switchToMode('signin')">Log In ➔</span>
                 </div>
             </div>
+
         </div>
-    </main>
+    </div>
 
     <script>
         // Dynamic API Base URL for seamless local, live server, and file:// execution
         const API_BASE = (window.location.protocol === 'file:' || (window.location.port !== '5000' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')))
             ? 'http://localhost:5000'
             : '';
-        let currentMode = 'staff';
 
-        function switchLoginMode(mode) {
-            currentMode = mode;
-            document.querySelectorAll('.role-tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`tab-${mode}`).classList.add('active');
+        let currentMode = 'signin';
 
-            const emailInput = document.getElementById('user-email');
-            const passInput = document.getElementById('user-password');
-
-            if (mode === 'staff') {
-                emailInput.value = 'admin@travelupglobal.com';
-                passInput.value = 'admin123';
+        // Check URL Query param ?mode=signup or ?mode=signin
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const mode = urlParams.get('mode');
+            if (mode === 'signup') {
+                switchToMode('signup');
             } else {
-                emailInput.value = 'user@travelupglobal.com';
-                passInput.value = 'user@123';
+                switchToMode('signin');
+            }
+        });
+
+        // Toggle between Sign In and Sign Up views
+        function switchToMode(mode) {
+            currentMode = mode;
+            const heroTitle = document.getElementById('hero-title');
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            const featLogin = document.getElementById('features-login-mode');
+            const featSignup = document.getElementById('features-signup-mode');
+            const cardSignin = document.getElementById('card-signin-view');
+            const cardSignup = document.getElementById('card-signup-view');
+
+            if (mode === 'signup') {
+                heroTitle.innerHTML = 'Join <span>TravelUp</span> and<br>Start Your Journey';
+                heroSubtitle.textContent = 'Create your account to plan trips, discover amazing destinations, and make unforgettable memories.';
+                featLogin.style.display = 'none';
+                featSignup.style.display = 'grid';
+                cardSignin.style.display = 'none';
+                cardSignup.style.display = 'block';
+                document.title = 'TravelUp — Create Your Account';
+            } else {
+                heroTitle.innerHTML = 'Your Next <span>Adventure</span><br>Starts Here';
+                heroSubtitle.textContent = 'Discover amazing places, plan your perfect trip, and create unforgettable memories.';
+                featLogin.style.display = 'flex';
+                featSignup.style.display = 'none';
+                cardSignin.style.display = 'block';
+                cardSignup.style.display = 'none';
+                document.title = 'TravelUp — Sign In';
             }
         }
 
-        function quickLogin(email, pass) {
-            document.getElementById('user-email').value = email;
-            document.getElementById('user-password').value = pass;
-            handleUnifiedLogin();
+        // Toggle password visibility
+        function togglePasswordVisibility(inputId, toggleIcon) {
+            const input = document.getElementById(inputId);
+            const icon = toggleIcon.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
         }
 
-        async function handleUnifiedLogin(e) {
+        // 1-Click Quick Fill & Login
+        function quickFillAndLogin(identifier, pass) {
+            document.getElementById('signin-identifier').value = identifier;
+            document.getElementById('signin-password').value = pass;
+            handleSignInSubmit();
+        }
+
+        // Handle Sign In (Log In)
+        async function handleSignInSubmit(e) {
             if (e && e.preventDefault) e.preventDefault();
 
-            const email = document.getElementById('user-email').value.trim();
-            const password = document.getElementById('user-password').value;
-            const alertBox = document.getElementById('login-alert-box');
-            const submitBtn = document.getElementById('btn-submit');
+            const identifier = document.getElementById('signin-identifier').value.trim();
+            const password = document.getElementById('signin-password').value;
+            const alertBox = document.getElementById('signin-alert');
+            const submitBtn = document.getElementById('btn-signin-submit');
 
             alertBox.style.display = 'none';
 
-            if (!email || !password) {
-                alertBox.className = 'error';
-                alertBox.textContent = 'Please enter your email and password.';
+            if (!identifier || !password) {
+                alertBox.className = 'auth-alert-box error';
+                alertBox.textContent = 'Please enter both email/phone and password.';
                 alertBox.style.display = 'block';
                 return;
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i> Authenticating...`;
+            submitBtn.innerHTML = `<span>Verifying...</span> <i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i>`;
 
             try {
                 const res = await fetch(`${API_BASE}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    body: JSON.stringify({ email: identifier, password })
                 });
 
                 const data = await res.json();
 
                 if (!res.ok || !data.success) {
-                    alertBox.className = 'error';
-                    alertBox.textContent = data.message || 'Invalid email or password.';
+                    alertBox.className = 'auth-alert-box error';
+                    alertBox.textContent = data.message || 'Invalid email/phone or password.';
                     alertBox.style.display = 'block';
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Sign In`;
+                    submitBtn.innerHTML = `<span>Log In</span> <i class="material-icons">arrow_forward</i>`;
                     return;
                 }
 
                 const user = data.user;
                 const token = data.token;
 
-                // Save tokens
                 localStorage.setItem('travelup_token', token);
                 localStorage.setItem('travelup_user', JSON.stringify(user));
 
-                alertBox.className = 'success';
+                alertBox.className = 'auth-alert-box success';
                 alertBox.textContent = `Welcome back, ${user.name}! Redirecting...`;
                 alertBox.style.display = 'block';
 
-                // Route by role
                 const isStaff = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(user.role);
 
                 if (isStaff) {
@@ -407,23 +1067,97 @@
                     localStorage.setItem('travelup_admin_user', JSON.stringify(user));
                     setTimeout(() => {
                         window.location.href = 'admin.html';
-                    }, 600);
+                    }, 500);
                 } else {
                     setTimeout(() => {
                         window.location.href = 'index.html';
-                    }, 600);
+                    }, 500);
                 }
             } catch (err) {
-                alertBox.className = 'error';
+                alertBox.className = 'auth-alert-box error';
+                let msg = 'Network or server error: ' + err.message;
                 if (window.location.protocol === 'file:' || err.message.includes('fetch')) {
-                    alertBox.innerHTML = 'Cannot connect from file:// protocol. Please open via: <a href="http://localhost:5000/login.html" style="color:#b91c1c; font-weight:800; text-decoration:underline;">http://localhost:5000/login.html</a>';
-                } else {
-                    alertBox.textContent = 'Network or server error: ' + err.message;
+                    msg = 'Cannot connect from file:// protocol. Please open via local server: <a href="http://localhost:5000/login.html" style="color:#b91c1c; font-weight:800; text-decoration:underline;">http://localhost:5000/login.html</a>';
                 }
+                alertBox.innerHTML = msg;
                 alertBox.style.display = 'block';
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Sign In`;
+                submitBtn.innerHTML = `<span>Log In</span> <i class="material-icons">arrow_forward</i>`;
             }
+        }
+
+        // Handle Sign Up (Create Account)
+        async function handleSignUpSubmit(e) {
+            if (e && e.preventDefault) e.preventDefault();
+
+            const name = document.getElementById('signup-name').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const phone = document.getElementById('signup-phone').value.trim();
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            const country = document.getElementById('signup-country').value;
+            const alertBox = document.getElementById('signup-alert');
+            const submitBtn = document.getElementById('btn-signup-submit');
+
+            alertBox.style.display = 'none';
+
+            if (password !== confirmPassword) {
+                alertBox.className = 'auth-alert-box error';
+                alertBox.textContent = 'Passwords do not match. Please re-enter matching passwords.';
+                alertBox.style.display = 'block';
+                return;
+            }
+
+            if (password.length < 8) {
+                alertBox.className = 'auth-alert-box error';
+                alertBox.textContent = 'Password must be at least 8 characters long.';
+                alertBox.style.display = 'block';
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span>Creating Account...</span> <i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i>`;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password, phone, country })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok || !data.success) {
+                    alertBox.className = 'auth-alert-box error';
+                    alertBox.textContent = data.message || 'Failed to create account.';
+                    alertBox.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<span>Create Account</span> <i class="material-icons">arrow_forward</i>`;
+                    return;
+                }
+
+                alertBox.className = 'auth-alert-box success';
+                alertBox.textContent = 'Account created successfully! Signing you in...';
+                alertBox.style.display = 'block';
+
+                localStorage.setItem('travelup_token', data.token);
+                localStorage.setItem('travelup_user', JSON.stringify(data.user));
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 700);
+            } catch (err) {
+                alertBox.className = 'auth-alert-box error';
+                alertBox.textContent = 'Network or server error: ' + err.message;
+                alertBox.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Create Account</span> <i class="material-icons">arrow_forward</i>`;
+            }
+        }
+
+        // Mock Social Auth
+        function simulateSocialAuth(provider) {
+            alert(`${provider} authentication is ready to link with your API client.`);
         }
     </script>
 </body>
