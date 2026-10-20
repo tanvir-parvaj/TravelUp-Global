@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="js/locations_bd.js"></script>
     <style>
         :root {
             --st-primary: #0284c7;
@@ -75,9 +76,11 @@
         }
 
         .nav-logo-img {
-            height: 44px;
+            height: 54px;
+            max-height: 56px;
             width: auto;
             display: block;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -1040,6 +1043,781 @@
                 width: 100%;
             }
         }
+        /* -------------------------------------------------------------
+           LOCATION TRIGGER & PIXEL-PERFECT MODAL STYLES
+           ------------------------------------------------------------- */
+        .search-loc-trigger {
+            height: 42px;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--st-border);
+            border-radius: 6px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .search-field:hover .search-loc-trigger {
+            border-color: var(--st-primary);
+            background: #ffffff;
+        }
+
+        .search-field.has-error .search-loc-trigger {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .search-loc-left {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            overflow: hidden;
+        }
+
+        .search-loc-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .search-loc-text {
+            font-size: 0.925rem;
+            font-weight: 600;
+            color: var(--st-text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .search-loc-chevron {
+            font-size: 18px;
+            color: var(--st-text-muted);
+            flex-shrink: 0;
+        }
+
+        /* Modal Overlay & Box */
+        .loc-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(6px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            animation: locOverlayFadeIn 0.2s ease-out;
+        }
+        @keyframes locOverlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .loc-modal-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 1080px;
+            max-height: 94vh;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px -12px rgba(15, 23, 42, 0.28), 0 0 0 1px rgba(226, 232, 240, 0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: locBoxPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes locBoxPopIn {
+            from { opacity: 0; transform: scale(0.97) translateY(8px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        /* Modal Header */
+        .loc-modal-header {
+            padding: 1.2rem 1.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.25rem;
+            background: #ffffff;
+            border-bottom: 1px solid #f1f5f9;
+            position: relative;
+        }
+        .loc-modal-head-left {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            flex-shrink: 0;
+        }
+        .loc-head-pin-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #006ce4;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0, 108, 228, 0.3);
+            flex-shrink: 0;
+        }
+        .loc-head-pin-badge i {
+            font-size: 26px;
+        }
+        .loc-head-title-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+        .loc-head-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+        }
+        .loc-head-sub {
+            font-size: 0.8125rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 3px;
+        }
+        /* Top Search Bar (Pill Shape) */
+        .loc-head-search-wrap {
+            position: relative;
+            flex: 1;
+            max-width: 440px;
+        }
+        .loc-head-search-pill {
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 9999px;
+            padding: 0 1.15rem;
+            height: 42px;
+            transition: all 0.2s ease;
+        }
+        .loc-head-search-pill:focus-within {
+            background: #ffffff;
+            border-color: #006ce4;
+            box-shadow: 0 0 0 3px rgba(0, 108, 228, 0.12);
+        }
+        .loc-head-search-pill i.loc-search-icon {
+            color: #94a3b8;
+            font-size: 20px;
+            margin-right: 0.55rem;
+            flex-shrink: 0;
+        }
+        .loc-head-search-input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 0.8125rem;
+            color: #0f172a;
+            font-family: inherit;
+            font-weight: 500;
+        }
+        .loc-head-search-input::placeholder {
+            color: #94a3b8;
+        }
+        .loc-head-search-clear {
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .loc-head-search-clear:hover {
+            color: #0f172a;
+        }
+        .loc-head-search-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16);
+            max-height: 310px;
+            overflow-y: auto;
+            z-index: 200;
+        }
+        .loc-search-row {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.15s;
+        }
+        .loc-search-row:hover {
+            background: #f0f7ff;
+        }
+        .loc-search-row:last-child {
+            border-bottom: none;
+        }
+        .loc-head-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            flex-shrink: 0;
+        }
+        .loc-head-close-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        /* Modal Body (2 Columns: Left Map + Right Cascade) */
+        .loc-modal-body {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 1.25rem;
+            padding: 1.25rem 1.75rem;
+            flex: 1;
+            min-height: 490px;
+            max-height: 530px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+        /* Left Column: Interactive Map */
+        .loc-map-panel {
+            background: linear-gradient(180deg, #f0f7ff 0%, #e6f2fe 100%);
+            border-radius: 16px;
+            border: 1px solid #dbeafe;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 0.75rem 4.5rem;
+            overflow: hidden;
+        }
+        .loc-map-compass {
+            position: absolute;
+            top: 0.85rem;
+            right: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #475569;
+            font-weight: 800;
+            font-size: 11px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .loc-map-compass svg {
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+        .bd-map-svg {
+            width: 100%;
+            height: 100%;
+        }
+        .map-division-path {
+            cursor: pointer;
+            transition: all 0.18s ease;
+        }
+        .map-division-path:hover {
+            filter: brightness(0.92);
+            stroke-width: 2.5;
+            stroke: #006ce4;
+        }
+        .map-division-path.active {
+            filter: brightness(0.85);
+            stroke-width: 3;
+            stroke: #006ce4;
+        }
+        .loc-map-bottom-badge {
+            position: absolute;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid #dbeafe;
+            border-radius: 12px;
+            padding: 0.65rem 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+        }
+        .loc-map-card-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: #eff6ff;
+            color: #006ce4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .loc-map-card-title {
+            font-size: 0.825rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.1;
+        }
+        .loc-map-card-sub {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        /* Right Column: Cascade Drilldown */
+        .loc-cascade-panel {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 0;
+            overflow: hidden;
+        }
+        /* Top Breadcrumb Tabs */
+        .loc-nav-tabs {
+            display: flex;
+            gap: 0.65rem;
+            margin-bottom: 0.85rem;
+            flex-shrink: 0;
+        }
+        .loc-tab-btn {
+            padding: 0.55rem 1rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #475569;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+        .loc-tab-btn:hover {
+            border-color: #006ce4;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+        .loc-tab-btn.active {
+            background: #006ce4;
+            border-color: #006ce4;
+            color: #ffffff;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0, 108, 228, 0.25);
+        }
+        .loc-tab-badge {
+            font-size: 0.725rem;
+            font-weight: 700;
+            padding: 1px 7px;
+            border-radius: 9999px;
+            background: #f1f5f9;
+            color: #64748b;
+        }
+        .loc-tab-btn.active .loc-tab-badge {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+        .loc-tab-btn i {
+            font-size: 17px;
+        }
+
+        /* Two Sub-Columns (Country + Regions/Districts/Upazilas) */
+        .loc-drilldown-row {
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            gap: 1rem;
+            flex: 1 1 auto;
+            height: 100%;
+            min-height: 0;
+            overflow: hidden;
+        }
+        .loc-subcol {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 0;
+            overflow: hidden;
+        }
+        .loc-subcol-title {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 0.65rem;
+            flex-shrink: 0;
+        }
+        .loc-subcol-title i {
+            font-size: 16px;
+            color: #006ce4;
+        }
+        /* Country Card */
+        .loc-country-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 0.85rem;
+            border-radius: 12px;
+            background: #f0f7ff;
+            border: 1.5px solid #bfdbfe;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .loc-country-card:hover {
+            border-color: #006ce4;
+        }
+        .loc-bd-flag-badge {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #006a4e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+        .loc-bd-flag-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #f42a41;
+        }
+        .loc-country-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-left: 0.6rem;
+            flex: 1;
+        }
+        .loc-country-check {
+            color: #006ce4;
+            font-size: 18px;
+            font-weight: 900;
+        }
+        /* Context Breadcrumbs under Country */
+        .loc-crumbs-box {
+            margin-top: 0.85rem;
+            padding: 0.65rem 0.75rem;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .loc-crumb-item {
+            font-size: 0.725rem;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            cursor: pointer;
+        }
+        .loc-crumb-item:hover {
+            color: #006ce4;
+            text-decoration: underline;
+        }
+        .loc-crumb-item strong {
+            color: #0f172a;
+        }
+
+        /* List Items (Divisions, Districts, Upazilas) */
+        .loc-items-scroll {
+            flex: 1 1 auto;
+            height: 100%;
+            min-height: 0;
+            max-height: 400px;
+            overflow-y: auto !important;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            padding-right: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            scrollbar-width: thin;
+            scrollbar-color: #94a3b8 #f1f5f9;
+        }
+        .loc-items-scroll::-webkit-scrollbar {
+            width: 6px;
+            display: block;
+        }
+        .loc-items-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 9999px;
+        }
+        .loc-items-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .loc-items-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .loc-card-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.65rem 0.85rem;
+            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: left;
+            font-family: inherit;
+        }
+        .loc-card-row:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+        .loc-card-row.active {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            color: #006ce4;
+            font-weight: 700;
+        }
+        .loc-card-row.selected {
+            background: #eff6ff;
+            border-color: #006ce4;
+            box-shadow: 0 0 0 1.5px #006ce4;
+        }
+        .loc-row-left {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            overflow: hidden;
+        }
+        .loc-div-icon-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .loc-row-name {
+            font-size: 0.825rem;
+            color: #1e293b;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .loc-card-row.active .loc-row-name,
+        .loc-card-row.selected .loc-row-name {
+            color: #006ce4;
+            font-weight: 700;
+        }
+        .loc-row-sub {
+            font-size: 0.685rem;
+            color: #64748b;
+            font-weight: normal;
+            margin-top: 1px;
+        }
+        .loc-row-right {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            flex-shrink: 0;
+        }
+        .loc-count-pill {
+            font-size: 0.725rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 2px 7px;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+        .loc-card-row.active .loc-count-pill {
+            background: #dbeafe;
+            color: #006ce4;
+        }
+        .loc-row-chevron {
+            font-size: 16px;
+            color: #94a3b8;
+        }
+        .loc-card-row.active .loc-row-chevron {
+            color: #006ce4;
+        }
+
+        .loc-type-tag {
+            font-size: 0.65rem;
+            padding: 2px 7px;
+            border-radius: 9999px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            background: #f1f5f9;
+            color: #475569;
+        }
+        .loc-type-tag.beach { background: #e0f2fe; color: #0284c7; }
+        .loc-type-tag.hill, .loc-type-tag.mountain, .loc-type-tag.trekking { background: #ecfdf5; color: #059669; }
+        .loc-type-tag.heritage, .loc-type-tag.historic, .loc-type-tag.fort, .loc-type-tag.palace { background: #fef3c7; color: #d97706; }
+        .loc-type-tag.nature, .loc-type-tag.forest, .loc-type-tag.park, .loc-type-tag.tea, .loc-type-tag.safari { background: #f0fdf4; color: #16a34a; }
+        .loc-type-tag.island { background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; }
+        .loc-type-tag.lake, .loc-type-tag.river, .loc-type-tag.waterfall, .loc-type-tag.haor { background: #ede9fe; color: #7c3aed; }
+        .loc-top50-badge {
+            font-size: 0.625rem;
+            font-weight: 700;
+            color: #ea580c;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            padding: 1px 7px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        /* Modal Footer */
+        .loc-modal-footer {
+            padding: 0.95rem 1.75rem;
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+        .loc-footer-selection {
+            font-size: 0.8125rem;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .loc-footer-selection strong {
+            color: #006ce4;
+        }
+        .loc-footer-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            flex-shrink: 0;
+        }
+        .loc-btn-cancel {
+            padding: 0.55rem 1.35rem;
+            border-radius: 9999px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #475569;
+            font-size: 0.825rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+        .loc-btn-cancel:hover {
+            background: #f8fafc;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
+        .loc-btn-apply {
+            padding: 0.55rem 1.5rem;
+            border-radius: 9999px;
+            border: none;
+            background: #006ce4;
+            color: #ffffff;
+            font-size: 0.825rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 14px rgba(0, 108, 228, 0.35);
+            font-family: inherit;
+        }
+        .loc-btn-apply:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0, 108, 228, 0.4);
+        }
+        .loc-btn-apply:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        @media (max-width: 900px) {
+            .loc-modal-body {
+                grid-template-columns: 1fr;
+                max-height: 75vh;
+            }
+            .loc-map-panel {
+                display: none;
+            }
+            .loc-modal-header {
+                flex-wrap: wrap;
+            }
+            .loc-head-search-wrap {
+                max-width: 100%;
+                order: 3;
+                width: 100%;
+            }
+        }
+        @media (max-width: 580px) {
+            .loc-drilldown-row {
+                grid-template-columns: 1fr;
+            }
+            .loc-modal-overlay {
+                align-items: flex-end !important;
+                padding: 0 !important;
+            }
+            .loc-modal-box {
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 20px 20px 0 0 !important;
+                max-height: 90vh !important;
+                margin: 0 !important;
+            }
+            .loc-modal-body {
+                padding: 1rem !important;
+            }
+            .loc-modal-footer {
+                padding: 0.85rem 1rem !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 0.65rem !important;
+            }
+            .loc-footer-actions {
+                width: 100% !important;
+                display: flex !important;
+                gap: 0.5rem !important;
+            }
+            .loc-btn-cancel,
+            .loc-btn-apply {
+                flex: 1 !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1094,74 +1872,31 @@
 
         <!-- Search Filter Strip -->
         <div class="search-strip" id="search-strip">
-            <div class="search-field" id="field-origin">
-                <label>From <span style="color: #ef4444;">*</span></label>
-                <select id="origin-select" onchange="onSearchFieldChanged()">
-                    <option value="" disabled selected>Select Origin Hub</option>
-                    <optgroup label="Dhaka Division">
-                        <option value="Dhaka - Mirpur 10">Dhaka - Mirpur 10</option>
-                        <option value="Dhaka - Savar">Dhaka - Savar</option>
-                        <option value="Dhaka - Uttara">Dhaka - Uttara (Airport)</option>
-                        <option value="Dhaka - Dhanmondi">Dhaka - Dhanmondi</option>
-                        <option value="Dhaka - Sayedabad">Dhaka - Sayedabad Central</option>
-                    </optgroup>
-                    <optgroup label="Rangpur Division">
-                        <option value="Rangpur - Pirganj Bazar">Rangpur - Pirganj Bazar</option>
-                        <option value="Rangpur - Sadar">Rangpur - Sadar Terminal</option>
-                        <option value="Panchagarh - Tetulia">Panchagarh - Tetulia</option>
-                    </optgroup>
-                    <optgroup label="Rajshahi Division">
-                        <option value="Bogura - Central">Bogura - Central Bus Terminal</option>
-                        <option value="Rajshahi - Shiroil">Rajshahi - Shiroil Station</option>
-                    </optgroup>
-                    <optgroup label="Chittagong Division">
-                        <option value="Chittagong - GEC">Chittagong - GEC Circle</option>
-                        <option value="Cox's Bazar - Kolatoli">Cox's Bazar - Kolatoli</option>
-                        <option value="Cox's Bazar - Teknaf">Cox's Bazar - Teknaf</option>
-                        <option value="Rangamati - Sajek Valley">Rangamati - Sajek Valley</option>
-                    </optgroup>
-                    <optgroup label="Sylhet Division">
-                        <option value="Sylhet - Amberkhana">Sylhet - Amberkhana Point</option>
-                        <option value="Moulvibazar - Sreemangal">Moulvibazar - Sreemangal</option>
-                    </optgroup>
-                    <optgroup label="Southern Divisions">
-                        <option value="Barisal - Central">Barisal - Central Terminal</option>
-                        <option value="Khulna - Sonadanga">Khulna - Sonadanga Terminal</option>
-                    </optgroup>
-                </select>
+            <div class="search-field" id="field-origin" onclick="openLocationPicker('origin')" style="cursor: pointer;" title="Click to browse 495 Upazilas across Bangladesh">
+                <label>From (Origin Hub) <span style="color: #ef4444;">*</span></label>
+                <div class="search-loc-trigger" id="origin-trigger">
+                    <div class="search-loc-left">
+                        <i class="material-icons search-loc-icon" style="color: #0284c7;">place</i>
+                        <span class="search-loc-text" id="origin-display-title">Dhaka - Mirpur 10</span>
+                    </div>
+                    <i class="material-icons search-loc-chevron">expand_more</i>
+                </div>
+                <input type="hidden" id="origin-select" value="Dhaka - Mirpur 10">
+                <input type="hidden" id="origin-upazila-id" value="BD-DIV-06-DIST-08-UPZ-001">
                 <span class="error-hint">Please select origin city (From)</span>
             </div>
 
-            <div class="search-field" id="field-destination">
-                <label>To <span style="color: #ef4444;">*</span></label>
-                <select id="destination-select" onchange="onSearchFieldChanged()">
-                    <option value="" disabled selected>Select Destination</option>
-                    <optgroup label="Rangpur Division">
-                        <option value="Rangpur - Pirganj Bazar">Rangpur - Pirganj Bazar</option>
-                        <option value="Rangpur - Sadar">Rangpur - Sadar Terminal</option>
-                        <option value="Panchagarh - Tetulia">Panchagarh - Tetulia</option>
-                    </optgroup>
-                    <optgroup label="Chittagong Division">
-                        <option value="Cox's Bazar - Kolatoli">Cox's Bazar - Kolatoli</option>
-                        <option value="Cox's Bazar - Teknaf">Cox's Bazar - Teknaf</option>
-                        <option value="Rangamati - Sajek Valley">Rangamati - Sajek Valley</option>
-                        <option value="Chittagong - GEC">Chittagong - GEC Circle</option>
-                    </optgroup>
-                    <optgroup label="Sylhet Division">
-                        <option value="Sylhet - Amberkhana">Sylhet - Amberkhana Point</option>
-                        <option value="Moulvibazar - Sreemangal">Moulvibazar - Sreemangal</option>
-                    </optgroup>
-                    <optgroup label="Dhaka Division">
-                        <option value="Dhaka - Mirpur 10">Dhaka - Mirpur 10</option>
-                        <option value="Dhaka - Uttara">Dhaka - Uttara</option>
-                        <option value="Dhaka - Savar">Dhaka - Savar</option>
-                        <option value="Dhaka - Dhanmondi">Dhaka - Dhanmondi</option>
-                    </optgroup>
-                    <optgroup label="Southern Divisions">
-                        <option value="Barisal - Central">Barisal - Central Terminal</option>
-                        <option value="Khulna - Sonadanga">Khulna - Sonadanga Terminal</option>
-                    </optgroup>
-                </select>
+            <div class="search-field" id="field-destination" onclick="openLocationPicker('destination')" style="cursor: pointer;" title="Click to browse Destinations across Bangladesh">
+                <label>To (Destination Hub) <span style="color: #ef4444;">*</span></label>
+                <div class="search-loc-trigger" id="destination-trigger">
+                    <div class="search-loc-left">
+                        <i class="material-icons search-loc-icon" style="color: #10b981;">place</i>
+                        <span class="search-loc-text" id="destination-display-title">Rangpur - Pirganj Bazar</span>
+                    </div>
+                    <i class="material-icons search-loc-chevron">expand_more</i>
+                </div>
+                <input type="hidden" id="destination-select" value="Rangpur - Pirganj Bazar">
+                <input type="hidden" id="destination-place-id" value="">
                 <span class="error-hint">Please select destination city (To)</span>
             </div>
 
@@ -2966,11 +3701,15 @@
         function autoFillDemo(from = 'Dhaka - Mirpur 10', to = 'Rangpur - Pirganj Bazar', travelers = 4) {
             const originSelect = document.getElementById('origin-select');
             const destSelect = document.getElementById('destination-select');
+            const originTitle = document.getElementById('origin-display-title');
+            const destTitle = document.getElementById('destination-display-title');
             const deptDateInput = document.getElementById('dept-date');
             const travelerInput = document.getElementById('traveler-count');
 
             if (originSelect) originSelect.value = from;
             if (destSelect) destSelect.value = to;
+            if (originTitle) originTitle.textContent = from;
+            if (destTitle) destTitle.textContent = to;
 
             const futureDate = new Date();
             futureDate.setDate(futureDate.getDate() + 7);
@@ -2992,11 +3731,15 @@
         function resetSearchFields() {
             const originSelect = document.getElementById('origin-select');
             const destSelect = document.getElementById('destination-select');
+            const originTitle = document.getElementById('origin-display-title');
+            const destTitle = document.getElementById('destination-display-title');
             const deptDateInput = document.getElementById('dept-date');
             const travelerInput = document.getElementById('traveler-count');
 
             if (originSelect) originSelect.value = '';
             if (destSelect) destSelect.value = '';
+            if (originTitle) originTitle.textContent = 'Select Origin Hub';
+            if (destTitle) destTitle.textContent = 'Select Destination';
             if (deptDateInput) deptDateInput.value = '';
             if (travelerInput) travelerInput.value = '4';
 
@@ -3152,6 +3895,729 @@
             alert(`Multimodal Transit Booking Confirmed!\n\nRoute: ${origin} ➔ ${dest}\nDeparture Date: ${date}\nPassengers: ${travelers}\nVehicles Booked: ${configuredSlots.length}\nTotal Transit Cost: ${total}\nPer Passenger Share: ${perPerson}\n\nYour automated tickets, driver contacts, and GPS tokens have been generated.`);
         }
 
+
+        // ==============================================================
+        // SEARCHABLE CASCADING LOCATION PICKER (BANGLADESH ENGINE)
+        // Dual-Mode Engine:
+        // 1. Origin (From): Country -> Division -> District -> Upazila (495 Upazilas)
+        // 2. Destination (To): Country -> Division -> District -> Tourist Destinations / Upazilas
+        // ==============================================================
+        let activeLocationPickerMode = 'origin'; // 'origin' or 'destination'
+        let locPickerActiveTab = 'division'; // 'country', 'division', 'district', 'upazila', 'destination_spot'
+        let locPickerActiveCountry = 'COUNTRY-BD';
+        let locPickerActiveDivision = 'BD-DIV-06'; // Default: Dhaka
+        let locPickerActiveDistrict = 'BD-DIV-06-DIST-08'; // Default: Dhaka
+        let locPickerActiveUpazila = null;
+        let locPickerActiveDestination = null;
+
+        const DIV_MAP_COLORS = {
+            'BD-DIV-06': { bg: '#3b82f6', pinX: 178, pinY: 206, name: 'Dhaka' },
+            'BD-DIV-01': { bg: '#10b981', pinX: 256, pinY: 260, name: 'Chattogram' },
+            'BD-DIV-02': { bg: '#f97316', pinX: 86, pinY: 165, name: 'Rajshahi' },
+            'BD-DIV-03': { bg: '#8b5cf6', pinX: 102, pinY: 275, name: 'Khulna' },
+            'BD-DIV-04': { bg: '#06b6d4', pinX: 182, pinY: 305, name: 'Barishal' },
+            'BD-DIV-05': { bg: '#ec4899', pinX: 254, pinY: 135, name: 'Sylhet' },
+            'BD-DIV-07': { bg: '#eab308', pinX: 98, pinY: 80, name: 'Rangpur' },
+            'BD-DIV-08': { bg: '#a855f7', pinX: 175, pinY: 125, name: 'Mymensingh' }
+        };
+
+        function getLocationsData() {
+            return window.TRAVELUP_LOCATIONS_BD || {
+                country: { id: 'COUNTRY-BD', name: 'Bangladesh', flag: '🇧🇩' },
+                divisions: [],
+                districts: [],
+                upazilas: [],
+                destinations: []
+            };
+        }
+
+        function getDestinationTypeIcon(type) {
+            const t = (type || '').toLowerCase();
+            if (t.includes('beach') || t.includes('coast')) return 'beach_access';
+            if (t.includes('hill') || t.includes('mountain') || t.includes('trekking')) return 'terrain';
+            if (t.includes('heritage') || t.includes('fort') || t.includes('palace') || t.includes('unesco') || t.includes('archaeolog')) return 'castle';
+            if (t.includes('island')) return 'sailing';
+            if (t.includes('lake') || t.includes('river') || t.includes('water') || t.includes('haor') || t.includes('wetland')) return 'water';
+            if (t.includes('waterfall')) return 'waves';
+            if (t.includes('park') || t.includes('forest') || t.includes('nature') || t.includes('safari') || t.includes('tea')) return 'forest';
+            if (t.includes('temple') || t.includes('mosque') || t.includes('religious')) return 'synagogue';
+            if (t.includes('museum') || t.includes('memorial') || t.includes('monument')) return 'museum';
+            return 'tour';
+        }
+
+        function openLocationPicker(mode = 'origin') {
+            activeLocationPickerMode = mode;
+            const data = getLocationsData();
+
+            const titleEl = document.getElementById('loc-modal-title');
+            const subEl = document.getElementById('loc-modal-subtitle');
+            const searchInput = document.getElementById('loc-header-search-input');
+            const mapSub = document.getElementById('loc-map-summary-sub');
+
+            if (titleEl) {
+                titleEl.textContent = (mode === 'origin')
+                    ? 'Select Origin Location (From)'
+                    : 'Select Destination Location (To)';
+            }
+            if (subEl) {
+                subEl.textContent = (mode === 'origin')
+                    ? 'Choose your starting location to plan your journey'
+                    : 'Choose your destination across Bangladesh';
+            }
+            if (searchInput) {
+                searchInput.placeholder = (mode === 'origin')
+                    ? "Search any Upazila, District, or Division (e.g. Savar, Cox's Bazar, Tetulia...)"
+                    : "Search any Tourist Spot, District, or Division (e.g. Inani Beach, Sajek, Jaflong...)";
+            }
+            if (mapSub) {
+                mapSub.textContent = (mode === 'origin')
+                    ? '8 Divisions • 64 Districts • 495 Upazilas'
+                    : '8 Divisions • 64 Districts • 375 Tourist Destinations';
+            }
+
+            if (mode === 'destination') {
+                const currentDestVal = (document.getElementById('destination-select')?.value || '').toLowerCase();
+                const dests = data.destinations || [];
+                let existing = dests.find(d => currentDestVal.includes(d.name_en.toLowerCase()));
+                if (!existing && data.upazilas) {
+                    const upzMatch = data.upazilas.find(u => currentDestVal.includes(u.name_en.toLowerCase()));
+                    if (upzMatch) {
+                        locPickerActiveDivision = upzMatch.division_id;
+                        locPickerActiveDistrict = upzMatch.district_id;
+                        locPickerActiveUpazila = upzMatch;
+                    }
+                }
+                if (existing) {
+                    locPickerActiveDivision = existing.division_id;
+                    locPickerActiveDistrict = existing.district_id;
+                    locPickerActiveDestination = existing;
+                }
+            } else {
+                const currentOriginVal = (document.getElementById('origin-select')?.value || '').toLowerCase();
+                if (data.upazilas && data.upazilas.length > 0) {
+                    const match = data.upazilas.find(u => currentOriginVal.includes(u.name_en.toLowerCase()))
+                               || data.upazilas.find(u => u.name_en.toLowerCase().includes('mirpur'))
+                               || data.upazilas[0];
+                    if (match) {
+                        locPickerActiveDivision = match.division_id;
+                        locPickerActiveDistrict = match.district_id;
+                        locPickerActiveUpazila = match;
+                    }
+                }
+            }
+
+            clearLocationSearch();
+            locPickerActiveTab = 'division';
+            renderLocationView();
+            syncSvgMapHighlight();
+
+            const modal = document.getElementById('location-picker-modal');
+            if (modal) modal.style.display = 'flex';
+
+            enableListWheelScroll();
+        }
+
+        function closeLocationPicker() {
+            const modal = document.getElementById('location-picker-modal');
+            if (modal) modal.style.display = 'none';
+            clearLocationSearch();
+        }
+
+        function onLocationModalOverlayClick(e) {
+            if (e.target && e.target.id === 'location-picker-modal') {
+                closeLocationPicker();
+            }
+        }
+
+        function switchLocTab(tabName) {
+            if (activeLocationPickerMode === 'destination' && tabName === 'upazila') {
+                tabName = 'destination_spot';
+            } else if (activeLocationPickerMode === 'origin' && tabName === 'destination_spot') {
+                tabName = 'upazila';
+            }
+            locPickerActiveTab = tabName;
+            renderLocationView();
+        }
+
+        function selectLocationCountry(countryId) {
+            locPickerActiveCountry = countryId;
+            locPickerActiveTab = 'division';
+            renderLocationView();
+        }
+
+        function selectLocationDivision(divisionId, advance = true) {
+            locPickerActiveDivision = divisionId;
+            const data = getLocationsData();
+
+            const distsInDiv = data.districts.filter(d => d.division_id === divisionId);
+            if (distsInDiv.length > 0) {
+                const exists = distsInDiv.find(d => d.district_id === locPickerActiveDistrict);
+                locPickerActiveDistrict = exists ? exists.district_id : distsInDiv[0].district_id;
+            }
+
+            if (activeLocationPickerMode === 'destination') {
+                const destsInDist = (data.destinations || []).filter(d => d.district_id === locPickerActiveDistrict);
+                if (destsInDist.length > 0) {
+                    locPickerActiveDestination = destsInDist[0];
+                }
+            }
+
+            syncSvgMapHighlight();
+
+            if (advance) {
+                locPickerActiveTab = 'district';
+            }
+            renderLocationView();
+        }
+
+        function selectDivisionFromMap(divisionId) {
+            selectLocationDivision(divisionId, true);
+        }
+
+        function selectLocationDistrict(districtId, advance = true) {
+            locPickerActiveDistrict = districtId;
+            const data = getLocationsData();
+
+            if (activeLocationPickerMode === 'destination') {
+                const destsInDist = (data.destinations || []).filter(d => d.district_id === districtId);
+                if (destsInDist.length > 0) {
+                    const exists = destsInDist.find(d => locPickerActiveDestination && d.destination_id === locPickerActiveDestination.destination_id);
+                    locPickerActiveDestination = exists || destsInDist[0];
+                } else {
+                    locPickerActiveDestination = null;
+                }
+
+                if (advance) {
+                    locPickerActiveTab = 'destination_spot';
+                }
+            } else {
+                const upzsInDist = data.upazilas.filter(u => u.district_id === districtId);
+                if (upzsInDist.length > 0) {
+                    const exists = upzsInDist.find(u => locPickerActiveUpazila && u.upazila_id === locPickerActiveUpazila.upazila_id);
+                    locPickerActiveUpazila = exists || upzsInDist[0];
+                }
+
+                if (advance) {
+                    locPickerActiveTab = 'upazila';
+                }
+            }
+            renderLocationView();
+        }
+
+        function selectLocationUpazila(upazilaId) {
+            const data = getLocationsData();
+            const u = data.upazilas.find(x => x.upazila_id === upazilaId);
+            if (!u) return;
+
+            locPickerActiveUpazila = u;
+            renderLocationView();
+        }
+
+        function selectLocationDestinationSpot(destinationId) {
+            const data = getLocationsData();
+            const d = (data.destinations || []).find(x => x.destination_id === destinationId);
+            if (!d) return;
+
+            locPickerActiveDestination = d;
+            renderLocationView();
+        }
+
+        function syncSvgMapHighlight() {
+            const paths = document.querySelectorAll('.map-division-path');
+            paths.forEach(p => {
+                const divId = p.getAttribute('data-id');
+                if (divId === locPickerActiveDivision) {
+                    p.classList.add('active');
+                } else {
+                    p.classList.remove('active');
+                }
+            });
+
+            const pinEl = document.getElementById('svg-map-pin');
+            const meta = DIV_MAP_COLORS[locPickerActiveDivision];
+            if (pinEl && meta) {
+                pinEl.setAttribute('transform', `translate(${meta.pinX}, ${meta.pinY})`);
+            }
+        }
+
+        function enableListWheelScroll() {
+            const list = document.getElementById('loc-items-container');
+            if (!list || list._wheelBound) return;
+            list._wheelBound = true;
+            list.addEventListener('wheel', function(e) {
+                if (list.scrollHeight > list.clientHeight) {
+                    list.scrollTop += e.deltaY;
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        }
+
+        function renderLocationView() {
+            const data = getLocationsData();
+            const isDest = (activeLocationPickerMode === 'destination');
+
+            const tabCountry = document.getElementById('tab-btn-country');
+            const tabDiv = document.getElementById('tab-btn-division');
+            const tabDist = document.getElementById('tab-btn-district');
+            const tabUpz = document.getElementById('tab-btn-upazila');
+            const tabLabelFinal = document.getElementById('tab-label-final');
+            const tabIconFinal = document.getElementById('tab-icon-final');
+            const tabBadgeFinal = document.getElementById('tab-badge-upazila');
+
+            if (tabLabelFinal) tabLabelFinal.textContent = isDest ? 'Tourist Spot' : 'Upazila';
+            if (tabIconFinal) tabIconFinal.textContent = isDest ? 'tour' : 'account_balance';
+
+            [tabCountry, tabDiv, tabDist, tabUpz].forEach(btn => btn && btn.classList.remove('active'));
+
+            if (locPickerActiveTab === 'country') tabCountry?.classList.add('active');
+            else if (locPickerActiveTab === 'division') tabDiv?.classList.add('active');
+            else if (locPickerActiveTab === 'district') tabDist?.classList.add('active');
+            else if (locPickerActiveTab === 'upazila' || locPickerActiveTab === 'destination_spot') tabUpz?.classList.add('active');
+
+            const distsInDiv = data.districts.filter(d => d.division_id === locPickerActiveDivision);
+            const upzsInDist = data.upazilas.filter(u => u.district_id === locPickerActiveDistrict);
+            const destsInDist = (data.destinations || []).filter(d => d.district_id === locPickerActiveDistrict);
+
+            const badgeDist = document.getElementById('tab-badge-district');
+            if (badgeDist) badgeDist.textContent = distsInDiv.length;
+            if (tabBadgeFinal) {
+                tabBadgeFinal.textContent = isDest ? destsInDist.length : upzsInDist.length;
+            }
+
+            const activeDiv = data.divisions.find(d => d.division_id === locPickerActiveDivision);
+            const activeDist = data.districts.find(d => d.district_id === locPickerActiveDistrict);
+
+            const crumbDiv = document.getElementById('crumb-div-name');
+            const crumbDist = document.getElementById('crumb-dist-name');
+            const crumbSpotWrap = document.getElementById('crumb-spot-wrap');
+            const crumbSpot = document.getElementById('crumb-spot-name');
+
+            if (crumbDiv) crumbDiv.textContent = activeDiv ? activeDiv.name_en : 'Dhaka';
+            if (crumbDist) crumbDist.textContent = activeDist ? activeDist.name_en : 'Dhaka';
+
+            if (crumbSpotWrap) {
+                if (isDest && locPickerActiveDestination) {
+                    crumbSpotWrap.style.display = 'flex';
+                    if (crumbSpot) crumbSpot.textContent = locPickerActiveDestination.name_en;
+                } else {
+                    crumbSpotWrap.style.display = 'none';
+                }
+            }
+
+            const titleEl = document.getElementById('loc-subcol2-title-text');
+            const container = document.getElementById('loc-items-container');
+            if (!container) return;
+
+            container.scrollTop = 0;
+
+            if (locPickerActiveTab === 'country' || locPickerActiveTab === 'division') {
+                if (titleEl) titleEl.textContent = 'Regions in Bangladesh';
+                renderDivisionsList(container);
+            } else if (locPickerActiveTab === 'district') {
+                const divName = activeDiv ? activeDiv.name_en : 'Division';
+                if (titleEl) {
+                    titleEl.innerHTML = `Districts in ${divName} <span style="font-size: 0.725rem; font-weight: normal; color: #006ce4; cursor: pointer; margin-left: 8px;" onclick="switchLocTab('division')">← All Regions</span>`;
+                }
+                renderDistrictsList(container, distsInDiv);
+            } else if (isDest && (locPickerActiveTab === 'destination_spot' || locPickerActiveTab === 'upazila')) {
+                const distName = activeDist ? activeDist.name_en : 'District';
+                if (titleEl) {
+                    titleEl.innerHTML = `Tourist Destinations in ${distName} <span style="font-size: 0.725rem; font-weight: normal; color: #006ce4; cursor: pointer; margin-left: 8px;" onclick="switchLocTab('district')">← All Districts</span>`;
+                }
+                renderDestinationsList(container, destsInDist);
+            } else if (!isDest && locPickerActiveTab === 'upazila') {
+                const distName = activeDist ? activeDist.name_en : 'District';
+                if (titleEl) {
+                    titleEl.innerHTML = `Upazilas in ${distName} <span style="font-size: 0.725rem; font-weight: normal; color: #006ce4; cursor: pointer; margin-left: 8px;" onclick="switchLocTab('district')">← All Districts</span>`;
+                }
+                renderUpazilasList(container, upzsInDist);
+            }
+
+            enableListWheelScroll();
+            updateFooterSelection();
+        }
+
+        function renderDivisionsList(container) {
+            const data = getLocationsData();
+            const distCounts = {};
+            data.districts.forEach(d => {
+                distCounts[d.division_id] = (distCounts[d.division_id] || 0) + 1;
+            });
+
+            const order = ['BD-DIV-06', 'BD-DIV-01', 'BD-DIV-02', 'BD-DIV-03', 'BD-DIV-04', 'BD-DIV-05', 'BD-DIV-07', 'BD-DIV-08'];
+            const sorted = [...data.divisions].sort((a, b) => order.indexOf(a.division_id) - order.indexOf(b.division_id));
+
+            container.innerHTML = sorted.map(d => {
+                const isActive = (d.division_id === locPickerActiveDivision);
+                const count = distCounts[d.division_id] || 0;
+                const meta = DIV_MAP_COLORS[d.division_id] || { bg: '#006ce4' };
+
+                return `
+                    <div class="loc-card-row ${isActive ? 'active' : ''}" onclick="selectLocationDivision('${d.division_id}')">
+                        <div class="loc-row-left">
+                            <div class="loc-div-icon-badge" style="background: ${meta.bg};">
+                                <i class="material-icons" style="font-size: 15px;">place</i>
+                            </div>
+                            <div>
+                                <div class="loc-row-name">${d.name_en}</div>
+                                ${d.name_bn ? `<div class="loc-row-sub">${d.name_bn}</div>` : ''}
+                            </div>
+                        </div>
+                        <div class="loc-row-right">
+                            <span class="loc-count-pill">${count}</span>
+                            <i class="material-icons loc-row-chevron">chevron_right</i>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderDistrictsList(container, districts) {
+            const data = getLocationsData();
+            const isDest = (activeLocationPickerMode === 'destination');
+            
+            const countMap = {};
+            if (isDest) {
+                (data.destinations || []).forEach(d => {
+                    countMap[d.district_id] = (countMap[d.district_id] || 0) + 1;
+                });
+            } else {
+                data.upazilas.forEach(u => {
+                    countMap[u.district_id] = (countMap[u.district_id] || 0) + 1;
+                });
+            }
+
+            if (districts.length === 0) {
+                container.innerHTML = '<div style="padding: 1.5rem; text-align: center; color: #94a3b8; font-size: 0.8rem;">No districts found.</div>';
+                return;
+            }
+
+            container.innerHTML = districts.map(d => {
+                const isActive = (d.district_id === locPickerActiveDistrict);
+                const count = countMap[d.district_id] || 0;
+                const countSuffix = isDest ? 'Spots' : 'Upz.';
+
+                return `
+                    <div class="loc-card-row ${isActive ? 'active' : ''}" onclick="selectLocationDistrict('${d.district_id}')">
+                        <div class="loc-row-left">
+                            <i class="material-icons" style="color: ${isActive ? '#006ce4' : '#64748b'}; font-size: 20px;">location_city</i>
+                            <div>
+                                <div class="loc-row-name">${d.name_en}</div>
+                                <div class="loc-row-sub">${d.name_bn || ''} District</div>
+                            </div>
+                        </div>
+                        <div class="loc-row-right">
+                            <span class="loc-count-pill">${count} ${countSuffix}</span>
+                            <i class="material-icons loc-row-chevron">chevron_right</i>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderDestinationsList(container, destinations) {
+            if (!destinations || destinations.length === 0) {
+                container.innerHTML = `
+                    <div style="padding: 2rem 1.5rem; text-align: center;">
+                        <i class="material-icons" style="font-size: 40px; color: #cbd5e1; margin-bottom: 0.5rem;">travel_explore</i>
+                        <div style="font-size: 0.85rem; font-weight: 700; color: #475569;">No tourist spots curated for this district yet</div>
+                        <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 4px;">
+                            Explore popular neighboring districts or choose from our Top 50 tourist destinations!
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = destinations.map(dest => {
+                const isSelected = (locPickerActiveDestination && locPickerActiveDestination.destination_id === dest.destination_id);
+                const iconName = getDestinationTypeIcon(dest.destination_type);
+                const typeClass = (dest.destination_type || '').toLowerCase().replace(/[^a-z]/g, '');
+
+                return `
+                    <div class="loc-card-row ${isSelected ? 'selected' : ''}" onclick="selectLocationDestinationSpot('${dest.destination_id}')">
+                        <div class="loc-row-left" style="gap: 0.75rem;">
+                            <i class="material-icons" style="color: ${isSelected ? '#006ce4' : '#94a3b8'}; font-size: 20px;">
+                                ${isSelected ? 'check_circle' : 'radio_button_unchecked'}
+                            </i>
+                            <div style="overflow: hidden;">
+                                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                                    <span class="loc-row-name" style="font-size: 0.85rem;">${dest.name_en}</span>
+                                    ${dest.top_50_flag ? `<span class="loc-top50-badge">🔥 Top 50${dest.popularity_rank ? ` #${dest.popularity_rank}` : ''}</span>` : ''}
+                                </div>
+                                <div class="loc-row-sub" style="display: flex; align-items: center; gap: 6px; margin-top: 3px; flex-wrap: wrap;">
+                                    ${dest.name_bn ? `<span>${dest.name_bn}</span> • ` : ''}
+                                    <span class="loc-type-tag ${typeClass}">
+                                        <i class="material-icons" style="font-size: 11px; vertical-align: -1px; margin-right: 2px;">${iconName}</i>
+                                        ${dest.destination_type}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loc-row-right">
+                            ${isSelected 
+                                ? '<span style="font-size: 0.725rem; font-weight: 700; color: #006ce4; background: #eff6ff; padding: 4px 10px; border-radius: 9999px;">Selected ✓</span>' 
+                                : '<span style="font-size: 0.725rem; color: #64748b; background: #f8fafc; padding: 4px 10px; border-radius: 9999px; border: 1px solid #e2e8f0;">Choose</span>'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderUpazilasList(container, upazilas) {
+            if (upazilas.length === 0) {
+                container.innerHTML = '<div style="padding: 1.5rem; text-align: center; color: #94a3b8; font-size: 0.8rem;">No upazilas found.</div>';
+                return;
+            }
+
+            container.innerHTML = upazilas.map(u => {
+                const isSelected = (locPickerActiveUpazila && locPickerActiveUpazila.upazila_id === u.upazila_id);
+
+                return `
+                    <div class="loc-card-row ${isSelected ? 'selected' : ''}" onclick="selectLocationUpazila('${u.upazila_id}')">
+                        <div class="loc-row-left">
+                            <i class="material-icons" style="color: ${isSelected ? '#006ce4' : '#94a3b8'}; font-size: 19px;">
+                                ${isSelected ? 'check_circle' : 'radio_button_unchecked'}
+                            </i>
+                            <div>
+                                <div class="loc-row-name">${u.name_en}</div>
+                                <div class="loc-row-sub">${u.name_bn ? u.name_bn + ' • ' : ''}Thana / Upazila</div>
+                            </div>
+                        </div>
+                        <div class="loc-row-right">
+                            ${isSelected 
+                                ? '<span style="font-size: 0.725rem; font-weight: 700; color: #006ce4;">Selected</span>' 
+                                : '<span style="font-size: 0.725rem; color: #94a3b8;">Choose</span>'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateFooterSelection() {
+            const data = getLocationsData();
+            const div = data.divisions.find(d => d.division_id === locPickerActiveDivision);
+            const dist = data.districts.find(d => d.district_id === locPickerActiveDistrict);
+            const pathEl = document.getElementById('loc-footer-path');
+            if (!pathEl) return;
+
+            if (activeLocationPickerMode === 'destination') {
+                const dest = locPickerActiveDestination;
+                if (dest) {
+                    pathEl.innerHTML = `<strong style="color: #006ce4;">${dest.name_en}</strong>, ${dest.district_name_en} District, ${dest.division_name_en} Division`;
+                } else if (dist) {
+                    pathEl.innerHTML = `<strong style="color: #006ce4;">${dist.name_en} District</strong>, ${div ? div.name_en + ' Division' : ''}`;
+                } else if (div) {
+                    pathEl.innerHTML = `<strong style="color: #006ce4;">${div.name_en} Division</strong>, Bangladesh`;
+                } else {
+                    pathEl.textContent = 'Bangladesh';
+                }
+            } else {
+                const upz = locPickerActiveUpazila;
+                if (upz) {
+                    pathEl.innerHTML = `<strong style="color: #006ce4;">${upz.name_en} Upazila</strong>, ${dist ? dist.name_en + ' District' : ''}, ${div ? div.name_en + ' Division' : ''}`;
+                } else if (dist) {
+                    pathEl.innerHTML = `<strong style="color: #006ce4;">${dist.name_en} District</strong>, ${div ? div.name_en + ' Division' : ''}`;
+                } else if (div) {
+                    pathEl.innerHTML = `<strong style="color: #006ce4;">${div.name_en} Division</strong>, Bangladesh`;
+                } else {
+                    pathEl.textContent = 'Bangladesh';
+                }
+            }
+        }
+
+        function onLocationHeaderSearch(val) {
+            const q = (val || '').toLowerCase().trim();
+            const resultsBox = document.getElementById('loc-header-search-results');
+            const clearBtn = document.getElementById('loc-header-search-clear');
+
+            if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
+
+            if (!q || q.length < 2) {
+                if (resultsBox) resultsBox.style.display = 'none';
+                return;
+            }
+
+            const data = getLocationsData();
+            if (!resultsBox) return;
+
+            if (activeLocationPickerMode === 'destination') {
+                const dests = data.destinations || [];
+                const matches = dests.filter(d => 
+                    d.name_en.toLowerCase().includes(q) ||
+                    (d.name_bn && d.name_bn.includes(q)) ||
+                    (d.search_keywords && d.search_keywords.toLowerCase().includes(q)) ||
+                    d.district_name_en.toLowerCase().includes(q) ||
+                    (d.district_name_bn && d.district_name_bn.includes(q)) ||
+                    d.division_name_en.toLowerCase().includes(q)
+                ).slice(0, 35);
+
+                if (matches.length === 0) {
+                    resultsBox.innerHTML = `
+                        <div style="padding: 1.25rem; color: #64748b; font-size: 0.825rem; text-align: center;">
+                            No tourist destination found matching "<strong>${val}</strong>". Try another keyword like Inani Beach, Sajek, Jaflong, or Lalbagh Fort.
+                        </div>
+                    `;
+                } else {
+                    resultsBox.innerHTML = matches.map(dest => {
+                        const iconName = getDestinationTypeIcon(dest.destination_type);
+                        return `
+                            <div class="loc-search-row" onclick="pickDestinationFromSearch('${dest.destination_id}')">
+                                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                    <i class="material-icons" style="color: #006ce4; font-size: 20px;">${iconName}</i>
+                                    <div>
+                                        <div style="font-size: 0.85rem; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 6px;">
+                                            ${dest.name_en} 
+                                            ${dest.name_bn ? `<span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">(${dest.name_bn})</span>` : ''}
+                                            ${dest.top_50_flag ? `<span class="loc-top50-badge">🔥 Top 50</span>` : ''}
+                                        </div>
+                                        <div style="font-size: 0.725rem; color: #64748b; margin-top: 2px;">
+                                            <span class="loc-type-tag">${dest.destination_type}</span> • ${dest.district_name_en} District • ${dest.division_name_en} Division
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="font-size: 0.725rem; font-weight: 700; color: #006ce4; background: #eff6ff; padding: 4px 10px; border-radius: 9999px;">
+                                    Select
+                                </span>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            } else {
+                const matches = data.upazilas.filter(u => 
+                    u.name_en.toLowerCase().includes(q) || 
+                    (u.name_bn && u.name_bn.includes(q)) ||
+                    u.district_name_en.toLowerCase().includes(q) ||
+                    u.division_name_en.toLowerCase().includes(q)
+                ).slice(0, 35);
+
+                if (matches.length === 0) {
+                    resultsBox.innerHTML = `
+                        <div style="padding: 1.25rem; color: #64748b; font-size: 0.825rem; text-align: center;">
+                            No location found matching "<strong>${val}</strong>". Try another keyword like Savar, Cox's Bazar, or Tetulia.
+                        </div>
+                    `;
+                } else {
+                    resultsBox.innerHTML = matches.map(u => `
+                        <div class="loc-search-row" onclick="pickLocationFromSearch('${u.upazila_id}')">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="material-icons" style="color: #006ce4; font-size: 20px;">place</i>
+                                <div>
+                                    <div style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">
+                                        ${u.name_en} <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">(${u.name_bn || ''})</span>
+                                    </div>
+                                    <div style="font-size: 0.725rem; color: #64748b; margin-top: 2px;">
+                                        ${u.district_name_en} District • ${u.division_name_en} Division • Bangladesh
+                                    </div>
+                                </div>
+                            </div>
+                            <span style="font-size: 0.725rem; font-weight: 700; color: #006ce4; background: #eff6ff; padding: 4px 10px; border-radius: 9999px;">
+                                Select
+                            </span>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            resultsBox.style.display = 'block';
+        }
+
+        function clearLocationSearch() {
+            const input = document.getElementById('loc-header-search-input');
+            const resultsBox = document.getElementById('loc-header-search-results');
+            const clearBtn = document.getElementById('loc-header-search-clear');
+            if (input) input.value = '';
+            if (resultsBox) resultsBox.style.display = 'none';
+            if (clearBtn) clearBtn.style.display = 'none';
+        }
+
+        function pickDestinationFromSearch(destinationId) {
+            const data = getLocationsData();
+            const dest = (data.destinations || []).find(d => d.destination_id === destinationId);
+            if (!dest) return;
+
+            locPickerActiveDivision = dest.division_id;
+            locPickerActiveDistrict = dest.district_id;
+            locPickerActiveDestination = dest;
+            locPickerActiveTab = 'destination_spot';
+
+            clearLocationSearch();
+            syncSvgMapHighlight();
+            renderLocationView();
+        }
+
+        function pickLocationFromSearch(upazilaId) {
+            const data = getLocationsData();
+            const u = data.upazilas.find(x => x.upazila_id === upazilaId);
+            if (!u) return;
+
+            locPickerActiveDivision = u.division_id;
+            locPickerActiveDistrict = u.district_id;
+            locPickerActiveUpazila = u;
+            locPickerActiveTab = 'upazila';
+
+            clearLocationSearch();
+            syncSvgMapHighlight();
+            renderLocationView();
+        }
+
+        function confirmLocationPickerSelection() {
+            const data = getLocationsData();
+            const mode = activeLocationPickerMode;
+
+            if (mode === 'destination') {
+                let dest = locPickerActiveDestination;
+                if (!dest) {
+                    const destsInDist = (data.destinations || []).filter(d => d.district_id === locPickerActiveDistrict);
+                    if (destsInDist.length > 0) dest = destsInDist[0];
+                }
+
+                let fullTitle = '';
+                if (dest) {
+                    fullTitle = `${dest.name_en}, ${dest.district_name_en}`;
+                } else {
+                    const activeDist = data.districts.find(d => d.district_id === locPickerActiveDistrict);
+                    fullTitle = activeDist ? `${activeDist.name_en} District` : 'Destination';
+                }
+
+                const tEl = document.getElementById('destination-display-title');
+                const valInput = document.getElementById('destination-select');
+                const placeIdInput = document.getElementById('destination-place-id');
+
+                if (tEl) tEl.textContent = fullTitle;
+                if (valInput) valInput.value = fullTitle;
+                if (placeIdInput && dest) placeIdInput.value = dest.destination_id;
+
+                const fDest = document.getElementById('field-destination');
+                if (fDest) fDest.classList.remove('has-error');
+
+                onSearchFieldChanged();
+            } else {
+                if (!locPickerActiveUpazila) {
+                    const firstUpz = data.upazilas.filter(u => u.district_id === locPickerActiveDistrict)[0];
+                    if (firstUpz) locPickerActiveUpazila = firstUpz;
+                }
+
+                const upz = locPickerActiveUpazila;
+                const fullTitle = upz ? `${upz.name_en}, ${upz.district_name_en}` : 'Origin';
+
+                const tEl = document.getElementById('origin-display-title');
+                const valInput = document.getElementById('origin-select');
+                const upzIdInput = document.getElementById('origin-upazila-id');
+
+                if (tEl) tEl.textContent = fullTitle;
+                if (valInput) valInput.value = fullTitle;
+                if (upzIdInput && upz) upzIdInput.value = upz.upazila_id;
+
+                const fOrigin = document.getElementById('field-origin');
+                if (fOrigin) fOrigin.classList.remove('has-error');
+
+                onSearchFieldChanged();
+            }
+
+            closeLocationPicker();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date().toISOString().split('T')[0];
             const deptInput = document.getElementById('dept-date');
@@ -3161,6 +4627,233 @@
             recalculateTotals();
         });
     </script>
+
+    <!-- Searchable Cascading Location Picker Modal (Pixel-Perfect Mockup Match) -->
+    <div class="loc-modal-overlay" id="location-picker-modal" style="display: none;" onclick="onLocationModalOverlayClick(event)">
+        <div class="loc-modal-box" onclick="event.stopPropagation()">
+            <!-- 1. Modal Header -->
+            <div class="loc-modal-header">
+                <div class="loc-modal-head-left">
+                    <div class="loc-head-pin-badge">
+                        <i class="material-icons">location_on</i>
+                    </div>
+                    <div class="loc-head-title-wrap">
+                        <div class="loc-head-title" id="loc-modal-title">Select Origin Location (From)</div>
+                        <div class="loc-head-sub" id="loc-modal-subtitle">Choose your starting location to plan your journey</div>
+                    </div>
+                </div>
+
+                <!-- Center Pill Search Bar -->
+                <div class="loc-head-search-wrap">
+                    <div class="loc-head-search-pill">
+                        <i class="material-icons loc-search-icon">search</i>
+                        <input type="text" id="loc-header-search-input" class="loc-head-search-input" 
+                               placeholder="Search any Upazila, District, or Division (e.g. Savar, Cox's Bazar, Tetulia...)"
+                               autocomplete="off" oninput="onLocationHeaderSearch(this.value)">
+                        <button type="button" id="loc-header-search-clear" class="loc-head-search-clear" 
+                                onclick="clearLocationSearch()" style="display: none;" title="Clear search">
+                            <i class="material-icons" style="font-size: 18px;">close</i>
+                        </button>
+                    </div>
+                    <!-- Live Search Results Dropdown -->
+                    <div id="loc-header-search-results" class="loc-head-search-dropdown" style="display: none;"></div>
+                </div>
+
+                <!-- Close Button -->
+                <button type="button" class="loc-head-close-btn" onclick="closeLocationPicker()" title="Close dialog">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+
+            <!-- 2. Modal Body: 2 Columns Layout -->
+            <div class="loc-modal-body">
+                <!-- Left Column: Interactive Bangladesh Map -->
+                <div class="loc-map-panel">
+                    <!-- Top-Right Compass -->
+                    <div class="loc-map-compass">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#334155">
+                            <polygon points="12,2 4,22 12,17 20,22"/>
+                        </svg>
+                        <span>N</span>
+                    </div>
+
+                    <!-- Interactive Bangladesh SVG Map -->
+                    <svg viewBox="0 0 380 470" class="bd-map-svg" id="bd-divisions-svg">
+                        <defs>
+                            <filter id="bdMapShadow" x="-10%" y="-10%" width="120%" height="120%">
+                                <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08" />
+                            </filter>
+                        </defs>
+                        <g id="svg-divisions-paths" filter="url(#bdMapShadow)">
+                            <!-- Rangpur (North-West) -->
+                            <path id="map-path-BD-DIV-07" data-id="BD-DIV-07" data-name="Rangpur"
+                                  d="M 78 28 C 92 20 102 32 108 45 C 118 64 130 82 140 98 C 146 112 142 124 135 138 C 122 144 108 146 92 144 C 78 136 68 122 62 105 C 55 86 54 65 62 48 Z"
+                                  fill="#C4B5FD" stroke="#ffffff" stroke-width="1.5" class="map-division-path"
+                                  onclick="selectDivisionFromMap('BD-DIV-07')" />
+                            <!-- Rajshahi (Mid-West) -->
+                            <path id="map-path-BD-DIV-02" data-id="BD-DIV-02" data-name="Rajshahi"
+                                  d="M 62 105 C 68 122 78 136 92 144 C 108 146 122 144 135 138 C 138 152 140 168 135 182 C 128 200 120 216 108 228 C 94 238 78 242 64 234 C 48 220 40 200 44 175 C 48 150 52 125 62 105 Z"
+                                  fill="#BBF7D0" stroke="#ffffff" stroke-width="1.5" class="map-division-path"
+                                  onclick="selectDivisionFromMap('BD-DIV-02')" />
+                            <!-- Mymensingh (North-Central) -->
+                            <path id="map-path-BD-DIV-08" data-id="BD-DIV-08" data-name="Mymensingh"
+                                  d="M 135 138 C 142 124 146 112 140 98 C 152 96 174 94 192 98 C 208 104 218 116 215 132 C 210 148 196 160 180 165 C 164 168 148 162 138 152 Z"
+                                  fill="#FEF08A" stroke="#ffffff" stroke-width="1.5" class="map-division-path"
+                                  onclick="selectDivisionFromMap('BD-DIV-08')" />
+                            <!-- Sylhet (North-East) -->
+                            <path id="map-path-BD-DIV-05" data-id="BD-DIV-05" data-name="Sylhet"
+                                  d="M 215 132 C 218 116 208 104 192 98 C 212 94 238 90 262 100 C 282 110 295 125 292 145 C 286 168 268 184 250 194 C 234 196 220 184 216 166 C 214 152 212 142 215 132 Z"
+                                  fill="#FBCFE8" stroke="#ffffff" stroke-width="1.5" class="map-division-path"
+                                  onclick="selectDivisionFromMap('BD-DIV-05')" />
+                            <!-- Dhaka (Central) -->
+                            <path id="map-path-BD-DIV-06" data-id="BD-DIV-06" data-name="Dhaka"
+                                  d="M 135 182 C 140 168 138 152 138 152 C 148 162 164 168 180 165 C 196 160 210 148 215 132 C 218 152 222 168 236 182 C 230 202 222 222 212 238 C 198 250 182 254 168 248 C 154 236 142 216 135 182 Z"
+                                  fill="#93C5FD" stroke="#ffffff" stroke-width="1.5" class="map-division-path"
+                                  onclick="selectDivisionFromMap('BD-DIV-06')" />
+                            <!-- Khulna (South-West) -->
+                            <path id="map-path-BD-DIV-03" data-id="BD-DIV-03" data-name="Khulna"
+                                  d="M 64 234 C 78 242 94 238 108 228 C 120 216 128 200 135 182 C 142 216 154 236 168 248 C 160 272 155 300 152 332 C 145 360 138 380 125 388 C 104 392 88 376 80 350 C 70 315 66 275 64 234 Z"
+                                  fill="#99F6E4" stroke="#ffffff" stroke-width="1.5" class="map-division-path"
+                                  onclick="selectDivisionFromMap('BD-DIV-03')" />
+                            <!-- Barishal (South-Central Delta) -->
+                            <path id="map-path-BD-DIV-04" data-id="BD-DIV-04" data-name="Barishal"
+                                  d="M 168 248 C 182 254 198 250 212 238 C 218 260 215 288 208 318 C 200 345 190 370 180 382 C 168 386 158 370 155 345 C 152 332 155 300 160 272 C 164 258 168 252 168 248 Z"
+                                  fill="#FED7AA" stroke="#ffffff" stroke-width="1.5" class="map-division-path"
+                                  onclick="selectDivisionFromMap('BD-DIV-04')" />
+                            <!-- Chattogram (South-East extending down) -->
+                            <path id="map-path-BD-DIV-01" data-id="BD-DIV-01" data-name="Chattogram"
+                                  d="M 236 182 C 250 194 268 184 250 194 C 242 216 240 244 245 274 C 252 308 266 345 282 385 C 295 415 305 442 300 452 C 290 455 280 440 272 415 C 260 375 242 330 228 285 C 220 260 218 240 212 238 C 222 222 230 202 236 182 Z"
+                                  fill="#BFDBFE" stroke="#ffffff" stroke-width="1.5" class="map-division-path"
+                                  onclick="selectDivisionFromMap('BD-DIV-01')" />
+                        </g>
+
+                        <!-- Region Labels -->
+                        <g style="pointer-events: none;">
+                            <text x="98" y="88" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">Rangpur</text>
+                            <text x="86" y="175" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">Rajshahi</text>
+                            <text x="175" y="132" font-size="10.5" font-weight="700" fill="#1e293b" text-anchor="middle">Mymensingh</text>
+                            <text x="254" y="145" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">Sylhet</text>
+                            <text x="178" y="235" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">Dhaka</text>
+                            <text x="102" y="285" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">Khulna</text>
+                            <text x="182" y="312" font-size="10.5" font-weight="700" fill="#1e293b" text-anchor="middle">Barishal</text>
+                            <text x="256" y="275" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">Chattogram</text>
+                        </g>
+
+                        <!-- Active Pin Marker (moves with selected division) -->
+                        <g id="svg-map-pin" transform="translate(178, 206)" style="pointer-events: none; transition: transform 0.25s ease;">
+                            <circle cx="0" cy="0" r="10" fill="#006ce4" />
+                            <circle cx="0" cy="0" r="4" fill="#ffffff" />
+                        </g>
+
+                        <!-- Cox's Bazar Point Marker -->
+                        <g transform="translate(285, 420)" style="pointer-events: none;">
+                            <circle cx="0" cy="0" r="3.5" fill="#006ce4" />
+                            <text x="7" y="3.5" font-size="10" font-weight="700" fill="#0f172a">Cox's Bazar</text>
+                        </g>
+                    </svg>
+
+                    <!-- Bottom Summary Badge -->
+                    <div class="loc-map-bottom-badge">
+                        <div class="loc-map-card-icon">
+                            <i class="material-icons">account_balance</i>
+                        </div>
+                        <div>
+                            <div class="loc-map-card-title">Bangladesh</div>
+                            <div class="loc-map-card-sub" id="loc-map-summary-sub">8 Divisions • 64 Districts • 495 Upazilas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Cascading Selection Panel -->
+                <div class="loc-cascade-panel">
+                    <!-- Top Breadcrumb Tabs -->
+                    <div class="loc-nav-tabs">
+                        <button type="button" class="loc-tab-btn active" id="tab-btn-country" onclick="switchLocTab('country')">
+                            <i class="material-icons">public</i>
+                            <span>Country</span>
+                            <span class="loc-tab-badge">1</span>
+                        </button>
+                        <button type="button" class="loc-tab-btn" id="tab-btn-division" onclick="switchLocTab('division')">
+                            <i class="material-icons">map</i>
+                            <span>Division</span>
+                            <span class="loc-tab-badge" id="tab-badge-division">8</span>
+                        </button>
+                        <button type="button" class="loc-tab-btn" id="tab-btn-district" onclick="switchLocTab('district')">
+                            <i class="material-icons">location_on</i>
+                            <span>District</span>
+                            <span class="loc-tab-badge" id="tab-badge-district">13</span>
+                        </button>
+                        <button type="button" class="loc-tab-btn" id="tab-btn-upazila" onclick="switchLocTab(activeLocationPickerMode === 'destination' ? 'destination_spot' : 'upazila')">
+                            <i class="material-icons" id="tab-icon-final">tour</i>
+                            <span id="tab-label-final">Upazila</span>
+                            <span class="loc-tab-badge" id="tab-badge-upazila">5</span>
+                        </button>
+                    </div>
+
+                    <!-- Two Sub-Columns: Country (Left) + Dynamic Regions/Districts/Upazilas (Right) -->
+                    <div class="loc-drilldown-row">
+                        <!-- Sub-col 1: Country -->
+                        <div class="loc-subcol">
+                            <div class="loc-subcol-title">
+                                <i class="material-icons">public</i>
+                                <span>Country</span>
+                            </div>
+                            <div class="loc-country-card" onclick="selectLocationCountry('COUNTRY-BD')">
+                                <div style="display: flex; align-items: center; overflow: hidden;">
+                                    <div class="loc-bd-flag-badge">
+                                        <div class="loc-bd-flag-dot"></div>
+                                    </div>
+                                    <span class="loc-country-name">Bangladesh</span>
+                                </div>
+                                <i class="material-icons loc-country-check">check</i>
+                            </div>
+
+                            <!-- Context hierarchy box below country -->
+                            <div class="loc-crumbs-box" id="loc-crumbs-box">
+                                <div class="loc-crumb-item" onclick="switchLocTab('division')">
+                                    <i class="material-icons" style="font-size: 13px; color: #006ce4;">map</i>
+                                    <span>Div: <strong id="crumb-div-name">Dhaka</strong></span>
+                                </div>
+                                <div class="loc-crumb-item" onclick="switchLocTab('district')">
+                                    <i class="material-icons" style="font-size: 13px; color: #006ce4;">location_on</i>
+                                    <span>Dist: <strong id="crumb-dist-name">Dhaka</strong></span>
+                                </div>
+                                <div class="loc-crumb-item" id="crumb-spot-wrap" style="display: none;" onclick="switchLocTab('destination_spot')">
+                                    <i class="material-icons" style="font-size: 13px; color: #006ce4;">tour</i>
+                                    <span>Spot: <strong id="crumb-spot-name">Mirpur 10</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-col 2: Dynamic List (Regions / Districts / Upazilas) -->
+                        <div class="loc-subcol">
+                            <div class="loc-subcol-title" id="loc-subcol2-title">
+                                <i class="material-icons">place</i>
+                                <span id="loc-subcol2-title-text">Regions in Bangladesh</span>
+                            </div>
+                            <div class="loc-items-scroll" id="loc-items-container">
+                                <!-- Dynamic items loaded via JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Modal Footer -->
+            <div class="loc-modal-footer">
+                <div class="loc-footer-selection" id="loc-footer-selection">
+                    Selected: <strong style="margin-left: 4px;" id="loc-footer-path">Mirpur 10, Dhaka District, Dhaka Division</strong>
+                </div>
+                <div class="loc-footer-actions">
+                    <button type="button" class="loc-btn-cancel" onclick="closeLocationPicker()">Cancel</button>
+                    <button type="button" class="loc-btn-apply" id="loc-apply-btn" onclick="confirmLocationPickerSelection()">
+                        <i class="material-icons" style="font-size: 18px;">check</i>
+                        <span>Apply Location</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Site Footer -->
     <footer style="background: #0f172a; color: #94a3b8; padding: 2.5rem 0; margin-top: 4rem; border-top: 1px solid #1e293b;">
