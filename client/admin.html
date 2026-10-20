@@ -1318,6 +1318,260 @@
             background: #fef2f2;
         }
 
+                /* Enhanced Category Mockup Styles */
+        .tp-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.15rem;
+        }
+
+        .tp-header-logo-badge {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #e8f5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 135, 90, 0.15);
+        }
+
+        .tp-header-logo-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .tp-header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .tp-header-airplane-art {
+            height: 56px;
+            object-fit: contain;
+            display: block;
+        }
+
+        @media (max-width: 820px) {
+            .tp-header-airplane-art {
+                display: none;
+            }
+        }
+
+        .tp-tab-pill .tab-count-badge {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+            font-size: 0.75rem;
+            padding: 1px 7px;
+            border-radius: 10px;
+            font-weight: 700;
+            margin-left: 2px;
+        }
+
+        .tp-cat-thumb-img {
+            width: 76px;
+            height: 52px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tp-category-cell:hover .tp-cat-thumb-img {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+
+        .tp-cat-subtitle {
+            font-size: 0.775rem;
+            color: #627d98;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .tp-type-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 20px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .tp-type-pill i {
+            font-size: 15px;
+        }
+
+        .tp-type-pill.pill-transport {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .tp-type-pill.pill-accommodation {
+            background: #ede9fe;
+            color: #7c3aed;
+        }
+
+        .tp-type-pill.pill-activity {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .tp-type-pill.pill-service-amber {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .tp-type-pill.pill-service-rose {
+            background: #ffe4e6;
+            color: #e11d48;
+        }
+
+        .tp-type-pill.pill-service-blue {
+            background: #e0f2fe;
+            color: #2563eb;
+        }
+
+        .tp-type-pill.pill-logistics {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .tp-status-pill-modern {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 20px;
+            padding: 0.3rem 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .tp-status-pill-modern .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .tp-status-pill-modern.active {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .tp-status-pill-modern.active .status-dot {
+            background: #16a34a;
+        }
+
+        .tp-status-pill-modern.inactive {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .tp-status-pill-modern.inactive .status-dot {
+            background: #dc2626;
+        }
+
+        .tp-action-btn-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: #3b82f6;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .tp-action-btn-circle:hover {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            transform: scale(1.08);
+        }
+
+        .tp-table-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #f0f4f8;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: #ffffff;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+        }
+
+        .tp-pagination-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tp-page-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #486581;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.15s ease;
+        }
+
+        .tp-page-btn:hover:not(:disabled) {
+            background: #f8fafc;
+            color: #102a43;
+            border-color: #cbd5e1;
+        }
+
+        .tp-page-btn.active {
+            background: #00875a;
+            color: #ffffff;
+            border-color: #00875a;
+        }
+
+        .tp-page-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        body.dark-theme .tp-cat-subtitle {
+            color: #94a3b8;
+        }
+
+        body.dark-theme .tp-action-btn-circle {
+            background: #1e293b;
+            border-color: #334155;
+            color: #60a5fa;
+        }
+
+        body.dark-theme .tp-table-footer {
+            background: #111827;
+            border-color: #1f2937;
+        }
+
+        body.dark-theme .tp-page-btn {
+            background: #1e293b;
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+
         .tp-btn-back {
             display: inline-flex;
             align-items: center;
@@ -2245,24 +2499,51 @@
                 <section id="view-travel-planner" class="view-section">
                     <!-- Top Page Header -->
                     <div class="tp-header-container">
-                        <div class="tp-title-area">
-                            <h1>Travel Planner</h1>
-                            <p>Manage your categories, operators, services and more</p>
+                        <div class="tp-header-left">
+                            <div class="tp-header-logo-badge">
+                                <img src="images/categories/header_logo_circular.png" alt="Travel Planner">
+                            </div>
+                            <div class="tp-title-area">
+                                <h1>Travel Planner</h1>
+                                <p>Manage your categories, operators, services and more</p>
+                            </div>
                         </div>
-                        <button type="button" class="tp-btn-add-category" onclick="openAddCategoryModal()">
-                            <i class="material-icons" style="font-size: 20px;">add</i>
-                            <span>Add Category</span>
-                        </button>
+                        <div class="tp-header-right">
+                            <img src="images/categories/header_airplane_transparent.png" alt="Explore Discover Travel" class="tp-header-airplane-art">
+                            <button type="button" class="tp-btn-add-category" onclick="openAddCategoryModal()">
+                                <i class="material-icons" style="font-size: 20px;">add</i>
+                                <span>Add Category</span>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Sub-Navigation Tabs -->
                     <div class="tp-nav-tabs-group" id="tp-nav-tabs">
-                        <button type="button" class="tp-tab-pill active" onclick="switchTpMainTab('categories', this)">Categories</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('operators', this)">Operators</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('locations', this)">Locations</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('routes', this)">Routes</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('schedules', this)">Schedules</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('products', this)">Products</button>
+                        <button type="button" class="tp-tab-pill active" onclick="switchTpMainTab('categories', this)">
+                            <i class="material-icons" style="font-size: 18px;">grid_view</i>
+                            <span>Categories</span>
+                            <span class="tab-count-badge" id="tp-cat-tab-badge">7</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('operators', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">person</i>
+                            <span>Operators</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('locations', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">location_on</i>
+                            <span>Locations</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('routes', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">alt_route</i>
+                            <span>Routes</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('schedules', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">calendar_month</i>
+                            <span>Schedules</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTpMainTab('products', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">inventory_2</i>
+                            <span>Products</span>
+                        </button>
                     </div>
 
                     <!-- Master Categories Table Card -->
@@ -2285,6 +2566,18 @@
                                     <!-- Populated dynamically by renderTpCategoriesTable() -->
                                 </tbody>
                             </table>
+                        </div>
+                        <!-- Table Footer with Category Counter & Pagination -->
+                        <div class="tp-table-footer" id="tp-table-footer">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #627d98; font-size: 0.85rem; font-weight: 500;">
+                                <i class="material-icons" style="font-size: 19px; color: #829ab1;">format_list_bulleted</i>
+                                <span id="tp-footer-count">Showing 1-7 of 7 categories</span>
+                            </div>
+                            <div class="tp-pagination-controls">
+                                <button type="button" class="tp-page-btn" disabled><i class="material-icons" style="font-size: 16px;">chevron_left</i></button>
+                                <button type="button" class="tp-page-btn active">1</button>
+                                <button type="button" class="tp-page-btn" disabled><i class="material-icons" style="font-size: 16px;">chevron_right</i></button>
+                            </div>
                         </div>
                     </div>
 
@@ -2460,24 +2753,51 @@
                 <section id="view-tour-planner" class="view-section">
                     <!-- Top Page Header -->
                     <div class="tp-header-container">
-                        <div class="tp-title-area">
-                            <h1>Tour Planner</h1>
-                            <p>Manage your categories, operators, services and more</p>
+                        <div class="tp-header-left">
+                            <div class="tp-header-logo-badge">
+                                <img src="images/categories/header_logo_circular.png" alt="Tour Planner">
+                            </div>
+                            <div class="tp-title-area">
+                                <h1>Tour Planner</h1>
+                                <p>Manage your categories, operators, services and more</p>
+                            </div>
                         </div>
-                        <button type="button" class="tp-btn-add-category" onclick="openTourAddCategoryModal()">
-                            <i class="material-icons" style="font-size: 20px;">add</i>
-                            <span>Add Category</span>
-                        </button>
+                        <div class="tp-header-right">
+                            <img src="images/categories/header_airplane_transparent.png" alt="Explore Discover Travel" class="tp-header-airplane-art">
+                            <button type="button" class="tp-btn-add-category" onclick="openTourAddCategoryModal()">
+                                <i class="material-icons" style="font-size: 20px;">add</i>
+                                <span>Add Category</span>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Sub-Navigation Tabs -->
                     <div class="tp-nav-tabs-group" id="tour-nav-tabs">
-                        <button type="button" class="tp-tab-pill active" onclick="switchTourMainTab('categories', this)">Categories</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('operators', this)">Operators</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('locations', this)">Locations</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('routes', this)">Routes</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('schedules', this)">Schedules</button>
-                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('products', this)">Products</button>
+                        <button type="button" class="tp-tab-pill active" onclick="switchTourMainTab('categories', this)">
+                            <i class="material-icons" style="font-size: 18px;">grid_view</i>
+                            <span>Categories</span>
+                            <span class="tab-count-badge" id="tour-cat-tab-badge">7</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('operators', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">person</i>
+                            <span>Operators</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('locations', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">location_on</i>
+                            <span>Locations</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('routes', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">alt_route</i>
+                            <span>Routes</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('schedules', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">calendar_month</i>
+                            <span>Schedules</span>
+                        </button>
+                        <button type="button" class="tp-tab-pill" onclick="switchTourMainTab('products', this)">
+                            <i class="material-icons" style="font-size: 18px; color: #627d98;">inventory_2</i>
+                            <span>Products</span>
+                        </button>
                     </div>
 
                     <!-- Master Categories Table Card -->
@@ -2500,6 +2820,18 @@
                                     <!-- Populated dynamically by renderTourCategoriesTable() -->
                                 </tbody>
                             </table>
+                        </div>
+                        <!-- Table Footer with Category Counter & Pagination -->
+                        <div class="tp-table-footer" id="tour-table-footer">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #627d98; font-size: 0.85rem; font-weight: 500;">
+                                <i class="material-icons" style="font-size: 19px; color: #829ab1;">format_list_bulleted</i>
+                                <span id="tour-footer-count">Showing 1-7 of 7 categories</span>
+                            </div>
+                            <div class="tp-pagination-controls">
+                                <button type="button" class="tp-page-btn" disabled><i class="material-icons" style="font-size: 16px;">chevron_left</i></button>
+                                <button type="button" class="tp-page-btn active">1</button>
+                                <button type="button" class="tp-page-btn" disabled><i class="material-icons" style="font-size: 16px;">chevron_right</i></button>
+                            </div>
                         </div>
                     </div>
 
@@ -3512,22 +3844,61 @@
 
         // ================= 1. TRAVEL PLANNER (CATEGORY & SERVICE MANAGER) ================= //
 
-        const DEFAULT_TP_CATEGORIES = [
-            { id: 1, name: 'Transit', type: 'Transport', subCategories: 8, products: 45, status: 'Active', createdDate: '12 May 2025', icon: 'directions_bus', bg: '#e0f2fe', color: '#0284c7' },
-            { id: 2, name: 'Accommodation', type: 'Accommodation', subCategories: 6, products: 32, status: 'Active', createdDate: '10 May 2025', icon: 'hotel', bg: '#e0e7ff', color: '#4338ca' },
-            { id: 3, name: 'Activities & Experiences', type: 'Activity', subCategories: 5, products: 21, status: 'Active', createdDate: '08 May 2025', icon: 'eco', bg: '#d1fae5', color: '#059669' },
-            { id: 4, name: 'Attractions & Tickets', type: 'Service', subCategories: 4, products: 18, status: 'Active', createdDate: '05 May 2025', icon: 'confirmation_number', bg: '#fef3c7', color: '#d97706' },
-            { id: 5, name: 'Food & Dining', type: 'Service', subCategories: 4, products: 12, status: 'Active', createdDate: '02 May 2025', icon: 'restaurant', bg: '#ffe4e6', color: '#e11d48' },
-            { id: 6, name: 'Guide & Support', type: 'Service', subCategories: 3, products: 9, status: 'Active', createdDate: '01 May 2025', icon: 'support_agent', bg: '#e0f2fe', color: '#2563eb' },
-            { id: 7, name: 'Cargo & Logistics', type: 'Logistics', subCategories: 2, products: 4, status: 'Inactive', createdDate: '28 Apr 2025', icon: 'local_shipping', bg: '#f1f5f9', color: '#475569' }
+                const DEFAULT_TP_CATEGORIES = [
+            { id: 1, name: 'Transit', subtitle: 'Transport services for your journey', type: 'Transport', typeClass: 'pill-transport', typeIcon: 'directions_bus', image: 'images/categories/cat_transit.png', subCategories: 8, products: 45, status: 'Active', createdDate: '12 May 2025' },
+            { id: 2, name: 'Accommodation', subtitle: 'Hotels, resorts and stays', type: 'Accommodation', typeClass: 'pill-accommodation', typeIcon: 'hotel', image: 'images/categories/cat_accommodation.png', subCategories: 6, products: 32, status: 'Active', createdDate: '10 May 2025' },
+            { id: 3, name: 'Activities & Experiences', subtitle: 'Tours, adventure and experiences', type: 'Activity', typeClass: 'pill-activity', typeIcon: 'landscape', image: 'images/categories/cat_activities.png', subCategories: 5, products: 21, status: 'Active', createdDate: '08 May 2025' },
+            { id: 4, name: 'Attractions & Tickets', subtitle: 'Attractions, parks and entry tickets', type: 'Service', typeClass: 'pill-service-amber', typeIcon: 'confirmation_number', image: 'images/categories/cat_attractions.png', subCategories: 4, products: 18, status: 'Active', createdDate: '05 May 2025' },
+            { id: 5, name: 'Food & Dining', subtitle: 'Restaurants, cafes and local food', type: 'Service', typeClass: 'pill-service-rose', typeIcon: 'restaurant', image: 'images/categories/cat_food.png', subCategories: 4, products: 12, status: 'Active', createdDate: '02 May 2025' },
+            { id: 6, name: 'Guide & Support', subtitle: 'Tour guide and travel support', type: 'Service', typeClass: 'pill-service-blue', typeIcon: 'support_agent', image: 'images/categories/cat_guide.png', subCategories: 3, products: 9, status: 'Active', createdDate: '01 May 2025' },
+            { id: 7, name: 'Cargo & Logistics', subtitle: 'Shipping and cargo services', type: 'Logistics', typeClass: 'pill-logistics', typeIcon: 'local_shipping', image: 'images/categories/cat_cargo.png', subCategories: 2, products: 4, status: 'Inactive', createdDate: '28 Apr 2025' }
         ];
+
+        function getTypePillMarkup(cat) {
+            const name = (cat.name || '').toLowerCase();
+            const type = cat.type || 'Service';
+
+            if (name.includes('transit') || type === 'Transport') {
+                return '<span class="tp-type-pill pill-transport"><i class="material-icons">directions_bus</i> Transport</span>';
+            }
+            if (name.includes('accommodation') || type === 'Accommodation') {
+                return '<span class="tp-type-pill pill-accommodation"><i class="material-icons">hotel</i> Accommodation</span>';
+            }
+            if (name.includes('activities') || type === 'Activity') {
+                return '<span class="tp-type-pill pill-activity"><i class="material-icons">landscape</i> Activity</span>';
+            }
+            if (name.includes('attractions')) {
+                return '<span class="tp-type-pill pill-service-amber"><i class="material-icons">confirmation_number</i> Service</span>';
+            }
+            if (name.includes('food') || name.includes('dining')) {
+                return '<span class="tp-type-pill pill-service-rose"><i class="material-icons">restaurant</i> Service</span>';
+            }
+            if (name.includes('guide') || name.includes('support')) {
+                return '<span class="tp-type-pill pill-service-blue"><i class="material-icons">support_agent</i> Service</span>';
+            }
+            if (name.includes('cargo') || type === 'Logistics') {
+                return '<span class="tp-type-pill pill-logistics"><i class="material-icons">local_shipping</i> Logistics</span>';
+            }
+            return '<span class="tp-type-pill ' + (cat.typeClass || 'pill-transport') + '"><i class="material-icons">' + (cat.typeIcon || 'category') + '</i> ' + type + '</span>';
+        }
 
         function getStoredTpCategories() {
             try {
                 const stored = localStorage.getItem('travelup_tp_categories');
                 if (stored) {
                     const parsed = JSON.parse(stored);
-                    if (Array.isArray(parsed)) return parsed;
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        return parsed.map(cat => {
+                            const def = DEFAULT_TP_CATEGORIES.find(d => d.name.toLowerCase() === (cat.name || '').toLowerCase());
+                            return {
+                                ...cat,
+                                subtitle: cat.subtitle || (def ? def.subtitle : 'Category services and offerings'),
+                                image: cat.image || (def ? def.image : 'images/categories/cat_transit.png'),
+                                typeClass: cat.typeClass || (def ? def.typeClass : 'pill-transport'),
+                                typeIcon: cat.typeIcon || (def ? def.typeIcon : 'category')
+                            };
+                        });
+                    }
                 }
             } catch (err) {
                 console.error('Failed to load tp categories from localStorage:', err);
@@ -3558,6 +3929,11 @@
             const tbody = document.getElementById('tp-categories-tbody');
             if (!tbody) return;
 
+            const badge = document.getElementById('tp-cat-tab-badge');
+            if (badge) badge.textContent = list.length;
+            const footerCount = document.getElementById('tp-footer-count');
+            if (footerCount) footerCount.textContent = `Showing 1-${list.length} of ${list.length} categories`;
+
             if (!list || list.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2.5rem;">No categories found matching your search.</td></tr>';
                 return;
@@ -3566,31 +3942,38 @@
             tbody.innerHTML = list.map((cat, idx) => {
                 const isActive = (cat.status || '').toLowerCase() === 'active';
                 const escapedName = (cat.name || '').replace(/'/g, "\\'");
+                const typePill = getTypePillMarkup(cat);
                 return `
                     <tr>
-                        <td><strong>${idx + 1}</strong></td>
+                        <td style="text-align: center;"><strong style="color: #102a43; font-size: 0.95rem;">${idx + 1}</strong></td>
                         <td>
                             <div class="tp-category-cell" onclick="openCategoryDetailView('${escapedName}', 'travel-planner')" title="Click to open ${cat.name} products page">
-                                <div class="tp-cat-icon-box" style="background: ${cat.bg || '#e0f2fe'}; color: ${cat.color || '#0284c7'};">
-                                    <i class="material-icons">${cat.icon || 'category'}</i>
-                                </div>
-                                <div>
-                                    <span class="tp-cat-name">${cat.name}</span>
-                                    <div class="tp-cat-view-hint">
-                                        <i class="material-icons" style="font-size: 13px;">open_in_new</i> View Products
-                                    </div>
+                                <img src="${cat.image || 'images/categories/cat_transit.png'}" alt="${cat.name}" class="tp-cat-thumb-img" onerror="this.src='images/categories/cat_transit.png'">
+                                <div style="min-width: 0;">
+                                    <div class="tp-cat-name">${cat.name}</div>
+                                    <div class="tp-cat-subtitle">${cat.subtitle || 'Transport services for your journey'}</div>
                                 </div>
                             </div>
                         </td>
-                        <td>${cat.type}</td>
-                        <td>${cat.subCategories}</td>
-                        <td>${cat.products}</td>
+                        <td>${typePill}</td>
+                        <td><span style="color: #334e68; font-weight: 600;">${cat.subCategories}</span></td>
+                        <td><span style="color: #334e68; font-weight: 600;">${cat.products}</span></td>
                         <td>
-                            <span class="tp-status-pill ${isActive ? 'active' : 'inactive'}">${cat.status}</span>
+                            <span class="tp-status-pill-modern ${isActive ? 'active' : 'inactive'}">
+                                <span class="status-dot"></span>
+                                <span>${cat.status}</span>
+                            </span>
                         </td>
-                        <td>${cat.createdDate}</td>
+                        <td>
+                            <span style="display: inline-flex; align-items: center; gap: 6px; color: #486581; font-size: 0.85rem; font-weight: 500;">
+                                <i class="material-icons" style="font-size: 16px; color: #829ab1;">calendar_today</i>
+                                <span>${cat.createdDate}</span>
+                            </span>
+                        </td>
                         <td style="text-align: center; position: relative;">
-                            <button type="button" class="tp-action-btn" onclick="openCategoryActionMenu(${cat.id}, event)" title="Actions">···</button>
+                            <button type="button" class="tp-action-btn-circle" onclick="openCategoryActionMenu(${cat.id}, event)" title="Actions">
+                                <i class="material-icons" style="font-size: 18px;">more_horiz</i>
+                            </button>
                         </td>
                     </tr>
                 `;
@@ -3786,13 +4169,13 @@
         // ================= 2. TOUR PLANNER (CATEGORY & SERVICE MANAGER) ================= //
 
         const DEFAULT_TOUR_CATEGORIES = [
-            { id: 1, name: 'Transit', type: 'Transport', subCategories: 8, products: 45, status: 'Active', createdDate: '12 May 2025', icon: 'directions_bus', bg: '#e0f2fe', color: '#0284c7' },
-            { id: 2, name: 'Accommodation', type: 'Accommodation', subCategories: 6, products: 32, status: 'Active', createdDate: '10 May 2025', icon: 'hotel', bg: '#e0e7ff', color: '#4338ca' },
-            { id: 3, name: 'Activities & Experiences', type: 'Activity', subCategories: 5, products: 21, status: 'Active', createdDate: '08 May 2025', icon: 'eco', bg: '#d1fae5', color: '#059669' },
-            { id: 4, name: 'Attractions & Tickets', type: 'Service', subCategories: 4, products: 18, status: 'Active', createdDate: '05 May 2025', icon: 'confirmation_number', bg: '#fef3c7', color: '#d97706' },
-            { id: 5, name: 'Food & Dining', type: 'Service', subCategories: 4, products: 12, status: 'Active', createdDate: '02 May 2025', icon: 'restaurant', bg: '#ffe4e6', color: '#e11d48' },
-            { id: 6, name: 'Guide & Support', type: 'Service', subCategories: 3, products: 9, status: 'Active', createdDate: '01 May 2025', icon: 'support_agent', bg: '#e0f2fe', color: '#2563eb' },
-            { id: 7, name: 'Cargo & Logistics', type: 'Logistics', subCategories: 2, products: 4, status: 'Inactive', createdDate: '28 Apr 2025', icon: 'local_shipping', bg: '#f1f5f9', color: '#475569' }
+            { id: 1, name: 'Transit', subtitle: 'Transport services for your journey', type: 'Transport', typeClass: 'pill-transport', typeIcon: 'directions_bus', image: 'images/categories/cat_transit.png', subCategories: 8, products: 45, status: 'Active', createdDate: '12 May 2025' },
+            { id: 2, name: 'Accommodation', subtitle: 'Hotels, resorts and stays', type: 'Accommodation', typeClass: 'pill-accommodation', typeIcon: 'hotel', image: 'images/categories/cat_accommodation.png', subCategories: 6, products: 32, status: 'Active', createdDate: '10 May 2025' },
+            { id: 3, name: 'Activities & Experiences', subtitle: 'Tours, adventure and experiences', type: 'Activity', typeClass: 'pill-activity', typeIcon: 'landscape', image: 'images/categories/cat_activities.png', subCategories: 5, products: 21, status: 'Active', createdDate: '08 May 2025' },
+            { id: 4, name: 'Attractions & Tickets', subtitle: 'Attractions, parks and entry tickets', type: 'Service', typeClass: 'pill-service-amber', typeIcon: 'confirmation_number', image: 'images/categories/cat_attractions.png', subCategories: 4, products: 18, status: 'Active', createdDate: '05 May 2025' },
+            { id: 5, name: 'Food & Dining', subtitle: 'Restaurants, cafes and local food', type: 'Service', typeClass: 'pill-service-rose', typeIcon: 'restaurant', image: 'images/categories/cat_food.png', subCategories: 4, products: 12, status: 'Active', createdDate: '02 May 2025' },
+            { id: 6, name: 'Guide & Support', subtitle: 'Tour guide and travel support', type: 'Service', typeClass: 'pill-service-blue', typeIcon: 'support_agent', image: 'images/categories/cat_guide.png', subCategories: 3, products: 9, status: 'Active', createdDate: '01 May 2025' },
+            { id: 7, name: 'Cargo & Logistics', subtitle: 'Shipping and cargo services', type: 'Logistics', typeClass: 'pill-logistics', typeIcon: 'local_shipping', image: 'images/categories/cat_cargo.png', subCategories: 2, products: 4, status: 'Inactive', createdDate: '28 Apr 2025' }
         ];
 
         function getStoredTourCategories() {
@@ -3800,7 +4183,18 @@
                 const stored = localStorage.getItem('travelup_tour_categories');
                 if (stored) {
                     const parsed = JSON.parse(stored);
-                    if (Array.isArray(parsed)) return parsed;
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        return parsed.map(cat => {
+                            const def = DEFAULT_TOUR_CATEGORIES.find(d => d.name.toLowerCase() === (cat.name || '').toLowerCase());
+                            return {
+                                ...cat,
+                                subtitle: cat.subtitle || (def ? def.subtitle : 'Category services and offerings'),
+                                image: cat.image || (def ? def.image : 'images/categories/cat_transit.png'),
+                                typeClass: cat.typeClass || (def ? def.typeClass : 'pill-transport'),
+                                typeIcon: cat.typeIcon || (def ? def.typeIcon : 'category')
+                            };
+                        });
+                    }
                 }
             } catch (err) {
                 console.error('Failed to load tour categories from localStorage:', err);
@@ -3831,6 +4225,11 @@
             const tbody = document.getElementById('tour-categories-tbody');
             if (!tbody) return;
 
+            const badge = document.getElementById('tour-cat-tab-badge');
+            if (badge) badge.textContent = list.length;
+            const footerCount = document.getElementById('tour-footer-count');
+            if (footerCount) footerCount.textContent = `Showing 1-${list.length} of ${list.length} categories`;
+
             if (!list || list.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2.5rem;">No categories found matching your search.</td></tr>';
                 return;
@@ -3839,31 +4238,38 @@
             tbody.innerHTML = list.map((cat, idx) => {
                 const isActive = (cat.status || '').toLowerCase() === 'active';
                 const escapedName = (cat.name || '').replace(/'/g, "\\'");
+                const typePill = getTypePillMarkup(cat);
                 return `
                     <tr>
-                        <td><strong>${idx + 1}</strong></td>
+                        <td style="text-align: center;"><strong style="color: #102a43; font-size: 0.95rem;">${idx + 1}</strong></td>
                         <td>
                             <div class="tp-category-cell" onclick="openCategoryDetailView('${escapedName}', 'tour-planner')" title="Click to open ${cat.name} products page">
-                                <div class="tp-cat-icon-box" style="background: ${cat.bg || '#e0f2fe'}; color: ${cat.color || '#0284c7'};">
-                                    <i class="material-icons">${cat.icon || 'category'}</i>
-                                </div>
-                                <div>
-                                    <span class="tp-cat-name">${cat.name}</span>
-                                    <div class="tp-cat-view-hint">
-                                        <i class="material-icons" style="font-size: 13px;">open_in_new</i> View Products
-                                    </div>
+                                <img src="${cat.image || 'images/categories/cat_transit.png'}" alt="${cat.name}" class="tp-cat-thumb-img" onerror="this.src='images/categories/cat_transit.png'">
+                                <div style="min-width: 0;">
+                                    <div class="tp-cat-name">${cat.name}</div>
+                                    <div class="tp-cat-subtitle">${cat.subtitle || 'Category services and offerings'}</div>
                                 </div>
                             </div>
                         </td>
-                        <td>${cat.type}</td>
-                        <td>${cat.subCategories}</td>
-                        <td>${cat.products}</td>
+                        <td>${typePill}</td>
+                        <td><span style="color: #334e68; font-weight: 600;">${cat.subCategories}</span></td>
+                        <td><span style="color: #334e68; font-weight: 600;">${cat.products}</span></td>
                         <td>
-                            <span class="tp-status-pill ${isActive ? 'active' : 'inactive'}">${cat.status}</span>
+                            <span class="tp-status-pill-modern ${isActive ? 'active' : 'inactive'}">
+                                <span class="status-dot"></span>
+                                <span>${cat.status}</span>
+                            </span>
                         </td>
-                        <td>${cat.createdDate}</td>
+                        <td>
+                            <span style="display: inline-flex; align-items: center; gap: 6px; color: #486581; font-size: 0.85rem; font-weight: 500;">
+                                <i class="material-icons" style="font-size: 16px; color: #829ab1;">calendar_today</i>
+                                <span>${cat.createdDate}</span>
+                            </span>
+                        </td>
                         <td style="text-align: center; position: relative;">
-                            <button type="button" class="tp-action-btn" onclick="openTourCategoryActionMenu(${cat.id}, event)" title="Actions">···</button>
+                            <button type="button" class="tp-action-btn-circle" onclick="openTourCategoryActionMenu(${cat.id}, event)" title="Actions">
+                                <i class="material-icons" style="font-size: 18px;">more_horiz</i>
+                            </button>
                         </td>
                     </tr>
                 `;
