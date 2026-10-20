@@ -1318,6 +1318,91 @@
             background: #fef2f2;
         }
 
+        .tp-btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+
+        .tp-btn-back:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
+
+        .tp-cat-hero-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .tp-category-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            cursor: pointer;
+            padding: 4px 0;
+            transition: transform 0.15s ease;
+        }
+
+        .tp-category-cell:hover .tp-cat-name {
+            color: #00875a;
+        }
+
+        .tp-category-cell:hover .tp-cat-icon-box {
+            transform: scale(1.08);
+            transition: transform 0.15s ease;
+        }
+
+        .tp-cat-view-hint {
+            font-size: 0.725rem;
+            color: #00875a;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .tp-category-cell:hover .tp-cat-view-hint {
+            opacity: 1;
+        }
+
+        body.dark-theme .tp-btn-back {
+            background: #1e293b;
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .tp-btn-back:hover {
+            background: #334155;
+            color: #ffffff;
+        }
+
+        body.dark-theme .tp-cat-hero-card {
+            background: #111827;
+            border-color: #1f2937;
+        }
+
         /* Modal Styles */
         .tp-modal-overlay {
             position: fixed;
@@ -2203,6 +2288,81 @@
                         </div>
                     </div>
 
+                    <!-- Category Detail View Container for Travel Planner -->
+                    <div id="tp-category-detail-view" style="display: none;">
+                        <!-- Category Detail Header & Controls -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.65rem;">
+                                <button type="button" class="tp-btn-back" onclick="closeCategoryDetailView('travel-planner')">
+                                    <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Categories
+                                </button>
+                                <span style="color: #cbd5e1;">/</span>
+                                <span style="font-size: 0.9rem; font-weight: 700; color: #0f172a;" id="tp-cat-detail-breadcrumb">Category</span>
+                            </div>
+                            <button type="button" class="tp-btn-add-category" onclick="openAddProductModal('travel-planner')">
+                                <i class="material-icons" style="font-size: 19px;">add</i>
+                                <span id="tp-cat-detail-add-btn">+ Add Product</span>
+                            </button>
+                        </div>
+
+                        <!-- Hero Info Card -->
+                        <div class="tp-cat-hero-card">
+                            <div style="display: flex; align-items: center; gap: 1.25rem;">
+                                <div class="tp-cat-icon-box" id="tp-cat-hero-icon" style="width: 54px; height: 54px; border-radius: 14px; font-size: 28px;">
+                                    <i class="material-icons" id="tp-cat-hero-icon-i">category</i>
+                                </div>
+                                <div>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <h2 style="font-size: 1.45rem; font-weight: 800; color: #0f172a; margin: 0;" id="tp-cat-hero-title">Category Title</h2>
+                                        <span class="tp-status-pill active" id="tp-cat-hero-status">Active</span>
+                                    </div>
+                                    <p style="font-size: 0.85rem; color: #64748b; margin: 4px 0 0 0;" id="tp-cat-hero-desc">Category overview and services</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1.75rem; align-items: center;">
+                                <div style="text-align: right;">
+                                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; display: block;">Total Products</span>
+                                    <strong style="font-size: 1.4rem; color: #0f172a;" id="tp-cat-hero-prods">0</strong>
+                                </div>
+                                <div style="text-align: right;">
+                                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; display: block;">Sub-Categories</span>
+                                    <strong style="font-size: 1.4rem; color: #00875a;" id="tp-cat-hero-subs">0</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Category Filter Strip & Search Input -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+                            <div class="tp-nav-tabs-group" id="tp-cat-subfilter-tabs" style="margin-bottom: 0;">
+                                <!-- Dynamic Sub-category Filter Buttons -->
+                            </div>
+                            <input type="text" id="tp-cat-search-input" placeholder="Search in this category..." oninput="filterCatProductsUI('travel-planner')" style="padding: 0.5rem 0.85rem; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.85rem; width: 260px;">
+                        </div>
+
+                        <!-- Products Table Card -->
+                        <div class="tp-table-card">
+                            <div style="overflow-x: auto;">
+                                <table class="tp-custom-table" id="tp-cat-products-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 50px;">#</th>
+                                            <th>Product / Service Name</th>
+                                            <th>Provider / Operator</th>
+                                            <th>Location / Corridor</th>
+                                            <th>Format / Class</th>
+                                            <th>Price / Fare (BDT)</th>
+                                            <th>Status</th>
+                                            <th style="width: 70px; text-align: center;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tp-cat-products-tbody">
+                                        <!-- Product rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Add Category Modal -->
                     <div id="tp-add-category-modal" class="tp-modal-overlay" onclick="closeAddCategoryModal(event)">
                         <div class="tp-modal-card" onclick="event.stopPropagation()">
@@ -2280,6 +2440,9 @@
 
                     <!-- Floating Action Dropdown Menu -->
                     <div id="tp-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+                        <button type="button" class="tp-action-item" onclick="handleCategoryViewProducts('travel-planner')">
+                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Products
+                        </button>
                         <button type="button" class="tp-action-item" onclick="handleCategoryEdit()">
                             <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
                         </button>
@@ -2337,6 +2500,81 @@
                                     <!-- Populated dynamically by renderTourCategoriesTable() -->
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+
+                    <!-- Category Detail View Container for Tour Planner -->
+                    <div id="tour-category-detail-view" style="display: none;">
+                        <!-- Category Detail Header & Controls -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.65rem;">
+                                <button type="button" class="tp-btn-back" onclick="closeCategoryDetailView('tour-planner')">
+                                    <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Categories
+                                </button>
+                                <span style="color: #cbd5e1;">/</span>
+                                <span style="font-size: 0.9rem; font-weight: 700; color: #0f172a;" id="tour-cat-detail-breadcrumb">Category</span>
+                            </div>
+                            <button type="button" class="tp-btn-add-category" onclick="openAddProductModal('tour-planner')">
+                                <i class="material-icons" style="font-size: 19px;">add</i>
+                                <span id="tour-cat-detail-add-btn">+ Add Product</span>
+                            </button>
+                        </div>
+
+                        <!-- Hero Info Card -->
+                        <div class="tp-cat-hero-card">
+                            <div style="display: flex; align-items: center; gap: 1.25rem;">
+                                <div class="tp-cat-icon-box" id="tour-cat-hero-icon" style="width: 54px; height: 54px; border-radius: 14px; font-size: 28px;">
+                                    <i class="material-icons" id="tour-cat-hero-icon-i">category</i>
+                                </div>
+                                <div>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <h2 style="font-size: 1.45rem; font-weight: 800; color: #0f172a; margin: 0;" id="tour-cat-hero-title">Category Title</h2>
+                                        <span class="tp-status-pill active" id="tour-cat-hero-status">Active</span>
+                                    </div>
+                                    <p style="font-size: 0.85rem; color: #64748b; margin: 4px 0 0 0;" id="tour-cat-hero-desc">Category overview and services</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1.75rem; align-items: center;">
+                                <div style="text-align: right;">
+                                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; display: block;">Total Products</span>
+                                    <strong style="font-size: 1.4rem; color: #0f172a;" id="tour-cat-hero-prods">0</strong>
+                                </div>
+                                <div style="text-align: right;">
+                                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; display: block;">Sub-Categories</span>
+                                    <strong style="font-size: 1.4rem; color: #00875a;" id="tour-cat-hero-subs">0</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Category Filter Strip & Search Input -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+                            <div class="tp-nav-tabs-group" id="tour-cat-subfilter-tabs" style="margin-bottom: 0;">
+                                <!-- Dynamic Sub-category Filter Buttons -->
+                            </div>
+                            <input type="text" id="tour-cat-search-input" placeholder="Search in this category..." oninput="filterCatProductsUI('tour-planner')" style="padding: 0.5rem 0.85rem; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.85rem; width: 260px;">
+                        </div>
+
+                        <!-- Products Table Card -->
+                        <div class="tp-table-card">
+                            <div style="overflow-x: auto;">
+                                <table class="tp-custom-table" id="tour-cat-products-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 50px;">#</th>
+                                            <th>Product / Service Name</th>
+                                            <th>Provider / Operator</th>
+                                            <th>Location / Corridor</th>
+                                            <th>Format / Class</th>
+                                            <th>Price / Fare (BDT)</th>
+                                            <th>Status</th>
+                                            <th style="width: 70px; text-align: center;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tour-cat-products-tbody">
+                                        <!-- Product rows -->
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
@@ -2417,6 +2655,9 @@
 
                     <!-- Floating Action Dropdown Menu for Tour Planner -->
                     <div id="tour-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+                        <button type="button" class="tp-action-item" onclick="handleCategoryViewProducts('tour-planner')">
+                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Products
+                        </button>
                         <button type="button" class="tp-action-item" onclick="handleTourCategoryEdit()">
                             <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
                         </button>
@@ -2900,6 +3141,71 @@
         </div>
     </div>
 
+    <!-- Shared Modal: Add Product to Specific Category -->
+    <div id="cat-product-add-modal" class="tp-modal-overlay" onclick="closeAddProductModal(event)">
+        <div class="tp-modal-card" onclick="event.stopPropagation()">
+            <div class="tp-modal-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 38px; height: 38px; border-radius: 10px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center;">
+                        <i class="material-icons" style="font-size: 22px;">playlist_add</i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0;" id="modal-product-title">Add New Product</h3>
+                        <p style="font-size: 0.8rem; color: #64748b; margin: 0;" id="modal-product-sub">Register a new product in this category</p>
+                    </div>
+                </div>
+                <button type="button" class="tp-modal-close" onclick="closeAddProductModal()">&times;</button>
+            </div>
+            <form id="cat-product-add-form" onsubmit="handleSaveNewCatProduct(event)">
+                <div class="tp-modal-body">
+                    <div class="form-group">
+                        <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Product / Service Name *</label>
+                        <input type="text" id="p-prod-name" required placeholder="e.g. Shyamoli AC Sleeper Coach" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Sub-Category *</label>
+                            <input type="text" id="p-prod-subcat" required placeholder="e.g. Bus, Hotel, Scuba" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Operator / Provider *</label>
+                            <input type="text" id="p-prod-operator" required placeholder="e.g. Shyamoli NR Travels" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Route / Location *</label>
+                            <input type="text" id="p-prod-location" required placeholder="e.g. Dhaka ➔ Cox's Bazar" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Specs / Format</label>
+                            <input type="text" id="p-prod-specs" placeholder="e.g. 40 Sleeper Berths, AC" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Base Price / Fare (BDT) *</label>
+                            <input type="number" id="p-prod-price" required value="1200" min="0" step="50" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Status *</label>
+                            <select id="p-prod-status" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="tp-modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddProductModal()">Cancel</button>
+                    <button type="submit" class="tp-btn-add-category" style="padding: 0.6rem 1.35rem;">
+                        <i class="material-icons" style="font-size: 18px;">check</i> Save Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Global Toast Container -->
     <div id="toast-container"></div>
 
@@ -3105,18 +3411,36 @@
                 }
             });
 
-            // Restore active tab from URL hash or localStorage, fallback to dashboard
-            const savedHashTab = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
-            const savedStorageTab = localStorage.getItem('travelup_admin_active_tab');
-            const targetInitialTab = savedHashTab || savedStorageTab || 'dashboard';
+            // Restore active tab & category from URL hash or localStorage, fallback to dashboard
+            const rawHash = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
+            let initialTab = '';
+            let initialCat = '';
 
-            if (roleCfg.allowedTabs.includes(targetInitialTab)) {
-                switchTab(targetInitialTab);
+            if (rawHash.includes('?')) {
+                const parts = rawHash.split('?');
+                initialTab = parts[0];
+                const params = new URLSearchParams(parts[1]);
+                initialCat = params.get('cat') || '';
+            } else if (rawHash) {
+                initialTab = rawHash;
             } else {
-                switchTab('dashboard');
+                initialTab = localStorage.getItem('travelup_admin_active_tab') || 'dashboard';
             }
+
+            if (!initialCat && (initialTab === 'travel-planner' || initialTab === 'tour-planner')) {
+                initialCat = localStorage.getItem('travelup_admin_active_category_' + initialTab) || '';
+            }
+
+            const targetInitialTab = roleCfg.allowedTabs.includes(initialTab) ? initialTab : 'dashboard';
+            switchTab(targetInitialTab);
             loadTravelPlanner();
             loadTourPlanner();
+
+            if (initialCat && (targetInitialTab === 'travel-planner' || targetInitialTab === 'tour-planner')) {
+                setTimeout(() => {
+                    openCategoryDetailView(initialCat, targetInitialTab);
+                }, 80);
+            }
         }
 
         function switchTab(tabId) {
@@ -3131,8 +3455,11 @@
             // Persist active tab to localStorage & URL hash so reloads stay on the current tab
             try {
                 localStorage.setItem('travelup_admin_active_tab', tabId);
-                if (window.history && window.history.replaceState) {
-                    window.history.replaceState(null, null, `#${tabId}`);
+                const currentHash = window.location.hash || '';
+                if (!currentHash.startsWith(`#${tabId}?cat=`)) {
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, null, `#${tabId}`);
+                    }
                 }
             } catch (err) {
                 console.error(err);
@@ -3162,13 +3489,23 @@
             if (tabId === 'staff') loadStaff();
         }
 
-        // Listen for browser back / forward / hash changes
+        // Listen for browser back / forward / hash changes (supports ?cat= query param)
         window.addEventListener('hashchange', () => {
-            const hTab = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
-            if (hTab && currentUser) {
-                const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
-                if (roleCfg.allowedTabs.includes(hTab)) {
-                    switchTab(hTab);
+            const raw = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
+            if (!raw || !currentUser) return;
+            const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
+            let hTab = raw;
+            let hCat = '';
+            if (raw.includes('?')) {
+                const parts = raw.split('?');
+                hTab = parts[0];
+                const params = new URLSearchParams(parts[1]);
+                hCat = params.get('cat') || '';
+            }
+            if (roleCfg.allowedTabs.includes(hTab)) {
+                switchTab(hTab);
+                if (hCat && (hTab === 'travel-planner' || hTab === 'tour-planner')) {
+                    openCategoryDetailView(hCat, hTab);
                 }
             }
         });
@@ -3228,15 +3565,21 @@
 
             tbody.innerHTML = list.map((cat, idx) => {
                 const isActive = (cat.status || '').toLowerCase() === 'active';
+                const escapedName = (cat.name || '').replace(/'/g, "\\'");
                 return `
                     <tr>
                         <td><strong>${idx + 1}</strong></td>
                         <td>
-                            <div class="tp-category-cell">
+                            <div class="tp-category-cell" onclick="openCategoryDetailView('${escapedName}', 'travel-planner')" title="Click to open ${cat.name} products page">
                                 <div class="tp-cat-icon-box" style="background: ${cat.bg || '#e0f2fe'}; color: ${cat.color || '#0284c7'};">
                                     <i class="material-icons">${cat.icon || 'category'}</i>
                                 </div>
-                                <span class="tp-cat-name">${cat.name}</span>
+                                <div>
+                                    <span class="tp-cat-name">${cat.name}</span>
+                                    <div class="tp-cat-view-hint">
+                                        <i class="material-icons" style="font-size: 13px;">open_in_new</i> View Products
+                                    </div>
+                                </div>
                             </div>
                         </td>
                         <td>${cat.type}</td>
@@ -3388,7 +3731,16 @@
             if (confirm(`Are you sure you want to delete "${catName}" category?`)) {
                 tpCategories.splice(catIndex, 1);
                 saveStoredTpCategories();
-                renderTpCategoriesTable(tpCategories);
+
+                const pMap = getStoredCategoryProductsMap();
+                delete pMap[catName];
+                saveStoredCategoryProductsMap(pMap);
+
+                if (activeDetailCategory && activeDetailCategory.name === catName) {
+                    closeCategoryDetailView('travel-planner');
+                } else {
+                    renderTpCategoriesTable(tpCategories);
+                }
                 showToast(`Category "${catName}" removed.`, 'warning');
             }
         }
@@ -3486,15 +3838,21 @@
 
             tbody.innerHTML = list.map((cat, idx) => {
                 const isActive = (cat.status || '').toLowerCase() === 'active';
+                const escapedName = (cat.name || '').replace(/'/g, "\\'");
                 return `
                     <tr>
                         <td><strong>${idx + 1}</strong></td>
                         <td>
-                            <div class="tp-category-cell">
+                            <div class="tp-category-cell" onclick="openCategoryDetailView('${escapedName}', 'tour-planner')" title="Click to open ${cat.name} products page">
                                 <div class="tp-cat-icon-box" style="background: ${cat.bg || '#e0f2fe'}; color: ${cat.color || '#0284c7'};">
                                     <i class="material-icons">${cat.icon || 'category'}</i>
                                 </div>
-                                <span class="tp-cat-name">${cat.name}</span>
+                                <div>
+                                    <span class="tp-cat-name">${cat.name}</span>
+                                    <div class="tp-cat-view-hint">
+                                        <i class="material-icons" style="font-size: 13px;">open_in_new</i> View Products
+                                    </div>
+                                </div>
                             </div>
                         </td>
                         <td>${cat.type}</td>
@@ -3646,7 +4004,16 @@
             if (confirm(`Are you sure you want to delete "${catName}" category?`)) {
                 tourCategories.splice(catIndex, 1);
                 saveStoredTourCategories();
-                renderTourCategoriesTable(tourCategories);
+
+                const pMap = getStoredCategoryProductsMap();
+                delete pMap[catName];
+                saveStoredCategoryProductsMap(pMap);
+
+                if (activeDetailCategory && activeDetailCategory.name === catName) {
+                    closeCategoryDetailView('tour-planner');
+                } else {
+                    renderTourCategoriesTable(tourCategories);
+                }
                 showToast(`Category "${catName}" removed.`, 'warning');
             }
         }
@@ -3656,6 +4023,478 @@
             const menu = document.getElementById('tour-action-dropdown-menu');
             if (menu) menu.classList.remove('show');
         });
+
+        // ================= CATEGORY PRODUCTS REPOSITORY & CONTROLLER ================= //
+
+        const DEFAULT_CAT_PRODUCTS = {
+            "Transit": [
+                { id: "tr_1", name: "Shyamoli AC Sleeper Coach", category: "Transit", subCategory: "Bus", operator: "Shyamoli NR Travels", location: "Dhaka ➔ Cox's Bazar", specs: "40 Sleeper Berths, Free WiFi, USB Charging", price: 1800, status: "Active" },
+                { id: "tr_2", name: "Green Line Scania Multi-Axle", category: "Transit", subCategory: "Bus", operator: "Green Line Paribahan", location: "Dhaka ➔ Chattogram", specs: "28 Business Class, Recliner, AC", price: 1400, status: "Active" },
+                { id: "tr_3", name: "Subarna Express First AC", category: "Transit", subCategory: "Train", operator: "Bangladesh Railway", location: "Dhaka ➔ Chattogram", specs: "AC Snigdha Coach, Non-Stop Route", price: 805, status: "Active" },
+                { id: "tr_4", name: "Biman Bangladesh Boeing 737", category: "Transit", subCategory: "Flight", operator: "Biman Bangladesh Airlines", location: "DAC ➔ CXB (Cox's Bazar)", specs: "Economy Saver, 20kg Baggage", price: 4200, status: "Active" },
+                { id: "tr_5", name: "MV Green Line Catamaran", category: "Transit", subCategory: "Launch", operator: "Green Line Waterways", location: "Cox's Bazar ➔ Saint Martin", specs: "Luxury Air-Conditioned Lower Deck", price: 1600, status: "Active" },
+                { id: "tr_6", name: "Toyota HiAce Super GL", category: "Transit", subCategory: "Microbus", operator: "TravelUp Chauffeur Fleet", location: "Dhaka ➔ Sreemangal", specs: "10 Seater Dual AC, Verified Driver", price: 6500, status: "Active" },
+                { id: "tr_7", name: "Parabat Express AC Snigdha", category: "Transit", subCategory: "Train", operator: "Bangladesh Railway", location: "Dhaka ➔ Sylhet", specs: "Snigdha Air-Conditioned Chair", price: 650, status: "Active" },
+                { id: "tr_8", name: "US-Bangla ATR 72-600", category: "Transit", subCategory: "Flight", operator: "US-Bangla Airlines", location: "DAC ➔ SPD (Saidpur)", specs: "Economy Regular, Express Check-In", price: 3800, status: "Active" }
+            ],
+            "Accommodation": [
+                { id: "acc_1", name: "Sayeman Beach Resort Deluxe Sea View", category: "Accommodation", subCategory: "5-Star Resort", operator: "Sayeman Hospitality Group", location: "Cox's Bazar Marine Drive", specs: "King Bed, Balcony Sea Facing, Free Breakfast", price: 9500, status: "Active" },
+                { id: "acc_2", name: "Sajek Valley Meghbari Cloud Resort", category: "Accommodation", subCategory: "Hill Resort", operator: "Meghbari Eco Tourism", location: "Ruilui Para, Sajek Valley", specs: "Wooden Cottage on Valley Cliff, Cloud View", price: 5500, status: "Active" },
+                { id: "acc_3", name: "DuSai Resort & Spa Superior Villa", category: "Accommodation", subCategory: "5-Star Resort", operator: "DuSai Hospitality Ltd", location: "Sreemangal, Moulvibazar", specs: "Private Plunge Pool, 1 King, Forest Trail", price: 14500, status: "Active" },
+                { id: "acc_4", name: "Saint Martin Coral View Beachfront", category: "Accommodation", subCategory: "Beach Hotel", operator: "Coral View Hospitality", location: "West Beach, Saint Martin", specs: "Private Balcony, Ocean Breeze, Generator 24/7", price: 4800, status: "Active" },
+                { id: "acc_5", name: "Hill Crown Resort Bandarban", category: "Accommodation", subCategory: "Hill Resort", operator: "Hill Crown Hotels", location: "Chimbuk Road, Bandarban", specs: "Valley Panaroma Suite, AC, Hot Water", price: 4200, status: "Active" },
+                { id: "acc_6", name: "Long Beach Hotel Executive Suite", category: "Accommodation", subCategory: "Beach Hotel", operator: "Long Beach Group", location: "Kalatoli, Cox's Bazar", specs: "Infinity Pool Access, Complimentary Buffet", price: 7200, status: "Active" }
+            ],
+            "Activities & Experiences": [
+                { id: "act_1", name: "Deep Sea Scuba Diving Expedition", category: "Activities & Experiences", subCategory: "Water Sports", operator: "Blue Horizon Divers", location: "Saint Martin Coral Reef", specs: "PADI Certified Dive Master, Video Included", price: 3500, status: "Active" },
+                { id: "act_2", name: "Nafakhum Waterfalls Wilderness Trek", category: "Activities & Experiences", subCategory: "Trekking", operator: "Bandarban Adventure Club", location: "Thanchi ➔ Nafakhum", specs: "2-Day Guide, Lifejacket, Army Clearance", price: 4200, status: "Active" },
+                { id: "act_3", name: "Sajek Helipad Stargazing & Bonfire", category: "Activities & Experiences", subCategory: "Camping", operator: "Cloud Kingdom Campers", location: "Sajek Valley Peak", specs: "Waterproof Tent, BBQ Dinner, Telescope", price: 2200, status: "Active" },
+                { id: "act_4", name: "Marine Drive Tandem Parasailing", category: "Activities & Experiences", subCategory: "Water Sports", operator: "Fly High Adventure", location: "Himchari, Cox's Bazar", specs: "1200ft High Flight, Speedboat Tow, GoPro", price: 2500, status: "Active" },
+                { id: "act_5", name: "Sundarbans Silent Canoe Birdwatching", category: "Activities & Experiences", subCategory: "Wildlife", operator: "Mangrove Explorers", location: "Harbaria Canal, Sundarbans", specs: "Native Wooden Dinghy, Armed Guard, Binoculars", price: 1800, status: "Active" }
+            ],
+            "Attractions & Tickets": [
+                { id: "att_1", name: "Lalbagh Fort Historic Heritage Pass", category: "Attractions & Tickets", subCategory: "Heritage", operator: "Archaeology Dept. BD", location: "Lalbagh, Old Dhaka", specs: "Express QR Gate Pass + Audio Guide", price: 200, status: "Active" },
+                { id: "att_2", name: "Sea Pearl Water Park Unlimited Day Pass", category: "Attractions & Tickets", subCategory: "Theme Park", operator: "Sea Pearl Resort & Waterpark", location: "Inani Beach, Cox's Bazar", specs: "11 Water Slides, Wave Pool, Locker", price: 1200, status: "Active" },
+                { id: "att_3", name: "Sundarbans Harbaria Eco Sanctuary Pass", category: "Attractions & Tickets", subCategory: "National Park", operator: "Forest Department BD", location: "Harbaria Eco Trail", specs: "Trail Footpath, Watchtower, Armed Escort", price: 350, status: "Active" },
+                { id: "att_4", name: "Somapura Mahavihara UNESCO World Heritage", category: "Attractions & Tickets", subCategory: "Heritage", operator: "Archaeology Dept. BD", location: "Paharpur, Naogaon", specs: "Monastery Grounds + Museum Ticket", price: 250, status: "Active" }
+            ],
+            "Food & Dining": [
+                { id: "food_1", name: "Live Lobster & Red Snapper Charcoal BBQ", category: "Food & Dining", subCategory: "Seafood BBQ", operator: "Sea Stone Café", location: "Inani Beach, Cox's Bazar", specs: "Platter for 2, Garlic Butter, Live Charcoal Grill", price: 2800, status: "Active" },
+                { id: "food_2", name: "Pansi Restaurant 15-Vorta Royal Feast", category: "Food & Dining", subCategory: "Local Buffet", operator: "Pansi Restaurant", location: "Zindabazar, Sylhet", specs: "Authentic Sylheti Beef Shatkora & Vorta Platter", price: 550, status: "Active" },
+                { id: "food_3", name: "Traditional Bamboo Chicken Tribal Banquet", category: "Food & Dining", subCategory: "Local Buffet", operator: "Ruilui Tribal Kitchen", location: "Sajek Valley", specs: "Cooked inside Natural Green Bamboo with Herbs", price: 650, status: "Active" },
+                { id: "food_4", name: "Food Village Plus Highway Traveler Buffet", category: "Food & Dining", subCategory: "Highway Dhaba", operator: "Food Village Plus Ltd", location: "Bogura Highway Corridor", specs: "24/7 Unlimited Buffet + Famous Bogura Curd", price: 450, status: "Active" }
+            ],
+            "Guide & Support": [
+                { id: "gui_1", name: "Certified English & Multilingual City Guide", category: "Guide & Support", subCategory: "Certified Guide", operator: "Bangladesh Tourism Board Guides", location: "Dhaka Metro Corridor", specs: "Full Day (8 Hours), Historical & Cultural Expert", price: 3000, status: "Active" },
+                { id: "gui_2", name: "Thanchi Remakri Indigenous Trekking Escort", category: "Guide & Support", subCategory: "Hill Tracts Escort", operator: "Indigenous Tourism Association", location: "Thanchi ➔ Nafakhum", specs: "3-Day Local Guide, Dialect Translation, Camp Setup", price: 4500, status: "Active" },
+                { id: "gui_3", name: "Saint Martin Marine Biologist Reef Guide", category: "Guide & Support", subCategory: "Marine Guide", operator: "Eco Reef Foundation", location: "Saint Martin Island", specs: "Snorkeling Tour, Marine Ecology Interpretation", price: 1500, status: "Active" }
+            ],
+            "Cargo & Logistics": [
+                { id: "car_1", name: "Express Baggage Door-to-Door Delivery", category: "Cargo & Logistics", subCategory: "Luggage", operator: "TravelUp Express Logistics", location: "Dhaka ➔ Cox's Bazar", specs: "Up to 25kg, Same-Day Airport/Hotel Delivery", price: 600, status: "Active" },
+                { id: "car_2", name: "Adventure Motorbike Highway Transport", category: "Cargo & Logistics", subCategory: "Vehicle Transport", operator: "Secure Road Cargo", location: "Dhaka ➔ Bandarban", specs: "Secured Wooden Crating, GPS Tracked Carrier", price: 2800, status: "Active" }
+            ]
+        };
+
+        let activeDetailCategory = null; // { name, sectionType, subCat, search }
+        let modalAddProductSectionType = 'travel-planner';
+
+        function getStoredCategoryProductsMap() {
+            try {
+                const stored = localStorage.getItem('travelup_category_products');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (typeof parsed === 'object' && parsed !== null) return parsed;
+                }
+            } catch (err) {
+                console.error('Failed to load category products:', err);
+            }
+            try {
+                localStorage.setItem('travelup_category_products', JSON.stringify(DEFAULT_CAT_PRODUCTS));
+            } catch (err) {}
+            return JSON.parse(JSON.stringify(DEFAULT_CAT_PRODUCTS));
+        }
+
+        function saveStoredCategoryProductsMap(map) {
+            try {
+                localStorage.setItem('travelup_category_products', JSON.stringify(map));
+            } catch (err) {
+                console.error('Failed to save category products:', err);
+            }
+        }
+
+        function openCategoryDetailView(catName, sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+            const categoriesList = isTour ? tourCategories : tpCategories;
+
+            // Find category in list (case-insensitive)
+            const cat = categoriesList.find(c => c.name.toLowerCase() === (catName || '').toLowerCase()) || {
+                id: 999,
+                name: catName,
+                type: 'Service',
+                subCategories: 3,
+                products: 0,
+                status: 'Active',
+                icon: 'category',
+                bg: '#e0f2fe',
+                color: '#0284c7'
+            };
+
+            activeDetailCategory = {
+                name: cat.name,
+                sectionType: sectionType,
+                subCat: 'All',
+                search: ''
+            };
+
+            // Update Breadcrumb
+            const bc = document.getElementById(`${prefix}-cat-detail-breadcrumb`);
+            if (bc) bc.textContent = cat.name;
+
+            // Update Hero Card elements
+            const heroTitle = document.getElementById(`${prefix}-cat-hero-title`);
+            if (heroTitle) heroTitle.textContent = cat.name;
+
+            const heroIcon = document.getElementById(`${prefix}-cat-hero-icon`);
+            if (heroIcon) {
+                heroIcon.style.background = cat.bg || '#e0f2fe';
+                heroIcon.style.color = cat.color || '#0284c7';
+            }
+
+            const heroIconI = document.getElementById(`${prefix}-cat-hero-icon-i`);
+            if (heroIconI) heroIconI.textContent = cat.icon || 'category';
+
+            const heroStatus = document.getElementById(`${prefix}-cat-hero-status`);
+            if (heroStatus) {
+                const isActive = (cat.status || '').toLowerCase() === 'active';
+                heroStatus.textContent = cat.status || 'Active';
+                heroStatus.className = `tp-status-pill ${isActive ? 'active' : 'inactive'}`;
+            }
+
+            const heroDesc = document.getElementById(`${prefix}-cat-hero-desc`);
+            if (heroDesc) {
+                heroDesc.textContent = `Browse, search and manage all ${cat.name} inventory registered for ${isTour ? 'Tour Planner' : 'Travel Planner'}.`;
+            }
+
+            const heroSubs = document.getElementById(`${prefix}-cat-hero-subs`);
+            if (heroSubs) heroSubs.textContent = cat.subCategories || 1;
+
+            // Get products for this category
+            const productsMap = getStoredCategoryProductsMap();
+            let prods = productsMap[cat.name];
+            if (!prods) {
+                prods = [];
+                productsMap[cat.name] = prods;
+                saveStoredCategoryProductsMap(productsMap);
+            }
+
+            // Sync master category count if needed
+            if (cat.products !== prods.length) {
+                cat.products = prods.length;
+                if (isTour) saveStoredTourCategories();
+                else saveStoredTpCategories();
+            }
+
+            const heroProds = document.getElementById(`${prefix}-cat-hero-prods`);
+            if (heroProds) heroProds.textContent = prods.length;
+
+            // Render Sub-Category Filter Buttons
+            renderCatSubFilters(sectionType, cat.name, prods);
+
+            // Clear search input
+            const searchInput = document.getElementById(`${prefix}-cat-search-input`);
+            if (searchInput) searchInput.value = '';
+
+            // Render Products Table
+            renderCatProductsTable(sectionType, prods);
+
+            // Hide master table and tabs, display category view
+            const masterTable = document.getElementById(`${prefix}-table-container`);
+            if (masterTable) masterTable.style.display = 'none';
+
+            const navTabs = document.getElementById(`${prefix}-nav-tabs`);
+            if (navTabs) navTabs.style.display = 'none';
+
+            const placeholder = document.getElementById(`${prefix}-tab-placeholder`);
+            if (placeholder) placeholder.style.display = 'none';
+
+            const detailView = document.getElementById(`${prefix}-category-detail-view`);
+            if (detailView) detailView.style.display = 'block';
+
+            // Persist active category view to localStorage & URL hash
+            try {
+                localStorage.setItem(`travelup_admin_active_category_${sectionType}`, cat.name);
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(cat.name)}`);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            // Smooth scroll to top of view
+            const viewSection = document.getElementById(`view-${sectionType}`);
+            if (viewSection) viewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function closeCategoryDetailView(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const detailView = document.getElementById(`${prefix}-category-detail-view`);
+            if (detailView) detailView.style.display = 'none';
+
+            const masterTable = document.getElementById(`${prefix}-table-container`);
+            if (masterTable) masterTable.style.display = 'block';
+
+            const navTabs = document.getElementById(`${prefix}-nav-tabs`);
+            if (navTabs) navTabs.style.display = 'flex';
+
+            if (isTour) {
+                renderTourCategoriesTable(tourCategories);
+            } else {
+                renderTpCategoriesTable(tpCategories);
+            }
+
+            activeDetailCategory = null;
+
+            try {
+                localStorage.removeItem(`travelup_admin_active_category_${sectionType}`);
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, `#${sectionType}`);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderCatSubFilters(sectionType, catName, prods) {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const container = document.getElementById(`${prefix}-cat-subfilter-tabs`);
+            if (!container) return;
+
+            // Collect unique subcategories
+            const subCats = new Set(['All']);
+            prods.forEach(p => {
+                if (p.subCategory) subCats.add(p.subCategory);
+            });
+
+            const activeSub = activeDetailCategory ? activeDetailCategory.subCat : 'All';
+
+            container.innerHTML = Array.from(subCats).map(sub => {
+                const count = sub === 'All' ? prods.length : prods.filter(p => p.subCategory === sub).length;
+                const isActive = (sub === activeSub) ? 'active' : '';
+                const escSub = sub.replace(/'/g, "\\'");
+                return `
+                    <button type="button" class="tp-tab-pill ${isActive}" onclick="filterCatProductsUI('${sectionType}', '${escSub}', this)">
+                        ${sub} <span style="opacity: 0.7; font-size: 0.75rem; font-weight: 600;">(${count})</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function filterCatProductsUI(sectionType, subCategory, btnEl) {
+            if (!activeDetailCategory) return;
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+
+            if (subCategory !== undefined) {
+                activeDetailCategory.subCat = subCategory;
+                if (btnEl) {
+                    const tabs = document.querySelectorAll(`#${prefix}-cat-subfilter-tabs .tp-tab-pill`);
+                    tabs.forEach(t => t.classList.remove('active'));
+                    btnEl.classList.add('active');
+                }
+            }
+
+            const searchInput = document.getElementById(`${prefix}-cat-search-input`);
+            const q = (searchInput ? searchInput.value : '').toLowerCase().trim();
+            activeDetailCategory.search = q;
+
+            const productsMap = getStoredCategoryProductsMap();
+            let prods = productsMap[activeDetailCategory.name] || [];
+
+            // Filter by subcategory
+            if (activeDetailCategory.subCat && activeDetailCategory.subCat !== 'All') {
+                prods = prods.filter(p => (p.subCategory || '').toLowerCase() === activeDetailCategory.subCat.toLowerCase());
+            }
+
+            // Filter by search query
+            if (q) {
+                prods = prods.filter(p => 
+                    (p.name || '').toLowerCase().includes(q) || 
+                    (p.operator || '').toLowerCase().includes(q) || 
+                    (p.location || '').toLowerCase().includes(q) || 
+                    (p.specs || '').toLowerCase().includes(q) || 
+                    (p.subCategory || '').toLowerCase().includes(q)
+                );
+            }
+
+            renderCatProductsTable(sectionType, prods);
+        }
+
+        function renderCatProductsTable(sectionType, prods) {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const tbody = document.getElementById(`${prefix}-cat-products-tbody`);
+            if (!tbody) return;
+
+            if (!prods || prods.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; color: #94a3b8; padding: 3rem 1.5rem;">
+                            <i class="material-icons" style="font-size: 38px; display: block; margin-bottom: 0.5rem; opacity: 0.4;">inventory_2</i>
+                            No products found in this category. Click <strong>+ Add Product</strong> above to add one.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = prods.map((p, idx) => {
+                const isActive = (p.status || '').toLowerCase() === 'active';
+                return `
+                    <tr>
+                        <td><strong>${idx + 1}</strong></td>
+                        <td>
+                            <div style="font-weight: 700; color: #0f172a;">${p.name}</div>
+                            <div style="font-size: 0.775rem; color: #64748b; margin-top: 2px;">
+                                <span style="display: inline-block; padding: 1px 7px; border-radius: 4px; background: #f1f5f9; color: #475569; font-weight: 600;">${p.subCategory || 'General'}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span style="font-weight: 600; color: #334155;">${p.operator || '—'}</span>
+                        </td>
+                        <td>
+                            <span style="color: #475569; font-size: 0.85rem;"><i class="material-icons" style="font-size: 14px; vertical-align: middle; color: #00875a;">place</i> ${p.location || '—'}</span>
+                        </td>
+                        <td>
+                            <span style="font-size: 0.825rem; color: #64748b;">${p.specs || 'Standard'}</span>
+                        </td>
+                        <td>
+                            <strong style="color: #0f172a; font-size: 0.95rem;">৳${Number(p.price || 0).toLocaleString()}</strong>
+                        </td>
+                        <td>
+                            <span class="tp-status-pill ${isActive ? 'active' : 'inactive'}">${p.status || 'Active'}</span>
+                        </td>
+                        <td style="text-align: center;">
+                            <button type="button" class="tp-action-btn" style="color: #ef4444; border-color: #fee2e2; background: #fff5f5;" onclick="deleteCatProduct('${p.id}', '${sectionType}')" title="Delete Product">
+                                <i class="material-icons" style="font-size: 16px;">delete</i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function openAddProductModal(sectionType = 'travel-planner') {
+            modalAddProductSectionType = sectionType;
+            const modal = document.getElementById('cat-product-add-modal');
+            if (!modal) return;
+
+            const catName = activeDetailCategory ? activeDetailCategory.name : 'Category';
+            const modalTitle = document.getElementById('modal-product-title');
+            if (modalTitle) modalTitle.textContent = `Add Product in ${catName}`;
+
+            const modalSub = document.getElementById('modal-product-sub');
+            if (modalSub) modalSub.textContent = `Register a new ${catName} offering for ${sectionType === 'tour-planner' ? 'Tour Planner' : 'Travel Planner'}`;
+
+            const form = document.getElementById('cat-product-add-form');
+            if (form) form.reset();
+
+            const subcatInput = document.getElementById('p-prod-subcat');
+            if (subcatInput) {
+                subcatInput.value = (activeDetailCategory && activeDetailCategory.subCat !== 'All') ? activeDetailCategory.subCat : '';
+            }
+
+            modal.style.display = 'flex';
+            document.getElementById('p-prod-name')?.focus();
+        }
+
+        function closeAddProductModal(e) {
+            if (e && e.target !== e.currentTarget && !e.target.classList.contains('tp-modal-close')) return;
+            const modal = document.getElementById('cat-product-add-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function handleSaveNewCatProduct(e) {
+            e.preventDefault();
+            if (!activeDetailCategory) return;
+
+            const sectionType = modalAddProductSectionType || activeDetailCategory.sectionType || 'travel-planner';
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+            const catName = activeDetailCategory.name;
+
+            const name = document.getElementById('p-prod-name').value.trim();
+            const subCategory = document.getElementById('p-prod-subcat').value.trim();
+            const operator = document.getElementById('p-prod-operator').value.trim();
+            const location = document.getElementById('p-prod-location').value.trim();
+            const specs = document.getElementById('p-prod-specs').value.trim() || 'Standard Spec';
+            const price = parseFloat(document.getElementById('p-prod-price').value) || 0;
+            const status = document.getElementById('p-prod-status').value;
+
+            const newProd = {
+                id: `prod_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+                name,
+                category: catName,
+                subCategory,
+                operator,
+                location,
+                specs,
+                price,
+                status
+            };
+
+            const productsMap = getStoredCategoryProductsMap();
+            if (!productsMap[catName]) productsMap[catName] = [];
+            productsMap[catName].unshift(newProd);
+            saveStoredCategoryProductsMap(productsMap);
+
+            // Update Category products count in memory and localStorage
+            const categoriesList = isTour ? tourCategories : tpCategories;
+            const catObj = categoriesList.find(c => c.name.toLowerCase() === catName.toLowerCase());
+            if (catObj) {
+                catObj.products = productsMap[catName].length;
+                if (isTour) saveStoredTourCategories();
+                else saveStoredTpCategories();
+            }
+
+            // Update Hero Card products count
+            const heroProds = document.getElementById(`${prefix}-cat-hero-prods`);
+            if (heroProds) heroProds.textContent = productsMap[catName].length;
+
+            closeAddProductModal();
+            renderCatSubFilters(sectionType, catName, productsMap[catName]);
+            filterCatProductsUI(sectionType);
+            showToast(`Product "${name}" added to ${catName}!`, 'success');
+        }
+
+        function deleteCatProduct(productId, sectionType = 'travel-planner') {
+            if (!activeDetailCategory) return;
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+            const catName = activeDetailCategory.name;
+
+            const productsMap = getStoredCategoryProductsMap();
+            let prods = productsMap[catName] || [];
+            const prodIdx = prods.findIndex(p => p.id === productId);
+            if (prodIdx === -1) return;
+
+            const prodName = prods[prodIdx].name;
+            if (confirm(`Are you sure you want to delete "${prodName}"?`)) {
+                prods.splice(prodIdx, 1);
+                productsMap[catName] = prods;
+                saveStoredCategoryProductsMap(productsMap);
+
+                // Update Category products count
+                const categoriesList = isTour ? tourCategories : tpCategories;
+                const catObj = categoriesList.find(c => c.name.toLowerCase() === catName.toLowerCase());
+                if (catObj) {
+                    catObj.products = prods.length;
+                    if (isTour) saveStoredTourCategories();
+                    else saveStoredTpCategories();
+                }
+
+                const heroProds = document.getElementById(`${prefix}-cat-hero-prods`);
+                if (heroProds) heroProds.textContent = prods.length;
+
+                renderCatSubFilters(sectionType, catName, prods);
+                filterCatProductsUI(sectionType);
+                showToast(`Product "${prodName}" deleted.`, 'warning');
+            }
+        }
+
+        function handleCategoryViewProducts(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const menuId = isTour ? 'tour-action-dropdown-menu' : 'tp-action-dropdown-menu';
+            const menu = document.getElementById(menuId);
+            if (menu) menu.classList.remove('show');
+
+            const actionId = isTour ? activeTourCategoryActionId : activeCategoryActionId;
+            const catList = isTour ? tourCategories : tpCategories;
+            const cat = catList.find(c => c.id === actionId);
+            if (cat) {
+                openCategoryDetailView(cat.name, sectionType);
+            }
+        }
 
         // ================= 3. TOUR PACKAGE STUDIO CRM ================= //
 
