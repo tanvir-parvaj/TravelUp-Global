@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { pool } = require('../config/db');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'travelup_super_secret_jwt_key_2026';
+const JWT_SECRET = process.env.JWT_SECRET || 'travelup_global_secret_key_2026_jwt_token';
 
 // Register User
 exports.register = async (req, res) => {
@@ -70,7 +70,22 @@ exports.login = async (req, res) => {
         }
 
         const user = users[0];
-        const isMatch = await bcrypt.compare(password, user.password);
+        let isMatch = false;
+
+        try {
+            isMatch = await bcrypt.compare(password, user.password);
+        } catch (e) {
+            isMatch = false;
+        }
+
+        // Resilient fallback for plain text / legacy passwords
+        if (!isMatch && password === user.password) {
+            isMatch = true;
+            try {
+                const newHash = await bcrypt.hash(password, 10);
+                await pool.query('UPDATE users SET password = ? WHERE id = ?', [newHash, user.id]);
+            } catch (hashErr) {}
+        }
 
         if (!isMatch) {
             return res.status(401).json({ success: false, message: 'Invalid email or password' });

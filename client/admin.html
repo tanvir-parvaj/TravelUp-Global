@@ -532,6 +532,10 @@
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -1026,6 +1030,8 @@
                 <p>Sign in with your authorized staff credentials or Gmail</p>
             </div>
 
+            <div id="login-error-msg" style="display: none; padding: 0.75rem 1rem; background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;"></div>
+
             <form id="form-login" onsubmit="handleLoginSubmit(event)">
                 <div class="form-group" style="margin-bottom: 1rem;">
                     <label>Email / Gmail Address</label>
@@ -1034,21 +1040,22 @@
 
                 <div class="form-group" style="margin-bottom: 1.5rem;">
                     <label>Security Password</label>
-                    <input type="password" id="login-password" required placeholder="••••••••" value="Tahomina;123@">
+                    <input type="password" id="login-password" required placeholder="••••••••" value="admin123">
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem;">
+                <button type="submit" id="btn-login-submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem;">
                     <i class="material-icons">lock_open</i> Enter Portal
                 </button>
             </form>
 
-            <!-- Quick Demo Role Switcher for instant testing -->
+            <!-- Quick Demo Role Switcher for instant 1-click testing -->
             <div class="quick-role-pills">
-                <span style="font-size: 0.725rem; font-weight: 700; color: var(--slate-500); width: 100%;">Quick Role Test:</span>
-                <button type="button" class="role-demo-btn" onclick="quickFillRole('admin@travelupglobal.com', 'Tahomina;123@')">👑 Super Admin</button>
-                <button type="button" class="role-demo-btn" onclick="quickFillRole('staff_1791378097936@test.com', 'TravelUp@2026')">📦 Product Uploader</button>
-                <button type="button" class="role-demo-btn" onclick="quickFillRole('approvedadmin@travelupglobal.com', 'TravelUp@2026')">💳 Finance Officer</button>
-                <button type="button" class="role-demo-btn" onclick="quickFillRole('testadmin@travelupglobal.com', 'TravelUp@2026')">📋 Operations Manager</button>
+                <span style="font-size: 0.725rem; font-weight: 700; color: var(--slate-500); width: 100%;">Instant 1-Click Role Switch:</span>
+                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('admin@travelupglobal.com', 'admin123')">👑 Super Admin</button>
+                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('papelali809@gmail.com', 'admin123')">👑 Tanvir Parvaj</button>
+                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('uploader@travelupglobal.com', 'admin123')">📦 Product Uploader</button>
+                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('manager@travelupglobal.com', 'admin123')">📋 Operations Manager</button>
+                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('finance@travelupglobal.com', 'admin123')">💳 Finance Officer</button>
             </div>
         </div>
     </div>
@@ -1127,15 +1134,39 @@
             }, 3500);
         }
 
-        function quickFillRole(email, pass) {
+        function quickFillAndLogin(email, pass) {
             document.getElementById('login-email').value = email;
             document.getElementById('login-password').value = pass;
+            const errBox = document.getElementById('login-error-msg');
+            if (errBox) errBox.style.display = 'none';
+            handleLoginSubmit();
         }
 
         async function handleLoginSubmit(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value.trim();
-            const password = document.getElementById('login-password').value;
+            if (e && e.preventDefault) e.preventDefault();
+
+            const emailInput = document.getElementById('login-email');
+            const passInput = document.getElementById('login-password');
+            const errBox = document.getElementById('login-error-msg');
+            const submitBtn = document.getElementById('btn-login-submit');
+
+            if (errBox) errBox.style.display = 'none';
+
+            const email = emailInput ? emailInput.value.trim() : '';
+            const password = passInput ? passInput.value : '';
+
+            if (!email || !password) {
+                if (errBox) {
+                    errBox.textContent = 'Please enter both email and password.';
+                    errBox.style.display = 'block';
+                }
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i> Authenticating...`;
+            }
 
             try {
                 const res = await fetch('/api/auth/login', {
@@ -1145,15 +1176,34 @@
                 });
 
                 const data = await res.json();
+
                 if (!res.ok || !data.success) {
-                    showToast(data.message || 'Invalid login credentials', 'error');
+                    const msg = data.message || 'Invalid email or password.';
+                    if (errBox) {
+                        errBox.textContent = msg;
+                        errBox.style.display = 'block';
+                    }
+                    showToast(msg, 'error');
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Enter Portal`;
+                    }
                     return;
                 }
 
                 // Check role
                 const user = data.user;
                 if (user.role === 'customer') {
-                    showToast('Access Denied: Customer accounts cannot access the Operations Portal.', 'error');
+                    const msg = 'Access Denied: Customer accounts cannot access the Operations Portal.';
+                    if (errBox) {
+                        errBox.textContent = msg;
+                        errBox.style.display = 'block';
+                    }
+                    showToast(msg, 'error');
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Enter Portal`;
+                    }
                     return;
                 }
 
@@ -1166,8 +1216,22 @@
                 applyUserPermissions();
                 loadDashboardData();
                 showToast(`Signed in successfully as ${currentUser.name} (${currentUser.role})`, 'success');
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Enter Portal`;
+                }
             } catch (err) {
-                showToast('Login request failed: ' + err.message, 'error');
+                const msg = 'Login request failed: ' + err.message;
+                if (errBox) {
+                    errBox.textContent = msg;
+                    errBox.style.display = 'block';
+                }
+                showToast(msg, 'error');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Enter Portal`;
+                }
             }
         }
 
