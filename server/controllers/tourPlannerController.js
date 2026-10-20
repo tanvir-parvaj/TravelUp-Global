@@ -356,7 +356,7 @@ exports.searchLocations = async (req, res) => {
  */
 exports.getTourDestinations = async (req, res) => {
     try {
-        const { district_id, division_id, top_50, type, q, status } = req.query;
+        const { district_id, division_id, upazila_id, top_50, type, q, status } = req.query;
         let query = 'SELECT * FROM bd_tour_destinations WHERE 1=1';
         const params = [];
 
@@ -366,7 +366,10 @@ exports.getTourDestinations = async (req, res) => {
             query += ' AND is_active = 1';
         }
 
-        if (district_id) {
+        if (upazila_id) {
+            query += ' AND upazila_id = ?';
+            params.push(upazila_id);
+        } else if (district_id) {
             query += ' AND district_id = ?';
             params.push(district_id);
         } else if (division_id) {
@@ -385,8 +388,8 @@ exports.getTourDestinations = async (req, res) => {
 
         if (q) {
             const pattern = `%${q.trim()}%`;
-            query += ' AND (name_en LIKE ? OR name_bn LIKE ? OR search_keywords LIKE ? OR district_name_en LIKE ?)';
-            params.push(pattern, pattern, pattern, pattern);
+            query += ' AND (name_en LIKE ? OR name_bn LIKE ? OR search_keywords LIKE ? OR district_name_en LIKE ? OR upazila_name_en LIKE ?)';
+            params.push(pattern, pattern, pattern, pattern, pattern);
         }
 
         query += ' ORDER BY CASE WHEN popularity_rank IS NOT NULL THEN popularity_rank ELSE 9999 END ASC, name_en ASC';

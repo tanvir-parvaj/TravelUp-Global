@@ -3365,6 +3365,99 @@
             color: #00875a !important;
         }
 
+        /* Hierarchical Breadcrumb Navigation */
+        .loc-breadcrumb-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 9px 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            color: #334155;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+
+        .loc-bc-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #0284c7;
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        .loc-bc-item:hover {
+            color: #0369a1;
+            text-decoration: underline;
+        }
+
+        .loc-bc-item.current {
+            color: #0f172a;
+            font-weight: 700;
+            cursor: default;
+            text-decoration: none;
+        }
+
+        .loc-bc-sep {
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        .loc-bc-clear-btn {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: #ef4444;
+            background: #fee2e2;
+            border: none;
+            border-radius: 6px;
+            padding: 3px 9px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            transition: all 0.15s;
+        }
+
+        .loc-bc-clear-btn:hover {
+            background: #fecaca;
+        }
+
+        /* Drilldown Clickable Links */
+        .loc-name-drilldown {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 0.885rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .loc-name-drilldown:hover {
+            color: #00875a;
+        }
+
+        .loc-name-drilldown .loc-drill-icon {
+            font-size: 15px;
+            color: #94a3b8;
+            transition: all 0.15s ease;
+        }
+
+        .loc-name-drilldown:hover .loc-drill-icon {
+            color: #00875a;
+            transform: translateX(3px);
+        }
+
         /* Filter Controls Toolbar */
         .loc-filters-row {
             display: flex;
@@ -3689,6 +3782,21 @@
 
         body.dark-theme .loc-tabs-strip {
             border-color: #1f2937;
+        }
+
+        body.dark-theme .loc-breadcrumb-bar {
+            background: #1e293b;
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+
+        body.dark-theme .loc-bc-item.current,
+        body.dark-theme .loc-name-drilldown {
+            color: #f1f5f9;
+        }
+
+        body.dark-theme .loc-name-drilldown:hover {
+            color: #34d399;
         }
 
         body.dark-theme .loc-type-segment-btn {
@@ -4265,6 +4373,9 @@
                                     <span>Upazilas</span>
                                 </button>
                             </div>
+
+                            <!-- Active Breadcrumb Drill-Down Path -->
+                            <div id="tp-loc-breadcrumb-path" class="loc-breadcrumb-bar" style="display: none;"></div>
 
                             <!-- Filter Controls Toolbar -->
                             <div class="loc-filters-row">
@@ -4856,6 +4967,9 @@
                                     <span>Destinations</span>
                                 </button>
                             </div>
+
+                            <!-- Active Breadcrumb Drill-Down Path -->
+                            <div id="tour-loc-breadcrumb-path" class="loc-breadcrumb-bar" style="display: none;"></div>
 
                             <!-- Filter Controls Toolbar -->
                             <div class="loc-filters-row">
@@ -8452,6 +8566,7 @@
                 activeSubTab: 'upazilas',
                 divisionFilter: '',
                 districtFilter: '',
+                upazilaFilter: '',
                 statusFilter: 'all',
                 searchQuery: '',
                 sortOrder: 'desc',
@@ -8465,6 +8580,7 @@
                 activeSubTab: 'upazilas',
                 divisionFilter: '',
                 districtFilter: '',
+                upazilaFilter: '',
                 statusFilter: 'all',
                 searchQuery: '',
                 sortOrder: 'desc',
@@ -8586,6 +8702,9 @@
                 divSel.innerHTML = '<option value="">All Divisions</option>' + 
                     locationState.allDivisions.map(d => `<option value="${d.division_id}">${d.name_en}</option>`).join('');
             }
+            if (divSel && locationState[sectionType].divisionFilter) {
+                divSel.value = locationState[sectionType].divisionFilter;
+            }
 
             if (distSel) {
                 const currentDiv = locationState[sectionType].divisionFilter;
@@ -8593,13 +8712,201 @@
                 if (currentDiv) {
                     filteredDistricts = filteredDistricts.filter(d => d.division_id === currentDiv);
                 }
-                const currentVal = distSel.value;
+                const currentTargetDist = locationState[sectionType].districtFilter;
                 distSel.innerHTML = '<option value="">All Districts</option>' + 
                     filteredDistricts.map(d => `<option value="${d.district_id}">${d.name_en}</option>`).join('');
-                if (currentVal && filteredDistricts.some(d => d.district_id === currentVal)) {
-                    distSel.value = currentVal;
+                if (currentTargetDist && filteredDistricts.some(d => d.district_id === currentTargetDist)) {
+                    distSel.value = currentTargetDist;
+                } else if (!currentTargetDist) {
+                    distSel.value = '';
                 }
             }
+        }
+
+        function getDivisionNameById(id) {
+            if (!id) return '';
+            const div = locationState.allDivisions.find(d => d.division_id === id);
+            return div ? (div.name_en || div.name) : id;
+        }
+
+        function getDistrictNameById(id) {
+            if (!id) return '';
+            const dist = locationState.allDistricts.find(d => d.district_id === id);
+            return dist ? (dist.name_en || dist.name) : id;
+        }
+
+        function drillDownDivision(divisionId, divisionName, sectionType = 'travel-planner') {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const st = locationState[sectionType];
+
+            st.divisionFilter = divisionId;
+            st.districtFilter = '';
+            st.upazilaFilter = '';
+            st.searchQuery = '';
+            st.page = 1;
+
+            populateLocFilterDropdowns(sectionType);
+
+            const divSel = document.getElementById(`${prefix}-loc-division-select`);
+            if (divSel) divSel.value = divisionId;
+
+            const distSel = document.getElementById(`${prefix}-loc-district-select`);
+            if (distSel) distSel.value = '';
+
+            const searchInput = document.getElementById(`${prefix}-loc-search-input`);
+            if (searchInput) searchInput.value = '';
+
+            switchLocSubTab('districts', sectionType);
+            showToast(`Viewing districts in ${divisionName} Division`, 'info');
+        }
+
+        function drillDownDistrict(districtId, districtName, divisionId, sectionType = 'travel-planner') {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const st = locationState[sectionType];
+
+            if (!divisionId) {
+                const foundDist = locationState.allDistricts.find(d => d.district_id === districtId);
+                if (foundDist) divisionId = foundDist.division_id;
+            }
+
+            if (divisionId) {
+                st.divisionFilter = divisionId;
+            }
+
+            st.districtFilter = districtId;
+            st.upazilaFilter = '';
+            st.searchQuery = '';
+            st.page = 1;
+
+            populateLocFilterDropdowns(sectionType);
+
+            const divSel = document.getElementById(`${prefix}-loc-division-select`);
+            if (divSel && divisionId) divSel.value = divisionId;
+
+            const distSel = document.getElementById(`${prefix}-loc-district-select`);
+            if (distSel) distSel.value = districtId;
+
+            const searchInput = document.getElementById(`${prefix}-loc-search-input`);
+            if (searchInput) searchInput.value = '';
+
+            switchLocSubTab('upazilas', sectionType);
+            showToast(`Viewing upazilas in ${districtName} District`, 'info');
+        }
+
+        function drillDownUpazila(upazilaId, upazilaName, districtId, sectionType = 'tour-planner') {
+            if (sectionType !== 'tour-planner') {
+                showToast(`Upazila "${upazilaName}" is the primary terminal stoppage point in Travel Planner`, 'info');
+                return;
+            }
+
+            const st = locationState['tour-planner'];
+
+            if (districtId) {
+                st.districtFilter = districtId;
+                const distSel = document.getElementById('tour-loc-district-select');
+                if (distSel) distSel.value = districtId;
+            }
+
+            st.upazilaFilter = upazilaId;
+            st.searchQuery = (upazilaName || '').trim().toLowerCase();
+            st.page = 1;
+
+            const searchInput = document.getElementById('tour-loc-search-input');
+            if (searchInput) searchInput.value = upazilaName || '';
+
+            switchLocSubTab('destinations', 'tour-planner');
+            showToast(`Viewing tour destinations in ${upazilaName}`, 'info');
+        }
+
+        function resetLocDrillDown(sectionType = 'travel-planner') {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const st = locationState[sectionType];
+
+            st.divisionFilter = '';
+            st.districtFilter = '';
+            st.upazilaFilter = '';
+            st.searchQuery = '';
+            st.page = 1;
+
+            populateLocFilterDropdowns(sectionType);
+
+            const divSel = document.getElementById(`${prefix}-loc-division-select`);
+            if (divSel) divSel.value = '';
+
+            const distSel = document.getElementById(`${prefix}-loc-district-select`);
+            if (distSel) distSel.value = '';
+
+            const searchInput = document.getElementById(`${prefix}-loc-search-input`);
+            if (searchInput) searchInput.value = '';
+
+            switchLocSubTab('divisions', sectionType);
+            showToast('Reset to all Bangladesh divisions', 'info');
+        }
+
+        function updateLocationBreadcrumb(sectionType = 'travel-planner') {
+            const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
+            const bar = document.getElementById(`${prefix}-loc-breadcrumb-path`);
+            if (!bar) return;
+
+            const st = locationState[sectionType];
+            const activeTab = st.activeSubTab;
+
+            if (activeTab === 'divisions' && !st.divisionFilter && !st.searchQuery) {
+                bar.style.display = 'none';
+                return;
+            }
+
+            let crumbs = [];
+            crumbs.push(`<a href="javascript:void(0)" class="loc-bc-item" onclick="resetLocDrillDown('${sectionType}')">
+                <i class="material-icons" style="font-size: 15px;">public</i> Bangladesh
+            </a>`);
+
+            if (st.divisionFilter) {
+                const divName = getDivisionNameById(st.divisionFilter);
+                if (activeTab === 'districts' && !st.districtFilter && !st.searchQuery) {
+                    crumbs.push(`<span class="loc-bc-sep">&gt;</span>`);
+                    crumbs.push(`<span class="loc-bc-item current">${divName} Division</span>`);
+                } else {
+                    crumbs.push(`<span class="loc-bc-sep">&gt;</span>`);
+                    crumbs.push(`<a href="javascript:void(0)" class="loc-bc-item" onclick="drillDownDivision('${st.divisionFilter}', '${divName.replace(/'/g, "\\'")}', '${sectionType}')">${divName} Division</a>`);
+                }
+            } else if (activeTab === 'districts') {
+                crumbs.push(`<span class="loc-bc-sep">&gt;</span>`);
+                crumbs.push(`<span class="loc-bc-item current">All Districts</span>`);
+            }
+
+            if (st.districtFilter) {
+                const distName = getDistrictNameById(st.districtFilter);
+                if (activeTab === 'upazilas' && !st.upazilaFilter && !st.searchQuery) {
+                    crumbs.push(`<span class="loc-bc-sep">&gt;</span>`);
+                    crumbs.push(`<span class="loc-bc-item current">${distName} District</span>`);
+                } else {
+                    crumbs.push(`<span class="loc-bc-sep">&gt;</span>`);
+                    crumbs.push(`<a href="javascript:void(0)" class="loc-bc-item" onclick="drillDownDistrict('${st.districtFilter}', '${distName.replace(/'/g, "\\'")}', '${st.divisionFilter}', '${sectionType}')">${distName} District</a>`);
+                }
+            } else if (activeTab === 'upazilas') {
+                crumbs.push(`<span class="loc-bc-sep">&gt;</span>`);
+                crumbs.push(`<span class="loc-bc-item current">All Upazilas</span>`);
+            }
+
+            if (activeTab === 'destinations') {
+                crumbs.push(`<span class="loc-bc-sep">&gt;</span>`);
+                if (st.searchQuery) {
+                    crumbs.push(`<span class="loc-bc-item current">Destinations in "${st.searchQuery}"</span>`);
+                } else {
+                    crumbs.push(`<span class="loc-bc-item current">Tour Destinations</span>`);
+                }
+            } else if (st.searchQuery) {
+                crumbs.push(`<span class="loc-bc-sep">&gt;</span>`);
+                crumbs.push(`<span class="loc-bc-item current">Search: "${st.searchQuery}"</span>`);
+            }
+
+            const clearBtn = `<button type="button" class="loc-bc-clear-btn" onclick="resetLocDrillDown('${sectionType}')" title="Reset all location filters">
+                <i class="material-icons" style="font-size: 13px;">clear</i> Reset Filter
+            </button>`;
+
+            bar.innerHTML = `<div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; flex: 1;">${crumbs.join('')}</div>${clearBtn}`;
+            bar.style.display = 'flex';
         }
 
         function switchLocSubTab(tabName, sectionType = 'travel-planner', btn = null) {
@@ -8612,6 +8919,32 @@
                 } else {
                     const targetBtn = strip.querySelector(`.loc-tab-item[data-tab="${tabName}"]`);
                     if (targetBtn) targetBtn.classList.add('active');
+                }
+            }
+
+            if (btn) {
+                if (tabName === 'divisions') {
+                    locationState[sectionType].divisionFilter = '';
+                    locationState[sectionType].districtFilter = '';
+                    locationState[sectionType].upazilaFilter = '';
+                    locationState[sectionType].searchQuery = '';
+                    const divSel = document.getElementById(`${prefix}-loc-division-select`);
+                    if (divSel) divSel.value = '';
+                    const distSel = document.getElementById(`${prefix}-loc-district-select`);
+                    if (distSel) distSel.value = '';
+                    const sInp = document.getElementById(`${prefix}-loc-search-input`);
+                    if (sInp) sInp.value = '';
+                    populateLocFilterDropdowns(sectionType);
+                } else if (tabName === 'districts') {
+                    locationState[sectionType].districtFilter = '';
+                    locationState[sectionType].upazilaFilter = '';
+                    locationState[sectionType].searchQuery = '';
+                    const distSel = document.getElementById(`${prefix}-loc-district-select`);
+                    if (distSel) distSel.value = '';
+                    const sInp = document.getElementById(`${prefix}-loc-search-input`);
+                    if (sInp) sInp.value = '';
+                } else if (tabName === 'upazilas') {
+                    locationState[sectionType].upazilaFilter = '';
                 }
             }
 
@@ -8677,6 +9010,7 @@
             const divSel = document.getElementById(`${prefix}-loc-division-select`);
             locationState[sectionType].divisionFilter = divSel ? divSel.value : '';
             locationState[sectionType].districtFilter = '';
+            locationState[sectionType].upazilaFilter = '';
             locationState[sectionType].page = 1;
             populateLocFilterDropdowns(sectionType);
             renderLocationTable(sectionType);
@@ -8686,6 +9020,7 @@
             const prefix = sectionType === 'tour-planner' ? 'tour' : 'tp';
             const distSel = document.getElementById(`${prefix}-loc-district-select`);
             locationState[sectionType].districtFilter = distSel ? distSel.value : '';
+            locationState[sectionType].upazilaFilter = '';
             locationState[sectionType].page = 1;
             renderLocationTable(sectionType);
         }
@@ -8732,11 +9067,14 @@
                 if (activeTab === 'divisions') {
                     url = `${API_BASE}/api/tour-planner/locations/divisions?status=${st.statusFilter}`;
                 } else if (activeTab === 'districts') {
-                    url = `${API_BASE}/api/tour-planner/locations/districts?division_id=${encodeURIComponent(st.divisionFilter)}&status=${st.statusFilter}`;
+                    url = `${API_BASE}/api/tour-planner/locations/districts?division_id=${encodeURIComponent(st.divisionFilter || '')}&status=${st.statusFilter}`;
                 } else if (activeTab === 'upazilas') {
-                    url = `${API_BASE}/api/tour-planner/locations/upazilas?division_id=${encodeURIComponent(st.divisionFilter)}&district_id=${encodeURIComponent(st.districtFilter)}&status=${st.statusFilter}`;
+                    url = `${API_BASE}/api/tour-planner/locations/upazilas?division_id=${encodeURIComponent(st.divisionFilter || '')}&district_id=${encodeURIComponent(st.districtFilter || '')}&status=${st.statusFilter}`;
                 } else if (activeTab === 'destinations') {
-                    url = `${API_BASE}/api/tour-planner/destinations?district_id=${encodeURIComponent(st.districtFilter)}&status=${st.statusFilter}`;
+                    url = `${API_BASE}/api/tour-planner/destinations?district_id=${encodeURIComponent(st.districtFilter || '')}&division_id=${encodeURIComponent(st.divisionFilter || '')}&status=${st.statusFilter}`;
+                    if (st.upazilaFilter) {
+                        url += `&upazila_id=${encodeURIComponent(st.upazilaFilter)}`;
+                    }
                 }
 
                 const res = await fetch(url);
@@ -8802,6 +9140,7 @@
                         <i class="material-icons" style="font-size: 36px; display: block; margin-bottom: 8px; color: #cbd5e1;">location_off</i>
                         No ${activeTab} found matching your filters.
                     </td></tr>`;
+                    updateLocationBreadcrumb(sectionType);
                     return;
                 }
 
@@ -8818,16 +9157,38 @@
                     const formattedDate = formatLocDate(item.created_at);
 
                     if (activeTab === 'upazilas') {
+                        const upzName = item.name_en || item.name || '';
+                        const upzNameEsc = upzName.replace(/'/g, "\\'");
+                        const upzId = item.id || item.upazila_id;
+                        const distId = item.district_id || '';
+                        const distName = item.district_name_en || getDistrictNameById(distId) || 'District';
+                        const distNameEsc = distName.replace(/'/g, "\\'");
+                        const divId = item.division_id || '';
+                        const divName = item.division_name_en || getDivisionNameById(divId) || 'Division';
+                        const divNameEsc = divName.replace(/'/g, "\\'");
+
+                        const upzTitleHtml = sectionType === 'tour-planner'
+                            ? `<a href="javascript:void(0)" onclick="drillDownUpazila('${upzId}', '${upzNameEsc}', '${distId}', '${sectionType}')" class="loc-name-drilldown" title="Click to view tourist destinations in ${upzName}">
+                                  ${upzName}
+                                  <i class="material-icons loc-drill-icon" style="color: #8b5cf6;">explore</i>
+                               </a>`
+                            : `<span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${upzName}</span>`;
+
                         return `
                             <tr>
                                 <td style="text-align: center;"><input type="checkbox" value="${itemId}" ${isChecked} onchange="toggleLocRowSelect(this, '${itemId}', '${sectionType}')"></td>
                                 <td style="font-weight: 600; color: #64748b;">${rowNum}</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 12px;">
-                                        <img src="${thumbImg}" alt="${item.name_en}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        ${sectionType === 'tour-planner'
+                                            ? `<a href="javascript:void(0)" onclick="drillDownUpazila('${upzId}', '${upzNameEsc}', '${distId}', '${sectionType}')" title="Explore destinations in ${upzName}">
+                                                  <img src="${thumbImg}" alt="${upzName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                               </a>`
+                                            : `<img src="${thumbImg}" alt="${upzName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">`
+                                        }
                                         <div>
                                             <div style="display: flex; align-items: center; gap: 6px;">
-                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${item.name_en || item.name}</span>
+                                                ${upzTitleHtml}
                                                 ${item.is_featured ? '<span class="loc-featured-badge">✦ Featured</span>' : ''}
                                             </div>
                                             <div style="font-size: 0.77rem; color: #64748b;">
@@ -8836,8 +9197,12 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td style="font-weight: 600; color: #334155;">${item.district_name_en || 'Dhaka'}</td>
-                                <td style="font-weight: 500; color: #64748b;">${item.division_name_en || 'Dhaka'}</td>
+                                <td style="font-weight: 600; color: #334155;">
+                                    ${distId ? `<a href="javascript:void(0)" onclick="drillDownDistrict('${distId}', '${distNameEsc}', '${divId}', '${sectionType}')" style="color: #0284c7; text-decoration: none; font-weight: 600;" title="View all upazilas in ${distName}">${distName}</a>` : distName}
+                                </td>
+                                <td style="font-weight: 500; color: #64748b;">
+                                    ${divId ? `<a href="javascript:void(0)" onclick="drillDownDivision('${divId}', '${divNameEsc}', '${sectionType}')" style="color: #64748b; text-decoration: none; font-weight: 500;" title="View districts in ${divName}">${divName}</a>` : divName}
+                                </td>
                                 <td>${statusPill}</td>
                                 <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
                                 <td style="text-align: center;">
@@ -8848,16 +9213,28 @@
                             </tr>
                         `;
                     } else if (activeTab === 'districts') {
+                        const distName = item.name_en || item.name || '';
+                        const distNameEsc = distName.replace(/'/g, "\\'");
+                        const distId = item.id || item.district_id;
+                        const divId = item.division_id || '';
+                        const divName = item.division_name_en || getDivisionNameById(divId) || 'Division';
+                        const divNameEsc = divName.replace(/'/g, "\\'");
+
                         return `
                             <tr>
                                 <td style="text-align: center;"><input type="checkbox" value="${itemId}" ${isChecked} onchange="toggleLocRowSelect(this, '${itemId}', '${sectionType}')"></td>
                                 <td style="font-weight: 600; color: #64748b;">${rowNum}</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 12px;">
-                                        <img src="${thumbImg}" alt="${item.name_en}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        <a href="javascript:void(0)" onclick="drillDownDistrict('${distId}', '${distNameEsc}', '${divId}', '${sectionType}')" title="Explore upazilas in ${distName}">
+                                            <img src="${thumbImg}" alt="${distName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        </a>
                                         <div>
                                             <div style="display: flex; align-items: center; gap: 6px;">
-                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${item.name_en || item.name}</span>
+                                                <a href="javascript:void(0)" onclick="drillDownDistrict('${distId}', '${distNameEsc}', '${divId}', '${sectionType}')" class="loc-name-drilldown" title="Click to view ${distName} upazilas">
+                                                    ${distName}
+                                                    <i class="material-icons loc-drill-icon">arrow_forward</i>
+                                                </a>
                                                 ${item.is_featured ? '<span class="loc-featured-badge">✦ Featured</span>' : ''}
                                             </div>
                                             <div style="font-size: 0.77rem; color: #64748b;">${item.name_bn || item.district_id}</div>
@@ -8865,7 +9242,9 @@
                                     </div>
                                 </td>
                                 <td style="font-weight: 600; color: #334155;">${item.name_bn || item.name_en}</td>
-                                <td style="font-weight: 500; color: #64748b;">${item.division_name_en || 'N/A'}</td>
+                                <td style="font-weight: 500; color: #64748b;">
+                                    ${divId ? `<a href="javascript:void(0)" onclick="drillDownDivision('${divId}', '${divNameEsc}', '${sectionType}')" style="color: #0284c7; text-decoration: none; font-weight: 600;" title="Filter by ${divName} Division">${divName}</a>` : divName}
+                                </td>
                                 <td>${statusPill}</td>
                                 <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
                                 <td style="text-align: center;">
@@ -8876,16 +9255,25 @@
                             </tr>
                         `;
                     } else if (activeTab === 'divisions') {
+                        const divName = item.name_en || item.name || '';
+                        const divNameEsc = divName.replace(/'/g, "\\'");
+                        const divId = item.id || item.division_id;
+
                         return `
                             <tr>
                                 <td style="text-align: center;"><input type="checkbox" value="${itemId}" ${isChecked} onchange="toggleLocRowSelect(this, '${itemId}', '${sectionType}')"></td>
                                 <td style="font-weight: 600; color: #64748b;">${rowNum}</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 12px;">
-                                        <img src="${thumbImg}" alt="${item.name_en}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        <a href="javascript:void(0)" onclick="drillDownDivision('${divId}', '${divNameEsc}', '${sectionType}')" title="Explore districts in ${divName}">
+                                            <img src="${thumbImg}" alt="${divName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        </a>
                                         <div>
                                             <div style="display: flex; align-items: center; gap: 6px;">
-                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${item.name_en || item.name}</span>
+                                                <a href="javascript:void(0)" onclick="drillDownDivision('${divId}', '${divNameEsc}', '${sectionType}')" class="loc-name-drilldown" title="Click to view ${divName} districts">
+                                                    ${divName}
+                                                    <i class="material-icons loc-drill-icon">arrow_forward</i>
+                                                </a>
                                                 ${item.is_featured ? '<span class="loc-featured-badge">✦ Featured</span>' : ''}
                                             </div>
                                             <div style="font-size: 0.77rem; color: #64748b;">${item.name_bn || item.division_id}</div>
@@ -8904,23 +9292,33 @@
                             </tr>
                         `;
                     } else if (activeTab === 'destinations') {
+                        const destName = item.name_en || item.name || '';
+                        const distId = item.district_id || '';
+                        const distName = item.district_name_en || getDistrictNameById(distId) || 'District';
+                        const distNameEsc = distName.replace(/'/g, "\\'");
+                        const divId = item.division_id || '';
+                        const divName = item.division_name_en || getDivisionNameById(divId) || 'Division';
+                        const divNameEsc = divName.replace(/'/g, "\\'");
+
                         return `
                             <tr>
                                 <td style="text-align: center;"><input type="checkbox" value="${itemId}" ${isChecked} onchange="toggleLocRowSelect(this, '${itemId}', '${sectionType}')"></td>
                                 <td style="font-weight: 600; color: #64748b;">${rowNum}</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 12px;">
-                                        <img src="${thumbImg}" alt="${item.name_en}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
+                                        <img src="${thumbImg}" alt="${destName}" class="loc-table-thumb" onerror="this.src='images/locations/banner_discover_bd.png'">
                                         <div>
                                             <div style="display: flex; align-items: center; gap: 6px;">
-                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${item.name_en}</span>
+                                                <span style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${destName}</span>
                                                 ${item.top_50_flag ? '<span class="loc-featured-badge" style="background: #fff7ed; color: #ea580c; border-color: #ffedd5;">★ Popular</span>' : ''}
                                             </div>
                                             <div style="font-size: 0.77rem; color: #64748b;">${item.name_bn ? item.name_bn + ' • ' : ''}${item.destination_id || ''}</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td style="font-weight: 600; color: #334155;">${item.district_name_en || 'Dhaka'}</td>
+                                <td style="font-weight: 600; color: #334155;">
+                                    ${distId ? `<a href="javascript:void(0)" onclick="drillDownDistrict('${distId}', '${distNameEsc}', '${divId}', '${sectionType}')" style="color: #0284c7; text-decoration: none; font-weight: 600;" title="View upazilas in ${distName}">${distName}</a>` : distName}
+                                </td>
                                 <td style="font-weight: 500; color: #64748b;">
                                     <span style="display: inline-block; padding: 2px 8px; border-radius: 6px; background: #e0f2fe; color: #0284c7; font-size: 0.75rem; font-weight: 700;">
                                         ${item.destination_type || 'Attraction'}
@@ -8938,6 +9336,8 @@
                     }
                 }).join('');
 
+                updateLocationBreadcrumb(sectionType);
+
             } catch (err) {
                 console.error('Error rendering location table:', err);
                 tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: #ef4444; padding: 2.5rem 1rem;">
@@ -8948,6 +9348,7 @@
                         <i class="material-icons" style="font-size: 16px;">refresh</i> Retry Loading
                     </button>
                 </td></tr>`;
+                updateLocationBreadcrumb(sectionType);
             }
         }
 
