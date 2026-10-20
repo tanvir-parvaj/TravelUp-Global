@@ -555,74 +555,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Login Screen Overlay */
-        #auth-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
 
-        .login-card {
-            background: var(--white);
-            border-radius: var(--radius-xl);
-            width: 100%;
-            max-width: 440px;
-            padding: 2.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .login-header img {
-            height: 48px;
-            margin-bottom: 1rem;
-        }
-
-        .login-header h2 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--navy);
-        }
-
-        .login-header p {
-            font-size: 0.85rem;
-            color: var(--slate-500);
-            margin-top: 0.35rem;
-        }
-
-        .quick-role-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px dashed var(--slate-200);
-        }
-
-        .role-demo-btn {
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.35rem 0.65rem;
-            border-radius: 9999px;
-            border: 1px solid var(--slate-200);
-            background: var(--slate-50);
-            color: var(--slate-700);
-            cursor: pointer;
-        }
-
-        .role-demo-btn:hover {
-            border-color: var(--primary);
-            background: var(--primary-light);
-            color: var(--primary-dark);
-        }
 
         /* Toast Notifications */
         #toast-container {
@@ -1171,55 +1104,6 @@
         </main>
     </div>
 
-    <!-- Login Modal Dialog Overlay -->
-    <div id="auth-overlay">
-        <div class="login-card">
-            <div class="login-header">
-                <img src="images/travelup_logo_official.png" alt="TravelUp Global">
-                <h2>Operations Portal Login</h2>
-                <p>Sign in with your authorized staff credentials or Gmail</p>
-            </div>
-
-                        <div id="file-protocol-warning" style="display: none; padding: 0.85rem 1rem; background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; border-radius: 8px; font-size: 0.825rem; font-weight: 600; margin-bottom: 1.25rem; line-height: 1.5;">
-                <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
-                    <i class="material-icons" style="font-size: 1.25rem; color: #0284c7;">info</i>
-                    <div>
-                        <strong>Notice:</strong> You opened this file directly from disk (<code>file://</code>).<br>
-                        For complete database connectivity, please open: <br>
-                        <a href="http://localhost:5000/admin.html" style="color: #0284c7; font-weight: 800; text-decoration: underline; font-size: 0.9rem;">http://localhost:5000/admin.html</a>
-                    </div>
-                </div>
-            </div>
-            <div id="login-error-msg" style="display: none; padding: 0.75rem 1rem; background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;"></div>
-
-            <form id="form-login" onsubmit="handleLoginSubmit(event)">
-                <div class="form-group" style="margin-bottom: 1rem;">
-                    <label>Email / Gmail Address</label>
-                    <input type="email" id="login-email" required placeholder="name@travelupglobal.com" value="admin@travelupglobal.com">
-                </div>
-
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label>Security Password</label>
-                    <input type="password" id="login-password" required placeholder="••••••••" value="admin123">
-                </div>
-
-                <button type="submit" id="btn-login-submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem;">
-                    <i class="material-icons">lock_open</i> Enter Portal
-                </button>
-            </form>
-
-            <!-- Quick Demo Role Switcher for instant 1-click testing -->
-            <div class="quick-role-pills">
-                <span style="font-size: 0.725rem; font-weight: 700; color: var(--slate-500); width: 100%;">Instant 1-Click Role Switch:</span>
-                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('admin@travelupglobal.com', 'admin123')">👑 Super Admin</button>
-                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('papelali809@gmail.com', 'admin123')">👑 Tanvir Parvaj</button>
-                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('uploader@travelupglobal.com', 'admin123')">📦 Product Uploader</button>
-                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('manager@travelupglobal.com', 'admin123')">📋 Operations Manager</button>
-                <button type="button" class="role-demo-btn" onclick="quickFillAndLogin('finance@travelupglobal.com', 'admin123')">💳 Finance Officer</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Toast Notifications -->
     <div id="toast-container"></div>
 
@@ -1269,25 +1153,36 @@
             }
         };
 
-        // Init on DOM Load
+        // Init on DOM Load - Strict RBAC Authentication Protection
         document.addEventListener('DOMContentLoaded', () => {
-            const savedUserStr = localStorage.getItem('travelup_admin_user');
-            if (authToken && savedUserStr) {
-                try {
-                    currentUser = JSON.parse(savedUserStr);
-                    applyUserPermissions();
-                    document.getElementById('auth-overlay').style.display = 'none';
-                    loadDashboardData();
-                } catch (e) {
-                    logoutAdmin();
+            const savedUserStr = localStorage.getItem('travelup_admin_user') || localStorage.getItem('travelup_user');
+            const token = localStorage.getItem('travelup_admin_token') || localStorage.getItem('travelup_token');
+
+            if (!token || !savedUserStr) {
+                // Not authenticated -> redirect directly to login page
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                currentUser = JSON.parse(savedUserStr);
+                const allowedStaffRoles = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
+                if (!allowedStaffRoles.includes(currentUser.role)) {
+                    // Regular customer accounts cannot access staff operations portal -> redirect to public homepage
+                    window.location.href = 'index.html';
+                    return;
                 }
-            } else {
-                document.getElementById('auth-overlay').style.display = 'flex';
+                authToken = token;
+                applyUserPermissions();
+                loadDashboardData();
+            } catch (e) {
+                logoutAdmin();
             }
         });
 
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
+            if (!container) return;
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             toast.innerHTML = `<i class="material-icons" style="font-size: 1.15rem;">${type === 'success' ? 'check_circle' : (type === 'error' ? 'error' : 'info')}</i> <span>${message}</span>`;
@@ -1298,120 +1193,15 @@
             }, 3500);
         }
 
-        function quickFillAndLogin(email, pass) {
-            document.getElementById('login-email').value = email;
-            document.getElementById('login-password').value = pass;
-            const errBox = document.getElementById('login-error-msg');
-            if (errBox) errBox.style.display = 'none';
-            handleLoginSubmit();
-        }
-
-        async function handleLoginSubmit(e) {
-            if (e && e.preventDefault) e.preventDefault();
-
-            const emailInput = document.getElementById('login-email');
-            const passInput = document.getElementById('login-password');
-            const errBox = document.getElementById('login-error-msg');
-            const submitBtn = document.getElementById('btn-login-submit');
-
-            if (errBox) errBox.style.display = 'none';
-
-            const email = emailInput ? emailInput.value.trim() : '';
-            const password = passInput ? passInput.value : '';
-
-            if (!email || !password) {
-                if (errBox) {
-                    errBox.textContent = 'Please enter both email and password.';
-                    errBox.style.display = 'block';
-                }
-                return;
-            }
-
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `<i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i> Authenticating...`;
-            }
-
-            try {
-                const res = await fetch(`${API_BASE}/api/auth/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-
-                const data = await res.json();
-
-                if (!res.ok || !data.success) {
-                    const msg = data.message || 'Invalid email or password.';
-                    if (errBox) {
-                        errBox.textContent = msg;
-                        errBox.style.display = 'block';
-                    }
-                    showToast(msg, 'error');
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Enter Portal`;
-                    }
-                    return;
-                }
-
-                // Check role
-                const user = data.user;
-                if (user.role === 'customer') {
-                    const msg = 'Access Denied: Customer accounts cannot access the Operations Portal.';
-                    if (errBox) {
-                        errBox.textContent = msg;
-                        errBox.style.display = 'block';
-                    }
-                    showToast(msg, 'error');
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Enter Portal`;
-                    }
-                    return;
-                }
-
-                authToken = data.token;
-                currentUser = user;
-                localStorage.setItem('travelup_admin_token', authToken);
-                localStorage.setItem('travelup_admin_user', JSON.stringify(currentUser));
-
-                document.getElementById('auth-overlay').style.display = 'none';
-                applyUserPermissions();
-                loadDashboardData();
-                showToast(`Signed in successfully as ${currentUser.name} (${currentUser.role})`, 'success');
-
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Enter Portal`;
-                }
-            } catch (err) {
-                let msg = 'Login request failed: ' + err.message;
-                if (window.location.protocol === 'file:' || err.message.includes('fetch')) {
-                    msg = 'Cannot connect from file:// protocol. Please open via local server: <a href="http://localhost:5000/admin.html" style="color: #b91c1c; font-weight: 800; text-decoration: underline;">http://localhost:5000/admin.html</a>';
-                    if (errBox) {
-                        errBox.innerHTML = msg;
-                        errBox.style.display = 'block';
-                    }
-                }
-                if (errBox) {
-                    errBox.textContent = msg;
-                    errBox.style.display = 'block';
-                }
-                showToast(msg, 'error');
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<i class="material-icons">lock_open</i> Enter Portal`;
-                }
-            }
-        }
-
+        // Logout Admin: Thoroughly clears all session tokens and redirects directly to homepage as a regular visitor
         function logoutAdmin() {
             localStorage.removeItem('travelup_admin_token');
             localStorage.removeItem('travelup_admin_user');
+            localStorage.removeItem('travelup_token');
+            localStorage.removeItem('travelup_user');
             authToken = '';
             currentUser = null;
-            window.location.href = 'logout.html?from=admin';
+            window.location.href = 'index.html';
         }
 
         function toggleAdminProfileMenu(e) {

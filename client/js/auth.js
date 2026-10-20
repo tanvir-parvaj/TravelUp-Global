@@ -34,7 +34,7 @@ const Auth = {
         localStorage.removeItem('travelup_token');
         localStorage.removeItem('travelup_admin_token');
         localStorage.removeItem('travelup_admin_user');
-        window.location.href = 'logout.html';
+        window.location.href = 'index.html';
     },
 
     isLoggedIn() {

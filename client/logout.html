@@ -215,33 +215,8 @@
             } catch(e) {}
         });
 
-        // 2. Determine redirect destination based on 'from' query parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const fromSource = urlParams.get('from');
-
-        if (fromSource === 'admin') {
-            document.getElementById('btn-relogin').href = 'admin.html';
-        }
-
-        // 3. Auto Countdown Redirect to Homepage
-        let secondsLeft = 5;
-        let timerInterval = null;
-
-        const timerEl = document.getElementById('timer');
-        timerInterval = setInterval(() => {
-            secondsLeft--;
-            if (timerEl) timerEl.textContent = secondsLeft;
-            if (secondsLeft <= 0) {
-                clearInterval(timerInterval);
-                window.location.href = (fromSource === 'admin') ? 'admin.html' : 'index.html';
-            }
-        }, 1000);
-
-        function cancelRedirect() {
-            if (timerInterval) clearInterval(timerInterval);
-            const notice = document.getElementById('countdown-wrap');
-            if (notice) notice.innerHTML = '<span style="color: #64748b;">Automatic redirect cancelled.</span>';
-        }
+        // 2. Redirect immediately to public homepage as a regular visitor
+        window.location.href = 'index.html';
     </script>
 </body>
 </html>
