@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="js/locations_bd.js"></script>
+    <script src="js/transit_network.js"></script>
     <style>
         :root {
             --st-primary: #0284c7;
@@ -1818,6 +1819,105 @@
             }
         }
 
+        /* -------------------------------------------------------------
+           SMART MULTI-LEG ROUTE TIERS (MINIMALIST & CLEAN)
+           ------------------------------------------------------------- */
+        .smart-routes-bar {
+            background: #ffffff;
+            border: 1.5px solid var(--st-border);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0 1.5rem;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+        }
+        .smart-route-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 800;
+            color: var(--st-text);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+        }
+        .smart-route-pills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 0.75rem;
+        }
+        .route-pill {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            position: relative;
+        }
+        .route-pill:hover {
+            border-color: #0284c7;
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.1);
+        }
+        .route-pill.active {
+            background: #eff6ff;
+            border-color: #0284c7;
+            box-shadow: 0 0 0 2px #0284c7;
+        }
+        .route-pill.budget.active {
+            background: #f0fdf4;
+            border-color: #16a34a;
+            box-shadow: 0 0 0 2px #16a34a;
+        }
+        .route-pill.luxury.active {
+            background: #faf5ff;
+            border-color: #9333ea;
+            box-shadow: 0 0 0 2px #9333ea;
+        }
+        .pill-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .route-pill.budget .pill-badge { color: #16a34a; }
+        .route-pill.recommended .pill-badge { color: #0284c7; }
+        .route-pill.luxury .pill-badge { color: #9333ea; }
+        .route-pill.custom .pill-badge { color: #64748b; }
+
+        .pill-route {
+            font-size: 0.825rem;
+            font-weight: 600;
+            color: #334155;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .pill-footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.15rem;
+        }
+        .pill-price {
+            font-size: 0.875rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .pill-time {
+            font-size: 0.7rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
     </style>
 </head>
 <body>
@@ -1910,6 +2010,48 @@
                 <label>Travelers <span style="color: #ef4444;">*</span></label>
                 <input type="number" id="traveler-count" value="4" min="1" max="50" oninput="onSearchFieldChanged()" onchange="onSearchFieldChanged()">
                 <span class="error-hint">Minimum 1 traveler required</span>
+            </div>
+        </div>
+
+        <!-- Smart Curated Multi-Leg Route Options (Clean, Minimalist, 3-Tier) -->
+        <div class="smart-routes-bar" id="smart-routes-bar">
+            <div class="smart-route-title">
+                <i class="material-icons" style="color: #0284c7; font-size: 18px;">alt_route</i>
+                <span>Smart Recommended Routes (All-Bangladesh Hub & Multi-Leg Engine)</span>
+            </div>
+            <div class="smart-route-pills" id="smart-route-pills">
+                <button type="button" class="route-pill budget" id="pill-budget" onclick="selectSmartTier('budget')">
+                    <span class="pill-badge">🟢 Lowest Price</span>
+                    <span class="pill-route" id="pill-text-budget">Local Bus + Train + Auto</span>
+                    <div class="pill-footer-row">
+                        <span class="pill-price" id="pill-price-budget">BDT 910 / person</span>
+                        <span class="pill-time" id="pill-time-budget">~18h 30m</span>
+                    </div>
+                </button>
+                <button type="button" class="route-pill recommended active" id="pill-recommended" onclick="selectSmartTier('recommended')">
+                    <span class="pill-badge">🔵 Best Value</span>
+                    <span class="pill-route" id="pill-text-recommended">AC Shuttle + Highway Coach + Jeep</span>
+                    <div class="pill-footer-row">
+                        <span class="pill-price" id="pill-price-recommended">BDT 2,150 / person</span>
+                        <span class="pill-time" id="pill-time-recommended">~14h 00m</span>
+                    </div>
+                </button>
+                <button type="button" class="route-pill luxury" id="pill-luxury" onclick="selectSmartTier('luxury')">
+                    <span class="pill-badge">🟣 Fastest / Luxury</span>
+                    <span class="pill-route" id="pill-text-luxury">Sedan Taxi + Sleeper/Flight + Chander Gari</span>
+                    <div class="pill-footer-row">
+                        <span class="pill-price" id="pill-price-luxury">BDT 3,550 / person</span>
+                        <span class="pill-time" id="pill-time-luxury">~11h 30m</span>
+                    </div>
+                </button>
+                <button type="button" class="route-pill custom" id="pill-custom" onclick="selectSmartTier('custom')">
+                    <span class="pill-badge">⚙️ Custom Mix</span>
+                    <span class="pill-route">Slot-by-Slot Selection</span>
+                    <div class="pill-footer-row">
+                        <span class="pill-price" style="font-size: 0.775rem; color: #64748b;">Manual Custom</span>
+                        <span class="pill-time">Flexible</span>
+                    </div>
+                </button>
             </div>
         </div>
 
@@ -3695,8 +3837,82 @@
             const isValid = validateSearchFields(false);
             if (isValid) {
                 recalculateTotals();
+                renderSmartRouteBar();
             }
         }
+
+        // -------------------------------------------------------------
+        // SMART MULTI-LEG ROUTE TIER SELECTOR & CHANGER
+        // -------------------------------------------------------------
+        let activeSmartTier = 'recommended';
+
+        function renderSmartRouteBar() {
+            if (!window.TRAVELUP_TRANSIT_NETWORK) return;
+            const origin = document.getElementById('origin-select')?.value || 'Dhaka - Mirpur 10';
+            const dest = document.getElementById('destination-select')?.value || 'Rangpur - Pirganj Bazar';
+            const travelers = getTravelerCount();
+
+            const tiers = window.TRAVELUP_TRANSIT_NETWORK.calculateSmartRouteTiers(origin, dest, travelers);
+            if (!tiers) return;
+
+            const pBudgetText = document.getElementById('pill-text-budget');
+            const pBudgetPrice = document.getElementById('pill-price-budget');
+            const pBudgetTime = document.getElementById('pill-time-budget');
+
+            const pRecText = document.getElementById('pill-text-recommended');
+            const pRecPrice = document.getElementById('pill-price-recommended');
+            const pRecTime = document.getElementById('pill-time-recommended');
+
+            const pLuxText = document.getElementById('pill-text-luxury');
+            const pLuxPrice = document.getElementById('pill-price-luxury');
+            const pLuxTime = document.getElementById('pill-time-luxury');
+
+            if (pBudgetText) pBudgetText.textContent = tiers.budget.summaryRoute;
+            if (pBudgetPrice) pBudgetPrice.textContent = `BDT ${tiers.budget.perPersonPrice.toLocaleString()} / person`;
+            if (pBudgetTime) pBudgetTime.textContent = `~${tiers.budget.timeEstimate}`;
+
+            if (pRecText) pRecText.textContent = tiers.recommended.summaryRoute;
+            if (pRecPrice) pRecPrice.textContent = `BDT ${tiers.recommended.perPersonPrice.toLocaleString()} / person`;
+            if (pRecTime) pRecTime.textContent = `~${tiers.recommended.timeEstimate}`;
+
+            if (pLuxText) pLuxText.textContent = tiers.luxury.summaryRoute;
+            if (pLuxPrice) pLuxPrice.textContent = `BDT ${tiers.luxury.perPersonPrice.toLocaleString()} / person`;
+            if (pLuxTime) pLuxTime.textContent = `~${tiers.luxury.timeEstimate}`;
+        }
+
+        function selectSmartTier(tierKey) {
+            activeSmartTier = tierKey;
+            document.querySelectorAll('.route-pill').forEach(btn => btn.classList.remove('active'));
+            const btn = document.getElementById(`pill-${tierKey}`);
+            if (btn) btn.classList.add('active');
+
+            if (tierKey === 'custom') return; // User configures manually
+
+            const origin = document.getElementById('origin-select')?.value || 'Dhaka - Mirpur 10';
+            const dest = document.getElementById('destination-select')?.value || 'Rangpur - Pirganj Bazar';
+            const travelers = getTravelerCount();
+
+            if (!window.TRAVELUP_TRANSIT_NETWORK) return;
+            const tiers = window.TRAVELUP_TRANSIT_NETWORK.calculateSmartRouteTiers(origin, dest, travelers);
+            const selected = tiers[tierKey];
+            if (!selected || !selected.legs) return;
+
+            // Clear current configuration
+            for (const key in currentTour) {
+                removeComponent(key);
+            }
+
+            // Auto-select each leg from the tier
+            selected.legs.forEach(leg => {
+                const item = (inventory[leg.slotKey] || [])[0];
+                if (item) {
+                    selectComponent(leg.slotKey, item.id);
+                }
+            });
+
+            recalculateTotals();
+        }
+
 
         function autoFillDemo(from = 'Dhaka - Mirpur 10', to = 'Rangpur - Pirganj Bazar', travelers = 4) {
             const originSelect = document.getElementById('origin-select');
@@ -4625,6 +4841,7 @@
 
             validateSearchFields(false);
             recalculateTotals();
+            renderSmartRouteBar();
         });
     </script>
 
