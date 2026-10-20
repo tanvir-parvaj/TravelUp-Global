@@ -3105,8 +3105,16 @@
                 }
             });
 
-            // Default to Dashboard
-            switchTab('dashboard');
+            // Restore active tab from URL hash or localStorage, fallback to dashboard
+            const savedHashTab = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
+            const savedStorageTab = localStorage.getItem('travelup_admin_active_tab');
+            const targetInitialTab = savedHashTab || savedStorageTab || 'dashboard';
+
+            if (roleCfg.allowedTabs.includes(targetInitialTab)) {
+                switchTab(targetInitialTab);
+            } else {
+                switchTab('dashboard');
+            }
             loadTravelPlanner();
             loadTourPlanner();
         }
@@ -3118,6 +3126,16 @@
             if (!roleCfg.allowedTabs.includes(tabId)) {
                 showToast('Access Restricted: Your role cannot view this section.', 'error');
                 return;
+            }
+
+            // Persist active tab to localStorage & URL hash so reloads stay on the current tab
+            try {
+                localStorage.setItem('travelup_admin_active_tab', tabId);
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, `#${tabId}`);
+                }
+            } catch (err) {
+                console.error(err);
             }
 
             // Update sidebar active state
@@ -3144,9 +3162,20 @@
             if (tabId === 'staff') loadStaff();
         }
 
+        // Listen for browser back / forward / hash changes
+        window.addEventListener('hashchange', () => {
+            const hTab = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
+            if (hTab && currentUser) {
+                const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
+                if (roleCfg.allowedTabs.includes(hTab)) {
+                    switchTab(hTab);
+                }
+            }
+        });
+
         // ================= 1. TRAVEL PLANNER (CATEGORY & SERVICE MANAGER) ================= //
 
-        let tpCategories = [
+        const DEFAULT_TP_CATEGORIES = [
             { id: 1, name: 'Transit', type: 'Transport', subCategories: 8, products: 45, status: 'Active', createdDate: '12 May 2025', icon: 'directions_bus', bg: '#e0f2fe', color: '#0284c7' },
             { id: 2, name: 'Accommodation', type: 'Accommodation', subCategories: 6, products: 32, status: 'Active', createdDate: '10 May 2025', icon: 'hotel', bg: '#e0e7ff', color: '#4338ca' },
             { id: 3, name: 'Activities & Experiences', type: 'Activity', subCategories: 5, products: 21, status: 'Active', createdDate: '08 May 2025', icon: 'eco', bg: '#d1fae5', color: '#059669' },
@@ -3156,9 +3185,35 @@
             { id: 7, name: 'Cargo & Logistics', type: 'Logistics', subCategories: 2, products: 4, status: 'Inactive', createdDate: '28 Apr 2025', icon: 'local_shipping', bg: '#f1f5f9', color: '#475569' }
         ];
 
+        function getStoredTpCategories() {
+            try {
+                const stored = localStorage.getItem('travelup_tp_categories');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed)) return parsed;
+                }
+            } catch (err) {
+                console.error('Failed to load tp categories from localStorage:', err);
+            }
+            try {
+                localStorage.setItem('travelup_tp_categories', JSON.stringify(DEFAULT_TP_CATEGORIES));
+            } catch (err) {}
+            return JSON.parse(JSON.stringify(DEFAULT_TP_CATEGORIES));
+        }
+
+        function saveStoredTpCategories() {
+            try {
+                localStorage.setItem('travelup_tp_categories', JSON.stringify(tpCategories));
+            } catch (err) {
+                console.error('Failed to save tp categories to localStorage:', err);
+            }
+        }
+
+        let tpCategories = getStoredTpCategories();
         let activeCategoryActionId = null;
 
         function loadTravelPlanner() {
+            tpCategories = getStoredTpCategories();
             renderTpCategoriesTable(tpCategories);
         }
 
@@ -3200,7 +3255,7 @@
         }
 
         function switchTpMainTab(tabName, el) {
-            document.querySelectorAll('.tp-tab-pill').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('#tp-nav-tabs .tp-tab-pill').forEach(btn => btn.classList.remove('active'));
             if (el) el.classList.add('active');
 
             const tableCard = document.getElementById('tp-table-container');
@@ -3228,7 +3283,7 @@
                         </div>
                         <h3 style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; text-transform: capitalize;">${tabName} Management</h3>
                         <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Manage and configure your registered ${tabName} catalog data directly synchronized with Travel Planner.</p>
-                        <button type="button" class="tp-btn-add-category" onclick="switchTpMainTab('categories', document.querySelector('.tp-tab-pill:first-child'))">
+                        <button type="button" class="tp-btn-add-category" onclick="switchTpMainTab('categories', document.querySelector('#tp-nav-tabs .tp-tab-pill:first-child'))">
                             <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Categories
                         </button>
                     </div>
@@ -3280,6 +3335,7 @@
                 color
             });
 
+            saveStoredTpCategories();
             closeAddCategoryModal();
             document.getElementById('tp-add-category-form').reset();
             renderTpCategoriesTable(tpCategories);
@@ -3306,6 +3362,7 @@
             const newName = prompt('Edit Category Name:', cat.name);
             if (newName && newName.trim()) {
                 cat.name = newName.trim();
+                saveStoredTpCategories();
                 renderTpCategoriesTable(tpCategories);
                 showToast('Category updated successfully!', 'success');
             }
@@ -3317,6 +3374,7 @@
             const cat = tpCategories.find(c => c.id === activeCategoryActionId);
             if (!cat) return;
             cat.status = cat.status === 'Active' ? 'Inactive' : 'Active';
+            saveStoredTpCategories();
             renderTpCategoriesTable(tpCategories);
             showToast(`Category "${cat.name}" is now ${cat.status}!`, 'info');
         }
@@ -3329,6 +3387,7 @@
             const catName = tpCategories[catIndex].name;
             if (confirm(`Are you sure you want to delete "${catName}" category?`)) {
                 tpCategories.splice(catIndex, 1);
+                saveStoredTpCategories();
                 renderTpCategoriesTable(tpCategories);
                 showToast(`Category "${catName}" removed.`, 'warning');
             }
@@ -3340,7 +3399,7 @@
             if (menu) menu.classList.remove('show');
         });
 
-        // Global search filtering for Travel Planner
+        // Global search filtering for Travel Planner and Tour Planner
         document.getElementById('topbar-search-input')?.addEventListener('input', function(e) {
             const q = (e.target.value || '').toLowerCase().trim();
             const tpSection = document.getElementById('view-travel-planner');
@@ -3374,7 +3433,7 @@
 
         // ================= 2. TOUR PLANNER (CATEGORY & SERVICE MANAGER) ================= //
 
-        let tourCategories = [
+        const DEFAULT_TOUR_CATEGORIES = [
             { id: 1, name: 'Transit', type: 'Transport', subCategories: 8, products: 45, status: 'Active', createdDate: '12 May 2025', icon: 'directions_bus', bg: '#e0f2fe', color: '#0284c7' },
             { id: 2, name: 'Accommodation', type: 'Accommodation', subCategories: 6, products: 32, status: 'Active', createdDate: '10 May 2025', icon: 'hotel', bg: '#e0e7ff', color: '#4338ca' },
             { id: 3, name: 'Activities & Experiences', type: 'Activity', subCategories: 5, products: 21, status: 'Active', createdDate: '08 May 2025', icon: 'eco', bg: '#d1fae5', color: '#059669' },
@@ -3384,9 +3443,35 @@
             { id: 7, name: 'Cargo & Logistics', type: 'Logistics', subCategories: 2, products: 4, status: 'Inactive', createdDate: '28 Apr 2025', icon: 'local_shipping', bg: '#f1f5f9', color: '#475569' }
         ];
 
+        function getStoredTourCategories() {
+            try {
+                const stored = localStorage.getItem('travelup_tour_categories');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed)) return parsed;
+                }
+            } catch (err) {
+                console.error('Failed to load tour categories from localStorage:', err);
+            }
+            try {
+                localStorage.setItem('travelup_tour_categories', JSON.stringify(DEFAULT_TOUR_CATEGORIES));
+            } catch (err) {}
+            return JSON.parse(JSON.stringify(DEFAULT_TOUR_CATEGORIES));
+        }
+
+        function saveStoredTourCategories() {
+            try {
+                localStorage.setItem('travelup_tour_categories', JSON.stringify(tourCategories));
+            } catch (err) {
+                console.error('Failed to save tour categories to localStorage:', err);
+            }
+        }
+
+        let tourCategories = getStoredTourCategories();
         let activeTourCategoryActionId = null;
 
         function loadTourPlanner() {
+            tourCategories = getStoredTourCategories();
             renderTourCategoriesTable(tourCategories);
         }
 
@@ -3508,6 +3593,7 @@
                 color
             });
 
+            saveStoredTourCategories();
             closeTourAddCategoryModal();
             document.getElementById('tour-add-category-form').reset();
             renderTourCategoriesTable(tourCategories);
@@ -3534,6 +3620,7 @@
             const newName = prompt('Edit Category Name:', cat.name);
             if (newName && newName.trim()) {
                 cat.name = newName.trim();
+                saveStoredTourCategories();
                 renderTourCategoriesTable(tourCategories);
                 showToast('Category updated successfully!', 'success');
             }
@@ -3545,6 +3632,7 @@
             const cat = tourCategories.find(c => c.id === activeTourCategoryActionId);
             if (!cat) return;
             cat.status = cat.status === 'Active' ? 'Inactive' : 'Active';
+            saveStoredTourCategories();
             renderTourCategoriesTable(tourCategories);
             showToast(`Category "${cat.name}" is now ${cat.status}!`, 'info');
         }
@@ -3557,6 +3645,7 @@
             const catName = tourCategories[catIndex].name;
             if (confirm(`Are you sure you want to delete "${catName}" category?`)) {
                 tourCategories.splice(catIndex, 1);
+                saveStoredTourCategories();
                 renderTourCategoriesTable(tourCategories);
                 showToast(`Category "${catName}" removed.`, 'warning');
             }
