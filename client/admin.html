@@ -3837,7 +3837,586 @@
             border-color: #10b981;
             color: #6ee7b7;
         }
-    </style>
+    
+        /* ================= ULTRA-MODERN POPUP / MODAL DESIGN MATCHING MOCKUPS ================= */
+        .tp-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+            z-index: 100000 !important;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            animation: tpModalBackdropFade 0.22s ease-out;
+        }
+
+        .tp-modal-overlay.show,
+        .tp-modal-overlay[style*="display: flex"] {
+            display: flex !important;
+        }
+
+        @keyframes tpModalBackdropFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes tpModalCardSlideUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modern-modal-card {
+            background: #ffffff !important;
+            border-radius: 24px !important;
+            box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.28), 0 0 1px rgba(0, 0, 0, 0.1) !important;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            animation: tpModalCardSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modern-modal-header {
+            padding: 1.35rem 1.75rem;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .modern-modal-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #dcfce7;
+            color: #00875a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .modern-modal-badge.amber {
+            background: #ffedd5;
+            color: #ea580c;
+        }
+
+        .modern-modal-badge i {
+            font-size: 24px;
+        }
+
+        .modern-modal-close-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #64748b;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+        }
+
+        .modern-modal-close-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+            transform: scale(1.05);
+        }
+
+        .modern-modal-scrollable {
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modern-modal-body {
+            padding: 1.5rem 1.75rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.75rem;
+            background: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .modern-modal-body {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                padding: 1.25rem;
+            }
+        }
+
+        .modern-modal-footer {
+            padding: 1.15rem 1.75rem;
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .btn-modal-cancel {
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 0.62rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #475569;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-modal-cancel:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+            color: #1e293b;
+        }
+
+        .btn-modal-submit {
+            background: #00875a;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 0.62rem 1.65rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 135, 90, 0.25);
+            transition: all 0.15s ease;
+        }
+
+        .btn-modal-submit:hover {
+            background: #00704a;
+            box-shadow: 0 6px 16px rgba(0, 135, 90, 0.35);
+        }
+
+        .btn-modal-submit.amber {
+            background: #ea580c;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25);
+        }
+
+        .btn-modal-submit.amber:hover {
+            background: #c2410c;
+            box-shadow: 0 6px 16px rgba(234, 88, 12, 0.35);
+        }
+
+        /* Modern Form Labels */
+        .modern-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .modern-label .req {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .modern-label .opt {
+            font-weight: 500;
+            color: #94a3b8;
+            margin-left: 2px;
+        }
+
+        /* Modern Inputs with Prefix Box */
+        .modern-input-group {
+            display: flex;
+            align-items: stretch;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background: #ffffff;
+            overflow: hidden;
+            transition: all 0.15s ease;
+        }
+
+        .modern-input-group:focus-within {
+            border-color: #00875a;
+            box-shadow: 0 0 0 3px rgba(0, 135, 90, 0.12);
+        }
+
+        .modern-input-prefix {
+            width: 44px;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .modern-input-field {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0.6rem 0.85rem;
+            font-size: 0.85rem;
+            color: #0f172a;
+            background: transparent;
+            width: 100%;
+        }
+
+        .modern-input-standalone {
+            width: 100%;
+            padding: 0.6rem 0.85rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #0f172a;
+            background: #ffffff;
+            outline: none;
+            transition: all 0.15s ease;
+            box-sizing: border-box;
+        }
+
+        .modern-input-standalone:focus {
+            border-color: #00875a;
+            box-shadow: 0 0 0 3px rgba(0, 135, 90, 0.12);
+        }
+
+        .modern-textarea {
+            width: 100%;
+            padding: 0.6rem 0.85rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #0f172a;
+            background: #ffffff;
+            outline: none;
+            resize: vertical;
+            transition: all 0.15s ease;
+            box-sizing: border-box;
+        }
+
+        .modern-textarea:focus {
+            border-color: #00875a;
+            box-shadow: 0 0 0 3px rgba(0, 135, 90, 0.12);
+        }
+
+        /* Location Type Segment Selector */
+        .loc-type-segment-group {
+            display: flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 12px;
+            gap: 4px;
+        }
+
+        .loc-type-segment-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 0.52rem 0.4rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background: transparent;
+            color: #475569;
+            font-size: 0.785rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .loc-type-segment-btn:hover {
+            color: #0f172a;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .loc-type-segment-btn.active {
+            background: #ffffff;
+            color: #00875a;
+            border-color: #d1fae5;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+            font-weight: 700;
+        }
+
+        /* Parent Location Info Callout Box */
+        .loc-info-callout {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1e40af;
+            font-size: 0.76rem;
+        }
+
+        /* Character Counter */
+        .char-counter-text {
+            text-align: right;
+            font-size: 0.725rem;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* Dropzone & Preview Bar */
+        .mockup-dropzone {
+            border: 1.5px dashed #93c5fd;
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            position: relative;
+        }
+
+        .mockup-dropzone:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .mockup-dropzone-icon-wrap {
+            width: 44px;
+            height: 44px;
+            margin: 0 auto 6px;
+            border-radius: 50%;
+            background: #e0f2fe;
+            color: #0284c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mockup-dropzone-icon-wrap .plus-badge {
+            position: absolute;
+            right: -2px;
+            bottom: -2px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: #10b981;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ffffff;
+        }
+
+        .mockup-file-preview-bar {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .mockup-file-preview-bar img {
+            width: 52px;
+            height: 38px;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #ffffff;
+        }
+
+        .mockup-file-preview-bar .file-name {
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 0.85rem;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .mockup-file-preview-bar .check-badge {
+            color: #10b981;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .mockup-file-preview-bar .close-btn {
+            color: #64748b;
+            cursor: pointer;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            border-radius: 4px;
+            transition: color 0.15s ease;
+        }
+
+        .mockup-file-preview-bar .close-btn:hover {
+            color: #ef4444;
+        }
+
+        /* Location Square Preview Box */
+        .loc-square-preview-box {
+            width: 82px;
+            height: 82px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #f8fafc;
+        }
+
+        .loc-square-preview-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .loc-square-delete-btn {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(15, 23, 42, 0.7);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s ease;
+        }
+
+        .loc-square-delete-btn:hover {
+            background: #ef4444;
+        }
+
+        /* Operators Multi-Select Dropdown */
+        .operator-multiselect-wrap {
+            position: relative;
+            user-select: none;
+        }
+
+        .operator-multiselect-trigger {
+            display: flex;
+            align-items: center;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background: #ffffff;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .operator-multiselect-trigger:hover {
+            border-color: #94a3b8;
+        }
+
+        .operator-multiselect-dropdown {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+            z-index: 1000;
+            max-height: 240px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .operator-multiselect-dropdown.show {
+            display: flex !important;
+        }
+
+        .operator-search-bar {
+            padding: 8px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+        }
+
+        .operator-search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 0.825rem;
+        }
+
+        .operator-items-list {
+            overflow-y: auto;
+            padding: 6px 0;
+        }
+
+        .operator-row-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: background 0.12s;
+        }
+
+        .operator-row-item:hover {
+            background: #f8fafc;
+        }
+
+        .operator-row-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #00875a;
+            cursor: pointer;
+        }
+
+        .operator-row-logo {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #e2e8f0;
+        }
+
+        .operator-row-name {
+            flex: 1;
+            font-size: 0.825rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .operator-row-badge {
+            background: #f1f5f9;
+            color: #64748b;
+            font-size: 0.725rem;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: 2px 8px;
+        }
+</style>
 </head>
 <body>
 
@@ -4690,110 +5269,103 @@
                             </div>
                         </div>
                     </div>
+    
+    <!-- Universal Category CRUD Modal Matching Mockup -->
     <div id="universal-category-modal" class="tp-modal-overlay" onclick="closeCategoryModal(event)">
-        <div class="tp-modal-card" style="max-width: 540px; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);" onclick="event.stopPropagation()">
-            <!-- Modal Header -->
-            <div class="tp-modal-header" style="border-bottom: 1px solid #f1f5f9; padding: 1.5rem 1.75rem 1.25rem;">
+        <div class="modern-modal-card" onclick="event.stopPropagation()">
+            <!-- Header -->
+            <div class="modern-modal-header">
                 <div style="display: flex; align-items: center; gap: 14px;">
-                    <div style="width: 52px; height: 52px; border-radius: 50%; background: #dcfce7; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <img src="images/categories/modal_header_icon_circle.png" alt="Category" style="width: 100%; height: 100%; object-fit: contain;">
+                    <div class="modern-modal-badge">
+                        <i class="material-icons" style="font-size: 24px;">category</i>
                     </div>
                     <div>
-                        <h3 style="font-size: 1.25rem; font-weight: 800; color: #102a43; margin: 0; line-height: 1.2;" id="cat-modal-title">Add New Category</h3>
-                        <p style="font-size: 0.825rem; color: #627d98; margin: 4px 0 0 0;" id="cat-modal-desc">Create a new category to organize your tours and services.</p>
+                        <h3 id="cat-modal-title" style="margin: 0; color: #0f172a; font-size: 1.25rem; font-weight: 800;">Add New Category</h3>
+                        <p id="cat-modal-desc" style="margin: 3px 0 0 0; color: #64748b; font-size: 0.8rem;">Create a new travel category for the platform</p>
                     </div>
                 </div>
-                <button type="button" class="tp-modal-close-circle" onclick="closeCategoryModal()" title="Close">&times;</button>
+                <button type="button" class="modern-modal-close-btn" onclick="closeCategoryModal()" title="Close">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
             </div>
 
-            <!-- Modal Form -->
-            <form id="universal-category-form" onsubmit="handleSaveCategoryModal(event)">
-                <div class="tp-modal-body" style="padding: 1.5rem 1.75rem;">
-                    <!-- Category Name -->
-                    <div class="form-group" style="margin-bottom: 1.25rem;">
-                        <label style="font-size: 0.85rem; font-weight: 700; color: #102a43; margin-bottom: 6px; display: block;">
-                            Category Name <span style="color: #ef4444;">*</span>
-                        </label>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div class="cat-input-icon-box">
-                                <span style="font-family: serif; font-size: 1.2rem; font-weight: 700; color: #486581;">T</span>
-                            </div>
-                            <input type="text" id="cat-modal-input-name" required placeholder="Enter category name (e.g. Adventure, Accommodation, etc.)" class="cat-modal-input">
-                        </div>
-                    </div>
-
-                    <!-- Status -->
-                    <div class="form-group" style="margin-bottom: 1.25rem;">
-                        <label style="font-size: 0.85rem; font-weight: 700; color: #102a43; margin-bottom: 6px; display: block;">
-                            Status <span style="color: #ef4444;">*</span>
-                        </label>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div class="cat-input-icon-box">
-                                <i class="material-icons" style="font-size: 22px;">toggle_on</i>
-                            </div>
-                            <div style="position: relative; flex: 1;">
-                                <select id="cat-modal-input-status" class="cat-modal-input" style="width: 100%; cursor: pointer; -webkit-appearance: none; appearance: none; padding-right: 2.5rem;">
-                                    <option value="Active" selected>Active</option>
-                                    <option value="Inactive">Inactive</option>
-                                </select>
-                                <i class="material-icons" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #627d98; font-size: 20px;">expand_more</i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Created Date -->
-                    <div class="form-group" style="margin-bottom: 1.25rem;">
-                        <label style="font-size: 0.85rem; font-weight: 700; color: #102a43; margin-bottom: 6px; display: block;">
-                            Created Date <span style="color: #ef4444;">*</span>
-                        </label>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div class="cat-input-icon-box">
-                                <i class="material-icons" style="font-size: 20px;">calendar_month</i>
-                            </div>
-                            <div style="position: relative; flex: 1;">
-                                <input type="date" id="cat-modal-input-date" required class="cat-modal-input" style="width: 100%; cursor: pointer;">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Category Image Upload -->
-                    <div class="form-group" style="margin-bottom: 0.5rem;">
-                        <label style="font-size: 0.85rem; font-weight: 700; color: #102a43; margin-bottom: 6px; display: block;">
-                            Category Image <span style="color: #ef4444;">*</span>
-                        </label>
-                        <div style="display: flex; align-items: flex-start; gap: 10px;">
-                            <div class="cat-input-icon-box" style="margin-top: 2px;">
-                                <i class="material-icons" style="font-size: 20px;">image</i>
-                            </div>
-                            <div style="flex: 1;">
-                                <div class="cat-dropzone" id="cat-modal-dropzone" onclick="document.getElementById('cat-modal-file-input').click()">
+            <!-- Form with scrollable body -->
+            <form id="universal-category-form" onsubmit="handleSaveCategoryModal(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
+                <div class="modern-modal-scrollable">
+                    <div class="modern-modal-body">
+                        <!-- Left Column -->
+                        <div>
+                            <!-- Category Image -->
+                            <div>
+                                <label class="modern-label">Category Image <span class="req">*</span></label>
+                                <div class="mockup-dropzone" id="cat-modal-dropzone" onclick="document.getElementById('cat-modal-file-input').click()">
                                     <div id="cat-modal-dropzone-content">
-                                        <i class="material-icons" style="font-size: 38px; color: #3b82f6; display: block; margin: 0 auto 6px;">cloud_upload</i>
-                                        <div style="font-size: 0.9rem; font-weight: 500; color: #475569;">
-                                            <strong style="color: #102a43; font-weight: 700;">Click to upload</strong> or drag and drop
+                                        <div class="mockup-dropzone-icon-wrap">
+                                            <i class="material-icons" style="font-size: 24px;">cloud_upload</i>
+                                            <span class="plus-badge">+</span>
                                         </div>
-                                        <div style="font-size: 0.775rem; color: #627d98; margin-top: 4px;">JPG, PNG or WEBP (Max. 2MB)</div>
+                                        <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-top: 2px;">Click to upload or drag and drop</div>
+                                        <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">SVG, PNG, JPG or GIF (max. 800x400px)</div>
                                     </div>
-                                    <div id="cat-modal-preview-wrap" style="display: none; align-items: center; justify-content: center; gap: 14px;">
-                                        <img id="cat-modal-preview-img" src="" alt="Category Preview" style="width: 90px; height: 60px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
-                                        <div style="text-align: left;">
-                                            <div style="font-size: 0.825rem; font-weight: 700; color: #102a43;" id="cat-modal-preview-filename">Image selected</div>
-                                            <button type="button" class="btn-change-img" onclick="event.stopPropagation(); document.getElementById('cat-modal-file-input').click();">Change</button>
-                                        </div>
-                                    </div>
+                                    <input type="file" id="cat-modal-file-input" accept="image/*" style="display: none;" onchange="handleCatImageFileSelect(event)">
                                 </div>
-                                <input type="file" id="cat-modal-file-input" accept="image/*" style="display: none;" onchange="handleCatImageFileSelect(event)">
+                                <!-- File preview pill bar -->
+                                <div id="cat-modal-preview-wrap" class="mockup-file-preview-bar" style="display: none;">
+                                    <img id="cat-modal-preview-img" src="" alt="Preview">
+                                    <span class="file-name" id="cat-modal-preview-filename">travel.jpg</span>
+                                    <span class="check-badge"><i class="material-icons" style="font-size: 20px;">check_circle</i></span>
+                                    <button type="button" class="close-btn" onclick="resetCatModalImagePreview(event)" title="Remove file">
+                                        <i class="material-icons" style="font-size: 18px;">close</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div>
+                            <!-- Category Name -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Category Name <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">T</div>
+                                    <input type="text" id="cat-modal-input-name" required placeholder="e.g. Transit, Stay, Tour..." class="modern-input-field">
+                                </div>
+                            </div>
+
+                            <!-- Status -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Status <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 20px;">toggle_on</i>
+                                    </div>
+                                    <select id="cat-modal-input-status" class="modern-input-field" style="cursor: pointer;">
+                                        <option value="Active" selected>● Active</option>
+                                        <option value="Inactive">● Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Created Date -->
+                            <div>
+                                <label class="modern-label">Created Date <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 18px;">calendar_today</i>
+                                    </div>
+                                    <input type="date" id="cat-modal-input-date" required class="modern-input-field" style="cursor: pointer;">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal Footer -->
-                <div class="tp-modal-footer" style="padding: 1.15rem 1.75rem; border-top: 1px solid #f1f5f9; background: #ffffff; display: flex; justify-content: flex-end; gap: 0.75rem;">
-                    <button type="button" class="btn-cancel-modal" onclick="closeCategoryModal()">Cancel</button>
-                    <button type="submit" class="tp-btn-add-category" style="padding: 0.65rem 1.5rem; font-size: 0.875rem;">
-                        <i class="material-icons" style="font-size: 19px;">save</i>
-                        <span id="cat-modal-submit-btn">Save Category</span>
+                <!-- Footer -->
+                <div class="modern-modal-footer">
+                    <button type="button" class="btn-modal-cancel" onclick="closeCategoryModal()">Cancel</button>
+                    <button type="submit" id="cat-modal-submit-btn" class="btn-modal-submit">
+                        <i class="material-icons" style="font-size: 18px;">save</i>
+                        <span>Save Category</span>
                     </button>
                 </div>
             </form>
@@ -5269,278 +5841,417 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tp-modal-overlay" id="subcat-crud-modal" onclick="closeSubCategoryModal(event)">
-                        <div class="tp-modal-card" style="max-width: 530px; width: 100%; border-radius: 18px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);" onclick="event.stopPropagation()">
-                            <div class="tp-modal-header" style="background: linear-gradient(135deg, #00875a 0%, #006040 100%); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between;">
-                                <div style="display: flex; align-items: center; gap: 12px;">
-                                    <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; color: #ffffff;">
-                                        <i class="material-icons" id="subcat-modal-header-icon" style="font-size: 24px;">directions_bus</i>
+                    
+    <!-- Sub Category CRUD Modal Matching Mockup -->
+    <div class="tp-modal-overlay" id="subcat-crud-modal" onclick="closeSubCategoryModal(event)">
+        <div class="modern-modal-card" onclick="event.stopPropagation()">
+            <!-- Header -->
+            <div class="modern-modal-header">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div class="modern-modal-badge">
+                        <i class="material-icons" id="subcat-modal-header-icon">directions_bus</i>
+                    </div>
+                    <div>
+                        <h3 id="subcat-modal-title" style="margin: 0; color: #0f172a; font-size: 1.25rem; font-weight: 800;">Add Sub Category</h3>
+                        <p id="subcat-modal-subtitle" style="margin: 3px 0 0 0; color: #64748b; font-size: 0.8rem;">Create a new sub-category for this travel service</p>
+                    </div>
+                </div>
+                <button type="button" class="modern-modal-close-btn" onclick="closeSubCategoryModal()" title="Close">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+            </div>
+
+            <!-- Form with scrollable body -->
+            <form id="subcat-crud-form" onsubmit="handleSubCategoryFormSubmit(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
+                <input type="hidden" id="subcat-modal-id">
+                <input type="hidden" id="subcat-modal-section">
+                <input type="hidden" id="subcat-modal-parent-display">
+                <input type="hidden" id="subcat-modal-thumb-data">
+
+                <div class="modern-modal-scrollable">
+                    <div class="modern-modal-body">
+                        <!-- Left Column -->
+                        <div>
+                            <!-- Sub Category Image -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Sub Category Image <span class="req">*</span></label>
+                                <div class="mockup-dropzone" onclick="document.getElementById('subcat-modal-thumb-file').click()">
+                                    <div class="mockup-dropzone-icon-wrap">
+                                        <i class="material-icons" style="font-size: 24px;">cloud_upload</i>
+                                        <span class="plus-badge">+</span>
                                     </div>
-                                    <div>
-                                        <h3 id="subcat-modal-title" style="margin: 0; color: #ffffff; font-size: 1.15rem; font-weight: 800;">Add Sub Category</h3>
-                                        <p id="subcat-modal-subtitle" style="margin: 3px 0 0 0; color: rgba(255,255,255,0.85); font-size: 0.775rem;">Create a new sub-category offering under Transit</p>
-                                    </div>
+                                    <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-top: 2px;">Click to upload or drag and drop</div>
+                                    <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">SVG, PNG, JPG or GIF (max. 800x400px)</div>
+                                    <input type="file" id="subcat-modal-thumb-file" accept="image/*" style="display: none;" onchange="previewSubCategoryThumbnail(event)">
                                 </div>
-                                <button type="button" onclick="closeSubCategoryModal()" style="color: #ffffff; background: rgba(255,255,255,0.18); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                                    <i class="material-icons" style="font-size: 18px;">close</i>
-                                </button>
+                                <!-- File preview pill bar -->
+                                <div id="subcat-preview-pill-bar" class="mockup-file-preview-bar" style="display: none;">
+                                    <img id="subcat-modal-thumb-preview" src="images/subcategories/sub_transit_bus.png" alt="Preview">
+                                    <span class="file-name" id="subcat-file-name-text">bus.jpg</span>
+                                    <span class="check-badge"><i class="material-icons" style="font-size: 20px;">check_circle</i></span>
+                                    <button type="button" class="close-btn" onclick="removeSubCatImage(event)" title="Remove file">
+                                        <i class="material-icons" style="font-size: 18px;">close</i>
+                                    </button>
+                                </div>
                             </div>
-                            <form id="subcat-crud-form" onsubmit="handleSubCategoryFormSubmit(event)" style="padding: 1.35rem 1.6rem;">
-                                <input type="hidden" id="subcat-modal-id">
-                                <input type="hidden" id="subcat-modal-section">
 
-                                <div style="margin-bottom: 1rem;">
-                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Parent Category</label>
-                                    <input type="text" id="subcat-modal-parent-display" readonly style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #e2e8f0; border-radius: 10px; background: #f8fafc; font-size: 0.85rem; font-weight: 700; color: #0f172a;">
+                            <!-- Description -->
+                            <div>
+                                <label class="modern-label">Description <span class="req">*</span></label>
+                                <textarea id="subcat-modal-desc" required rows="4" placeholder="Write a short description..." class="modern-textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div>
+                            <!-- Sub Category Name -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Sub Category Name <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">T</div>
+                                    <input type="text" id="subcat-modal-name" required placeholder="e.g. Bus, Train, Flight..." class="modern-input-field">
                                 </div>
+                            </div>
 
-                                <div style="margin-bottom: 1rem;">
-                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Sub Category Name <span style="color: #ef4444;">*</span></label>
-                                    <div style="position: relative;">
-                                        <i class="material-icons" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #94a3b8;">label</i>
-                                        <input type="text" id="subcat-modal-name" required placeholder="e.g., Bus, Luxury Sleeper, Train, Ferry" style="width: 100%; padding: 0.52rem 0.85rem 0.52rem 2.25rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none;">
-                                    </div>
-                                </div>
-
-                                <div style="margin-bottom: 1rem;">
-                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Description <span style="color: #ef4444;">*</span></label>
-                                    <textarea id="subcat-modal-desc" required rows="2" placeholder="Brief description of transport or service offered..." style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.825rem; outline: none; resize: vertical;"></textarea>
-                                </div>
-
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                                    <div>
-                                        <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Operators Count</label>
-                                        <div style="position: relative;">
-                                            <i class="material-icons" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #94a3b8;">people</i>
-                                            <input type="number" id="subcat-modal-operators" min="0" value="1" style="width: 100%; padding: 0.52rem 0.85rem 0.52rem 2.25rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none;">
+                            <!-- Operators Multi-Select Dropdown -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Operators <span class="req">*</span></label>
+                                <div class="operator-multiselect-wrap">
+                                    <div class="operator-multiselect-trigger" onclick="toggleOperatorDropdown(event)">
+                                        <div class="modern-input-prefix">
+                                            <i class="material-icons" style="font-size: 20px;">people</i>
                                         </div>
+                                        <div id="subcat-operator-display-text" style="flex: 1; padding: 0.6rem 0.85rem; font-size: 0.85rem; color: #1e293b; font-weight: 600;">
+                                            Select operators (3 selected)
+                                        </div>
+                                        <i class="material-icons" style="color: #64748b; font-size: 20px; margin-right: 10px;">expand_more</i>
                                     </div>
-                                    <div>
-                                        <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Status</label>
-                                        <select id="subcat-modal-status" style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none; background: #ffffff;">
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                    <input type="hidden" id="subcat-modal-operators" value="3">
 
-                                <div style="margin-bottom: 1.25rem;">
-                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Thumbnail Image</label>
-                                    <div style="display: flex; align-items: center; gap: 12px;">
-                                        <img id="subcat-modal-thumb-preview" src="images/subcategories/sub_transit_bus.png" alt="Preview" style="width: 62px; height: 36px; border-radius: 8px; object-fit: cover; border: 1px solid #cbd5e1;">
-                                        <div style="flex: 1;">
-                                            <input type="file" id="subcat-modal-thumb-file" accept="image/*" onchange="previewSubCategoryThumbnail(event)" style="font-size: 0.775rem;">
-                                            <input type="hidden" id="subcat-modal-thumb-data">
+                                    <!-- Dropdown popup -->
+                                    <div id="subcat-operator-dropdown" class="operator-multiselect-dropdown">
+                                        <div class="operator-search-bar">
+                                            <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
+                                            <input type="text" placeholder="Search operators..." oninput="filterModalOperators(this.value)">
+                                        </div>
+                                        <div class="operator-items-list" id="subcat-operator-items-list">
+                                            <!-- Populated dynamically -->
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div style="display: flex; justify-content: flex-end; gap: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #f1f5f9;">
-                                    <button type="button" class="tp-btn-cancel" onclick="closeSubCategoryModal()" style="padding: 0.5rem 1.15rem; border: 1px solid #cbd5e1; border-radius: 10px; background: #ffffff; color: #475569; font-weight: 600; cursor: pointer;">Cancel</button>
-                                    <button type="submit" style="background: #00875a; color: #ffffff; padding: 0.5rem 1.4rem; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 6px rgba(0, 135, 90, 0.25);">Save Sub Category</button>
+                            <!-- Status -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Status <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 20px;">toggle_on</i>
+                                    </div>
+                                    <select id="subcat-modal-status" class="modern-input-field" style="cursor: pointer;">
+                                        <option value="Active">● Active</option>
+                                        <option value="Inactive">● Inactive</option>
+                                    </select>
                                 </div>
-                            </form>
+                            </div>
+
+                            <!-- Created Date -->
+                            <div>
+                                <label class="modern-label">Created Date</label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 18px;">calendar_today</i>
+                                    </div>
+                                    <input type="date" id="subcat-modal-date" class="modern-input-field" style="cursor: pointer;">
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modern-modal-footer">
+                    <button type="button" class="btn-modal-cancel" onclick="closeSubCategoryModal()">Cancel</button>
+                    <button type="submit" class="btn-modal-submit">
+                        <i class="material-icons" style="font-size: 18px;">save</i>
+                        <span>Save Sub Category</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
                     <!-- Tour Category Modal handled universally by universal-category-modal -->
 
                     <!-- Universal Location CRUD Modal (Add / Edit Location Matching Mockup) -->
-                    <div class="tp-modal-overlay" id="location-crud-modal" onclick="closeLocationModal(event)">
-                        <div class="tp-modal-card" style="max-width: 620px; width: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 60px -15px rgba(0,0,0,0.3);" onclick="event.stopPropagation()">
-                            <!-- Header -->
-                            <div class="tp-modal-header" style="background: linear-gradient(135deg, #00875a 0%, #005c3d 100%); padding: 1.25rem 1.6rem; display: flex; align-items: center; justify-content: space-between;">
-                                <div style="display: flex; align-items: center; gap: 12px;">
-                                    <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; color: #ffffff;">
-                                        <i class="material-icons" id="loc-modal-header-icon" style="font-size: 24px;">add_location_alt</i>
-                                    </div>
-                                    <div>
-                                        <h3 id="loc-modal-title" style="margin: 0; color: #ffffff; font-size: 1.2rem; font-weight: 800;">Add Location</h3>
-                                        <p id="loc-modal-subtitle" style="margin: 3px 0 0 0; color: rgba(255,255,255,0.85); font-size: 0.785rem;">Create a new location (Division / District / Upazila) in Bangladesh.</p>
-                                    </div>
-                                </div>
-                                <button type="button" onclick="closeLocationModal()" style="color: #ffffff; background: rgba(255,255,255,0.18); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                                    <i class="material-icons" style="font-size: 18px;">close</i>
-                                </button>
-                            </div>
+                    
+    <!-- Universal Location CRUD Modal (Add / Edit Location Matching Mockups) -->
+    <div class="tp-modal-overlay" id="location-crud-modal" onclick="closeLocationModal(event)">
+        <div class="modern-modal-card" onclick="event.stopPropagation()">
+            <!-- Header -->
+            <div class="modern-modal-header">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div class="modern-modal-badge">
+                        <i class="material-icons" id="loc-modal-header-icon">add_location_alt</i>
+                    </div>
+                    <div>
+                        <h3 id="loc-modal-title" style="margin: 0; color: #0f172a; font-size: 1.25rem; font-weight: 800;">Add Location</h3>
+                        <p id="loc-modal-subtitle" style="margin: 3px 0 0 0; color: #64748b; font-size: 0.8rem;">Create a new location (Division / District / Upazila) in Bangladesh.</p>
+                    </div>
+                </div>
+                <button type="button" class="modern-modal-close-btn" onclick="closeLocationModal()" title="Close">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+            </div>
 
-                            <!-- Form -->
-                            <form id="location-crud-form" onsubmit="handleLocationFormSubmit(event)" style="padding: 1.4rem 1.7rem; background: #ffffff;">
-                                <input type="hidden" id="loc-modal-id">
-                                <input type="hidden" id="loc-modal-mode" value="add">
-                                <input type="hidden" id="loc-modal-section" value="travel-planner">
-                                <input type="hidden" id="loc-modal-type-val" value="upazila">
-                                <input type="hidden" id="loc-modal-image-data">
+            <!-- Form with scrollable body -->
+            <form id="location-crud-form" onsubmit="handleLocationFormSubmit(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
+                <input type="hidden" id="loc-modal-id">
+                <input type="hidden" id="loc-modal-mode" value="add">
+                <input type="hidden" id="loc-modal-section" value="travel-planner">
+                <input type="hidden" id="loc-modal-type-val" value="upazila">
+                <input type="hidden" id="loc-modal-image-data">
 
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
-                                    <!-- Left Column -->
-                                    <div>
-                                        <!-- Location Type Segment Selector -->
-                                        <div style="margin-bottom: 1rem;">
-                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Location Type <span style="color: #ef4444;">*</span></label>
-                                            <div class="loc-type-segment-group">
-                                                <button type="button" class="loc-type-segment-btn" id="loc-type-btn-division" onclick="selectModalLocType('division')">
-                                                    <i class="material-icons" style="font-size: 18px;">map</i>
-                                                    <span>Division</span>
-                                                </button>
-                                                <button type="button" class="loc-type-segment-btn" id="loc-type-btn-district" onclick="selectModalLocType('district')">
-                                                    <i class="material-icons" style="font-size: 18px;">place</i>
-                                                    <span>District</span>
-                                                </button>
-                                                <button type="button" class="loc-type-segment-btn active" id="loc-type-btn-upazila" onclick="selectModalLocType('upazila')">
-                                                    <i class="material-icons" style="font-size: 18px;">near_me</i>
-                                                    <span>Upazila</span>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Location Name -->
-                                        <div style="margin-bottom: 1rem;">
-                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Location Name <span style="color: #ef4444;">*</span></label>
-                                            <input type="text" id="loc-modal-name" required placeholder="Enter location name (e.g. Savar)" style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; outline: none;">
-                                        </div>
-
-                                        <!-- Description -->
-                                        <div style="margin-bottom: 1rem;">
-                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Description <span style="font-weight: 500; color: #94a3b8;">(Optional)</span></label>
-                                            <textarea id="loc-modal-desc" rows="3" maxlength="500" placeholder="Enter a short description about this location..." oninput="updateLocDescCount(this)" style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.825rem; outline: none; resize: vertical;"></textarea>
-                                            <div class="loc-char-counter"><span id="loc-modal-char-count">0</span>/500</div>
-                                        </div>
-
-                                        <!-- Status -->
-                                        <div style="margin-bottom: 1rem;">
-                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Status <span style="color: #ef4444;">*</span></label>
-                                            <select id="loc-modal-status" style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; outline: none; background: #ffffff;">
-                                                <option value="Active">● Active</option>
-                                                <option value="Inactive">● Inactive</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- Created Date -->
-                                        <div>
-                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Created Date</label>
-                                            <div style="position: relative;">
-                                                <i class="material-icons" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 17px; color: #94a3b8;">calendar_today</i>
-                                                <input type="text" id="loc-modal-date" readonly value="Auto generated" style="width: 100%; padding: 0.52rem 0.85rem 0.52rem 2.2rem; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 0.84rem; background: #f8fafc; color: #64748b;">
-                                            </div>
-                                            <span style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px; display: block;">This will be set automatically after creation.</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Right Column -->
-                                    <div>
-                                        <!-- Parent Location -->
-                                        <div style="margin-bottom: 1rem;">
-                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Parent Location <span style="color: #ef4444;">*</span></label>
-                                            <select id="loc-modal-parent" required style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; outline: none; background: #ffffff;">
-                                                <!-- Populated dynamically -->
-                                            </select>
-                                            <div class="loc-info-callout" id="loc-modal-info-callout">
-                                                <i class="material-icons" style="font-size: 16px; flex-shrink: 0; margin-top: 1px;">info</i>
-                                                <span id="loc-modal-info-text">For Upazila, select the respective District.</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Location Image (Optional) -->
-                                        <div style="margin-bottom: 1rem;">
-                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Location Image <span style="font-weight: 500; color: #94a3b8;">(Optional)</span></label>
-                                            <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                                <div class="loc-dropzone-box" style="flex: 1;" onclick="document.getElementById('loc-modal-file-input').click()">
-                                                    <i class="material-icons" style="font-size: 30px; color: #0284c7;">add_photo_alternate</i>
-                                                    <div style="font-size: 0.785rem; font-weight: 700; color: #1e293b; margin-top: 4px;">Click to upload or drag and drop</div>
-                                                    <div style="font-size: 0.7rem; color: #94a3b8;">JPG, PNG or WEBP (Max. 2MB)</div>
-                                                    <input type="file" id="loc-modal-file-input" accept="image/*" style="display: none;" onchange="handleLocImageUpload(event)">
-                                                </div>
-                                                <div id="loc-modal-preview-wrap" style="position: relative; width: 88px; height: 95px; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; display: none; flex-shrink: 0;">
-                                                    <img id="loc-modal-preview-img" src="" alt="Preview" style="width: 100%; height: 100%; object-fit: cover;">
-                                                    <button type="button" onclick="removeLocModalImage(event)" title="Remove Image" style="position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; border-radius: 50%; background: rgba(0,0,0,0.65); color: #ffffff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-                                                        <i class="material-icons" style="font-size: 13px;">close</i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Location Code -->
-                                        <div style="margin-bottom: 1rem;">
-                                            <label style="display: block; font-size: 0.785rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Location Code <span style="font-weight: 500; color: #94a3b8;">(Optional)</span></label>
-                                            <input type="text" id="loc-modal-code" placeholder="Enter unique code (e.g. DHA-001)" style="width: 100%; padding: 0.55rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.85rem; outline: none;">
-                                        </div>
-
-                                        <!-- Is Featured (Checkbox) -->
-                                        <div style="margin-top: 1.25rem; display: flex; align-items: center; gap: 8px;">
-                                            <input type="checkbox" id="loc-modal-featured" style="width: 16px; height: 16px; accent-color: #00875a; cursor: pointer;">
-                                            <label for="loc-modal-featured" style="font-size: 0.825rem; font-weight: 700; color: #334155; cursor: pointer;">Mark as Featured Location (✦ Featured badge)</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Action Buttons -->
-                                <div style="display: flex; justify-content: flex-end; gap: 0.75rem; padding-top: 1.25rem; margin-top: 1.25rem; border-top: 1px solid #f1f5f9;">
-                                    <button type="button" onclick="closeLocationModal()" style="padding: 0.52rem 1.25rem; border: 1px solid #cbd5e1; border-radius: 10px; background: #ffffff; color: #475569; font-weight: 600; cursor: pointer;">Cancel</button>
-                                    <button type="submit" id="loc-modal-submit-btn" style="background: #00875a; color: #ffffff; padding: 0.52rem 1.5rem; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(0, 135, 90, 0.25);">
-                                        <i class="material-icons" style="font-size: 17px;">save</i>
-                                        <span id="loc-modal-submit-text">Save Location</span>
+                <div class="modern-modal-scrollable">
+                    <div class="modern-modal-body">
+                        <!-- Left Column -->
+                        <div>
+                            <!-- Location Type Segment Selector -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Location Type <span class="req">*</span></label>
+                                <div class="loc-type-segment-group">
+                                    <button type="button" class="loc-type-segment-btn" id="loc-type-btn-division" onclick="selectModalLocType('division')">
+                                        <i class="material-icons" style="font-size: 18px;">map</i>
+                                        <span>Division</span>
+                                    </button>
+                                    <button type="button" class="loc-type-segment-btn" id="loc-type-btn-district" onclick="selectModalLocType('district')">
+                                        <i class="material-icons" style="font-size: 18px;">place</i>
+                                        <span>District</span>
+                                    </button>
+                                    <button type="button" class="loc-type-segment-btn active" id="loc-type-btn-upazila" onclick="selectModalLocType('upazila')">
+                                        <i class="material-icons" style="font-size: 18px;">near_me</i>
+                                        <span>Upazila</span>
                                     </button>
                                 </div>
-                            </form>
+                            </div>
+
+                            <!-- Location Name -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Location Name <span class="req">*</span></label>
+                                <input type="text" id="loc-modal-name" required placeholder="Enter location name (e.g. Savar)" class="modern-input-standalone">
+                            </div>
+
+                            <!-- Description -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Description <span class="opt">(Optional)</span></label>
+                                <textarea id="loc-modal-desc" rows="3" maxlength="500" placeholder="Enter a short description about this location..." oninput="updateLocDescCount(this)" class="modern-textarea"></textarea>
+                                <div class="char-counter-text"><span id="loc-modal-char-count">0</span>/500</div>
+                            </div>
+
+                            <!-- Status -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Status <span class="req">*</span></label>
+                                <select id="loc-modal-status" class="modern-input-standalone" style="cursor: pointer;">
+                                    <option value="Active">● Active</option>
+                                    <option value="Inactive">● Inactive</option>
+                                </select>
+                            </div>
+
+                            <!-- Created Date -->
+                            <div>
+                                <label class="modern-label">Created Date</label>
+                                <div style="position: relative;">
+                                    <i class="material-icons" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #94a3b8;">calendar_today</i>
+                                    <input type="text" id="loc-modal-date" readonly value="Auto generated" class="modern-input-standalone" style="padding-left: 2.4rem; background: #f8fafc; color: #64748b;">
+                                </div>
+                                <span style="font-size: 0.72rem; color: #94a3b8; margin-top: 4px; display: block;">This will be set automatically after creation.</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div>
+                            <!-- Parent Location -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Parent Location <span class="req">*</span></label>
+                                <select id="loc-modal-parent" required class="modern-input-standalone" style="cursor: pointer;">
+                                    <!-- Populated dynamically -->
+                                </select>
+                                <div class="loc-info-callout" id="loc-modal-info-callout">
+                                    <i class="material-icons" style="font-size: 16px; flex-shrink: 0; color: #2563eb;">info</i>
+                                    <span id="loc-modal-info-text">For Upazila, select the respective District.</span>
+                                </div>
+                            </div>
+
+                            <!-- Location Image (Optional) -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Location Image <span class="opt">(Optional)</span></label>
+                                <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                    <div class="mockup-dropzone" style="flex: 1;" onclick="document.getElementById('loc-modal-file-input').click()">
+                                        <div class="mockup-dropzone-icon-wrap">
+                                            <i class="material-icons" style="font-size: 24px;">cloud_upload</i>
+                                            <span class="plus-badge">+</span>
+                                        </div>
+                                        <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-top: 2px;">Click to upload or drag and drop</div>
+                                        <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">SVG, PNG, JPG or GIF (max. 800x400px)</div>
+                                        <input type="file" id="loc-modal-file-input" accept="image/*" style="display: none;" onchange="handleLocImageUpload(event)">
+                                    </div>
+                                    <div id="loc-modal-preview-wrap" class="loc-square-preview-box" style="display: none;">
+                                        <img id="loc-modal-preview-img" src="" alt="Preview">
+                                        <button type="button" class="loc-square-delete-btn" onclick="removeLocModalImage(event)" title="Remove Image">
+                                            <i class="material-icons" style="font-size: 14px;">close</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Location Code -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Location Code <span class="opt">(Optional)</span></label>
+                                <input type="text" id="loc-modal-code" placeholder="e.g. DHA-001" class="modern-input-standalone">
+                            </div>
+
+                            <!-- Is Featured (Checkbox) -->
+                            <div style="margin-top: 1.5rem; display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
+                                <input type="checkbox" id="loc-modal-featured" style="width: 18px; height: 18px; accent-color: #00875a; cursor: pointer; margin-top: 2px;">
+                                <label for="loc-modal-featured" style="font-size: 0.825rem; font-weight: 700; color: #1e293b; cursor: pointer; line-height: 1.3;">
+                                    Mark as Featured Location
+                                    <span style="display: block; font-size: 0.725rem; font-weight: 500; color: #64748b; margin-top: 2px;">Display this location prominently in featured sections</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modern-modal-footer">
+                    <button type="button" class="btn-modal-cancel" onclick="closeLocationModal()">Cancel</button>
+                    <button type="submit" id="loc-modal-submit-btn" class="btn-modal-submit">
+                        <i class="material-icons" style="font-size: 18px;">save</i>
+                        <span id="loc-modal-submit-text">Save Location</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
 
                     <!-- Add Destination Modal (for Tour Planner) -->
-                    <div class="tp-modal-overlay" id="destination-crud-modal" onclick="closeDestinationModal(event)">
-                        <div class="tp-modal-card" style="max-width: 520px; width: 100%; border-radius: 18px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);" onclick="event.stopPropagation()">
-                            <div class="tp-modal-header" style="background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between;">
-                                <div style="display: flex; align-items: center; gap: 12px;">
-                                    <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; color: #ffffff;">
-                                        <i class="material-icons" style="font-size: 24px;">explore</i>
+                    
+    <!-- Tour Destinations CRUD Modal Matching Modern 2-Column Design -->
+    <div class="tp-modal-overlay" id="destination-crud-modal" onclick="closeDestinationModal(event)">
+        <div class="modern-modal-card" onclick="event.stopPropagation()">
+            <!-- Header -->
+            <div class="modern-modal-header">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div class="modern-modal-badge amber">
+                        <i class="material-icons" style="font-size: 24px;">explore</i>
+                    </div>
+                    <div>
+                        <h3 id="dest-modal-title" style="margin: 0; color: #0f172a; font-size: 1.25rem; font-weight: 800;">Add Tour Destination</h3>
+                        <p style="margin: 3px 0 0 0; color: #64748b; font-size: 0.8rem;">Create a tourist spot linked to district and upazila</p>
+                    </div>
+                </div>
+                <button type="button" class="modern-modal-close-btn" onclick="closeDestinationModal()" title="Close">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+            </div>
+
+            <!-- Form with scrollable body -->
+            <form id="dest-crud-form" onsubmit="handleDestinationFormSubmit(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
+                <input type="hidden" id="dest-modal-id" value="">
+                <input type="hidden" id="dest-modal-image-data" value="">
+
+                <div class="modern-modal-scrollable">
+                    <div class="modern-modal-body">
+                        <!-- Left Column -->
+                        <div>
+                            <!-- Destination Image (Optional) -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Destination Image <span class="opt">(Optional)</span></label>
+                                <div class="mockup-dropzone" onclick="document.getElementById('dest-modal-file-input').click()">
+                                    <div class="mockup-dropzone-icon-wrap">
+                                        <i class="material-icons" style="font-size: 24px;">cloud_upload</i>
+                                        <span class="plus-badge">+</span>
                                     </div>
-                                    <div>
-                                        <h3 style="margin: 0; color: #ffffff; font-size: 1.15rem; font-weight: 800;" id="dest-modal-title">Add Tour Destination</h3>
-                                        <p style="margin: 3px 0 0 0; color: rgba(255,255,255,0.85); font-size: 0.775rem;">Create a tourist spot linked to district and upazila</p>
-                                    </div>
+                                    <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-top: 2px;">Click to upload or drag and drop</div>
+                                    <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">SVG, PNG, JPG or GIF (max. 800x400px)</div>
+                                    <input type="file" id="dest-modal-file-input" accept="image/*" style="display: none;" onchange="handleDestImageUpload(event)">
                                 </div>
-                                <button type="button" onclick="closeDestinationModal()" style="color: #ffffff; background: rgba(255,255,255,0.18); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                                    <i class="material-icons" style="font-size: 18px;">close</i>
-                                </button>
+                                <!-- Preview pill bar -->
+                                <div id="dest-modal-preview-wrap" class="mockup-file-preview-bar" style="display: none;">
+                                    <img id="dest-modal-preview-img" src="" alt="Preview">
+                                    <span class="file-name" id="dest-modal-preview-filename">destination.jpg</span>
+                                    <span class="check-badge"><i class="material-icons" style="font-size: 20px;">check_circle</i></span>
+                                    <button type="button" class="close-btn" onclick="removeDestModalImage(event)" title="Remove file">
+                                        <i class="material-icons" style="font-size: 18px;">close</i>
+                                    </button>
+                                </div>
                             </div>
-                            <form id="dest-crud-form" onsubmit="handleDestinationFormSubmit(event)" style="padding: 1.35rem 1.6rem; background: #ffffff;">
-                                <input type="hidden" id="dest-modal-id" value="">
-                                <div style="margin-bottom: 1rem;">
-                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Destination Name *</label>
-                                    <input type="text" id="dest-modal-name" required placeholder="e.g. Cox's Bazar Sea Beach, Sajek Valley" style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none;">
+
+                            <!-- Description -->
+                            <div>
+                                <label class="modern-label">Description <span class="opt">(Optional)</span></label>
+                                <textarea id="dest-modal-desc" rows="4" placeholder="Highlights and travel notes..." class="modern-textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div>
+                            <!-- Destination Name -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Destination Name <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">T</div>
+                                    <input type="text" id="dest-modal-name" required placeholder="e.g. Cox's Bazar Sea Beach, Sajek Valley" class="modern-input-field">
                                 </div>
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                                    <div>
-                                        <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">District *</label>
-                                        <select id="dest-modal-district" required style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none; background: #ffffff;">
-                                            <!-- filled dynamically -->
-                                        </select>
+                            </div>
+
+                            <!-- District -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">District <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 20px;">place</i>
                                     </div>
-                                    <div>
-                                        <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Type</label>
-                                        <select id="dest-modal-type" style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none; background: #ffffff;">
-                                            <option value="Attraction">Attraction</option>
-                                            <option value="Beach">Beach</option>
-                                            <option value="Hill">Hill Station</option>
-                                            <option value="Heritage">Heritage</option>
-                                            <option value="Eco Park">Eco Park</option>
-                                            <option value="Island">Island</option>
-                                        </select>
+                                    <select id="dest-modal-district" required class="modern-input-field" style="cursor: pointer;">
+                                        <!-- filled dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Type -->
+                            <div>
+                                <label class="modern-label">Type</label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 20px;">category</i>
                                     </div>
+                                    <select id="dest-modal-type" class="modern-input-field" style="cursor: pointer;">
+                                        <option value="Attraction">Attraction</option>
+                                        <option value="Beach">Beach</option>
+                                        <option value="Hill">Hill Station</option>
+                                        <option value="Heritage">Heritage</option>
+                                        <option value="Eco Park">Eco Park</option>
+                                        <option value="Island">Island</option>
+                                    </select>
                                 </div>
-                                <div style="margin-bottom: 1.25rem;">
-                                    <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Description</label>
-                                    <textarea id="dest-modal-desc" rows="2" placeholder="Highlights and travel notes..." style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.825rem; outline: none; resize: vertical;"></textarea>
-                                </div>
-                                <div style="display: flex; justify-content: flex-end; gap: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #f1f5f9;">
-                                    <button type="button" onclick="closeDestinationModal()" style="padding: 0.5rem 1.15rem; border: 1px solid #cbd5e1; border-radius: 10px; background: #ffffff; color: #475569; font-weight: 600; cursor: pointer;">Cancel</button>
-                                    <button type="submit" style="background: #ea580c; color: #ffffff; padding: 0.5rem 1.4rem; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(234, 88, 12, 0.25);">Save Destination</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modern-modal-footer">
+                    <button type="button" class="btn-modal-cancel" onclick="closeDestinationModal()">Cancel</button>
+                    <button type="submit" class="btn-modal-submit amber">
+                        <i class="material-icons" style="font-size: 18px;">save</i>
+                        <span>Save Destination</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
                 </section>
 
                 <!-- 4. TOUR PACKAGE STUDIO (PACKAGE CREATOR & CATALOG) -->
@@ -7112,9 +7823,12 @@
         }
 
         function closeCategoryModal(e) {
-            if (e && e.target !== e.currentTarget && !e.target.classList.contains('tp-modal-close-circle') && !e.target.classList.contains('btn-cancel-modal')) return;
+            if (e && e.target !== e.currentTarget && !e.target.closest('.modern-modal-close-btn') && !e.target.closest('.btn-modal-cancel')) return;
             const modal = document.getElementById('universal-category-modal');
-            if (modal) modal.style.display = 'none';
+            if (modal) {
+                modal.style.display = 'none';
+                modal.classList.remove('show');
+            }
         }
 
         function handleCatImageFileSelect(e) {
@@ -7909,6 +8623,130 @@
             }
         }
 
+        
+        /* ================= OPERATOR MULTI-SELECT & PREVIEW HELPERS ================= */
+        const mockOperatorsList = [
+            { name: 'Green Line Paribahan', routes: 12, logo: 'https://ui-avatars.com/api/?name=Green+Line&background=10b981&color=fff' },
+            { name: 'Hanif Enterprise', routes: 8, logo: 'https://ui-avatars.com/api/?name=Hanif&background=0284c7&color=fff' },
+            { name: 'Shohagh Elite', routes: 6, logo: 'https://ui-avatars.com/api/?name=Shohagh&background=8b5cf6&color=fff' },
+            { name: 'Shyamoli NR Travels', routes: 15, logo: 'https://ui-avatars.com/api/?name=Shyamoli&background=f59e0b&color=fff' },
+            { name: 'Ena Transport', routes: 10, logo: 'https://ui-avatars.com/api/?name=Ena&background=ef4444&color=fff' },
+            { name: 'Saintmartin Paribahan', routes: 5, logo: 'https://ui-avatars.com/api/?name=Saintmartin&background=06b6d4&color=fff' },
+            { name: 'Desh Travels', routes: 7, logo: 'https://ui-avatars.com/api/?name=Desh&background=ec4899&color=fff' }
+        ];
+
+        let selectedModalOperators = ['Green Line Paribahan', 'Hanif Enterprise', 'Shohagh Elite'];
+
+        function renderModalOperatorsList(searchTerm = '') {
+            const listEl = document.getElementById('subcat-operator-items-list');
+            if (!listEl) return;
+            const term = (searchTerm || '').toLowerCase();
+            const filtered = mockOperatorsList.filter(op => op.name.toLowerCase().includes(term));
+            
+            listEl.innerHTML = filtered.map(op => {
+                const isChecked = selectedModalOperators.includes(op.name);
+                return `
+                    <div class="operator-row-item" onclick="toggleModalOperator('${op.name}')">
+                        <input type="checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); toggleModalOperator('${op.name}')">
+                        <img src="${op.logo}" alt="${op.name}" class="operator-row-logo">
+                        <span class="operator-row-name">${op.name}</span>
+                        <span class="operator-row-badge">${op.routes} routes</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleOperatorDropdown(event) {
+            if (event) event.stopPropagation();
+            const dropdown = document.getElementById('subcat-operator-dropdown');
+            if (!dropdown) return;
+            dropdown.classList.toggle('show');
+            if (dropdown.classList.contains('show')) {
+                renderModalOperatorsList();
+            }
+        }
+
+        function filterModalOperators(val) {
+            renderModalOperatorsList(val);
+        }
+
+        function toggleModalOperator(opName) {
+            const idx = selectedModalOperators.indexOf(opName);
+            if (idx > -1) {
+                selectedModalOperators.splice(idx, 1);
+            } else {
+                selectedModalOperators.push(opName);
+            }
+            syncOperatorState();
+            renderModalOperatorsList();
+        }
+
+        function syncOperatorState() {
+            const count = selectedModalOperators.length;
+            const disp = document.getElementById('subcat-operator-display-text');
+            const input = document.getElementById('subcat-modal-operators');
+            if (disp) {
+                disp.textContent = count === 0 ? 'Select operators' : `Select operators (${count} selected)`;
+            }
+            if (input) {
+                input.value = count || 1;
+            }
+        }
+
+        document.addEventListener('click', function(e) {
+            const wrap = e.target.closest('.operator-multiselect-wrap');
+            if (!wrap) {
+                const dd = document.getElementById('subcat-operator-dropdown');
+                if (dd) dd.classList.remove('show');
+            }
+        });
+
+        function removeSubCatImage(e) {
+            if (e) e.stopPropagation();
+            const previewBar = document.getElementById('subcat-preview-pill-bar');
+            const previewImg = document.getElementById('subcat-modal-thumb-preview');
+            const hiddenData = document.getElementById('subcat-modal-thumb-data');
+            const fileInput = document.getElementById('subcat-modal-thumb-file');
+            if (previewBar) previewBar.style.display = 'none';
+            if (previewImg) previewImg.src = '';
+            if (hiddenData) hiddenData.value = '';
+            if (fileInput) fileInput.value = '';
+        }
+
+        function handleDestImageUpload(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+            if (file.size > 2 * 1024 * 1024) {
+                showToast('Image size exceeds 2MB limit.', 'error');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const wrap = document.getElementById('dest-modal-preview-wrap');
+                const img = document.getElementById('dest-modal-preview-img');
+                const nameEl = document.getElementById('dest-modal-preview-filename');
+                const hiddenData = document.getElementById('dest-modal-image-data');
+                if (wrap) wrap.style.display = 'flex';
+                if (img) img.src = e.target.result;
+                if (nameEl) nameEl.textContent = file.name;
+                if (hiddenData) hiddenData.value = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeDestModalImage(e) {
+            if (e) e.stopPropagation();
+            const wrap = document.getElementById('dest-modal-preview-wrap');
+            const img = document.getElementById('dest-modal-preview-img');
+            const hiddenData = document.getElementById('dest-modal-image-data');
+            const fileInput = document.getElementById('dest-modal-file-input');
+            if (wrap) wrap.style.display = 'none';
+            if (img) img.src = '';
+            if (hiddenData) hiddenData.value = '';
+            if (fileInput) fileInput.value = '';
+        }
+
+
         function openAddSubCategoryModal(sectionType = 'travel-planner') {
             if (!activeDetailCategory) return;
             const catName = activeDetailCategory.name;
@@ -7921,16 +8759,24 @@
             document.getElementById('subcat-modal-parent-display').value = catName;
             document.getElementById('subcat-modal-name').value = '';
             document.getElementById('subcat-modal-desc').value = '';
-            document.getElementById('subcat-modal-operators').value = 1;
             document.getElementById('subcat-modal-status').value = 'Active';
             document.getElementById('subcat-modal-thumb-data').value = '';
 
-            const preview = document.getElementById('subcat-modal-thumb-preview');
-            if (preview) preview.src = 'images/subcategories/sub_transit_bus.png';
+            // Default operators
+            selectedModalOperators = ['Green Line Paribahan', 'Hanif Enterprise', 'Shohagh Elite'];
+            syncOperatorState();
+
+            // Reset image preview pill
+            removeSubCatImage();
+
+            // Default date
+            const dateInput = document.getElementById('subcat-modal-date');
+            if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
 
             document.getElementById('subcat-modal-title').textContent = 'Add Sub Category';
-            document.getElementById('subcat-modal-subtitle').textContent = `Create a new sub-category offering under ${catName}`;
+            document.getElementById('subcat-modal-subtitle').textContent = `Create a new sub-category for this travel service`;
 
+            modal.classList.add('show');
             modal.style.display = 'flex';
             setTimeout(() => document.getElementById('subcat-modal-name')?.focus(), 50);
         }
@@ -7951,35 +8797,68 @@
             document.getElementById('subcat-modal-parent-display').value = catName;
             document.getElementById('subcat-modal-name').value = sub.name || '';
             document.getElementById('subcat-modal-desc').value = sub.desc || '';
-            document.getElementById('subcat-modal-operators').value = sub.operators || 1;
             document.getElementById('subcat-modal-status').value = sub.status || 'Active';
             document.getElementById('subcat-modal-thumb-data').value = sub.image || '';
 
-            const preview = document.getElementById('subcat-modal-thumb-preview');
-            if (preview) preview.src = sub.image || 'images/subcategories/sub_transit_bus.png';
+            // Operators
+            const opCount = Math.min(Math.max(sub.operators || 1, 1), mockOperatorsList.length);
+            selectedModalOperators = mockOperatorsList.slice(0, opCount).map(o => o.name);
+            syncOperatorState();
+
+            // Preview image pill bar
+            const previewBar = document.getElementById('subcat-preview-pill-bar');
+            const previewImg = document.getElementById('subcat-modal-thumb-preview');
+            const nameEl = document.getElementById('subcat-file-name-text');
+            if (sub.image && previewBar && previewImg) {
+                previewImg.src = sub.image;
+                if (nameEl) nameEl.textContent = (sub.name ? sub.name.toLowerCase().replace(/\s+/g, '_') + '.jpg' : 'bus.jpg');
+                previewBar.style.display = 'flex';
+            } else {
+                removeSubCatImage();
+            }
+
+            // Date
+            const dateInput = document.getElementById('subcat-modal-date');
+            if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
 
             document.getElementById('subcat-modal-title').textContent = 'Edit Sub Category';
             document.getElementById('subcat-modal-subtitle').textContent = `Update sub-category details for ${sub.name}`;
 
+            modal.classList.add('show');
             modal.style.display = 'flex';
             setTimeout(() => document.getElementById('subcat-modal-name')?.focus(), 50);
         }
 
         function closeSubCategoryModal(e) {
-            if (e && e.target !== e.currentTarget && !e.target.closest('.tp-modal-close-btn')) return;
+            if (e && e.target !== e.currentTarget && !e.target.closest('.modern-modal-close-btn') && !e.target.closest('.btn-modal-cancel')) return;
             const modal = document.getElementById('subcat-crud-modal');
-            if (modal) modal.style.display = 'none';
+            if (modal) {
+                modal.style.display = 'none';
+                modal.classList.remove('show');
+            }
+            const dd = document.getElementById('subcat-operator-dropdown');
+            if (dd) dd.classList.remove('show');
         }
 
         function previewSubCategoryThumbnail(event) {
             const file = event.target.files && event.target.files[0];
             if (!file) return;
 
+            if (file.size > 2 * 1024 * 1024) {
+                showToast('Image size exceeds 2MB limit.', 'error');
+                return;
+            }
+
             const reader = new FileReader();
             reader.onload = function(e) {
-                const preview = document.getElementById('subcat-modal-thumb-preview');
-                if (preview) preview.src = e.target.result;
-                document.getElementById('subcat-modal-thumb-data').value = e.target.result;
+                const previewBar = document.getElementById('subcat-preview-pill-bar');
+                const previewImg = document.getElementById('subcat-modal-thumb-preview');
+                const nameEl = document.getElementById('subcat-file-name-text');
+                const hiddenData = document.getElementById('subcat-modal-thumb-data');
+                if (previewImg) previewImg.src = e.target.result;
+                if (nameEl) nameEl.textContent = file.name;
+                if (previewBar) previewBar.style.display = 'flex';
+                if (hiddenData) hiddenData.value = e.target.result;
             };
             reader.readAsDataURL(file);
         }
@@ -9744,7 +10623,24 @@
             const descInput = document.getElementById('dest-modal-desc');
             if (descInput) descInput.value = item.description || '';
 
+            // Image preview
+            if (item.image) {
+                const wrap = document.getElementById('dest-modal-preview-wrap');
+                const img = document.getElementById('dest-modal-preview-img');
+                const nameEl = document.getElementById('dest-modal-preview-filename');
+                const hiddenData = document.getElementById('dest-modal-image-data');
+                if (wrap && img) {
+                    img.src = item.image;
+                    if (nameEl) nameEl.textContent = (item.name_en ? item.name_en.toLowerCase().replace(/\s+/g, '_') + '.jpg' : 'destination.jpg');
+                    if (hiddenData) hiddenData.value = item.image;
+                    wrap.style.display = 'flex';
+                }
+            } else {
+                removeDestModalImage();
+            }
+
             modal.classList.add('show');
+            modal.style.display = 'flex';
         }
 
         function openAddLocationModal(sectionType = 'travel-planner') {
@@ -9831,9 +10727,12 @@
         }
 
         function closeLocationModal(event) {
-            if (event && event.target && event.target.id !== 'location-crud-modal') return;
+            if (event && event.target && event.target.id !== 'location-crud-modal' && !event.target.closest('.modern-modal-close-btn') && !event.target.closest('.btn-modal-cancel')) return;
             const modal = document.getElementById('location-crud-modal');
-            if (modal) modal.classList.remove('show');
+            if (modal) {
+                modal.classList.remove('show');
+                modal.style.display = 'none';
+            }
         }
 
         function selectModalLocType(type) {
@@ -10058,13 +10957,19 @@
             if (idInput) idInput.value = '';
             document.getElementById('dest-modal-name').value = '';
             document.getElementById('dest-modal-desc').value = '';
+            removeDestModalImage();
+
             modal.classList.add('show');
+            modal.style.display = 'flex';
         }
 
         function closeDestinationModal(event) {
-            if (event && event.target && event.target.id !== 'destination-crud-modal') return;
+            if (event && event.target && event.target.id !== 'destination-crud-modal' && !event.target.closest('.modern-modal-close-btn') && !event.target.closest('.btn-modal-cancel')) return;
             const modal = document.getElementById('destination-crud-modal');
-            if (modal) modal.classList.remove('show');
+            if (modal) {
+                modal.classList.remove('show');
+                modal.style.display = 'none';
+            }
         }
 
         async function handleDestinationFormSubmit(event) {
