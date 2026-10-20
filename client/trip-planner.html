@@ -4777,6 +4777,289 @@
             font-weight: 600;
         }
 
+
+        /* -------------------------------------------------------------
+           RECOMMENDED ROUTE POPUP MODAL (CLEAN & MINIMALIST 3-TIER)
+           ------------------------------------------------------------- */
+        .btn-rec-popup-trigger {
+            background: #eff6ff;
+            border: 1.5px solid #bfdbfe;
+            color: #0284c7;
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.775rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .btn-rec-popup-trigger:hover {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+        }
+        .btn-rec-popup-trigger:hover i {
+            color: #ffffff !important;
+        }
+
+        .smart-route-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            animation: modalFadeIn 0.2s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .smart-route-modal-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px -12px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(226, 232, 240, 0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: modalPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes modalPopIn {
+            from { opacity: 0; transform: scale(0.97) translateY(8px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .smart-route-modal-header {
+            padding: 1.25rem 1.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .smart-route-modal-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #eff6ff;
+            color: #0284c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .smart-route-modal-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+        .smart-route-modal-sub {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 2px;
+        }
+        .smart-route-close-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: none;
+            background: #f1f5f9;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .smart-route-close-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        .smart-route-modal-body {
+            padding: 1.25rem 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .tier-switch-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            background: #f1f5f9;
+            padding: 0.35rem;
+            border-radius: 12px;
+            margin-bottom: 1.25rem;
+        }
+        .tier-switch-btn {
+            border: none;
+            background: transparent;
+            padding: 0.65rem 0.5rem;
+            border-radius: 9px;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: #475569;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            transition: all 0.18s ease;
+            font-family: inherit;
+        }
+        .tier-switch-btn i {
+            font-size: 17px;
+        }
+        .tier-switch-btn:hover {
+            color: #0f172a;
+        }
+        .tier-switch-btn.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+        }
+        .tier-switch-btn.budget.active { color: #16a34a; }
+        .tier-switch-btn.recommended.active { color: #0284c7; }
+        .tier-switch-btn.luxury.active { color: #9333ea; }
+
+        .tier-leg-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .tier-leg-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+        .tier-leg-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 0;
+        }
+        .tier-leg-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #0284c7;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .tier-leg-title {
+            font-size: 0.825rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .tier-leg-vehicle {
+            font-size: 0.775rem;
+            color: #475569;
+            font-weight: 600;
+            margin-top: 1px;
+        }
+        .tier-leg-time {
+            font-size: 0.725rem;
+            color: #64748b;
+        }
+        .tier-leg-price {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #0f172a;
+            flex-shrink: 0;
+        }
+        .tier-buffer-chip {
+            padding: 0.35rem 0.75rem;
+            background: #f0fdf4;
+            border: 1px dashed #86efac;
+            border-radius: 8px;
+            font-size: 0.725rem;
+            font-weight: 700;
+            color: #16a34a;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin: 0.25rem 0 0.25rem 1.5rem;
+        }
+        .smart-route-modal-footer {
+            padding: 1rem 1.5rem;
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+        .modal-footer-price-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-footer-price-label {
+            font-size: 0.725rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .modal-footer-price-val {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #0284c7;
+        }
+        .btn-modal-cancel {
+            padding: 0.55rem 1.25rem;
+            border-radius: 9999px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #475569;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+        .btn-modal-cancel:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .btn-modal-apply {
+            padding: 0.55rem 1.5rem;
+            border-radius: 9999px;
+            border: none;
+            background: #0284c7;
+            color: #ffffff;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            font-family: inherit;
+        }
+        .btn-modal-apply:hover {
+            background: #0369a1;
+            transform: translateY(-1px);
+        }
+
     </style>
 </head>
 <body>
@@ -5091,7 +5374,13 @@
                                 <i class="material-icons">directions_bus</i>
                             </div>
                             <div>
-                                <div class="cat-title-text">Transit</div>
+                                <div class="cat-title-text" style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                                    <span>Transit</span>
+                                    <button type="button" class="btn-rec-popup-trigger" onclick="event.stopPropagation(); openSmartRouteModal();" title="View recommended connecting routes for this journey">
+                                        <i class="material-icons" style="font-size: 16px; color: #0284c7;">auto_awesome</i>
+                                        <span>Recommended Routes</span>
+                                    </button>
+                                </div>
                                 <div class="cat-sub-text">Choose your preferred mode of transport for your journey.</div>
                             </div>
                         </div>
@@ -5101,48 +5390,6 @@
                     </div>
 
                     <div class="cat-card-body" id="cat-body-transit">
-                        <!-- Smart Curated Multi-Leg Route Options (Clean, Minimalist, 3-Tier) -->
-                        <div class="smart-routes-bar" id="smart-routes-bar">
-                            <div class="smart-route-title">
-                                <i class="material-icons" style="color: #0284c7; font-size: 18px;">alt_route</i>
-                                <span>Smart Recommended Routes (All-Bangladesh Transit Engine)</span>
-                            </div>
-                            <div class="smart-route-pills" id="smart-route-pills">
-                                <button type="button" class="route-pill budget" id="pill-budget" onclick="selectSmartTier('budget')">
-                                    <span class="pill-badge">🟢 Lowest Price</span>
-                                    <span class="pill-route" id="pill-text-budget">Local Bus + Train + Auto</span>
-                                    <div class="pill-footer-row">
-                                        <span class="pill-price" id="pill-price-budget">BDT 910 / person</span>
-                                        <span class="pill-time" id="pill-time-budget">~18h 30m</span>
-                                    </div>
-                                </button>
-                                <button type="button" class="route-pill recommended active" id="pill-recommended" onclick="selectSmartTier('recommended')">
-                                    <span class="pill-badge">🔵 Best Value</span>
-                                    <span class="pill-route" id="pill-text-recommended">AC Shuttle + Highway Coach + Jeep</span>
-                                    <div class="pill-footer-row">
-                                        <span class="pill-price" id="pill-price-recommended">BDT 2,150 / person</span>
-                                        <span class="pill-time" id="pill-time-recommended">~14h 00m</span>
-                                    </div>
-                                </button>
-                                <button type="button" class="route-pill luxury" id="pill-luxury" onclick="selectSmartTier('luxury')">
-                                    <span class="pill-badge">🟣 Fastest / Luxury</span>
-                                    <span class="pill-route" id="pill-text-luxury">Sedan Taxi + Sleeper/Flight + Chander Gari</span>
-                                    <div class="pill-footer-row">
-                                        <span class="pill-price" id="pill-price-luxury">BDT 3,550 / person</span>
-                                        <span class="pill-time" id="pill-time-luxury">~11h 30m</span>
-                                    </div>
-                                </button>
-                                <button type="button" class="route-pill custom" id="pill-custom" onclick="selectSmartTier('custom')">
-                                    <span class="pill-badge">⚙️ Custom Mix</span>
-                                    <span class="pill-route">Slot-by-Slot Selection</span>
-                                    <div class="pill-footer-row">
-                                        <span class="pill-price" style="font-size: 0.775rem; color: #64748b;">Manual Custom</span>
-                                        <span class="pill-time">Flexible</span>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-
                         <!-- Sub-filter pills row -->
                         <div class="sub-filter-row">
                             <button type="button" class="sub-filter-pill active" id="subpill-transit-bus" onclick="filterSubCategory('transit', 'bus')">
@@ -6209,6 +6456,65 @@
                     </button>
                     <button type="button" class="btn-checkout" onclick="closeB2BQuoteModal()" style="padding: 0.65rem 1.5rem; font-size: 0.85rem;">
                         Done
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clean Smart Route Recommendation Modal (3-Tier Curated Switch) -->
+    <div class="smart-route-modal-overlay" id="smart-route-modal" style="display: none;" onclick="onSmartRouteModalOverlayClick(event)">
+        <div class="smart-route-modal-box" onclick="event.stopPropagation()">
+            <!-- Modal Header -->
+            <div class="smart-route-modal-header">
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                    <div class="smart-route-modal-icon">
+                        <i class="material-icons">auto_awesome</i>
+                    </div>
+                    <div>
+                        <div class="smart-route-modal-title">Recommended Route Options</div>
+                        <div class="smart-route-modal-sub" id="smart-route-modal-route-name">Connecting Transit Roadmap</div>
+                    </div>
+                </div>
+                <button type="button" class="smart-route-close-btn" onclick="closeSmartRouteModal()" title="Close dialog">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+
+            <!-- 3 Segmented Toggle Switches -->
+            <div class="smart-route-modal-body">
+                <div class="tier-switch-row">
+                    <button type="button" class="tier-switch-btn budget" id="modal-tab-budget" onclick="switchModalTier('budget')">
+                        <i class="material-icons">savings</i>
+                        <span>Lowest Price</span>
+                    </button>
+                    <button type="button" class="tier-switch-btn recommended active" id="modal-tab-recommended" onclick="switchModalTier('recommended')">
+                        <i class="material-icons">verified</i>
+                        <span>Best Value</span>
+                    </button>
+                    <button type="button" class="tier-switch-btn luxury" id="modal-tab-luxury" onclick="switchModalTier('luxury')">
+                        <i class="material-icons">electric_bolt</i>
+                        <span>Fastest / Luxury</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Tier Content -->
+                <div id="modal-tier-content">
+                    <!-- Loaded dynamically via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="smart-route-modal-footer">
+                <div class="modal-footer-price-wrap">
+                    <span class="modal-footer-price-label">Estimated Transit Fare:</span>
+                    <span class="modal-footer-price-val" id="modal-tier-price">BDT 2,150 / person</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button type="button" class="btn-modal-cancel" onclick="closeSmartRouteModal()">Close</button>
+                    <button type="button" class="btn-modal-apply" onclick="applyModalSelectedTier()">
+                        <i class="material-icons">check</i>
+                        <span>Apply This Route</span>
                     </button>
                 </div>
             </div>
@@ -9777,17 +10083,66 @@
                 </div>
             ` : '';
 
-            const roadmapHtml = (d.routeStops && d.routeStops.length > 0) ? `
+            const originVal = document.getElementById('origin-select')?.value || 'Origin';
+            const destVal = document.getElementById('destination-select')?.value || 'Destination';
+            const net = window.TRAVELUP_TRANSIT_NETWORK;
+            const originHub = net ? net.resolveLocationHub(originVal) : { name: 'Regional Hub', terminal: 'Central Terminal' };
+            const destHub = net ? net.resolveLocationHub(destVal) : { name: 'Destination Hub', terminal: 'Gateway Terminal' };
+
+            let effectiveRouteStops = [];
+            let routeNoticeHtml = '';
+
+            if (slotName === 'cng' || slotName === 'taxi' || (slotName === 'micro' && item.price < 500)) {
+                effectiveRouteStops = [
+                    { station: `${originVal} (Doorstep / Stand)`, time: "Departure", desc: "Passenger pickup & luggage loading" },
+                    { station: "Regional Feeder Corridor", time: "+20-30m", desc: "Connecting run to central hub" },
+                    { station: `${originHub.name} (${originHub.terminal})`, time: "Arrival", desc: "Drop-off for Intercity Bus/Train transfer" }
+                ];
+            } else if (slotName === 'coach' || slotName === 'bus' || slotName === 'train' || slotName === 'flight') {
+                const isSameHub = (originHub.id === destHub.id);
+                if (isSameHub) {
+                    effectiveRouteStops = [
+                        { station: `${originHub.name} (${originHub.terminal})`, time: item.time || "Departure", desc: "Boarding & baggage check-in" },
+                        { station: "Express Highway Corridor", time: "Midway", desc: "Express point-to-point transit" },
+                        { station: `${destHub.name} (${destHub.terminal})`, time: item.arrTime || "Arrival", desc: "Destination terminal drop-off" }
+                    ];
+                } else {
+                    routeNoticeHtml = `
+                        <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.65rem;">
+                            <i class="material-icons" style="color: #d97706; font-size: 20px;">info</i>
+                            <div style="font-size: 0.8rem; color: #92400e;">
+                                <strong>Connecting Corridor:</strong> Direct non-stop bus from <em>${originVal}</em> to <em>${destVal}</em> is not available. This vehicle operates between <strong>${originHub.name}</strong> and <strong>${destHub.name}</strong>.
+                            </div>
+                        </div>
+                    `;
+                    effectiveRouteStops = [
+                        { station: `${originHub.name} (${originHub.terminal})`, time: item.time || "07:30 PM", desc: `Intercity boarding from ${originHub.name}` },
+                        { station: "Highway Rest Stop & Food Village", time: "Midway", desc: "20-minute refreshment and prayer break" },
+                        { station: `${destHub.name} (${destHub.terminal})`, time: item.arrTime || "05:15 AM", desc: `Arrival at ${destHub.name} for final transfer` }
+                    ];
+                }
+            } else if (slotName === 'jeep' || slotName === 'dest_cng' || slotName === 'dest_micro') {
+                effectiveRouteStops = [
+                    { station: `${destHub.name} (${destHub.terminal})`, time: "Pickup", desc: "Resort transfer & convoy departure" },
+                    { station: "Destination Scenic Access Road", time: "Transit", desc: "Scenic mountain / coastal transfer" },
+                    { station: `${destVal}`, time: "Final Arrival", desc: "Doorstep drop-off at final destination" }
+                ];
+            } else {
+                effectiveRouteStops = d.routeStops || [];
+            }
+
+            const roadmapHtml = (effectiveRouteStops && effectiveRouteStops.length > 0) ? `
+                ${routeNoticeHtml}
                 <div style="background: #ffffff; border: 1px solid var(--st-border); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
                     <div style="font-size: 0.8rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
-                        <i class="material-icons" style="font-size: 16px; color: var(--st-primary);">route</i>
+                        <i class="material-icons" style="font-size: 16px; color: var(--primary);">route</i>
                         Route Map & Stops Breakdown:
                     </div>
                     <div class="roadmap-timeline">
-                        ${d.routeStops.map((stop, sIdx) => `
+                        ${effectiveRouteStops.map((stop, sIdx) => `
                             <div class="roadmap-step">
                                 <div class="roadmap-dot"></div>
-                                <div class="roadmap-station">${stop.station} <span style="font-size: 0.75rem; font-weight: normal; color: var(--st-primary);">(${stop.time})</span></div>
+                                <div class="roadmap-station">${stop.station} <span style="font-size: 0.75rem; font-weight: normal; color: var(--primary);">(${stop.time})</span></div>
                                 <div class="roadmap-desc">${stop.desc}</div>
                             </div>
                         `).join('')}
@@ -10321,6 +10676,105 @@
         // -------------------------------------------------------------
         // SMART MULTI-LEG ROUTE TIER SELECTOR & CHANGER (TOUR PLANNER)
         // -------------------------------------------------------------
+
+        // -------------------------------------------------------------
+        // SMART ROUTE MODAL POPUP & DYNAMIC STOPPAGE CONTROLLER
+        // -------------------------------------------------------------
+        let currentModalTier = 'recommended';
+
+        function openSmartRouteModal() {
+            if (!validateSearchFields(true)) return;
+            const modal = document.getElementById('smart-route-modal');
+            if (modal) modal.style.display = 'flex';
+            currentModalTier = 'recommended';
+            renderModalTierView();
+        }
+
+        function closeSmartRouteModal() {
+            const modal = document.getElementById('smart-route-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function onSmartRouteModalOverlayClick(e) {
+            if (e.target && e.target.id === 'smart-route-modal') {
+                closeSmartRouteModal();
+            }
+        }
+
+        function switchModalTier(tierKey) {
+            currentModalTier = tierKey;
+            ['budget', 'recommended', 'luxury'].forEach(k => {
+                const btn = document.getElementById(`modal-tab-${k}`);
+                if (btn) btn.classList.toggle('active', k === tierKey);
+            });
+            renderModalTierView();
+        }
+
+        function renderModalTierView() {
+            if (!window.TRAVELUP_TRANSIT_NETWORK) return;
+            const origin = document.getElementById('origin-select')?.value || 'Dhaka - Mirpur 10';
+            const dest = document.getElementById('destination-select')?.value || "Cox's Bazar Sea Beach";
+            const travelers = getTravelerCount ? getTravelerCount() : 1;
+
+            const routeTitleEl = document.getElementById('smart-route-modal-route-name');
+            if (routeTitleEl) {
+                routeTitleEl.textContent = `Route: ${origin} ➔ ${dest}`;
+            }
+
+            const tiers = window.TRAVELUP_TRANSIT_NETWORK.calculateSmartRouteTiers(origin, dest, travelers);
+            if (!tiers) return;
+
+            const selected = tiers[currentModalTier] || tiers['recommended'];
+            const contentBox = document.getElementById('modal-tier-content');
+            const priceEl = document.getElementById('modal-tier-price');
+
+            if (priceEl) {
+                priceEl.textContent = `BDT ${selected.perPersonPrice.toLocaleString()} / person`;
+            }
+
+            if (!contentBox) return;
+
+            const legsHtml = (selected.legs || []).map((leg, idx) => {
+                const isLast = (idx === selected.legs.length - 1);
+                const bufferHtml = !isLast ? `
+                    <div class="tier-buffer-chip">
+                        <i class="material-icons" style="font-size: 14px;">hourglass_top</i>
+                        <span>Transfer & Buffer Window: ~45 mins safe layover</span>
+                    </div>
+                ` : '';
+
+                return `
+                    <div class="tier-leg-card">
+                        <div class="tier-leg-left">
+                            <div class="tier-leg-num">${idx + 1}</div>
+                            <div>
+                                <div class="tier-leg-title">${leg.title}</div>
+                                <div class="tier-leg-vehicle">${leg.vehicle}</div>
+                                <div class="tier-leg-time">Schedule: ${leg.time}</div>
+                            </div>
+                        </div>
+                        <div class="tier-leg-price">BDT ${leg.price.toLocaleString()}</div>
+                    </div>
+                    ${bufferHtml}
+                `;
+            }).join('');
+
+            contentBox.innerHTML = `
+                <div style="margin-bottom: 0.85rem; font-size: 0.8rem; color: #475569; display: flex; align-items: center; justify-content: space-between;">
+                    <span>Option: <strong style="color: ${selected.color};">${selected.label}</strong></span>
+                    <span>Est. Travel Time: <strong>~${selected.timeEstimate}</strong></span>
+                </div>
+                <div class="tier-leg-list">
+                    ${legsHtml}
+                </div>
+            `;
+        }
+
+        function applyModalSelectedTier() {
+            selectSmartTier(currentModalTier);
+            closeSmartRouteModal();
+        }
+
         let activeSmartTier = 'recommended';
 
         function renderSmartRouteBar() {
