@@ -10683,9 +10683,26 @@
         let currentModalTier = 'recommended';
 
         function openSmartRouteModal() {
-            if (!validateSearchFields(true)) return;
+            // Auto-fill a fallback date if empty so user is never blocked
+            const deptDateEl = document.getElementById('dept-date');
+            if (deptDateEl && !deptDateEl.value) {
+                const d = new Date();
+                d.setDate(d.getDate() + 7);
+                deptDateEl.value = d.toISOString().split('T')[0];
+            }
+
+            // Remove any error classes from search fields
+            ['field-origin', 'field-destination', 'field-dept-date', 'field-travelers'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('has-error');
+            });
+
             const modal = document.getElementById('smart-route-modal');
-            if (modal) modal.style.display = 'flex';
+            if (!modal) {
+                console.error('smart-route-modal element not found in DOM!');
+                return;
+            }
+            modal.style.display = 'flex';
             currentModalTier = 'recommended';
             renderModalTierView();
         }
@@ -10711,10 +10728,18 @@
         }
 
         function renderModalTierView() {
-            if (!window.TRAVELUP_TRANSIT_NETWORK) return;
-            const origin = document.getElementById('origin-select')?.value || 'Dhaka - Mirpur 10';
-            const dest = document.getElementById('destination-select')?.value || "Cox's Bazar Sea Beach";
-            const travelers = getTravelerCount ? getTravelerCount() : 1;
+            if (!window.TRAVELUP_TRANSIT_NETWORK) {
+                console.warn('TRAVELUP_TRANSIT_NETWORK not ready yet');
+                return;
+            }
+            const origin = document.getElementById('origin-display-title')?.textContent?.trim()
+                        || document.getElementById('origin-select')?.value?.trim() 
+                        || 'Mirpur, Dhaka';
+            const dest = document.getElementById('destination-display-title')?.textContent?.trim() 
+                      || document.getElementById('destination-place-name')?.value?.trim()
+                      || document.getElementById('destination-select')?.value?.trim() 
+                      || "Cox's Bazar Sea Beach";
+            const travelers = (typeof getTravelerCount === 'function') ? getTravelerCount() : 1;
 
             const routeTitleEl = document.getElementById('smart-route-modal-route-name');
             if (routeTitleEl) {
