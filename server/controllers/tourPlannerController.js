@@ -641,6 +641,9 @@ exports.updateLocation = async (req, res) => {
                 `, [locationNameEn, name_bn, image, description, code, isActive, isFeatured, id]);
             }
             return res.json({ success: true, message: 'Upazila updated successfully' });
+        } else if (type === 'destination') {
+            await pool.query('UPDATE bd_tour_destinations SET name_en = COALESCE(?, name_en), name_bn = COALESCE(?, name_bn), destination_type = COALESCE(?, destination_type), description = COALESCE(?, description), is_active = COALESCE(?, is_active) WHERE destination_id = ? OR id = ?', [locationNameEn, name_bn, req.body.destination_type, description, isActive, id, id]);
+            return res.json({ success: true, message: 'Destination updated successfully' });
         } else {
             return res.status(400).json({ success: false, message: 'Invalid location type' });
         }
@@ -662,6 +665,8 @@ exports.deleteLocation = async (req, res) => {
             await pool.query('DELETE FROM bd_districts WHERE district_id = ?', [id]);
         } else if (type === 'upazila') {
             await pool.query('DELETE FROM bd_upazilas WHERE upazila_id = ?', [id]);
+        } else if (type === 'destination') {
+            await pool.query('DELETE FROM bd_tour_destinations WHERE destination_id = ? OR id = ?', [id, id]);
         } else {
             return res.status(400).json({ success: false, message: 'Invalid location type' });
         }
@@ -682,8 +687,13 @@ exports.toggleLocationStatus = async (req, res) => {
         let idCol = 'upazila_id';
         if (type === 'division') { table = 'bd_divisions'; idCol = 'division_id'; }
         else if (type === 'district') { table = 'bd_districts'; idCol = 'district_id'; }
+        else if (type === 'destination') { table = 'bd_tour_destinations'; idCol = 'destination_id'; }
 
-        await pool.query(`UPDATE ${table} SET is_active = 1 - is_active WHERE ${idCol} = ?`, [id]);
+        if (type === 'destination') {
+            await pool.query('UPDATE bd_tour_destinations SET is_active = 1 - is_active WHERE destination_id = ? OR id = ?', [id, id]);
+        } else {
+            await pool.query(`UPDATE ${table} SET is_active = 1 - is_active WHERE ${idCol} = ?`, [id]);
+        }
         return res.json({ success: true, message: 'Status toggled successfully' });
     } catch (error) {
         console.error('Toggle status error:', error);

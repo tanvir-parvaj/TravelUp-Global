@@ -1272,21 +1272,19 @@
         }
 
         .tp-action-menu {
-            position: absolute;
-            right: 20px;
-            top: 40px;
+            position: fixed !important;
+            z-index: 999999 !important;
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-            min-width: 160px;
-            z-index: 100;
-            padding: 0.35rem 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+            min-width: 175px;
+            padding: 0.4rem 0;
             display: none;
         }
 
         .tp-action-menu.show {
-            display: block;
+            display: block !important;
         }
 
         .tp-action-item {
@@ -4803,22 +4801,7 @@
     </div>
 
 
-                    <!-- Floating Action Dropdown Menu -->
-                    <div id="tp-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
-                        <button type="button" class="tp-action-item" onclick="handleCategoryViewProducts('travel-planner')">
-                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Sub Categories
-                        </button>
-                        <button type="button" class="tp-action-item" onclick="handleCategoryEdit()">
-                            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
-                        </button>
-                        <button type="button" class="tp-action-item" onclick="handleCategoryToggleStatus()">
-                            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
-                        </button>
-                        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
-                        <button type="button" class="tp-action-item danger" onclick="handleCategoryDelete()">
-                            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete
-                        </button>
-                    </div>
+
                 </section>
 
                 <!-- 3. TOUR PLANNER (CATEGORY & SERVICE MANAGER) -->
@@ -5360,41 +5343,7 @@
                         </div>
                     </div>
 
-                    <!-- Floating Action Dropdown Menu for Sub Categories -->
-                    <div id="subcat-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
-                        <button type="button" class="tp-action-item" onclick="handleSubCatAction('view-operators')">
-                            <i class="material-icons" style="font-size: 16px; color: #00875a;">directions_bus</i> View Operators
-                        </button>
-                        <button type="button" class="tp-action-item" onclick="handleSubCatAction('edit')">
-                            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
-                        </button>
-                        <button type="button" class="tp-action-item" onclick="handleSubCatAction('toggle')">
-                            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
-                        </button>
-                        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
-                        <button type="button" class="tp-action-item danger" onclick="handleSubCatAction('delete')">
-                            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete
-                        </button>
-                    </div>
-
                     <!-- Tour Category Modal handled universally by universal-category-modal -->
-
-                    <!-- Floating Action Dropdown Menu for Tour Planner -->
-                    <div id="tour-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
-                        <button type="button" class="tp-action-item" onclick="handleCategoryViewProducts('tour-planner')">
-                            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Sub Categories
-                        </button>
-                        <button type="button" class="tp-action-item" onclick="handleTourCategoryEdit()">
-                            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
-                        </button>
-                        <button type="button" class="tp-action-item" onclick="handleTourCategoryToggleStatus()">
-                            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
-                        </button>
-                        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
-                        <button type="button" class="tp-action-item danger" onclick="handleTourCategoryDelete()">
-                            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete
-                        </button>
-                    </div>
 
                     <!-- Universal Location CRUD Modal (Add / Edit Location Matching Mockup) -->
                     <div class="tp-modal-overlay" id="location-crud-modal" onclick="closeLocationModal(event)">
@@ -5537,22 +5486,7 @@
                         </div>
                     </div>
 
-                    <!-- Floating Action Dropdown Menu for Locations -->
-                    <div id="location-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
-                        <button type="button" class="tp-action-item" onclick="handleLocationMenuAction('edit')">
-                            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
-                        </button>
-                        <button type="button" class="tp-action-item" onclick="handleLocationMenuAction('toggle')">
-                            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
-                        </button>
-                        <button type="button" class="tp-action-item" id="loc-menu-btn-destinations" onclick="handleLocationMenuAction('view-destinations')">
-                            <i class="material-icons" style="font-size: 16px; color: #ea580c;">explore</i> View Destinations
-                        </button>
-                        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
-                        <button type="button" class="tp-action-item danger" onclick="handleLocationMenuAction('delete')">
-                            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete Location
-                        </button>
-                    </div>
+
 
                     <!-- Add Destination Modal (for Tour Planner) -->
                     <div class="tp-modal-overlay" id="destination-crud-modal" onclick="closeDestinationModal(event)">
@@ -5563,7 +5497,7 @@
                                         <i class="material-icons" style="font-size: 24px;">explore</i>
                                     </div>
                                     <div>
-                                        <h3 style="margin: 0; color: #ffffff; font-size: 1.15rem; font-weight: 800;">Add Tour Destination</h3>
+                                        <h3 style="margin: 0; color: #ffffff; font-size: 1.15rem; font-weight: 800;" id="dest-modal-title">Add Tour Destination</h3>
                                         <p style="margin: 3px 0 0 0; color: rgba(255,255,255,0.85); font-size: 0.775rem;">Create a tourist spot linked to district and upazila</p>
                                     </div>
                                 </div>
@@ -5572,6 +5506,7 @@
                                 </button>
                             </div>
                             <form id="dest-crud-form" onsubmit="handleDestinationFormSubmit(event)" style="padding: 1.35rem 1.6rem; background: #ffffff;">
+                                <input type="hidden" id="dest-modal-id" value="">
                                 <div style="margin-bottom: 1rem;">
                                     <label style="display: block; font-size: 0.775rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Destination Name *</label>
                                     <input type="text" id="dest-modal-name" required placeholder="e.g. Cox's Bazar Sea Beach, Sajek Valley" style="width: 100%; padding: 0.52rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.84rem; outline: none;">
@@ -6143,6 +6078,71 @@
         </div>
     </div>
 
+        <!-- Global Floating Action Dropdown Menus for All Tables -->
+    <div id="tp-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+        <button type="button" class="tp-action-item" onclick="handleCategoryViewProducts('travel-planner')">
+            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Sub Categories
+        </button>
+        <button type="button" class="tp-action-item" onclick="handleCategoryEdit()">
+            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
+        </button>
+        <button type="button" class="tp-action-item" onclick="handleCategoryToggleStatus()">
+            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
+        </button>
+        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
+        <button type="button" class="tp-action-item danger" onclick="handleCategoryDelete()">
+            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete
+        </button>
+    </div>
+
+    <div id="tour-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+        <button type="button" class="tp-action-item" onclick="handleCategoryViewProducts('tour-planner')">
+            <i class="material-icons" style="font-size: 16px; color: #0284c7;">visibility</i> View Sub Categories
+        </button>
+        <button type="button" class="tp-action-item" onclick="handleTourCategoryEdit()">
+            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
+        </button>
+        <button type="button" class="tp-action-item" onclick="handleTourCategoryToggleStatus()">
+            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
+        </button>
+        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
+        <button type="button" class="tp-action-item danger" onclick="handleTourCategoryDelete()">
+            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete
+        </button>
+    </div>
+
+    <div id="subcat-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+        <button type="button" class="tp-action-item" onclick="handleSubCatAction('view-operators')">
+            <i class="material-icons" style="font-size: 16px; color: #00875a;">directions_bus</i> View Operators
+        </button>
+        <button type="button" class="tp-action-item" onclick="handleSubCatAction('edit')">
+            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
+        </button>
+        <button type="button" class="tp-action-item" onclick="handleSubCatAction('toggle')">
+            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
+        </button>
+        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
+        <button type="button" class="tp-action-item danger" onclick="handleSubCatAction('delete')">
+            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete
+        </button>
+    </div>
+
+    <div id="location-action-dropdown-menu" class="tp-action-menu" onclick="event.stopPropagation()">
+        <button type="button" class="tp-action-item" onclick="handleLocationMenuAction('edit')">
+            <i class="material-icons" style="font-size: 16px; color: #2563eb;">edit</i> Edit Details
+        </button>
+        <button type="button" class="tp-action-item" onclick="handleLocationMenuAction('toggle')">
+            <i class="material-icons" style="font-size: 16px; color: #059669;">toggle_on</i> Toggle Status
+        </button>
+        <button type="button" class="tp-action-item" id="loc-menu-btn-destinations" onclick="handleLocationMenuAction('view-destinations')">
+            <i class="material-icons" style="font-size: 16px; color: #ea580c;">explore</i> View Destinations
+        </button>
+        <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
+        <button type="button" class="tp-action-item danger" onclick="handleLocationMenuAction('delete')">
+            <i class="material-icons" style="font-size: 16px; color: #ef4444;">delete</i> Delete Location
+        </button>
+    </div>
+
     <!-- Global Toast Container -->
     <div id="toast-container"></div>
 
@@ -6655,6 +6655,90 @@
             }).join('');
         }
 
+        // ================= UNIVERSAL ACTION DROPDOWN POSITIONING ================= //
+
+        function positionFixedDropdown(menu, triggerBtn) {
+            if (!menu || !triggerBtn) return;
+            const rect = triggerBtn.getBoundingClientRect();
+
+            // Temporarily make it visible off-screen to measure actual dimensions
+            menu.style.visibility = 'hidden';
+            menu.style.display = 'block';
+            menu.classList.add('show');
+            const menuWidth = menu.offsetWidth || 180;
+            const menuHeight = menu.offsetHeight || 160;
+            menu.style.visibility = 'visible';
+
+            // Calculate horizontal position (align right edge of dropdown with right edge of button)
+            let left = rect.right - menuWidth;
+            if (left < 10) left = 10;
+            if (left + menuWidth > window.innerWidth - 10) {
+                left = window.innerWidth - menuWidth - 10;
+            }
+
+            // Calculate vertical position (open downwards by default, flip upwards if near bottom edge)
+            let top = rect.bottom + 4;
+            if (top + menuHeight > window.innerHeight - 10 && rect.top > menuHeight + 10) {
+                top = rect.top - menuHeight - 4;
+            }
+
+            menu.style.position = 'fixed';
+            menu.style.top = top + 'px';
+            menu.style.left = left + 'px';
+            menu.style.zIndex = '999999';
+        }
+
+        function openCategoryActionMenu(catId, e) {
+            if (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
+            const menu = document.getElementById('tp-action-dropdown-menu');
+            if (!menu) return;
+
+            if (activeCategoryActionId === catId && menu.classList.contains('show')) {
+                menu.classList.remove('show');
+                activeCategoryActionId = null;
+                return;
+            }
+
+            document.querySelectorAll('.tp-action-menu.show').forEach(m => m.classList.remove('show'));
+
+            activeCategoryActionId = catId;
+            const btn = e ? e.currentTarget : null;
+            if (btn) {
+                positionFixedDropdown(menu, btn);
+            } else {
+                menu.classList.add('show');
+            }
+        }
+
+        function handleCategoryToggleStatus() {
+            const menu = document.getElementById('tp-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+            const cat = tpCategories.find(c => c.id === activeCategoryActionId);
+            if (!cat) return;
+            cat.status = cat.status === 'Active' ? 'Inactive' : 'Active';
+            saveStoredTpCategories();
+            renderTpCategoriesTable(tpCategories);
+            showToast(`Category "${cat.name}" marked as ${cat.status}`, 'info');
+        }
+
+        function handleCategoryDelete() {
+            const menu = document.getElementById('tp-action-dropdown-menu');
+            if (menu) menu.classList.remove('show');
+            const catIndex = tpCategories.findIndex(c => c.id === activeCategoryActionId);
+            if (catIndex !== -1) {
+                const catName = tpCategories[catIndex].name;
+                if (confirm(`Are you sure you want to delete the category "${catName}"?`)) {
+                    tpCategories.splice(catIndex, 1);
+                    saveStoredTpCategories();
+                    renderTpCategoriesTable(tpCategories);
+                    showToast(`Category "${catName}" deleted`, 'warning');
+                }
+            }
+        }
+
         function switchTpMainTab(tabName, el) {
             document.querySelectorAll('#tp-nav-tabs .tp-tab-pill').forEach(btn => btn.classList.remove('active'));
             if (el) el.classList.add('active');
@@ -6817,7 +6901,10 @@
         }
 
         function openTourCategoryActionMenu(catId, e) {
-            e.stopPropagation();
+            if (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
             const menu = document.getElementById('tour-action-dropdown-menu');
             if (!menu) return;
 
@@ -6827,14 +6914,15 @@
                 return;
             }
 
+            document.querySelectorAll('.tp-action-menu.show').forEach(m => m.classList.remove('show'));
+
             activeTourCategoryActionId = catId;
-
-            const btn = e.currentTarget;
-            const rect = btn.getBoundingClientRect();
-
-            menu.style.top = `${rect.bottom + window.scrollY + 4}px`;
-            menu.style.left = `${rect.right + window.scrollX - 160}px`;
-            menu.classList.add('show');
+            const btn = e ? e.currentTarget : null;
+            if (btn) {
+                positionFixedDropdown(menu, btn);
+            } else {
+                menu.classList.add('show');
+            }
         }
 
         function handleTourCategoryEdit() {
@@ -7258,14 +7346,30 @@
             }
         }
 
-        // Close dropdown action menus on window click
-        window.addEventListener('click', () => {
-            const menu = document.getElementById('tour-action-dropdown-menu');
-            if (menu) menu.classList.remove('show');
-            const locMenu = document.getElementById('location-action-dropdown-menu');
-            if (locMenu) locMenu.classList.remove('show');
-            const tpMenu = document.getElementById('tp-action-dropdown-menu');
-            if (tpMenu) tpMenu.classList.remove('show');
+        // Close all dropdown action menus when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.tp-action-btn-circle, .tp-btn-action-more, .tp-subcat-action-btn, .tp-action-menu')) {
+                return;
+            }
+            document.querySelectorAll('.tp-action-menu.show').forEach(m => m.classList.remove('show'));
+            activeTourCategoryActionId = null;
+            activeCategoryActionId = null;
+            activeSubCatActionId = null;
+            if (locationState) locationState.activeActionTarget = null;
+        });
+
+        // Close open floating dropdown menus on scrolling
+        window.addEventListener('scroll', function() {
+            document.querySelectorAll('.tp-action-menu.show').forEach(m => m.classList.remove('show'));
+        }, { passive: true });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainScroll = document.querySelector('.admin-main');
+            if (mainScroll) {
+                mainScroll.addEventListener('scroll', function() {
+                    document.querySelectorAll('.tp-action-menu.show').forEach(m => m.classList.remove('show'));
+                }, { passive: true });
+            }
         });
 
         // ================= CATEGORY PRODUCTS REPOSITORY & CONTROLLER ================= //
@@ -7754,7 +7858,10 @@
         }
 
         function toggleSubCatActionMenu(e, subcatId, sectionType) {
-            e.stopPropagation();
+            if (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
             const menu = document.getElementById('subcat-action-dropdown-menu');
             if (!menu) return;
 
@@ -7764,15 +7871,17 @@
                 return;
             }
 
+            document.querySelectorAll('.tp-action-menu.show').forEach(m => m.classList.remove('show'));
+
             activeSubCatActionId = subcatId;
             activeSubCatActionSection = sectionType;
 
-            const btn = e.currentTarget;
-            const rect = btn.getBoundingClientRect();
-
-            menu.style.top = `${rect.bottom + window.scrollY + 4}px`;
-            menu.style.left = `${rect.right + window.scrollX - 160}px`;
-            menu.classList.add('show');
+            const btn = e ? e.currentTarget : null;
+            if (btn) {
+                positionFixedDropdown(menu, btn);
+            } else {
+                menu.classList.add('show');
+            }
         }
 
         function handleSubCatAction(action) {
@@ -7995,16 +8104,7 @@
             showToast('Showing all subcategories on page 1', 'info');
         }
 
-        // Close subcategory action dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('subcat-action-dropdown-menu');
-            if (menu && menu.classList.contains('show')) {
-                if (!e.target.closest('#subcat-action-dropdown-menu') && !e.target.closest('.tp-subcat-action-btn')) {
-                    menu.classList.remove('show');
-                    activeSubCatActionId = null;
-                }
-            }
-        });
+
 
         function handleCategoryViewProducts(sectionType = 'travel-planner') {
             const isTour = sectionType === 'tour-planner';
@@ -9320,7 +9420,7 @@
                                 <td>${statusPill}</td>
                                 <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
                                 <td style="text-align: center;">
-                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${rawJson}', 'upazila', '${sectionType}')">
+                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${itemId}', 'upazila', '${sectionType}')">
                                         <i class="material-icons" style="font-size: 20px;">more_vert</i>
                                     </button>
                                 </td>
@@ -9362,7 +9462,7 @@
                                 <td>${statusPill}</td>
                                 <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
                                 <td style="text-align: center;">
-                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${rawJson}', 'district', '${sectionType}')">
+                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${itemId}', 'district', '${sectionType}')">
                                         <i class="material-icons" style="font-size: 20px;">more_vert</i>
                                     </button>
                                 </td>
@@ -9399,7 +9499,7 @@
                                 <td>${statusPill}</td>
                                 <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
                                 <td style="text-align: center;">
-                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${rawJson}', 'division', '${sectionType}')">
+                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${itemId}', 'division', '${sectionType}')">
                                         <i class="material-icons" style="font-size: 20px;">more_vert</i>
                                     </button>
                                 </td>
@@ -9441,7 +9541,7 @@
                                 <td>${statusPill}</td>
                                 <td style="color: #64748b; font-size: 0.82rem;">${formattedDate}</td>
                                 <td style="text-align: center;">
-                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${rawJson}', 'destination', '${sectionType}')">
+                                    <button type="button" class="tp-btn-action-more" onclick="openLocationActionMenu(event, '${itemId}', 'destination', '${sectionType}')">
                                         <i class="material-icons" style="font-size: 20px;">more_vert</i>
                                     </button>
                                 </td>
@@ -9529,7 +9629,7 @@
             });
         }
 
-        function openLocationActionMenu(event, itemJsonStr, type, sectionType) {
+        function openLocationActionMenu(event, itemParam, type, sectionType) {
             if (event) {
                 event.stopPropagation();
                 event.preventDefault();
@@ -9537,11 +9637,19 @@
             const menu = document.getElementById('location-action-dropdown-menu');
             if (!menu) return;
 
+            document.querySelectorAll('.tp-action-menu.show').forEach(m => m.classList.remove('show'));
+
             let item = null;
-            try {
-                item = JSON.parse(decodeURIComponent(itemJsonStr));
-            } catch (e) {
-                item = itemJsonStr;
+            if (typeof itemParam === 'object' && itemParam !== null) {
+                item = itemParam;
+            } else if (typeof itemParam === 'string' && (itemParam.startsWith('%7B') || itemParam.startsWith('{'))) {
+                try { item = JSON.parse(decodeURIComponent(itemParam)); } catch (e) { item = null; }
+            }
+
+            if (!item) {
+                const idToFind = String(itemParam);
+                const list = (locationState[sectionType] && locationState[sectionType].items) ? locationState[sectionType].items : [];
+                item = list.find(it => String(it.id || it.destination_id || it.upazila_id || it.district_id || it.division_id) === idToFind) || { id: idToFind, name_en: 'Location' };
             }
 
             locationState.activeActionTarget = { item, type, sectionType };
@@ -9551,13 +9659,15 @@
                 destBtn.style.display = (sectionType === 'tour-planner' && (type === 'upazila' || type === 'district')) ? 'flex' : 'none';
             }
 
-            const rect = event.currentTarget.getBoundingClientRect();
-            menu.style.top = `${rect.bottom + window.scrollY + 4}px`;
-            menu.style.left = `${Math.min(rect.right - 175 + window.scrollX, window.innerWidth - 185)}px`;
-            menu.classList.add('show');
+            const btn = event ? event.currentTarget : null;
+            if (btn) {
+                positionFixedDropdown(menu, btn);
+            } else {
+                menu.classList.add('show');
+            }
         }
 
-        function handleLocationMenuAction(action) {
+        async function handleLocationMenuAction(action) {
             const menu = document.getElementById('location-action-dropdown-menu');
             if (menu) menu.classList.remove('show');
 
@@ -9568,31 +9678,73 @@
 
             if (action === 'edit') {
                 if (type === 'destination') {
-                    showToast('Editing destination: ' + (item.name_en || item.name), 'info');
+                    openEditDestinationModal(item);
                 } else {
                     openEditLocationModal(item, type, sectionType);
                 }
             } else if (action === 'toggle') {
                 if (type === 'destination') {
-                    deleteTourDestinationItem(item.id || item.destination_id, item.name_en);
+                    await toggleDestinationItemStatus(item);
                 } else {
-                    toggleLocationItemStatus(item, type, sectionType);
+                    await toggleLocationItemStatus(item, type, sectionType);
                 }
             } else if (action === 'view-destinations') {
-                switchLocSubTab('destinations', 'tour-planner');
-                const searchInput = document.getElementById('tour-loc-search-input');
-                if (searchInput) {
-                    searchInput.value = item.name_en || item.name;
-                    onLocSearchChange('tour-planner');
-                }
-                showToast(`Viewing tourist destinations for ${item.name_en || item.name}`, 'info');
+                drillDownUpazila(item.id || item.upazila_id, item.name_en || item.name, item.district_id, 'tour-planner');
             } else if (action === 'delete') {
                 if (type === 'destination') {
-                    deleteTourDestinationItem(item.id || item.destination_id, item.name_en);
+                    await deleteTourDestinationItem(item.id || item.destination_id, item.name_en || item.name);
                 } else {
-                    deleteLocationItem(item, type, sectionType);
+                    await deleteLocationItem(item, type, sectionType);
                 }
             }
+        }
+
+        async function toggleDestinationItemStatus(item) {
+            const id = item.id || item.destination_id;
+            try {
+                const res = await fetch(`${API_BASE}/api/tour-planner/locations/destination/${encodeURIComponent(id)}/status`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast(`Status of "${item.name_en || item.name}" updated successfully`, 'success');
+                    await renderLocationTable('tour-planner');
+                } else {
+                    showToast(data.message || 'Failed to update destination status', 'error');
+                }
+            } catch(err) {
+                showToast('Network error updating status', 'error');
+            }
+        }
+
+        function openEditDestinationModal(item) {
+            const modal = document.getElementById('destination-crud-modal');
+            if (!modal) return;
+
+            const distSel = document.getElementById('dest-modal-district');
+            if (distSel && locationState.allDistricts.length > 0) {
+                distSel.innerHTML = '<option value="">Select District *</option>' + 
+                    locationState.allDistricts.map(d => `<option value="${d.district_id}">${d.name_en} (${d.division_name_en || ''})</option>`).join('');
+            }
+
+            const titleEl = document.getElementById('dest-modal-title');
+            if (titleEl) titleEl.textContent = 'Edit Tour Destination';
+
+            const idInput = document.getElementById('dest-modal-id');
+            if (idInput) idInput.value = item.id || item.destination_id || '';
+
+            const nameInput = document.getElementById('dest-modal-name');
+            if (nameInput) nameInput.value = item.name_en || item.name || '';
+
+            if (distSel && item.district_id) distSel.value = item.district_id;
+            const typeSel = document.getElementById('dest-modal-type');
+            if (typeSel && item.destination_type) typeSel.value = item.destination_type;
+
+            const descInput = document.getElementById('dest-modal-desc');
+            if (descInput) descInput.value = item.description || '';
+
+            modal.classList.add('show');
         }
 
         function openAddLocationModal(sectionType = 'travel-planner') {
@@ -9900,6 +10052,10 @@
                     locationState.allDistricts.map(d => `<option value="${d.district_id}">${d.name_en} (${d.division_name_en || ''})</option>`).join('');
             }
 
+            const titleEl = document.getElementById('dest-modal-title');
+            if (titleEl) titleEl.textContent = 'Add Tour Destination';
+            const idInput = document.getElementById('dest-modal-id');
+            if (idInput) idInput.value = '';
             document.getElementById('dest-modal-name').value = '';
             document.getElementById('dest-modal-desc').value = '';
             modal.classList.add('show');
@@ -9913,39 +10069,55 @@
 
         async function handleDestinationFormSubmit(event) {
             event.preventDefault();
+            const editId = document.getElementById('dest-modal-id')?.value;
             const name = document.getElementById('dest-modal-name').value.trim();
             const districtId = document.getElementById('dest-modal-district').value;
             const type = document.getElementById('dest-modal-type').value;
             const desc = document.getElementById('dest-modal-desc').value.trim();
 
-            if (!name || !districtId) {
+            if (!name || (!editId && !districtId)) {
                 showToast('Destination name and district are required', 'error');
                 return;
             }
 
             try {
-                const res = await fetch(`${API_BASE}/api/tour-planner/destinations`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
+                let url = `${API_BASE}/api/tour-planner/destinations`;
+                let method = 'POST';
+                let body = {
+                    name_en: name,
+                    district_id: districtId,
+                    destination_type: type,
+                    description: desc,
+                    is_active: 1
+                };
+
+                if (editId) {
+                    url = `${API_BASE}/api/tour-planner/locations/destination/${encodeURIComponent(editId)}`;
+                    method = 'PUT';
+                    body = {
                         name_en: name,
-                        district_id: districtId,
+                        parent_id: districtId,
                         destination_type: type,
-                        description: desc,
-                        is_active: 1
-                    })
+                        description: desc
+                    };
+                }
+
+                const res = await fetch(url, {
+                    method: method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
                 });
                 const data = await res.json();
                 if (data.success) {
-                    showToast(`Destination "${name}" added successfully!`, 'success');
+                    showToast(editId ? `Destination "${name}" updated successfully!` : `Destination "${name}" added successfully!`, 'success');
                     closeDestinationModal();
                     await fetchLocationSummary();
                     await renderLocationTable('tour-planner');
                 } else {
-                    showToast(data.message || 'Failed to create destination', 'error');
+                    showToast(data.message || 'Failed to save destination', 'error');
                 }
             } catch (err) {
-                console.error('Add destination error:', err);
+                console.error('Save destination error:', err);
                 showToast('Network error saving destination', 'error');
             }
         }
