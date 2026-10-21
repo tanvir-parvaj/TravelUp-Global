@@ -5841,9 +5841,19 @@
         }
 
         .tp-operators-grid {
-            display: grid !important;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
-            gap: clamp(10px, 1.5vw, 1.25rem) !important;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: clamp(10px, 1.5vw, 1.25rem);
+        }
+
+        .tp-operators-grid[style*="display: none"],
+        .tp-operators-grid[style*="display:none"] {
+            display: none !important;
+        }
+
+        .tp-operators-list-table-card[style*="display: none"],
+        .tp-operators-list-table-card[style*="display:none"] {
+            display: none !important;
         }
 
         .tp-op-details-strip {
@@ -12543,7 +12553,7 @@
             }
 
             // 4. Render Grid / Table based on current view mode
-            setOperatorViewMode(activeOperatorState.viewMode || 'list', sectionType);
+            setOperatorViewMode('list', sectionType);
 
             // 5. Persist state to URL and localStorage
             try {
@@ -12631,7 +12641,7 @@
             } catch (err) {}
         }
 
-        function setOperatorViewMode(mode, sectionType = 'travel-planner') {
+        function setOperatorViewMode(mode = 'list', sectionType = 'travel-planner') {
             const isTour = sectionType === 'tour-planner';
             const prefix = isTour ? 'tour' : 'tp';
             activeOperatorState.viewMode = mode;
@@ -12644,13 +12654,22 @@
             if (mode === 'grid') {
                 if (gridBtn) gridBtn.classList.add('active');
                 if (listBtn) listBtn.classList.remove('active');
-                if (gridContainer) gridContainer.style.display = 'grid';
-                if (listContainer) listContainer.style.display = 'none';
+                if (gridContainer) {
+                    gridContainer.style.setProperty('display', 'grid', 'important');
+                }
+                if (listContainer) {
+                    listContainer.style.setProperty('display', 'none', 'important');
+                }
             } else {
+                // Default is List (Table) View
                 if (listBtn) listBtn.classList.add('active');
                 if (gridBtn) gridBtn.classList.remove('active');
-                if (gridContainer) gridContainer.style.display = 'none';
-                if (listContainer) listContainer.style.display = 'block';
+                if (gridContainer) {
+                    gridContainer.style.setProperty('display', 'none', 'important');
+                }
+                if (listContainer) {
+                    listContainer.style.setProperty('display', 'block', 'important');
+                }
             }
 
             renderOperatorsView(sectionType);
