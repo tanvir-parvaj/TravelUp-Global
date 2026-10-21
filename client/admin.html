@@ -6116,38 +6116,98 @@
         }
 
         /* ================= ENTERPRISE VEHICLE & SCHEDULE MODAL STYLES ================= */
+        #bus-product-crud-modal.tp-modal-overlay {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(5px);
+            z-index: 999999;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        #bus-product-crud-modal.tp-modal-overlay.show {
+            display: flex !important;
+        }
+
+        #bus-product-crud-modal .modern-modal-card {
+            background: #ffffff !important;
+            border-radius: 20px !important;
+            box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.35), 0 0 1px rgba(0, 0, 0, 0.1) !important;
+            width: 100% !important;
+            max-width: 980px !important;
+            max-height: 94vh !important;
+            height: auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: hidden !important;
+            position: relative !important;
+            margin: auto !important;
+        }
+
+        /* Bus Modal Dedicated Body - Full Width Block (NOT 2-column grid!) */
+        #bus-product-crud-modal .bus-modal-body-scrollable {
+            display: block !important;
+            flex: 1 1 auto !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            padding: 1.4rem 1.6rem !important;
+            background: #ffffff !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Tab Navigation Bar - Sleek, no ugly scrollbar */
         .bus-modal-nav-bar {
             display: flex;
             background: #f8fafc;
             border-bottom: 1px solid #e2e8f0;
-            padding: 0 1.25rem;
+            padding: 0 1rem;
             overflow-x: auto;
+            overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
-            gap: 6px;
+            gap: 4px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            flex-shrink: 0;
+        }
+
+        .bus-modal-nav-bar::-webkit-scrollbar {
+            display: none;
         }
 
         .bus-modal-tab-btn {
             background: transparent;
             border: none;
-            padding: 0.75rem 1.15rem;
-            font-size: 0.82rem;
+            padding: 0.8rem 1rem;
+            font-size: 0.825rem;
             font-weight: 700;
             color: #64748b;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            border-bottom: 2px solid transparent;
+            gap: 7px;
+            border-bottom: 2.5px solid transparent;
             white-space: nowrap;
-            transition: all 0.15s ease;
+            transition: all 0.18s ease;
+            flex-shrink: 0;
         }
 
         .bus-modal-tab-btn i {
-            font-size: 17px;
+            font-size: 18px;
         }
 
         .bus-modal-tab-btn:hover {
             color: #0f172a;
+            background: rgba(241, 245, 249, 0.8);
         }
 
         .bus-modal-tab-btn.active {
@@ -6156,20 +6216,69 @@
             background: #ffffff;
         }
 
+        @media (min-width: 768px) {
+            .bus-modal-tab-btn {
+                flex: 1 1 0;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
         .bus-modal-tab-content {
             display: none;
-            animation: fadeIn 0.15s ease-in;
+            width: 100%;
+            box-sizing: border-box;
+            animation: busFadeIn 0.15s ease-in;
         }
 
         .bus-modal-tab-content.active {
             display: block;
         }
 
+        @keyframes busFadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tab 1: Identity 2-Column Responsive Grid */
+        .bus-identity-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 1.15rem;
+        }
+
+        @media (max-width: 680px) {
+            .bus-identity-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        /* Tab 2: Route Endpoints Grid */
+        .bus-route-endpoints-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 1.25rem;
+        }
+
+        @media (max-width: 720px) {
+            .bus-route-endpoints-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
         .bus-stop-card-box {
             background: #ffffff;
-            border-radius: 12px;
-            padding: 1rem;
+            border-radius: 14px;
+            padding: 1.15rem;
             border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .bus-stop-card-box.origin {
@@ -6184,7 +6293,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 2px;
         }
 
         .bus-stop-badge {
@@ -6214,13 +6323,13 @@
             color: #0284c7;
             border: 1px solid #bae6fd;
             border-radius: 999px;
-            padding: 0.35rem 0.85rem;
-            font-size: 0.75rem;
+            padding: 0.4rem 0.95rem;
+            font-size: 0.78rem;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             transition: all 0.15s ease;
         }
 
@@ -6232,20 +6341,45 @@
         .bus-stoppage-row-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 0.85rem;
-            transition: border-color 0.15s ease;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+            transition: all 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .bus-stoppage-row-card:hover {
             border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        }
+
+        .stoppage-fields-grid-top {
+            display: grid;
+            grid-template-columns: 1.1fr 1.4fr 1.1fr;
+            gap: 10px;
+        }
+
+        .stoppage-fields-grid-bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .stoppage-fields-grid-top,
+            .stoppage-fields-grid-bottom {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
         }
 
         .bus-stoppage-number-pill {
             background: #f1f5f9;
             color: #475569;
             border-radius: 6px;
-            padding: 2px 7px;
+            padding: 3px 8px;
             font-size: 0.72rem;
             font-weight: 700;
             display: inline-flex;
@@ -6277,13 +6411,13 @@
             color: #b45309;
             border: 1px solid #fde68a;
             border-radius: 999px;
-            padding: 0.35rem 0.85rem;
-            font-size: 0.75rem;
+            padding: 0.4rem 0.95rem;
+            font-size: 0.78rem;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             transition: all 0.15s ease;
         }
 
@@ -6292,59 +6426,142 @@
             color: #ffffff;
         }
 
+        /* Tab 3: Stage Fare Matrix Table */
+        .bus-fare-matrix-container {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            overflow-x: auto;
+            width: 100%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
         .bus-fare-matrix-table {
             width: 100%;
+            min-width: 600px;
             border-collapse: collapse;
-            font-size: 0.8rem;
+            font-size: 0.825rem;
         }
 
         .bus-fare-matrix-table th {
             background: #f8fafc;
             color: #475569;
             font-weight: 700;
-            padding: 0.65rem 0.85rem;
+            padding: 0.75rem 1rem;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1.5px solid #e2e8f0;
             white-space: nowrap;
         }
 
         .bus-fare-matrix-table td {
-            padding: 0.6rem 0.85rem;
+            padding: 0.75rem 1rem;
             border-bottom: 1px solid #f1f5f9;
             color: #1e293b;
+            vertical-align: middle;
         }
 
-        .bus-seat-legend-bar {
+        .bus-fare-matrix-table tr:hover td {
+            background: #fafbfc;
+        }
+
+        .stage-fare-input-box {
+            display: inline-flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 135px;
+            transition: all 0.15s ease;
+        }
+
+        .stage-fare-input-box:focus-within {
+            border-color: #00875a;
+            box-shadow: 0 0 0 3px rgba(0, 135, 90, 0.12);
+        }
+
+        .stage-fare-currency {
+            background: #f1f5f9;
+            color: #00875a;
+            font-weight: 800;
+            padding: 6px 10px;
+            font-size: 0.85rem;
+            border-right: 1px solid #cbd5e1;
+            user-select: none;
             display: flex;
             align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            padding: 0.65rem 1rem;
+            justify-content: center;
+        }
+
+        .stage-fare-input-field {
+            width: 100%;
+            border: none !important;
+            outline: none !important;
+            padding: 6px 10px !important;
+            font-size: 0.9rem !important;
+            font-weight: 800 !important;
+            color: #0f172a !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            margin: 0 !important;
+        }
+
+        /* Tab 4: Responsive Split Layout */
+        .bus-seat-tab-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media (max-width: 800px) {
+            .bus-seat-tab-layout {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        .bus-seat-sidebar-card {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            margin-bottom: 1rem;
+            border-radius: 14px;
+            padding: 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .bus-seat-legend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .bus-seat-legend-item {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 0.75rem;
-            color: #475569;
+            justify-content: space-between;
+            padding: 6px 10px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            color: #334155;
             font-weight: 600;
         }
 
         .legend-swatch {
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             border-radius: 4px;
             display: inline-block;
+            margin-right: 6px;
+            vertical-align: middle;
         }
 
         .legend-swatch.regular {
             background: #f1f5f9;
-            border: 1px solid #cbd5e1;
+            border: 1.5px solid #cbd5e1;
         }
 
         .legend-swatch.female {
@@ -6359,23 +6576,25 @@
 
         .legend-swatch.blocked {
             background: #475569;
-            border: 1px solid #334155;
+            border: 1.5px solid #334155;
         }
 
         .bus-seat-canvas-card {
             background: #f8fafc;
             border: 2px dashed #cbd5e1;
-            border-radius: 16px;
-            padding: 1.25rem;
+            border-radius: 18px;
+            padding: 1.25rem 1.5rem;
             max-width: 440px;
+            width: 100%;
             margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .bus-cabin-front {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 0.75rem;
+            padding: 0.5rem 0.85rem;
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 10px;
@@ -6383,7 +6602,7 @@
         }
 
         .cabin-label {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: #64748b;
             display: inline-flex;
@@ -6410,6 +6629,8 @@
             justify-content: center;
             font-size: 0.65rem;
             color: #cbd5e1;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .bus-seat-box {
@@ -6429,13 +6650,13 @@
         }
 
         .bus-seat-box.regular {
-            background: #f1f5f9;
-            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
             color: #1e293b;
         }
 
         .bus-seat-box.regular:hover {
-            background: #e2e8f0;
+            background: #f1f5f9;
             border-color: #94a3b8;
             transform: translateY(-1px);
         }
@@ -6478,31 +6699,38 @@
             background: #e2e8f0;
         }
 
+        /* Mobile & Extreme Zoom Responsiveness */
         @media (max-width: 640px) {
+            #bus-product-crud-modal.tp-modal-overlay {
+                padding: 0 !important;
+            }
             #bus-product-crud-modal .modern-modal-card {
                 width: 100vw !important;
                 max-width: 100vw !important;
-                height: 100% !important;
+                height: 100vh !important;
                 max-height: 100vh !important;
                 border-radius: 0 !important;
+            }
+            #bus-product-crud-modal .bus-modal-body-scrollable {
+                padding: 1rem !important;
             }
             .bus-modal-nav-bar {
                 padding: 0 0.5rem;
                 gap: 2px;
             }
             .bus-modal-tab-btn {
-                padding: 0.6rem 0.65rem;
+                padding: 0.65rem 0.75rem;
                 font-size: 0.75rem;
             }
-            .bus-seat-canvas-card {
-                padding: 0.75rem 0.5rem;
+            .bus-modal-tab-btn span {
+                font-size: 0.75rem;
             }
             .bus-seat-box {
                 height: 34px;
                 font-size: 0.72rem;
             }
             .bus-stoppage-row-card {
-                padding: 0.65rem;
+                padding: 0.75rem;
             }
         }
 </style>
@@ -9309,12 +9537,13 @@
 
     <!-- Bus Schedule / Product CRUD Modal (Add / Edit Schedule) -->
         <!-- Enterprise Transit Vehicle & Schedule CRUD Modal (Multi-Tab Master Builder) -->
+        <!-- Enterprise Transit Vehicle & Schedule CRUD Modal (Multi-Tab Master Builder) -->
     <div class="tp-modal-overlay" id="bus-product-crud-modal" onclick="closeBusProductModal(event)">
-        <div class="modern-modal-card" onclick="event.stopPropagation()" style="max-width: 960px; width: 95vw; max-height: 94vh;">
+        <div class="modern-modal-card" onclick="event.stopPropagation()">
             <!-- Header -->
-            <div class="modern-modal-header" style="border-bottom: 1px solid #f1f5f9; padding: 1.15rem 1.5rem;">
+            <div class="modern-modal-header" style="border-bottom: 1px solid #f1f5f9; padding: 1.15rem 1.5rem; flex-shrink: 0;">
                 <div style="display: flex; align-items: center; gap: 14px;">
-                    <div class="modern-modal-badge" id="bus-modal-badge-icon-wrap" style="background: #e6f9f0; color: #00875a; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <div class="modern-modal-badge" id="bus-modal-badge-icon-wrap" style="background: #e6f9f0; color: #00875a; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                         <i class="material-icons" id="bus-modal-header-icon" style="font-size: 24px;">directions_bus</i>
                     </div>
                     <div>
@@ -9348,16 +9577,17 @@
             </div>
 
             <!-- Form -->
-            <form id="bus-product-crud-form" onsubmit="handleBusProductFormSubmit(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
+            <form id="bus-product-crud-form" onsubmit="handleBusProductFormSubmit(event)" style="display: flex; flex-direction: column; flex: 1 1 auto; overflow: hidden; margin: 0;">
                 <input type="hidden" id="bus-modal-id">
                 <input type="hidden" id="bus-modal-section">
                 <input type="hidden" id="bus-modal-photo-data">
 
-                <div class="modern-modal-body" style="overflow-y: auto; flex: 1; padding: 1.25rem 1.5rem;">
+                <!-- Dedicated Full-Width Scrollable Body -->
+                <div class="bus-modal-body-scrollable">
                     
                     <!-- TAB 1: VEHICLE & OPERATOR IDENTITY -->
                     <div id="bus-tab-identity" class="bus-modal-tab-content active">
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 1.15rem;">
+                        <div class="bus-identity-grid">
                             <div>
                                 <label class="modern-label">Operator (Company) <span class="req">*</span></label>
                                 <div class="modern-input-group">
@@ -9376,7 +9606,7 @@
                             </div>
                         </div>
 
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 1.15rem;">
+                        <div class="bus-identity-grid">
                             <div>
                                 <label class="modern-label">Registration / Coach No. <span class="req">*</span></label>
                                 <div class="modern-input-group">
@@ -9403,7 +9633,7 @@
                             </div>
                         </div>
 
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 1.15rem;">
+                        <div class="bus-identity-grid">
                             <div>
                                 <label class="modern-label">Full Journey Base Fare (৳ BDT) <span class="req">*</span></label>
                                 <div class="modern-input-group">
@@ -9445,21 +9675,21 @@
 
                     <!-- TAB 2: ROUTE, TIMINGS & STOPPAGES -->
                     <div id="bus-tab-route" class="bus-modal-tab-content">
-                        <!-- Origin & Destination Cards -->
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; margin-bottom: 1.5rem;">
+                        <!-- Origin & Destination Responsive Grid -->
+                        <div class="bus-route-endpoints-grid">
                             
                             <!-- Origin Card -->
                             <div class="bus-stop-card-box origin">
                                 <div class="bus-stop-card-header">
                                     <span class="bus-stop-badge origin"><i class="material-icons" style="font-size: 14px;">trip_origin</i> Starting Stop (Origin)</span>
                                 </div>
-                                <div style="margin-bottom: 8px;">
+                                <div>
                                     <label class="modern-label" style="font-size: 0.75rem;">Origin Upazila (উপজেলা) <span class="req">*</span></label>
                                     <select id="bus-modal-origin-upazila" class="modern-input-field bus-upazila-select" onchange="onOriginUpazilaChange(this)">
                                         <!-- Loaded dynamically with 495 Upazilas -->
                                     </select>
                                 </div>
-                                <div style="margin-bottom: 8px;">
+                                <div>
                                     <label class="modern-label" style="font-size: 0.75rem;">Terminal / Stand Name <span class="req">*</span></label>
                                     <input type="text" id="bus-modal-from" required class="modern-input-field" placeholder="e.g. Arambagh Counter / Gabtoli" oninput="markRouteChanged()">
                                 </div>
@@ -9474,13 +9704,13 @@
                                 <div class="bus-stop-card-header">
                                     <span class="bus-stop-badge dest"><i class="material-icons" style="font-size: 14px;">flag</i> Ending Stop (Destination)</span>
                                 </div>
-                                <div style="margin-bottom: 8px;">
+                                <div>
                                     <label class="modern-label" style="font-size: 0.75rem;">Destination Upazila (উপজেলা) <span class="req">*</span></label>
                                     <select id="bus-modal-dest-upazila" class="modern-input-field bus-upazila-select" onchange="onDestUpazilaChange(this)">
                                         <!-- Loaded dynamically with 495 Upazilas -->
                                     </select>
                                 </div>
-                                <div style="margin-bottom: 8px;">
+                                <div>
                                     <label class="modern-label" style="font-size: 0.75rem;">Terminal / Stand Name <span class="req">*</span></label>
                                     <input type="text" id="bus-modal-to" required class="modern-input-field" placeholder="e.g. Kolatoli Beach Counter" oninput="markRouteChanged()">
                                 </div>
@@ -9526,65 +9756,86 @@
                             </button>
                         </div>
 
-                        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
-                            <div style="width: 100%; overflow-x: auto;">
-                                <table class="bus-fare-matrix-table" id="bus-stage-fares-table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 45px; text-align: center;">#</th>
-                                            <th>From (Boarding Point)</th>
-                                            <th>To (Dropping Point)</th>
-                                            <th style="width: 140px;">Stage Type</th>
-                                            <th style="width: 160px;">Fare (৳ BDT)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="bus-stage-fares-tbody">
-                                        <!-- Dynamically generated rows based on stops -->
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="bus-fare-matrix-container">
+                            <table class="bus-fare-matrix-table" id="bus-stage-fares-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 45px; text-align: center;">#</th>
+                                        <th>From (Boarding Point)</th>
+                                        <th>To (Dropping Point)</th>
+                                        <th style="width: 150px;">Stage Type</th>
+                                        <th style="width: 160px;">Fare (৳ BDT)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bus-stage-fares-tbody">
+                                    <!-- Dynamically generated rows based on stops -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                    <!-- TAB 4: VISUAL SEAT PLAN & LAYOUT -->
+                    <!-- TAB 4: VISUAL SEAT PLAN & LAYOUT (SPLIT RESPONSIVE) -->
                     <div id="bus-tab-seats" class="bus-modal-tab-content">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px;">
-                            <div>
-                                <h4 style="margin: 0; font-size: 0.95rem; font-weight: 800; color: #0f172a;">Interactive Seat Layout Builder</h4>
-                                <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: #64748b;">Select layout preset and click seats to toggle female reservations or VIP pricing</p>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                                <select id="bus-seat-preset-select" class="modern-input-field" style="padding: 0.4rem 0.75rem; font-size: 0.8rem; width: auto;" onchange="changeBusSeatLayoutPreset(this.value)">
-                                    <option value="2x2-40">2+2 Standard Coach (40 Seats)</option>
-                                    <option value="2x1-30">2+1 VIP Luxury (30 Seats)</option>
-                                    <option value="3x2-50">3+2 Semi-Chair Coach (50 Seats)</option>
-                                    <option value="sleeper-32">1+1 Double-Deck Sleeper (32 Berths)</option>
-                                </select>
+                        <div class="bus-seat-tab-layout">
+                            <!-- Left Control Sidebar -->
+                            <div class="bus-seat-sidebar-card">
+                                <div>
+                                    <label class="modern-label" style="margin-bottom: 4px;">Coach Layout Preset</label>
+                                    <select id="bus-seat-preset-select" class="modern-input-field" onchange="changeBusSeatLayoutPreset(this.value)">
+                                        <option value="2x2-40">2+2 Standard Coach (40 Seats)</option>
+                                        <option value="2x1-30">2+1 VIP Luxury (30 Seats)</option>
+                                        <option value="3x2-50">3+2 Semi-Chair Coach (50 Seats)</option>
+                                        <option value="sleeper-32">1+1 Double-Deck Sleeper (32 Berths)</option>
+                                    </select>
+                                </div>
+
                                 <div id="bus-deck-toggle-wrap" style="display: none;" class="dash-filter-pill-group">
                                     <button type="button" class="dash-pill-btn active" id="btn-deck-lower" onclick="switchSeatDeck('lower', this)">Lower Deck</button>
                                     <button type="button" class="dash-pill-btn" id="btn-deck-upper" onclick="switchSeatDeck('upper', this)">Upper Deck</button>
                                 </div>
+
+                                <div>
+                                    <label class="modern-label" style="margin-bottom: 6px;">Seat Legend & Properties</label>
+                                    <div class="bus-seat-legend-list">
+                                        <div class="bus-seat-legend-item">
+                                            <span><span class="legend-swatch regular"></span> Regular Available</span>
+                                            <span style="font-weight: 700; color: #64748b;" id="count-avail">0</span>
+                                        </div>
+                                        <div class="bus-seat-legend-item">
+                                            <span><span class="legend-swatch female"></span> Female Only (মহিলা সংরক্ষিত)</span>
+                                            <span style="font-weight: 700; color: #ec4899;" id="count-female">0</span>
+                                        </div>
+                                        <div class="bus-seat-legend-item">
+                                            <span><span class="legend-swatch vip"></span> VIP / Front Row (+৳ 100)</span>
+                                            <span style="font-weight: 700; color: #f59e0b;" id="count-vip">0</span>
+                                        </div>
+                                        <div class="bus-seat-legend-item">
+                                            <span><span class="legend-swatch blocked"></span> Blocked / Crew</span>
+                                            <span style="font-weight: 700; color: #475569;" id="count-blocked">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="padding: 10px 12px; background: #e6f9f0; border: 1px solid #bbf7d0; border-radius: 10px;">
+                                    <div style="font-size: 0.72rem; color: #00875a; font-weight: 800; text-transform: uppercase;">Inventory Overview</div>
+                                    <div style="font-size: 0.95rem; font-weight: 800; color: #0f172a; margin-top: 2px;" id="bus-seat-total-count-badge">Total: 40 Seats</div>
+                                </div>
+
+                                <div style="font-size: 0.72rem; color: #64748b; line-height: 1.4;">
+                                    💡 <em>Click any seat in the blueprint to cycle: <strong>Available ➔ Female 💖 ➔ VIP ⭐ ➔ Blocked 🚫</strong></em>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Seat Legend -->
-                        <div class="bus-seat-legend-bar">
-                            <span class="bus-seat-legend-item"><span class="legend-swatch regular"></span> Available</span>
-                            <span class="bus-seat-legend-item"><span class="legend-swatch female"></span> Female Only (মহিলা সংরক্ষিত)</span>
-                            <span class="bus-seat-legend-item"><span class="legend-swatch vip"></span> VIP / Front Row (+৳ 100)</span>
-                            <span class="bus-seat-legend-item"><span class="legend-swatch blocked"></span> Blocked / Crew</span>
-                            <span style="margin-left: auto; font-weight: 800; color: #0f172a; font-size: 0.8rem;" id="bus-seat-total-count-badge">Total: 40 Seats</span>
-                        </div>
+                            <!-- Right Visual Bus Canvas -->
+                            <div class="bus-seat-canvas-card">
+                                <div class="bus-cabin-front">
+                                    <span class="cabin-label"><i class="material-icons" style="font-size: 16px;">airline_seat_recline_normal</i> Driver Cabin</span>
+                                    <span class="cabin-label"><i class="material-icons" style="font-size: 16px;">meeting_room</i> Passenger Door</span>
+                                </div>
 
-                        <!-- Visual Seat Grid Canvas -->
-                        <div class="bus-seat-canvas-card">
-                            <div class="bus-cabin-front">
-                                <span class="cabin-label"><i class="material-icons" style="font-size: 16px;">airline_seat_recline_normal</i> Driver Cabin</span>
-                                <span class="cabin-label"><i class="material-icons" style="font-size: 16px;">meeting_room</i> Passenger Door</span>
-                            </div>
-
-                            <div id="bus-seat-grid-container" class="bus-seat-grid-render">
-                                <!-- Interactive Seat Buttons rendered here -->
+                                <div id="bus-seat-grid-container" class="bus-seat-grid-render">
+                                    <!-- Interactive Seat Buttons rendered here -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -9592,9 +9843,9 @@
                 </div>
 
                 <!-- Footer -->
-                <div class="modern-modal-footer" style="border-top: 1px solid #f1f5f9; padding: 0.85rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: #fafbfc;">
+                <div class="modern-modal-footer" style="border-top: 1px solid #f1f5f9; padding: 0.85rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: #fafbfc; flex-shrink: 0; flex-wrap: wrap; gap: 8px;">
                     <button type="button" class="btn-modal-cancel" onclick="closeBusProductModal()">Cancel</button>
-                    <div style="display: flex; gap: 8px;">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <button type="button" id="btn-bus-modal-prev" class="btn-modal-nav" onclick="navBusModalTab(-1)" style="display: none;">
                             <i class="material-icons" style="font-size: 16px;">arrow_back</i> Back
                         </button>
@@ -14410,7 +14661,7 @@
             row.className = 'bus-stoppage-row-card';
             row.id = stopId;
             row.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px dashed #e2e8f0; padding-bottom: 6px;">
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="bus-stoppage-number-pill"><i class="material-icons" style="font-size: 14px;">place</i> Stop Point</span>
                         <span style="font-size: 0.75rem; color: #64748b; font-weight: 600;" class="stoppage-order-label"></span>
@@ -14419,7 +14670,7 @@
                         <i class="material-icons" style="font-size: 16px;">delete_outline</i>
                     </button>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
+                <div class="stoppage-fields-grid-top">
                     <div>
                         <label class="modern-label" style="font-size: 0.72rem;">Stop Upazila <span class="req">*</span></label>
                         <select class="modern-input-field bus-upazila-select stop-upazila" onchange="onStoppageUpazilaChange(this)">
@@ -14428,8 +14679,19 @@
                     </div>
                     <div>
                         <label class="modern-label" style="font-size: 0.72rem;">Terminal / Stand Name <span class="req">*</span></label>
-                        <input type="text" class="modern-input-field stop-name" value="${data.name || ''}" placeholder="e.g. Paduar Bazar Rest Stop" oninput="markRouteChanged()">
+                        <input type="text" class="modern-input-field stop-name" value="${data.name || ''}" placeholder="e.g. Paduar Bazar Highway Rest" oninput="markRouteChanged()">
                     </div>
+                    <div>
+                        <label class="modern-label" style="font-size: 0.72rem;">Stop Type</label>
+                        <select class="modern-input-field stop-type" onchange="markRouteChanged()">
+                            <option value="Both (Boarding & Dropping)" ${(data.stopType === 'Both (Boarding & Dropping)' || !data.stopType) ? 'selected' : ''}>Both (Boarding & Dropping)</option>
+                            <option value="Boarding Only" ${data.stopType === 'Boarding Only' ? 'selected' : ''}>Boarding Only</option>
+                            <option value="Dropping Only" ${data.stopType === 'Dropping Only' ? 'selected' : ''}>Dropping Only</option>
+                            <option value="Highway Meal / Rest Break" ${data.stopType === 'Highway Meal / Rest Break' ? 'selected' : ''}>Highway Meal / Rest Break</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="stoppage-fields-grid-bottom">
                     <div>
                         <label class="modern-label" style="font-size: 0.72rem;">Arrival Time</label>
                         <input type="text" class="modern-input-field stop-arr" value="${data.arrTime || ''}" placeholder="e.g. 01:15 AM">
@@ -14441,15 +14703,6 @@
                     <div>
                         <label class="modern-label" style="font-size: 0.72rem;">Halt Duration</label>
                         <input type="text" class="modern-input-field stop-halt" value="${data.halt || '15 Mins'}" placeholder="e.g. 15 Mins">
-                    </div>
-                    <div>
-                        <label class="modern-label" style="font-size: 0.72rem;">Stop Type</label>
-                        <select class="modern-input-field stop-type" onchange="markRouteChanged()">
-                            <option value="Both (Boarding & Dropping)" ${(data.stopType === 'Both (Boarding & Dropping)' || !data.stopType) ? 'selected' : ''}>Both (Boarding & Dropping)</option>
-                            <option value="Boarding Only" ${data.stopType === 'Boarding Only' ? 'selected' : ''}>Boarding Only</option>
-                            <option value="Dropping Only" ${data.stopType === 'Dropping Only' ? 'selected' : ''}>Dropping Only</option>
-                            <option value="Highway Meal / Rest Break" ${data.stopType === 'Highway Meal / Rest Break' ? 'selected' : ''}>Highway Meal / Rest Break</option>
-                        </select>
                     </div>
                 </div>
             `;
@@ -14501,7 +14754,7 @@
                 });
             } else {
                 // Read from DOM if already present
-                document.querySelectorAll('#bus-stage-fares-tbody .stage-fare-input').forEach(inp => {
+                document.querySelectorAll('#bus-stage-fares-tbody .stage-fare-input-field').forEach(inp => {
                     const k = inp.getAttribute('data-key');
                     if (k) fareMap[k] = parseFloat(inp.value);
                 });
@@ -14535,10 +14788,10 @@
                         <tr>
                             <td style="text-align: center; font-weight: 700; color: #94a3b8;">${pairIndex++}</td>
                             <td>
-                                <strong style="color: #0f172a;">${fromPt.name}</strong>
+                                <strong style="color: #0f172a; font-size: 0.84rem;">${fromPt.name}</strong>
                             </td>
                             <td>
-                                <strong style="color: #0f172a;">${toPt.name}</strong>
+                                <strong style="color: #0f172a; font-size: 0.84rem;">${toPt.name}</strong>
                             </td>
                             <td>
                                 <span style="display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; ${typeBadgeClass}">
@@ -14546,10 +14799,9 @@
                                 </span>
                             </td>
                             <td>
-                                <div class="modern-input-group" style="margin: 0; max-width: 150px;">
-                                    <div class="modern-input-prefix" style="padding: 0 8px; font-size: 0.75rem;"><strong style="color: #00875a;">৳</strong></div>
-                                    <input type="number" min="0" step="10" class="modern-input-field stage-fare-input" 
-                                           style="padding: 0.35rem 0.5rem; font-size: 0.8rem; font-weight: 700;"
+                                <div class="stage-fare-input-box">
+                                    <span class="stage-fare-currency">৳</span>
+                                    <input type="number" min="0" step="10" class="stage-fare-input-field" 
                                            data-key="${key}"
                                            data-from="${fromPt.name}"
                                            data-to="${toPt.name}"
@@ -14573,7 +14825,7 @@
 
         function autoCalculateStageFares() {
             const baseFare = parseFloat(document.getElementById('bus-modal-fare')?.value) || 1200;
-            const inputs = document.querySelectorAll('#bus-stage-fares-tbody .stage-fare-input');
+            const inputs = document.querySelectorAll('#bus-stage-fares-tbody .stage-fare-input-field');
             if (inputs.length === 0) {
                 generateStageFareTable();
                 return;
@@ -14627,19 +14879,20 @@
 
         function updateSeatLegendCounts() {
             const totalBadge = document.getElementById('bus-seat-total-count-badge');
-            if (!totalBadge) return;
+            const cntAvail = document.getElementById('count-avail');
+            const cntFemale = document.getElementById('count-female');
+            const cntVip = document.getElementById('count-vip');
+            const cntBlocked = document.getElementById('count-blocked');
 
-            let total = 0;
-            let available = 0;
+            let total = 40;
+            const preset = busSeatState.preset;
+            if (preset === '2x1-30') total = 30;
+            else if (preset === '3x2-50') total = 50;
+            else if (preset === 'sleeper-32') total = 32;
+
             let female = 0;
             let vip = 0;
             let blocked = 0;
-
-            const preset = busSeatState.preset;
-            if (preset === '2x2-40') total = 40;
-            else if (preset === '2x1-30') total = 30;
-            else if (preset === '3x2-50') total = 50;
-            else if (preset === 'sleeper-32') total = 32;
 
             Object.keys(busSeatState.seatMap).forEach(k => {
                 const st = busSeatState.seatMap[k];
@@ -14648,8 +14901,13 @@
                 else if (st === 'blocked') blocked++;
             });
 
-            available = Math.max(0, total - blocked);
-            totalBadge.textContent = `Total: ${total} Seats (${available} Avail, ${female} 💖, ${vip} ⭐, ${blocked} 🚫)`;
+            const available = Math.max(0, total - blocked);
+
+            if (totalBadge) totalBadge.textContent = `${available} of ${total} Seats Available`;
+            if (cntAvail) cntAvail.textContent = `${available}`;
+            if (cntFemale) cntFemale.textContent = `${female}`;
+            if (cntVip) cntVip.textContent = `${vip}`;
+            if (cntBlocked) cntBlocked.textContent = `${blocked}`;
         }
 
         function renderBusSeatMap() {
@@ -15048,7 +15306,7 @@
 
             // Stage Fares
             const stageFares = [];
-            document.querySelectorAll('#bus-stage-fares-tbody .stage-fare-input').forEach(inp => {
+            document.querySelectorAll('#bus-stage-fares-tbody .stage-fare-input-field').forEach(inp => {
                 const stageFrom = inp.getAttribute('data-from');
                 const stageTo = inp.getAttribute('data-to');
                 const stageType = inp.getAttribute('data-type');
