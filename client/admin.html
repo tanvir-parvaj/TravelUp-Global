@@ -4416,6 +4416,671 @@
             border-radius: 999px;
             padding: 2px 8px;
         }
+
+        /* ================= 5-STEP HIERARCHICAL DRILL-DOWN STYLING ================= */
+        .tp-subcat-promo-card {
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 60%, #047857 100%);
+            border-radius: 18px;
+            padding: 2.25rem 2.5rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(6, 78, 59, 0.3);
+        }
+
+        .tp-subcat-promo-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('images/subcategories/transit_banner_scenic.png') center right / cover no-repeat;
+            opacity: 0.28;
+            pointer-events: none;
+        }
+
+        .tp-subcat-promo-content {
+            position: relative;
+            z-index: 2;
+            max-width: 520px;
+        }
+
+        .tp-subcat-promo-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .tp-subcat-promo-desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.88);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .tp-subcat-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tp-subcat-card {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tp-subcat-card:hover {
+            border-color: #00875a;
+            box-shadow: 0 12px 28px -6px rgba(0, 135, 90, 0.18);
+            transform: translateY(-4px);
+        }
+
+        .tp-subcat-card-thumb-wrap {
+            height: 160px;
+            position: relative;
+            overflow: hidden;
+            background: #f1f5f9;
+        }
+
+        .tp-subcat-card-thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .tp-subcat-card:hover .tp-subcat-card-thumb-img {
+            transform: scale(1.04);
+        }
+
+        .tp-subcat-card-body {
+            padding: 1.25rem 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tp-subcat-card-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 4px;
+        }
+
+        .tp-subcat-card-count {
+            font-size: 0.825rem;
+            color: #64748b;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .tp-subcat-card-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #00875a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .tp-subcat-card:hover .tp-subcat-card-arrow {
+            background: #00875a;
+            color: #ffffff;
+            border-color: #00875a;
+            transform: translateX(3px);
+        }
+
+        /* Screen 4: Operator Profile Overview */
+        .tp-op-profile-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.05);
+        }
+
+        .tp-op-profile-hero {
+            height: 280px;
+            position: relative;
+            background: #0f172a center center / cover no-repeat;
+        }
+
+        .tp-op-profile-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.75) 100%);
+        }
+
+        .tp-op-profile-body {
+            padding: 2rem 2.5rem;
+            position: relative;
+        }
+
+        .tp-op-profile-header-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-top: -65px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .tp-op-profile-avatar-wrap {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tp-op-profile-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tp-op-profile-meta {
+            flex: 1;
+            padding-top: 15px;
+        }
+
+        .tp-op-profile-name-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .tp-op-profile-name {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0;
+        }
+
+        .tp-op-verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            background: #dcfce7;
+            color: #00875a;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .tp-op-profile-tagline {
+            font-size: 0.925rem;
+            color: #64748b;
+            margin: 0 0 10px 0;
+        }
+
+        .tp-op-amenities-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0.75rem;
+        }
+
+        .tp-op-amenity-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tp-op-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 1.75rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        @media (max-width: 868px) {
+            .tp-op-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tp-op-about-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .tp-op-stats-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .tp-op-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tp-op-stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #e0f2fe;
+            color: #0284c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tp-op-stat-number {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .tp-op-stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .tp-op-routes-section {
+            margin-top: 1.5rem;
+        }
+
+        .tp-op-routes-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .tp-op-routes-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tp-op-route-chip {
+            padding: 8px 16px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1e293b;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .tp-op-route-chip:hover {
+            border-color: #00875a;
+            color: #00875a;
+            background: #f0fdf4;
+        }
+
+        .tp-btn-view-products {
+            background: #00875a;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 0.85rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(0, 135, 90, 0.25);
+            transition: all 0.2s ease;
+            margin-top: 1.5rem;
+        }
+
+        .tp-btn-view-products:hover {
+            background: #00704a;
+            box-shadow: 0 6px 20px rgba(0, 135, 90, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Screen 5: Split Layout Products & Booking List */
+        .tp-products-view-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 1.75rem;
+            margin-bottom: 2.5rem;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 992px) {
+            .tp-products-view-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tp-products-sidebar-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .tp-products-sidebar-photo {
+            height: 140px;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .tp-products-sidebar-profile {
+            padding: 1.25rem 1.4rem;
+            text-align: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .tp-products-sidebar-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: -42px auto 8px;
+            background: #ffffff;
+            object-fit: cover;
+            display: block;
+        }
+
+        .tp-products-sidebar-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 4px;
+        }
+
+        .tp-products-sidebar-menu {
+            padding: 0.75rem 0.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .tp-products-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.65rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: none;
+            background: transparent;
+            text-align: left;
+            width: 100%;
+        }
+
+        .tp-products-menu-item:hover {
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tp-products-menu-item.active {
+            background: #00875a;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .tp-products-menu-item.active i {
+            color: #ffffff;
+        }
+
+        .tp-products-sidebar-promo {
+            margin: 1.25rem 0.6rem 0.6rem;
+            padding: 1rem;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #166534;
+            font-size: 0.825rem;
+            font-weight: 700;
+        }
+
+        /* Screen 5 Main Content */
+        .tp-products-main-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 1.75rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .tp-products-search-strip {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 10px 14px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tp-search-field-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 0.5rem 0.85rem;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .tp-search-field-pill label {
+            font-size: 0.725rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .tp-search-field-pill select,
+        .tp-search-field-pill input {
+            border: none;
+            outline: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0f172a;
+            background: transparent;
+            width: 100%;
+        }
+
+        .tp-btn-search-strip {
+            background: #00875a;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 0.6rem 1.6rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .tp-btn-search-strip:hover {
+            background: #00704a;
+        }
+
+        .tp-products-filters-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tp-filter-pills-wrap {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tp-filter-pill-btn {
+            padding: 0.45rem 1rem;
+            border-radius: 999px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #475569;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .tp-filter-pill-btn:hover {
+            border-color: #00875a;
+            color: #00875a;
+        }
+
+        .tp-filter-pill-btn.active {
+            background: #00875a;
+            color: #ffffff;
+            border-color: #00875a;
+            font-weight: 700;
+        }
+
+        /* Products Table */
+        .tp-products-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .tp-products-table thead th {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            padding: 0.6rem 1rem;
+            border: none;
+        }
+
+        .tp-product-row {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            transition: all 0.18s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .tp-product-row:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .tp-product-row td {
+            padding: 1rem 1.1rem;
+            vertical-align: middle;
+            background: #ffffff;
+        }
+
+        .tp-product-row td:first-child {
+            border-top-left-radius: 14px;
+            border-bottom-left-radius: 14px;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        .tp-product-row td:last-child {
+            border-top-right-radius: 14px;
+            border-bottom-right-radius: 14px;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .tp-product-row td {
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tp-product-name-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tp-product-thumb {
+            width: 72px;
+            height: 48px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #f1f5f9;
+            flex-shrink: 0;
+        }
+
+        .tp-btn-book {
+            background: #00875a;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.55rem 1.25rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .tp-btn-book:hover {
+            background: #00704a;
+            box-shadow: 0 4px 12px rgba(0, 135, 90, 0.3);
+        }
+
 </style>
 </head>
 <body>
@@ -5108,6 +5773,19 @@
                             </div>
                         </div>
 
+                        <!-- Promo Card Banner (Screen 2 Mockup Match) -->
+                        <div class="tp-subcat-promo-card" id="tp-subcat-promo-card">
+                            <div class="tp-subcat-promo-content">
+                                <h2 class="tp-subcat-promo-title" id="tp-promo-title">Exclusive Partner Deals</h2>
+                                <p class="tp-subcat-promo-desc" id="tp-promo-desc">Discover verified network operators, premium fleets, and reserve guaranteed departure slots at special rates.</p>
+                            </div>
+                        </div>
+
+                        <!-- Visual Sub-Categories Cards Grid (Screen 2 Mockup Match) -->
+                        <div class="tp-subcat-cards-grid" id="tp-subcat-cards-grid">
+                            <!-- Populated dynamically with visual cards -->
+                        </div>
+
                         <!-- Sub-Categories Ledger Table Card -->
                         <div class="tp-subcat-table-card">
                             <div style="overflow-x: auto;">
@@ -5267,6 +5945,252 @@
                                     <i class="material-icons" style="font-size: 16px;">chevron_right</i>
                                 </button>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 4: Operator Profile & Overview Container for Travel Planner -->
+                    <div id="tp-operator-profile-view" style="display: none;">
+                        <!-- Top Breadcrumb Bar -->
+                        <div class="tp-subcat-breadcrumb-bar">
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('travel-planner')" class="tp-subcat-bc-link">
+                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
+                            </a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('travel-planner')" class="tp-subcat-bc-link">Categories</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tp-op-profile-parent-cat-link" onclick="backToCategoryDetailView('travel-planner')" class="tp-subcat-bc-link">Transit</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tp-op-profile-subcat-link" onclick="backToOperatorDetailView('travel-planner')" class="tp-subcat-bc-link">Bus</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <span class="tp-subcat-bc-active" id="tp-op-profile-breadcrumb">GreenLine Transport</span>
+                        </div>
+
+                        <!-- Operator Profile Hero Card -->
+                        <div class="tp-op-profile-card">
+                            <div class="tp-op-profile-hero" id="tp-op-profile-hero" style="background-image: url('images/operators/bus_greenline.png');">
+                                <div class="tp-op-profile-hero-overlay"></div>
+                            </div>
+                            <div class="tp-op-profile-body">
+                                <div class="tp-op-profile-header-row">
+                                    <div class="tp-op-profile-avatar-wrap">
+                                        <img id="tp-op-profile-avatar" class="tp-op-profile-avatar-img" src="images/operators/logo_greenline.png" alt="Operator Logo" onerror="this.src='images/operators/logo_greenline.png'">
+                                    </div>
+                                    <div class="tp-op-profile-meta">
+                                        <div class="tp-op-profile-name-row">
+                                            <h1 class="tp-op-profile-name" id="tp-op-profile-name">GreenLine Transport</h1>
+                                            <span class="tp-op-verified-badge"><i class="material-icons" style="font-size: 15px;">verified</i> Verified Partner</span>
+                                        </div>
+                                        <p class="tp-op-profile-tagline" id="tp-op-profile-tagline">"Safe journey, green tomorrow."</p>
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <span class="tp-op-rating" style="font-size: 0.95rem; padding: 4px 10px;">
+                                                <i class="material-icons tp-op-rating-star" style="font-size: 16px;">star</i>
+                                                <span id="tp-op-profile-rating">4.8</span>
+                                            </span>
+                                            <span class="tp-op-reviews" id="tp-op-profile-reviews" style="font-size: 0.85rem;">(1.2k reviews)</span>
+                                        </div>
+                                        <div class="tp-op-amenities-row" id="tp-op-profile-amenities">
+                                            <span class="tp-op-amenity-pill"><i class="material-icons" style="font-size: 16px; color: #00875a;">wifi</i> Free Wi-Fi</span>
+                                            <span class="tp-op-amenity-pill"><i class="material-icons" style="font-size: 16px; color: #00875a;">ac_unit</i> Air Conditioning</span>
+                                            <span class="tp-op-amenity-pill"><i class="material-icons" style="font-size: 16px; color: #00875a;">gps_fixed</i> Live GPS Tracking</span>
+                                            <span class="tp-op-amenity-pill"><i class="material-icons" style="font-size: 16px; color: #00875a;">airline_seat_recline_extra</i> Reclining Seats</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tp-op-details-grid">
+                                    <div>
+                                        <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">About Operator</h3>
+                                        <p class="tp-op-about-text" id="tp-op-profile-about">
+                                            GreenLine Transport is one of the premier luxury transport providers in Bangladesh, operating first-class Scania and Volvo coaches across all major divisions with punctual departures, certified safety, and supreme comfort.
+                                        </p>
+
+                                        <div class="tp-op-routes-section">
+                                            <div class="tp-op-routes-title">Popular Connected Corridors & Hubs</div>
+                                            <div class="tp-op-routes-pills" id="tp-op-profile-popular-routes">
+                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Cox\'s Bazar', 'travel-planner')">Dhaka ⇄ Cox's Bazar</span>
+                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Chattogram', 'travel-planner')">Dhaka ⇄ Chattogram</span>
+                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Sylhet', 'travel-planner')">Dhaka ⇄ Sylhet</span>
+                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Chattogram', 'Cox\'s Bazar', 'travel-planner')">Chattogram ⇄ Cox's Bazar</span>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex; gap: 12px; align-items: center; margin-top: 1.75rem; flex-wrap: wrap;">
+                                            <button type="button" class="tp-btn-view-products" onclick="openOperatorProductsView('travel-planner')">
+                                                <span id="tp-op-profile-cta-text">View Bus List & Schedule</span>
+                                                <i class="material-icons">arrow_forward</i>
+                                            </button>
+                                            <button type="button" class="tp-subcat-nav-pill" style="padding: 0.8rem 1.4rem; font-weight: 700;" onclick="backToOperatorDetailView('travel-planner')">
+                                                <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Operators
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="tp-op-stats-card">
+                                            <div class="tp-op-stat-item">
+                                                <div class="tp-op-stat-icon"><i class="material-icons">alt_route</i></div>
+                                                <div>
+                                                    <div class="tp-op-stat-number" id="tp-op-stat-routes">34+ Routes</div>
+                                                    <div class="tp-op-stat-label">Active Corridors</div>
+                                                </div>
+                                            </div>
+                                            <div class="tp-op-stat-item">
+                                                <div class="tp-op-stat-icon" style="background: #ecfdf5; color: #059669;"><i class="material-icons">directions_bus</i></div>
+                                                <div>
+                                                    <div class="tp-op-stat-number" id="tp-op-stat-fleet">200+ Fleet</div>
+                                                    <div class="tp-op-stat-label">Certified Vehicles / Units</div>
+                                                </div>
+                                            </div>
+                                            <div class="tp-op-stat-item">
+                                                <div class="tp-op-stat-icon" style="background: #fef3c7; color: #d97706;"><i class="material-icons">support_agent</i></div>
+                                                <div>
+                                                    <div class="tp-op-stat-number">24/7 Support</div>
+                                                    <div class="tp-op-stat-label">Dedicated Hotline</div>
+                                                </div>
+                                            </div>
+                                            <div class="tp-op-stat-item">
+                                                <div class="tp-op-stat-icon" style="background: #f3e8ff; color: #7e22ce;"><i class="material-icons">verified_user</i></div>
+                                                <div>
+                                                    <div class="tp-op-stat-number">100% Insured</div>
+                                                    <div class="tp-op-stat-label">Passenger Safety Standard</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 5: Operator Products & Booking Schedule View for Travel Planner -->
+                    <div id="tp-operator-products-view" style="display: none;">
+                        <!-- Top Breadcrumb Bar -->
+                        <div class="tp-subcat-breadcrumb-bar">
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('travel-planner')" class="tp-subcat-bc-link">
+                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
+                            </a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('travel-planner')" class="tp-subcat-bc-link">Categories</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tp-prod-parent-cat-link" onclick="backToCategoryDetailView('travel-planner')" class="tp-subcat-bc-link">Transit</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tp-prod-subcat-link" onclick="backToOperatorDetailView('travel-planner')" class="tp-subcat-bc-link">Bus</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tp-prod-operator-link" onclick="backToOperatorProfileView('travel-planner')" class="tp-subcat-bc-link">GreenLine Transport</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <span class="tp-subcat-bc-active" id="tp-prod-breadcrumb">Bus List</span>
+                        </div>
+
+                        <!-- Split Layout -->
+                        <div class="tp-products-view-layout">
+                            <!-- Left Sidebar Card -->
+                            <aside class="tp-products-sidebar-card">
+                                <img id="tp-prod-sidebar-hero" src="images/operators/bus_greenline.png" alt="Fleet Banner" class="tp-products-sidebar-photo" onerror="this.src='images/operators/bus_greenline.png'">
+                                <div class="tp-products-sidebar-profile">
+                                    <img id="tp-prod-sidebar-logo" src="images/operators/logo_greenline.png" alt="Operator Logo" class="tp-products-sidebar-logo" onerror="this.src='images/operators/logo_greenline.png'">
+                                    <h3 class="tp-products-sidebar-name" id="tp-prod-sidebar-name">GreenLine Transport</h3>
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 6px;">
+                                        <span class="tp-op-rating"><i class="material-icons tp-op-rating-star">star</i> <span id="tp-prod-sidebar-rating">4.8</span></span>
+                                        <span class="tp-op-verified-badge" style="padding: 2px 8px; font-size: 0.7rem;"><i class="material-icons" style="font-size: 13px;">verified</i> Verified</span>
+                                    </div>
+                                </div>
+
+                                <div class="tp-products-sidebar-menu">
+                                    <button type="button" class="tp-products-menu-item" onclick="backToOperatorProfileView('travel-planner')">
+                                        <i class="material-icons" style="font-size: 18px;">dashboard</i>
+                                        <span>Overview</span>
+                                    </button>
+                                    <button type="button" class="tp-products-menu-item active">
+                                        <i class="material-icons" style="font-size: 18px;" id="tp-prod-sidebar-icon">directions_bus</i>
+                                        <span id="tp-prod-sidebar-item-label">Bus List</span>
+                                    </button>
+                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Viewing verified routes and terminal points', 'info')">
+                                        <i class="material-icons" style="font-size: 18px;">alt_route</i>
+                                        <span>Routes & Stops</span>
+                                    </button>
+                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Verified high-resolution fleet gallery', 'info')">
+                                        <i class="material-icons" style="font-size: 18px;">photo_library</i>
+                                        <span>Gallery</span>
+                                    </button>
+                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Verified passenger ratings & reviews', 'info')">
+                                        <i class="material-icons" style="font-size: 18px;">star_rate</i>
+                                        <span>Reviews</span>
+                                    </button>
+                                </div>
+
+                                <div class="tp-products-sidebar-promo">
+                                    <i class="material-icons" style="font-size: 22px; color: #00875a;">health_and_safety</i>
+                                    <div>
+                                        <div style="font-weight: 800; color: #064e3b;">Official Partner</div>
+                                        <div style="font-size: 0.725rem; color: #047857;">Instant booking & verified seats</div>
+                                    </div>
+                                </div>
+                            </aside>
+
+                            <!-- Right Main Area -->
+                            <main class="tp-products-main-card">
+                                <!-- Search Strip: From, To, Date, Search Button -->
+                                <div class="tp-products-search-strip">
+                                    <div class="tp-search-field-pill">
+                                        <i class="material-icons" style="font-size: 18px; color: #00875a;">trip_origin</i>
+                                        <div>
+                                            <label>From</label>
+                                            <input type="text" id="tp-prod-search-from" value="Dhaka" placeholder="Origin city or hub...">
+                                        </div>
+                                    </div>
+                                    <div style="color: #94a3b8; font-size: 18px; font-weight: 800; padding: 0 4px;">⇄</div>
+                                    <div class="tp-search-field-pill">
+                                        <i class="material-icons" style="font-size: 18px; color: #ef4444;">location_on</i>
+                                        <div>
+                                            <label>To</label>
+                                            <input type="text" id="tp-prod-search-to" value="Cox's Bazar" placeholder="Destination hub...">
+                                        </div>
+                                    </div>
+                                    <div class="tp-search-field-pill" style="max-width: 170px;">
+                                        <i class="material-icons" style="font-size: 18px; color: #0284c7;">calendar_month</i>
+                                        <div>
+                                            <label>Date</label>
+                                            <input type="date" id="tp-prod-search-date" value="2026-10-24">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="tp-btn-search-strip" onclick="filterOperatorProducts('travel-planner')">
+                                        Search
+                                    </button>
+                                </div>
+
+                                <!-- Filter Row: Category Pills (All, AC, Non AC, Sleeper, etc.) -->
+                                <div class="tp-products-filters-row">
+                                    <div class="tp-filter-pills-wrap" id="tp-prod-filter-pills">
+                                        <button type="button" class="tp-filter-pill-btn active" onclick="switchProductFilter('All', this, 'travel-planner')">All</button>
+                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('AC', this, 'travel-planner')">AC</button>
+                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Non AC', this, 'travel-planner')">Non AC</button>
+                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Sleeper', this, 'travel-planner')">Sleeper</button>
+                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Executive', this, 'travel-planner')">Executive</button>
+                                    </div>
+                                    <div style="font-size: 0.85rem; font-weight: 700; color: #64748b;" id="tp-prod-results-count">
+                                        Showing options
+                                    </div>
+                                </div>
+
+                                <!-- Products List Table -->
+                                <div style="overflow-x: auto;">
+                                    <table class="tp-products-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 240px;" id="tp-prod-th-name">Vehicle / Service</th>
+                                                <th style="min-width: 170px;">Departure & Arrival</th>
+                                                <th style="min-width: 150px;">Route & Stops</th>
+                                                <th style="min-width: 110px;">Fare (BDT)</th>
+                                                <th style="min-width: 120px;">Seats Available</th>
+                                                <th style="width: 120px; text-align: center;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tp-products-tbody">
+                                            <!-- Dynamic Product Rows -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </main>
                         </div>
                     </div>
     
@@ -5680,6 +6604,19 @@
                             </div>
                         </div>
 
+                        <!-- Promo Card Banner (Screen 2 Mockup Match) -->
+                        <div class="tp-subcat-promo-card" id="tour-subcat-promo-card">
+                            <div class="tp-subcat-promo-content">
+                                <h2 class="tp-subcat-promo-title" id="tour-promo-title">Exclusive Partner Deals</h2>
+                                <p class="tp-subcat-promo-desc" id="tour-promo-desc">Discover verified network operators, premium fleets, and reserve guaranteed departure slots at special rates.</p>
+                            </div>
+                        </div>
+
+                        <!-- Visual Sub-Categories Cards Grid (Screen 2 Mockup Match) -->
+                        <div class="tp-subcat-cards-grid" id="tour-subcat-cards-grid">
+                            <!-- Populated dynamically with visual cards -->
+                        </div>
+
                         <!-- Sub-Categories Ledger Table Card -->
                         <div class="tp-subcat-table-card">
                             <div style="overflow-x: auto;">
@@ -5839,6 +6776,252 @@
                                     <i class="material-icons" style="font-size: 16px;">chevron_right</i>
                                 </button>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 4: Operator Profile & Overview Container for Tour Planner -->
+                    <div id="tour-operator-profile-view" style="display: none;">
+                        <!-- Top Breadcrumb Bar -->
+                        <div class="tp-subcat-breadcrumb-bar">
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('tour-planner')" class="tp-subcat-bc-link">
+                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
+                            </a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('tour-planner')" class="tp-subcat-bc-link">Categories</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tour-op-profile-parent-cat-link" onclick="backToCategoryDetailView('tour-planner')" class="tp-subcat-bc-link">Transit</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tour-op-profile-subcat-link" onclick="backToOperatorDetailView('tour-planner')" class="tp-subcat-bc-link">Bus</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <span class="tp-subcat-bc-active" id="tour-op-profile-breadcrumb">GreenLine Transport</span>
+                        </div>
+
+                        <!-- Operator Profile Hero Card -->
+                        <div class="tp-op-profile-card">
+                            <div class="tp-op-profile-hero" id="tour-op-profile-hero" style="background-image: url('images/operators/bus_greenline.png');">
+                                <div class="tp-op-profile-hero-overlay"></div>
+                            </div>
+                            <div class="tp-op-profile-body">
+                                <div class="tp-op-profile-header-row">
+                                    <div class="tp-op-profile-avatar-wrap">
+                                        <img id="tour-op-profile-avatar" class="tp-op-profile-avatar-img" src="images/operators/logo_greenline.png" alt="Operator Logo" onerror="this.src='images/operators/logo_greenline.png'">
+                                    </div>
+                                    <div class="tp-op-profile-meta">
+                                        <div class="tp-op-profile-name-row">
+                                            <h1 class="tp-op-profile-name" id="tour-op-profile-name">GreenLine Transport</h1>
+                                            <span class="tp-op-verified-badge"><i class="material-icons" style="font-size: 15px;">verified</i> Verified Partner</span>
+                                        </div>
+                                        <p class="tp-op-profile-tagline" id="tour-op-profile-tagline">"Safe journey, green tomorrow."</p>
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <span class="tp-op-rating" style="font-size: 0.95rem; padding: 4px 10px;">
+                                                <i class="material-icons tp-op-rating-star" style="font-size: 16px;">star</i>
+                                                <span id="tour-op-profile-rating">4.8</span>
+                                            </span>
+                                            <span class="tp-op-reviews" id="tour-op-profile-reviews" style="font-size: 0.85rem;">(1.2k reviews)</span>
+                                        </div>
+                                        <div class="tp-op-amenities-row" id="tour-op-profile-amenities">
+                                            <span class="tp-op-amenity-pill"><i class="material-icons" style="font-size: 16px; color: #00875a;">wifi</i> Free Wi-Fi</span>
+                                            <span class="tp-op-amenity-pill"><i class="material-icons" style="font-size: 16px; color: #00875a;">ac_unit</i> Air Conditioning</span>
+                                            <span class="tp-op-amenity-pill"><i class="material-icons" style="font-size: 16px; color: #00875a;">gps_fixed</i> Live GPS Tracking</span>
+                                            <span class="tp-op-amenity-pill"><i class="material-icons" style="font-size: 16px; color: #00875a;">airline_seat_recline_extra</i> Reclining Seats</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tp-op-details-grid">
+                                    <div>
+                                        <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">About Operator</h3>
+                                        <p class="tp-op-about-text" id="tour-op-profile-about">
+                                            GreenLine Transport is one of the premier luxury transport providers in Bangladesh, operating first-class Scania and Volvo coaches across all major divisions with punctual departures, certified safety, and supreme comfort.
+                                        </p>
+
+                                        <div class="tp-op-routes-section">
+                                            <div class="tp-op-routes-title">Popular Connected Corridors & Hubs</div>
+                                            <div class="tp-op-routes-pills" id="tour-op-profile-popular-routes">
+                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Cox\'s Bazar', 'tour-planner')">Dhaka ⇄ Cox's Bazar</span>
+                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Chattogram', 'tour-planner')">Dhaka ⇄ Chattogram</span>
+                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Sylhet', 'tour-planner')">Dhaka ⇄ Sylhet</span>
+                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Chattogram', 'Cox\'s Bazar', 'tour-planner')">Chattogram ⇄ Cox's Bazar</span>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex; gap: 12px; align-items: center; margin-top: 1.75rem; flex-wrap: wrap;">
+                                            <button type="button" class="tp-btn-view-products" onclick="openOperatorProductsView('tour-planner')">
+                                                <span id="tour-op-profile-cta-text">View Bus List & Schedule</span>
+                                                <i class="material-icons">arrow_forward</i>
+                                            </button>
+                                            <button type="button" class="tp-subcat-nav-pill" style="padding: 0.8rem 1.4rem; font-weight: 700;" onclick="backToOperatorDetailView('tour-planner')">
+                                                <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Operators
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="tp-op-stats-card">
+                                            <div class="tp-op-stat-item">
+                                                <div class="tp-op-stat-icon"><i class="material-icons">alt_route</i></div>
+                                                <div>
+                                                    <div class="tp-op-stat-number" id="tour-op-stat-routes">34+ Routes</div>
+                                                    <div class="tp-op-stat-label">Active Corridors</div>
+                                                </div>
+                                            </div>
+                                            <div class="tp-op-stat-item">
+                                                <div class="tp-op-stat-icon" style="background: #ecfdf5; color: #059669;"><i class="material-icons">directions_bus</i></div>
+                                                <div>
+                                                    <div class="tp-op-stat-number" id="tour-op-stat-fleet">200+ Fleet</div>
+                                                    <div class="tp-op-stat-label">Certified Vehicles / Units</div>
+                                                </div>
+                                            </div>
+                                            <div class="tp-op-stat-item">
+                                                <div class="tp-op-stat-icon" style="background: #fef3c7; color: #d97706;"><i class="material-icons">support_agent</i></div>
+                                                <div>
+                                                    <div class="tp-op-stat-number">24/7 Support</div>
+                                                    <div class="tp-op-stat-label">Dedicated Hotline</div>
+                                                </div>
+                                            </div>
+                                            <div class="tp-op-stat-item">
+                                                <div class="tp-op-stat-icon" style="background: #f3e8ff; color: #7e22ce;"><i class="material-icons">verified_user</i></div>
+                                                <div>
+                                                    <div class="tp-op-stat-number">100% Insured</div>
+                                                    <div class="tp-op-stat-label">Passenger Safety Standard</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 5: Operator Products & Booking Schedule View for Tour Planner -->
+                    <div id="tour-operator-products-view" style="display: none;">
+                        <!-- Top Breadcrumb Bar -->
+                        <div class="tp-subcat-breadcrumb-bar">
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('tour-planner')" class="tp-subcat-bc-link">
+                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
+                            </a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" onclick="closeAllDetailViews('tour-planner')" class="tp-subcat-bc-link">Categories</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tour-prod-parent-cat-link" onclick="backToCategoryDetailView('tour-planner')" class="tp-subcat-bc-link">Transit</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tour-prod-subcat-link" onclick="backToOperatorDetailView('tour-planner')" class="tp-subcat-bc-link">Bus</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <a href="javascript:void(0)" id="tour-prod-operator-link" onclick="backToOperatorProfileView('tour-planner')" class="tp-subcat-bc-link">GreenLine Transport</a>
+                            <span class="tp-subcat-bc-sep">&gt;</span>
+                            <span class="tp-subcat-bc-active" id="tour-prod-breadcrumb">Bus List</span>
+                        </div>
+
+                        <!-- Split Layout -->
+                        <div class="tp-products-view-layout">
+                            <!-- Left Sidebar Card -->
+                            <aside class="tp-products-sidebar-card">
+                                <img id="tour-prod-sidebar-hero" src="images/operators/bus_greenline.png" alt="Fleet Banner" class="tp-products-sidebar-photo" onerror="this.src='images/operators/bus_greenline.png'">
+                                <div class="tp-products-sidebar-profile">
+                                    <img id="tour-prod-sidebar-logo" src="images/operators/logo_greenline.png" alt="Operator Logo" class="tp-products-sidebar-logo" onerror="this.src='images/operators/logo_greenline.png'">
+                                    <h3 class="tp-products-sidebar-name" id="tour-prod-sidebar-name">GreenLine Transport</h3>
+                                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 6px;">
+                                        <span class="tp-op-rating"><i class="material-icons tp-op-rating-star">star</i> <span id="tour-prod-sidebar-rating">4.8</span></span>
+                                        <span class="tp-op-verified-badge" style="padding: 2px 8px; font-size: 0.7rem;"><i class="material-icons" style="font-size: 13px;">verified</i> Verified</span>
+                                    </div>
+                                </div>
+
+                                <div class="tp-products-sidebar-menu">
+                                    <button type="button" class="tp-products-menu-item" onclick="backToOperatorProfileView('tour-planner')">
+                                        <i class="material-icons" style="font-size: 18px;">dashboard</i>
+                                        <span>Overview</span>
+                                    </button>
+                                    <button type="button" class="tp-products-menu-item active">
+                                        <i class="material-icons" style="font-size: 18px;" id="tour-prod-sidebar-icon">directions_bus</i>
+                                        <span id="tour-prod-sidebar-item-label">Bus List</span>
+                                    </button>
+                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Viewing verified routes and terminal points', 'info')">
+                                        <i class="material-icons" style="font-size: 18px;">alt_route</i>
+                                        <span>Routes & Stops</span>
+                                    </button>
+                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Verified high-resolution fleet gallery', 'info')">
+                                        <i class="material-icons" style="font-size: 18px;">photo_library</i>
+                                        <span>Gallery</span>
+                                    </button>
+                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Verified passenger ratings & reviews', 'info')">
+                                        <i class="material-icons" style="font-size: 18px;">star_rate</i>
+                                        <span>Reviews</span>
+                                    </button>
+                                </div>
+
+                                <div class="tp-products-sidebar-promo">
+                                    <i class="material-icons" style="font-size: 22px; color: #00875a;">health_and_safety</i>
+                                    <div>
+                                        <div style="font-weight: 800; color: #064e3b;">Official Partner</div>
+                                        <div style="font-size: 0.725rem; color: #047857;">Instant booking & verified seats</div>
+                                    </div>
+                                </div>
+                            </aside>
+
+                            <!-- Right Main Area -->
+                            <main class="tp-products-main-card">
+                                <!-- Search Strip: From, To, Date, Search Button -->
+                                <div class="tp-products-search-strip">
+                                    <div class="tp-search-field-pill">
+                                        <i class="material-icons" style="font-size: 18px; color: #00875a;">trip_origin</i>
+                                        <div>
+                                            <label>From</label>
+                                            <input type="text" id="tour-prod-search-from" value="Dhaka" placeholder="Origin city or hub...">
+                                        </div>
+                                    </div>
+                                    <div style="color: #94a3b8; font-size: 18px; font-weight: 800; padding: 0 4px;">⇄</div>
+                                    <div class="tp-search-field-pill">
+                                        <i class="material-icons" style="font-size: 18px; color: #ef4444;">location_on</i>
+                                        <div>
+                                            <label>To</label>
+                                            <input type="text" id="tour-prod-search-to" value="Cox's Bazar" placeholder="Destination hub...">
+                                        </div>
+                                    </div>
+                                    <div class="tp-search-field-pill" style="max-width: 170px;">
+                                        <i class="material-icons" style="font-size: 18px; color: #0284c7;">calendar_month</i>
+                                        <div>
+                                            <label>Date</label>
+                                            <input type="date" id="tour-prod-search-date" value="2026-10-24">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="tp-btn-search-strip" onclick="filterOperatorProducts('tour-planner')">
+                                        Search
+                                    </button>
+                                </div>
+
+                                <!-- Filter Row: Category Pills (All, AC, Non AC, Sleeper, etc.) -->
+                                <div class="tp-products-filters-row">
+                                    <div class="tp-filter-pills-wrap" id="tour-prod-filter-pills">
+                                        <button type="button" class="tp-filter-pill-btn active" onclick="switchProductFilter('All', this, 'tour-planner')">All</button>
+                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('AC', this, 'tour-planner')">AC</button>
+                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Non AC', this, 'tour-planner')">Non AC</button>
+                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Sleeper', this, 'tour-planner')">Sleeper</button>
+                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Executive', this, 'tour-planner')">Executive</button>
+                                    </div>
+                                    <div style="font-size: 0.85rem; font-weight: 700; color: #64748b;" id="tour-prod-results-count">
+                                        Showing options
+                                    </div>
+                                </div>
+
+                                <!-- Products List Table -->
+                                <div style="overflow-x: auto;">
+                                    <table class="tp-products-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 240px;" id="tour-prod-th-name">Vehicle / Service</th>
+                                                <th style="min-width: 170px;">Departure & Arrival</th>
+                                                <th style="min-width: 150px;">Route & Stops</th>
+                                                <th style="min-width: 110px;">Fare (BDT)</th>
+                                                <th style="min-width: 120px;">Seats Available</th>
+                                                <th style="width: 120px; text-align: center;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tour-products-tbody">
+                                            <!-- Dynamic Product Rows -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </main>
                         </div>
                     </div>
                     
@@ -7097,6 +8280,8 @@
             let initialTab = '';
             let initialCat = '';
             let initialSub = '';
+            let initialOp = '';
+            let initialView = '';
             let initialTabParam = '';
 
             if (rawHash.includes('?')) {
@@ -7105,6 +8290,8 @@
                 const params = new URLSearchParams(parts[1]);
                 initialCat = params.get('cat') || '';
                 initialSub = params.get('sub') || '';
+                initialOp = params.get('op') || '';
+                initialView = params.get('view') || '';
                 initialTabParam = params.get('tab') || '';
             } else if (rawHash) {
                 initialTab = rawHash;
@@ -7117,6 +8304,9 @@
             }
             if (!initialSub && (initialTab === 'travel-planner' || initialTab === 'tour-planner')) {
                 initialSub = localStorage.getItem('travelup_admin_active_sub_' + initialTab) || '';
+            }
+            if (!initialOp && (initialTab === 'travel-planner' || initialTab === 'tour-planner')) {
+                initialOp = localStorage.getItem('travelup_admin_active_op_' + initialTab) || '';
             }
 
             const targetInitialTab = roleCfg.allowedTabs.includes(initialTab) ? initialTab : 'dashboard';
@@ -7143,6 +8333,16 @@
                     if (initialSub) {
                         setTimeout(() => {
                             openSubCategoryOperatorsView(initialSub, initialCat, targetInitialTab);
+                            if (initialOp) {
+                                setTimeout(() => {
+                                    openOperatorProfileView(initialOp, targetInitialTab);
+                                    if (initialView === 'products') {
+                                        setTimeout(() => {
+                                            openOperatorProductsView(targetInitialTab);
+                                        }, 50);
+                                    }
+                                }, 50);
+                            }
                         }, 50);
                     }
                 }, 80);
@@ -7195,7 +8395,7 @@
             if (tabId === 'staff') loadStaff();
         }
 
-        // Listen for browser back / forward / hash changes (supports ?cat= and ?sub= query params)
+        // Listen for browser back / forward / hash changes (supports ?cat=, ?sub=, ?op=, ?view= query params)
         window.addEventListener('hashchange', () => {
             const raw = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
             if (!raw || !currentUser) return;
@@ -7203,6 +8403,8 @@
             let hTab = raw;
             let hCat = '';
             let hSub = '';
+            let hOp = '';
+            let hView = '';
             let hTabParam = '';
             if (raw.includes('?')) {
                 const parts = raw.split('?');
@@ -7210,6 +8412,8 @@
                 const params = new URLSearchParams(parts[1]);
                 hCat = params.get('cat') || '';
                 hSub = params.get('sub') || '';
+                hOp = params.get('op') || '';
+                hView = params.get('view') || '';
                 hTabParam = params.get('tab') || '';
             }
             if (roleCfg.allowedTabs.includes(hTab)) {
@@ -7222,6 +8426,16 @@
                     if (hSub) {
                         setTimeout(() => {
                             openSubCategoryOperatorsView(hSub, hCat, hTab);
+                            if (hOp) {
+                                setTimeout(() => {
+                                    openOperatorProfileView(hOp, hTab);
+                                    if (hView === 'products') {
+                                        setTimeout(() => {
+                                            openOperatorProductsView(hTab);
+                                        }, 50);
+                                    }
+                                }, 50);
+                            }
                         }, 50);
                     }
                 }
@@ -8416,6 +9630,12 @@
             const isTour = sectionType === 'tour-planner';
             const prefix = isTour ? 'tour' : 'tp';
 
+            const prodView = document.getElementById(`${prefix}-operator-products-view`);
+            if (prodView) prodView.style.display = 'none';
+
+            const profView = document.getElementById(`${prefix}-operator-profile-view`);
+            if (profView) profView.style.display = 'none';
+
             const opView = document.getElementById(`${prefix}-operator-detail-view`);
             if (opView) opView.style.display = 'none';
 
@@ -8439,6 +9659,7 @@
             try {
                 localStorage.removeItem(`travelup_admin_active_category_${sectionType}`);
                 localStorage.removeItem(`travelup_admin_active_sub_${sectionType}`);
+                localStorage.removeItem(`travelup_admin_active_op_${sectionType}`);
                 if (window.history && window.history.replaceState) {
                     window.history.replaceState(null, null, `#${sectionType}`);
                 }
@@ -8516,6 +9737,8 @@
                 `;
                 const showingText = document.getElementById(`${prefix}-subcat-showing-text`);
                 if (showingText) showingText.innerHTML = `<i class="material-icons" style="font-size: 16px; color: #94a3b8;">format_list_bulleted</i> <span>Showing 0 of 0 subcategories</span>`;
+                const cardsGrid = document.getElementById(`${prefix}-subcat-cards-grid`);
+                if (cardsGrid) cardsGrid.innerHTML = '';
                 return;
             }
 
@@ -8523,6 +9746,38 @@
             const showingText = document.getElementById(`${prefix}-subcat-showing-text`);
             if (showingText) {
                 showingText.innerHTML = `<i class="material-icons" style="font-size: 16px; color: #94a3b8;">format_list_bulleted</i> <span>Showing 1-${total} of ${total} subcategories</span>`;
+            }
+
+            // Update Promo Banner (Screen 2 Mockup Match)
+            const promoTitle = document.getElementById(`${prefix}-promo-title`);
+            if (promoTitle) promoTitle.textContent = `Exclusive ${catName} Partner Deals`;
+            const promoDesc = document.getElementById(`${prefix}-promo-desc`);
+            if (promoDesc) promoDesc.textContent = `Discover verified ${catName.toLowerCase()} network operators, premium fleets, and reserve guaranteed departure slots at special rates.`;
+
+            // Render Visual Cards Grid (Screen 2 Mockup Match)
+            const cardsGrid = document.getElementById(`${prefix}-subcat-cards-grid`);
+            if (cardsGrid) {
+                cardsGrid.innerHTML = list.map(sub => {
+                    const thumbImg = sub.image || 'images/subcategories/sub_transit_bus.png';
+                    const escName = (sub.name || '').replace(/'/g, "\\'");
+                    const escCatName = (catName || '').replace(/'/g, "\\'");
+                    return `
+                        <div class="tp-subcat-card" onclick="openSubCategoryOperatorsView('${escName}', '${escCatName}', '${sectionType}')">
+                            <div class="tp-subcat-card-thumb-wrap">
+                                <img src="${thumbImg}" alt="${escName}" class="tp-subcat-card-thumb-img" onerror="this.src='images/categories/cat_transit.png'">
+                            </div>
+                            <div class="tp-subcat-card-body">
+                                <div>
+                                    <h3 class="tp-subcat-card-title">${sub.name}</h3>
+                                    <p class="tp-subcat-card-count">${sub.operators || 1} Operators Available</p>
+                                </div>
+                                <div class="tp-subcat-card-arrow">
+                                    <i class="material-icons" style="font-size: 18px;">arrow_forward</i>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
             }
 
             tbody.innerHTML = list.map((sub, idx) => {
@@ -9008,7 +10263,9 @@
             viewMode: 'grid', // 'grid' or 'list'
             search: '',
             activeSubTab: 'operators',
-            filterRating: 0
+            filterRating: 0,
+            activeOperator: null,
+            activeProductFilter: 'All'
         };
 
         const DEFAULT_OPERATORS = {
@@ -9021,9 +10278,11 @@
                     rating: 4.8,
                     reviews: '1.2k reviews',
                     tagline: 'Safe journey, green tomorrow.',
-                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'],
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking', '💺 Sleeper Suite'],
                     routesCount: 34,
-                    verified: true
+                    fleetCount: 210,
+                    verified: true,
+                    about: 'GreenLine Transport is a pioneer in luxury intercity transit in Bangladesh, operating first-class Scania Multi-Axle and Volvo B11R luxury sleeper and chair coaches across all divisions.'
                 },
                 {
                     id: 'op-bus-2',
@@ -9033,9 +10292,11 @@
                     rating: 4.6,
                     reviews: '980 reviews',
                     tagline: 'Comfort on every mile.',
-                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats'],
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats', '⚡ Fast Boarding'],
                     routesCount: 28,
-                    verified: true
+                    fleetCount: 160,
+                    verified: true,
+                    about: 'SkyRoute provides premium scheduled bus connectivity between Dhaka, Sylhet, Chattogram and Cox\'s Bazar with modern air suspension vehicles and punctual staff.'
                 },
                 {
                     id: 'op-bus-3',
@@ -9045,21 +10306,25 @@
                     rating: 4.3,
                     reviews: '640 reviews',
                     tagline: 'Trusted by millions.',
-                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'],
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking', '🛡️ Safe Drivers'],
                     routesCount: 52,
-                    verified: true
+                    fleetCount: 450,
+                    verified: true,
+                    about: 'Hanif Enterprise is one of the largest and oldest passenger coach operators in Bangladesh, connecting almost every district with daily high-frequency departures.'
                 },
                 {
                     id: 'op-bus-4',
-                    name: 'Biman Bangladesh',
+                    name: 'Biman Bangladesh (Shuttle)',
                     logo: 'images/operators/logo_biman.png',
                     photo: 'images/operators/bus_biman.png',
                     rating: 4.4,
                     reviews: '762 reviews',
                     tagline: 'Comfort, Safety, Always.',
-                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats'],
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats', '✈️ Airport Link'],
                     routesCount: 22,
-                    verified: true
+                    fleetCount: 80,
+                    verified: true,
+                    about: 'Official inter-terminal and express city transfer coach division providing seamless connection to airport hubs and scenic tourist resorts.'
                 },
                 {
                     id: 'op-bus-5',
@@ -9069,9 +10334,11 @@
                     rating: 4.2,
                     reviews: '485 reviews',
                     tagline: 'Your trusted travel partner.',
-                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'],
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking', '🛂 Cross Border'],
                     routesCount: 40,
-                    verified: true
+                    fleetCount: 280,
+                    verified: true,
+                    about: 'Shyamoli Paribahan is renowned for cross-border trips to India and comprehensive intercity transit across North Bengal and Cox\'s Bazar corridors.'
                 },
                 {
                     id: 'op-bus-6',
@@ -9083,7 +10350,9 @@
                     tagline: 'Travel with trust.',
                     amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats'],
                     routesCount: 18,
-                    verified: true
+                    fleetCount: 90,
+                    verified: true,
+                    about: 'Desh Travels operates premium Hyundai and Hino luxury air-conditioned coaches offering comfortable travel experiences to Rajshahi and Chittagong.'
                 },
                 {
                     id: 'op-bus-7',
@@ -9093,9 +10362,11 @@
                     rating: 4.0,
                     reviews: '280 reviews',
                     tagline: 'Comfortable & On-time.',
-                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'],
+                    amenities: ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking', '🏖️ Beach Express'],
                     routesCount: 16,
-                    verified: true
+                    fleetCount: 75,
+                    verified: true,
+                    about: 'Specialized direct tourist coach operator connecting Dhaka and Chittagong straight to Teknaf jetty and Cox\'s Bazar beach hotels.'
                 },
                 {
                     id: 'op-bus-8',
@@ -9107,7 +10378,9 @@
                     tagline: 'Journey with comfort.',
                     amenities: ['🚌 AC Bus', '📶 Wi-Fi', '💺 Reclining Seats'],
                     routesCount: 46,
-                    verified: true
+                    fleetCount: 320,
+                    verified: true,
+                    about: 'High-frequency northern transit network running non-stop express coaches between Dhaka, Sylhet, Rangpur, Bogura and Chattogram.'
                 }
             ],
             'Train': [
@@ -9118,10 +10391,12 @@
                     photo: 'images/subcategories/sub_transit_train.png',
                     rating: 4.5,
                     reviews: '2.1k reviews',
-                    tagline: 'Connecting Bangladesh swiftly.',
-                    amenities: ['🚆 AC Chair', '📶 Wi-Fi', '🍱 Pantry Car'],
+                    tagline: 'Connecting Bangladesh swiftly on rail.',
+                    amenities: ['🚆 AC Chair', '📶 Wi-Fi', '🍱 Pantry Car', '⚡ Non-Stop'],
                     routesCount: 12,
-                    verified: true
+                    fleetCount: 40,
+                    verified: true,
+                    about: 'Suborno Express is Bangladesh Railway\'s flagship non-stop intercity luxury train between Dhaka and Chattogram.'
                 },
                 {
                     id: 'op-train-2',
@@ -9131,9 +10406,11 @@
                     rating: 4.6,
                     reviews: '1.4k reviews',
                     tagline: 'Premier non-stop rail experience.',
-                    amenities: ['🚆 Snigdha AC', '💺 Luxury Recline', '📍 On-time'],
+                    amenities: ['🚆 Snigdha AC', '💺 Luxury Recline', '📍 On-time Guarantee'],
                     routesCount: 8,
-                    verified: true
+                    fleetCount: 30,
+                    verified: true,
+                    about: 'Sonar Bangla Express offers modern Indonesian air-conditioned coaches with gourmet dining and high-speed transit.'
                 },
                 {
                     id: 'op-train-3',
@@ -9143,9 +10420,11 @@
                     rating: 4.7,
                     reviews: '890 reviews',
                     tagline: 'International rail link with comfort.',
-                    amenities: ['🚆 AC Cabin', '🛡️ High Security', '🛂 Immigration'],
+                    amenities: ['🚆 AC Cabin', '🛡️ High Security', '🛂 Immigration Facilitation'],
                     routesCount: 4,
-                    verified: true
+                    fleetCount: 16,
+                    verified: true,
+                    about: 'Cross-border luxury express train connecting Dhaka Cantonment to Kolkata with international air-conditioned coaches.'
                 }
             ],
             'Flight': [
@@ -9157,9 +10436,11 @@
                     rating: 4.4,
                     reviews: '3.2k reviews',
                     tagline: 'Your home in the sky.',
-                    amenities: ['✈️ Boeing 787', '🍱 Free Meal', '🧳 30kg Baggage'],
+                    amenities: ['✈️ Boeing 787', '🍱 Free Meal', '🧳 30kg Baggage', '⭐ National Flag Carrier'],
                     routesCount: 38,
-                    verified: true
+                    fleetCount: 21,
+                    verified: true,
+                    about: 'National carrier operating modern Boeing 787 Dreamliners, 737s and Dash-8 aircraft across domestic and global routes.'
                 },
                 {
                     id: 'op-flight-2',
@@ -9169,9 +10450,11 @@
                     rating: 4.6,
                     reviews: '2.8k reviews',
                     tagline: 'Fly fast, fly safe.',
-                    amenities: ['✈️ Jet Fleet', '⏱️ 99% On-time', '📶 Mobile Check-in'],
+                    amenities: ['✈️ Modern Jet Fleet', '⏱️ 99% On-time', '📶 Mobile Check-in'],
                     routesCount: 42,
-                    verified: true
+                    fleetCount: 24,
+                    verified: true,
+                    about: 'The leading private airline in Bangladesh connecting Dhaka, Cox\'s Bazar, Sylhet, Saidpur, and international destinations.'
                 },
                 {
                     id: 'op-flight-3',
@@ -9181,9 +10464,11 @@
                     rating: 4.5,
                     reviews: '1.1k reviews',
                     tagline: 'Truly your best choice.',
-                    amenities: ['✈️ ATR 72-500', '🧳 20kg Baggage', '☕ Refreshments'],
+                    amenities: ['✈️ ATR 72-500', '🧳 20kg Baggage', '☕ In-flight Refreshments'],
                     routesCount: 16,
-                    verified: true
+                    fleetCount: 7,
+                    verified: true,
+                    about: 'Dedicated premium domestic airline operating reliable ATR fleets with premier on-time performance.'
                 },
                 {
                     id: 'op-flight-4',
@@ -9193,9 +10478,11 @@
                     rating: 4.3,
                     reviews: '670 reviews',
                     tagline: 'Safe, reliable and punctual.',
-                    amenities: ['✈️ Modern ATR', '⭐ Premium Service', '📍 Real-time Radar'],
+                    amenities: ['✈️ Modern ATR Fleet', '⭐ Premium Cabin Service', '📍 Real-time Radar'],
                     routesCount: 12,
-                    verified: true
+                    fleetCount: 4,
+                    verified: true,
+                    about: 'Bangladesh\'s newest premium domestic carrier offering clean, comfortable, and safe regional flights.'
                 }
             ],
             'Ferry': [
@@ -9207,9 +10494,11 @@
                     rating: 4.5,
                     reviews: '850 reviews',
                     tagline: 'Majestic river cruises on Meghna & Padma.',
-                    amenities: ['🚢 VIP Cabin', '🍽️ Multi-cuisine Dining', '📶 Wi-Fi'],
+                    amenities: ['🚢 VIP AC Cabin', '🍽️ Multi-cuisine Dining', '📶 Wi-Fi', '🛡️ Certified Marine Safety'],
                     routesCount: 8,
-                    verified: true
+                    fleetCount: 14,
+                    verified: true,
+                    about: 'Luxury multi-deck river cruise launches providing overnight VIP voyages between Dhaka, Barishal, and Bhola.'
                 },
                 {
                     id: 'op-ferry-2',
@@ -9221,10 +10510,416 @@
                     tagline: 'Catamaran high-speed coastal cruise.',
                     amenities: ['🚢 Twin-Hull AC', '💺 Leather Recliner', '⚡ Express Transit'],
                     routesCount: 6,
-                    verified: true
+                    fleetCount: 8,
+                    verified: true,
+                    about: 'High-speed catamaran water craft connecting Dhaka to Barishal and Cox\'s Bazar to Saint Martin Island in record time.'
+                }
+            ],
+            'Hotels': [
+                {
+                    id: 'op-hotel-1',
+                    name: 'Sayeman Beach Resort',
+                    logo: 'images/operators/logo_skyroute.png',
+                    photo: 'images/categories/cat_accommodation.png',
+                    rating: 4.9,
+                    reviews: '1.8k reviews',
+                    tagline: 'Where the sea greets luxury.',
+                    amenities: ['🏊 Infinity Pool', '🏖️ Private Beach', '🍽️ Casablanca Dining', '📶 Free Wi-Fi'],
+                    routesCount: 1,
+                    fleetCount: 228,
+                    verified: true,
+                    about: 'Cox\'s Bazar\'s most iconic 5-star beachfront luxury hotel offering panoramic views of the Bay of Bengal.'
+                },
+                {
+                    id: 'op-hotel-2',
+                    name: 'Radisson Blu Water Garden',
+                    logo: 'images/operators/logo_greenline.png',
+                    photo: 'images/categories/cat_accommodation.png',
+                    rating: 4.8,
+                    reviews: '2.4k reviews',
+                    tagline: 'An urban oasis of world-class serenity.',
+                    amenities: ['🏊 Temperature Pool', '💆 Sublime Spa', '🎾 Tennis Courts', '🍸 Sublime Lounge'],
+                    routesCount: 1,
+                    fleetCount: 204,
+                    verified: true,
+                    about: 'World-renowned 5-star business and leisure resort situated on seven lush green acres in Dhaka.'
+                }
+            ],
+            'Resorts': [
+                {
+                    id: 'op-resort-1',
+                    name: 'Grand Sultan Tea Resort & Golf',
+                    logo: 'images/operators/logo_greenline.png',
+                    photo: 'images/categories/cat_accommodation.png',
+                    rating: 4.9,
+                    reviews: '1.5k reviews',
+                    tagline: 'Five-star luxury nestled in green tea gardens.',
+                    amenities: ['⛳ 9-Hole Golf', '🏊 3 Swimming Pools', '🍿 3D Movie Theater', '🧖 Spa Center'],
+                    routesCount: 1,
+                    fleetCount: 135,
+                    verified: true,
+                    about: 'A prestigious 5-star resort located in Sreemangal amidst panoramic rolling tea hills and tropical rain forest.'
+                },
+                {
+                    id: 'op-resort-2',
+                    name: 'Mermaid Beach Resort',
+                    logo: 'images/operators/logo_skyroute.png',
+                    photo: 'images/categories/cat_accommodation.png',
+                    rating: 4.7,
+                    reviews: '1.1k reviews',
+                    tagline: 'Bohemian luxury on Pechardwip Beach.',
+                    amenities: ['🏖️ Secluded Beach', '🍹 Organic Smoothies', '🧘 Yoga Pavilion', '🦀 Fresh Seafood'],
+                    routesCount: 1,
+                    fleetCount: 65,
+                    verified: true,
+                    about: 'Eco-luxury boutique resort offering private beach villas, wooden beach cabanas, and fresh local organic dining.'
                 }
             ]
         };
+
+        const DEFAULT_PRODUCTS = {
+            'GreenLine Transport': [
+                {
+                    name: 'GreenLine Scania Multi-Axle AC Sleeper Coach',
+                    specs: '2+1 Luxury Sleeper • Air Suspension • LCD & Blanket',
+                    from: 'Dhaka (Arambagh / Sayedabad)',
+                    to: 'Cox\'s Bazar (Kolatoli Beach)',
+                    depTime: '10:30 PM',
+                    arrTime: '06:45 AM',
+                    duration: '8h 15m',
+                    fare: 2200,
+                    availableSeats: '14 Seats Left',
+                    categoryType: 'Sleeper',
+                    photo: 'images/operators/bus_greenline.png'
+                },
+                {
+                    name: 'GreenLine Volvo B11R AC Chair Coach',
+                    specs: '2+2 Business Class • Ergonomic Leather Seats • USB Charging',
+                    from: 'Dhaka (Gabtoli / Rajarbagh)',
+                    to: 'Chattogram (Dampara)',
+                    depTime: '07:30 AM',
+                    arrTime: '01:15 PM',
+                    duration: '5h 45m',
+                    fare: 1400,
+                    availableSeats: '22 Seats Left',
+                    categoryType: 'AC',
+                    photo: 'images/operators/bus_greenline.png'
+                },
+                {
+                    name: 'GreenLine MAN Double Decker Luxury Class',
+                    specs: 'Dual Deck Panoramic • Upper Deck Panorama • Hostess Service',
+                    from: 'Dhaka (Rajarbagh)',
+                    to: 'Sylhet (Kadamtoli)',
+                    depTime: '03:00 PM',
+                    arrTime: '08:30 PM',
+                    duration: '5h 30m',
+                    fare: 1800,
+                    availableSeats: '9 Seats Left',
+                    categoryType: 'Executive',
+                    photo: 'images/operators/bus_greenline.png'
+                },
+                {
+                    name: 'GreenLine Hino 1J Non AC Economy',
+                    specs: '2+2 Standard Recline • Spacious Luggage Compartment',
+                    from: 'Dhaka (Sayedabad)',
+                    to: 'Cox\'s Bazar (Jhawtola)',
+                    depTime: '11:00 PM',
+                    arrTime: '08:00 AM',
+                    duration: '9h 00m',
+                    fare: 950,
+                    availableSeats: '18 Seats Left',
+                    categoryType: 'Non AC',
+                    photo: 'images/operators/bus_greenline.png'
+                },
+                {
+                    name: 'GreenLine Scania Club Class Sleeper',
+                    specs: '1+2 Club Suite • Private Privacy Curtain • High Speed Wi-Fi',
+                    from: 'Dhaka (Sayedabad)',
+                    to: 'Benapole Border Terminal',
+                    depTime: '09:15 PM',
+                    arrTime: '05:30 AM',
+                    duration: '8h 15m',
+                    fare: 1950,
+                    availableSeats: '11 Seats Left',
+                    categoryType: 'Sleeper',
+                    photo: 'images/operators/bus_greenline.png'
+                }
+            ],
+            'SkyRoute': [
+                {
+                    name: 'SkyRoute Hyundai Universe Luxury AC',
+                    specs: '2+2 Luxury Chair Coach • Air Suspension • Individual AC Vents',
+                    from: 'Dhaka (Panthapath)',
+                    to: 'Cox\'s Bazar (Sugandha Beach)',
+                    depTime: '10:15 PM',
+                    arrTime: '06:30 AM',
+                    duration: '8h 15m',
+                    fare: 1650,
+                    availableSeats: '16 Seats Left',
+                    categoryType: 'AC',
+                    photo: 'images/operators/bus_skyroute.png'
+                },
+                {
+                    name: 'SkyRoute Scania Sleeper Suite',
+                    specs: '2+1 Sleeper Berths • Reading Light • Personal Charging',
+                    from: 'Dhaka (Uttara Hub)',
+                    to: 'Chattogram (GEC Circle)',
+                    depTime: '11:30 PM',
+                    arrTime: '05:00 AM',
+                    duration: '5h 30m',
+                    fare: 2100,
+                    availableSeats: '8 Seats Left',
+                    categoryType: 'Sleeper',
+                    photo: 'images/operators/bus_skyroute.png'
+                }
+            ],
+            'Sayeman Beach Resort': [
+                {
+                    name: 'Ocean Front Deluxe King Suite',
+                    specs: 'Direct Beach View • King Size Bed • Complimentary Buffet Breakfast',
+                    from: 'Check-in: 02:00 PM',
+                    to: 'Check-out: 12:00 PM',
+                    depTime: '02:00 PM',
+                    arrTime: '12:00 PM Next Day',
+                    duration: '22h Stay',
+                    fare: 8500,
+                    availableSeats: '6 Suites Left',
+                    categoryType: 'Executive',
+                    photo: 'images/categories/cat_accommodation.png'
+                },
+                {
+                    name: 'Infinity Sea View Executive Room',
+                    specs: 'Private Balcony • Bathtub • Free Wi-Fi & Swimming Pool Access',
+                    from: 'Check-in: 02:00 PM',
+                    to: 'Check-out: 12:00 PM',
+                    depTime: '02:00 PM',
+                    arrTime: '12:00 PM Next Day',
+                    duration: '22h Stay',
+                    fare: 12500,
+                    availableSeats: '4 Rooms Left',
+                    categoryType: 'Executive',
+                    photo: 'images/categories/cat_accommodation.png'
+                }
+            ]
+        };
+
+        function getOperatorsForSubCategory(subCatName, parentCatName) {
+            if (DEFAULT_OPERATORS[subCatName] && DEFAULT_OPERATORS[subCatName].length > 0) {
+                return DEFAULT_OPERATORS[subCatName];
+            }
+            const foundKey = Object.keys(DEFAULT_OPERATORS).find(k => k.toLowerCase() === (subCatName || '').toLowerCase());
+            if (foundKey) {
+                return DEFAULT_OPERATORS[foundKey];
+            }
+
+            const parentLower = (parentCatName || '').toLowerCase();
+            const subClean = subCatName || 'Service';
+
+            if (parentLower.includes('accommodation') || parentLower.includes('hotel')) {
+                return [
+                    {
+                        id: 'op-gen-1',
+                        name: `${subClean} Grand Royal`,
+                        logo: 'images/operators/logo_skyroute.png',
+                        photo: 'images/categories/cat_accommodation.png',
+                        rating: 4.8,
+                        reviews: '1.1k reviews',
+                        tagline: `Luxury 5-star living & serene hospitality in ${subClean}.`,
+                        amenities: ['🏊 Swimming Pool', '🍳 Complimentary Breakfast', '📶 Free Wi-Fi', '💆 Spa & Wellness'],
+                        routesCount: 16,
+                        fleetCount: 85,
+                        verified: true,
+                        about: `Experience five-star luxury accommodations and world-class hospitality tailored for relaxation and comfort.`
+                    },
+                    {
+                        id: 'op-gen-2',
+                        name: `The Heritage ${subClean}`,
+                        logo: 'images/operators/logo_greenline.png',
+                        photo: 'images/categories/cat_accommodation.png',
+                        rating: 4.6,
+                        reviews: '740 reviews',
+                        tagline: 'Experience traditional tranquility with modern comforts.',
+                        amenities: ['🌳 Garden View', '🚐 Airport Shuttle', '❄️ AC Suite', '🍽️ Restaurant'],
+                        routesCount: 12,
+                        fleetCount: 50,
+                        verified: true,
+                        about: `Blending heritage architecture with modern conveniences for an unforgettable stay experience.`
+                    },
+                    {
+                        id: 'op-gen-3',
+                        name: `Eco Haven ${subClean}`,
+                        logo: 'images/operators/logo_hanif.png',
+                        photo: 'images/categories/cat_accommodation.png',
+                        rating: 4.7,
+                        reviews: '490 reviews',
+                        tagline: 'Sustainable green getaway immersed in nature.',
+                        amenities: ['🌿 100% Eco Friendly', '🥗 Organic Dining', '🔥 Campfire', '🥾 Trek Guide'],
+                        routesCount: 8,
+                        fleetCount: 30,
+                        verified: true,
+                        about: `Eco-certified resort providing serene cottages and sustainable stays immersed in pristine nature.`
+                    }
+                ];
+            }
+
+            return [
+                {
+                    id: 'op-gen-1',
+                    name: `${subClean} Express Premier`,
+                    logo: 'images/operators/logo_greenline.png',
+                    photo: 'images/subcategories/transit_banner_scenic.png',
+                    rating: 4.8,
+                    reviews: '1.2k reviews',
+                    tagline: `Pioneering certified ${subClean.toLowerCase()} solutions across Bangladesh.`,
+                    amenities: ['🛡️ Verified Operator', '📞 24/7 Helpline', '📍 GPS Tracking', '⚡ Priority Booking'],
+                    routesCount: 28,
+                    fleetCount: 140,
+                    verified: true,
+                    about: `Leading the industry with reliable schedules, certified fleet maintenance, and exceptional customer support.`
+                },
+                {
+                    id: 'op-gen-2',
+                    name: `National ${subClean} Network`,
+                    logo: 'images/operators/logo_skyroute.png',
+                    photo: 'images/subcategories/transit_banner_scenic.png',
+                    rating: 4.6,
+                    reviews: '850 reviews',
+                    tagline: `Punctual, safe and guaranteed ${subClean.toLowerCase()} services.`,
+                    amenities: ['🚐 Certified Fleet', '📱 Digital Booking', '🧳 Luggage Care', '❄️ Air Conditioned'],
+                    routesCount: 22,
+                    fleetCount: 95,
+                    verified: true,
+                    about: `Dependable transport and logistics network serving passengers with timely departures and experienced crew.`
+                },
+                {
+                    id: 'op-gen-3',
+                    name: `Royal ${subClean} Services`,
+                    logo: 'images/operators/logo_desh.png',
+                    photo: 'images/subcategories/transit_banner_scenic.png',
+                    rating: 4.5,
+                    reviews: '610 reviews',
+                    tagline: 'Your trusted travel and experience partner.',
+                    amenities: ['⭐ Executive Service', '⏱️ Flexible Timing', '🛡️ Full Insurance', '👨‍✈️ Experienced Staff'],
+                    routesCount: 18,
+                    fleetCount: 65,
+                    verified: true,
+                    about: `Committed to delivering luxury, comfort, and safety across all regional destinations in Bangladesh.`
+                }
+            ];
+        }
+
+        function getProductsForOperator(opName, subCatName, parentCatName) {
+            if (DEFAULT_PRODUCTS[opName] && DEFAULT_PRODUCTS[opName].length > 0) {
+                return DEFAULT_PRODUCTS[opName];
+            }
+            const foundKey = Object.keys(DEFAULT_PRODUCTS).find(k => k.toLowerCase() === (opName || '').toLowerCase());
+            if (foundKey) {
+                return DEFAULT_PRODUCTS[foundKey];
+            }
+            if (DEFAULT_PRODUCTS[subCatName] && DEFAULT_PRODUCTS[subCatName].length > 0) {
+                return DEFAULT_PRODUCTS[subCatName];
+            }
+
+            const parentLower = (parentCatName || '').toLowerCase();
+            if (parentLower.includes('accommodation') || parentLower.includes('hotel')) {
+                return [
+                    {
+                        name: `${opName} Deluxe King Suite`,
+                        specs: 'Sea / Panoramic View • King Bed • Free Breakfast & Wi-Fi',
+                        from: 'Check-in: 02:00 PM',
+                        to: 'Check-out: 12:00 PM',
+                        depTime: '02:00 PM',
+                        arrTime: '12:00 PM Next Day',
+                        duration: '22h Stay',
+                        fare: 7500,
+                        availableSeats: '8 Rooms Left',
+                        categoryType: 'Executive',
+                        photo: 'images/categories/cat_accommodation.png'
+                    },
+                    {
+                        name: `${opName} Executive Garden View Room`,
+                        specs: 'Air Conditioned • Queen Bed • Bathtub & Mini Bar',
+                        from: 'Check-in: 02:00 PM',
+                        to: 'Check-out: 12:00 PM',
+                        depTime: '02:00 PM',
+                        arrTime: '12:00 PM Next Day',
+                        duration: '22h Stay',
+                        fare: 5500,
+                        availableSeats: '12 Rooms Left',
+                        categoryType: 'AC',
+                        photo: 'images/categories/cat_accommodation.png'
+                    },
+                    {
+                        name: `${opName} Family Duplex Villa Suite`,
+                        specs: '2 Master Bedrooms • Living Hall • Private Kitchenette',
+                        from: 'Check-in: 02:00 PM',
+                        to: 'Check-out: 12:00 PM',
+                        depTime: '02:00 PM',
+                        arrTime: '12:00 PM Next Day',
+                        duration: '22h Stay',
+                        fare: 12500,
+                        availableSeats: '3 Units Left',
+                        categoryType: 'Executive',
+                        photo: 'images/categories/cat_accommodation.png'
+                    }
+                ];
+            }
+
+            return [
+                {
+                    name: `${opName} Scania Multi-Axle AC Sleeper`,
+                    specs: '2+1 Luxury Sleeper • Air Suspension • LCD & Blanket',
+                    from: 'Dhaka (Arambagh)',
+                    to: 'Cox\'s Bazar (Kolatoli Beach)',
+                    depTime: '10:30 PM',
+                    arrTime: '06:45 AM',
+                    duration: '8h 15m',
+                    fare: 2200,
+                    availableSeats: '14 Seats Left',
+                    categoryType: 'Sleeper',
+                    photo: 'images/operators/bus_greenline.png'
+                },
+                {
+                    name: `${opName} Volvo B11R AC Chair Coach`,
+                    specs: '2+2 Business Class • Reclining Seats • USB Ports',
+                    from: 'Dhaka (Gabtoli)',
+                    to: 'Chattogram (Dampara)',
+                    depTime: '07:30 AM',
+                    arrTime: '01:15 PM',
+                    duration: '5h 45m',
+                    fare: 1400,
+                    availableSeats: '20 Seats Left',
+                    categoryType: 'AC',
+                    photo: 'images/operators/bus_greenline.png'
+                },
+                {
+                    name: `${opName} MAN Double Decker Suite`,
+                    specs: 'Dual Deck Panorama • Air Suspension • Refreshments',
+                    from: 'Dhaka (Rajarbagh)',
+                    to: 'Sylhet (Kadamtoli)',
+                    depTime: '03:00 PM',
+                    arrTime: '08:30 PM',
+                    duration: '5h 30m',
+                    fare: 1800,
+                    availableSeats: '9 Seats Left',
+                    categoryType: 'Executive',
+                    photo: 'images/operators/bus_greenline.png'
+                },
+                {
+                    name: `${opName} Standard Non AC Regular`,
+                    specs: '2+2 Standard Recline • Spacious Luggage Bay',
+                    from: 'Dhaka (Sayedabad)',
+                    to: 'Cox\'s Bazar (Jhawtola)',
+                    depTime: '11:15 PM',
+                    arrTime: '08:30 AM',
+                    duration: '9h 15m',
+                    fare: 950,
+                    availableSeats: '16 Seats Left',
+                    categoryType: 'Non AC',
+                    photo: 'images/operators/bus_greenline.png'
+                }
+            ];
+        }
 
         function openSubCategoryOperatorsView(subCatName, parentCatName, sectionType = 'travel-planner') {
             const isTour = sectionType === 'tour-planner';
@@ -9234,6 +10929,7 @@
             activeOperatorState.parentCatName = parentCatName;
             activeOperatorState.sectionType = sectionType;
             activeOperatorState.search = '';
+            activeOperatorState.activeOperator = null;
 
             // 1. Update Breadcrumbs
             const parentLink = document.getElementById(`${prefix}-op-parent-cat-link`);
@@ -9270,12 +10966,18 @@
                 if (avatar) avatar.src = "images/subcategories/sub_transit_" + subCatName.toLowerCase().replace(/[^a-z0-9]/g, '') + ".png";
             }
 
-            // 3. Hide Category view & Master table, Show Operator view
+            // 3. Hide other views & show Operator view
             const catDetailView = document.getElementById(`${prefix}-category-detail-view`);
             if (catDetailView) catDetailView.style.display = 'none';
 
             const masterTable = document.getElementById(`${prefix}-table-container`);
             if (masterTable) masterTable.style.display = 'none';
+
+            const profileView = document.getElementById(`${prefix}-operator-profile-view`);
+            if (profileView) profileView.style.display = 'none';
+
+            const prodView = document.getElementById(`${prefix}-operator-products-view`);
+            if (prodView) prodView.style.display = 'none';
 
             const opView = document.getElementById(`${prefix}-operator-detail-view`);
             if (opView) opView.style.display = 'block';
@@ -9302,6 +11004,12 @@
             const isTour = sectionType === 'tour-planner';
             const prefix = isTour ? 'tour' : 'tp';
 
+            const prodView = document.getElementById(`${prefix}-operator-products-view`);
+            if (prodView) prodView.style.display = 'none';
+
+            const profView = document.getElementById(`${prefix}-operator-profile-view`);
+            if (profView) profView.style.display = 'none';
+
             const opView = document.getElementById(`${prefix}-operator-detail-view`);
             if (opView) opView.style.display = 'none';
 
@@ -9310,6 +11018,7 @@
 
             try {
                 localStorage.removeItem(`travelup_admin_active_sub_${sectionType}`);
+                localStorage.removeItem(`travelup_admin_active_op_${sectionType}`);
                 const parentCat = activeOperatorState.parentCatName || 'Transit';
                 if (window.history && window.history.replaceState) {
                     window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCat)}`);
@@ -9326,12 +11035,19 @@
             const isTour = sectionType === 'tour-planner';
             const prefix = isTour ? 'tour' : 'tp';
 
+            const prodView = document.getElementById(`${prefix}-operator-products-view`);
+            if (prodView) prodView.style.display = 'none';
+
+            const profView = document.getElementById(`${prefix}-operator-profile-view`);
+            if (profView) profView.style.display = 'none';
+
             const opView = document.getElementById(`${prefix}-operator-detail-view`);
             if (opView) opView.style.display = 'none';
 
             closeCategoryDetailView(sectionType);
             try {
                 localStorage.removeItem(`travelup_admin_active_sub_${sectionType}`);
+                localStorage.removeItem(`travelup_admin_active_op_${sectionType}`);
             } catch (err) {}
         }
 
@@ -9364,8 +11080,9 @@
             const isTour = sectionType === 'tour-planner';
             const prefix = isTour ? 'tour' : 'tp';
             const subCat = activeOperatorState.subCatName || 'Bus';
+            const parentCat = activeOperatorState.parentCatName || 'Transit';
 
-            const rawList = DEFAULT_OPERATORS[subCat] || DEFAULT_OPERATORS['Bus'];
+            const rawList = getOperatorsForSubCategory(subCat, parentCat);
             let list = [...rawList];
 
             // Apply search filter
@@ -9410,7 +11127,7 @@
                         const escName = (op.name || '').replace(/'/g, "\\'");
                         const amenitiesHtml = (op.amenities || []).map(a => `<span class="tp-op-pill">${a}</span>`).join('');
                         return `
-                            <div class="tp-operator-card">
+                            <div class="tp-operator-card" onclick="handleViewSingleOperator('${escName}', '${sectionType}')" style="cursor: pointer;">
                                 <div>
                                     <!-- Header: Logo, Name, Rating & Verified Pill -->
                                     <div class="tp-op-header">
@@ -9422,9 +11139,9 @@
                                             <div class="tp-op-rating-row">
                                                 <span class="tp-op-rating">
                                                     <i class="material-icons tp-op-rating-star">star</i>
-                                                    ${op.rating.toFixed(1)}
+                                                    ${(op.rating || 4.8).toFixed(1)}
                                                 </span>
-                                                <span class="tp-op-reviews">(${op.reviews})</span>
+                                                <span class="tp-op-reviews">(${op.reviews || '500+ reviews'})</span>
                                                 <span class="tp-op-verified-pill">
                                                     <span class="tp-op-verified-dot"></span> Verified
                                                 </span>
@@ -9433,7 +11150,7 @@
                                     </div>
 
                                     <!-- Tagline -->
-                                    <p class="tp-op-tagline">"${op.tagline}"</p>
+                                    <p class="tp-op-tagline">"${op.tagline || 'Leading the way in premium travel.'}"</p>
 
                                     <!-- Amenities Feature Pills -->
                                     <div class="tp-op-amenities">
@@ -9442,13 +11159,13 @@
                                 </div>
 
                                 <div>
-                                    <!-- Bus Fleet Photo -->
+                                    <!-- Fleet Photo -->
                                     <div class="tp-op-photo-wrap">
                                         <img src="${op.photo}" alt="${escName}" class="tp-op-photo-img" onerror="this.src='images/operators/bus_greenline.png'">
                                     </div>
 
                                     <!-- View Operator Action Button -->
-                                    <button type="button" class="tp-btn-view-operator" onclick="handleViewSingleOperator('${escName}', '${sectionType}')">
+                                    <button type="button" class="tp-btn-view-operator" onclick="event.stopPropagation(); handleViewSingleOperator('${escName}', '${sectionType}')">
                                         <span>View Operator</span>
                                         <i class="material-icons" style="font-size: 16px;">arrow_forward</i>
                                     </button>
@@ -9478,13 +11195,13 @@
                             <tr>
                                 <td style="text-align: center; font-weight: 700; color: #94a3b8; font-size: 0.85rem;">${idx + 1}</td>
                                 <td>
-                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="handleViewSingleOperator('${escName}', '${sectionType}')">
                                         <div class="tp-op-logo-wrap" style="width: 38px; height: 38px;">
                                             <img src="${op.logo}" alt="${escName}" class="tp-op-logo-img" onerror="this.src='images/operators/logo_greenline.png'">
                                         </div>
                                         <div style="min-width: 0;">
                                             <div style="font-weight: 700; color: #0f172a; font-size: 0.885rem;">${op.name}</div>
-                                            <div style="font-size: 0.735rem; color: #64748b; font-style: italic;">"${op.tagline}"</div>
+                                            <div style="font-size: 0.735rem; color: #64748b; font-style: italic;">"${op.tagline || 'Leading the way'}"</div>
                                         </div>
                                     </div>
                                 </td>
@@ -9492,9 +11209,9 @@
                                     <div style="display: flex; align-items: center; gap: 6px;">
                                         <span class="tp-op-rating">
                                             <i class="material-icons tp-op-rating-star">star</i>
-                                            ${op.rating.toFixed(1)}
+                                            ${(op.rating || 4.8).toFixed(1)}
                                         </span>
-                                        <span class="tp-op-reviews">(${op.reviews})</span>
+                                        <span class="tp-op-reviews">(${op.reviews || '500+ reviews'})</span>
                                     </div>
                                     <span class="tp-op-verified-pill" style="margin-top: 3px;">
                                         <span class="tp-op-verified-dot"></span> Verified
@@ -9536,7 +11253,6 @@
         }
 
         function toggleOperatorFilterDropdown(sectionType = 'travel-planner') {
-            // Cycle filter: All -> 4.5+ Rating -> All
             if (activeOperatorState.filterRating === 0) {
                 activeOperatorState.filterRating = 4.5;
                 showToast('Filter Applied: Showing top-rated operators (4.5★ and above)', 'info');
@@ -9558,13 +11274,442 @@
             activeOperatorState.activeSubTab = tabName;
             if (tabName === 'operators') {
                 renderOperatorsView(sectionType);
+            } else if (tabName === 'products') {
+                const subCat = activeOperatorState.subCatName || 'Bus';
+                const parentCat = activeOperatorState.parentCatName || 'Transit';
+                const ops = getOperatorsForSubCategory(subCat, parentCat);
+                if (ops && ops.length > 0) {
+                    openOperatorProfileView(ops[0].name, sectionType);
+                } else {
+                    showToast(`Viewing ${activeOperatorState.subCatName} Products`, 'info');
+                }
             } else {
                 showToast(`Viewing ${activeOperatorState.subCatName} ${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`, 'info');
             }
         }
 
         function handleViewSingleOperator(opName, sectionType = 'travel-planner') {
-            showToast(`Opening fleet, active routes and schedule manager for ${opName}`, 'info');
+            openOperatorProfileView(opName, sectionType);
+        }
+
+        // ================= 2.6 SCREEN 4: OPERATOR PROFILE CONTROLLER ================= //
+
+        function openOperatorProfileView(opName, sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const subCat = activeOperatorState.subCatName || 'Bus';
+            const parentCat = activeOperatorState.parentCatName || 'Transit';
+
+            const rawList = getOperatorsForSubCategory(subCat, parentCat);
+            let op = rawList.find(o => (o.name || '').toLowerCase() === (opName || '').toLowerCase());
+            if (!op) {
+                op = {
+                    id: 'op-custom-' + Date.now(),
+                    name: opName,
+                    logo: 'images/operators/logo_greenline.png',
+                    photo: 'images/operators/bus_greenline.png',
+                    rating: 4.8,
+                    reviews: '850 reviews',
+                    tagline: `Premier verified ${subCat.toLowerCase()} service partner across Bangladesh.`,
+                    amenities: ['Verified Partner', '24/7 Helpline', 'High Quality Standards', 'Instant Confirmation'],
+                    routesCount: 24,
+                    fleetCount: 120,
+                    verified: true,
+                    about: `${opName} is a verified premium provider in Bangladesh, providing exceptional service in the ${subCat} category with top-tier safety, comfort, and reliability.`
+                };
+            }
+
+            activeOperatorState.activeOperator = op;
+
+            // 1. Breadcrumbs
+            const parentLink = document.getElementById(`${prefix}-op-profile-parent-cat-link`);
+            if (parentLink) {
+                parentLink.textContent = parentCat;
+                parentLink.onclick = () => backToCategoryDetailView(sectionType);
+            }
+            const subLink = document.getElementById(`${prefix}-op-profile-subcat-link`);
+            if (subLink) {
+                subLink.textContent = subCat;
+                subLink.onclick = () => backToOperatorDetailView(sectionType);
+            }
+            const opBc = document.getElementById(`${prefix}-op-profile-breadcrumb`);
+            if (opBc) opBc.textContent = op.name;
+
+            // 2. Profile Details
+            const heroEl = document.getElementById(`${prefix}-op-profile-hero`);
+            if (heroEl) {
+                heroEl.style.backgroundImage = `url('${op.photo || 'images/operators/bus_greenline.png'}')`;
+            }
+            const avatarEl = document.getElementById(`${prefix}-op-profile-avatar`);
+            if (avatarEl) {
+                avatarEl.src = op.logo || 'images/operators/logo_greenline.png';
+                avatarEl.alt = op.name;
+            }
+            const nameEl = document.getElementById(`${prefix}-op-profile-name`);
+            if (nameEl) nameEl.textContent = op.name;
+
+            const tagEl = document.getElementById(`${prefix}-op-profile-tagline`);
+            if (tagEl) tagEl.textContent = `"${op.tagline || 'Leading the way in premium travel.'}"`;
+
+            const ratingEl = document.getElementById(`${prefix}-op-profile-rating`);
+            if (ratingEl) ratingEl.textContent = (op.rating || 4.8).toFixed(1);
+
+            const reviewsEl = document.getElementById(`${prefix}-op-profile-reviews`);
+            if (reviewsEl) reviewsEl.textContent = `(${op.reviews || '500+ reviews'})`;
+
+            const amenitiesRow = document.getElementById(`${prefix}-op-profile-amenities`);
+            if (amenitiesRow) {
+                const amList = op.amenities && op.amenities.length > 0 ? op.amenities : ['AC Unit', 'High Speed Wi-Fi', 'GPS Tracking', 'Safety Standard'];
+                amenitiesRow.innerHTML = amList.map(a => `
+                    <span class="tp-op-amenity-pill">
+                        <i class="material-icons" style="font-size: 16px; color: #00875a;">check_circle</i>
+                        ${a}
+                    </span>
+                `).join('');
+            }
+
+            const aboutEl = document.getElementById(`${prefix}-op-profile-about`);
+            if (aboutEl) {
+                aboutEl.textContent = op.about || `${op.name} is one of the premier luxury transport providers in Bangladesh, operating first-class coaches and fleet units across all major divisions with punctual departures, certified safety, and supreme comfort.`;
+            }
+
+            const statRoutes = document.getElementById(`${prefix}-op-stat-routes`);
+            if (statRoutes) statRoutes.textContent = `${op.routesCount || 24}+ Routes`;
+
+            const statFleet = document.getElementById(`${prefix}-op-stat-fleet`);
+            if (statFleet) statFleet.textContent = `${op.fleetCount || 150}+ Fleet`;
+
+            const ctaText = document.getElementById(`${prefix}-op-profile-cta-text`);
+            if (ctaText) {
+                if (subCat.toLowerCase() === 'bus') ctaText.textContent = 'View Bus List & Schedule';
+                else if (subCat.toLowerCase() === 'flight') ctaText.textContent = 'View Flight Schedule & Seats';
+                else if (subCat.toLowerCase() === 'train') ctaText.textContent = 'View Train Schedule & Classes';
+                else if (parentCat.toLowerCase().includes('accommodation')) ctaText.textContent = 'View Rooms & Availability';
+                else ctaText.textContent = `View ${subCat} Products & Schedule`;
+            }
+
+            // 3. Toggle Views
+            const opView = document.getElementById(`${prefix}-operator-detail-view`);
+            if (opView) opView.style.display = 'none';
+
+            const prodView = document.getElementById(`${prefix}-operator-products-view`);
+            if (prodView) prodView.style.display = 'none';
+
+            const catDetailView = document.getElementById(`${prefix}-category-detail-view`);
+            if (catDetailView) catDetailView.style.display = 'none';
+
+            const masterTable = document.getElementById(`${prefix}-table-container`);
+            if (masterTable) masterTable.style.display = 'none';
+
+            const profileView = document.getElementById(`${prefix}-operator-profile-view`);
+            if (profileView) profileView.style.display = 'block';
+
+            // 4. Persist to URL & localStorage
+            try {
+                localStorage.setItem(`travelup_admin_active_op_${sectionType}`, op.name);
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCat)}&sub=${encodeURIComponent(subCat)}&op=${encodeURIComponent(op.name)}`);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            const viewSection = document.getElementById(`view-${sectionType}`);
+            if (viewSection) viewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function backToOperatorDetailView(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const profView = document.getElementById(`${prefix}-operator-profile-view`);
+            if (profView) profView.style.display = 'none';
+
+            const prodView = document.getElementById(`${prefix}-operator-products-view`);
+            if (prodView) prodView.style.display = 'none';
+
+            const opView = document.getElementById(`${prefix}-operator-detail-view`);
+            if (opView) opView.style.display = 'block';
+
+            try {
+                localStorage.removeItem(`travelup_admin_active_op_${sectionType}`);
+                const parentCat = activeOperatorState.parentCatName || 'Transit';
+                const subCat = activeOperatorState.subCatName || 'Bus';
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCat)}&sub=${encodeURIComponent(subCat)}`);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            const viewSection = document.getElementById(`view-${sectionType}`);
+            if (viewSection) viewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function handleSelectRoute(from, to, sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const fromInput = document.getElementById(`${prefix}-prod-search-from`);
+            if (fromInput) fromInput.value = from;
+
+            const toInput = document.getElementById(`${prefix}-prod-search-to`);
+            if (toInput) toInput.value = to;
+
+            openOperatorProductsView(sectionType);
+        }
+
+        // ================= 2.7 SCREEN 5: PRODUCTS & BOOKING SCHEDULE CONTROLLER ================= //
+
+        function openOperatorProductsView(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const subCat = activeOperatorState.subCatName || 'Bus';
+            const parentCat = activeOperatorState.parentCatName || 'Transit';
+            let op = activeOperatorState.activeOperator;
+            if (!op) {
+                const rawList = getOperatorsForSubCategory(subCat, parentCat);
+                op = rawList[0] || { name: 'GreenLine Transport', logo: 'images/operators/logo_greenline.png', photo: 'images/operators/bus_greenline.png', rating: 4.8 };
+                activeOperatorState.activeOperator = op;
+            }
+
+            // 1. Breadcrumbs
+            const parentLink = document.getElementById(`${prefix}-prod-parent-cat-link`);
+            if (parentLink) {
+                parentLink.textContent = parentCat;
+                parentLink.onclick = () => backToCategoryDetailView(sectionType);
+            }
+            const subLink = document.getElementById(`${prefix}-prod-subcat-link`);
+            if (subLink) {
+                subLink.textContent = subCat;
+                subLink.onclick = () => backToOperatorDetailView(sectionType);
+            }
+            const opLink = document.getElementById(`${prefix}-prod-operator-link`);
+            if (opLink) {
+                opLink.textContent = op.name;
+                opLink.onclick = () => backToOperatorProfileView(sectionType);
+            }
+            const prodBc = document.getElementById(`${prefix}-prod-breadcrumb`);
+            if (prodBc) {
+                prodBc.textContent = subCat.toLowerCase() === 'bus' ? 'Bus List' : `${subCat} Products`;
+            }
+
+            // 2. Sidebar Information
+            const sideHero = document.getElementById(`${prefix}-prod-sidebar-hero`);
+            if (sideHero) sideHero.src = op.photo || 'images/operators/bus_greenline.png';
+
+            const sideLogo = document.getElementById(`${prefix}-prod-sidebar-logo`);
+            if (sideLogo) sideLogo.src = op.logo || 'images/operators/logo_greenline.png';
+
+            const sideName = document.getElementById(`${prefix}-prod-sidebar-name`);
+            if (sideName) sideName.textContent = op.name;
+
+            const sideRating = document.getElementById(`${prefix}-prod-sidebar-rating`);
+            if (sideRating) sideRating.textContent = (op.rating || 4.8).toFixed(1);
+
+            const sideItemLabel = document.getElementById(`${prefix}-prod-sidebar-item-label`);
+            if (sideItemLabel) {
+                sideItemLabel.textContent = subCat.toLowerCase() === 'bus' ? 'Bus List' : `${subCat} List`;
+            }
+
+            const sideIcon = document.getElementById(`${prefix}-prod-sidebar-icon`);
+            if (sideIcon) {
+                if (subCat.toLowerCase() === 'flight') sideIcon.textContent = 'flight';
+                else if (subCat.toLowerCase() === 'train') sideIcon.textContent = 'train';
+                else if (subCat.toLowerCase() === 'ferry') sideIcon.textContent = 'directions_boat';
+                else if (parentCat.toLowerCase().includes('accommodation')) sideIcon.textContent = 'hotel';
+                else sideIcon.textContent = 'directions_bus';
+            }
+
+            const thName = document.getElementById(`${prefix}-prod-th-name`);
+            if (thName) {
+                if (subCat.toLowerCase() === 'bus') thName.textContent = 'Vehicle / Fleet Coach';
+                else if (parentCat.toLowerCase().includes('accommodation')) thName.textContent = 'Room / Stay Unit';
+                else if (subCat.toLowerCase() === 'flight') thName.textContent = 'Flight Service / Aircraft';
+                else thName.textContent = 'Product / Service Option';
+            }
+
+            // 3. Toggle Views
+            const profileView = document.getElementById(`${prefix}-operator-profile-view`);
+            if (profileView) profileView.style.display = 'none';
+
+            const opView = document.getElementById(`${prefix}-operator-detail-view`);
+            if (opView) opView.style.display = 'none';
+
+            const catDetailView = document.getElementById(`${prefix}-category-detail-view`);
+            if (catDetailView) catDetailView.style.display = 'none';
+
+            const masterTable = document.getElementById(`${prefix}-table-container`);
+            if (masterTable) masterTable.style.display = 'none';
+
+            const prodView = document.getElementById(`${prefix}-operator-products-view`);
+            if (prodView) prodView.style.display = 'block';
+
+            // 4. Render Products
+            renderOperatorProducts(sectionType);
+
+            // 5. Persist to URL
+            try {
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCat)}&sub=${encodeURIComponent(subCat)}&op=${encodeURIComponent(op.name)}&view=products`);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            const viewSection = document.getElementById(`view-${sectionType}`);
+            if (viewSection) viewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function backToOperatorProfileView(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const prodView = document.getElementById(`${prefix}-operator-products-view`);
+            if (prodView) prodView.style.display = 'none';
+
+            const profView = document.getElementById(`${prefix}-operator-profile-view`);
+            if (profView) profView.style.display = 'block';
+
+            try {
+                const parentCat = activeOperatorState.parentCatName || 'Transit';
+                const subCat = activeOperatorState.subCatName || 'Bus';
+                const opName = activeOperatorState.activeOperator ? activeOperatorState.activeOperator.name : '';
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCat)}&sub=${encodeURIComponent(subCat)}&op=${encodeURIComponent(opName)}`);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            const viewSection = document.getElementById(`view-${sectionType}`);
+            if (viewSection) viewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function switchProductFilter(filterType, btn, sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const pillsWrap = document.getElementById(`${prefix}-prod-filter-pills`);
+            if (pillsWrap && btn) {
+                pillsWrap.querySelectorAll('.tp-filter-pill-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+
+            activeOperatorState.activeProductFilter = filterType;
+            renderOperatorProducts(sectionType);
+        }
+
+        function filterOperatorProducts(sectionType = 'travel-planner') {
+            renderOperatorProducts(sectionType);
+        }
+
+        function renderOperatorProducts(sectionType = 'travel-planner') {
+            const isTour = sectionType === 'tour-planner';
+            const prefix = isTour ? 'tour' : 'tp';
+
+            const subCat = activeOperatorState.subCatName || 'Bus';
+            const parentCat = activeOperatorState.parentCatName || 'Transit';
+            const op = activeOperatorState.activeOperator;
+            const opName = op ? op.name : 'GreenLine Transport';
+
+            const allProducts = getProductsForOperator(opName, subCat, parentCat);
+            let list = [...allProducts];
+
+            // Filter pill (All, AC, Non AC, Sleeper, Executive, etc.)
+            const activeFilter = activeOperatorState.activeProductFilter || 'All';
+            if (activeFilter !== 'All') {
+                list = list.filter(p => {
+                    const cat = (p.categoryType || '').toLowerCase();
+                    const spec = (p.specs || '').toLowerCase();
+                    const name = (p.name || '').toLowerCase();
+                    const fLower = activeFilter.toLowerCase();
+                    return cat.includes(fLower) || spec.includes(fLower) || name.includes(fLower);
+                });
+            }
+
+            // Search fields (from & to)
+            const fromInput = document.getElementById(`${prefix}-prod-search-from`);
+            const toInput = document.getElementById(`${prefix}-prod-search-to`);
+            const qFrom = fromInput ? fromInput.value.toLowerCase().trim() : '';
+            const qTo = toInput ? toInput.value.toLowerCase().trim() : '';
+
+            if (qFrom) {
+                list = list.filter(p => (p.from || '').toLowerCase().includes(qFrom));
+            }
+            if (qTo) {
+                list = list.filter(p => (p.to || '').toLowerCase().includes(qTo));
+            }
+
+            // Count text
+            const countEl = document.getElementById(`${prefix}-prod-results-count`);
+            if (countEl) {
+                countEl.textContent = `Showing ${list.length} available options`;
+            }
+
+            const tbody = document.getElementById(`${prefix}-products-tbody`);
+            if (!tbody) return;
+
+            if (list.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: #94a3b8; padding: 3rem 1.5rem; background: #ffffff; border-radius: 14px;">
+                            <i class="material-icons" style="font-size: 38px; display: block; margin-bottom: 0.5rem; opacity: 0.4;">event_busy</i>
+                            No scheduled products or trips found for this search criteria.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = list.map(p => {
+                const escName = (p.name || '').replace(/'/g, "\\'");
+                const thumbImg = p.photo || op?.photo || 'images/operators/bus_greenline.png';
+                const fareFormatted = (p.fare || 0).toLocaleString();
+                return `
+                    <tr class="tp-product-row">
+                        <td>
+                            <div class="tp-product-name-cell">
+                                <img src="${thumbImg}" alt="${escName}" class="tp-product-thumb" onerror="this.src='images/operators/bus_greenline.png'">
+                                <div>
+                                    <div style="font-weight: 800; color: #0f172a; font-size: 0.925rem;">${p.name}</div>
+                                    <div style="font-size: 0.75rem; color: #64748b; margin-top: 2px;">${p.specs || 'Premium Service'}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="font-weight: 800; color: #0f172a; font-size: 0.88rem;">${p.depTime} ➔ ${p.arrTime}</div>
+                            <div style="font-size: 0.75rem; color: #00875a; font-weight: 700; margin-top: 2px;">⏱️ ${p.duration}</div>
+                        </td>
+                        <td>
+                            <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b;">${p.from}</div>
+                            <div style="font-size: 0.725rem; color: #64748b;">➔ ${p.to}</div>
+                        </td>
+                        <td>
+                            <div style="font-size: 1.05rem; font-weight: 800; color: #00875a;">৳ ${fareFormatted}</div>
+                            <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">Per seat/unit</div>
+                        </td>
+                        <td>
+                            <span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; background: #ecfdf5; color: #059669; font-size: 0.75rem; font-weight: 700;">
+                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981;"></span>
+                                ${p.availableSeats}
+                            </span>
+                        </td>
+                        <td style="text-align: center;">
+                            <button type="button" class="tp-btn-book" onclick="handleBookProduct('${escName}', ${p.fare}, '${sectionType}')">
+                                <span>Book</span>
+                                <i class="material-icons" style="font-size: 14px;">arrow_forward</i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function handleBookProduct(productName, fare, sectionType = 'travel-planner') {
+            showToast(`Booking initiated for "${productName}" (৳ ${fare.toLocaleString()}). Redirecting to checkout portal...`, 'success');
         }
 
         // ================= LOCATION MANAGEMENT ENGINE (TRAVEL & TOUR PLANNER) ================= //
