@@ -6114,6 +6114,397 @@
                 width: 100% !important;
             }
         }
+
+        /* ================= ENTERPRISE VEHICLE & SCHEDULE MODAL STYLES ================= */
+        .bus-modal-nav-bar {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0 1.25rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            gap: 6px;
+        }
+
+        .bus-modal-tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1.15rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #64748b;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+
+        .bus-modal-tab-btn i {
+            font-size: 17px;
+        }
+
+        .bus-modal-tab-btn:hover {
+            color: #0f172a;
+        }
+
+        .bus-modal-tab-btn.active {
+            color: #00875a;
+            border-bottom-color: #00875a;
+            background: #ffffff;
+        }
+
+        .bus-modal-tab-content {
+            display: none;
+            animation: fadeIn 0.15s ease-in;
+        }
+
+        .bus-modal-tab-content.active {
+            display: block;
+        }
+
+        .bus-stop-card-box {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .bus-stop-card-box.origin {
+            border-left: 4px solid #00875a;
+        }
+
+        .bus-stop-card-box.dest {
+            border-left: 4px solid #ef4444;
+        }
+
+        .bus-stop-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .bus-stop-badge {
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bus-stop-badge.origin {
+            background: #e6f9f0;
+            color: #00875a;
+        }
+
+        .bus-stop-badge.dest {
+            background: #fee2e2;
+            color: #ef4444;
+        }
+
+        .btn-add-stoppage-pill {
+            background: #e0f2fe;
+            color: #0284c7;
+            border: 1px solid #bae6fd;
+            border-radius: 999px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-add-stoppage-pill:hover {
+            background: #0284c7;
+            color: #ffffff;
+        }
+
+        .bus-stoppage-row-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.85rem;
+            transition: border-color 0.15s ease;
+        }
+
+        .bus-stoppage-row-card:hover {
+            border-color: #cbd5e1;
+        }
+
+        .bus-stoppage-number-pill {
+            background: #f1f5f9;
+            color: #475569;
+            border-radius: 6px;
+            padding: 2px 7px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-remove-stoppage {
+            background: #fee2e2;
+            color: #ef4444;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+        }
+
+        .btn-remove-stoppage:hover {
+            background: #ef4444;
+            color: #ffffff;
+        }
+
+        .btn-calc-fares-pill {
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fde68a;
+            border-radius: 999px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-calc-fares-pill:hover {
+            background: #f59e0b;
+            color: #ffffff;
+        }
+
+        .bus-fare-matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .bus-fare-matrix-table th {
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 700;
+            padding: 0.65rem 0.85rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        .bus-fare-matrix-table td {
+            padding: 0.6rem 0.85rem;
+            border-bottom: 1px solid #f1f5f9;
+            color: #1e293b;
+        }
+
+        .bus-seat-legend-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 0.65rem 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .bus-seat-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .legend-swatch {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .legend-swatch.regular {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+        }
+
+        .legend-swatch.female {
+            background: #fce7f3;
+            border: 1.5px solid #ec4899;
+        }
+
+        .legend-swatch.vip {
+            background: #fef3c7;
+            border: 1.5px solid #f59e0b;
+        }
+
+        .legend-swatch.blocked {
+            background: #475569;
+            border: 1px solid #334155;
+        }
+
+        .bus-seat-canvas-card {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 1.25rem;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .bus-cabin-front {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .cabin-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #64748b;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .bus-seat-grid-render {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bus-seat-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bus-seat-aisle-gap {
+            width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: #cbd5e1;
+        }
+
+        .bus-seat-box {
+            flex: 1;
+            height: 38px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+            position: relative;
+        }
+
+        .bus-seat-box.regular {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #1e293b;
+        }
+
+        .bus-seat-box.regular:hover {
+            background: #e2e8f0;
+            border-color: #94a3b8;
+            transform: translateY(-1px);
+        }
+
+        .bus-seat-box.female {
+            background: #fce7f3;
+            border: 1.5px solid #ec4899;
+            color: #be185d;
+        }
+
+        .bus-seat-box.vip {
+            background: #fef3c7;
+            border: 1.5px solid #f59e0b;
+            color: #b45309;
+        }
+
+        .bus-seat-box.blocked {
+            background: #475569;
+            border: 1.5px solid #334155;
+            color: #ffffff;
+            opacity: 0.6;
+        }
+
+        .btn-modal-nav {
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 0.6rem 1.15rem;
+            font-size: 0.825rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-modal-nav:hover {
+            background: #e2e8f0;
+        }
+
+        @media (max-width: 640px) {
+            #bus-product-crud-modal .modern-modal-card {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                height: 100% !important;
+                max-height: 100vh !important;
+                border-radius: 0 !important;
+            }
+            .bus-modal-nav-bar {
+                padding: 0 0.5rem;
+                gap: 2px;
+            }
+            .bus-modal-tab-btn {
+                padding: 0.6rem 0.65rem;
+                font-size: 0.75rem;
+            }
+            .bus-seat-canvas-card {
+                padding: 0.75rem 0.5rem;
+            }
+            .bus-seat-box {
+                height: 34px;
+                font-size: 0.72rem;
+            }
+            .bus-stoppage-row-card {
+                padding: 0.65rem;
+            }
+        }
 </style>
 </head>
 <body>
@@ -8917,21 +9308,42 @@
     </div>
 
     <!-- Bus Schedule / Product CRUD Modal (Add / Edit Schedule) -->
+        <!-- Enterprise Transit Vehicle & Schedule CRUD Modal (Multi-Tab Master Builder) -->
     <div class="tp-modal-overlay" id="bus-product-crud-modal" onclick="closeBusProductModal(event)">
-        <div class="modern-modal-card" onclick="event.stopPropagation()">
+        <div class="modern-modal-card" onclick="event.stopPropagation()" style="max-width: 960px; width: 95vw; max-height: 94vh;">
             <!-- Header -->
-            <div class="modern-modal-header">
+            <div class="modern-modal-header" style="border-bottom: 1px solid #f1f5f9; padding: 1.15rem 1.5rem;">
                 <div style="display: flex; align-items: center; gap: 14px;">
-                    <div class="modern-modal-badge" style="background: #e6f9f0; color: #00875a;">
-                        <i class="material-icons" id="bus-modal-header-icon">directions_bus</i>
+                    <div class="modern-modal-badge" id="bus-modal-badge-icon-wrap" style="background: #e6f9f0; color: #00875a; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="material-icons" id="bus-modal-header-icon" style="font-size: 24px;">directions_bus</i>
                     </div>
                     <div>
-                        <h3 id="bus-modal-title" style="margin: 0; color: #0f172a; font-size: 1.25rem; font-weight: 800;">Add Bus Schedule</h3>
-                        <p id="bus-modal-subtitle" style="margin: 3px 0 0 0; color: #64748b; font-size: 0.8rem;">Add or update scheduled trip, timing, route & fare</p>
+                        <h3 id="bus-modal-title" style="margin: 0; color: #0f172a; font-size: 1.25rem; font-weight: 800;">Add Bus & Trip Schedule</h3>
+                        <p id="bus-modal-subtitle" style="margin: 3px 0 0 0; color: #64748b; font-size: 0.78rem;">Configure vehicle identity, route waypoints, stage pricing & seat layout</p>
                     </div>
                 </div>
                 <button type="button" class="modern-modal-close-btn" onclick="closeBusProductModal()" title="Close">
                     <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+            </div>
+
+            <!-- Tab Navigation Bar -->
+            <div class="bus-modal-nav-bar">
+                <button type="button" class="bus-modal-tab-btn active" data-tab="identity" onclick="switchBusModalTab('identity')">
+                    <i class="material-icons">directions_bus</i>
+                    <span>1. Vehicle & Identity</span>
+                </button>
+                <button type="button" class="bus-modal-tab-btn" data-tab="route" onclick="switchBusModalTab('route')">
+                    <i class="material-icons">alt_route</i>
+                    <span>2. Route & Stoppages</span>
+                </button>
+                <button type="button" class="bus-modal-tab-btn" data-tab="pricing" onclick="switchBusModalTab('pricing')">
+                    <i class="material-icons">monetization_on</i>
+                    <span>3. Stage-Wise Fares</span>
+                </button>
+                <button type="button" class="bus-modal-tab-btn" data-tab="seats" onclick="switchBusModalTab('seats')">
+                    <i class="material-icons">airline_seat_recline_extra</i>
+                    <span>4. Seat Layout</span>
                 </button>
             </div>
 
@@ -8941,140 +9353,259 @@
                 <input type="hidden" id="bus-modal-section">
                 <input type="hidden" id="bus-modal-photo-data">
 
-                <div class="modern-modal-scrollable">
-                    <div class="modern-modal-body">
-                        <!-- Left Column -->
-                        <div>
-                            <!-- Photo Upload -->
-                            <div style="margin-bottom: 1.25rem;">
-                                <label class="modern-label">Vehicle Photo <span class="req">*</span></label>
-                                <div class="mockup-dropzone" onclick="document.getElementById('bus-modal-photo-file').click()" style="padding: 1rem 0.75rem;">
-                                    <div class="mockup-dropzone-icon-wrap" style="width: 36px; height: 36px;">
-                                        <i class="material-icons" style="font-size: 20px;">directions_bus</i>
-                                        <span class="plus-badge">+</span>
-                                    </div>
-                                    <div style="font-size: 0.78rem; font-weight: 700; color: #1e293b; margin-top: 2px;">Click to upload vehicle photo</div>
-                                    <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 1px;">Landscape view of bus / coach (max 2MB)</div>
-                                    <input type="file" id="bus-modal-photo-file" accept="image/*" style="display: none;" onchange="previewBusProductPhoto(event)">
-                                </div>
-                                <div id="bus-photo-preview-bar" class="mockup-file-preview-bar" style="display: none;">
-                                    <img id="bus-modal-photo-preview" src="images/operators/bus_ena_sleeper_exact.png" alt="Preview">
-                                    <span class="file-name" id="bus-photo-file-name-text">bus.png</span>
-                                    <span class="check-badge"><i class="material-icons" style="font-size: 20px;">check_circle</i></span>
-                                    <button type="button" class="close-btn" onclick="removeBusProductPhoto(event)" title="Remove photo">
-                                        <i class="material-icons" style="font-size: 18px;">close</i>
-                                    </button>
+                <div class="modern-modal-body" style="overflow-y: auto; flex: 1; padding: 1.25rem 1.5rem;">
+                    
+                    <!-- TAB 1: VEHICLE & OPERATOR IDENTITY -->
+                    <div id="bus-tab-identity" class="bus-modal-tab-content active">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 1.15rem;">
+                            <div>
+                                <label class="modern-label">Operator (Company) <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #0284c7;">business</i></div>
+                                    <select id="bus-modal-operator" required class="modern-input-field">
+                                        <!-- Dynamically populated -->
+                                    </select>
                                 </div>
                             </div>
-
-                            <!-- Origin & Destination -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.15rem;">
-                                <div>
-                                    <label class="modern-label">From (Origin) <span class="req">*</span></label>
-                                    <div class="modern-input-group">
-                                        <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #00875a;">trip_origin</i></div>
-                                        <input type="text" id="bus-modal-from" required  class="modern-input-field">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="modern-label">To (Destination) <span class="req">*</span></label>
-                                    <div class="modern-input-group">
-                                        <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #ef4444;">location_on</i></div>
-                                        <input type="text" id="bus-modal-to" required  class="modern-input-field">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Timing: Departure & Arrival -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.15rem;">
-                                <div>
-                                    <label class="modern-label">Departure Time <span class="req">*</span></label>
-                                    <div class="modern-input-group">
-                                        <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">schedule</i></div>
-                                        <input type="text" id="bus-modal-dep" required  class="modern-input-field">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="modern-label">Arrival Time <span class="req">*</span></label>
-                                    <div class="modern-input-group">
-                                        <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">schedule</i></div>
-                                        <input type="text" id="bus-modal-arr" required  class="modern-input-field">
-                                    </div>
+                            <div>
+                                <label class="modern-label">Vehicle / Coach Name <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #00875a;">directions_bus</i></div>
+                                    <input type="text" id="bus-modal-name" required class="modern-input-field" placeholder="e.g. Hyundai Universe Luxury Express">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Right Column -->
-                        <div>
-                            <!-- Bus / Unit Name -->
-                            <div style="margin-bottom: 1.15rem;">
-                                <label class="modern-label">Bus / Vehicle Name <span class="req">*</span></label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 1.15rem;">
+                            <div>
+                                <label class="modern-label">Registration / Coach No. <span class="req">*</span></label>
                                 <div class="modern-input-group">
-                                    <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">directions_bus</i></div>
-                                    <input type="text" id="bus-modal-name" required  class="modern-input-field">
+                                    <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">badge</i></div>
+                                    <input type="text" id="bus-modal-reg-no" required class="modern-input-field" placeholder="e.g. ঢাকা মেট্রো-ব ১৫-৪১২৩">
                                 </div>
                             </div>
-
-                            <!-- Service Type / Class -->
-                            <div style="margin-bottom: 1.15rem;">
-                                <label class="modern-label">Class / Service Tag <span class="req">*</span></label>
+                            <div>
+                                <label class="modern-label">Vehicle / Transit Class <span class="req">*</span></label>
                                 <div class="modern-input-group">
-                                    <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">airline_seat_recline_extra</i></div>
-                                    <input type="text" id="bus-modal-specs" required  class="modern-input-field">
+                                    <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #f59e0b;">stars</i></div>
+                                    <select id="bus-modal-cat-type" required class="modern-input-field" onchange="onBusTypeSelectChange(this)">
+                                        <option value="AC Sleeper Coach">AC Sleeper Coach (লুক্সারি স্লিপার)</option>
+                                        <option value="Executive AC Chair (2+1)">Executive AC Chair 2+1 (বিজনেস ক্লাস)</option>
+                                        <option value="Standard AC Chair (2+2)">Standard AC Chair 2+2 (স্ট্যান্ডার্ড এসি)</option>
+                                        <option value="Non-AC Economy">Non-AC Economy (নন-এসি রেগুলার)</option>
+                                        <option value="Double-Decker VIP Sleeper">Double-Decker VIP Sleeper (ডাবল ডেকার)</option>
+                                        <option value="__custom__">+ Add Custom Transit Type...</option>
+                                    </select>
+                                </div>
+                                <div id="bus-modal-custom-type-wrap" style="display: none; margin-top: 6px;">
+                                    <input type="text" id="bus-modal-custom-type-input" class="modern-input-field" placeholder="Enter custom transit type...">
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Duration & Category Type -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.15rem;">
-                                <div>
-                                    <label class="modern-label">Duration <span class="req">*</span></label>
-                                    <div class="modern-input-group">
-                                        <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #00875a;">timer</i></div>
-                                        <input type="text" id="bus-modal-duration" required  class="modern-input-field">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="modern-label">Category <span class="req">*</span></label>
-                                    <div class="modern-input-group">
-                                        <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">category</i></div>
-                                        <select id="bus-modal-cat-type" class="modern-input-field" style="cursor: pointer;">
-                                            <option value="Sleeper">Sleeper</option>
-                                            <option value="AC">AC</option>
-                                            <option value="Non AC">Non AC</option>
-                                            <option value="Executive">Executive</option>
-                                        </select>
-                                    </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 1.15rem;">
+                            <div>
+                                <label class="modern-label">Full Journey Base Fare (৳ BDT) <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix"><strong style="font-size: 16px; color: #00875a;">৳</strong></div>
+                                    <input type="number" id="bus-modal-fare" required min="50" step="10" class="modern-input-field" placeholder="e.g. 2200" oninput="markRouteChanged()">
                                 </div>
                             </div>
+                            <div>
+                                <label class="modern-label">Total Journey Duration <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">timer</i></div>
+                                    <input type="text" id="bus-modal-duration" required class="modern-input-field" placeholder="e.g. 8h 15m">
+                                </div>
+                            </div>
+                        </div>
 
-                            <!-- Fare & Available Seats -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.15rem;">
-                                <div>
-                                    <label class="modern-label">Fare (BDT) <span class="req">*</span></label>
-                                    <div class="modern-input-group">
-                                        <div class="modern-input-prefix" style="font-weight: 800; color: #00875a;">৳</div>
-                                        <input type="number" id="bus-modal-fare" min="50" step="10" required value="2200" class="modern-input-field">
-                                    </div>
+                        <!-- Vehicle Photo Dropzone -->
+                        <div style="margin-top: 0.5rem;">
+                            <label class="modern-label">Vehicle / Coach Photo</label>
+                            <div class="mockup-dropzone" onclick="document.getElementById('bus-modal-photo-file').click()" style="padding: 1.25rem 1rem; border-radius: 14px;">
+                                <div class="mockup-dropzone-icon-wrap" style="width: 40px; height: 40px;">
+                                    <i class="material-icons" style="font-size: 22px;">photo_camera</i>
+                                    <span class="plus-badge">+</span>
                                 </div>
-                                <div>
-                                    <label class="modern-label">Seats Left <span class="req">*</span></label>
-                                    <div class="modern-input-group">
-                                        <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #00875a;">event_seat</i></div>
-                                        <input type="text" id="bus-modal-seats" required value="14 Seats Left"  class="modern-input-field">
-                                    </div>
-                                </div>
+                                <div style="font-size: 0.825rem; font-weight: 700; color: #1e293b; margin-top: 4px;">Click to upload vehicle photo</div>
+                                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Exterior portrait or road view (JPG/PNG, max 2MB)</div>
+                                <input type="file" id="bus-modal-photo-file" accept="image/*" style="display: none;" onchange="previewBusProductPhoto(event)">
+                            </div>
+                            <div id="bus-photo-preview-bar" class="mockup-file-preview-bar" style="display: none; margin-top: 8px;">
+                                <img id="bus-modal-photo-preview" src="images/operators/bus_ena_sleeper_exact.png" alt="Preview">
+                                <span class="file-name" id="bus-photo-file-name-text">bus.png</span>
+                                <span class="check-badge"><i class="material-icons" style="font-size: 20px;">check_circle</i></span>
+                                <button type="button" class="close-btn" onclick="removeBusProductPhoto(event)" title="Remove photo">
+                                    <i class="material-icons" style="font-size: 18px;">close</i>
+                                </button>
                             </div>
                         </div>
                     </div>
+
+                    <!-- TAB 2: ROUTE, TIMINGS & STOPPAGES -->
+                    <div id="bus-tab-route" class="bus-modal-tab-content">
+                        <!-- Origin & Destination Cards -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; margin-bottom: 1.5rem;">
+                            
+                            <!-- Origin Card -->
+                            <div class="bus-stop-card-box origin">
+                                <div class="bus-stop-card-header">
+                                    <span class="bus-stop-badge origin"><i class="material-icons" style="font-size: 14px;">trip_origin</i> Starting Stop (Origin)</span>
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <label class="modern-label" style="font-size: 0.75rem;">Origin Upazila (উপজেলা) <span class="req">*</span></label>
+                                    <select id="bus-modal-origin-upazila" class="modern-input-field bus-upazila-select" onchange="onOriginUpazilaChange(this)">
+                                        <!-- Loaded dynamically with 495 Upazilas -->
+                                    </select>
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <label class="modern-label" style="font-size: 0.75rem;">Terminal / Stand Name <span class="req">*</span></label>
+                                    <input type="text" id="bus-modal-from" required class="modern-input-field" placeholder="e.g. Arambagh Counter / Gabtoli" oninput="markRouteChanged()">
+                                </div>
+                                <div>
+                                    <label class="modern-label" style="font-size: 0.75rem;">Departure Time <span class="req">*</span></label>
+                                    <input type="text" id="bus-modal-dep" required class="modern-input-field" placeholder="e.g. 10:30 PM">
+                                </div>
+                            </div>
+
+                            <!-- Destination Card -->
+                            <div class="bus-stop-card-box dest">
+                                <div class="bus-stop-card-header">
+                                    <span class="bus-stop-badge dest"><i class="material-icons" style="font-size: 14px;">flag</i> Ending Stop (Destination)</span>
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <label class="modern-label" style="font-size: 0.75rem;">Destination Upazila (উপজেলা) <span class="req">*</span></label>
+                                    <select id="bus-modal-dest-upazila" class="modern-input-field bus-upazila-select" onchange="onDestUpazilaChange(this)">
+                                        <!-- Loaded dynamically with 495 Upazilas -->
+                                    </select>
+                                </div>
+                                <div style="margin-bottom: 8px;">
+                                    <label class="modern-label" style="font-size: 0.75rem;">Terminal / Stand Name <span class="req">*</span></label>
+                                    <input type="text" id="bus-modal-to" required class="modern-input-field" placeholder="e.g. Kolatoli Beach Counter" oninput="markRouteChanged()">
+                                </div>
+                                <div>
+                                    <label class="modern-label" style="font-size: 0.75rem;">Arrival Time <span class="req">*</span></label>
+                                    <input type="text" id="bus-modal-arr" required class="modern-input-field" placeholder="e.g. 06:45 AM">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Intermediate Stoppages Section -->
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.15rem;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 8px;">
+                                <div>
+                                    <h4 style="margin: 0; font-size: 0.95rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 6px;">
+                                        <i class="material-icons" style="font-size: 18px; color: #0284c7;">alt_route</i>
+                                        <span>Intermediate Route Stoppages</span>
+                                    </h4>
+                                    <p style="margin: 2px 0 0 0; font-size: 0.72rem; color: #64748b;">Add transit stops, meal breaks, and passenger boarding/dropping points along highway</p>
+                                </div>
+                                <button type="button" class="btn-add-stoppage-pill" onclick="addStoppageRow()">
+                                    <i class="material-icons" style="font-size: 16px;">add_circle</i>
+                                    <span>+ Add Stoppage</span>
+                                </button>
+                            </div>
+
+                            <div id="bus-modal-stoppages-list" style="display: flex; flex-direction: column; gap: 10px;">
+                                <!-- Dynamic stoppage rows -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: STAGE-WISE PRICING MATRIX -->
+                    <div id="bus-tab-pricing" class="bus-modal-tab-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px;">
+                            <div>
+                                <h4 style="margin: 0; font-size: 0.95rem; font-weight: 800; color: #0f172a;">Origin-Destination Stage Pricing (OD Matrix)</h4>
+                                <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: #64748b;">Define fares for passengers traveling between intermediate route points</p>
+                            </div>
+                            <button type="button" class="btn-calc-fares-pill" onclick="autoCalculateStageFares()">
+                                <i class="material-icons" style="font-size: 16px;">bolt</i>
+                                <span>⚡ Auto-Calculate Proportional Fares</span>
+                            </button>
+                        </div>
+
+                        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+                            <div style="width: 100%; overflow-x: auto;">
+                                <table class="bus-fare-matrix-table" id="bus-stage-fares-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 45px; text-align: center;">#</th>
+                                            <th>From (Boarding Point)</th>
+                                            <th>To (Dropping Point)</th>
+                                            <th style="width: 140px;">Stage Type</th>
+                                            <th style="width: 160px;">Fare (৳ BDT)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bus-stage-fares-tbody">
+                                        <!-- Dynamically generated rows based on stops -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: VISUAL SEAT PLAN & LAYOUT -->
+                    <div id="bus-tab-seats" class="bus-modal-tab-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px;">
+                            <div>
+                                <h4 style="margin: 0; font-size: 0.95rem; font-weight: 800; color: #0f172a;">Interactive Seat Layout Builder</h4>
+                                <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: #64748b;">Select layout preset and click seats to toggle female reservations or VIP pricing</p>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <select id="bus-seat-preset-select" class="modern-input-field" style="padding: 0.4rem 0.75rem; font-size: 0.8rem; width: auto;" onchange="changeBusSeatLayoutPreset(this.value)">
+                                    <option value="2x2-40">2+2 Standard Coach (40 Seats)</option>
+                                    <option value="2x1-30">2+1 VIP Luxury (30 Seats)</option>
+                                    <option value="3x2-50">3+2 Semi-Chair Coach (50 Seats)</option>
+                                    <option value="sleeper-32">1+1 Double-Deck Sleeper (32 Berths)</option>
+                                </select>
+                                <div id="bus-deck-toggle-wrap" style="display: none;" class="dash-filter-pill-group">
+                                    <button type="button" class="dash-pill-btn active" id="btn-deck-lower" onclick="switchSeatDeck('lower', this)">Lower Deck</button>
+                                    <button type="button" class="dash-pill-btn" id="btn-deck-upper" onclick="switchSeatDeck('upper', this)">Upper Deck</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Seat Legend -->
+                        <div class="bus-seat-legend-bar">
+                            <span class="bus-seat-legend-item"><span class="legend-swatch regular"></span> Available</span>
+                            <span class="bus-seat-legend-item"><span class="legend-swatch female"></span> Female Only (মহিলা সংরক্ষিত)</span>
+                            <span class="bus-seat-legend-item"><span class="legend-swatch vip"></span> VIP / Front Row (+৳ 100)</span>
+                            <span class="bus-seat-legend-item"><span class="legend-swatch blocked"></span> Blocked / Crew</span>
+                            <span style="margin-left: auto; font-weight: 800; color: #0f172a; font-size: 0.8rem;" id="bus-seat-total-count-badge">Total: 40 Seats</span>
+                        </div>
+
+                        <!-- Visual Seat Grid Canvas -->
+                        <div class="bus-seat-canvas-card">
+                            <div class="bus-cabin-front">
+                                <span class="cabin-label"><i class="material-icons" style="font-size: 16px;">airline_seat_recline_normal</i> Driver Cabin</span>
+                                <span class="cabin-label"><i class="material-icons" style="font-size: 16px;">meeting_room</i> Passenger Door</span>
+                            </div>
+
+                            <div id="bus-seat-grid-container" class="bus-seat-grid-render">
+                                <!-- Interactive Seat Buttons rendered here -->
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- Footer -->
-                <div class="modern-modal-footer">
+                <div class="modern-modal-footer" style="border-top: 1px solid #f1f5f9; padding: 0.85rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: #fafbfc;">
                     <button type="button" class="btn-modal-cancel" onclick="closeBusProductModal()">Cancel</button>
-                    <button type="submit" class="btn-modal-submit">
-                        <i class="material-icons" style="font-size: 18px;">save</i>
-                        <span>Save Schedule</span>
-                    </button>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" id="btn-bus-modal-prev" class="btn-modal-nav" onclick="navBusModalTab(-1)" style="display: none;">
+                            <i class="material-icons" style="font-size: 16px;">arrow_back</i> Back
+                        </button>
+                        <button type="button" id="btn-bus-modal-next" class="btn-modal-nav" onclick="navBusModalTab(1)">
+                            Next <i class="material-icons" style="font-size: 16px;">arrow_forward</i>
+                        </button>
+                        <button type="submit" class="btn-modal-submit" style="background: #00875a; color: #ffffff; padding: 0.6rem 1.4rem; font-weight: 700; border-radius: 10px; display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="material-icons" style="font-size: 18px;">save</i>
+                            <span>Save Vehicle & Schedule</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -13568,7 +14099,7 @@
 
             const thName = document.getElementById(`${prefix}-prod-th-name`);
             if (thName) {
-                thName.textContent = `${unitLabel} Name`;
+                thName.textContent = `${unitLabel} Name & Details`;
             }
 
             const allProducts = getProductsForOperator(opName, subCat, parentCat);
@@ -13582,7 +14113,8 @@
                     (p.name || '').toLowerCase().includes(q) ||
                     (p.from || '').toLowerCase().includes(q) ||
                     (p.to || '').toLowerCase().includes(q) ||
-                    (p.specs || '').toLowerCase().includes(q)
+                    (p.specs || '').toLowerCase().includes(q) ||
+                    (p.regNo || '').toLowerCase().includes(q)
                 );
             }
 
@@ -13624,41 +14156,68 @@
                 const thumbImg = p.photo || fallbackThumb;
                 const fareFormatted = (p.fare || 0).toLocaleString();
                 const specsTag = p.specs || 'AC Sleeper';
+                const regBadge = p.regNo ? `<span style="display: inline-block; margin-top: 3px; font-size: 0.7rem; color: #64748b; font-weight: 600;"><i class="material-icons" style="font-size: 11px; vertical-align: middle;">badge</i> ${p.regNo}</span>` : '';
+
+                // Stoppages Badge
+                const stopCount = (Array.isArray(p.stoppages) ? p.stoppages.length : 0);
+                const stopBadge = stopCount > 0 
+                    ? `<div style="margin-top: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; padding: 2px 7px; border-radius: 6px; background: #eff6ff; color: #0284c7; font-weight: 700;">
+                         <i class="material-icons" style="font-size: 13px;">place</i> ${stopCount} Stop${stopCount > 1 ? 's' : ''}
+                       </div>` 
+                    : '';
+
+                // Stage Fares Badge
+                const stageCount = (Array.isArray(p.stageFares) ? p.stageFares.length : 0);
+                const stageBadge = stageCount > 0 
+                    ? `<div style="font-size: 0.7rem; color: #0284c7; font-weight: 700; margin-top: 2px;">
+                         💰 ${stageCount} Stage Fares
+                       </div>` 
+                    : '';
+
+                // Seat Plan Badge
+                const seatInfo = p.seatPlan || {};
+                const seatCountText = p.availableSeats || (seatInfo.availableSeats ? `${seatInfo.availableSeats} Seats Left` : 'Available');
+                const seatExtras = (seatInfo.femaleSeats ? ` • 💖 ${seatInfo.femaleSeats}` : '') + (seatInfo.vipSeats ? ` • ⭐ ${seatInfo.vipSeats}` : '');
+
                 return `
-                    <tr class="tp-bus-row">
-                        <td style="text-align: center; font-weight: 700; color: #94a3b8; font-size: 0.85rem;">${idx + 1}</td>
+                    <tr class="tp-bus-row" style="cursor: pointer;" onclick="openEditBusProductModal('${escId}', '${sectionType}')">
+                        <td style="text-align: center; font-weight: 700; color: #94a3b8; font-size: 0.85rem;" onclick="event.stopPropagation()">${idx + 1}</td>
                         <td>
                             <div style="display: flex; align-items: center; gap: 12px;">
-                                <img src="${thumbImg}" alt="${escName}" style="width: 64px; height: 42px; border-radius: 8px; object-fit: cover; border: 1px solid #e2e8f0;" onerror="this.src='images/operators/bus_ena_sleeper_exact.png'">
+                                <img src="${thumbImg}" alt="${escName}" style="width: 64px; height: 42px; border-radius: 8px; object-fit: cover; border: 1px solid #e2e8f0; flex-shrink: 0;" onerror="this.src='images/operators/bus_ena_sleeper_exact.png'">
                                 <div>
                                     <div style="font-weight: 800; color: #0f172a; font-size: 0.865rem; line-height: 1.3;">${p.name}</div>
-                                    <span style="display: inline-block; margin-top: 4px; padding: 2px 8px; border-radius: 6px; background: #e0f2fe; color: #0284c7; font-size: 0.72rem; font-weight: 700;">
-                                        ${specsTag}
-                                    </span>
+                                    <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 3px;">
+                                        <span style="display: inline-block; padding: 2px 8px; border-radius: 6px; background: #e0f2fe; color: #0284c7; font-size: 0.72rem; font-weight: 700;">
+                                            ${specsTag}
+                                        </span>
+                                        ${regBadge}
+                                    </div>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <div style="font-weight: 800; color: #0f172a; font-size: 0.865rem;">${p.depTime} ➔ ${p.arrTime}</div>
+                            <div style="font-weight: 800; color: #0f172a; font-size: 0.865rem;">${p.depTime || '10:30 PM'} ➔ ${p.arrTime || '06:45 AM'}</div>
                             <div style="font-size: 0.75rem; color: #00875a; font-weight: 700; margin-top: 3px; display: inline-flex; align-items: center; gap: 4px;">
-                                <i class="material-icons" style="font-size: 14px;">schedule</i> ${p.duration}
+                                <i class="material-icons" style="font-size: 14px;">schedule</i> ${p.duration || '8h 15m'}
                             </div>
                         </td>
                         <td>
-                            <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">${p.from}</div>
-                            <div style="font-size: 0.75rem; color: #64748b; margin-top: 2px;">➔ ${p.to}</div>
+                            <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">${p.from || 'Dhaka'}</div>
+                            <div style="font-size: 0.75rem; color: #64748b; margin-top: 2px;">➔ ${p.to || 'Cox\'s Bazar'}</div>
+                            ${stopBadge}
                         </td>
                         <td>
                             <div style="font-size: 1.05rem; font-weight: 800; color: #00875a;">৳ ${fareFormatted}</div>
-                            
+                            ${stageBadge}
                         </td>
                         <td>
                             <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: #e6f9f0; color: #00875a; font-size: 0.75rem; font-weight: 700;">
                                 <span style="width: 6px; height: 6px; border-radius: 50%; background: #00875a;"></span>
-                                ${p.availableSeats}
+                                <span>${seatCountText}${seatExtras}</span>
                             </span>
                         </td>
-                        <td style="text-align: center;">
+                        <td style="text-align: center;" onclick="event.stopPropagation()">
                             <div style="display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
                                 <button type="button" class="tp-prod-action-btn edit" title="Edit Schedule" onclick="event.stopPropagation(); openEditBusProductModal('${escId}', '${sectionType}')">
                                     <i class="material-icons" style="font-size: 18px; color: #00875a;">edit</i>
@@ -13673,51 +14232,630 @@
             }).join('');
         }
 
-        /* ================= BUS / PRODUCT CRUD MODAL CONTROLLER ================= */
-        function openAddBusProductModal(sectionType = 'travel-planner') {
+        /* ================= ENTERPRISE BUS & MULTI-MODAL PRODUCT CRUD CONTROLLER ================= */
+
+        const BUS_MODAL_TABS = ['identity', 'route', 'pricing', 'seats'];
+        let activeBusTab = 'identity';
+        let upazilasCache = null;
+        let routeChangedFlag = false;
+
+        let busSeatState = {
+            preset: '2x2-40',
+            deck: 'lower',
+            seatMap: {}
+        };
+
+        // Fallback upazilas list if API is unreachable
+        const FALLBACK_UPAZILAS = [
+            { name_en: 'Dhaka North', district_name_en: 'Dhaka', division_name_en: 'Dhaka' },
+            { name_en: 'Dhaka South', district_name_en: 'Dhaka', division_name_en: 'Dhaka' },
+            { name_en: 'Motijheel', district_name_en: 'Dhaka', division_name_en: 'Dhaka' },
+            { name_en: 'Mirpur', district_name_en: 'Dhaka', division_name_en: 'Dhaka' },
+            { name_en: 'Gabtoli', district_name_en: 'Dhaka', division_name_en: 'Dhaka' },
+            { name_en: 'Chattogram Sadar', district_name_en: 'Chattogram', division_name_en: 'Chattogram' },
+            { name_en: 'Cox\'s Bazar Sadar', district_name_en: 'Cox\'s Bazar', division_name_en: 'Chattogram' },
+            { name_en: 'Teknaf', district_name_en: 'Cox\'s Bazar', division_name_en: 'Chattogram' },
+            { name_en: 'Cumilla Adarsha Sadar', district_name_en: 'Cumilla', division_name_en: 'Chattogram' },
+            { name_en: 'Feni Sadar', district_name_en: 'Feni', division_name_en: 'Chattogram' },
+            { name_en: 'Sylhet Sadar', district_name_en: 'Sylhet', division_name_en: 'Sylhet' },
+            { name_en: 'Bogura Sadar', district_name_en: 'Bogura', division_name_en: 'Rajshahi' },
+            { name_en: 'Rangpur Sadar', district_name_en: 'Rangpur', division_name_en: 'Rangpur' },
+            { name_en: 'Dinajpur Sadar', district_name_en: 'Dinajpur', division_name_en: 'Rangpur' },
+            { name_en: 'Rajshahi Sadar', district_name_en: 'Rajshahi', division_name_en: 'Rajshahi' },
+            { name_en: 'Khulna Sadar', district_name_en: 'Khulna', division_name_en: 'Khulna' },
+            { name_en: 'Barishal Sadar', district_name_en: 'Barishal', division_name_en: 'Barishal' }
+        ];
+
+        async function loadUpazilasCache() {
+            if (upazilasCache && upazilasCache.length > 0) return upazilasCache;
+            try {
+                const res = await fetch('/api/tour-planner/locations/upazilas');
+                const data = await res.json();
+                if (data && data.success && Array.isArray(data.upazilas) && data.upazilas.length > 0) {
+                    upazilasCache = data.upazilas.sort((a, b) => (a.name_en || '').localeCompare(b.name_en || ''));
+                    return upazilasCache;
+                }
+            } catch (err) {
+                console.warn('API upazilas load error, falling back:', err);
+            }
+            upazilasCache = FALLBACK_UPAZILAS;
+            return upazilasCache;
+        }
+
+        function populateUpazilaSelect(selectEl, selectedValue = '') {
+            if (!selectEl) return;
+            const upazilas = upazilasCache || FALLBACK_UPAZILAS;
+            let html = '<option value="">-- Select Upazila (উপজেলা) --</option>';
+            upazilas.forEach(u => {
+                const name = u.name_en || u.name || '';
+                const dist = u.district_name_en || u.district || '';
+                const label = dist ? `${name} (${dist})` : name;
+                const isSel = (selectedValue && (selectedValue.toLowerCase() === name.toLowerCase() || selectedValue.toLowerCase() === label.toLowerCase())) ? 'selected' : '';
+                html += `<option value="${name}" ${isSel}>${label}</option>`;
+            });
+            selectEl.innerHTML = html;
+        }
+
+        function populateBusOperatorDropdown(selectedOp = '') {
+            const sel = document.getElementById('bus-modal-operator');
+            if (!sel) return;
+            const opMap = getStoredOperatorsMap();
+            const subCat = activeOperatorState.subCatName || 'Bus';
+            let ops = opMap[subCat] || [];
+            if (ops.length === 0) {
+                Object.values(opMap).forEach(arr => {
+                    if (Array.isArray(arr)) {
+                        arr.forEach(item => {
+                            if (!ops.find(o => o.name === item.name)) ops.push(item);
+                        });
+                    }
+                });
+            }
+            if (ops.length === 0) {
+                ops = [{ name: 'Ena Transport' }, { name: 'Hanif Enterprise' }, { name: 'Green Line Paribahan' }, { name: 'Shyamoli NR Travels' }];
+            }
+            const currentOpName = selectedOp || (activeOperatorState.activeOperator ? activeOperatorState.activeOperator.name : ops[0]?.name || 'Ena Transport');
+            sel.innerHTML = ops.map(o => {
+                const isSel = (o.name.toLowerCase() === currentOpName.toLowerCase()) ? 'selected' : '';
+                return `<option value="${o.name}" ${isSel}>${o.name}</option>`;
+            }).join('');
+        }
+
+        function switchBusModalTab(tabId) {
+            activeBusTab = tabId;
+            document.querySelectorAll('.bus-modal-tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
+            });
+            document.querySelectorAll('.bus-modal-tab-content').forEach(content => {
+                content.classList.toggle('active', content.id === `bus-tab-${tabId}`);
+            });
+            
+            const prevBtn = document.getElementById('btn-bus-modal-prev');
+            const nextBtn = document.getElementById('btn-bus-modal-next');
+            const currentIdx = BUS_MODAL_TABS.indexOf(tabId);
+            if (prevBtn) prevBtn.style.display = currentIdx > 0 ? 'inline-flex' : 'none';
+            if (nextBtn) nextBtn.style.display = currentIdx < BUS_MODAL_TABS.length - 1 ? 'inline-flex' : 'none';
+
+            if (tabId === 'pricing' && routeChangedFlag) {
+                generateStageFareTable();
+                routeChangedFlag = false;
+            } else if (tabId === 'seats') {
+                renderBusSeatMap();
+            }
+        }
+
+        function navBusModalTab(delta) {
+            const currentIdx = BUS_MODAL_TABS.indexOf(activeBusTab);
+            const newIdx = currentIdx + delta;
+            if (newIdx >= 0 && newIdx < BUS_MODAL_TABS.length) {
+                switchBusModalTab(BUS_MODAL_TABS[newIdx]);
+            }
+        }
+
+        function onBusTypeSelectChange(sel) {
+            const customWrap = document.getElementById('bus-modal-custom-type-wrap');
+            if (!customWrap) return;
+            if (sel.value === '__custom__') {
+                customWrap.style.display = 'block';
+                document.getElementById('bus-modal-custom-type-input')?.focus();
+            } else {
+                customWrap.style.display = 'none';
+            }
+        }
+
+        function markRouteChanged() {
+            routeChangedFlag = true;
+        }
+
+        function onOriginUpazilaChange(sel) {
+            const fromInput = document.getElementById('bus-modal-from');
+            if (fromInput && (!fromInput.value || fromInput.value.includes('Terminal') || fromInput.value.includes('Stand') || fromInput.value.includes('Counter'))) {
+                fromInput.value = sel.value ? `${sel.value} Central Counter` : '';
+            }
+            markRouteChanged();
+        }
+
+        function onDestUpazilaChange(sel) {
+            const toInput = document.getElementById('bus-modal-to');
+            if (toInput && (!toInput.value || toInput.value.includes('Terminal') || toInput.value.includes('Stand') || toInput.value.includes('Counter'))) {
+                toInput.value = sel.value ? `${sel.value} Main Stand` : '';
+            }
+            markRouteChanged();
+        }
+
+        function onStoppageUpazilaChange(sel) {
+            const row = sel.closest('.bus-stoppage-row-card');
+            if (row) {
+                const nameInput = row.querySelector('.stop-name');
+                if (nameInput && (!nameInput.value || nameInput.value.includes('Highway') || nameInput.value.includes('Counter'))) {
+                    nameInput.value = sel.value ? `${sel.value} Highway Counter` : '';
+                }
+            }
+            markRouteChanged();
+        }
+
+        function updateStoppageOrderLabels() {
+            const rows = document.querySelectorAll('#bus-modal-stoppages-list .bus-stoppage-row-card');
+            rows.forEach((r, idx) => {
+                const lbl = r.querySelector('.stoppage-order-label');
+                if (lbl) lbl.textContent = `Intermediate Stop #${idx + 1}`;
+            });
+        }
+
+        function addStoppageRow(data = {}) {
+            const container = document.getElementById('bus-modal-stoppages-list');
+            if (!container) return;
+            const stopId = 'stop-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+            const row = document.createElement('div');
+            row.className = 'bus-stoppage-row-card';
+            row.id = stopId;
+            row.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="bus-stoppage-number-pill"><i class="material-icons" style="font-size: 14px;">place</i> Stop Point</span>
+                        <span style="font-size: 0.75rem; color: #64748b; font-weight: 600;" class="stoppage-order-label"></span>
+                    </div>
+                    <button type="button" class="btn-remove-stoppage" onclick="removeStoppageRow('${stopId}')" title="Remove stoppage">
+                        <i class="material-icons" style="font-size: 16px;">delete_outline</i>
+                    </button>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
+                    <div>
+                        <label class="modern-label" style="font-size: 0.72rem;">Stop Upazila <span class="req">*</span></label>
+                        <select class="modern-input-field bus-upazila-select stop-upazila" onchange="onStoppageUpazilaChange(this)">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="modern-label" style="font-size: 0.72rem;">Terminal / Stand Name <span class="req">*</span></label>
+                        <input type="text" class="modern-input-field stop-name" value="${data.name || ''}" placeholder="e.g. Paduar Bazar Rest Stop" oninput="markRouteChanged()">
+                    </div>
+                    <div>
+                        <label class="modern-label" style="font-size: 0.72rem;">Arrival Time</label>
+                        <input type="text" class="modern-input-field stop-arr" value="${data.arrTime || ''}" placeholder="e.g. 01:15 AM">
+                    </div>
+                    <div>
+                        <label class="modern-label" style="font-size: 0.72rem;">Departure Time</label>
+                        <input type="text" class="modern-input-field stop-dep" value="${data.depTime || ''}" placeholder="e.g. 01:30 AM">
+                    </div>
+                    <div>
+                        <label class="modern-label" style="font-size: 0.72rem;">Halt Duration</label>
+                        <input type="text" class="modern-input-field stop-halt" value="${data.halt || '15 Mins'}" placeholder="e.g. 15 Mins">
+                    </div>
+                    <div>
+                        <label class="modern-label" style="font-size: 0.72rem;">Stop Type</label>
+                        <select class="modern-input-field stop-type" onchange="markRouteChanged()">
+                            <option value="Both (Boarding & Dropping)" ${(data.stopType === 'Both (Boarding & Dropping)' || !data.stopType) ? 'selected' : ''}>Both (Boarding & Dropping)</option>
+                            <option value="Boarding Only" ${data.stopType === 'Boarding Only' ? 'selected' : ''}>Boarding Only</option>
+                            <option value="Dropping Only" ${data.stopType === 'Dropping Only' ? 'selected' : ''}>Dropping Only</option>
+                            <option value="Highway Meal / Rest Break" ${data.stopType === 'Highway Meal / Rest Break' ? 'selected' : ''}>Highway Meal / Rest Break</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            container.appendChild(row);
+            const upazilaSel = row.querySelector('.stop-upazila');
+            populateUpazilaSelect(upazilaSel, data.upazila || '');
+            updateStoppageOrderLabels();
+            markRouteChanged();
+        }
+
+        function removeStoppageRow(rowId) {
+            const el = document.getElementById(rowId);
+            if (el) {
+                el.remove();
+                updateStoppageOrderLabels();
+                markRouteChanged();
+            }
+        }
+
+        function generateStageFareTable(existingFares = null) {
+            const tbody = document.getElementById('bus-stage-fares-tbody');
+            if (!tbody) return;
+
+            // Collect all points along route
+            const points = [];
+            const originName = document.getElementById('bus-modal-from')?.value.trim() || document.getElementById('bus-modal-origin-upazila')?.value || 'Origin';
+            points.push({ name: originName, type: 'origin', stopType: 'Boarding Only' });
+
+            const stopRows = document.querySelectorAll('#bus-modal-stoppages-list .bus-stoppage-row-card');
+            stopRows.forEach(r => {
+                const name = r.querySelector('.stop-name')?.value.trim() || r.querySelector('.stop-upazila')?.value.trim();
+                const stopType = r.querySelector('.stop-type')?.value || 'Both (Boarding & Dropping)';
+                if (name) {
+                    points.push({ name, type: 'stop', stopType });
+                }
+            });
+
+            const destName = document.getElementById('bus-modal-to')?.value.trim() || document.getElementById('bus-modal-dest-upazila')?.value || 'Destination';
+            points.push({ name: destName, type: 'destination', stopType: 'Dropping Only' });
+
+            const baseFare = parseFloat(document.getElementById('bus-modal-fare')?.value) || 1200;
+            const totalSegments = Math.max(1, points.length - 1);
+
+            // Existing fares map for quick lookup
+            const fareMap = {};
+            if (Array.isArray(existingFares)) {
+                existingFares.forEach(f => {
+                    fareMap[`${f.from}___---___${f.to}`] = f.fare;
+                });
+            } else {
+                // Read from DOM if already present
+                document.querySelectorAll('#bus-stage-fares-tbody .stage-fare-input').forEach(inp => {
+                    const k = inp.getAttribute('data-key');
+                    if (k) fareMap[k] = parseFloat(inp.value);
+                });
+            }
+
+            let pairIndex = 1;
+            let rowsHtml = '';
+
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    const fromPt = points[i];
+                    const toPt = points[j];
+
+                    // Check stopType validity
+                    if (fromPt.stopType === 'Dropping Only' && i !== 0) continue;
+                    if (toPt.stopType === 'Boarding Only' && j !== points.length - 1) continue;
+
+                    const key = `${fromPt.name}___---___${toPt.name}`;
+                    const segSpan = j - i;
+                    let stageFare = fareMap[key];
+                    if (stageFare === undefined || isNaN(stageFare)) {
+                        // Proportional calculation
+                        stageFare = Math.round((baseFare * (segSpan / totalSegments)) / 10) * 10;
+                    }
+
+                    const isFullJourney = (i === 0 && j === points.length - 1);
+                    const stageTypeLabel = isFullJourney ? 'Full Route (Direct)' : (segSpan === 1 ? 'Intermediate Leg' : `${segSpan}-Hop Express`);
+                    const typeBadgeClass = isFullJourney ? 'background: #e6f9f0; color: #00875a;' : 'background: #f1f5f9; color: #475569;';
+
+                    rowsHtml += `
+                        <tr>
+                            <td style="text-align: center; font-weight: 700; color: #94a3b8;">${pairIndex++}</td>
+                            <td>
+                                <strong style="color: #0f172a;">${fromPt.name}</strong>
+                            </td>
+                            <td>
+                                <strong style="color: #0f172a;">${toPt.name}</strong>
+                            </td>
+                            <td>
+                                <span style="display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; ${typeBadgeClass}">
+                                    ${stageTypeLabel}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="modern-input-group" style="margin: 0; max-width: 150px;">
+                                    <div class="modern-input-prefix" style="padding: 0 8px; font-size: 0.75rem;"><strong style="color: #00875a;">৳</strong></div>
+                                    <input type="number" min="0" step="10" class="modern-input-field stage-fare-input" 
+                                           style="padding: 0.35rem 0.5rem; font-size: 0.8rem; font-weight: 700;"
+                                           data-key="${key}"
+                                           data-from="${fromPt.name}"
+                                           data-to="${toPt.name}"
+                                           data-type="${stageTypeLabel}"
+                                           data-segments="${segSpan}"
+                                           data-total-segments="${totalSegments}"
+                                           value="${stageFare}">
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+
+            if (rowsHtml === '') {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 1.5rem;">Configure route origin and destination to generate stage fare matrix.</td></tr>';
+            } else {
+                tbody.innerHTML = rowsHtml;
+            }
+        }
+
+        function autoCalculateStageFares() {
+            const baseFare = parseFloat(document.getElementById('bus-modal-fare')?.value) || 1200;
+            const inputs = document.querySelectorAll('#bus-stage-fares-tbody .stage-fare-input');
+            if (inputs.length === 0) {
+                generateStageFareTable();
+                return;
+            }
+            inputs.forEach(inp => {
+                const segCount = parseInt(inp.getAttribute('data-segments') || '1', 10);
+                const maxSeg = parseInt(inp.getAttribute('data-total-segments') || '1', 10);
+                const fare = Math.round((baseFare * (segCount / maxSeg)) / 10) * 10;
+                inp.value = fare;
+            });
+            showToast('Stage fares auto-calculated proportionally!', 'success');
+        }
+
+        // ================= INTERACTIVE SEAT PLAN BUILDER ================= //
+
+        function changeBusSeatLayoutPreset(preset) {
+            busSeatState.preset = preset;
+            const deckWrap = document.getElementById('bus-deck-toggle-wrap');
+            if (deckWrap) {
+                deckWrap.style.display = preset === 'sleeper-32' ? 'inline-flex' : 'none';
+            }
+            renderBusSeatMap();
+        }
+
+        function switchSeatDeck(deck, btn) {
+            busSeatState.deck = deck;
+            document.querySelectorAll('#bus-deck-toggle-wrap .dash-pill-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            renderBusSeatMap();
+        }
+
+        function toggleSeatProperty(seatId) {
+            const current = busSeatState.seatMap[seatId] || 'regular';
+            let next = 'regular';
+            if (current === 'regular') next = 'female';
+            else if (current === 'female') next = 'vip';
+            else if (current === 'vip') next = 'blocked';
+            else if (current === 'blocked') next = 'regular';
+
+            busSeatState.seatMap[seatId] = next;
+            const btn = document.getElementById(`seat-btn-${seatId}`);
+            if (btn) {
+                btn.className = `bus-seat-box ${next}`;
+                const iconEl = btn.querySelector('.seat-prop-icon');
+                if (iconEl) {
+                    iconEl.textContent = (next === 'female') ? '💖' : (next === 'vip' ? '⭐' : (next === 'blocked' ? '🚫' : ''));
+                }
+            }
+            updateSeatLegendCounts();
+        }
+
+        function updateSeatLegendCounts() {
+            const totalBadge = document.getElementById('bus-seat-total-count-badge');
+            if (!totalBadge) return;
+
+            let total = 0;
+            let available = 0;
+            let female = 0;
+            let vip = 0;
+            let blocked = 0;
+
+            const preset = busSeatState.preset;
+            if (preset === '2x2-40') total = 40;
+            else if (preset === '2x1-30') total = 30;
+            else if (preset === '3x2-50') total = 50;
+            else if (preset === 'sleeper-32') total = 32;
+
+            Object.keys(busSeatState.seatMap).forEach(k => {
+                const st = busSeatState.seatMap[k];
+                if (st === 'female') female++;
+                else if (st === 'vip') vip++;
+                else if (st === 'blocked') blocked++;
+            });
+
+            available = Math.max(0, total - blocked);
+            totalBadge.textContent = `Total: ${total} Seats (${available} Avail, ${female} 💖, ${vip} ⭐, ${blocked} 🚫)`;
+        }
+
+        function renderBusSeatMap() {
+            const container = document.getElementById('bus-seat-grid-container');
+            if (!container) return;
+
+            const preset = busSeatState.preset || '2x2-40';
+            const deck = busSeatState.deck || 'lower';
+            let html = '';
+
+            const rowLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+            if (preset === '2x2-40') {
+                rowLetters.forEach(row => {
+                    html += `<div class="bus-seat-row">`;
+                    ['1', '2'].forEach(col => {
+                        const id = `${row}${col}`;
+                        const st = busSeatState.seatMap[id] || 'regular';
+                        const icon = (st === 'female') ? '💖' : (st === 'vip' ? '⭐' : (st === 'blocked' ? '🚫' : ''));
+                        html += `<div class="bus-seat-box ${st}" id="seat-btn-${id}" onclick="toggleSeatProperty('${id}')">
+                            <span>${id}</span><span class="seat-prop-icon" style="font-size: 0.65rem;">${icon}</span>
+                        </div>`;
+                    });
+                    html += `<div class="bus-seat-aisle-gap">aisle</div>`;
+                    ['3', '4'].forEach(col => {
+                        const id = `${row}${col}`;
+                        const st = busSeatState.seatMap[id] || 'regular';
+                        const icon = (st === 'female') ? '💖' : (st === 'vip' ? '⭐' : (st === 'blocked' ? '🚫' : ''));
+                        html += `<div class="bus-seat-box ${st}" id="seat-btn-${id}" onclick="toggleSeatProperty('${id}')">
+                            <span>${id}</span><span class="seat-prop-icon" style="font-size: 0.65rem;">${icon}</span>
+                        </div>`;
+                    });
+                    html += `</div>`;
+                });
+            } else if (preset === '2x1-30') {
+                rowLetters.forEach(row => {
+                    html += `<div class="bus-seat-row">`;
+                    ['1', '2'].forEach(col => {
+                        const id = `${row}${col}`;
+                        const st = busSeatState.seatMap[id] || 'regular';
+                        const icon = (st === 'female') ? '💖' : (st === 'vip' ? '⭐' : (st === 'blocked' ? '🚫' : ''));
+                        html += `<div class="bus-seat-box ${st}" id="seat-btn-${id}" onclick="toggleSeatProperty('${id}')">
+                            <span>${id}</span><span class="seat-prop-icon" style="font-size: 0.65rem;">${icon}</span>
+                        </div>`;
+                    });
+                    html += `<div class="bus-seat-aisle-gap">aisle</div>`;
+                    ['3'].forEach(col => {
+                        const id = `${row}${col}`;
+                        const st = busSeatState.seatMap[id] || 'regular';
+                        const icon = (st === 'female') ? '💖' : (st === 'vip' ? '⭐' : (st === 'blocked' ? '🚫' : ''));
+                        html += `<div class="bus-seat-box ${st}" id="seat-btn-${id}" onclick="toggleSeatProperty('${id}')">
+                            <span>${id}</span><span class="seat-prop-icon" style="font-size: 0.65rem;">${icon}</span>
+                        </div>`;
+                    });
+                    html += `</div>`;
+                });
+            } else if (preset === '3x2-50') {
+                rowLetters.forEach(row => {
+                    html += `<div class="bus-seat-row">`;
+                    ['1', '2', '3'].forEach(col => {
+                        const id = `${row}${col}`;
+                        const st = busSeatState.seatMap[id] || 'regular';
+                        const icon = (st === 'female') ? '💖' : (st === 'vip' ? '⭐' : (st === 'blocked' ? '🚫' : ''));
+                        html += `<div class="bus-seat-box ${st}" id="seat-btn-${id}" onclick="toggleSeatProperty('${id}')">
+                            <span>${id}</span><span class="seat-prop-icon" style="font-size: 0.65rem;">${icon}</span>
+                        </div>`;
+                    });
+                    html += `<div class="bus-seat-aisle-gap">aisle</div>`;
+                    ['4', '5'].forEach(col => {
+                        const id = `${row}${col}`;
+                        const st = busSeatState.seatMap[id] || 'regular';
+                        const icon = (st === 'female') ? '💖' : (st === 'vip' ? '⭐' : (st === 'blocked' ? '🚫' : ''));
+                        html += `<div class="bus-seat-box ${st}" id="seat-btn-${id}" onclick="toggleSeatProperty('${id}')">
+                            <span>${id}</span><span class="seat-prop-icon" style="font-size: 0.65rem;">${icon}</span>
+                        </div>`;
+                    });
+                    html += `</div>`;
+                });
+            } else if (preset === 'sleeper-32') {
+                const prefix = (deck === 'lower') ? 'L' : 'U';
+                for (let r = 1; r <= 8; r++) {
+                    const id1 = `${prefix}${r * 2 - 1}`;
+                    const id2 = `${prefix}${r * 2}`;
+                    const st1 = busSeatState.seatMap[id1] || 'regular';
+                    const st2 = busSeatState.seatMap[id2] || 'regular';
+                    const icon1 = (st1 === 'female') ? '💖' : (st1 === 'vip' ? '⭐' : (st1 === 'blocked' ? '🚫' : ''));
+                    const icon2 = (st2 === 'female') ? '💖' : (st2 === 'vip' ? '⭐' : (st2 === 'blocked' ? '🚫' : ''));
+                    html += `
+                        <div class="bus-seat-row">
+                            <div class="bus-seat-box ${st1}" id="seat-btn-${id1}" onclick="toggleSeatProperty('${id1}')" style="height: 48px;">
+                                <span>${id1} (Berth)</span><span class="seat-prop-icon">${icon1}</span>
+                            </div>
+                            <div class="bus-seat-aisle-gap">aisle</div>
+                            <div class="bus-seat-box ${st2}" id="seat-btn-${id2}" onclick="toggleSeatProperty('${id2}')" style="height: 48px;">
+                                <span>${id2} (Berth)</span><span class="seat-prop-icon">${icon2}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            container.innerHTML = html;
+            updateSeatLegendCounts();
+        }
+
+        /* ================= MODAL OPEN / EDIT / CLOSE / SUBMIT HANDLERS ================= */
+
+        async function openAddBusProductModal(sectionType = 'travel-planner') {
+            await loadUpazilasCache();
             const modal = document.getElementById('bus-product-crud-modal');
             if (!modal) return;
+
             const op = activeOperatorState.activeOperator || { name: 'Ena Transport' };
             const subCat = activeOperatorState.subCatName || 'Bus';
             const unitLabel = subCat.toLowerCase().includes('train') ? 'Train' : (subCat.toLowerCase().includes('flight') ? 'Flight' : 'Bus');
 
+            // Reset Form Fields
             document.getElementById('bus-modal-id').value = '';
             document.getElementById('bus-modal-section').value = sectionType;
+            populateBusOperatorDropdown(op.name);
+
             document.getElementById('bus-modal-name').value = `${op.name} Scania Multi-Axle AC Sleeper`;
-            document.getElementById('bus-modal-specs').value = 'AC Sleeper';
-            document.getElementById('bus-modal-from').value = 'Dhaka (Arambagh)';
-            document.getElementById('bus-modal-to').value = 'Cox\'s Bazar (Kolatoli Beach)';
+            document.getElementById('bus-modal-reg-no').value = 'ঢাকা মেট্রো-ব ১৫-৪১২৩';
+            document.getElementById('bus-modal-cat-type').value = 'AC Sleeper Coach';
+            document.getElementById('bus-modal-custom-type-wrap').style.display = 'none';
+            document.getElementById('bus-modal-custom-type-input').value = '';
+            document.getElementById('bus-modal-fare').value = '2200';
+            document.getElementById('bus-modal-duration').value = '8h 15m';
+
+            // Route & Timings
+            const originSel = document.getElementById('bus-modal-origin-upazila');
+            const destSel = document.getElementById('bus-modal-dest-upazila');
+            populateUpazilaSelect(originSel, 'Dhaka North');
+            populateUpazilaSelect(destSel, 'Cox\'s Bazar Sadar');
+            document.getElementById('bus-modal-from').value = 'Dhaka (Arambagh Counter)';
+            document.getElementById('bus-modal-to').value = 'Cox\'s Bazar (Kolatoli Beach Main Counter)';
             document.getElementById('bus-modal-dep').value = '10:30 PM';
             document.getElementById('bus-modal-arr').value = '06:45 AM';
-            document.getElementById('bus-modal-duration').value = '8h 15m';
-            document.getElementById('bus-modal-fare').value = '2200';
-            document.getElementById('bus-modal-seats').value = '14 Seats Left';
-            document.getElementById('bus-modal-cat-type').value = 'Sleeper';
-            document.getElementById('bus-modal-photo-data').value = 'images/operators/bus_ena_sleeper_exact.png';
 
+            // Clear Stoppages & Add default demo stoppages
+            const stopContainer = document.getElementById('bus-modal-stoppages-list');
+            if (stopContainer) stopContainer.innerHTML = '';
+            addStoppageRow({
+                upazila: 'Cumilla Adarsha Sadar',
+                name: 'Cumilla (Paduar Bazar Highway Rest)',
+                arrTime: '01:30 AM',
+                depTime: '01:50 AM',
+                halt: '20 Mins',
+                stopType: 'Both (Boarding & Dropping)'
+            });
+            addStoppageRow({
+                upazila: 'Chattogram Sadar',
+                name: 'Chattogram (AK Khan Bus Stand)',
+                arrTime: '04:45 AM',
+                depTime: '05:00 AM',
+                halt: '15 Mins',
+                stopType: 'Both (Boarding & Dropping)'
+            });
+
+            // Seat state
+            busSeatState = {
+                preset: '2x2-40',
+                deck: 'lower',
+                seatMap: {
+                    'A1': 'female',
+                    'A2': 'female',
+                    'B1': 'vip',
+                    'B2': 'vip'
+                }
+            };
+            const presetSel = document.getElementById('bus-seat-preset-select');
+            if (presetSel) presetSel.value = '2x2-40';
+            const deckWrap = document.getElementById('bus-deck-toggle-wrap');
+            if (deckWrap) deckWrap.style.display = 'none';
+
+            // Photo Preview
+            document.getElementById('bus-modal-photo-data').value = 'images/operators/bus_ena_sleeper_exact.png';
             const previewBar = document.getElementById('bus-photo-preview-bar');
             const previewImg = document.getElementById('bus-modal-photo-preview');
             const nameEl = document.getElementById('bus-photo-file-name-text');
             if (previewImg) previewImg.src = 'images/operators/bus_ena_sleeper_exact.png';
-            if (nameEl) nameEl.textContent = 'bus.png';
+            if (nameEl) nameEl.textContent = 'ena_sleeper.png';
             if (previewBar) previewBar.style.display = 'flex';
 
-            document.getElementById('bus-modal-title').textContent = `Add ${unitLabel} Schedule`;
-            document.getElementById('bus-modal-subtitle').textContent = `Add a new trip schedule for ${op.name}`;
+            // Modal Title & Subtitle
+            document.getElementById('bus-modal-title').textContent = `Add ${unitLabel} & Trip Schedule`;
+            document.getElementById('bus-modal-subtitle').textContent = `Configure fleet identity, intermediate stops, stage pricing & seat layout for ${op.name}`;
+
+            // Reset tab to Tab 1
+            switchBusModalTab('identity');
+            routeChangedFlag = true;
 
             modal.classList.add('show');
             modal.style.display = 'flex';
             setTimeout(() => document.getElementById('bus-modal-name')?.focus(), 50);
         }
 
-        function openEditBusProductModal(productId, sectionType = 'travel-planner') {
+        async function openEditBusProductModal(productId, sectionType = 'travel-planner') {
+            await loadUpazilasCache();
             const op = activeOperatorState.activeOperator || { name: 'Ena Transport' };
             const subCat = activeOperatorState.subCatName || 'Bus';
             const parentCat = activeOperatorState.parentCatName || 'Transit';
             const list = getProductsForOperator(op.name, subCat, parentCat);
             const p = list.find(item => item.id === productId || item.name === productId);
             if (!p) {
-                showToast('Schedule not found', 'error');
+                showToast('Trip schedule not found', 'error');
                 return;
             }
 
@@ -13725,20 +14863,83 @@
             if (!modal) return;
             const unitLabel = subCat.toLowerCase().includes('train') ? 'Train' : (subCat.toLowerCase().includes('flight') ? 'Flight' : 'Bus');
 
+            // Populate Form Fields
             document.getElementById('bus-modal-id').value = p.id || productId;
             document.getElementById('bus-modal-section').value = sectionType;
+            populateBusOperatorDropdown(p.operator || op.name);
+
             document.getElementById('bus-modal-name').value = p.name || '';
-            document.getElementById('bus-modal-specs').value = p.specs || '';
+            document.getElementById('bus-modal-reg-no').value = p.regNo || 'ঢাকা মেট্রো-ব ১৫-৪১২৩';
+
+            // Transit Class
+            const catTypeSel = document.getElementById('bus-modal-cat-type');
+            const customWrap = document.getElementById('bus-modal-custom-type-wrap');
+            const customInput = document.getElementById('bus-modal-custom-type-input');
+            const specs = p.specs || p.categoryType || 'AC Sleeper Coach';
+            let matchedOption = false;
+            for (let opt of catTypeSel.options) {
+                if (opt.value === specs) {
+                    catTypeSel.value = specs;
+                    matchedOption = true;
+                    break;
+                }
+            }
+            if (!matchedOption) {
+                catTypeSel.value = '__custom__';
+                customWrap.style.display = 'block';
+                customInput.value = specs;
+            } else {
+                customWrap.style.display = 'none';
+                customInput.value = '';
+            }
+
+            document.getElementById('bus-modal-fare').value = p.fare || 1000;
+            document.getElementById('bus-modal-duration').value = p.duration || '8h 00m';
+
+            // Route & Timings
+            const originSel = document.getElementById('bus-modal-origin-upazila');
+            const destSel = document.getElementById('bus-modal-dest-upazila');
+            populateUpazilaSelect(originSel, p.originUpazila || p.from || '');
+            populateUpazilaSelect(destSel, p.destUpazila || p.to || '');
             document.getElementById('bus-modal-from').value = p.from || '';
             document.getElementById('bus-modal-to').value = p.to || '';
             document.getElementById('bus-modal-dep').value = p.depTime || '';
             document.getElementById('bus-modal-arr').value = p.arrTime || '';
-            document.getElementById('bus-modal-duration').value = p.duration || '';
-            document.getElementById('bus-modal-fare').value = p.fare || 0;
-            document.getElementById('bus-modal-seats').value = p.availableSeats || '';
-            document.getElementById('bus-modal-cat-type').value = p.categoryType || 'Sleeper';
-            document.getElementById('bus-modal-photo-data').value = p.photo || '';
 
+            // Restore Intermediate Stoppages
+            const stopContainer = document.getElementById('bus-modal-stoppages-list');
+            if (stopContainer) stopContainer.innerHTML = '';
+            if (Array.isArray(p.stoppages) && p.stoppages.length > 0) {
+                p.stoppages.forEach(s => addStoppageRow(s));
+            } else {
+                // Add one default stoppage if empty
+                addStoppageRow({
+                    upazila: 'Cumilla Adarsha Sadar',
+                    name: 'Cumilla (Paduar Bazar Highway Rest)',
+                    arrTime: '01:30 AM',
+                    depTime: '01:50 AM',
+                    halt: '20 Mins',
+                    stopType: 'Both (Boarding & Dropping)'
+                });
+            }
+
+            // Stage Fares
+            generateStageFareTable(p.stageFares || null);
+
+            // Seat Layout
+            const seatPlan = p.seatPlan || {};
+            busSeatState = {
+                preset: seatPlan.preset || '2x2-40',
+                deck: 'lower',
+                seatMap: seatPlan.seatMap || { 'A1': 'female', 'A2': 'female' }
+            };
+            const presetSel = document.getElementById('bus-seat-preset-select');
+            if (presetSel) presetSel.value = busSeatState.preset;
+            const deckWrap = document.getElementById('bus-deck-toggle-wrap');
+            if (deckWrap) deckWrap.style.display = busSeatState.preset === 'sleeper-32' ? 'inline-flex' : 'none';
+
+            // Photo Preview
+            document.getElementById('bus-modal-photo-data').value = p.photo || '';
             const previewBar = document.getElementById('bus-photo-preview-bar');
             const previewImg = document.getElementById('bus-modal-photo-preview');
             const nameEl = document.getElementById('bus-photo-file-name-text');
@@ -13750,8 +14951,12 @@
                 removeBusProductPhoto();
             }
 
-            document.getElementById('bus-modal-title').textContent = `Edit ${unitLabel} Schedule`;
-            document.getElementById('bus-modal-subtitle').textContent = `Update schedule details for ${p.name}`;
+            // Modal Header
+            document.getElementById('bus-modal-title').textContent = `Edit ${unitLabel} & Schedule`;
+            document.getElementById('bus-modal-subtitle').textContent = `Update schedule, route waypoints, stage fares and seat plan for ${p.name}`;
+
+            switchBusModalTab('identity');
+            routeChangedFlag = false;
 
             modal.classList.add('show');
             modal.style.display = 'flex';
@@ -13801,20 +15006,84 @@
         function handleBusProductFormSubmit(event) {
             event.preventDefault();
             const sectionType = document.getElementById('bus-modal-section').value || 'travel-planner';
-            const op = activeOperatorState.activeOperator || { name: 'Ena Transport' };
-            const opName = op.name;
+            const opSelect = document.getElementById('bus-modal-operator');
+            const opName = opSelect ? opSelect.value : (activeOperatorState.activeOperator?.name || 'Ena Transport');
+
             const pId = document.getElementById('bus-modal-id').value.trim();
             const name = document.getElementById('bus-modal-name').value.trim();
-            const specs = document.getElementById('bus-modal-specs').value.trim();
+            const regNo = document.getElementById('bus-modal-reg-no').value.trim() || 'ঢাকা মেট্রো-ব ১৫-৪১২৩';
+
+            // Transit Class
+            let specs = document.getElementById('bus-modal-cat-type').value;
+            if (specs === '__custom__') {
+                specs = document.getElementById('bus-modal-custom-type-input').value.trim() || 'Custom Transit Coach';
+            }
+            const categoryType = specs;
+
             const from = document.getElementById('bus-modal-from').value.trim();
             const to = document.getElementById('bus-modal-to').value.trim();
+            const originUpazila = document.getElementById('bus-modal-origin-upazila').value;
+            const destUpazila = document.getElementById('bus-modal-dest-upazila').value;
+
             const depTime = document.getElementById('bus-modal-dep').value.trim();
             const arrTime = document.getElementById('bus-modal-arr').value.trim();
             const duration = document.getElementById('bus-modal-duration').value.trim();
             const fare = parseFloat(document.getElementById('bus-modal-fare').value) || 1000;
-            const availableSeats = document.getElementById('bus-modal-seats').value.trim();
-            const categoryType = document.getElementById('bus-modal-cat-type').value;
             const photoData = document.getElementById('bus-modal-photo-data').value.trim() || 'images/operators/bus_ena_sleeper_exact.png';
+
+            // Intermediate Stoppages
+            const stoppages = [];
+            const stopRows = document.querySelectorAll('#bus-modal-stoppages-list .bus-stoppage-row-card');
+            stopRows.forEach(r => {
+                const upazila = r.querySelector('.stop-upazila')?.value || '';
+                const stopName = r.querySelector('.stop-name')?.value.trim() || '';
+                const arr = r.querySelector('.stop-arr')?.value.trim() || '';
+                const dep = r.querySelector('.stop-dep')?.value.trim() || '';
+                const halt = r.querySelector('.stop-halt')?.value.trim() || '';
+                const stopType = r.querySelector('.stop-type')?.value || 'Both (Boarding & Dropping)';
+                if (stopName || upazila) {
+                    stoppages.push({ upazila, name: stopName, arrTime: arr, depTime: dep, halt, stopType });
+                }
+            });
+
+            // Stage Fares
+            const stageFares = [];
+            document.querySelectorAll('#bus-stage-fares-tbody .stage-fare-input').forEach(inp => {
+                const stageFrom = inp.getAttribute('data-from');
+                const stageTo = inp.getAttribute('data-to');
+                const stageType = inp.getAttribute('data-type');
+                const stageFareVal = parseFloat(inp.value) || 0;
+                if (stageFrom && stageTo) {
+                    stageFares.push({ from: stageFrom, to: stageTo, stageType, fare: stageFareVal });
+                }
+            });
+
+            // Seat Plan calculation
+            let totalSeats = 40;
+            if (busSeatState.preset === '2x1-30') totalSeats = 30;
+            else if (busSeatState.preset === '3x2-50') totalSeats = 50;
+            else if (busSeatState.preset === 'sleeper-32') totalSeats = 32;
+
+            let femaleSeats = 0;
+            let vipSeats = 0;
+            let blockedSeats = 0;
+            Object.values(busSeatState.seatMap).forEach(v => {
+                if (v === 'female') femaleSeats++;
+                else if (v === 'vip') vipSeats++;
+                else if (v === 'blocked') blockedSeats++;
+            });
+            const availableSeatsCount = Math.max(0, totalSeats - blockedSeats);
+            const availableSeats = `${availableSeatsCount} Seats Left`;
+
+            const seatPlan = {
+                preset: busSeatState.preset,
+                totalSeats,
+                availableSeats: availableSeatsCount,
+                femaleSeats,
+                vipSeats,
+                blockedSeats,
+                seatMap: busSeatState.seatMap
+            };
 
             const prodMap = getStoredProductsMap();
             let targetKey = opName;
@@ -13824,24 +15093,46 @@
                 else prodMap[targetKey] = [];
             }
 
+            const productPayload = {
+                name,
+                operator: opName,
+                regNo,
+                specs,
+                categoryType,
+                from,
+                to,
+                originUpazila,
+                destUpazila,
+                depTime,
+                arrTime,
+                duration,
+                fare,
+                availableSeats,
+                photo: photoData,
+                stoppages,
+                stageFares,
+                seatPlan
+            };
+
             if (pId) {
-                // Edit existing
+                // Update existing
                 const idx = prodMap[targetKey].findIndex(item => item.id === pId || item.name === pId);
                 if (idx !== -1) {
                     prodMap[targetKey][idx] = {
                         ...prodMap[targetKey][idx],
-                        name, specs, from, to, depTime, arrTime, duration, fare, availableSeats, categoryType, photo: photoData
+                        ...productPayload,
+                        id: pId
                     };
+                } else {
+                    productPayload.id = pId;
+                    prodMap[targetKey].unshift(productPayload);
                 }
                 showToast(`Schedule "${name}" updated successfully!`, 'success');
             } else {
                 // Add new
-                const newP = {
-                    id: `prod-${Date.now()}`,
-                    name, specs, from, to, depTime, arrTime, duration, fare, availableSeats, categoryType, photo: photoData
-                };
-                prodMap[targetKey].unshift(newP);
-                showToast(`Schedule "${name}" added successfully!`, 'success');
+                productPayload.id = `prod-${Date.now()}`;
+                prodMap[targetKey].unshift(productPayload);
+                showToast(`Schedule "${name}" created with ${stoppages.length} stops & ${stageFares.length} stage fares!`, 'success');
             }
 
             saveStoredProductsMap(prodMap);
