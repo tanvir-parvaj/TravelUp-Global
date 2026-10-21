@@ -5773,19 +5773,6 @@
                             </div>
                         </div>
 
-                        <!-- Promo Card Banner (Screen 2 Mockup Match) -->
-                        <div class="tp-subcat-promo-card" id="tp-subcat-promo-card">
-                            <div class="tp-subcat-promo-content">
-                                <h2 class="tp-subcat-promo-title" id="tp-promo-title">Exclusive Partner Deals</h2>
-                                <p class="tp-subcat-promo-desc" id="tp-promo-desc">Discover verified network operators, premium fleets, and reserve guaranteed departure slots at special rates.</p>
-                            </div>
-                        </div>
-
-                        <!-- Visual Sub-Categories Cards Grid (Screen 2 Mockup Match) -->
-                        <div class="tp-subcat-cards-grid" id="tp-subcat-cards-grid">
-                            <!-- Populated dynamically with visual cards -->
-                        </div>
-
                         <!-- Sub-Categories Ledger Table Card -->
                         <div class="tp-subcat-table-card">
                             <div style="overflow-x: auto;">
@@ -5893,10 +5880,10 @@
                                 </button>
                                 <!-- Grid / List View Toggle -->
                                 <div class="tp-view-mode-toggle">
-                                    <button type="button" class="tp-view-btn active" id="tp-op-grid-btn" onclick="setOperatorViewMode('grid', 'travel-planner')">
+                                    <button type="button" class="tp-view-btn" id="tp-op-grid-btn" onclick="setOperatorViewMode('grid', 'travel-planner')">
                                         <i class="material-icons" style="font-size: 16px;">grid_view</i> Grid
                                     </button>
-                                    <button type="button" class="tp-view-btn" id="tp-op-list-btn" onclick="setOperatorViewMode('list', 'travel-planner')">
+                                    <button type="button" class="tp-view-btn active" id="tp-op-list-btn" onclick="setOperatorViewMode('list', 'travel-planner')">
                                         <i class="material-icons" style="font-size: 16px;">view_list</i> List
                                     </button>
                                 </div>
@@ -5904,12 +5891,12 @@
                         </div>
 
                         <!-- Grid View Container -->
-                        <div class="tp-operators-grid" id="tp-op-grid-container">
+                        <div class="tp-operators-grid" id="tp-op-grid-container" style="display: none;">
                             <!-- Dynamic 4-Column Cards -->
                         </div>
 
                         <!-- List (Table) View Container -->
-                        <div class="tp-operators-list-table-card" id="tp-op-list-container" style="display: none;">
+                        <div class="tp-operators-list-table-card" id="tp-op-list-container" style="display: block;">
                             <div style="overflow-x: auto;">
                                 <table class="tp-operators-list-table">
                                     <thead>
@@ -6604,19 +6591,6 @@
                             </div>
                         </div>
 
-                        <!-- Promo Card Banner (Screen 2 Mockup Match) -->
-                        <div class="tp-subcat-promo-card" id="tour-subcat-promo-card">
-                            <div class="tp-subcat-promo-content">
-                                <h2 class="tp-subcat-promo-title" id="tour-promo-title">Exclusive Partner Deals</h2>
-                                <p class="tp-subcat-promo-desc" id="tour-promo-desc">Discover verified network operators, premium fleets, and reserve guaranteed departure slots at special rates.</p>
-                            </div>
-                        </div>
-
-                        <!-- Visual Sub-Categories Cards Grid (Screen 2 Mockup Match) -->
-                        <div class="tp-subcat-cards-grid" id="tour-subcat-cards-grid">
-                            <!-- Populated dynamically with visual cards -->
-                        </div>
-
                         <!-- Sub-Categories Ledger Table Card -->
                         <div class="tp-subcat-table-card">
                             <div style="overflow-x: auto;">
@@ -6724,10 +6698,10 @@
                                 </button>
                                 <!-- Grid / List View Toggle -->
                                 <div class="tp-view-mode-toggle">
-                                    <button type="button" class="tp-view-btn active" id="tour-op-grid-btn" onclick="setOperatorViewMode('grid', 'tour-planner')">
+                                    <button type="button" class="tp-view-btn" id="tour-op-grid-btn" onclick="setOperatorViewMode('grid', 'tour-planner')">
                                         <i class="material-icons" style="font-size: 16px;">grid_view</i> Grid
                                     </button>
-                                    <button type="button" class="tp-view-btn" id="tour-op-list-btn" onclick="setOperatorViewMode('list', 'tour-planner')">
+                                    <button type="button" class="tp-view-btn active" id="tour-op-list-btn" onclick="setOperatorViewMode('list', 'tour-planner')">
                                         <i class="material-icons" style="font-size: 16px;">view_list</i> List
                                     </button>
                                 </div>
@@ -6735,12 +6709,12 @@
                         </div>
 
                         <!-- Grid View Container -->
-                        <div class="tp-operators-grid" id="tour-op-grid-container">
+                        <div class="tp-operators-grid" id="tour-op-grid-container" style="display: none;">
                             <!-- Dynamic 4-Column Cards -->
                         </div>
 
                         <!-- List (Table) View Container -->
-                        <div class="tp-operators-list-table-card" id="tour-op-list-container" style="display: none;">
+                        <div class="tp-operators-list-table-card" id="tour-op-list-container" style="display: block;">
                             <div style="overflow-x: auto;">
                                 <table class="tp-operators-list-table">
                                     <thead>
@@ -9737,8 +9711,6 @@
                 `;
                 const showingText = document.getElementById(`${prefix}-subcat-showing-text`);
                 if (showingText) showingText.innerHTML = `<i class="material-icons" style="font-size: 16px; color: #94a3b8;">format_list_bulleted</i> <span>Showing 0 of 0 subcategories</span>`;
-                const cardsGrid = document.getElementById(`${prefix}-subcat-cards-grid`);
-                if (cardsGrid) cardsGrid.innerHTML = '';
                 return;
             }
 
@@ -9746,38 +9718,6 @@
             const showingText = document.getElementById(`${prefix}-subcat-showing-text`);
             if (showingText) {
                 showingText.innerHTML = `<i class="material-icons" style="font-size: 16px; color: #94a3b8;">format_list_bulleted</i> <span>Showing 1-${total} of ${total} subcategories</span>`;
-            }
-
-            // Update Promo Banner (Screen 2 Mockup Match)
-            const promoTitle = document.getElementById(`${prefix}-promo-title`);
-            if (promoTitle) promoTitle.textContent = `Exclusive ${catName} Partner Deals`;
-            const promoDesc = document.getElementById(`${prefix}-promo-desc`);
-            if (promoDesc) promoDesc.textContent = `Discover verified ${catName.toLowerCase()} network operators, premium fleets, and reserve guaranteed departure slots at special rates.`;
-
-            // Render Visual Cards Grid (Screen 2 Mockup Match)
-            const cardsGrid = document.getElementById(`${prefix}-subcat-cards-grid`);
-            if (cardsGrid) {
-                cardsGrid.innerHTML = list.map(sub => {
-                    const thumbImg = sub.image || 'images/subcategories/sub_transit_bus.png';
-                    const escName = (sub.name || '').replace(/'/g, "\\'");
-                    const escCatName = (catName || '').replace(/'/g, "\\'");
-                    return `
-                        <div class="tp-subcat-card" onclick="openSubCategoryOperatorsView('${escName}', '${escCatName}', '${sectionType}')">
-                            <div class="tp-subcat-card-thumb-wrap">
-                                <img src="${thumbImg}" alt="${escName}" class="tp-subcat-card-thumb-img" onerror="this.src='images/categories/cat_transit.png'">
-                            </div>
-                            <div class="tp-subcat-card-body">
-                                <div>
-                                    <h3 class="tp-subcat-card-title">${sub.name}</h3>
-                                    <p class="tp-subcat-card-count">${sub.operators || 1} Operators Available</p>
-                                </div>
-                                <div class="tp-subcat-card-arrow">
-                                    <i class="material-icons" style="font-size: 18px;">arrow_forward</i>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
             }
 
             tbody.innerHTML = list.map((sub, idx) => {
@@ -10260,7 +10200,7 @@
             subCatName: 'Bus',
             parentCatName: 'Transit',
             sectionType: 'travel-planner',
-            viewMode: 'grid', // 'grid' or 'list'
+            viewMode: 'list', // 'grid' or 'list' (default 'list')
             search: '',
             activeSubTab: 'operators',
             filterRating: 0,
@@ -10983,7 +10923,7 @@
             if (opView) opView.style.display = 'block';
 
             // 4. Render Grid / Table based on current view mode
-            setOperatorViewMode(activeOperatorState.viewMode || 'grid', sectionType);
+            setOperatorViewMode(activeOperatorState.viewMode || 'list', sectionType);
 
             // 5. Persist state to URL and localStorage
             try {
