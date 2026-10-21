@@ -5791,6 +5791,239 @@
             box-shadow: 0 4px 12px rgba(0, 135, 90, 0.3);
         }
 
+
+        /* ================= ULTIMATE RESPONSIVE & PIXEL-PERFECT ZOOM STYLES ================= */
+        html {
+            box-sizing: border-box;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            min-width: 0 !important;
+        }
+
+        #admin-wrapper {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #admin-main {
+            flex: 1 1 0%;
+            min-width: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .admin-content {
+            flex: 1 1 auto;
+            width: 100%;
+            max-width: 100%;
+            padding: clamp(0.75rem, 2vw, 1.5rem);
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Fluid KPI Grids for any Zoom level & Screen size */
+        .dash-stat-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)) !important;
+            gap: clamp(10px, 1.5vw, 1.25rem) !important;
+        }
+
+        .tp-operators-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+            gap: clamp(10px, 1.5vw, 1.25rem) !important;
+        }
+
+        .tp-op-details-strip {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
+            gap: clamp(8px, 1.2vw, 14px) !important;
+            width: 100% !important;
+        }
+
+        .tp-op-about-card {
+            display: none !important; /* Hide explanation paragraph */
+        }
+
+        .tp-op-hero-tagline {
+            display: none !important; /* Hide tagline explanation */
+        }
+
+        .tp-cat-subtitle,
+        .tp-subcat-name-desc {
+            display: none !important;
+        }
+
+        /* Responsive Table Wrappers & Cells */
+        .tp-table-card,
+        .tp-operators-list-table-card,
+        .tp-subcat-table-card,
+        .tp-bus-table-card,
+        .tp-location-table-card,
+        .data-table-wrap,
+        div[style*="overflow-x: auto"] {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+
+        table {
+            width: 100%;
+            min-width: 580px;
+            border-collapse: collapse;
+        }
+
+        /* Text clipping protection & badges */
+        .tp-subcat-action-btn,
+        .tp-prod-action-btn,
+        .tp-btn-view-operator,
+        .tp-subcat-status-pill,
+        .tp-op-pill,
+        .dash-status-pill,
+        .dash-trend-pill,
+        .dash-pill-btn {
+            white-space: nowrap !important;
+            flex-shrink: 0;
+        }
+
+        /* Hero Cards Responsive */
+        .tp-op-profile-hero-modern {
+            display: flex !important;
+            flex-direction: row;
+            align-items: stretch;
+            border-radius: clamp(12px, 2vw, 20px) !important;
+            min-height: 160px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .tp-op-hero-left {
+            flex: 1 1 50% !important;
+            min-width: 260px;
+            padding: clamp(0.9rem, 2vw, 1.5rem) !important;
+        }
+
+        .tp-op-hero-right {
+            flex: 1 1 50% !important;
+            min-width: 200px;
+            min-height: 140px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Modals Zoom & Screen Fit */
+        .tp-modal-overlay {
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 99999 !important;
+            display: none;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: clamp(6px, 2vw, 20px) !important;
+            background: rgba(15, 23, 42, 0.6) !important;
+            backdrop-filter: blur(4px) !important;
+            overflow-y: auto !important;
+        }
+
+        .modern-modal-card,
+        .tp-modal-card {
+            background: #ffffff !important;
+            border-radius: clamp(12px, 2vw, 20px) !important;
+            width: 100% !important;
+            max-width: 680px !important;
+            max-height: 92vh !important;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: hidden !important;
+            margin: auto !important;
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25) !important;
+        }
+
+        .modern-modal-body,
+        .tp-modal-body {
+            overflow-y: auto !important;
+            padding: clamp(0.85rem, 2vw, 1.35rem) !important;
+            flex: 1 1 auto !important;
+        }
+
+        .modern-form-row-2col,
+        .modal-grid-2col {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            gap: clamp(8px, 1.5vw, 14px) !important;
+        }
+
+        /* Search Bars & Toolbar Stacking */
+        .tp-bus-search-bar-row,
+        .tp-subcat-toolbar,
+        .tp-op-toolbar,
+        .dash-welcome-strip {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-wrap: wrap !important;
+            gap: 0.65rem !important;
+            width: 100% !important;
+        }
+
+        .tp-bus-search-group {
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            flex: 1 1 240px !important;
+            max-width: 100% !important;
+        }
+
+        /* Media Queries for Mobile Breakpoints */
+        @media (max-width: 768px) {
+            .tp-op-profile-hero-modern {
+                flex-direction: column !important;
+            }
+            .tp-op-hero-right {
+                min-height: 140px !important;
+                width: 100% !important;
+                flex: 1 1 auto !important;
+            }
+            .tp-op-hero-left {
+                width: 100% !important;
+                flex: 1 1 auto !important;
+            }
+            .tp-bus-search-group {
+                width: 100% !important;
+                flex: 1 1 100% !important;
+            }
+            .tp-btn-add-bus,
+            .tp-btn-add-operator,
+            .tp-btn-add-category {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+            .modern-form-row-2col {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dash-stat-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .tp-op-details-strip {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
 </style>
 </head>
 <body>
@@ -7746,7 +7979,7 @@
                             <div class="form-grid">
                                 <div class="form-group" style="grid-column: 1 / -1;">
                                     <label>Package Title *</label>
-                                    <input type="text" id="pkg-title" required placeholder="e.g. Sajek Valley Cloud Kingdom — 3 Days 2 Nights All-Inclusive">
+                                    <input type="text" id="pkg-title" required >
                                 </div>
 
                                 <div class="form-group">
@@ -7768,7 +8001,7 @@
 
                                 <div class="form-group">
                                     <label>Regular Price BDT *</label>
-                                    <input type="number" id="pkg-price-bdt" required min="500" step="100" placeholder="e.g. 8500">
+                                    <input type="number" id="pkg-price-bdt" required min="500" step="100" >
                                 </div>
 
                                 <div class="form-group">
@@ -7926,12 +8159,12 @@
                                 <div class="form-grid">
                                     <div class="form-group">
                                         <label>Staff Gmail / Email Address *</label>
-                                        <input type="email" id="staff-email" required placeholder="e.g. staff.member@gmail.com">
+                                        <input type="email" id="staff-email" required >
                                     </div>
 
                                     <div class="form-group">
                                         <label>Staff Full Name *</label>
-                                        <input type="text" id="staff-name" required placeholder="e.g. Rafiqul Islam">
+                                        <input type="text" id="staff-name" required >
                                     </div>
 
                                     <div class="form-group">
@@ -7947,7 +8180,7 @@
 
                                     <div class="form-group">
                                         <label>Mobile Number (Optional)</label>
-                                        <input type="text" id="staff-phone" placeholder="017xxxxxxxx">
+                                        <input type="text" id="staff-phone" >
                                     </div>
                                 </div>
 
@@ -8004,7 +8237,7 @@
                                 <div class="form-grid">
                                     <div class="form-group">
                                         <label>Operator Name *</label>
-                                        <input type="text" id="route-operator" required placeholder="e.g. Ena Transport, Shohagh, Shyamoli">
+                                        <input type="text" id="route-operator" required >
                                     </div>
 
                                     <div class="form-group">
@@ -8021,37 +8254,37 @@
 
                                     <div class="form-group">
                                         <label>Origin District *</label>
-                                        <input type="text" id="route-orig-dist" required placeholder="e.g. Rangpur, Dhaka, Dinajpur">
+                                        <input type="text" id="route-orig-dist" required >
                                     </div>
 
                                     <div class="form-group">
                                         <label>Origin Stoppage / Stand</label>
-                                        <input type="text" id="route-orig-point" placeholder="e.g. Pirganj Stand, Kamlapur, Mirpur 10">
+                                        <input type="text" id="route-orig-point" >
                                     </div>
 
                                     <div class="form-group">
                                         <label>Destination District *</label>
-                                        <input type="text" id="route-dest-dist" required placeholder="e.g. Cox's Bazar, Chattogram, Sylhet">
+                                        <input type="text" id="route-dest-dist" required >
                                     </div>
 
                                     <div class="form-group">
                                         <label>Destination Stoppage / Spot</label>
-                                        <input type="text" id="route-dest-point" placeholder="e.g. Kolatoli Beach, GEC Circle">
+                                        <input type="text" id="route-dest-point" >
                                     </div>
 
                                     <div class="form-group">
                                         <label>Departure Time *</label>
-                                        <input type="text" id="route-dep-time" required placeholder="e.g. 07:30 PM">
+                                        <input type="text" id="route-dep-time" required >
                                     </div>
 
                                     <div class="form-group">
                                         <label>Arrival Time</label>
-                                        <input type="text" id="route-arr-time" placeholder="e.g. 05:15 AM">
+                                        <input type="text" id="route-arr-time" >
                                     </div>
 
                                     <div class="form-group">
                                         <label>Ticket Fare BDT *</label>
-                                        <input type="number" id="route-fare" required min="50" step="10" placeholder="e.g. 1650">
+                                        <input type="number" id="route-fare" required min="50" step="10" >
                                     </div>
 
                                     <div class="form-group">
@@ -8218,7 +8451,7 @@
                                 <label class="modern-label">Category Name <span class="req">*</span></label>
                                 <div class="modern-input-group">
                                     <div class="modern-input-prefix">T</div>
-                                    <input type="text" id="cat-modal-input-name" required placeholder="e.g. Transit, Stay, Tour..." class="modern-input-field">
+                                    <input type="text" id="cat-modal-input-name" required  class="modern-input-field">
                                 </div>
                             </div>
 
@@ -8317,7 +8550,7 @@
                             <!-- Description -->
                             <div>
                                 <label class="modern-label">Description <span class="req">*</span></label>
-                                <textarea id="subcat-modal-desc" required rows="4" placeholder="Write a short description..." class="modern-textarea"></textarea>
+                                <textarea id="subcat-modal-desc" required rows="4"  class="modern-textarea"></textarea>
                             </div>
                         </div>
 
@@ -8328,7 +8561,7 @@
                                 <label class="modern-label">Sub Category Name <span class="req">*</span></label>
                                 <div class="modern-input-group">
                                     <div class="modern-input-prefix">T</div>
-                                    <input type="text" id="subcat-modal-name" required placeholder="e.g. Bus, Train, Flight..." class="modern-input-field">
+                                    <input type="text" id="subcat-modal-name" required  class="modern-input-field">
                                 </div>
                             </div>
 
@@ -8351,7 +8584,7 @@
                                     <div id="subcat-operator-dropdown" class="operator-multiselect-dropdown">
                                         <div class="operator-search-bar">
                                             <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
-                                            <input type="text" placeholder="Search operators..." oninput="filterModalOperators(this.value)">
+                                            <input type="text"  oninput="filterModalOperators(this.value)">
                                         </div>
                                         <div class="operator-items-list" id="subcat-operator-items-list">
                                             <!-- Populated dynamically -->
@@ -8480,7 +8713,7 @@
                             <!-- About Operator -->
                             <div>
                                 <label class="modern-label">About Operator</label>
-                                <textarea id="op-modal-about" rows="3" placeholder="Brief summary of operator, history, and service standard..." class="modern-textarea"></textarea>
+                                <textarea id="op-modal-about" rows="3"  class="modern-textarea"></textarea>
                             </div>
                         </div>
 
@@ -8493,7 +8726,7 @@
                                     <div class="modern-input-prefix">
                                         <i class="material-icons" style="font-size: 18px;">business</i>
                                     </div>
-                                    <input type="text" id="op-modal-name" required placeholder="e.g. GreenLine Transport, Hanif Enterprise..." class="modern-input-field">
+                                    <input type="text" id="op-modal-name" required  class="modern-input-field">
                                 </div>
                             </div>
 
@@ -8504,7 +8737,7 @@
                                     <div class="modern-input-prefix">
                                         <i class="material-icons" style="font-size: 18px;">format_quote</i>
                                     </div>
-                                    <input type="text" id="op-modal-tagline" placeholder="e.g. Safe journey, green tomorrow." class="modern-input-field">
+                                    <input type="text" id="op-modal-tagline"  class="modern-input-field">
                                 </div>
                             </div>
 
@@ -8525,7 +8758,7 @@
                                         <div class="modern-input-prefix">
                                             <i class="material-icons" style="font-size: 18px;">rate_review</i>
                                         </div>
-                                        <input type="text" id="op-modal-reviews" value="500+ reviews" placeholder="e.g. 1.2k reviews" class="modern-input-field">
+                                        <input type="text" id="op-modal-reviews" value="500+ reviews"  class="modern-input-field">
                                     </div>
                                 </div>
                             </div>
@@ -8573,7 +8806,7 @@
                                     <!-- Dynamic amenities chips -->
                                 </div>
                                 <div style="display: flex; gap: 6px;">
-                                    <input type="text" id="op-modal-custom-amenity" placeholder="Add custom amenity (e.g. ❄️ Central AC)" class="modern-input-field" style="font-size: 0.8rem; padding: 0.45rem 0.75rem;" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomOpAmenity();}">
+                                    <input type="text" id="op-modal-custom-amenity"  class="modern-input-field" style="font-size: 0.8rem; padding: 0.45rem 0.75rem;" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomOpAmenity();}">
                                     <button type="button" class="btn-modal-cancel" style="padding: 0.45rem 0.85rem; font-size: 0.8rem;" onclick="addCustomOpAmenity()">+ Add</button>
                                 </div>
                             </div>
@@ -8650,14 +8883,14 @@
                                     <label class="modern-label">From (Origin) <span class="req">*</span></label>
                                     <div class="modern-input-group">
                                         <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #00875a;">trip_origin</i></div>
-                                        <input type="text" id="bus-modal-from" required placeholder="e.g. Dhaka (Arambagh)" class="modern-input-field">
+                                        <input type="text" id="bus-modal-from" required  class="modern-input-field">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="modern-label">To (Destination) <span class="req">*</span></label>
                                     <div class="modern-input-group">
                                         <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #ef4444;">location_on</i></div>
-                                        <input type="text" id="bus-modal-to" required placeholder="e.g. Cox's Bazar (Kolatoli)" class="modern-input-field">
+                                        <input type="text" id="bus-modal-to" required  class="modern-input-field">
                                     </div>
                                 </div>
                             </div>
@@ -8668,14 +8901,14 @@
                                     <label class="modern-label">Departure Time <span class="req">*</span></label>
                                     <div class="modern-input-group">
                                         <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">schedule</i></div>
-                                        <input type="text" id="bus-modal-dep" required placeholder="e.g. 10:30 PM" class="modern-input-field">
+                                        <input type="text" id="bus-modal-dep" required  class="modern-input-field">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="modern-label">Arrival Time <span class="req">*</span></label>
                                     <div class="modern-input-group">
                                         <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">schedule</i></div>
-                                        <input type="text" id="bus-modal-arr" required placeholder="e.g. 06:45 AM" class="modern-input-field">
+                                        <input type="text" id="bus-modal-arr" required  class="modern-input-field">
                                     </div>
                                 </div>
                             </div>
@@ -8688,7 +8921,7 @@
                                 <label class="modern-label">Bus / Vehicle Name <span class="req">*</span></label>
                                 <div class="modern-input-group">
                                     <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">directions_bus</i></div>
-                                    <input type="text" id="bus-modal-name" required placeholder="e.g. Ena Transport Scania Multi-Axle AC Sleeper" class="modern-input-field">
+                                    <input type="text" id="bus-modal-name" required  class="modern-input-field">
                                 </div>
                             </div>
 
@@ -8697,7 +8930,7 @@
                                 <label class="modern-label">Class / Service Tag <span class="req">*</span></label>
                                 <div class="modern-input-group">
                                     <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">airline_seat_recline_extra</i></div>
-                                    <input type="text" id="bus-modal-specs" required placeholder="e.g. AC Sleeper, Non AC, AC Chair Coach" class="modern-input-field">
+                                    <input type="text" id="bus-modal-specs" required  class="modern-input-field">
                                 </div>
                             </div>
 
@@ -8707,7 +8940,7 @@
                                     <label class="modern-label">Duration <span class="req">*</span></label>
                                     <div class="modern-input-group">
                                         <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #00875a;">timer</i></div>
-                                        <input type="text" id="bus-modal-duration" required placeholder="e.g. 8h 15m" class="modern-input-field">
+                                        <input type="text" id="bus-modal-duration" required  class="modern-input-field">
                                     </div>
                                 </div>
                                 <div>
@@ -8737,7 +8970,7 @@
                                     <label class="modern-label">Seats Left <span class="req">*</span></label>
                                     <div class="modern-input-group">
                                         <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #00875a;">event_seat</i></div>
-                                        <input type="text" id="bus-modal-seats" required value="14 Seats Left" placeholder="e.g. 14 Seats Left" class="modern-input-field">
+                                        <input type="text" id="bus-modal-seats" required value="14 Seats Left"  class="modern-input-field">
                                     </div>
                                 </div>
                             </div>
@@ -8814,13 +9047,13 @@
                             <!-- Location Name -->
                             <div style="margin-bottom: 1.25rem;">
                                 <label class="modern-label">Location Name <span class="req">*</span></label>
-                                <input type="text" id="loc-modal-name" required placeholder="Enter location name (e.g. Savar)" class="modern-input-standalone">
+                                <input type="text" id="loc-modal-name" required  class="modern-input-standalone">
                             </div>
 
                             <!-- Description -->
                             <div style="margin-bottom: 1.25rem;">
                                 <label class="modern-label">Description <span class="opt">(Optional)</span></label>
-                                <textarea id="loc-modal-desc" rows="3" maxlength="500" placeholder="Enter a short description about this location..." oninput="updateLocDescCount(this)" class="modern-textarea"></textarea>
+                                <textarea id="loc-modal-desc" rows="3" maxlength="500"  oninput="updateLocDescCount(this)" class="modern-textarea"></textarea>
                                 <div class="char-counter-text"><span id="loc-modal-char-count">0</span>/500</div>
                             </div>
 
@@ -8883,7 +9116,7 @@
                             <!-- Location Code -->
                             <div style="margin-bottom: 1.25rem;">
                                 <label class="modern-label">Location Code <span class="opt">(Optional)</span></label>
-                                <input type="text" id="loc-modal-code" placeholder="e.g. DHA-001" class="modern-input-standalone">
+                                <input type="text" id="loc-modal-code"  class="modern-input-standalone">
                             </div>
 
                             <!-- Is Featured (Checkbox) -->
@@ -8968,7 +9201,7 @@
                             <!-- Description -->
                             <div>
                                 <label class="modern-label">Description <span class="opt">(Optional)</span></label>
-                                <textarea id="dest-modal-desc" rows="4" placeholder="Highlights and travel notes..." class="modern-textarea"></textarea>
+                                <textarea id="dest-modal-desc" rows="4"  class="modern-textarea"></textarea>
                             </div>
                         </div>
 
@@ -8979,7 +9212,7 @@
                                 <label class="modern-label">Destination Name <span class="req">*</span></label>
                                 <div class="modern-input-group">
                                     <div class="modern-input-prefix">T</div>
-                                    <input type="text" id="dest-modal-name" required placeholder="e.g. Cox's Bazar Sea Beach, Sajek Valley" class="modern-input-field">
+                                    <input type="text" id="dest-modal-name" required  class="modern-input-field">
                                 </div>
                             </div>
 
@@ -9048,26 +9281,26 @@
                 <div class="tp-modal-body">
                     <div class="form-group">
                         <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Product / Service Name *</label>
-                        <input type="text" id="p-prod-name" required placeholder="e.g. Shyamoli AC Sleeper Coach" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                        <input type="text" id="p-prod-name" required  style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div class="form-group">
                             <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Sub-Category *</label>
-                            <input type="text" id="p-prod-subcat" required placeholder="e.g. Bus, Hotel, Scuba" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                            <input type="text" id="p-prod-subcat" required  style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
                         </div>
                         <div class="form-group">
                             <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Operator / Provider *</label>
-                            <input type="text" id="p-prod-operator" required placeholder="e.g. Shyamoli NR Travels" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                            <input type="text" id="p-prod-operator" required  style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
                         </div>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div class="form-group">
                             <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Route / Location *</label>
-                            <input type="text" id="p-prod-location" required placeholder="e.g. Dhaka ➔ Cox's Bazar" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                            <input type="text" id="p-prod-location" required  style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
                         </div>
                         <div class="form-group">
                             <label style="font-size: 0.825rem; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">Specs / Format</label>
-                            <input type="text" id="p-prod-specs" placeholder="e.g. 40 Sleeper Berths, AC" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                            <input type="text" id="p-prod-specs"  style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
                         </div>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -9733,7 +9966,7 @@
                                 <img src="${cat.image || 'images/categories/cat_transit.png'}" alt="${cat.name}" class="tp-cat-thumb-img" onerror="this.src='images/categories/cat_transit.png'">
                                 <div style="min-width: 0;">
                                     <div class="tp-cat-name">${cat.name}</div>
-                                    <div class="tp-cat-subtitle">${cat.subtitle || 'Transport services for your journey'}</div>
+                                    
                                 </div>
                             </div>
                         </td>
@@ -9978,7 +10211,7 @@
                                 <img src="${cat.image || 'images/categories/cat_transit.png'}" alt="${cat.name}" class="tp-cat-thumb-img" onerror="this.src='images/categories/cat_transit.png'">
                                 <div style="min-width: 0;">
                                     <div class="tp-cat-name">${cat.name}</div>
-                                    <div class="tp-cat-subtitle">${cat.subtitle || 'Transport services for your journey'}</div>
+                                    
                                 </div>
                             </div>
                         </td>
@@ -10772,7 +11005,7 @@
             if (heroTitle) heroTitle.textContent = meta.title || cat.name;
 
             const heroDesc = document.getElementById(`${prefix}-cat-hero-desc`);
-            if (heroDesc) heroDesc.textContent = meta.desc;
+            if (heroDesc) heroDesc.textContent = '';
 
             // 3. Clear search and reset sort
             const searchInput = document.getElementById(`${prefix}-subcat-search-input`);
@@ -10970,7 +11203,7 @@
                         <td>
                             <div class="tp-subcat-name-cell">
                                 <span class="tp-subcat-name-title" onclick="openSubCategoryOperatorsView('${escName}', '${escCatName}', '${sectionType}')" title="Click to view ${sub.name} operators">${sub.name}</span>
-                                <span class="tp-subcat-name-desc">${sub.desc || 'No description provided.'}</span>
+                                
                             </div>
                         </td>
                         <td>
@@ -12272,8 +12505,8 @@
             if (searchInput) searchInput.value = '';
 
             if (heroTitle) heroTitle.textContent = subCatName;
-            if (heroDesc) heroDesc.textContent = `Find and compare the best ${subCatName.toLowerCase()} operators for your journey.`;
-            if (subtitle) subtitle.textContent = `Choose from the top ${subCatName.toLowerCase()} operators and book your journey with ease.`;
+            if (heroDesc) heroDesc.textContent = '';
+            if (subtitle) subtitle.textContent = '';
 
             if (subCatName.toLowerCase() === 'bus') {
                 if (banner) banner.style.backgroundImage = "url('images/operators/bus_banner_scenic.png')";
@@ -12498,7 +12731,7 @@
                                     </div>
 
                                     <!-- Tagline -->
-                                    <p class="tp-op-tagline">"${op.tagline || 'Leading the way in premium travel.'}"</p>
+                                    
 
                                     <!-- Amenities Feature Pills -->
                                     <div class="tp-op-amenities">
@@ -12558,7 +12791,7 @@
                                         </div>
                                         <div style="min-width: 0;">
                                             <div style="font-weight: 700; color: #0f172a; font-size: 0.885rem;">${op.name}</div>
-                                            <div style="font-size: 0.735rem; color: #64748b; font-style: italic;">"${op.tagline || 'Leading the way'}"</div>
+                                            
                                         </div>
                                     </div>
                                 </td>
@@ -13031,7 +13264,7 @@
             if (nameEl) nameEl.textContent = op.name;
 
             const tagEl = document.getElementById(`${prefix}-op-profile-tagline`);
-            if (tagEl) tagEl.textContent = `"${op.tagline || 'Journey with comfort.'}"`;
+            if (tagEl) tagEl.textContent = '';
 
             const ratingEl = document.getElementById(`${prefix}-op-profile-rating`);
             if (ratingEl) ratingEl.textContent = (op.rating || 3.9).toFixed(1);
@@ -13318,7 +13551,7 @@
                         </td>
                         <td>
                             <div style="font-size: 1.05rem; font-weight: 800; color: #00875a;">৳ ${fareFormatted}</div>
-                            <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">Per seat/unit</div>
+                            
                         </td>
                         <td>
                             <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: #e6f9f0; color: #00875a; font-size: 0.75rem; font-weight: 700;">
