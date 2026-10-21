@@ -601,12 +601,292 @@
             50% { opacity: 0.65; }
         }
 
+        /* ================= EXECUTIVE DASHBOARD STYLES ================= */
+        .dash-welcome-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .dash-welcome-title {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .dash-welcome-desc {
+            margin: 4px 0 0 0;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .dash-live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: #e6f9f0;
+            color: #00875a;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .dash-welcome-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .dash-filter-pill-group {
+            display: inline-flex;
+            background: #f1f5f9;
+            padding: 3px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .dash-pill-btn {
+            background: transparent;
+            border: none;
+            padding: 0.4rem 0.85rem;
+            border-radius: 9px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .dash-pill-btn:hover {
+            color: #0f172a;
+        }
+
+        .dash-pill-btn.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
         /* 4 Stat Metric Cards Grid */
         .dash-stat-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.25rem;
             margin-bottom: 1.5rem;
+        }
+
+        .dash-stat-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+        }
+
+        .dash-stat-num {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            display: block;
+        }
+
+        .dash-stat-meta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            font-size: 0.75rem;
+        }
+
+        .dash-trend-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.72rem;
+        }
+
+        .dash-trend-pill i {
+            font-size: 13px;
+        }
+
+        .dash-trend-pill.up {
+            background: #e6f9f0;
+            color: #00875a;
+        }
+
+        .dash-trend-pill.neutral {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .dash-stat-sub {
+            color: #94a3b8;
+            font-size: 0.72rem;
+        }
+
+        .dash-legend-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #475569;
+            background: #f8fafc;
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .dash-chart-kpi-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #f1f5f9;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .dash-chart-kpi-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dash-chart-kpi-label {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .dash-chart-kpi-val {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-top: 2px;
+        }
+
+        .dash-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .dash-status-pill.green {
+            background: #e6f9f0;
+            color: #00875a;
+        }
+
+        .dash-status-pill.blue {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .dash-status-pill.amber {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .dash-route-progress-item {
+            margin-bottom: 1rem;
+        }
+
+        .dash-route-progress-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .dash-route-progress-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+        }
+
+        .dash-route-name {
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .dash-route-meta {
+            font-weight: 700;
+            color: #00875a;
+            font-size: 0.75rem;
+        }
+
+        .dash-progress-track {
+            width: 100%;
+            height: 7px;
+            border-radius: 999px;
+            background: #f1f5f9;
+            overflow: hidden;
+        }
+
+        .dash-progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width 0.6s ease;
+        }
+
+        .dash-operator-rank-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid #f8fafc;
+        }
+
+        .dash-operator-rank-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        body.dark-theme .dash-welcome-title,
+        body.dark-theme .dash-stat-num,
+        body.dark-theme .dash-chart-kpi-val,
+        body.dark-theme .dash-route-name {
+            color: #f8fafc !important;
+        }
+        body.dark-theme .dash-pill-btn.active {
+            background: #334155 !important;
+            color: #f8fafc !important;
+        }
+        body.dark-theme .dash-filter-pill-group {
+            background: #0f172a !important;
+            border-color: #334155 !important;
         }
 
         .dash-stat-card {
@@ -5659,260 +5939,566 @@
             <!-- Main Scrollable Content Viewport -->
             <main class="admin-main">
                 
-                <!-- 1. DASHBOARD VIEW (Blank / Minimal Placeholder Canvas matching user mockup) -->
+                <!-- 1. DASHBOARD VIEW (Executive Travel & Transit Intelligence Hub) -->
                 <section id="view-dashboard" class="view-section active">
-                    <!-- Top Skeleton Header Strip -->
-                    <div class="dash-skeleton-topbar">
-                        <div class="skeleton-pill title-pill"></div>
-                        <div class="skeleton-pill action-pill"></div>
+                    <!-- Top Welcome & Controls Strip -->
+                    <div class="dash-welcome-strip">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <h1 class="dash-welcome-title">Welcome back, Admin 👋</h1>
+                                <span class="dash-live-badge"><span class="pulse-dot"></span> Live Network</span>
+                            </div>
+                            <p class="dash-welcome-desc">Real-time overview of ticket bookings, fleet operations, gross revenue, and passenger transit in Bangladesh.</p>
+                        </div>
+                        <div class="dash-welcome-actions">
+                            <div class="dash-filter-pill-group">
+                                <button type="button" class="dash-pill-btn active" onclick="switchDashTimeRange('today', this)">Today</button>
+                                <button type="button" class="dash-pill-btn" onclick="switchDashTimeRange('week', this)">7 Days</button>
+                                <button type="button" class="dash-pill-btn" onclick="switchDashTimeRange('month', this)">30 Days</button>
+                            </div>
+                            <button type="button" class="tp-btn-add-subcat" style="padding: 0.52rem 1.15rem; font-size: 0.825rem;" onclick="switchTab('travel-planner')">
+                                <i class="material-icons" style="font-size: 18px;">explore</i>
+                                <span>Travel Planner</span>
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- 4 Stat Metric Cards -->
+                    <!-- 4 Stat Metric Cards Grid -->
                     <div class="dash-stat-grid">
-                        <!-- Card 1: Emerald Work/Folder -->
+                        <!-- Card 1: Gross Revenue -->
                         <div class="dash-stat-card">
                             <div class="dash-stat-icon emerald">
-                                <i class="material-icons">work_outline</i>
-                            </div>
-                            <div class="dash-stat-content">
-                                <div class="skeleton-bar medium"></div>
-                                <div class="skeleton-bar short"></div>
-                                <div class="skeleton-bar long"></div>
-                            </div>
-                        </div>
-
-                        <!-- Card 2: Sky Blue Users -->
-                        <div class="dash-stat-card">
-                            <div class="dash-stat-icon blue">
-                                <i class="material-icons">people_outline</i>
-                            </div>
-                            <div class="dash-stat-content">
-                                <div class="skeleton-bar medium"></div>
-                                <div class="skeleton-bar short"></div>
-                                <div class="skeleton-bar long"></div>
-                            </div>
-                        </div>
-
-                        <!-- Card 3: Amber Coins -->
-                        <div class="dash-stat-card">
-                            <div class="dash-stat-icon amber">
                                 <i class="material-icons">monetization_on</i>
                             </div>
                             <div class="dash-stat-content">
-                                <div class="skeleton-bar medium"></div>
-                                <div class="skeleton-bar short"></div>
-                                <div class="skeleton-bar long"></div>
+                                <div class="dash-stat-label">Gross Revenue</div>
+                                <span id="dash-metric-revenue" class="dash-stat-num">৳ 2,485,600</span>
+                                <div class="dash-stat-meta">
+                                    <span class="dash-trend-pill up"><i class="material-icons">trending_up</i> +14.2%</span>
+                                    <span class="dash-stat-sub">vs last month</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Card 4: Purple Package -->
+                        <!-- Card 2: Total Bookings -->
                         <div class="dash-stat-card">
-                            <div class="dash-stat-icon purple">
-                                <i class="material-icons">inventory_2</i>
+                            <div class="dash-stat-icon blue">
+                                <i class="material-icons">confirmation_number</i>
                             </div>
                             <div class="dash-stat-content">
-                                <div class="skeleton-bar medium"></div>
-                                <div class="skeleton-bar short"></div>
-                                <div class="skeleton-bar long"></div>
+                                <div class="dash-stat-label">Total Bookings</div>
+                                <span id="dash-metric-bookings" class="dash-stat-num">18,450</span>
+                                <div class="dash-stat-meta">
+                                    <span class="dash-trend-pill up"><i class="material-icons">trending_up</i> +8.6%</span>
+                                    <span class="dash-stat-sub">98.4% confirmed</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Active Operators -->
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon amber">
+                                <i class="material-icons">directions_bus</i>
+                            </div>
+                            <div class="dash-stat-content">
+                                <div class="dash-stat-label">Active Operators</div>
+                                <span id="dash-metric-operators" class="dash-stat-num">124 Providers</span>
+                                <div class="dash-stat-meta">
+                                    <span class="dash-trend-pill up"><i class="material-icons">add</i> 8 new</span>
+                                    <span class="dash-stat-sub">1,420 coaches & units</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Registered Travelers -->
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon purple">
+                                <i class="material-icons">people</i>
+                            </div>
+                            <div class="dash-stat-content">
+                                <div class="dash-stat-label">Active Travelers</div>
+                                <span id="dash-metric-users" class="dash-stat-num">94,200</span>
+                                <div class="dash-stat-meta">
+                                    <span class="dash-trend-pill up"><i class="material-icons">star</i> 4.8★</span>
+                                    <span class="dash-stat-sub">Customer rating</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Mid Row: Smooth Wave Chart + Donut Analytics -->
+                    <!-- Mid Row: Smooth Wave Chart + Transit Share Donut Chart -->
                     <div class="dash-mid-grid">
-                        <!-- Chart Card -->
+                        <!-- Chart Card: Revenue & Booking Trajectory -->
                         <div class="dash-card dash-chart-card">
                             <div class="dash-card-header">
-                                <div class="skeleton-bar medium" style="margin: 0;"></div>
+                                <div>
+                                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0f172a;">Revenue & Booking Trajectory</h3>
+                                    <p style="margin: 3px 0 0 0; font-size: 0.78rem; color: #64748b;">Daily ticket sales and passenger trips volume across all corridors</p>
+                                </div>
                                 <div class="dash-chart-dots">
-                                    <span class="legend-dot green"></span>
-                                    <div class="skeleton-bar tiny"></div>
-                                    <span class="legend-dot blue"></span>
-                                    <div class="skeleton-bar tiny"></div>
+                                    <span class="dash-legend-badge">
+                                        <span class="legend-dot green"></span>
+                                        <span>Revenue (৳ BDT)</span>
+                                    </span>
+                                    <span class="dash-legend-badge">
+                                        <span class="legend-dot blue"></span>
+                                        <span>Trips Completed</span>
+                                    </span>
                                 </div>
                             </div>
+
                             <div class="dash-chart-body">
                                 <svg class="dash-chart-svg" viewBox="0 0 500 160" preserveAspectRatio="none">
                                     <defs>
-                                        <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25" />
-                                            <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.0" />
+                                        <linearGradient id="chartGradGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#10b981" stop-opacity="0.32" />
+                                            <stop offset="100%" stop-color="#10b981" stop-opacity="0.0" />
+                                        </linearGradient>
+                                        <linearGradient id="chartGradBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#0284c7" stop-opacity="0.20" />
+                                            <stop offset="100%" stop-color="#0284c7" stop-opacity="0.0" />
                                         </linearGradient>
                                     </defs>
                                     <!-- Horizontal Gridlines -->
-                                    <line x1="0" y1="40" x2="500" y2="40" stroke="#f1f5f9" stroke-width="1" />
-                                    <line x1="0" y1="80" x2="500" y2="80" stroke="#f1f5f9" stroke-width="1" />
-                                    <line x1="0" y1="120" x2="500" y2="120" stroke="#f1f5f9" stroke-width="1" />
-                                    <!-- Filled wave area -->
-                                    <path d="M 0,110 C 60,110 100,90 150,75 C 200,60 250,95 300,50 C 350,15 420,40 500,20 L 500,160 L 0,160 Z" fill="url(#chartGrad)" />
-                                    <!-- Wave Line -->
-                                    <path d="M 0,110 C 60,110 100,90 150,75 C 200,60 250,95 300,50 C 350,15 420,40 500,20" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" />
+                                    <line x1="0" y1="35" x2="500" y2="35" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="3,3" />
+                                    <line x1="0" y1="75" x2="500" y2="75" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="3,3" />
+                                    <line x1="0" y1="115" x2="500" y2="115" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="3,3" />
+
+                                    <!-- Blue secondary wave area -->
+                                    <path d="M 0,135 C 70,130 110,110 160,95 C 220,80 270,110 330,70 C 390,30 440,65 500,45 L 500,160 L 0,160 Z" fill="url(#chartGradBlue)" />
+                                    <path d="M 0,135 C 70,130 110,110 160,95 C 220,80 270,110 330,70 C 390,30 440,65 500,45" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" />
+
+                                    <!-- Green primary wave area -->
+                                    <path d="M 0,110 C 60,110 100,85 150,70 C 200,55 250,90 300,45 C 350,15 420,35 500,20 L 500,160 L 0,160 Z" fill="url(#chartGradGreen)" />
+                                    <path d="M 0,110 C 60,110 100,85 150,70 C 200,55 250,90 300,45 C 350,15 420,35 500,20" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" />
+
+                                    <!-- Data Dots -->
+                                    <circle cx="150" cy="70" r="4" fill="#10b981" stroke="#ffffff" stroke-width="2" />
+                                    <circle cx="300" cy="45" r="4" fill="#10b981" stroke="#ffffff" stroke-width="2" />
+                                    <circle cx="500" cy="20" r="4" fill="#10b981" stroke="#ffffff" stroke-width="2" />
                                 </svg>
+                            </div>
+
+                            <!-- Labeled X-Axis -->
+                            <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #94a3b8; font-weight: 600; padding: 6px 10px 0 10px;">
+                                <span>May</span>
+                                <span>Jun</span>
+                                <span>Jul</span>
+                                <span>Aug</span>
+                                <span>Sep</span>
+                                <span style="color: #00875a; font-weight: 800;">Oct (Current)</span>
+                            </div>
+
+                            <!-- Chart KPI Highlights -->
+                            <div class="dash-chart-kpi-row">
+                                <div class="dash-chart-kpi-item">
+                                    <span class="dash-chart-kpi-label">Peak Daily Volume</span>
+                                    <span class="dash-chart-kpi-val" style="color: #00875a;">৳ 340,500 <small style="font-weight: 500; font-size: 0.75rem; color: #64748b;">(Thursday)</small></span>
+                                </div>
+                                <div class="dash-chart-kpi-item">
+                                    <span class="dash-chart-kpi-label">Average Ticket Size</span>
+                                    <span class="dash-chart-kpi-val">৳ 1,420</span>
+                                </div>
+                                <div class="dash-chart-kpi-item">
+                                    <span class="dash-chart-kpi-label">Network On-Time Rate</span>
+                                    <span class="dash-chart-kpi-val" style="color: #0284c7;">98.8%</span>
+                                </div>
+                                <div class="dash-chart-kpi-item">
+                                    <span class="dash-chart-kpi-label">API Health</span>
+                                    <span class="dash-chart-kpi-val" style="color: #00875a;">99.99% Uptime</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Donut Card -->
+                        <!-- Donut Card: Transit Service Share -->
                         <div class="dash-card dash-donut-card">
                             <div class="dash-card-header">
                                 <div>
-                                    <div class="skeleton-bar medium" style="margin: 0 0 6px 0;"></div>
-                                    <div class="skeleton-bar short" style="margin: 0;"></div>
+                                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0f172a;">Service Share</h3>
+                                    <p style="margin: 3px 0 0 0; font-size: 0.78rem; color: #64748b;">Passenger trip volume by transport mode</p>
                                 </div>
                             </div>
                             <div class="dash-donut-body">
-                                <!-- SVG Donut -->
-                                <div class="donut-chart-wrap">
+                                <!-- SVG Donut with Center Label -->
+                                <div class="donut-chart-wrap" style="position: relative;">
                                     <svg viewBox="0 0 100 100" class="donut-svg">
-                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#eef2f6" stroke-width="14" />
-                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#3b82f6" stroke-width="14" stroke-dasharray="80 160" stroke-dashoffset="20" stroke-linecap="round" />
+                                        <!-- Background Circle -->
+                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#f1f5f9" stroke-width="14" />
+                                        <!-- Bus: 48% (circumference ~ 238.76, 48% = 114.6) -->
+                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#10b981" stroke-width="14" stroke-dasharray="114.6 238.76" stroke-dashoffset="0" />
+                                        <!-- Train: 24% (57.3) -->
+                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#0284c7" stroke-width="14" stroke-dasharray="57.3 238.76" stroke-dashoffset="-114.6" />
+                                        <!-- Hotel/Resort: 16% (38.2) -->
+                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#f59e0b" stroke-width="14" stroke-dasharray="38.2 238.76" stroke-dashoffset="-171.9" />
+                                        <!-- Tour Packages: 8% (19.1) -->
+                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#8b5cf6" stroke-width="14" stroke-dasharray="19.1 238.76" stroke-dashoffset="-210.1" />
+                                        <!-- Ferry: 4% (9.5) -->
+                                        <circle cx="50" cy="50" r="38" fill="transparent" stroke="#ec4899" stroke-width="14" stroke-dasharray="9.5 238.76" stroke-dashoffset="-229.2" />
                                     </svg>
+                                    <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
+                                        <span style="font-size: 1.1rem; font-weight: 800; color: #0f172a; line-height: 1;">18.4k</span>
+                                        <span style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Trips</span>
+                                    </div>
                                 </div>
-                                <!-- Legends -->
+                                <!-- Legends List -->
                                 <div class="donut-legends">
                                     <div class="donut-legend-item">
                                         <span class="legend-dot green"></span>
-                                        <div class="skeleton-bar tiny"></div>
+                                        <div style="flex: 1; display: flex; justify-content: space-between; font-size: 0.78rem;">
+                                            <span style="color: #475569; font-weight: 600;">Intercity Bus</span>
+                                            <span style="font-weight: 800; color: #0f172a;">48%</span>
+                                        </div>
                                     </div>
                                     <div class="donut-legend-item">
                                         <span class="legend-dot blue"></span>
-                                        <div class="skeleton-bar tiny"></div>
+                                        <div style="flex: 1; display: flex; justify-content: space-between; font-size: 0.78rem;">
+                                            <span style="color: #475569; font-weight: 600;">Railway / Train</span>
+                                            <span style="font-weight: 800; color: #0f172a;">24%</span>
+                                        </div>
                                     </div>
                                     <div class="donut-legend-item">
                                         <span class="legend-dot amber"></span>
-                                        <div class="skeleton-bar tiny"></div>
+                                        <div style="flex: 1; display: flex; justify-content: space-between; font-size: 0.78rem;">
+                                            <span style="color: #475569; font-weight: 600;">Hotels & Resorts</span>
+                                            <span style="font-weight: 800; color: #0f172a;">16%</span>
+                                        </div>
                                     </div>
                                     <div class="donut-legend-item">
                                         <span class="legend-dot purple"></span>
-                                        <div class="skeleton-bar tiny"></div>
+                                        <div style="flex: 1; display: flex; justify-content: space-between; font-size: 0.78rem;">
+                                            <span style="color: #475569; font-weight: 600;">Tour Packages</span>
+                                            <span style="font-weight: 800; color: #0f172a;">8%</span>
+                                        </div>
+                                    </div>
+                                    <div class="donut-legend-item">
+                                        <span class="legend-dot red" style="background: #ec4899;"></span>
+                                        <div style="flex: 1; display: flex; justify-content: space-between; font-size: 0.78rem;">
+                                            <span style="color: #475569; font-weight: 600;">Launch / Ferry</span>
+                                            <span style="font-weight: 800; color: #0f172a;">4%</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bottom Row: Table Skeleton + Right Activity Stack -->
+                    <!-- Bottom Row: Recent Bookings Table + Corridors & System Activity -->
                     <div class="dash-bottom-grid">
-                        <!-- Table Skeleton Card -->
+                        <!-- Left Table Card: Recent Live Bookings -->
                         <div class="dash-card dash-table-card">
-                            <div class="dash-table-header">
-                                <div class="skeleton-bar medium"></div>
-                                <div class="skeleton-pill mini"></div>
+                            <div class="dash-table-header" style="flex-wrap: wrap; gap: 10px;">
+                                <div>
+                                    <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0f172a;">Recent Bookings & Transactions</h3>
+                                    <p style="margin: 3px 0 0 0; font-size: 0.78rem; color: #64748b;">Live verified passenger bookings across platform</p>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div class="dash-filter-pill-group">
+                                        <button type="button" class="dash-pill-btn active" onclick="filterDashTable('all', this)">All</button>
+                                        <button type="button" class="dash-pill-btn" onclick="filterDashTable('bus', this)">Bus</button>
+                                        <button type="button" class="dash-pill-btn" onclick="filterDashTable('train', this)">Train</button>
+                                        <button type="button" class="dash-pill-btn" onclick="filterDashTable('hotel', this)">Hotel</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="dash-table-rows">
-                                <div class="dash-table-row">
-                                    <div class="skeleton-circle"></div>
-                                    <div class="skeleton-bar long"></div>
-                                    <div class="skeleton-bar medium"></div>
-                                    <div class="skeleton-badge green"></div>
-                                    <div class="skeleton-bar short"></div>
-                                </div>
-                                <div class="dash-table-row">
-                                    <div class="skeleton-circle"></div>
-                                    <div class="skeleton-bar long"></div>
-                                    <div class="skeleton-bar medium"></div>
-                                    <div class="skeleton-badge green"></div>
-                                    <div class="skeleton-bar short"></div>
-                                </div>
-                                <div class="dash-table-row">
-                                    <div class="skeleton-circle"></div>
-                                    <div class="skeleton-bar long"></div>
-                                    <div class="skeleton-bar medium"></div>
-                                    <div class="skeleton-badge amber"></div>
-                                    <div class="skeleton-bar short"></div>
-                                </div>
-                                <div class="dash-table-row">
-                                    <div class="skeleton-circle"></div>
-                                    <div class="skeleton-bar long"></div>
-                                    <div class="skeleton-bar medium"></div>
-                                    <div class="skeleton-badge blue"></div>
-                                    <div class="skeleton-bar short"></div>
-                                </div>
-                                <div class="dash-table-row">
-                                    <div class="skeleton-circle"></div>
-                                    <div class="skeleton-bar long"></div>
-                                    <div class="skeleton-bar medium"></div>
-                                    <div class="skeleton-badge red"></div>
-                                    <div class="skeleton-bar short"></div>
-                                </div>
+
+                            <div style="overflow-x: auto;">
+                                <table class="tp-bus-ledger-table" id="dash-recent-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 100px;">Order ID</th>
+                                            <th style="min-width: 150px;">Traveler</th>
+                                            <th style="min-width: 180px;">Service & Operator</th>
+                                            <th style="min-width: 180px;">Route & Hub</th>
+                                            <th style="min-width: 120px;">Departure</th>
+                                            <th style="min-width: 100px;">Fare (BDT)</th>
+                                            <th style="width: 110px; text-align: center;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dash-recent-tbody">
+                                        <tr data-service="bus">
+                                            <td><span style="font-weight: 800; color: #0f172a; font-size: 0.82rem;">#BK-9482</span></td>
+                                            <td>
+                                                <div style="display: flex; align-items: center; gap: 8px;">
+                                                    <div style="width: 32px; height: 32px; border-radius: 50%; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.78rem;">TH</div>
+                                                    <div>
+                                                        <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">Tanvir Hasan</div>
+                                                        <div style="font-size: 0.7rem; color: #94a3b8;">+880 1712-345678</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #1e293b; font-size: 0.84rem;">Ena Transport</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">Scania AC Sleeper (Seat A1)</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-size: 0.82rem; font-weight: 700; color: #1e293b;">Dhaka (Arambagh)</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">➔ Cox's Bazar (Kolatoli)</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #0f172a; font-size: 0.8rem;">Today, 10:30 PM</div>
+                                                <div style="font-size: 0.7rem; color: #00875a; font-weight: 700;">⏱️ 8h 15m</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 800; color: #00875a; font-size: 0.95rem;">৳ 2,200</div>
+                                                <div style="font-size: 0.68rem; color: #94a3b8;">bKash Paid</div>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span class="dash-status-pill green">● Confirmed</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-service="bus">
+                                            <td><span style="font-weight: 800; color: #0f172a; font-size: 0.82rem;">#BK-9481</span></td>
+                                            <td>
+                                                <div style="display: flex; align-items: center; gap: 8px;">
+                                                    <div style="width: 32px; height: 32px; border-radius: 50%; background: #dcfce7; color: #00875a; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.78rem;">SR</div>
+                                                    <div>
+                                                        <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">Sadia Rahman</div>
+                                                        <div style="font-size: 0.7rem; color: #94a3b8;">+880 1819-876543</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #1e293b; font-size: 0.84rem;">GreenLine Transport</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">Volvo B11R AC Chair (Seat B3)</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-size: 0.82rem; font-weight: 700; color: #1e293b;">Dhaka (Gabtoli)</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">➔ Chattogram (Dampara)</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #0f172a; font-size: 0.8rem;">Today, 08:00 PM</div>
+                                                <div style="font-size: 0.7rem; color: #00875a; font-weight: 700;">⏱️ 5h 45m</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 800; color: #00875a; font-size: 0.95rem;">৳ 1,400</div>
+                                                <div style="font-size: 0.68rem; color: #94a3b8;">Nagad Paid</div>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span class="dash-status-pill green">● Confirmed</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-service="train">
+                                            <td><span style="font-weight: 800; color: #0f172a; font-size: 0.82rem;">#BK-9480</span></td>
+                                            <td>
+                                                <div style="display: flex; align-items: center; gap: 8px;">
+                                                    <div style="width: 32px; height: 32px; border-radius: 50%; background: #fef3c7; color: #d97706; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.78rem;">RI</div>
+                                                    <div>
+                                                        <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">Rafiqul Islam</div>
+                                                        <div style="font-size: 0.7rem; color: #94a3b8;">+880 1911-223344</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #1e293b; font-size: 0.84rem;">Bangladesh Railway</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">Suborno Express 701 (Snigdha)</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-size: 0.82rem; font-weight: 700; color: #1e293b;">Dhaka (Kamalapur)</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">➔ Chattogram Station</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #0f172a; font-size: 0.8rem;">Tomorrow, 07:00 AM</div>
+                                                <div style="font-size: 0.7rem; color: #00875a; font-weight: 700;">⏱️ 5h 10m</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 800; color: #00875a; font-size: 0.95rem;">৳ 980</div>
+                                                <div style="font-size: 0.68rem; color: #94a3b8;">Visa Card Paid</div>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span class="dash-status-pill green">● Confirmed</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-service="hotel">
+                                            <td><span style="font-weight: 800; color: #0f172a; font-size: 0.82rem;">#BK-9479</span></td>
+                                            <td>
+                                                <div style="display: flex; align-items: center; gap: 8px;">
+                                                    <div style="width: 32px; height: 32px; border-radius: 50%; background: #f3e8ff; color: #7e22ce; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.78rem;">MK</div>
+                                                    <div>
+                                                        <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">Mehnaz Karim</div>
+                                                        <div style="font-size: 0.7rem; color: #94a3b8;">+880 1515-998877</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #1e293b; font-size: 0.84rem;">Grand Sultan Tea Resort</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">King Suite (2 Nights Stay)</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-size: 0.82rem; font-weight: 700; color: #1e293b;">Sreemangal Hub</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">Tea Valley Sanctuary</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #0f172a; font-size: 0.8rem;">24 Oct, 02:00 PM</div>
+                                                <div style="font-size: 0.7rem; color: #0284c7; font-weight: 700;">Check-in</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 800; color: #00875a; font-size: 0.95rem;">৳ 12,500</div>
+                                                <div style="font-size: 0.68rem; color: #94a3b8;">Mastercard Paid</div>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span class="dash-status-pill blue">● Processing</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr data-service="bus">
+                                            <td><span style="font-weight: 800; color: #0f172a; font-size: 0.82rem;">#BK-9478</span></td>
+                                            <td>
+                                                <div style="display: flex; align-items: center; gap: 8px;">
+                                                    <div style="width: 32px; height: 32px; border-radius: 50%; background: #fee2e2; color: #ef4444; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.78rem;">AC</div>
+                                                    <div>
+                                                        <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">Arif Chowdhury</div>
+                                                        <div style="font-size: 0.7rem; color: #94a3b8;">+880 1616-445566</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #1e293b; font-size: 0.84rem;">Hanif Enterprise</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">Hino 1J Regular (Seat C2)</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-size: 0.82rem; font-weight: 700; color: #1e293b;">Dhaka (Sayedabad)</div>
+                                                <div style="font-size: 0.72rem; color: #64748b;">➔ Rangpur Central Terminal</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 700; color: #0f172a; font-size: 0.8rem;">Today, 11:15 PM</div>
+                                                <div style="font-size: 0.7rem; color: #00875a; font-weight: 700;">⏱️ 7h 30m</div>
+                                            </td>
+                                            <td>
+                                                <div style="font-weight: 800; color: #00875a; font-size: 0.95rem;">৳ 950</div>
+                                                <div style="font-size: 0.68rem; color: #94a3b8;">bKash Paid</div>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span class="dash-status-pill green">● Confirmed</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        <!-- Right Stack -->
+                        <!-- Right Stack: Top Corridors & Leading Operators -->
                         <div class="dash-right-stack">
-                            <!-- 4 Member Activity Rows -->
-                            <div class="dash-card dash-activity-card">
-                                <div class="dash-activity-item">
-                                    <div class="skeleton-avatar green"><i class="material-icons">person</i></div>
-                                    <div class="dash-activity-text">
-                                        <div class="skeleton-bar medium"></div>
-                                        <div class="skeleton-bar short"></div>
+                            <!-- Popular Corridors Progress Card -->
+                            <div class="dash-card">
+                                <div class="dash-card-header" style="margin-bottom: 1rem;">
+                                    <div>
+                                        <h3 style="margin: 0; font-size: 1rem; font-weight: 800; color: #0f172a;">Top Corridors & Capacity</h3>
+                                        <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: #64748b;">Daily passenger volume by travel hub</p>
                                     </div>
-                                    <span class="legend-dot green"></span>
+                                    <span class="dash-live-badge" style="font-size: 0.68rem; padding: 2px 8px;">Peak</span>
                                 </div>
-                                <div class="dash-activity-item">
-                                    <div class="skeleton-avatar blue"><i class="material-icons">person</i></div>
-                                    <div class="dash-activity-text">
-                                        <div class="skeleton-bar medium"></div>
-                                        <div class="skeleton-bar short"></div>
+
+                                <div class="dash-route-progress-item">
+                                    <div class="dash-route-progress-header">
+                                        <span class="dash-route-name">Dhaka ➔ Cox's Bazar</span>
+                                        <span class="dash-route-meta">88% • 1,420 trips/day</span>
                                     </div>
-                                    <span class="legend-dot blue"></span>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill" style="width: 88%; background: #10b981;"></div>
+                                    </div>
                                 </div>
-                                <div class="dash-activity-item">
-                                    <div class="skeleton-avatar purple"><i class="material-icons">person</i></div>
-                                    <div class="dash-activity-text">
-                                        <div class="skeleton-bar medium"></div>
-                                        <div class="skeleton-bar short"></div>
+
+                                <div class="dash-route-progress-item">
+                                    <div class="dash-route-progress-header">
+                                        <span class="dash-route-name">Dhaka ➔ Chattogram</span>
+                                        <span class="dash-route-meta">76% • 980 trips/day</span>
                                     </div>
-                                    <span class="legend-dot purple"></span>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill" style="width: 76%; background: #0284c7;"></div>
+                                    </div>
                                 </div>
-                                <div class="dash-activity-item">
-                                    <div class="skeleton-avatar amber"><i class="material-icons">person</i></div>
-                                    <div class="dash-activity-text">
-                                        <div class="skeleton-bar medium"></div>
-                                        <div class="skeleton-bar short"></div>
+
+                                <div class="dash-route-progress-item">
+                                    <div class="dash-route-progress-header">
+                                        <span class="dash-route-name">Dhaka ➔ Sylhet (Sreemangal)</span>
+                                        <span class="dash-route-meta">64% • 620 trips/day</span>
                                     </div>
-                                    <span class="legend-dot amber"></span>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill" style="width: 64%; background: #f59e0b;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="dash-route-progress-item">
+                                    <div class="dash-route-progress-header">
+                                        <span class="dash-route-name">Dhaka ➔ Rangpur / Bogura</span>
+                                        <span class="dash-route-meta">52% • 450 trips/day</span>
+                                    </div>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill" style="width: 52%; background: #8b5cf6;"></div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Bottom Mini Cards Grid -->
-                            <div class="dash-mini-cards-grid">
-                                <div class="dash-card dash-mini-box">
-                                    <div class="skeleton-avatar-mini"><i class="material-icons">person</i></div>
-                                    <div class="skeleton-bar medium"></div>
+                            <!-- Leading Operators Performance Card -->
+                            <div class="dash-card">
+                                <div class="dash-card-header" style="margin-bottom: 0.75rem;">
+                                    <div>
+                                        <h3 style="margin: 0; font-size: 1rem; font-weight: 800; color: #0f172a;">Top Performing Operators</h3>
+                                        <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: #64748b;">Highest rated providers on the network</p>
+                                    </div>
+                                    <button type="button" class="tp-subcat-action-btn" title="View all operators" onclick="switchTab('travel-planner')">
+                                        <i class="material-icons" style="font-size: 18px; color: #0284c7;">arrow_forward</i>
+                                    </button>
                                 </div>
-                                <div class="dash-card dash-mini-box">
-                                    <div class="skeleton-avatar-mini"><i class="material-icons">person</i></div>
-                                    <div class="skeleton-bar medium"></div>
-                                </div>
-                                <div class="dash-card dash-mini-box">
-                                    <div class="skeleton-avatar-mini"><i class="material-icons">person</i></div>
-                                    <div class="skeleton-bar medium"></div>
-                                </div>
-                                <div class="dash-card dash-mini-box">
-                                    <div class="skeleton-avatar-mini"><i class="material-icons">person</i></div>
-                                    <div class="skeleton-bar medium"></div>
-                                </div>
-                            </div>
 
-                            <!-- Bottom Promo Banner Card -->
-                            <div class="dash-card dash-banner-card">
-                                <div class="dash-banner-content">
-                                    <div class="skeleton-bar medium" style="background: rgba(255,255,255,0.75);"></div>
-                                    <div class="skeleton-bar short" style="background: rgba(255,255,255,0.5);"></div>
-                                    <div class="dash-banner-btn-pill"></div>
+                                <div class="dash-operator-rank-item">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <img src="images/operators/logo_ena.png" alt="Ena" style="width: 32px; height: 32px; border-radius: 50%; object-fit: contain; border: 1px solid #e2e8f0;" onerror="this.src='images/operators/logo_greenline.png'">
+                                        <div>
+                                            <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">Ena Transport</div>
+                                            <div style="font-size: 0.7rem; color: #64748b;">320 Fleet • 99.2% On-time</div>
+                                        </div>
+                                    </div>
+                                    <span style="font-weight: 800; color: #00875a; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 2px;">
+                                        <i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.8
+                                    </span>
                                 </div>
-                                <div class="dash-banner-icon">
-                                    <i class="material-icons">send</i>
+
+                                <div class="dash-operator-rank-item">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <img src="images/operators/logo_greenline.png" alt="GreenLine" style="width: 32px; height: 32px; border-radius: 50%; object-fit: contain; border: 1px solid #e2e8f0;">
+                                        <div>
+                                            <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">GreenLine Transport</div>
+                                            <div style="font-size: 0.7rem; color: #64748b;">210 Fleet • 99.5% On-time</div>
+                                        </div>
+                                    </div>
+                                    <span style="font-weight: 800; color: #00875a; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 2px;">
+                                        <i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.9
+                                    </span>
+                                </div>
+
+                                <div class="dash-operator-rank-item">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <img src="images/operators/logo_hanif.png" alt="Hanif" style="width: 32px; height: 32px; border-radius: 50%; object-fit: contain; border: 1px solid #e2e8f0;">
+                                        <div>
+                                            <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">Hanif Enterprise</div>
+                                            <div style="font-size: 0.7rem; color: #64748b;">450 Fleet • 98.1% On-time</div>
+                                        </div>
+                                    </div>
+                                    <span style="font-weight: 800; color: #00875a; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 2px;">
+                                        <i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.6
+                                    </span>
+                                </div>
+
+                                <div class="dash-operator-rank-item">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #0284c7; color: #ffffff; display: flex; align-items: center; justify-content: center;">
+                                            <i class="material-icons" style="font-size: 18px;">train</i>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 700; color: #0f172a; font-size: 0.84rem;">Bangladesh Railway</div>
+                                            <div style="font-size: 0.7rem; color: #64748b;">18 Express Trains • 97.8% On-time</div>
+                                        </div>
+                                    </div>
+                                    <span style="font-weight: 800; color: #00875a; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 2px;">
+                                        <i class="material-icons" style="font-size: 14px; color: #f59e0b;">star</i> 4.7
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Subtle blank workspace notice -->
-                    <div class="dash-blank-note">
-                        <i class="material-icons">info_outline</i>
-                        <span>Dashboard overview workspace is blank and ready. Data metrics and charts will be connected step-by-step.</span>
                     </div>
                 </section>
 
@@ -8880,6 +9466,57 @@
             }
         }
 
+        // ================= EXECUTIVE DASHBOARD CONTROLLER =================
+        function switchDashTimeRange(range, btn) {
+            if (btn && btn.parentElement) {
+                btn.parentElement.querySelectorAll('.dash-pill-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+
+            const revEl = document.getElementById('dash-metric-revenue');
+            const bookEl = document.getElementById('dash-metric-bookings');
+            const opEl = document.getElementById('dash-metric-operators');
+            const userEl = document.getElementById('dash-metric-users');
+
+            if (range === 'today') {
+                if (revEl) revEl.textContent = '৳ 2,485,600';
+                if (bookEl) bookEl.textContent = '18,450';
+                if (opEl) opEl.textContent = '124 Providers';
+                if (userEl) userEl.textContent = '94,200';
+                showToast('Viewing metrics for Today', 'info');
+            } else if (range === 'week') {
+                if (revEl) revEl.textContent = '৳ 16,840,000';
+                if (bookEl) bookEl.textContent = '118,200';
+                if (opEl) opEl.textContent = '124 Providers';
+                if (userEl) userEl.textContent = '96,500';
+                showToast('Viewing metrics for Past 7 Days', 'info');
+            } else if (range === 'month') {
+                if (revEl) revEl.textContent = '৳ 68,950,000';
+                if (bookEl) bookEl.textContent = '482,000';
+                if (opEl) opEl.textContent = '124 Providers';
+                if (userEl) userEl.textContent = '102,400';
+                showToast('Viewing metrics for Past 30 Days', 'info');
+            }
+        }
+
+        function filterDashTable(cat, btn) {
+            if (btn && btn.parentElement) {
+                btn.parentElement.querySelectorAll('.dash-pill-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+
+            const rows = document.querySelectorAll('#dash-recent-tbody tr');
+            rows.forEach(r => {
+                const sType = r.getAttribute('data-service');
+                if (cat === 'all' || sType === cat) {
+                    r.style.display = '';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+        }
+
+        // 1. Navigation & View Controller
         function switchTab(tabId) {
             if (!currentUser) return;
             const roleCfg = ROLE_PERMISSIONS[currentUser.role] || ROLE_PERMISSIONS['support'];
