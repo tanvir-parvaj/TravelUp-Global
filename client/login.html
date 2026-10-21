@@ -1036,6 +1036,26 @@
 
         // Check URL Query param ?mode=signup or ?mode=signin or ?portal=1
         document.addEventListener('DOMContentLoaded', () => {
+            // Check if opened via file:// protocol and show helpful prompt
+            if (window.location.protocol === 'file:') {
+                const banner = document.createElement('div');
+                banner.style.cssText = 'background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 12px; padding: 12px 16px; margin-bottom: 1.25rem; color: #991b1b; font-size: 0.825rem; line-height: 1.5; display: flex; align-items: center; justify-content: space-between; gap: 12px;';
+                banner.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="material-icons" style="font-size: 22px; color: #ef4444;">warning</i>
+                        <div>
+                            <strong>Local File Mode Detected:</strong> Web browsers block database API connections from <code>file://</code>.<br>
+                            Please open via local server: <a href="http://localhost:5000/login.html${window.location.search}" style="color: #00875a; font-weight: 800; text-decoration: underline;">http://localhost:5000/login.html</a>
+                        </div>
+                    </div>
+                    <a href="http://localhost:5000/login.html${window.location.search}" style="background: #00875a; color: #ffffff; padding: 6px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.785rem; white-space: nowrap;">Open Localhost</a>
+                `;
+                const formSide = document.querySelector('.auth-form-side');
+                if (formSide) {
+                    formSide.insertBefore(banner, formSide.firstChild);
+                }
+            }
+
             const urlParams = new URLSearchParams(window.location.search);
             const mode = urlParams.get('mode');
             const isPortal = urlParams.get('portal') === '1' || urlParams.get('role') === 'staff' || urlParams.get('redirect') === 'admin.html';
@@ -1234,8 +1254,10 @@
             } catch (err) {
                 alertBox.className = 'auth-alert-box error';
                 let msg = 'Network or server error: ' + err.message;
-                if (window.location.protocol === 'file:' || err.message.includes('fetch')) {
-                    msg = 'Cannot connect from file:// protocol. Please open via local server: <a href="http://localhost:5000/login.html" style="color:#b91c1c; font-weight:800; text-decoration:underline;">http://localhost:5000/login.html</a>';
+                if (window.location.protocol === 'file:') {
+                    msg = 'Cannot connect from <code>file://</code> protocol. Please open via local server: <a href="http://localhost:5000/login.html' + window.location.search + '" style="color:#00875a; font-weight:800; text-decoration:underline;">http://localhost:5000/login.html</a>';
+                } else if (err.message && err.message.toLowerCase().includes('fetch')) {
+                    msg = 'Cannot connect to backend server on port 5000. Please ensure the server is running (<code>npm start --prefix server</code>).';
                 }
                 alertBox.innerHTML = msg;
                 alertBox.style.display = 'block';
@@ -1316,7 +1338,13 @@
                 }
             } catch (err) {
                 alertBox.className = 'auth-alert-box error';
-                alertBox.textContent = 'Network or server error: ' + err.message;
+                let msg = 'Network or server error: ' + err.message;
+                if (window.location.protocol === 'file:') {
+                    msg = 'Cannot connect from <code>file://</code> protocol. Please open via local server: <a href="http://localhost:5000/login.html' + window.location.search + '" style="color:#00875a; font-weight:800; text-decoration:underline;">http://localhost:5000/login.html</a>';
+                } else if (err.message && err.message.toLowerCase().includes('fetch')) {
+                    msg = 'Cannot connect to backend server on port 5000. Please ensure the server is running (<code>npm start --prefix server</code>).';
+                }
+                alertBox.innerHTML = msg;
                 alertBox.style.display = 'block';
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<span>Create Account</span> <i class="material-icons">arrow_forward</i>`;
