@@ -5496,8 +5496,8 @@
                                 <img src="images/categories/header_logo_circular.png" alt="Travel Planner">
                             </div>
                             <div class="tp-title-area">
-                                <h1>Travel Planner</h1>
-                                <p>Manage your categories, operators, services and more</p>
+                                <h1 id="tp-main-page-title">Travel Planner</h1>
+                                <p id="tp-main-page-subtitle">Manage your categories, operators, services and more</p>
                             </div>
                         </div>
                         <div class="tp-header-right">
@@ -5844,32 +5844,8 @@
                             </div>
                         </div>
 
-                        <!-- Subcategory Navigation Strip (Operators, Routes, Schedules, Products) -->
-                        <div class="tp-subcat-nav-strip">
-                            <button type="button" class="tp-subcat-nav-pill active" onclick="switchOpSubTab('operators', this, 'travel-planner')">
-                                <i class="material-icons" style="font-size: 18px;">directions_bus</i>
-                                <span>Operators</span>
-                            </button>
-                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('routes', this, 'travel-planner')">
-                                <i class="material-icons" style="font-size: 18px; color: #627d98;">alt_route</i>
-                                <span>Routes</span>
-                            </button>
-                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('schedules', this, 'travel-planner')">
-                                <i class="material-icons" style="font-size: 18px; color: #627d98;">calendar_month</i>
-                                <span>Schedules</span>
-                            </button>
-                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('products', this, 'travel-planner')">
-                                <i class="material-icons" style="font-size: 18px; color: #627d98;">inventory_2</i>
-                                <span>Products</span>
-                            </button>
-                        </div>
-
-                        <!-- Operators Toolbar (Title, Count, Search, Filter, Grid/List Switcher) -->
-                        <div class="tp-subcat-toolbar">
-                            <div class="tp-subcat-title-group">
-                                <h2 class="tp-subcat-heading" id="tp-op-heading">Bus Operators (8)</h2>
-                                <p class="tp-subcat-subtitle" id="tp-op-subtitle">Choose from the top bus operators and book your journey with ease.</p>
-                            </div>
+                        <!-- Operators Toolbar (Search, Filter, Grid/List Switcher) -->
+                        <div class="tp-subcat-toolbar" style="justify-content: flex-end; margin-top: 1.25rem;">
                             <div class="tp-subcat-controls">
                                 <div class="tp-subcat-search-box">
                                     <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
@@ -6210,8 +6186,8 @@
                                 <img src="images/categories/header_logo_circular.png" alt="Tour Planner">
                             </div>
                             <div class="tp-title-area">
-                                <h1>Tour Planner</h1>
-                                <p>Manage your categories, operators, services and more</p>
+                                <h1 id="tour-main-page-title">Tour Planner</h1>
+                                <p id="tour-main-page-subtitle">Manage your categories, operators, services and more</p>
                             </div>
                         </div>
                         <div class="tp-header-right">
@@ -6575,32 +6551,8 @@
                             </div>
                         </div>
 
-                        <!-- Subcategory Navigation Strip (Operators, Routes, Schedules, Products) -->
-                        <div class="tp-subcat-nav-strip">
-                            <button type="button" class="tp-subcat-nav-pill active" onclick="switchOpSubTab('operators', this, 'tour-planner')">
-                                <i class="material-icons" style="font-size: 18px;">directions_bus</i>
-                                <span>Operators</span>
-                            </button>
-                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('routes', this, 'tour-planner')">
-                                <i class="material-icons" style="font-size: 18px; color: #627d98;">alt_route</i>
-                                <span>Routes</span>
-                            </button>
-                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('schedules', this, 'tour-planner')">
-                                <i class="material-icons" style="font-size: 18px; color: #627d98;">calendar_month</i>
-                                <span>Schedules</span>
-                            </button>
-                            <button type="button" class="tp-subcat-nav-pill" onclick="switchOpSubTab('products', this, 'tour-planner')">
-                                <i class="material-icons" style="font-size: 18px; color: #627d98;">inventory_2</i>
-                                <span>Products</span>
-                            </button>
-                        </div>
-
-                        <!-- Operators Toolbar (Title, Count, Search, Filter, Grid/List Switcher) -->
-                        <div class="tp-subcat-toolbar">
-                            <div class="tp-subcat-title-group">
-                                <h2 class="tp-subcat-heading" id="tour-op-heading">Bus Operators (8)</h2>
-                                <p class="tp-subcat-subtitle" id="tour-op-subtitle">Choose from the top bus operators and book your journey with ease.</p>
-                            </div>
+                        <!-- Operators Toolbar (Search, Filter, Grid/List Switcher) -->
+                        <div class="tp-subcat-toolbar" style="justify-content: flex-end; margin-top: 1.25rem;">
                             <div class="tp-subcat-controls">
                                 <div class="tp-subcat-search-box">
                                     <i class="material-icons" style="font-size: 18px; color: #94a3b8;">search</i>
@@ -9412,6 +9364,16 @@
             const detailView = document.getElementById(`${prefix}-category-detail-view`);
             if (detailView) detailView.style.display = 'block';
 
+            // Ensure Main Page Title is set to Planner
+            const mainTitle = document.getElementById(`${prefix}-main-page-title`);
+            const mainSubtitle = document.getElementById(`${prefix}-main-page-subtitle`);
+            if (mainTitle) {
+                mainTitle.textContent = isTour ? 'Tour Planner' : 'Travel Planner';
+            }
+            if (mainSubtitle) {
+                mainSubtitle.textContent = 'Manage your categories, operators, services and more';
+            }
+
             // Persist active category view to localStorage & URL hash
             try {
                 localStorage.setItem(`travelup_admin_active_category_${sectionType}`, cat.name);
@@ -9448,6 +9410,16 @@
 
             const navTabs = document.getElementById(`${prefix}-nav-tabs`);
             if (navTabs) navTabs.style.display = 'flex';
+
+            // Restore Main Page Title to Planner
+            const mainTitle = document.getElementById(`${prefix}-main-page-title`);
+            const mainSubtitle = document.getElementById(`${prefix}-main-page-subtitle`);
+            if (mainTitle) {
+                mainTitle.textContent = isTour ? 'Tour Planner' : 'Travel Planner';
+            }
+            if (mainSubtitle) {
+                mainSubtitle.textContent = 'Manage your categories, operators, services and more';
+            }
 
             if (isTour) {
                 renderTourCategoriesTable(tourCategories);
@@ -10806,6 +10778,16 @@
             const opView = document.getElementById(`${prefix}-operator-detail-view`);
             if (opView) opView.style.display = 'block';
 
+            // Update Page Header Title to "[SubCat] Operators" (e.g. Bus Operators)
+            const mainTitle = document.getElementById(`${prefix}-main-page-title`);
+            const mainSubtitle = document.getElementById(`${prefix}-main-page-subtitle`);
+            if (mainTitle) {
+                mainTitle.textContent = `${subCatName} Operators`;
+            }
+            if (mainSubtitle) {
+                mainSubtitle.textContent = `Choose from the top ${subCatName.toLowerCase()} operators and book your journey with ease.`;
+            }
+
             // 4. Render Grid / Table based on current view mode
             setOperatorViewMode(activeOperatorState.viewMode || 'list', sectionType);
 
@@ -10840,6 +10822,16 @@
             const catDetailView = document.getElementById(`${prefix}-category-detail-view`);
             if (catDetailView) catDetailView.style.display = 'block';
 
+            // Restore Main Page Title to Planner
+            const mainTitle = document.getElementById(`${prefix}-main-page-title`);
+            const mainSubtitle = document.getElementById(`${prefix}-main-page-subtitle`);
+            if (mainTitle) {
+                mainTitle.textContent = isTour ? 'Tour Planner' : 'Travel Planner';
+            }
+            if (mainSubtitle) {
+                mainSubtitle.textContent = 'Manage your categories, operators, services and more';
+            }
+
             try {
                 localStorage.removeItem(`travelup_admin_active_sub_${sectionType}`);
                 localStorage.removeItem(`travelup_admin_active_op_${sectionType}`);
@@ -10867,6 +10859,16 @@
 
             const opView = document.getElementById(`${prefix}-operator-detail-view`);
             if (opView) opView.style.display = 'none';
+
+            // Restore Main Page Title to Planner
+            const mainTitle = document.getElementById(`${prefix}-main-page-title`);
+            const mainSubtitle = document.getElementById(`${prefix}-main-page-subtitle`);
+            if (mainTitle) {
+                mainTitle.textContent = isTour ? 'Tour Planner' : 'Travel Planner';
+            }
+            if (mainSubtitle) {
+                mainSubtitle.textContent = 'Manage your categories, operators, services and more';
+            }
 
             closeCategoryDetailView(sectionType);
             try {
@@ -11221,6 +11223,16 @@
             const profileView = document.getElementById(`${prefix}-operator-profile-view`);
             if (profileView) profileView.style.display = 'block';
 
+            // Update Page Header Title
+            const mainTitle = document.getElementById(`${prefix}-main-page-title`);
+            const mainSubtitle = document.getElementById(`${prefix}-main-page-subtitle`);
+            if (mainTitle) {
+                mainTitle.textContent = `${subCat} Operators`;
+            }
+            if (mainSubtitle) {
+                mainSubtitle.textContent = `Viewing ${op.name} profile, fleet, and schedules`;
+            }
+
             // 4. Render embedded products table
             renderOperatorProducts(sectionType);
 
@@ -11251,10 +11263,21 @@
             const opView = document.getElementById(`${prefix}-operator-detail-view`);
             if (opView) opView.style.display = 'block';
 
+            const subCat = activeOperatorState.subCatName || 'Bus';
+
+            // Restore Page Header Title to "[SubCat] Operators"
+            const mainTitle = document.getElementById(`${prefix}-main-page-title`);
+            const mainSubtitle = document.getElementById(`${prefix}-main-page-subtitle`);
+            if (mainTitle) {
+                mainTitle.textContent = `${subCat} Operators`;
+            }
+            if (mainSubtitle) {
+                mainSubtitle.textContent = `Choose from the top ${subCat.toLowerCase()} operators and book your journey with ease.`;
+            }
+
             try {
                 localStorage.removeItem(`travelup_admin_active_op_${sectionType}`);
                 const parentCat = activeOperatorState.parentCatName || 'Transit';
-                const subCat = activeOperatorState.subCatName || 'Bus';
                 if (window.history && window.history.replaceState) {
                     window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCat)}&sub=${encodeURIComponent(subCat)}`);
                 }
