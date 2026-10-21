@@ -4558,7 +4558,7 @@
         .tp-op-profile-hero {
             height: 280px;
             position: relative;
-            background: #0f172a center center / cover no-repeat;
+            background: #0f172a center 35% / cover no-repeat;
         }
 
         .tp-op-profile-hero-overlay {
@@ -4604,13 +4604,14 @@
 
         .tp-op-profile-meta {
             flex: 1;
-            padding-top: 15px;
+            padding-top: 75px;
         }
 
         .tp-op-profile-name-row {
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-top: 8px;
             margin-bottom: 4px;
         }
 
@@ -5990,26 +5991,6 @@
                                         <p class="tp-op-about-text" id="tp-op-profile-about">
                                             GreenLine Transport is one of the premier luxury transport providers in Bangladesh, operating first-class Scania and Volvo coaches across all major divisions with punctual departures, certified safety, and supreme comfort.
                                         </p>
-
-                                        <div class="tp-op-routes-section">
-                                            <div class="tp-op-routes-title">Popular Connected Corridors & Hubs</div>
-                                            <div class="tp-op-routes-pills" id="tp-op-profile-popular-routes">
-                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Cox\'s Bazar', 'travel-planner')">Dhaka ⇄ Cox's Bazar</span>
-                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Chattogram', 'travel-planner')">Dhaka ⇄ Chattogram</span>
-                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Sylhet', 'travel-planner')">Dhaka ⇄ Sylhet</span>
-                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Chattogram', 'Cox\'s Bazar', 'travel-planner')">Chattogram ⇄ Cox's Bazar</span>
-                                            </div>
-                                        </div>
-
-                                        <div style="display: flex; gap: 12px; align-items: center; margin-top: 1.75rem; flex-wrap: wrap;">
-                                            <button type="button" class="tp-btn-view-products" onclick="openOperatorProductsView('travel-planner')">
-                                                <span id="tp-op-profile-cta-text">View Bus List & Schedule</span>
-                                                <i class="material-icons">arrow_forward</i>
-                                            </button>
-                                            <button type="button" class="tp-subcat-nav-pill" style="padding: 0.8rem 1.4rem; font-weight: 700;" onclick="backToOperatorDetailView('travel-planner')">
-                                                <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Operators
-                                            </button>
-                                        </div>
                                     </div>
 
                                     <div>
@@ -6045,139 +6026,72 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Embedded Operator Products / Bus Schedule Section (Mockup Match) -->
+                                <div class="tp-products-main-card" style="margin-top: 2rem; border-top: 1px solid #f1f5f9; padding-top: 1.75rem; box-shadow: none; border-left: none; border-right: none; border-bottom: none; border-radius: 0;">
+                                    <!-- Search Strip: From, To, Date, Search Button -->
+                                    <div class="tp-products-search-strip">
+                                        <div class="tp-search-field-pill">
+                                            <i class="material-icons" style="font-size: 18px; color: #00875a;">trip_origin</i>
+                                            <div>
+                                                <label>FROM</label>
+                                                <input type="text" id="tp-prod-search-from" value="Dhaka" placeholder="Origin city or hub...">
+                                            </div>
+                                        </div>
+                                        <div style="color: #94a3b8; font-size: 18px; font-weight: 800; padding: 0 4px; user-select: none;">⇄</div>
+                                        <div class="tp-search-field-pill">
+                                            <i class="material-icons" style="font-size: 18px; color: #ef4444;">location_on</i>
+                                            <div>
+                                                <label>TO</label>
+                                                <input type="text" id="tp-prod-search-to" value="Cox's Bazar" placeholder="Destination hub...">
+                                            </div>
+                                        </div>
+                                        <div class="tp-search-field-pill" style="max-width: 170px;">
+                                            <i class="material-icons" style="font-size: 18px; color: #0284c7;">calendar_month</i>
+                                            <div>
+                                                <label>DATE</label>
+                                                <input type="date" id="tp-prod-search-date" value="2026-10-24">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="tp-btn-search-strip" onclick="filterOperatorProducts('travel-planner')">
+                                            Search
+                                        </button>
+                                    </div>
+
+                                    <!-- Filter Row: Category Pills (All, AC, Non AC, Sleeper, etc.) -->
+                                    <div class="tp-products-filters-row">
+                                        <div class="tp-filter-pills-wrap" id="tp-prod-filter-pills">
+                                            <button type="button" class="tp-filter-pill-btn active" onclick="switchProductFilter('All', this, 'travel-planner')">All</button>
+                                            <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('AC', this, 'travel-planner')">AC</button>
+                                            <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Non AC', this, 'travel-planner')">Non AC</button>
+                                            <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Sleeper', this, 'travel-planner')">Sleeper</button>
+                                            <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Executive', this, 'travel-planner')">Executive</button>
+                                        </div>
+                                        <div style="font-size: 0.85rem; font-weight: 700; color: #64748b;" id="tp-prod-results-count">
+                                            Showing available options
+                                        </div>
+                                    </div>
+
+                                    <!-- Products List Table -->
+                                    <div style="overflow-x: auto;">
+                                        <table class="tp-products-table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="min-width: 240px;" id="tp-prod-th-name">VEHICLE / FLEET COACH</th>
+                                                    <th style="min-width: 170px;">DEPARTURE & ARRIVAL</th>
+                                                    <th style="min-width: 150px;">ROUTE & STOPS</th>
+                                                    <th style="min-width: 110px;">FARE (BDT)</th>
+                                                    <th style="min-width: 120px;">SEATS AVAILABLE</th>
+                                                    <th style="width: 120px; text-align: center;">ACTION</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tp-products-tbody">
+                                                <!-- Dynamic Product Rows -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Screen 5: Operator Products & Booking Schedule View for Travel Planner -->
-                    <div id="tp-operator-products-view" style="display: none;">
-                        <!-- Top Breadcrumb Bar -->
-                        <div class="tp-subcat-breadcrumb-bar">
-                            <a href="javascript:void(0)" onclick="closeAllDetailViews('travel-planner')" class="tp-subcat-bc-link">
-                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
-                            </a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <a href="javascript:void(0)" onclick="closeAllDetailViews('travel-planner')" class="tp-subcat-bc-link">Categories</a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <a href="javascript:void(0)" id="tp-prod-parent-cat-link" onclick="backToCategoryDetailView('travel-planner')" class="tp-subcat-bc-link">Transit</a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <a href="javascript:void(0)" id="tp-prod-subcat-link" onclick="backToOperatorDetailView('travel-planner')" class="tp-subcat-bc-link">Bus</a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <a href="javascript:void(0)" id="tp-prod-operator-link" onclick="backToOperatorProfileView('travel-planner')" class="tp-subcat-bc-link">GreenLine Transport</a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <span class="tp-subcat-bc-active" id="tp-prod-breadcrumb">Bus List</span>
-                        </div>
-
-                        <!-- Split Layout -->
-                        <div class="tp-products-view-layout">
-                            <!-- Left Sidebar Card -->
-                            <aside class="tp-products-sidebar-card">
-                                <img id="tp-prod-sidebar-hero" src="images/operators/bus_greenline.png" alt="Fleet Banner" class="tp-products-sidebar-photo" onerror="this.src='images/operators/bus_greenline.png'">
-                                <div class="tp-products-sidebar-profile">
-                                    <img id="tp-prod-sidebar-logo" src="images/operators/logo_greenline.png" alt="Operator Logo" class="tp-products-sidebar-logo" onerror="this.src='images/operators/logo_greenline.png'">
-                                    <h3 class="tp-products-sidebar-name" id="tp-prod-sidebar-name">GreenLine Transport</h3>
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 6px;">
-                                        <span class="tp-op-rating"><i class="material-icons tp-op-rating-star">star</i> <span id="tp-prod-sidebar-rating">4.8</span></span>
-                                        <span class="tp-op-verified-badge" style="padding: 2px 8px; font-size: 0.7rem;"><i class="material-icons" style="font-size: 13px;">verified</i> Verified</span>
-                                    </div>
-                                </div>
-
-                                <div class="tp-products-sidebar-menu">
-                                    <button type="button" class="tp-products-menu-item" onclick="backToOperatorProfileView('travel-planner')">
-                                        <i class="material-icons" style="font-size: 18px;">dashboard</i>
-                                        <span>Overview</span>
-                                    </button>
-                                    <button type="button" class="tp-products-menu-item active">
-                                        <i class="material-icons" style="font-size: 18px;" id="tp-prod-sidebar-icon">directions_bus</i>
-                                        <span id="tp-prod-sidebar-item-label">Bus List</span>
-                                    </button>
-                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Viewing verified routes and terminal points', 'info')">
-                                        <i class="material-icons" style="font-size: 18px;">alt_route</i>
-                                        <span>Routes & Stops</span>
-                                    </button>
-                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Verified high-resolution fleet gallery', 'info')">
-                                        <i class="material-icons" style="font-size: 18px;">photo_library</i>
-                                        <span>Gallery</span>
-                                    </button>
-                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Verified passenger ratings & reviews', 'info')">
-                                        <i class="material-icons" style="font-size: 18px;">star_rate</i>
-                                        <span>Reviews</span>
-                                    </button>
-                                </div>
-
-                                <div class="tp-products-sidebar-promo">
-                                    <i class="material-icons" style="font-size: 22px; color: #00875a;">health_and_safety</i>
-                                    <div>
-                                        <div style="font-weight: 800; color: #064e3b;">Official Partner</div>
-                                        <div style="font-size: 0.725rem; color: #047857;">Instant booking & verified seats</div>
-                                    </div>
-                                </div>
-                            </aside>
-
-                            <!-- Right Main Area -->
-                            <main class="tp-products-main-card">
-                                <!-- Search Strip: From, To, Date, Search Button -->
-                                <div class="tp-products-search-strip">
-                                    <div class="tp-search-field-pill">
-                                        <i class="material-icons" style="font-size: 18px; color: #00875a;">trip_origin</i>
-                                        <div>
-                                            <label>From</label>
-                                            <input type="text" id="tp-prod-search-from" value="Dhaka" placeholder="Origin city or hub...">
-                                        </div>
-                                    </div>
-                                    <div style="color: #94a3b8; font-size: 18px; font-weight: 800; padding: 0 4px;">⇄</div>
-                                    <div class="tp-search-field-pill">
-                                        <i class="material-icons" style="font-size: 18px; color: #ef4444;">location_on</i>
-                                        <div>
-                                            <label>To</label>
-                                            <input type="text" id="tp-prod-search-to" value="Cox's Bazar" placeholder="Destination hub...">
-                                        </div>
-                                    </div>
-                                    <div class="tp-search-field-pill" style="max-width: 170px;">
-                                        <i class="material-icons" style="font-size: 18px; color: #0284c7;">calendar_month</i>
-                                        <div>
-                                            <label>Date</label>
-                                            <input type="date" id="tp-prod-search-date" value="2026-10-24">
-                                        </div>
-                                    </div>
-                                    <button type="button" class="tp-btn-search-strip" onclick="filterOperatorProducts('travel-planner')">
-                                        Search
-                                    </button>
-                                </div>
-
-                                <!-- Filter Row: Category Pills (All, AC, Non AC, Sleeper, etc.) -->
-                                <div class="tp-products-filters-row">
-                                    <div class="tp-filter-pills-wrap" id="tp-prod-filter-pills">
-                                        <button type="button" class="tp-filter-pill-btn active" onclick="switchProductFilter('All', this, 'travel-planner')">All</button>
-                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('AC', this, 'travel-planner')">AC</button>
-                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Non AC', this, 'travel-planner')">Non AC</button>
-                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Sleeper', this, 'travel-planner')">Sleeper</button>
-                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Executive', this, 'travel-planner')">Executive</button>
-                                    </div>
-                                    <div style="font-size: 0.85rem; font-weight: 700; color: #64748b;" id="tp-prod-results-count">
-                                        Showing options
-                                    </div>
-                                </div>
-
-                                <!-- Products List Table -->
-                                <div style="overflow-x: auto;">
-                                    <table class="tp-products-table">
-                                        <thead>
-                                            <tr>
-                                                <th style="min-width: 240px;" id="tp-prod-th-name">Vehicle / Service</th>
-                                                <th style="min-width: 170px;">Departure & Arrival</th>
-                                                <th style="min-width: 150px;">Route & Stops</th>
-                                                <th style="min-width: 110px;">Fare (BDT)</th>
-                                                <th style="min-width: 120px;">Seats Available</th>
-                                                <th style="width: 120px; text-align: center;">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tp-products-tbody">
-                                            <!-- Dynamic Product Rows -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </main>
                         </div>
                     </div>
     
@@ -6808,26 +6722,6 @@
                                         <p class="tp-op-about-text" id="tour-op-profile-about">
                                             GreenLine Transport is one of the premier luxury transport providers in Bangladesh, operating first-class Scania and Volvo coaches across all major divisions with punctual departures, certified safety, and supreme comfort.
                                         </p>
-
-                                        <div class="tp-op-routes-section">
-                                            <div class="tp-op-routes-title">Popular Connected Corridors & Hubs</div>
-                                            <div class="tp-op-routes-pills" id="tour-op-profile-popular-routes">
-                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Cox\'s Bazar', 'tour-planner')">Dhaka ⇄ Cox's Bazar</span>
-                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Chattogram', 'tour-planner')">Dhaka ⇄ Chattogram</span>
-                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Dhaka', 'Sylhet', 'tour-planner')">Dhaka ⇄ Sylhet</span>
-                                                <span class="tp-op-route-chip" onclick="handleSelectRoute('Chattogram', 'Cox\'s Bazar', 'tour-planner')">Chattogram ⇄ Cox's Bazar</span>
-                                            </div>
-                                        </div>
-
-                                        <div style="display: flex; gap: 12px; align-items: center; margin-top: 1.75rem; flex-wrap: wrap;">
-                                            <button type="button" class="tp-btn-view-products" onclick="openOperatorProductsView('tour-planner')">
-                                                <span id="tour-op-profile-cta-text">View Bus List & Schedule</span>
-                                                <i class="material-icons">arrow_forward</i>
-                                            </button>
-                                            <button type="button" class="tp-subcat-nav-pill" style="padding: 0.8rem 1.4rem; font-weight: 700;" onclick="backToOperatorDetailView('tour-planner')">
-                                                <i class="material-icons" style="font-size: 18px;">arrow_back</i> Back to Operators
-                                            </button>
-                                        </div>
                                     </div>
 
                                     <div>
@@ -6863,139 +6757,72 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Embedded Operator Products / Bus Schedule Section (Mockup Match) -->
+                                <div class="tp-products-main-card" style="margin-top: 2rem; border-top: 1px solid #f1f5f9; padding-top: 1.75rem; box-shadow: none; border-left: none; border-right: none; border-bottom: none; border-radius: 0;">
+                                    <!-- Search Strip: From, To, Date, Search Button -->
+                                    <div class="tp-products-search-strip">
+                                        <div class="tp-search-field-pill">
+                                            <i class="material-icons" style="font-size: 18px; color: #00875a;">trip_origin</i>
+                                            <div>
+                                                <label>FROM</label>
+                                                <input type="text" id="tour-prod-search-from" value="Dhaka" placeholder="Origin city or hub...">
+                                            </div>
+                                        </div>
+                                        <div style="color: #94a3b8; font-size: 18px; font-weight: 800; padding: 0 4px; user-select: none;">⇄</div>
+                                        <div class="tp-search-field-pill">
+                                            <i class="material-icons" style="font-size: 18px; color: #ef4444;">location_on</i>
+                                            <div>
+                                                <label>TO</label>
+                                                <input type="text" id="tour-prod-search-to" value="Cox's Bazar" placeholder="Destination hub...">
+                                            </div>
+                                        </div>
+                                        <div class="tp-search-field-pill" style="max-width: 170px;">
+                                            <i class="material-icons" style="font-size: 18px; color: #0284c7;">calendar_month</i>
+                                            <div>
+                                                <label>DATE</label>
+                                                <input type="date" id="tour-prod-search-date" value="2026-10-24">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="tp-btn-search-strip" onclick="filterOperatorProducts('tour-planner')">
+                                            Search
+                                        </button>
+                                    </div>
+
+                                    <!-- Filter Row: Category Pills (All, AC, Non AC, Sleeper, etc.) -->
+                                    <div class="tp-products-filters-row">
+                                        <div class="tp-filter-pills-wrap" id="tour-prod-filter-pills">
+                                            <button type="button" class="tp-filter-pill-btn active" onclick="switchProductFilter('All', this, 'tour-planner')">All</button>
+                                            <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('AC', this, 'tour-planner')">AC</button>
+                                            <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Non AC', this, 'tour-planner')">Non AC</button>
+                                            <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Sleeper', this, 'tour-planner')">Sleeper</button>
+                                            <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Executive', this, 'tour-planner')">Executive</button>
+                                        </div>
+                                        <div style="font-size: 0.85rem; font-weight: 700; color: #64748b;" id="tour-prod-results-count">
+                                            Showing available options
+                                        </div>
+                                    </div>
+
+                                    <!-- Products List Table -->
+                                    <div style="overflow-x: auto;">
+                                        <table class="tp-products-table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="min-width: 240px;" id="tour-prod-th-name">VEHICLE / FLEET COACH</th>
+                                                    <th style="min-width: 170px;">DEPARTURE & ARRIVAL</th>
+                                                    <th style="min-width: 150px;">ROUTE & STOPS</th>
+                                                    <th style="min-width: 110px;">FARE (BDT)</th>
+                                                    <th style="min-width: 120px;">SEATS AVAILABLE</th>
+                                                    <th style="width: 120px; text-align: center;">ACTION</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tour-products-tbody">
+                                                <!-- Dynamic Product Rows -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Screen 5: Operator Products & Booking Schedule View for Tour Planner -->
-                    <div id="tour-operator-products-view" style="display: none;">
-                        <!-- Top Breadcrumb Bar -->
-                        <div class="tp-subcat-breadcrumb-bar">
-                            <a href="javascript:void(0)" onclick="closeAllDetailViews('tour-planner')" class="tp-subcat-bc-link">
-                                <i class="material-icons tp-subcat-bc-home-icon">home</i> Home
-                            </a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <a href="javascript:void(0)" onclick="closeAllDetailViews('tour-planner')" class="tp-subcat-bc-link">Categories</a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <a href="javascript:void(0)" id="tour-prod-parent-cat-link" onclick="backToCategoryDetailView('tour-planner')" class="tp-subcat-bc-link">Transit</a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <a href="javascript:void(0)" id="tour-prod-subcat-link" onclick="backToOperatorDetailView('tour-planner')" class="tp-subcat-bc-link">Bus</a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <a href="javascript:void(0)" id="tour-prod-operator-link" onclick="backToOperatorProfileView('tour-planner')" class="tp-subcat-bc-link">GreenLine Transport</a>
-                            <span class="tp-subcat-bc-sep">&gt;</span>
-                            <span class="tp-subcat-bc-active" id="tour-prod-breadcrumb">Bus List</span>
-                        </div>
-
-                        <!-- Split Layout -->
-                        <div class="tp-products-view-layout">
-                            <!-- Left Sidebar Card -->
-                            <aside class="tp-products-sidebar-card">
-                                <img id="tour-prod-sidebar-hero" src="images/operators/bus_greenline.png" alt="Fleet Banner" class="tp-products-sidebar-photo" onerror="this.src='images/operators/bus_greenline.png'">
-                                <div class="tp-products-sidebar-profile">
-                                    <img id="tour-prod-sidebar-logo" src="images/operators/logo_greenline.png" alt="Operator Logo" class="tp-products-sidebar-logo" onerror="this.src='images/operators/logo_greenline.png'">
-                                    <h3 class="tp-products-sidebar-name" id="tour-prod-sidebar-name">GreenLine Transport</h3>
-                                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 6px;">
-                                        <span class="tp-op-rating"><i class="material-icons tp-op-rating-star">star</i> <span id="tour-prod-sidebar-rating">4.8</span></span>
-                                        <span class="tp-op-verified-badge" style="padding: 2px 8px; font-size: 0.7rem;"><i class="material-icons" style="font-size: 13px;">verified</i> Verified</span>
-                                    </div>
-                                </div>
-
-                                <div class="tp-products-sidebar-menu">
-                                    <button type="button" class="tp-products-menu-item" onclick="backToOperatorProfileView('tour-planner')">
-                                        <i class="material-icons" style="font-size: 18px;">dashboard</i>
-                                        <span>Overview</span>
-                                    </button>
-                                    <button type="button" class="tp-products-menu-item active">
-                                        <i class="material-icons" style="font-size: 18px;" id="tour-prod-sidebar-icon">directions_bus</i>
-                                        <span id="tour-prod-sidebar-item-label">Bus List</span>
-                                    </button>
-                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Viewing verified routes and terminal points', 'info')">
-                                        <i class="material-icons" style="font-size: 18px;">alt_route</i>
-                                        <span>Routes & Stops</span>
-                                    </button>
-                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Verified high-resolution fleet gallery', 'info')">
-                                        <i class="material-icons" style="font-size: 18px;">photo_library</i>
-                                        <span>Gallery</span>
-                                    </button>
-                                    <button type="button" class="tp-products-menu-item" onclick="showToast('Verified passenger ratings & reviews', 'info')">
-                                        <i class="material-icons" style="font-size: 18px;">star_rate</i>
-                                        <span>Reviews</span>
-                                    </button>
-                                </div>
-
-                                <div class="tp-products-sidebar-promo">
-                                    <i class="material-icons" style="font-size: 22px; color: #00875a;">health_and_safety</i>
-                                    <div>
-                                        <div style="font-weight: 800; color: #064e3b;">Official Partner</div>
-                                        <div style="font-size: 0.725rem; color: #047857;">Instant booking & verified seats</div>
-                                    </div>
-                                </div>
-                            </aside>
-
-                            <!-- Right Main Area -->
-                            <main class="tp-products-main-card">
-                                <!-- Search Strip: From, To, Date, Search Button -->
-                                <div class="tp-products-search-strip">
-                                    <div class="tp-search-field-pill">
-                                        <i class="material-icons" style="font-size: 18px; color: #00875a;">trip_origin</i>
-                                        <div>
-                                            <label>From</label>
-                                            <input type="text" id="tour-prod-search-from" value="Dhaka" placeholder="Origin city or hub...">
-                                        </div>
-                                    </div>
-                                    <div style="color: #94a3b8; font-size: 18px; font-weight: 800; padding: 0 4px;">⇄</div>
-                                    <div class="tp-search-field-pill">
-                                        <i class="material-icons" style="font-size: 18px; color: #ef4444;">location_on</i>
-                                        <div>
-                                            <label>To</label>
-                                            <input type="text" id="tour-prod-search-to" value="Cox's Bazar" placeholder="Destination hub...">
-                                        </div>
-                                    </div>
-                                    <div class="tp-search-field-pill" style="max-width: 170px;">
-                                        <i class="material-icons" style="font-size: 18px; color: #0284c7;">calendar_month</i>
-                                        <div>
-                                            <label>Date</label>
-                                            <input type="date" id="tour-prod-search-date" value="2026-10-24">
-                                        </div>
-                                    </div>
-                                    <button type="button" class="tp-btn-search-strip" onclick="filterOperatorProducts('tour-planner')">
-                                        Search
-                                    </button>
-                                </div>
-
-                                <!-- Filter Row: Category Pills (All, AC, Non AC, Sleeper, etc.) -->
-                                <div class="tp-products-filters-row">
-                                    <div class="tp-filter-pills-wrap" id="tour-prod-filter-pills">
-                                        <button type="button" class="tp-filter-pill-btn active" onclick="switchProductFilter('All', this, 'tour-planner')">All</button>
-                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('AC', this, 'tour-planner')">AC</button>
-                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Non AC', this, 'tour-planner')">Non AC</button>
-                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Sleeper', this, 'tour-planner')">Sleeper</button>
-                                        <button type="button" class="tp-filter-pill-btn" onclick="switchProductFilter('Executive', this, 'tour-planner')">Executive</button>
-                                    </div>
-                                    <div style="font-size: 0.85rem; font-weight: 700; color: #64748b;" id="tour-prod-results-count">
-                                        Showing options
-                                    </div>
-                                </div>
-
-                                <!-- Products List Table -->
-                                <div style="overflow-x: auto;">
-                                    <table class="tp-products-table">
-                                        <thead>
-                                            <tr>
-                                                <th style="min-width: 240px;" id="tour-prod-th-name">Vehicle / Service</th>
-                                                <th style="min-width: 170px;">Departure & Arrival</th>
-                                                <th style="min-width: 150px;">Route & Stops</th>
-                                                <th style="min-width: 110px;">Fare (BDT)</th>
-                                                <th style="min-width: 120px;">Seats Available</th>
-                                                <th style="width: 120px; text-align: center;">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tour-products-tbody">
-                                            <!-- Dynamic Product Rows -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </main>
                         </div>
                     </div>
                     
@@ -10215,6 +10042,7 @@
                     name: 'GreenLine Transport',
                     logo: 'images/operators/logo_greenline.png',
                     photo: 'images/operators/bus_greenline.png',
+                    heroBanner: 'images/operators/operator_hero_banner_hq.jpg',
                     rating: 4.8,
                     reviews: '1.2k reviews',
                     tagline: 'Safe journey, green tomorrow.',
@@ -10229,6 +10057,7 @@
                     name: 'SkyRoute',
                     logo: 'images/operators/logo_skyroute.png',
                     photo: 'images/operators/bus_skyroute.png',
+                    heroBanner: 'images/operators/operator_hero_banner_hq.jpg',
                     rating: 4.6,
                     reviews: '980 reviews',
                     tagline: 'Comfort on every mile.',
@@ -10242,7 +10071,8 @@
                     id: 'op-bus-3',
                     name: 'Hanif Enterprise',
                     logo: 'images/operators/logo_hanif.png',
-                    photo: 'images/operators/bus_hanif.png',
+                    photo: 'images/operators/bus_hanif_hq.jpg',
+                    heroBanner: 'images/operators/operator_hero_banner_hq.jpg',
                     rating: 4.3,
                     reviews: '640 reviews',
                     tagline: 'Trusted by millions.',
@@ -10518,6 +10348,60 @@
         };
 
         const DEFAULT_PRODUCTS = {
+            'Hanif Enterprise': [
+                {
+                    name: 'Hanif Enterprise Scania Multi-Axle AC Sleeper Coach',
+                    specs: '2+1 Luxury Sleeper • Air Suspension • LCD & Blanket',
+                    from: 'Dhaka (Arambagh / Sayedabad)',
+                    to: 'Cox\'s Bazar (Kolatoli Beach)',
+                    depTime: '10:30 PM',
+                    arrTime: '06:45 AM',
+                    duration: '8h 15m',
+                    fare: 2200,
+                    availableSeats: '14 Seats Left',
+                    categoryType: 'Sleeper',
+                    photo: 'images/operators/bus_hanif_hq.jpg'
+                },
+                {
+                    name: 'Hanif Enterprise Hino 1J Non AC Economy',
+                    specs: '2+2 Standard Recline • Spacious Luggage Compartment',
+                    from: 'Dhaka (Sayedabad)',
+                    to: 'Cox\'s Bazar (Jhawtola)',
+                    depTime: '11:00 PM',
+                    arrTime: '08:00 AM',
+                    duration: '9h 00m',
+                    fare: 950,
+                    availableSeats: '18 Seats Left',
+                    categoryType: 'Non AC',
+                    photo: 'images/operators/bus_hanif_hq.jpg'
+                },
+                {
+                    name: 'Hanif Enterprise Volvo B11R AC Chair Coach',
+                    specs: '2+2 Business Class • Ergonomic Leather Seats • USB Charging',
+                    from: 'Dhaka (Gabtoli / Kalyanpur)',
+                    to: 'Chattogram (Dampara)',
+                    depTime: '07:30 AM',
+                    arrTime: '01:15 PM',
+                    duration: '5h 45m',
+                    fare: 1400,
+                    availableSeats: '22 Seats Left',
+                    categoryType: 'AC',
+                    photo: 'images/operators/bus_hanif_hq.jpg'
+                },
+                {
+                    name: 'Hanif Enterprise Executive Sleeper Suite',
+                    specs: '1+2 VIP Sleeper • High-Speed Wi-Fi • Personal Reading Light',
+                    from: 'Dhaka (Arambagh)',
+                    to: 'Sylhet (Kadamtoli)',
+                    depTime: '11:45 PM',
+                    arrTime: '05:30 AM',
+                    duration: '5h 45m',
+                    fare: 1650,
+                    availableSeats: '12 Seats Left',
+                    categoryType: 'Executive',
+                    photo: 'images/operators/bus_hanif_hq.jpg'
+                }
+            ],
             'GreenLine Transport': [
                 {
                     name: 'GreenLine Scania Multi-Axle AC Sleeper Coach',
@@ -11279,7 +11163,8 @@
             // 2. Profile Details
             const heroEl = document.getElementById(`${prefix}-op-profile-hero`);
             if (heroEl) {
-                heroEl.style.backgroundImage = `url('${op.photo || 'images/operators/bus_greenline.png'}')`;
+                const heroImg = op.heroBanner || 'images/operators/operator_hero_banner_hq.jpg';
+                heroEl.style.backgroundImage = `url('${heroImg}')`;
             }
             const avatarEl = document.getElementById(`${prefix}-op-profile-avatar`);
             if (avatarEl) {
@@ -11320,15 +11205,6 @@
             const statFleet = document.getElementById(`${prefix}-op-stat-fleet`);
             if (statFleet) statFleet.textContent = `${op.fleetCount || 150}+ Fleet`;
 
-            const ctaText = document.getElementById(`${prefix}-op-profile-cta-text`);
-            if (ctaText) {
-                if (subCat.toLowerCase() === 'bus') ctaText.textContent = 'View Bus List & Schedule';
-                else if (subCat.toLowerCase() === 'flight') ctaText.textContent = 'View Flight Schedule & Seats';
-                else if (subCat.toLowerCase() === 'train') ctaText.textContent = 'View Train Schedule & Classes';
-                else if (parentCat.toLowerCase().includes('accommodation')) ctaText.textContent = 'View Rooms & Availability';
-                else ctaText.textContent = `View ${subCat} Products & Schedule`;
-            }
-
             // 3. Toggle Views
             const opView = document.getElementById(`${prefix}-operator-detail-view`);
             if (opView) opView.style.display = 'none';
@@ -11345,7 +11221,10 @@
             const profileView = document.getElementById(`${prefix}-operator-profile-view`);
             if (profileView) profileView.style.display = 'block';
 
-            // 4. Persist to URL & localStorage
+            // 4. Render embedded products table
+            renderOperatorProducts(sectionType);
+
+            // 5. Persist to URL & localStorage
             try {
                 localStorage.setItem(`travelup_admin_active_op_${sectionType}`, op.name);
                 if (window.history && window.history.replaceState) {
@@ -11403,9 +11282,6 @@
         // ================= 2.7 SCREEN 5: PRODUCTS & BOOKING SCHEDULE CONTROLLER ================= //
 
         function openOperatorProductsView(sectionType = 'travel-planner') {
-            const isTour = sectionType === 'tour-planner';
-            const prefix = isTour ? 'tour' : 'tp';
-
             const subCat = activeOperatorState.subCatName || 'Bus';
             const parentCat = activeOperatorState.parentCatName || 'Transit';
             let op = activeOperatorState.activeOperator;
@@ -11414,118 +11290,11 @@
                 op = rawList[0] || { name: 'GreenLine Transport', logo: 'images/operators/logo_greenline.png', photo: 'images/operators/bus_greenline.png', rating: 4.8 };
                 activeOperatorState.activeOperator = op;
             }
-
-            // 1. Breadcrumbs
-            const parentLink = document.getElementById(`${prefix}-prod-parent-cat-link`);
-            if (parentLink) {
-                parentLink.textContent = parentCat;
-                parentLink.onclick = () => backToCategoryDetailView(sectionType);
-            }
-            const subLink = document.getElementById(`${prefix}-prod-subcat-link`);
-            if (subLink) {
-                subLink.textContent = subCat;
-                subLink.onclick = () => backToOperatorDetailView(sectionType);
-            }
-            const opLink = document.getElementById(`${prefix}-prod-operator-link`);
-            if (opLink) {
-                opLink.textContent = op.name;
-                opLink.onclick = () => backToOperatorProfileView(sectionType);
-            }
-            const prodBc = document.getElementById(`${prefix}-prod-breadcrumb`);
-            if (prodBc) {
-                prodBc.textContent = subCat.toLowerCase() === 'bus' ? 'Bus List' : `${subCat} Products`;
-            }
-
-            // 2. Sidebar Information
-            const sideHero = document.getElementById(`${prefix}-prod-sidebar-hero`);
-            if (sideHero) sideHero.src = op.photo || 'images/operators/bus_greenline.png';
-
-            const sideLogo = document.getElementById(`${prefix}-prod-sidebar-logo`);
-            if (sideLogo) sideLogo.src = op.logo || 'images/operators/logo_greenline.png';
-
-            const sideName = document.getElementById(`${prefix}-prod-sidebar-name`);
-            if (sideName) sideName.textContent = op.name;
-
-            const sideRating = document.getElementById(`${prefix}-prod-sidebar-rating`);
-            if (sideRating) sideRating.textContent = (op.rating || 4.8).toFixed(1);
-
-            const sideItemLabel = document.getElementById(`${prefix}-prod-sidebar-item-label`);
-            if (sideItemLabel) {
-                sideItemLabel.textContent = subCat.toLowerCase() === 'bus' ? 'Bus List' : `${subCat} List`;
-            }
-
-            const sideIcon = document.getElementById(`${prefix}-prod-sidebar-icon`);
-            if (sideIcon) {
-                if (subCat.toLowerCase() === 'flight') sideIcon.textContent = 'flight';
-                else if (subCat.toLowerCase() === 'train') sideIcon.textContent = 'train';
-                else if (subCat.toLowerCase() === 'ferry') sideIcon.textContent = 'directions_boat';
-                else if (parentCat.toLowerCase().includes('accommodation')) sideIcon.textContent = 'hotel';
-                else sideIcon.textContent = 'directions_bus';
-            }
-
-            const thName = document.getElementById(`${prefix}-prod-th-name`);
-            if (thName) {
-                if (subCat.toLowerCase() === 'bus') thName.textContent = 'Vehicle / Fleet Coach';
-                else if (parentCat.toLowerCase().includes('accommodation')) thName.textContent = 'Room / Stay Unit';
-                else if (subCat.toLowerCase() === 'flight') thName.textContent = 'Flight Service / Aircraft';
-                else thName.textContent = 'Product / Service Option';
-            }
-
-            // 3. Toggle Views
-            const profileView = document.getElementById(`${prefix}-operator-profile-view`);
-            if (profileView) profileView.style.display = 'none';
-
-            const opView = document.getElementById(`${prefix}-operator-detail-view`);
-            if (opView) opView.style.display = 'none';
-
-            const catDetailView = document.getElementById(`${prefix}-category-detail-view`);
-            if (catDetailView) catDetailView.style.display = 'none';
-
-            const masterTable = document.getElementById(`${prefix}-table-container`);
-            if (masterTable) masterTable.style.display = 'none';
-
-            const prodView = document.getElementById(`${prefix}-operator-products-view`);
-            if (prodView) prodView.style.display = 'block';
-
-            // 4. Render Products
-            renderOperatorProducts(sectionType);
-
-            // 5. Persist to URL
-            try {
-                if (window.history && window.history.replaceState) {
-                    window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCat)}&sub=${encodeURIComponent(subCat)}&op=${encodeURIComponent(op.name)}&view=products`);
-                }
-            } catch (err) {
-                console.error(err);
-            }
-
-            const viewSection = document.getElementById(`view-${sectionType}`);
-            if (viewSection) viewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            handleViewSingleOperator(op.name, sectionType);
         }
 
         function backToOperatorProfileView(sectionType = 'travel-planner') {
-            const isTour = sectionType === 'tour-planner';
-            const prefix = isTour ? 'tour' : 'tp';
-
-            const prodView = document.getElementById(`${prefix}-operator-products-view`);
-            if (prodView) prodView.style.display = 'none';
-
-            const profView = document.getElementById(`${prefix}-operator-profile-view`);
-            if (profView) profView.style.display = 'block';
-
-            try {
-                const parentCat = activeOperatorState.parentCatName || 'Transit';
-                const subCat = activeOperatorState.subCatName || 'Bus';
-                const opName = activeOperatorState.activeOperator ? activeOperatorState.activeOperator.name : '';
-                if (window.history && window.history.replaceState) {
-                    window.history.replaceState(null, null, `#${sectionType}?cat=${encodeURIComponent(parentCat)}&sub=${encodeURIComponent(subCat)}&op=${encodeURIComponent(opName)}`);
-                }
-            } catch (err) {
-                console.error(err);
-            }
-
-            const viewSection = document.getElementById(`view-${sectionType}`);
-            if (viewSection) viewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            openOperatorProductsView(sectionType);
         }
 
         function switchProductFilter(filterType, btn, sectionType = 'travel-planner') {
@@ -11554,6 +11323,14 @@
             const parentCat = activeOperatorState.parentCatName || 'Transit';
             const op = activeOperatorState.activeOperator;
             const opName = op ? op.name : 'GreenLine Transport';
+
+            const thName = document.getElementById(`${prefix}-prod-th-name`);
+            if (thName) {
+                if (subCat.toLowerCase() === 'bus') thName.textContent = 'VEHICLE / FLEET COACH';
+                else if (parentCat.toLowerCase().includes('accommodation')) thName.textContent = 'ROOM / STAY UNIT';
+                else if (subCat.toLowerCase() === 'flight') thName.textContent = 'FLIGHT SERVICE / AIRCRAFT';
+                else thName.textContent = 'PRODUCT / SERVICE OPTION';
+            }
 
             const allProducts = getProductsForOperator(opName, subCat, parentCat);
             let list = [...allProducts];
@@ -11606,13 +11383,14 @@
 
             tbody.innerHTML = list.map(p => {
                 const escName = (p.name || '').replace(/'/g, "\\'");
-                const thumbImg = p.photo || op?.photo || 'images/operators/bus_greenline.png';
+                const fallbackThumb = (subCat.toLowerCase() === 'bus' ? 'images/operators/bus_hanif_hq.jpg' : 'images/operators/bus_greenline.png');
+                const thumbImg = p.photo || op?.photo || fallbackThumb;
                 const fareFormatted = (p.fare || 0).toLocaleString();
                 return `
                     <tr class="tp-product-row">
                         <td>
                             <div class="tp-product-name-cell">
-                                <img src="${thumbImg}" alt="${escName}" class="tp-product-thumb" onerror="this.src='images/operators/bus_greenline.png'">
+                                <img src="${thumbImg}" alt="${escName}" class="tp-product-thumb" onerror="this.src='images/operators/bus_hanif_hq.jpg'">
                                 <div>
                                     <div style="font-weight: 800; color: #0f172a; font-size: 0.925rem;">${p.name}</div>
                                     <div style="font-size: 0.75rem; color: #64748b; margin-top: 2px;">${p.specs || 'Premium Service'}</div>
