@@ -140,43 +140,247 @@
     // -------------------------------------------------------------
     // 4. Generate 3 Clean Curated Tiers (Lowest Price, Best Value, Fastest)
     // -------------------------------------------------------------
-    function calculateSmartRouteTiers(originName, destName, travelers = 1) {
+    // -------------------------------------------------------------
+    // Live Admin Transit Fleet Synchronizer & Stoppage Route Solver
+    // -------------------------------------------------------------
+    function getLiveAdminVehicles() {
+        const list = [];
+        try {
+            if (typeof localStorage !== 'undefined') {
+                const raw = localStorage.getItem('travelup_stored_products_map_v1');
+                if (raw) {
+                    const map = JSON.parse(raw);
+                    if (typeof map === 'object' && map !== null) {
+                        Object.keys(map).forEach(opName => {
+                            const prods = map[opName];
+                            if (Array.isArray(prods)) {
+                                prods.forEach(p => {
+                                    list.push({
+                                        ...p,
+                                        operator: p.operator || opName
+                                    });
+                                });
+                            }
+                        });
+                    }
+                }
+            }
+        } catch (e) {
+            console.warn('Error reading admin transit products:', e);
+        }
+        return list;
+    }
+
+    function matchVehicleLeg(vehicle, searchFrom, searchTo, filterMode = 'all', targetDestSlug = '') {
+        // Filter by mode if specified (bus, train, flight, launch)
+        if (filterMode && filterMode !== 'all') {
+            const specLower = (vehicle.specs || vehicle.categoryType || '').toLowerCase();
+            const nameLower = (vehicle.name || '').toLowerCase();
+            const modeLower = filterMode.toLowerCase();
+            const matchesMode = specLower.includes(modeLower) || nameLower.includes(modeLower);
+            if (!matchesMode) return null;
+        }
+
+        const fromLower = (searchFrom || '').toLowerCase().trim();
+        const toLower = (searchTo || '').toLowerCase().trim();
+        if (!fromLower || !toLower) return null;
+
+        // Build ordered route sequence: origin -> intermediate stoppages -> destination
+        const points = [
+            { 
+                name: vehicle.from || '', 
+                upazila: vehicle.originUpazila || '', 
+                depTime: vehicle.depTime || '', 
+                arrTime: vehicle.depTime || '', 
+                stopType: 'Boarding Only' 
+            },
+            ...(Array.isArray(vehicle.stoppages) ? vehicle.stoppages : []),
+            { 
+                name: vehicle.to || '', 
+                upazila: vehicle.destUpazila || '', 
+                depTime: vehicle.arrTime || '', 
+                arrTime: vehicle.arrTime || '', 
+                stopType: 'Dropping Only' 
+            }
+        ];
+
+        let fromIdx = -1;
+        let toIdx = -1;
+
+        for (let i = 0; i < points.length; i++) {
+            const pt = points[i];
+            const ptName = (pt.name || '').toLowerCase();
+            const ptUpz = (pt.upazila || '').toLowerCase();
+
+            if (fromIdx === -1 && pt.stopType !== 'Dropping Only') {
+                if (ptName.includes(fromLower) || fromLower.includes(ptName) || 
+                    (ptUpz && (ptUpz.includes(fromLower) || fromLower.includes(ptUpz)))) {
+                    fromIdx = i;
+                    continue;
+                }
+            }
+
+            if (fromIdx !== -1 && i > fromIdx && pt.stopType !== 'Boarding Only') {
+                if (ptName.includes(toLower) || toLower.includes(ptName) || 
+                    (ptUpz && (ptUpz.includes(toLower) || toLower.includes(ptUpz)))) {
+                    toIdx = i;
+                    break;
+                }
+            }
+        }
+
+        // If matched both endpoints with valid forward direction
+        if (fromIdx !== -1 && toIdx !== -1 && toIdx > fromIdx) {
+            const fromPt = points[fromIdx];
+            const toPt = points[toIdx];
+            const isFull = (fromIdx === 0 && toIdx === points.length - 1);
+
+            let fare = parseFloat(vehicle.fare) || 1200;
+            // Lookup Stage-Wise Fare
+            if (Array.isArray(vehicle.stageFares) && vehicle.stageFares.length > 0) {
+                const found = vehicle.stageFares.find(sf => {
+                    const sfFrom = (sf.from || '').toLowerCase();
+                    const sfTo = (sf.to || '').toLowerCase();
+                    const curFrom = fromPt.name.toLowerCase();
+                    const curTo = toPt.name.toLowerCase();
+                    return (sfFrom.includes(curFrom) || curFrom.includes(sfFrom)) &&
+                           (sfTo.includes(curTo) || curTo.includes(sfTo));
+                });
+                if (found && found.fare) {
+                    fare = parseFloat(found.fare);
+                } else if (!isFull) {
+                    fare = Math.round((vehicle.fare * (toIdx - fromIdx) / Math.max(1, points.length - 1)) / 10) * 10;
+                }
+            }
+
+            return {
+                matched: true,
+                id: vehicle.id,
+                vehicleName: vehicle.name,
+                operator: vehicle.operator,
+                regNo: vehicle.regNo || '',
+                specs: vehicle.specs || vehicle.categoryType || 'Standard Coach',
+                type: (vehicle.specs && vehicle.specs.toLowerCase().includes('train')) ? 'Train' : ((vehicle.specs && vehicle.specs.toLowerCase().includes('flight')) ? 'Flight' : ((vehicle.specs && vehicle.specs.toLowerCase().includes('launch')) ? 'Launch' : 'Bus')),
+                boardPoint: fromPt.name,
+                boardTime: fromPt.depTime || fromPt.arrTime || vehicle.depTime,
+                dropPoint: toPt.name,
+                dropTime: toPt.arrTime || toPt.depTime || vehicle.arrTime,
+                duration: vehicle.duration || '8h 00m',
+                fare,
+                isIntermediate: !isFull,
+                seatPlan: vehicle.seatPlan || { preset: '2x2-40', totalSeats: 40, availableSeats: 36, seatMap: {} },
+                photo: vehicle.photo || '',
+                linkedDestination: vehicle.linkedDestination || ''
+            };
+        }
+
+        return null;
+    }
+
+    /**
+     * Calculate 3-tier multimodal transit options linking Admin live fleets & intermediate stoppages
+     */
+    function calculateSmartRouteTiers(originName, destName, travelers = 1, filterMode = 'all', targetDestSlug = '') {
         const originHub = resolveLocationHub(originName);
         const destHub = resolveLocationHub(destName);
         const terrain = detectDestinationTerrain(destName);
 
         const isDirect = (originHub.id === destHub.id);
 
-        // --- Tier 1: Lowest Price / Budget ---
-        const bLeg1 = OPERATOR_FLEET.feeder_local_bus[1]; // Tk 80
-        const bLeg2 = OPERATOR_FLEET.trunk_trains[0];     // Shovon Tk 480
-        const bLeg3 = (terrain === 'hilly') 
-            ? OPERATOR_FLEET.last_mile[0] // Shared Chander Gari Tk 350
-            : OPERATOR_FLEET.last_mile[3]; // Local CNG Tk 250
-        const budgetTotal = bLeg1.price + bLeg2.price + bLeg3.price;
+        // 1. Check Live Admin Fleet
+        const adminVehicles = getLiveAdminVehicles();
+        const matchedLiveLegs = [];
 
-        // --- Tier 2: Best Value / Recommended ---
-        const rLeg1 = OPERATOR_FLEET.feeder_shuttle_hiace[1]; // AC HiAce Tk 150
-        const rLeg2 = OPERATOR_FLEET.trunk_coaches[0];       // Ena Sleeper Tk 1,650
-        const rLeg3 = (terrain === 'hilly') 
-            ? OPERATOR_FLEET.last_mile[0] // Shared Chander Gari Tk 350
-            : OPERATOR_FLEET.last_mile[2]; // Tourist Micro Tk 450
-        const recommendedTotal = rLeg1.price + rLeg2.price + rLeg3.price;
+        if (adminVehicles.length > 0) {
+            adminVehicles.forEach(v => {
+                // Try matching: direct endpoints OR regional hubs OR user search query
+                const m1 = matchVehicleLeg(v, originName, destName, filterMode, targetDestSlug);
+                const m2 = !m1 ? matchVehicleLeg(v, originHub.name, destHub.name, filterMode, targetDestSlug) : null;
+                const m3 = (!m1 && !m2) ? matchVehicleLeg(v, originName, destHub.name, filterMode, targetDestSlug) : null;
+                const m4 = (!m1 && !m2 && !m3) ? matchVehicleLeg(v, originHub.name, destName, filterMode, targetDestSlug) : null;
 
-        // --- Tier 3: Fastest / Luxury ---
-        const lLeg1 = OPERATOR_FLEET.feeder_sedan_taxi[0];   // Private Sedan Tk 900
-        const lLeg2 = OPERATOR_FLEET.trunk_coaches[2];       // VIP Volvo Tk 1,500
-        const lLeg3 = (terrain === 'hilly') 
+                const match = m1 || m2 || m3 || m4;
+                if (match) {
+                    // Check if linked to target destination
+                    let priority = 1;
+                    if (targetDestSlug && match.linkedDestination === targetDestSlug) {
+                        priority = 10;
+                    }
+                    matchedLiveLegs.push({ ...match, priority });
+                }
+            });
+        }
+
+        // Sort live matches: priority first, then fare
+        matchedLiveLegs.sort((a, b) => (b.priority - a.priority) || (a.fare - b.fare));
+
+        // Default Fleet Fallbacks
+        const defaultCoaches = OPERATOR_FLEET.trunk_coaches || [];
+        const defaultTrains = OPERATOR_FLEET.trunk_trains || [];
+        const defaultFlights = OPERATOR_FLEET.trunk_flights || [];
+
+        // Select Trunk Leg for Tier 1: Lowest Price / Budget
+        let bLeg1 = OPERATOR_FLEET.feeder_local_bus[1];
+        let bLeg2 = (matchedLiveLegs.length > 0) ? matchedLiveLegs[0] : (filterMode === 'train' ? defaultTrains[0] : (filterMode === 'flight' ? defaultFlights[0] : defaultTrains[0]));
+        let bLeg3 = (terrain === 'hilly') ? OPERATOR_FLEET.last_mile[0] : OPERATOR_FLEET.last_mile[3];
+        const bTrunkFare = bLeg2.fare || bLeg2.price || 480;
+        const budgetTotal = bLeg1.price + bTrunkFare + bLeg3.price;
+
+        // Select Trunk Leg for Tier 2: Best Value / Recommended
+        let rLeg1 = OPERATOR_FLEET.feeder_shuttle_hiace[1];
+        let rLeg2 = (matchedLiveLegs.length > 1) ? matchedLiveLegs[Math.floor(matchedLiveLegs.length / 2)] : (matchedLiveLegs[0] || defaultCoaches[0]);
+        let rLeg3 = (terrain === 'hilly') ? OPERATOR_FLEET.last_mile[0] : OPERATOR_FLEET.last_mile[2];
+        const rTrunkFare = rLeg2.fare || rLeg2.price || 1650;
+        const recommendedTotal = rLeg1.price + rTrunkFare + rLeg3.price;
+
+        // Select Trunk Leg for Tier 3: Fastest / Luxury
+        let lLeg1 = OPERATOR_FLEET.feeder_sedan_taxi[0];
+        let lLeg2 = (matchedLiveLegs.length > 0 && matchedLiveLegs[matchedLiveLegs.length - 1].fare >= 1500) 
+            ? matchedLiveLegs[matchedLiveLegs.length - 1] 
+            : (filterMode === 'flight' ? defaultFlights[0] : defaultCoaches[2]);
+        let lLeg3 = (terrain === 'hilly') 
             ? { ...OPERATOR_FLEET.last_mile[1], pricePerPerson: Math.round(OPERATOR_FLEET.last_mile[1].price / Math.max(1, travelers)) }
             : { ...OPERATOR_FLEET.last_mile[2], price: 650 };
+        const lTrunkFare = lLeg2.fare || lLeg2.price || 1500;
         const luxuryPerPersonLeg3 = lLeg3.pricePerPerson || lLeg3.price;
-        const luxuryTotal = Math.round(lLeg1.price / Math.max(1, travelers)) + lLeg2.price + luxuryPerPersonLeg3;
+        const luxuryTotal = Math.round(lLeg1.price / Math.max(1, travelers)) + lTrunkFare + luxuryPerPersonLeg3;
+
+        // Helper to format trunk leg title
+        function formatTrunkLeg(leg, defaultHubs) {
+            if (leg.matched) {
+                const badge = leg.isIntermediate ? ' [Stoppage Transfer]' : '';
+                return {
+                    title: `Trunk: ${leg.boardPoint} ➔ ${leg.dropPoint}${badge}`,
+                    vehicle: `${leg.operator} - ${leg.vehicleName} (${leg.specs})`,
+                    time: `${leg.boardTime} - ${leg.dropTime}`,
+                    price: leg.fare,
+                    slotKey: 'coach',
+                    itemId: leg.id,
+                    seatPlan: leg.seatPlan,
+                    isLiveAdmin: true,
+                    regNo: leg.regNo,
+                    operator: leg.operator,
+                    isIntermediate: leg.isIntermediate
+                };
+            }
+            return {
+                title: `Trunk: ${defaultHubs}`,
+                vehicle: `${leg.name} (${leg.classType})`,
+                time: `${leg.time} - ${leg.arrTime}`,
+                price: leg.price,
+                slotKey: (leg.type === 'Train' ? 'train' : (leg.type === 'Flight' ? 'flight' : 'coach')),
+                itemId: leg.id || 1
+            };
+        }
+
+        const trunkDesc = `${originHub.name} ➔ ${destHub.name}`;
 
         return {
             originHub,
             destHub,
             terrain,
             isDirect,
+            liveVehiclesCount: matchedLiveLegs.length,
             budget: {
                 key: 'budget',
                 label: 'Lowest Price',
@@ -185,11 +389,11 @@
                 color: '#16a34a',
                 perPersonPrice: budgetTotal,
                 totalPrice: budgetTotal * travelers,
-                summaryRoute: `${bLeg1.type} + ${bLeg2.type} + ${bLeg3.type}`,
-                timeEstimate: '18h 30m',
+                summaryRoute: `${bLeg1.type} + ${bLeg2.type || 'Bus'} + ${bLeg3.type}`,
+                timeEstimate: bLeg2.duration || '16h 30m',
                 legs: [
                     { step: 1, title: `Feeder: ${originName} ➔ ${originHub.name}`, vehicle: bLeg1.name, time: `${bLeg1.time} - ${bLeg1.arrTime}`, price: bLeg1.price, slotKey: 'bus', itemId: 1 },
-                    { step: 2, title: `Trunk: ${originHub.name} ➔ ${destHub.name}`, vehicle: `${bLeg2.name} (${bLeg2.classType})`, time: `${bLeg2.time} - ${bLeg2.arrTime}`, price: bLeg2.price, slotKey: 'train', itemId: 1 },
+                    { step: 2, ...formatTrunkLeg(bLeg2, trunkDesc) },
                     { step: 3, title: `Access: ${destHub.name} ➔ ${destName}`, vehicle: `${bLeg3.name}`, time: `${bLeg3.time} - ${bLeg3.arrTime}`, price: bLeg3.price, slotKey: (terrain === 'hilly' ? 'jeep' : 'dest_cng'), itemId: 1 }
                 ]
             },
@@ -201,11 +405,11 @@
                 color: '#0284c7',
                 perPersonPrice: recommendedTotal,
                 totalPrice: recommendedTotal * travelers,
-                summaryRoute: `${rLeg1.type} + ${rLeg2.type} + ${rLeg3.type}`,
-                timeEstimate: '14h 00m',
+                summaryRoute: `${rLeg1.type} + ${rLeg2.type || 'Coach'} + ${rLeg3.type}`,
+                timeEstimate: rLeg2.duration || '12h 00m',
                 legs: [
                     { step: 1, title: `Feeder: ${originName} ➔ ${originHub.name}`, vehicle: rLeg1.name, time: `${rLeg1.time} - ${rLeg1.arrTime}`, price: rLeg1.price, slotKey: 'microbus', itemId: 1 },
-                    { step: 2, title: `Trunk: ${originHub.name} ➔ ${destHub.name}`, vehicle: `${rLeg2.name} (${rLeg2.classType})`, time: `${rLeg2.time} - ${rLeg2.arrTime}`, price: rLeg2.price, slotKey: 'coach', itemId: 1 },
+                    { step: 2, ...formatTrunkLeg(rLeg2, trunkDesc) },
                     { step: 3, title: `Access: ${destHub.name} ➔ ${destName}`, vehicle: `${rLeg3.name}`, time: `${rLeg3.time} - ${rLeg3.arrTime}`, price: rLeg3.price, slotKey: (terrain === 'hilly' ? 'jeep' : 'dest_micro'), itemId: 1 }
                 ]
             },
@@ -217,22 +421,17 @@
                 color: '#9333ea',
                 perPersonPrice: luxuryTotal,
                 totalPrice: luxuryTotal * travelers,
-                summaryRoute: `${lLeg1.type} + ${lLeg2.type} + ${lLeg3.type}`,
-                timeEstimate: '11h 30m',
+                summaryRoute: `${lLeg1.type} + ${lLeg2.type || 'Coach'} + ${lLeg3.type}`,
+                timeEstimate: lLeg2.duration || '09h 30m',
                 legs: [
                     { step: 1, title: `Feeder: ${originName} ➔ ${originHub.name}`, vehicle: lLeg1.name, time: `${lLeg1.time}`, price: Math.round(lLeg1.price / Math.max(1, travelers)), slotKey: 'sedan', itemId: 1 },
-                    { step: 2, title: `Trunk: ${originHub.name} ➔ ${destHub.name}`, vehicle: `${lLeg2.name} (${lLeg2.classType})`, time: `${lLeg2.time} - ${lLeg2.arrTime}`, price: lLeg2.price, slotKey: 'coach', itemId: 3 },
+                    { step: 2, ...formatTrunkLeg(lLeg2, trunkDesc) },
                     { step: 3, title: `Access: ${destHub.name} ➔ ${destName}`, vehicle: `${lLeg3.name}`, time: `${lLeg3.time} - ${lLeg3.arrTime}`, price: luxuryPerPersonLeg3, slotKey: 'jeep', itemId: 2 }
                 ]
             }
         };
     }
-
-    // -------------------------------------------------------------
-    // 5. Sequential Time-Window Checker
-    // Compares departure of Leg 2 with arrival of Leg 1 (+ minimum 30 min buffer)
-    // -------------------------------------------------------------
-    function parseTimeStringToMinutes(timeStr) {
+function parseTimeStringToMinutes(timeStr) {
         if (!timeStr) return 0;
         const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
         if (!match) return 0;
@@ -278,6 +477,8 @@
         calculateSmartRouteTiers,
         parseTimeStringToMinutes,
         checkConnectionSafety
-    };
+    ,
+        getLiveAdminVehicles,
+        matchVehicleLeg};
 
 })(window);

@@ -15022,6 +15022,7 @@
             document.getElementById('bus-modal-custom-type-input').value = '';
             document.getElementById('bus-modal-fare').value = '';
             document.getElementById('bus-modal-duration').value = '';
+            if (document.getElementById('bus-modal-linked-dest')) document.getElementById('bus-modal-linked-dest').value = '';
 
             // Reset photo upload
             removeBusProductPhoto();
@@ -15119,6 +15120,7 @@
 
             document.getElementById('bus-modal-fare').value = p.fare || 1000;
             document.getElementById('bus-modal-duration').value = p.duration || '8h 00m';
+            if (document.getElementById('bus-modal-linked-dest')) document.getElementById('bus-modal-linked-dest').value = p.linkedDestination || '';
 
             // Route & Timings
             const originSel = document.getElementById('bus-modal-origin-upazila');
@@ -15252,6 +15254,7 @@
             const depTime = document.getElementById('bus-modal-dep').value.trim();
             const arrTime = document.getElementById('bus-modal-arr').value.trim();
             const duration = document.getElementById('bus-modal-duration').value.trim();
+            const linkedDestination = document.getElementById('bus-modal-linked-dest') ? document.getElementById('bus-modal-linked-dest').value : '';
             const fare = parseFloat(document.getElementById('bus-modal-fare').value) || 1000;
             const photoData = document.getElementById('bus-modal-photo-data').value.trim() || 'images/operators/bus_ena_sleeper_exact.png';
 
@@ -15330,6 +15333,7 @@
                 depTime,
                 arrTime,
                 duration,
+                linkedDestination,
                 fare,
                 availableSeats,
                 photo: photoData,
