@@ -2626,6 +2626,67 @@
             color: #334155;
         }
 
+        .tp-op-action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        .tp-op-action-btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .tp-op-action-btn:active {
+            transform: translateY(0);
+        }
+
+        .tp-operator-row {
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+        }
+
+        .tp-operator-row:hover {
+            background-color: #f8fafc !important;
+        }
+
+        .tp-amenity-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            color: #475569;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .tp-amenity-chip:hover {
+            border-color: #cbd5e1;
+            background: #f1f5f9;
+        }
+
+        .tp-amenity-chip.active {
+            background: #0284c7;
+            border-color: #0284c7;
+            color: #ffffff;
+        }
+
         /* Pagination Footer */
         .tp-subcat-pagination-footer {
             display: flex;
@@ -5864,6 +5925,10 @@
                                         <i class="material-icons" style="font-size: 16px;">view_list</i> List
                                     </button>
                                 </div>
+                                <button type="button" class="tp-btn-add-subcat" onclick="openAddOperatorModal('travel-planner')">
+                                    <i class="material-icons" style="font-size: 18px;">add</i>
+                                    <span>Add Operator</span>
+                                </button>
                             </div>
                         </div>
 
@@ -6571,6 +6636,10 @@
                                         <i class="material-icons" style="font-size: 16px;">view_list</i> List
                                     </button>
                                 </div>
+                                <button type="button" class="tp-btn-add-subcat" onclick="openAddOperatorModal('tour-planner')">
+                                    <i class="material-icons" style="font-size: 18px;">add</i>
+                                    <span>Add Operator</span>
+                                </button>
                             </div>
                         </div>
 
@@ -6911,6 +6980,199 @@
                     <button type="submit" class="btn-modal-submit">
                         <i class="material-icons" style="font-size: 18px;">save</i>
                         <span>Save Sub Category</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Operator CRUD Modal (Add / Edit Operator Matching Modern Design) -->
+    <div class="tp-modal-overlay" id="operator-crud-modal" onclick="closeOperatorModal(event)">
+        <div class="modern-modal-card" onclick="event.stopPropagation()">
+            <!-- Header -->
+            <div class="modern-modal-header">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div class="modern-modal-badge" style="background: #e0f2fe; color: #0284c7;">
+                        <i class="material-icons" id="op-modal-header-icon">directions_bus</i>
+                    </div>
+                    <div>
+                        <h3 id="op-modal-title" style="margin: 0; color: #0f172a; font-size: 1.25rem; font-weight: 800;">Add Operator</h3>
+                        <p id="op-modal-subtitle" style="margin: 3px 0 0 0; color: #64748b; font-size: 0.8rem;">Create a new operator profile with fleet and amenities</p>
+                    </div>
+                </div>
+                <button type="button" class="modern-modal-close-btn" onclick="closeOperatorModal()" title="Close">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+            </div>
+
+            <!-- Form with scrollable body -->
+            <form id="operator-crud-form" onsubmit="handleOperatorFormSubmit(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
+                <input type="hidden" id="op-modal-id">
+                <input type="hidden" id="op-modal-section">
+                <input type="hidden" id="op-modal-subcat">
+                <input type="hidden" id="op-modal-logo-data">
+                <input type="hidden" id="op-modal-photo-data">
+
+                <div class="modern-modal-scrollable">
+                    <div class="modern-modal-body">
+                        <!-- Left Column: Logo, Bus Photo, About -->
+                        <div>
+                            <!-- Operator Logo Upload -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Operator Logo <span class="req">*</span></label>
+                                <div class="mockup-dropzone" onclick="document.getElementById('op-modal-logo-file').click()" style="padding: 0.9rem 0.75rem;">
+                                    <div class="mockup-dropzone-icon-wrap" style="width: 36px; height: 36px;">
+                                        <i class="material-icons" style="font-size: 20px;">account_balance</i>
+                                        <span class="plus-badge">+</span>
+                                    </div>
+                                    <div style="font-size: 0.78rem; font-weight: 700; color: #1e293b; margin-top: 2px;">Click to upload operator logo</div>
+                                    <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 1px;">PNG, JPG or SVG (square format recommended)</div>
+                                    <input type="file" id="op-modal-logo-file" accept="image/*" style="display: none;" onchange="previewOpLogoThumbnail(event)">
+                                </div>
+                                <!-- Logo preview pill bar -->
+                                <div id="op-logo-preview-bar" class="mockup-file-preview-bar" style="display: none;">
+                                    <img id="op-modal-logo-preview" src="images/operators/logo_greenline.png" alt="Preview" style="object-fit: contain; background: #ffffff;">
+                                    <span class="file-name" id="op-logo-file-name-text">logo.png</span>
+                                    <span class="check-badge"><i class="material-icons" style="font-size: 20px;">check_circle</i></span>
+                                    <button type="button" class="close-btn" onclick="removeOpLogoImage(event)" title="Remove logo">
+                                        <i class="material-icons" style="font-size: 18px;">close</i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Fleet / Bus Photo Upload -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Fleet / Bus Photo <span class="req">*</span></label>
+                                <div class="mockup-dropzone" onclick="document.getElementById('op-modal-photo-file').click()" style="padding: 0.9rem 0.75rem;">
+                                    <div class="mockup-dropzone-icon-wrap" style="width: 36px; height: 36px;">
+                                        <i class="material-icons" style="font-size: 20px;">directions_bus</i>
+                                        <span class="plus-badge">+</span>
+                                    </div>
+                                    <div style="font-size: 0.78rem; font-weight: 700; color: #1e293b; margin-top: 2px;">Click to upload vehicle photo</div>
+                                    <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 1px;">Landscape view of bus / coach (max 2MB)</div>
+                                    <input type="file" id="op-modal-photo-file" accept="image/*" style="display: none;" onchange="previewOpPhotoThumbnail(event)">
+                                </div>
+                                <!-- Bus Photo preview pill bar -->
+                                <div id="op-photo-preview-bar" class="mockup-file-preview-bar" style="display: none;">
+                                    <img id="op-modal-photo-preview" src="images/operators/bus_greenline.png" alt="Preview">
+                                    <span class="file-name" id="op-photo-file-name-text">bus.jpg</span>
+                                    <span class="check-badge"><i class="material-icons" style="font-size: 20px;">check_circle</i></span>
+                                    <button type="button" class="close-btn" onclick="removeOpPhotoImage(event)" title="Remove photo">
+                                        <i class="material-icons" style="font-size: 18px;">close</i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- About Operator -->
+                            <div>
+                                <label class="modern-label">About Operator</label>
+                                <textarea id="op-modal-about" rows="3" placeholder="Brief summary of operator, history, and service standard..." class="modern-textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Name, Tagline, Rating, Fleet & Routes, Amenities -->
+                        <div>
+                            <!-- Operator Name -->
+                            <div style="margin-bottom: 1.15rem;">
+                                <label class="modern-label">Operator Name <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 18px;">business</i>
+                                    </div>
+                                    <input type="text" id="op-modal-name" required placeholder="e.g. GreenLine Transport, Hanif Enterprise..." class="modern-input-field">
+                                </div>
+                            </div>
+
+                            <!-- Tagline / Slogan -->
+                            <div style="margin-bottom: 1.15rem;">
+                                <label class="modern-label">Tagline / Slogan</label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 18px;">format_quote</i>
+                                    </div>
+                                    <input type="text" id="op-modal-tagline" placeholder="e.g. Safe journey, green tomorrow." class="modern-input-field">
+                                </div>
+                            </div>
+
+                            <!-- Rating & Reviews -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.15rem;">
+                                <div>
+                                    <label class="modern-label">Rating (1.0 - 5.0) <span class="req">*</span></label>
+                                    <div class="modern-input-group">
+                                        <div class="modern-input-prefix">
+                                            <i class="material-icons" style="font-size: 18px; color: #f59e0b;">star</i>
+                                        </div>
+                                        <input type="number" id="op-modal-rating" step="0.1" min="1.0" max="5.0" value="4.8" required class="modern-input-field">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="modern-label">Reviews Count</label>
+                                    <div class="modern-input-group">
+                                        <div class="modern-input-prefix">
+                                            <i class="material-icons" style="font-size: 18px;">rate_review</i>
+                                        </div>
+                                        <input type="text" id="op-modal-reviews" value="500+ reviews" placeholder="e.g. 1.2k reviews" class="modern-input-field">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Routes & Fleet Count -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.15rem;">
+                                <div>
+                                    <label class="modern-label">Total Routes <span class="req">*</span></label>
+                                    <div class="modern-input-group">
+                                        <div class="modern-input-prefix">
+                                            <i class="material-icons" style="font-size: 18px;">alt_route</i>
+                                        </div>
+                                        <input type="number" id="op-modal-routes" min="1" value="24" required class="modern-input-field">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="modern-label">Fleet Size</label>
+                                    <div class="modern-input-group">
+                                        <div class="modern-input-prefix">
+                                            <i class="material-icons" style="font-size: 18px;">directions_bus</i>
+                                        </div>
+                                        <input type="number" id="op-modal-fleet" min="1" value="80" class="modern-input-field">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Verification Status -->
+                            <div style="margin-bottom: 1.15rem;">
+                                <label class="modern-label">Verification Status</label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 18px; color: #10b981;">verified</i>
+                                    </div>
+                                    <select id="op-modal-verified" class="modern-input-field" style="cursor: pointer;">
+                                        <option value="true">● Verified Operator</option>
+                                        <option value="false">● Standard (Unverified)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Amenities & Features -->
+                            <div>
+                                <label class="modern-label">Amenities & Features (Click to toggle)</label>
+                                <div id="op-modal-amenities-container" style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+                                    <!-- Dynamic amenities chips -->
+                                </div>
+                                <div style="display: flex; gap: 6px;">
+                                    <input type="text" id="op-modal-custom-amenity" placeholder="Add custom amenity (e.g. ❄️ Central AC)" class="modern-input-field" style="font-size: 0.8rem; padding: 0.45rem 0.75rem;" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomOpAmenity();}">
+                                    <button type="button" class="btn-modal-cancel" style="padding: 0.45rem 0.85rem; font-size: 0.8rem;" onclick="addCustomOpAmenity()">+ Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modern-modal-footer">
+                    <button type="button" class="btn-modal-cancel" onclick="closeOperatorModal()">Cancel</button>
+                    <button type="submit" class="btn-modal-submit">
+                        <i class="material-icons" style="font-size: 18px;">save</i>
+                        <span>Save Operator</span>
                     </button>
                 </div>
             </form>
@@ -10499,13 +10761,38 @@
             ]
         };
 
-        function getOperatorsForSubCategory(subCatName, parentCatName) {
-            if (DEFAULT_OPERATORS[subCatName] && DEFAULT_OPERATORS[subCatName].length > 0) {
-                return DEFAULT_OPERATORS[subCatName];
+        function getStoredOperatorsMap() {
+            try {
+                const stored = localStorage.getItem('travelup_stored_operators_v1');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (typeof parsed === 'object' && parsed !== null) return parsed;
+                }
+            } catch (err) {
+                console.error('Failed to load operators:', err);
             }
-            const foundKey = Object.keys(DEFAULT_OPERATORS).find(k => k.toLowerCase() === (subCatName || '').toLowerCase());
-            if (foundKey) {
-                return DEFAULT_OPERATORS[foundKey];
+            try {
+                localStorage.setItem('travelup_stored_operators_v1', JSON.stringify(DEFAULT_OPERATORS));
+            } catch (err) {}
+            return JSON.parse(JSON.stringify(DEFAULT_OPERATORS));
+        }
+
+        function saveStoredOperatorsMap(map) {
+            try {
+                localStorage.setItem('travelup_stored_operators_v1', JSON.stringify(map));
+            } catch (err) {
+                console.error('Failed to save operators:', err);
+            }
+        }
+
+        function getOperatorsForSubCategory(subCatName, parentCatName) {
+            const opMap = getStoredOperatorsMap();
+            if (opMap[subCatName] && opMap[subCatName].length > 0) {
+                return opMap[subCatName];
+            }
+            const foundKey = Object.keys(opMap).find(k => k.toLowerCase() === (subCatName || '').toLowerCase());
+            if (foundKey && opMap[foundKey].length > 0) {
+                return opMap[foundKey];
             }
 
             const parentLower = (parentCatName || '').toLowerCase();
@@ -10951,6 +11238,7 @@
                 } else {
                     gridContainer.innerHTML = list.map(op => {
                         const escName = (op.name || '').replace(/'/g, "\\'");
+                        const escOpId = (op.id || op.name || '').replace(/'/g, "\\'");
                         const amenitiesHtml = (op.amenities || []).map(a => `<span class="tp-op-pill">${a}</span>`).join('');
                         return `
                             <div class="tp-operator-card" onclick="handleViewSingleOperator('${escName}', '${sectionType}')" style="cursor: pointer;">
@@ -10990,11 +11278,19 @@
                                         <img src="${op.photo}" alt="${escName}" class="tp-op-photo-img" onerror="this.src='images/operators/bus_greenline.png'">
                                     </div>
 
-                                    <!-- View Operator Action Button -->
-                                    <button type="button" class="tp-btn-view-operator" onclick="event.stopPropagation(); handleViewSingleOperator('${escName}', '${sectionType}')">
-                                        <span>View Operator</span>
-                                        <i class="material-icons" style="font-size: 16px;">arrow_forward</i>
-                                    </button>
+                                    <!-- Actions: View Button + Edit & Delete Buttons -->
+                                    <div style="display: flex; gap: 6px; align-items: center; margin-top: 0.75rem;">
+                                        <button type="button" class="tp-btn-view-operator" style="flex: 1;" onclick="event.stopPropagation(); handleViewSingleOperator('${escName}', '${sectionType}')">
+                                            <span>View Operator</span>
+                                            <i class="material-icons" style="font-size: 16px;">arrow_forward</i>
+                                        </button>
+                                        <button type="button" class="tp-op-action-btn" title="Edit Operator" onclick="event.stopPropagation(); openEditOperatorModal('${escOpId}', '${sectionType}')">
+                                            <i class="material-icons" style="font-size: 18px; color: #0284c7;">edit</i>
+                                        </button>
+                                        <button type="button" class="tp-op-action-btn" title="Delete Operator" onclick="event.stopPropagation(); deleteOperator('${escOpId}', '${escName}', '${sectionType}')">
+                                            <i class="material-icons" style="font-size: 18px; color: #ef4444;">delete_outline</i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         `;
@@ -11016,12 +11312,13 @@
                 } else {
                     tableBody.innerHTML = list.map((op, idx) => {
                         const escName = (op.name || '').replace(/'/g, "\\'");
+                        const escOpId = (op.id || op.name || '').replace(/'/g, "\\'");
                         const amenitiesHtml = (op.amenities || []).map(a => `<span class="tp-op-pill" style="margin: 2px;">${a}</span>`).join('');
                         return `
-                            <tr>
+                            <tr class="tp-operator-row" onclick="handleViewSingleOperator('${escName}', '${sectionType}')" style="cursor: pointer;">
                                 <td style="text-align: center; font-weight: 700; color: #94a3b8; font-size: 0.85rem;">${idx + 1}</td>
                                 <td>
-                                    <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="handleViewSingleOperator('${escName}', '${sectionType}')">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
                                         <div class="tp-op-logo-wrap" style="width: 38px; height: 38px;">
                                             <img src="${op.logo}" alt="${escName}" class="tp-op-logo-img" onerror="this.src='images/operators/logo_greenline.png'">
                                         </div>
@@ -11057,17 +11354,339 @@
                                         ${op.routesCount || 24} Routes
                                     </span>
                                 </td>
-                                <td style="text-align: center;">
-                                    <button type="button" class="tp-btn-view-operator" style="padding: 0.38rem 0.65rem; font-size: 0.75rem;" onclick="handleViewSingleOperator('${escName}', '${sectionType}')">
-                                        <span>View</span>
-                                        <i class="material-icons" style="font-size: 14px;">arrow_forward</i>
-                                    </button>
+                                <td style="text-align: center;" onclick="event.stopPropagation()">
+                                    <div style="display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
+                                        <button type="button" class="tp-op-action-btn" title="Edit Operator" onclick="event.stopPropagation(); openEditOperatorModal('${escOpId}', '${sectionType}')">
+                                            <i class="material-icons" style="font-size: 18px; color: #0284c7;">edit</i>
+                                        </button>
+                                        <button type="button" class="tp-op-action-btn" title="Delete Operator" onclick="event.stopPropagation(); deleteOperator('${escOpId}', '${escName}', '${sectionType}')">
+                                            <i class="material-icons" style="font-size: 18px; color: #ef4444;">delete_outline</i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         `;
                     }).join('');
                 }
             }
+        }
+
+        /* ================= OPERATOR CRUD & AMENITIES HELPERS ================= */
+        const availableCommonAmenities = [
+            '🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking', '💺 Sleeper Suite',
+            '🛡️ Safe Drivers', '⚡ Fast Boarding', '💺 Reclining Seats',
+            '🔌 Charging Ports', '🍽️ Refreshments', '💧 Mineral Water'
+        ];
+        let selectedOpAmenities = ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'];
+
+        function renderOpAmenitiesChips() {
+            const container = document.getElementById('op-modal-amenities-container');
+            if (!container) return;
+
+            const allChips = Array.from(new Set([...availableCommonAmenities, ...selectedOpAmenities]));
+            container.innerHTML = allChips.map(amenity => {
+                const isSelected = selectedOpAmenities.includes(amenity);
+                const escAmenity = amenity.replace(/'/g, "\\'");
+                return `
+                    <span class="tp-amenity-chip ${isSelected ? 'active' : ''}" onclick="toggleOpAmenityChip('${escAmenity}')">
+                        ${isSelected ? '<i class="material-icons" style="font-size: 14px;">check</i>' : ''}
+                        ${amenity}
+                    </span>
+                `;
+            }).join('');
+        }
+
+        function toggleOpAmenityChip(amenity) {
+            const idx = selectedOpAmenities.indexOf(amenity);
+            if (idx > -1) {
+                selectedOpAmenities.splice(idx, 1);
+            } else {
+                selectedOpAmenities.push(amenity);
+            }
+            renderOpAmenitiesChips();
+        }
+
+        function addCustomOpAmenity() {
+            const input = document.getElementById('op-modal-custom-amenity');
+            if (!input) return;
+            const val = input.value.trim();
+            if (!val) return;
+            if (!selectedOpAmenities.includes(val)) {
+                selectedOpAmenities.push(val);
+                renderOpAmenitiesChips();
+            }
+            input.value = '';
+        }
+
+        function previewOpLogoThumbnail(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+            if (file.size > 2 * 1024 * 1024) {
+                showToast('Logo size exceeds 2MB limit.', 'error');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                setOpLogoPreview(e.target.result, file.name);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function setOpLogoPreview(src, filename = 'logo.png') {
+            const previewBar = document.getElementById('op-logo-preview-bar');
+            const previewImg = document.getElementById('op-modal-logo-preview');
+            const nameEl = document.getElementById('op-logo-file-name-text');
+            const hiddenData = document.getElementById('op-modal-logo-data');
+            if (previewImg) previewImg.src = src;
+            if (nameEl) nameEl.textContent = filename;
+            if (previewBar) previewBar.style.display = 'flex';
+            if (hiddenData) hiddenData.value = src;
+        }
+
+        function removeOpLogoImage(event) {
+            if (event) event.stopPropagation();
+            const previewBar = document.getElementById('op-logo-preview-bar');
+            const hiddenData = document.getElementById('op-modal-logo-data');
+            const fileInput = document.getElementById('op-modal-logo-file');
+            if (previewBar) previewBar.style.display = 'none';
+            if (hiddenData) hiddenData.value = '';
+            if (fileInput) fileInput.value = '';
+        }
+
+        function previewOpPhotoThumbnail(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+            if (file.size > 2 * 1024 * 1024) {
+                showToast('Vehicle photo exceeds 2MB limit.', 'error');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                setOpPhotoPreview(e.target.result, file.name);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function setOpPhotoPreview(src, filename = 'bus.jpg') {
+            const previewBar = document.getElementById('op-photo-preview-bar');
+            const previewImg = document.getElementById('op-modal-photo-preview');
+            const nameEl = document.getElementById('op-photo-file-name-text');
+            const hiddenData = document.getElementById('op-modal-photo-data');
+            if (previewImg) previewImg.src = src;
+            if (nameEl) nameEl.textContent = filename;
+            if (previewBar) previewBar.style.display = 'flex';
+            if (hiddenData) hiddenData.value = src;
+        }
+
+        function removeOpPhotoImage(event) {
+            if (event) event.stopPropagation();
+            const previewBar = document.getElementById('op-photo-preview-bar');
+            const hiddenData = document.getElementById('op-modal-photo-data');
+            const fileInput = document.getElementById('op-modal-photo-file');
+            if (previewBar) previewBar.style.display = 'none';
+            if (hiddenData) hiddenData.value = '';
+            if (fileInput) fileInput.value = '';
+        }
+
+        function openAddOperatorModal(sectionType = 'travel-planner') {
+            const subCat = activeOperatorState.subCatName || 'Bus';
+            const modal = document.getElementById('operator-crud-modal');
+            if (!modal) return;
+
+            document.getElementById('op-modal-id').value = '';
+            document.getElementById('op-modal-section').value = sectionType;
+            document.getElementById('op-modal-subcat').value = subCat;
+            document.getElementById('op-modal-name').value = '';
+            document.getElementById('op-modal-tagline').value = '';
+            document.getElementById('op-modal-rating').value = '4.8';
+            document.getElementById('op-modal-reviews').value = '500+ reviews';
+            document.getElementById('op-modal-routes').value = '24';
+            document.getElementById('op-modal-fleet').value = '80';
+            document.getElementById('op-modal-about').value = '';
+            document.getElementById('op-modal-verified').value = 'true';
+            document.getElementById('op-modal-logo-data').value = '';
+            document.getElementById('op-modal-photo-data').value = '';
+
+            removeOpLogoImage();
+            removeOpPhotoImage();
+
+            selectedOpAmenities = ['🚌 AC Bus', '📶 Wi-Fi', '📍 Live Tracking'];
+            renderOpAmenitiesChips();
+
+            document.getElementById('op-modal-title').textContent = 'Add Operator';
+            document.getElementById('op-modal-subtitle').textContent = `Add a new operator for ${subCat}`;
+
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            setTimeout(() => document.getElementById('op-modal-name')?.focus(), 50);
+        }
+
+        function openEditOperatorModal(opId, sectionType = 'travel-planner') {
+            const subCat = activeOperatorState.subCatName || 'Bus';
+            const parentCat = activeOperatorState.parentCatName || 'Transit';
+            const list = getOperatorsForSubCategory(subCat, parentCat);
+            const op = list.find(o => o.id === opId || o.name === opId);
+            if (!op) {
+                showToast('Operator not found', 'error');
+                return;
+            }
+
+            const modal = document.getElementById('operator-crud-modal');
+            if (!modal) return;
+
+            document.getElementById('op-modal-id').value = op.id || op.name;
+            document.getElementById('op-modal-section').value = sectionType;
+            document.getElementById('op-modal-subcat').value = subCat;
+            document.getElementById('op-modal-name').value = op.name || '';
+            document.getElementById('op-modal-tagline').value = op.tagline || '';
+            document.getElementById('op-modal-rating').value = op.rating || 4.8;
+            document.getElementById('op-modal-reviews').value = op.reviews || '500+ reviews';
+            document.getElementById('op-modal-routes').value = op.routesCount || 24;
+            document.getElementById('op-modal-fleet').value = op.fleetCount || 80;
+            document.getElementById('op-modal-about').value = op.about || '';
+            document.getElementById('op-modal-verified').value = op.verified ? 'true' : 'false';
+
+            if (op.logo) {
+                setOpLogoPreview(op.logo, `${op.name ? op.name.toLowerCase().replace(/\s+/g, '_') : 'logo'}.png`);
+            } else {
+                removeOpLogoImage();
+            }
+
+            if (op.photo) {
+                setOpPhotoPreview(op.photo, `${op.name ? op.name.toLowerCase().replace(/\s+/g, '_') : 'bus'}.png`);
+            } else {
+                removeOpPhotoImage();
+            }
+
+            selectedOpAmenities = [...(op.amenities || ['🚌 AC Bus', '📶 Wi-Fi'])];
+            renderOpAmenitiesChips();
+
+            document.getElementById('op-modal-title').textContent = 'Edit Operator';
+            document.getElementById('op-modal-subtitle').textContent = `Update operator details for ${op.name}`;
+
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            setTimeout(() => document.getElementById('op-modal-name')?.focus(), 50);
+        }
+
+        function closeOperatorModal(e) {
+            if (e && e.target !== e.currentTarget && !e.target.closest('.modern-modal-close-btn') && !e.target.closest('.btn-modal-cancel')) return;
+            const modal = document.getElementById('operator-crud-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                modal.classList.remove('show');
+            }
+        }
+
+        function handleOperatorFormSubmit(event) {
+            event.preventDefault();
+            const sectionType = document.getElementById('op-modal-section').value || 'travel-planner';
+            const subCat = document.getElementById('op-modal-subcat').value || activeOperatorState.subCatName || 'Bus';
+            const opId = document.getElementById('op-modal-id').value.trim();
+            const name = document.getElementById('op-modal-name').value.trim();
+            const tagline = document.getElementById('op-modal-tagline').value.trim();
+            const rating = parseFloat(document.getElementById('op-modal-rating').value) || 4.8;
+            const reviews = document.getElementById('op-modal-reviews').value.trim() || '500+ reviews';
+            const routesCount = parseInt(document.getElementById('op-modal-routes').value, 10) || 20;
+            const fleetCount = parseInt(document.getElementById('op-modal-fleet').value, 10) || 50;
+            const about = document.getElementById('op-modal-about').value.trim() || `${name} provides premier, comfortable and punctual transit service across major routes in Bangladesh.`;
+            const verified = document.getElementById('op-modal-verified').value === 'true';
+            const logoData = document.getElementById('op-modal-logo-data').value.trim() || 'images/operators/logo_greenline.png';
+            const photoData = document.getElementById('op-modal-photo-data').value.trim() || 'images/operators/bus_greenline.png';
+
+            const opMap = getStoredOperatorsMap();
+            if (!opMap[subCat]) opMap[subCat] = [];
+
+            if (opId) {
+                // Edit existing
+                let idx = opMap[subCat].findIndex(o => o.id === opId || o.name === opId);
+                let targetKey = subCat;
+                if (idx === -1) {
+                    const foundKey = Object.keys(opMap).find(k => k.toLowerCase() === subCat.toLowerCase());
+                    if (foundKey) {
+                        targetKey = foundKey;
+                        idx = opMap[foundKey].findIndex(o => o.id === opId || o.name === opId);
+                    }
+                }
+
+                if (idx !== -1) {
+                    opMap[targetKey][idx] = {
+                        ...opMap[targetKey][idx],
+                        name,
+                        tagline,
+                        rating,
+                        reviews,
+                        routesCount,
+                        fleetCount,
+                        about,
+                        verified,
+                        amenities: [...selectedOpAmenities],
+                        logo: logoData,
+                        photo: photoData
+                    };
+                }
+
+                if (DEFAULT_OPERATORS[subCat]) {
+                    const defIdx = DEFAULT_OPERATORS[subCat].findIndex(o => o.id === opId || o.name === opId);
+                    if (defIdx !== -1) {
+                        DEFAULT_OPERATORS[subCat][defIdx] = {
+                            ...DEFAULT_OPERATORS[subCat][defIdx],
+                            name, tagline, rating, reviews, routesCount, fleetCount, about, verified,
+                            amenities: [...selectedOpAmenities], logo: logoData, photo: photoData
+                        };
+                    }
+                }
+                showToast(`Operator "${name}" updated successfully!`, 'success');
+            } else {
+                // Add new
+                const newOp = {
+                    id: `op-${subCat.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${Date.now()}`,
+                    name,
+                    tagline: tagline || 'Your trusted travel partner.',
+                    rating,
+                    reviews,
+                    routesCount,
+                    fleetCount,
+                    about,
+                    verified,
+                    amenities: selectedOpAmenities.length > 0 ? [...selectedOpAmenities] : ['🚌 AC Bus', '📶 Wi-Fi'],
+                    logo: logoData,
+                    photo: photoData,
+                    heroBanner: 'images/operators/operator_hero_banner_hq.jpg'
+                };
+                opMap[subCat].unshift(newOp);
+                if (DEFAULT_OPERATORS[subCat]) {
+                    DEFAULT_OPERATORS[subCat].unshift(newOp);
+                }
+                showToast(`Operator "${name}" added successfully to ${subCat}!`, 'success');
+            }
+
+            saveStoredOperatorsMap(opMap);
+            closeOperatorModal();
+            renderOperatorsView(sectionType);
+        }
+
+        function deleteOperator(opId, opName, sectionType = 'travel-planner') {
+            const subCat = activeOperatorState.subCatName || 'Bus';
+            if (!confirm(`Are you sure you want to delete the operator "${opName}"?`)) return;
+
+            const opMap = getStoredOperatorsMap();
+            let targetKey = subCat;
+            if (!opMap[targetKey] || opMap[targetKey].length === 0) {
+                const foundKey = Object.keys(opMap).find(k => k.toLowerCase() === subCat.toLowerCase());
+                if (foundKey) targetKey = foundKey;
+            }
+
+            if (opMap[targetKey]) {
+                opMap[targetKey] = opMap[targetKey].filter(o => o.id !== opId && o.name !== opName);
+            }
+            if (DEFAULT_OPERATORS[subCat]) {
+                DEFAULT_OPERATORS[subCat] = DEFAULT_OPERATORS[subCat].filter(o => o.id !== opId && o.name !== opName);
+            }
+
+            saveStoredOperatorsMap(opMap);
+            showToast(`Operator "${opName}" has been deleted.`, 'warning');
+            renderOperatorsView(sectionType);
         }
 
         function onOperatorSearchChange(sectionType = 'travel-planner') {
