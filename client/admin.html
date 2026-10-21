@@ -7083,106 +7083,7 @@
                     </div>
     
     <!-- Universal Category CRUD Modal Matching Mockup -->
-    <div id="universal-category-modal" class="tp-modal-overlay" onclick="closeCategoryModal(event)">
-        <div class="modern-modal-card" onclick="event.stopPropagation()">
-            <!-- Header -->
-            <div class="modern-modal-header">
-                <div style="display: flex; align-items: center; gap: 14px;">
-                    <div class="modern-modal-badge">
-                        <i class="material-icons" style="font-size: 24px;">category</i>
-                    </div>
-                    <div>
-                        <h3 id="cat-modal-title" style="margin: 0; color: #0f172a; font-size: 1.25rem; font-weight: 800;">Add New Category</h3>
-                        <p id="cat-modal-desc" style="margin: 3px 0 0 0; color: #64748b; font-size: 0.8rem;">Create a new travel category for the platform</p>
-                    </div>
-                </div>
-                <button type="button" class="modern-modal-close-btn" onclick="closeCategoryModal()" title="Close">
-                    <i class="material-icons" style="font-size: 18px;">close</i>
-                </button>
-            </div>
-
-            <!-- Form with scrollable body -->
-            <form id="universal-category-form" onsubmit="handleSaveCategoryModal(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
-                <div class="modern-modal-scrollable">
-                    <div class="modern-modal-body">
-                        <!-- Left Column -->
-                        <div>
-                            <!-- Category Image -->
-                            <div>
-                                <label class="modern-label">Category Image <span class="req">*</span></label>
-                                <div class="mockup-dropzone" id="cat-modal-dropzone" onclick="document.getElementById('cat-modal-file-input').click()">
-                                    <div id="cat-modal-dropzone-content">
-                                        <div class="mockup-dropzone-icon-wrap">
-                                            <i class="material-icons" style="font-size: 24px;">cloud_upload</i>
-                                            <span class="plus-badge">+</span>
-                                        </div>
-                                        <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-top: 2px;">Click to upload or drag and drop</div>
-                                        <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">SVG, PNG, JPG or GIF (max. 800x400px)</div>
-                                    </div>
-                                    <input type="file" id="cat-modal-file-input" accept="image/*" style="display: none;" onchange="handleCatImageFileSelect(event)">
-                                </div>
-                                <!-- File preview pill bar -->
-                                <div id="cat-modal-preview-wrap" class="mockup-file-preview-bar" style="display: none;">
-                                    <img id="cat-modal-preview-img" src="" alt="Preview">
-                                    <span class="file-name" id="cat-modal-preview-filename">travel.jpg</span>
-                                    <span class="check-badge"><i class="material-icons" style="font-size: 20px;">check_circle</i></span>
-                                    <button type="button" class="close-btn" onclick="resetCatModalImagePreview(event)" title="Remove file">
-                                        <i class="material-icons" style="font-size: 18px;">close</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Column -->
-                        <div>
-                            <!-- Category Name -->
-                            <div style="margin-bottom: 1.25rem;">
-                                <label class="modern-label">Category Name <span class="req">*</span></label>
-                                <div class="modern-input-group">
-                                    <div class="modern-input-prefix">T</div>
-                                    <input type="text" id="cat-modal-input-name" required placeholder="e.g. Transit, Stay, Tour..." class="modern-input-field">
-                                </div>
-                            </div>
-
-                            <!-- Status -->
-                            <div style="margin-bottom: 1.25rem;">
-                                <label class="modern-label">Status <span class="req">*</span></label>
-                                <div class="modern-input-group">
-                                    <div class="modern-input-prefix">
-                                        <i class="material-icons" style="font-size: 20px;">toggle_on</i>
-                                    </div>
-                                    <select id="cat-modal-input-status" class="modern-input-field" style="cursor: pointer;">
-                                        <option value="Active" selected>● Active</option>
-                                        <option value="Inactive">● Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Created Date -->
-                            <div>
-                                <label class="modern-label">Created Date <span class="req">*</span></label>
-                                <div class="modern-input-group">
-                                    <div class="modern-input-prefix">
-                                        <i class="material-icons" style="font-size: 18px;">calendar_today</i>
-                                    </div>
-                                    <input type="date" id="cat-modal-input-date" required class="modern-input-field" style="cursor: pointer;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Footer -->
-                <div class="modern-modal-footer">
-                    <button type="button" class="btn-modal-cancel" onclick="closeCategoryModal()">Cancel</button>
-                    <button type="submit" id="cat-modal-submit-btn" class="btn-modal-submit">
-                        <i class="material-icons" style="font-size: 18px;">save</i>
-                        <span>Save Category</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+    
 
 
 
@@ -7786,7 +7687,582 @@
                     </div>
                     
     <!-- Sub Category CRUD Modal Matching Mockup -->
-    <div class="tp-modal-overlay" id="subcat-crud-modal" onclick="closeSubCategoryModal(event)">
+    
+                </section>
+
+                <!-- 4. TOUR PACKAGE STUDIO (PACKAGE CREATOR & CATALOG) -->
+                <section id="view-package-creator" class="view-section">
+                    <!-- CRM Header Card -->
+                    <div class="crm-header-card">
+                        <div class="crm-title-area">
+                            <h2>
+                                <i class="material-icons" style="color: #f59e0b;">card_travel</i>
+                                <span>Tour Package Studio — Create & Publish Packages</span>
+                            </h2>
+                            <p>Assemble and publish all-inclusive holiday packages with linked hotels, transport routes, and guided itineraries.</p>
+                        </div>
+                        <div class="crm-header-actions">
+                            <a href="tour-packages.html" target="_blank" class="btn btn-secondary">
+                                <i class="material-icons">open_in_new</i> Preview Public Packages
+                            </a>
+                            <button type="button" class="btn btn-primary" onclick="toggleAddPackageForm()">
+                                <i class="material-icons">add_circle</i> Create New Tour Package
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Package Theme Categories -->
+                    <div class="crm-category-strip">
+                        <button type="button" class="crm-pill-btn active" onclick="filterPackageTheme('all', this)">
+                            <i class="material-icons">apps</i> All Categories
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('beach', this)">
+                            <i class="material-icons">beach_access</i> 🏖️ Beach & Coastal
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('mountain', this)">
+                            <i class="material-icons">landscape</i> ⛰️ Mountain & Hills
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('nature', this)">
+                            <i class="material-icons">forest</i> 🌿 Tea Gardens & Nature
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('wildlife', this)">
+                            <i class="material-icons">pets</i> 🐅 Wildlife & Mangrove
+                        </button>
+                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('heritage', this)">
+                            <i class="material-icons">museum</i> 🏛️ Heritage & Culture
+                        </button>
+                    </div>
+
+                    <!-- Collapsible Create Package Form -->
+                    <div id="panel-add-package" class="crm-collapsible-panel">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="material-icons" style="color: var(--primary);">post_add</i>
+                                <span>Create & Publish New Tour Package</span>
+                            </h3>
+                            <button type="button" class="btn btn-secondary" onclick="toggleAddPackageForm()" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">Close</button>
+                        </div>
+                        <form id="form-create-package" onsubmit="handleCreatePackageCRM(event)">
+                            <div class="form-grid">
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Package Title *</label>
+                                    <input type="text" id="pkg-title" required placeholder="e.g. Sajek Valley Cloud Kingdom — 3 Days 2 Nights All-Inclusive">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Primary Destination / District *</label>
+                                    <select id="pkg-destination" required>
+                                        <option value="9">Cox's Bazar Beach</option>
+                                        <option value="11">Sajek Valley & Khagrachari</option>
+                                        <option value="10">Saint Martin Coral Island</option>
+                                        <option value="12">Sylhet & Sreemangal</option>
+                                        <option value="13">Bandarban Hill Tracts</option>
+                                        <option value="14">Sundarbans Mangrove</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Duration (Days) *</label>
+                                    <input type="number" id="pkg-duration" required min="1" max="30" value="3">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Regular Price BDT *</label>
+                                    <input type="number" id="pkg-price-bdt" required min="500" step="100" placeholder="e.g. 8500">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Promo Discount (%)</label>
+                                    <input type="number" id="pkg-discount" min="0" max="80" value="10">
+                                </div>
+
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Included Services & Amenities (Comma separated)</label>
+                                    <input type="text" id="pkg-services" value="AC Sleeper Bus Transport, 3-Star Resort Stay, Daily Breakfast & Dinner, Certified Guide, Sightseeing Tickets">
+                                </div>
+
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label>Cover Photo URL</label>
+                                    <input type="url" id="pkg-img" value="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80">
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                                <button type="reset" class="btn btn-secondary">Clear Form</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="material-icons">publish</i> Publish Package to Live Website
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Packages Catalog Table -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
+                                <span>Published Tour Packages</span>
+                            </div>
+                            <input type="text" id="search-packages-input" placeholder="Search package title, destination..." onkeyup="filterPackagesTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 280px;">
+                        </div>
+                        <div class="panel-body">
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="crm-packages-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Package Title</th>
+                                            <th>Destination</th>
+                                            <th>Duration</th>
+                                            <th>Price (BDT)</th>
+                                            <th>Discount</th>
+                                            <th>Included Services</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading packages...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. BOOKINGS & OPERATIONS -->
+                <section id="view-bookings" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">confirmation_number</i>
+                                <span>Passenger Manifest & Booking Ledger</span>
+                            </div>
+                            <input type="text" id="search-bookings-input" placeholder="Search customer, booking ref..." onkeyup="filterBookingsTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 260px;">
+                        </div>
+                        <div class="panel-body">
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="all-bookings-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ref Code</th>
+                                            <th>Customer</th>
+                                            <th>Contact</th>
+                                            <th>Date</th>
+                                            <th>Travelers</th>
+                                            <th>Total Fare</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading bookings...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. PAYMENTS & FINANCE (Super Admin & Accountant) -->
+                <section id="view-finance" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--accent);">account_balance_wallet</i>
+                                <span>Financial Reconciliation & Transaction Ledger</span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="metrics-grid" style="margin-bottom: 1.5rem;">
+                                <div class="metric-card">
+                                    <div class="metric-info">
+                                        <h4>Total Collected</h4>
+                                        <p id="fin-collected">BDT 0</p>
+                                    </div>
+                                    <div class="metric-icon-box green"><i class="material-icons">verified</i></div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-info">
+                                        <h4>Pending Collection</h4>
+                                        <p id="fin-pending">BDT 0</p>
+                                    </div>
+                                    <div class="metric-icon-box amber"><i class="material-icons">hourglass_top</i></div>
+                                </div>
+                            </div>
+
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="finance-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Booking Ref</th>
+                                            <th>Customer</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Created Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading finance...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. MEMBERS & ROLES (SUPER ADMIN ONLY) -->
+                <section id="view-staff" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: #ef4444;">verified_user</i>
+                                <span>Assign Access by Gmail / Email (Role-Based Access Control)</span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form id="form-invite-staff" onsubmit="handleInviteStaff(event)">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Staff Gmail / Email Address *</label>
+                                        <input type="email" id="staff-email" required placeholder="e.g. staff.member@gmail.com">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Staff Full Name *</label>
+                                        <input type="text" id="staff-name" required placeholder="e.g. Rafiqul Islam">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Assigned Operational Role *</label>
+                                        <select id="staff-role" required>
+                                            <option value="uploader">Product & Route Uploader</option>
+                                            <option value="manager">Operations Manager</option>
+                                            <option value="accountant">Finance & Payment Officer</option>
+                                            <option value="support">Customer Support Agent</option>
+                                            <option value="admin">Super Admin</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Mobile Number (Optional)</label>
+                                        <input type="text" id="staff-phone" placeholder="017xxxxxxxx">
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                                    <button type="submit" class="btn btn-primary" style="background: #0f172a;">
+                                        <i class="material-icons">person_add</i> Grant Staff Access
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Existing Staff List -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">group</i>
+                                <span>Active Internal Team Members</span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="all-staff-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email / Gmail</th>
+                                            <th>Current Role</th>
+                                            <th>Status</th>
+                                            <th>Joined</th>
+                                            <th>Change Role</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading team...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. PRESERVED VEHICLES VIEW (Accessible if opened directly) -->
+                <section id="view-vehicles" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">add_circle</i>
+                                <span>Add New Vehicle / Transport Route Product</span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form id="form-add-vehicle" onsubmit="handleCreateVehicle(event)">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Operator Name *</label>
+                                        <input type="text" id="route-operator" required placeholder="e.g. Ena Transport, Shohagh, Shyamoli">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Vehicle Type / Class *</label>
+                                        <select id="route-vtype" required>
+                                            <option value="AC Sleeper Coach">AC Sleeper Coach (Luxury Sleeper)</option>
+                                            <option value="AC Business Class">AC Business Class (Hino 1J / Hyundai)</option>
+                                            <option value="Economy Non-AC Coach">Economy Non-AC Coach (Standard Chair Coach)</option>
+                                            <option value="Local Feeder Shuttle">Local Feeder Shuttle (Regional Shuttle)</option>
+                                            <option value="HiAce Microbus">HiAce Microbus (Private / Shared Microbus)</option>
+                                            <option value="Intercity Express Train">Intercity Express Train (Railway)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Origin District *</label>
+                                        <input type="text" id="route-orig-dist" required placeholder="e.g. Rangpur, Dhaka, Dinajpur">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Origin Stoppage / Stand</label>
+                                        <input type="text" id="route-orig-point" placeholder="e.g. Pirganj Stand, Kamlapur, Mirpur 10">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Destination District *</label>
+                                        <input type="text" id="route-dest-dist" required placeholder="e.g. Cox's Bazar, Chattogram, Sylhet">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Destination Stoppage / Spot</label>
+                                        <input type="text" id="route-dest-point" placeholder="e.g. Kolatoli Beach, GEC Circle">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Departure Time *</label>
+                                        <input type="text" id="route-dep-time" required placeholder="e.g. 07:30 PM">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Arrival Time</label>
+                                        <input type="text" id="route-arr-time" placeholder="e.g. 05:15 AM">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Ticket Fare BDT *</label>
+                                        <input type="number" id="route-fare" required min="50" step="10" placeholder="e.g. 1650">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Total Seat Capacity</label>
+                                        <input type="number" id="route-seats" value="36" min="4" max="60">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Curated Smart Tier</label>
+                                        <select id="route-tier">
+                                            <option value="recommended">Best Value / Recommended</option>
+                                            <option value="budget">Lowest Price / Budget</option>
+                                            <option value="luxury">Fastest / Luxury</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Vehicle Photo URL</label>
+                                        <input type="url" id="route-img" value="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80">
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                                    <button type="reset" class="btn btn-secondary">Clear Form</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="material-icons">cloud_upload</i> Publish Vehicle to Live System
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Existing Route List -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
+                                <span>All Registered Vehicles & Routes</span>
+                            </div>
+                            <input type="text" id="search-route-input" placeholder="Search operator, district..." onkeyup="filterRoutesTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 240px;">
+                        </div>
+                        <div class="panel-body">
+                            <div class="data-table-wrap">
+                                <table class="data-table" id="all-routes-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Operator & Vehicle</th>
+                                            <th>Route Corridor</th>
+                                            <th>Schedule</th>
+                                            <th>Fare</th>
+                                            <th>Seats</th>
+                                            <th>Tier</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. PRESERVED EXCEL BULK IMPORTER -->
+                <section id="view-excel" class="view-section">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <i class="material-icons" style="color: var(--accent);">table_view</i>
+                                <span>One-Click Excel Bulk Route & Timetable Importer</span>
+                            </div>
+                            <a href="data/TravelUp_Transit_Data_Entry_Template.xlsx" download class="btn btn-secondary">
+                                <i class="material-icons">download</i> Download Official Excel Template
+                            </a>
+                        </div>
+                        <div class="panel-body">
+                            <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6;">
+                                Upload your completed <strong>TravelUp_Transit_Data_Entry_Template.xlsx</strong> spreadsheet. The engine will automatically parse sheets <code>01_Intercity_Routes</code> and <code>03_Upazila_Feeders</code> and insert/update all routes, intermediate stops, and pricing into the live MySQL database.
+                            </p>
+
+                            <div class="upload-dropzone" onclick="document.getElementById('excel-file-input').click()">
+                                <i class="material-icons">cloud_upload</i>
+                                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: 0.35rem;">Click to Select or Drop Excel (.xlsx) File</h3>
+                                <p style="color: var(--slate-500); font-size: 0.85rem;">Supports .xlsx and .xls (Max: 10MB)</p>
+                                <input type="file" id="excel-file-input" accept=".xlsx, .xls" style="display: none;" onchange="handleExcelFileSelected(event)">
+                            </div>
+
+                            <div id="excel-selected-banner" style="display: none; margin-top: 1.5rem; padding: 1rem 1.25rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                    <i class="material-icons" style="color: #059669;">check_circle</i>
+                                    <div>
+                                        <strong id="excel-selected-filename" style="color: #065f46;">filename.xlsx</strong>
+                                        <div id="excel-selected-filesize" style="font-size: 0.8rem; color: #047857;">Ready to import</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-accent" id="btn-start-import" onclick="executeExcelUpload()">
+                                    <i class="material-icons">play_arrow</i> Start Sync to Live Database
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Universal Planner Shared Global Modals -->
+<div id="universal-category-modal" class="tp-modal-overlay" onclick="closeCategoryModal(event)">
+        <div class="modern-modal-card" onclick="event.stopPropagation()">
+            <!-- Header -->
+            <div class="modern-modal-header">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div class="modern-modal-badge">
+                        <i class="material-icons" style="font-size: 24px;">category</i>
+                    </div>
+                    <div>
+                        <h3 id="cat-modal-title" style="margin: 0; color: #0f172a; font-size: 1.25rem; font-weight: 800;">Add New Category</h3>
+                        <p id="cat-modal-desc" style="margin: 3px 0 0 0; color: #64748b; font-size: 0.8rem;">Create a new travel category for the platform</p>
+                    </div>
+                </div>
+                <button type="button" class="modern-modal-close-btn" onclick="closeCategoryModal()" title="Close">
+                    <i class="material-icons" style="font-size: 18px;">close</i>
+                </button>
+            </div>
+
+            <!-- Form with scrollable body -->
+            <form id="universal-category-form" onsubmit="handleSaveCategoryModal(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
+                <div class="modern-modal-scrollable">
+                    <div class="modern-modal-body">
+                        <!-- Left Column -->
+                        <div>
+                            <!-- Category Image -->
+                            <div>
+                                <label class="modern-label">Category Image <span class="req">*</span></label>
+                                <div class="mockup-dropzone" id="cat-modal-dropzone" onclick="document.getElementById('cat-modal-file-input').click()">
+                                    <div id="cat-modal-dropzone-content">
+                                        <div class="mockup-dropzone-icon-wrap">
+                                            <i class="material-icons" style="font-size: 24px;">cloud_upload</i>
+                                            <span class="plus-badge">+</span>
+                                        </div>
+                                        <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-top: 2px;">Click to upload or drag and drop</div>
+                                        <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">SVG, PNG, JPG or GIF (max. 800x400px)</div>
+                                    </div>
+                                    <input type="file" id="cat-modal-file-input" accept="image/*" style="display: none;" onchange="handleCatImageFileSelect(event)">
+                                </div>
+                                <!-- File preview pill bar -->
+                                <div id="cat-modal-preview-wrap" class="mockup-file-preview-bar" style="display: none;">
+                                    <img id="cat-modal-preview-img" src="" alt="Preview">
+                                    <span class="file-name" id="cat-modal-preview-filename">travel.jpg</span>
+                                    <span class="check-badge"><i class="material-icons" style="font-size: 20px;">check_circle</i></span>
+                                    <button type="button" class="close-btn" onclick="resetCatModalImagePreview(event)" title="Remove file">
+                                        <i class="material-icons" style="font-size: 18px;">close</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div>
+                            <!-- Category Name -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Category Name <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">T</div>
+                                    <input type="text" id="cat-modal-input-name" required placeholder="e.g. Transit, Stay, Tour..." class="modern-input-field">
+                                </div>
+                            </div>
+
+                            <!-- Status -->
+                            <div style="margin-bottom: 1.25rem;">
+                                <label class="modern-label">Status <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 20px;">toggle_on</i>
+                                    </div>
+                                    <select id="cat-modal-input-status" class="modern-input-field" style="cursor: pointer;">
+                                        <option value="Active" selected>● Active</option>
+                                        <option value="Inactive">● Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Created Date -->
+                            <div>
+                                <label class="modern-label">Created Date <span class="req">*</span></label>
+                                <div class="modern-input-group">
+                                    <div class="modern-input-prefix">
+                                        <i class="material-icons" style="font-size: 18px;">calendar_today</i>
+                                    </div>
+                                    <input type="date" id="cat-modal-input-date" required class="modern-input-field" style="cursor: pointer;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modern-modal-footer">
+                    <button type="button" class="btn-modal-cancel" onclick="closeCategoryModal()">Cancel</button>
+                    <button type="submit" id="cat-modal-submit-btn" class="btn-modal-submit">
+                        <i class="material-icons" style="font-size: 18px;">save</i>
+                        <span>Save Category</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div class="tp-modal-overlay" id="subcat-crud-modal" onclick="closeSubCategoryModal(event)">
         <div class="modern-modal-card" onclick="event.stopPropagation()">
             <!-- Header -->
             <div class="modern-modal-header">
@@ -8552,479 +9028,8 @@
             </form>
         </div>
     </div>
-                </section>
 
-                <!-- 4. TOUR PACKAGE STUDIO (PACKAGE CREATOR & CATALOG) -->
-                <section id="view-package-creator" class="view-section">
-                    <!-- CRM Header Card -->
-                    <div class="crm-header-card">
-                        <div class="crm-title-area">
-                            <h2>
-                                <i class="material-icons" style="color: #f59e0b;">card_travel</i>
-                                <span>Tour Package Studio — Create & Publish Packages</span>
-                            </h2>
-                            <p>Assemble and publish all-inclusive holiday packages with linked hotels, transport routes, and guided itineraries.</p>
-                        </div>
-                        <div class="crm-header-actions">
-                            <a href="tour-packages.html" target="_blank" class="btn btn-secondary">
-                                <i class="material-icons">open_in_new</i> Preview Public Packages
-                            </a>
-                            <button type="button" class="btn btn-primary" onclick="toggleAddPackageForm()">
-                                <i class="material-icons">add_circle</i> Create New Tour Package
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Package Theme Categories -->
-                    <div class="crm-category-strip">
-                        <button type="button" class="crm-pill-btn active" onclick="filterPackageTheme('all', this)">
-                            <i class="material-icons">apps</i> All Categories
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('beach', this)">
-                            <i class="material-icons">beach_access</i> 🏖️ Beach & Coastal
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('mountain', this)">
-                            <i class="material-icons">landscape</i> ⛰️ Mountain & Hills
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('nature', this)">
-                            <i class="material-icons">forest</i> 🌿 Tea Gardens & Nature
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('wildlife', this)">
-                            <i class="material-icons">pets</i> 🐅 Wildlife & Mangrove
-                        </button>
-                        <button type="button" class="crm-pill-btn" onclick="filterPackageTheme('heritage', this)">
-                            <i class="material-icons">museum</i> 🏛️ Heritage & Culture
-                        </button>
-                    </div>
-
-                    <!-- Collapsible Create Package Form -->
-                    <div id="panel-add-package" class="crm-collapsible-panel">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
-                            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="material-icons" style="color: var(--primary);">post_add</i>
-                                <span>Create & Publish New Tour Package</span>
-                            </h3>
-                            <button type="button" class="btn btn-secondary" onclick="toggleAddPackageForm()" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">Close</button>
-                        </div>
-                        <form id="form-create-package" onsubmit="handleCreatePackageCRM(event)">
-                            <div class="form-grid">
-                                <div class="form-group" style="grid-column: 1 / -1;">
-                                    <label>Package Title *</label>
-                                    <input type="text" id="pkg-title" required placeholder="e.g. Sajek Valley Cloud Kingdom — 3 Days 2 Nights All-Inclusive">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Primary Destination / District *</label>
-                                    <select id="pkg-destination" required>
-                                        <option value="9">Cox's Bazar Beach</option>
-                                        <option value="11">Sajek Valley & Khagrachari</option>
-                                        <option value="10">Saint Martin Coral Island</option>
-                                        <option value="12">Sylhet & Sreemangal</option>
-                                        <option value="13">Bandarban Hill Tracts</option>
-                                        <option value="14">Sundarbans Mangrove</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Duration (Days) *</label>
-                                    <input type="number" id="pkg-duration" required min="1" max="30" value="3">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Regular Price BDT *</label>
-                                    <input type="number" id="pkg-price-bdt" required min="500" step="100" placeholder="e.g. 8500">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Promo Discount (%)</label>
-                                    <input type="number" id="pkg-discount" min="0" max="80" value="10">
-                                </div>
-
-                                <div class="form-group" style="grid-column: 1 / -1;">
-                                    <label>Included Services & Amenities (Comma separated)</label>
-                                    <input type="text" id="pkg-services" value="AC Sleeper Bus Transport, 3-Star Resort Stay, Daily Breakfast & Dinner, Certified Guide, Sightseeing Tickets">
-                                </div>
-
-                                <div class="form-group" style="grid-column: 1 / -1;">
-                                    <label>Cover Photo URL</label>
-                                    <input type="url" id="pkg-img" value="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80">
-                                </div>
-                            </div>
-
-                            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
-                                <button type="reset" class="btn btn-secondary">Clear Form</button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="material-icons">publish</i> Publish Package to Live Website
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Packages Catalog Table -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
-                                <span>Published Tour Packages</span>
-                            </div>
-                            <input type="text" id="search-packages-input" placeholder="Search package title, destination..." onkeyup="filterPackagesTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 280px;">
-                        </div>
-                        <div class="panel-body">
-                            <div class="data-table-wrap">
-                                <table class="data-table" id="crm-packages-table">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Package Title</th>
-                                            <th>Destination</th>
-                                            <th>Duration</th>
-                                            <th>Price (BDT)</th>
-                                            <th>Discount</th>
-                                            <th>Included Services</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading packages...</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 5. BOOKINGS & OPERATIONS -->
-                <section id="view-bookings" class="view-section">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                <i class="material-icons" style="color: var(--primary);">confirmation_number</i>
-                                <span>Passenger Manifest & Booking Ledger</span>
-                            </div>
-                            <input type="text" id="search-bookings-input" placeholder="Search customer, booking ref..." onkeyup="filterBookingsTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 260px;">
-                        </div>
-                        <div class="panel-body">
-                            <div class="data-table-wrap">
-                                <table class="data-table" id="all-bookings-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Ref Code</th>
-                                            <th>Customer</th>
-                                            <th>Contact</th>
-                                            <th>Date</th>
-                                            <th>Travelers</th>
-                                            <th>Total Fare</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading bookings...</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 3. PAYMENTS & FINANCE (Super Admin & Accountant) -->
-                <section id="view-finance" class="view-section">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                <i class="material-icons" style="color: var(--accent);">account_balance_wallet</i>
-                                <span>Financial Reconciliation & Transaction Ledger</span>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="metrics-grid" style="margin-bottom: 1.5rem;">
-                                <div class="metric-card">
-                                    <div class="metric-info">
-                                        <h4>Total Collected</h4>
-                                        <p id="fin-collected">BDT 0</p>
-                                    </div>
-                                    <div class="metric-icon-box green"><i class="material-icons">verified</i></div>
-                                </div>
-
-                                <div class="metric-card">
-                                    <div class="metric-info">
-                                        <h4>Pending Collection</h4>
-                                        <p id="fin-pending">BDT 0</p>
-                                    </div>
-                                    <div class="metric-icon-box amber"><i class="material-icons">hourglass_top</i></div>
-                                </div>
-                            </div>
-
-                            <div class="data-table-wrap">
-                                <table class="data-table" id="finance-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Booking Ref</th>
-                                            <th>Customer</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
-                                            <th>Created Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading finance...</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 4. MEMBERS & ROLES (SUPER ADMIN ONLY) -->
-                <section id="view-staff" class="view-section">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                <i class="material-icons" style="color: #ef4444;">verified_user</i>
-                                <span>Assign Access by Gmail / Email (Role-Based Access Control)</span>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <form id="form-invite-staff" onsubmit="handleInviteStaff(event)">
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label>Staff Gmail / Email Address *</label>
-                                        <input type="email" id="staff-email" required placeholder="e.g. staff.member@gmail.com">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Staff Full Name *</label>
-                                        <input type="text" id="staff-name" required placeholder="e.g. Rafiqul Islam">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Assigned Operational Role *</label>
-                                        <select id="staff-role" required>
-                                            <option value="uploader">Product & Route Uploader</option>
-                                            <option value="manager">Operations Manager</option>
-                                            <option value="accountant">Finance & Payment Officer</option>
-                                            <option value="support">Customer Support Agent</option>
-                                            <option value="admin">Super Admin</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Mobile Number (Optional)</label>
-                                        <input type="text" id="staff-phone" placeholder="017xxxxxxxx">
-                                    </div>
-                                </div>
-
-                                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
-                                    <button type="submit" class="btn btn-primary" style="background: #0f172a;">
-                                        <i class="material-icons">person_add</i> Grant Staff Access
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Existing Staff List -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                <i class="material-icons" style="color: var(--primary);">group</i>
-                                <span>Active Internal Team Members</span>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="data-table-wrap">
-                                <table class="data-table" id="all-staff-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email / Gmail</th>
-                                            <th>Current Role</th>
-                                            <th>Status</th>
-                                            <th>Joined</th>
-                                            <th>Change Role</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading team...</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 5. PRESERVED VEHICLES VIEW (Accessible if opened directly) -->
-                <section id="view-vehicles" class="view-section">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                <i class="material-icons" style="color: var(--primary);">add_circle</i>
-                                <span>Add New Vehicle / Transport Route Product</span>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <form id="form-add-vehicle" onsubmit="handleCreateVehicle(event)">
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label>Operator Name *</label>
-                                        <input type="text" id="route-operator" required placeholder="e.g. Ena Transport, Shohagh, Shyamoli">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Vehicle Type / Class *</label>
-                                        <select id="route-vtype" required>
-                                            <option value="AC Sleeper Coach">AC Sleeper Coach (Luxury Sleeper)</option>
-                                            <option value="AC Business Class">AC Business Class (Hino 1J / Hyundai)</option>
-                                            <option value="Economy Non-AC Coach">Economy Non-AC Coach (Standard Chair Coach)</option>
-                                            <option value="Local Feeder Shuttle">Local Feeder Shuttle (Regional Shuttle)</option>
-                                            <option value="HiAce Microbus">HiAce Microbus (Private / Shared Microbus)</option>
-                                            <option value="Intercity Express Train">Intercity Express Train (Railway)</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Origin District *</label>
-                                        <input type="text" id="route-orig-dist" required placeholder="e.g. Rangpur, Dhaka, Dinajpur">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Origin Stoppage / Stand</label>
-                                        <input type="text" id="route-orig-point" placeholder="e.g. Pirganj Stand, Kamlapur, Mirpur 10">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Destination District *</label>
-                                        <input type="text" id="route-dest-dist" required placeholder="e.g. Cox's Bazar, Chattogram, Sylhet">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Destination Stoppage / Spot</label>
-                                        <input type="text" id="route-dest-point" placeholder="e.g. Kolatoli Beach, GEC Circle">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Departure Time *</label>
-                                        <input type="text" id="route-dep-time" required placeholder="e.g. 07:30 PM">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Arrival Time</label>
-                                        <input type="text" id="route-arr-time" placeholder="e.g. 05:15 AM">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Ticket Fare BDT *</label>
-                                        <input type="number" id="route-fare" required min="50" step="10" placeholder="e.g. 1650">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Total Seat Capacity</label>
-                                        <input type="number" id="route-seats" value="36" min="4" max="60">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Curated Smart Tier</label>
-                                        <select id="route-tier">
-                                            <option value="recommended">Best Value / Recommended</option>
-                                            <option value="budget">Lowest Price / Budget</option>
-                                            <option value="luxury">Fastest / Luxury</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Vehicle Photo URL</label>
-                                        <input type="url" id="route-img" value="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80">
-                                    </div>
-                                </div>
-
-                                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
-                                    <button type="reset" class="btn btn-secondary">Clear Form</button>
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="material-icons">cloud_upload</i> Publish Vehicle to Live System
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Existing Route List -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                <i class="material-icons" style="color: var(--primary);">format_list_bulleted</i>
-                                <span>All Registered Vehicles & Routes</span>
-                            </div>
-                            <input type="text" id="search-route-input" placeholder="Search operator, district..." onkeyup="filterRoutesTable()" style="padding: 0.5rem 0.85rem; border: 1px solid var(--slate-200); border-radius: 8px; font-size: 0.85rem; width: 240px;">
-                        </div>
-                        <div class="panel-body">
-                            <div class="data-table-wrap">
-                                <table class="data-table" id="all-routes-table">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Operator & Vehicle</th>
-                                            <th>Route Corridor</th>
-                                            <th>Schedule</th>
-                                            <th>Fare</th>
-                                            <th>Seats</th>
-                                            <th>Tier</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 2rem;">Loading...</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 6. PRESERVED EXCEL BULK IMPORTER -->
-                <section id="view-excel" class="view-section">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                <i class="material-icons" style="color: var(--accent);">table_view</i>
-                                <span>One-Click Excel Bulk Route & Timetable Importer</span>
-                            </div>
-                            <a href="data/TravelUp_Transit_Data_Entry_Template.xlsx" download class="btn btn-secondary">
-                                <i class="material-icons">download</i> Download Official Excel Template
-                            </a>
-                        </div>
-                        <div class="panel-body">
-                            <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6;">
-                                Upload your completed <strong>TravelUp_Transit_Data_Entry_Template.xlsx</strong> spreadsheet. The engine will automatically parse sheets <code>01_Intercity_Routes</code> and <code>03_Upazila_Feeders</code> and insert/update all routes, intermediate stops, and pricing into the live MySQL database.
-                            </p>
-
-                            <div class="upload-dropzone" onclick="document.getElementById('excel-file-input').click()">
-                                <i class="material-icons">cloud_upload</i>
-                                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: 0.35rem;">Click to Select or Drop Excel (.xlsx) File</h3>
-                                <p style="color: var(--slate-500); font-size: 0.85rem;">Supports .xlsx and .xls (Max: 10MB)</p>
-                                <input type="file" id="excel-file-input" accept=".xlsx, .xls" style="display: none;" onchange="handleExcelFileSelected(event)">
-                            </div>
-
-                            <div id="excel-selected-banner" style="display: none; margin-top: 1.5rem; padding: 1rem 1.25rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; align-items: center; justify-content: space-between;">
-                                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                    <i class="material-icons" style="color: #059669;">check_circle</i>
-                                    <div>
-                                        <strong id="excel-selected-filename" style="color: #065f46;">filename.xlsx</strong>
-                                        <div id="excel-selected-filesize" style="font-size: 0.8rem; color: #047857;">Ready to import</div>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-accent" id="btn-start-import" onclick="executeExcelUpload()">
-                                    <i class="material-icons">play_arrow</i> Start Sync to Live Database
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-    </div>
-
-    <!-- Shared Modal: Add Product to Specific Category -->
+<!-- Shared Modal: Add Product to Specific Category -->
     <div id="cat-product-add-modal" class="tp-modal-overlay" onclick="closeAddProductModal(event)">
         <div class="tp-modal-card" onclick="event.stopPropagation()">
             <div class="tp-modal-header">
@@ -9552,6 +9557,15 @@
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
             const targetSec = document.getElementById(`view-${tabId}`);
             if (targetSec) targetSec.classList.add('active');
+
+            // Auto-close any open modals on tab switch to prevent cross-page popups
+            ['universal-category-modal', 'subcat-crud-modal', 'operator-crud-modal', 'bus-product-crud-modal', 'location-crud-modal', 'destination-crud-modal', 'cat-product-add-modal'].forEach(id => {
+                const m = document.getElementById(id);
+                if (m) {
+                    m.style.display = 'none';
+                    m.classList.remove('show');
+                }
+            });
 
             // Trigger specific fetchers
             if (tabId === 'travel-planner') loadTravelPlanner();
@@ -10394,6 +10408,10 @@
         // Forward legacy modal openers to universal modal controller
         function openAddCategoryModal() {
             openCategoryModal({ mode: 'add', sectionType: 'travel-planner' });
+        }
+
+        function openTourAddCategoryModal() {
+            openCategoryModal({ mode: 'add', sectionType: 'tour-planner' });
         }
 
         function closeAddCategoryModal() {
