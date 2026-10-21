@@ -9601,7 +9601,7 @@
                                 <label class="modern-label">Vehicle / Coach Name <span class="req">*</span></label>
                                 <div class="modern-input-group">
                                     <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px; color: #00875a;">directions_bus</i></div>
-                                    <input type="text" id="bus-modal-name" required class="modern-input-field" placeholder="e.g. Hyundai Universe Luxury Express">
+                                    <input type="text" id="bus-modal-name" required class="modern-input-field">
                                 </div>
                             </div>
                         </div>
@@ -9611,7 +9611,7 @@
                                 <label class="modern-label">Registration / Coach No. <span class="req">*</span></label>
                                 <div class="modern-input-group">
                                     <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">badge</i></div>
-                                    <input type="text" id="bus-modal-reg-no" required class="modern-input-field" placeholder="e.g. ঢাকা মেট্রো-ব ১৫-৪১২৩">
+                                    <input type="text" id="bus-modal-reg-no" required class="modern-input-field">
                                 </div>
                             </div>
                             <div>
@@ -9628,7 +9628,7 @@
                                     </select>
                                 </div>
                                 <div id="bus-modal-custom-type-wrap" style="display: none; margin-top: 6px;">
-                                    <input type="text" id="bus-modal-custom-type-input" class="modern-input-field" placeholder="Enter custom transit type...">
+                                    <input type="text" id="bus-modal-custom-type-input" class="modern-input-field">
                                 </div>
                             </div>
                         </div>
@@ -9638,14 +9638,14 @@
                                 <label class="modern-label">Full Journey Base Fare (৳ BDT) <span class="req">*</span></label>
                                 <div class="modern-input-group">
                                     <div class="modern-input-prefix"><strong style="font-size: 16px; color: #00875a;">৳</strong></div>
-                                    <input type="number" id="bus-modal-fare" required min="50" step="10" class="modern-input-field" placeholder="e.g. 2200" oninput="markRouteChanged()">
+                                    <input type="number" id="bus-modal-fare" required min="50" step="10" class="modern-input-field" oninput="markRouteChanged()">
                                 </div>
                             </div>
                             <div>
                                 <label class="modern-label">Total Journey Duration <span class="req">*</span></label>
                                 <div class="modern-input-group">
                                     <div class="modern-input-prefix"><i class="material-icons" style="font-size: 18px;">timer</i></div>
-                                    <input type="text" id="bus-modal-duration" required class="modern-input-field" placeholder="e.g. 8h 15m">
+                                    <input type="text" id="bus-modal-duration" required class="modern-input-field">
                                 </div>
                             </div>
                         </div>
@@ -9691,11 +9691,11 @@
                                 </div>
                                 <div>
                                     <label class="modern-label" style="font-size: 0.75rem;">Terminal / Stand Name <span class="req">*</span></label>
-                                    <input type="text" id="bus-modal-from" required class="modern-input-field" placeholder="e.g. Arambagh Counter / Gabtoli" oninput="markRouteChanged()">
+                                    <input type="text" id="bus-modal-from" required class="modern-input-field" oninput="markRouteChanged()">
                                 </div>
                                 <div>
                                     <label class="modern-label" style="font-size: 0.75rem;">Departure Time <span class="req">*</span></label>
-                                    <input type="text" id="bus-modal-dep" required class="modern-input-field" placeholder="e.g. 10:30 PM">
+                                    <input type="text" id="bus-modal-dep" required class="modern-input-field">
                                 </div>
                             </div>
 
@@ -9712,11 +9712,11 @@
                                 </div>
                                 <div>
                                     <label class="modern-label" style="font-size: 0.75rem;">Terminal / Stand Name <span class="req">*</span></label>
-                                    <input type="text" id="bus-modal-to" required class="modern-input-field" placeholder="e.g. Kolatoli Beach Counter" oninput="markRouteChanged()">
+                                    <input type="text" id="bus-modal-to" required class="modern-input-field" oninput="markRouteChanged()">
                                 </div>
                                 <div>
                                     <label class="modern-label" style="font-size: 0.75rem;">Arrival Time <span class="req">*</span></label>
-                                    <input type="text" id="bus-modal-arr" required class="modern-input-field" placeholder="e.g. 06:45 AM">
+                                    <input type="text" id="bus-modal-arr" required class="modern-input-field">
                                 </div>
                             </div>
                         </div>
@@ -13846,10 +13846,10 @@
             document.getElementById('op-modal-subcat').value = subCat;
             document.getElementById('op-modal-name').value = '';
             document.getElementById('op-modal-tagline').value = '';
-            document.getElementById('op-modal-rating').value = '4.8';
-            document.getElementById('op-modal-reviews').value = '500+ reviews';
-            document.getElementById('op-modal-routes').value = '24';
-            document.getElementById('op-modal-fleet').value = '80';
+            document.getElementById('op-modal-rating').value = '';
+            document.getElementById('op-modal-reviews').value = '';
+            document.getElementById('op-modal-routes').value = '';
+            document.getElementById('op-modal-fleet').value = '';
             document.getElementById('op-modal-about').value = '';
             document.getElementById('op-modal-verified').value = 'true';
             document.getElementById('op-modal-logo-data').value = '';
@@ -14619,29 +14619,14 @@
         }
 
         function onOriginUpazilaChange(sel) {
-            const fromInput = document.getElementById('bus-modal-from');
-            if (fromInput && (!fromInput.value || fromInput.value.includes('Terminal') || fromInput.value.includes('Stand') || fromInput.value.includes('Counter'))) {
-                fromInput.value = sel.value ? `${sel.value} Central Counter` : '';
-            }
             markRouteChanged();
         }
 
         function onDestUpazilaChange(sel) {
-            const toInput = document.getElementById('bus-modal-to');
-            if (toInput && (!toInput.value || toInput.value.includes('Terminal') || toInput.value.includes('Stand') || toInput.value.includes('Counter'))) {
-                toInput.value = sel.value ? `${sel.value} Main Stand` : '';
-            }
             markRouteChanged();
         }
 
         function onStoppageUpazilaChange(sel) {
-            const row = sel.closest('.bus-stoppage-row-card');
-            if (row) {
-                const nameInput = row.querySelector('.stop-name');
-                if (nameInput && (!nameInput.value || nameInput.value.includes('Highway') || nameInput.value.includes('Counter'))) {
-                    nameInput.value = sel.value ? `${sel.value} Highway Counter` : '';
-                }
-            }
             markRouteChanged();
         }
 
@@ -14679,7 +14664,7 @@
                     </div>
                     <div>
                         <label class="modern-label" style="font-size: 0.72rem;">Terminal / Stand Name <span class="req">*</span></label>
-                        <input type="text" class="modern-input-field stop-name" value="${data.name || ''}" placeholder="e.g. Paduar Bazar Highway Rest" oninput="markRouteChanged()">
+                        <input type="text" class="modern-input-field stop-name" value="${data.name || ''}" oninput="markRouteChanged()">
                     </div>
                     <div>
                         <label class="modern-label" style="font-size: 0.72rem;">Stop Type</label>
@@ -14694,15 +14679,15 @@
                 <div class="stoppage-fields-grid-bottom">
                     <div>
                         <label class="modern-label" style="font-size: 0.72rem;">Arrival Time</label>
-                        <input type="text" class="modern-input-field stop-arr" value="${data.arrTime || ''}" placeholder="e.g. 01:15 AM">
+                        <input type="text" class="modern-input-field stop-arr" value="${data.arrTime || ''}">
                     </div>
                     <div>
                         <label class="modern-label" style="font-size: 0.72rem;">Departure Time</label>
-                        <input type="text" class="modern-input-field stop-dep" value="${data.depTime || ''}" placeholder="e.g. 01:30 AM">
+                        <input type="text" class="modern-input-field stop-dep" value="${data.depTime || ''}">
                     </div>
                     <div>
                         <label class="modern-label" style="font-size: 0.72rem;">Halt Duration</label>
-                        <input type="text" class="modern-input-field stop-halt" value="${data.halt || '15 Mins'}" placeholder="e.g. 15 Mins">
+                        <input type="text" class="modern-input-field stop-halt" value="${data.halt || ''}">
                     </div>
                 </div>
             `;
@@ -15024,81 +15009,62 @@
             const subCat = activeOperatorState.subCatName || 'Bus';
             const unitLabel = subCat.toLowerCase().includes('train') ? 'Train' : (subCat.toLowerCase().includes('flight') ? 'Flight' : 'Bus');
 
-            // Reset Form Fields
+            // 1. Reset IDs & Hidden state
             document.getElementById('bus-modal-id').value = '';
             document.getElementById('bus-modal-section').value = sectionType;
             populateBusOperatorDropdown(op.name);
 
-            document.getElementById('bus-modal-name').value = `${op.name} Scania Multi-Axle AC Sleeper`;
-            document.getElementById('bus-modal-reg-no').value = 'ঢাকা মেট্রো-ব ১৫-৪১২৩';
+            // 2. Tab 1: Vehicle & Identity - ALL FIELDS EMPTY
+            document.getElementById('bus-modal-name').value = '';
+            document.getElementById('bus-modal-reg-no').value = '';
             document.getElementById('bus-modal-cat-type').value = 'AC Sleeper Coach';
             document.getElementById('bus-modal-custom-type-wrap').style.display = 'none';
             document.getElementById('bus-modal-custom-type-input').value = '';
-            document.getElementById('bus-modal-fare').value = '2200';
-            document.getElementById('bus-modal-duration').value = '8h 15m';
+            document.getElementById('bus-modal-fare').value = '';
+            document.getElementById('bus-modal-duration').value = '';
 
-            // Route & Timings
+            // Reset photo upload
+            removeBusProductPhoto();
+
+            // 3. Tab 2: Route & Timings - ALL FIELDS EMPTY
             const originSel = document.getElementById('bus-modal-origin-upazila');
             const destSel = document.getElementById('bus-modal-dest-upazila');
-            populateUpazilaSelect(originSel, 'Dhaka North');
-            populateUpazilaSelect(destSel, 'Cox\'s Bazar Sadar');
-            document.getElementById('bus-modal-from').value = 'Dhaka (Arambagh Counter)';
-            document.getElementById('bus-modal-to').value = 'Cox\'s Bazar (Kolatoli Beach Main Counter)';
-            document.getElementById('bus-modal-dep').value = '10:30 PM';
-            document.getElementById('bus-modal-arr').value = '06:45 AM';
+            populateUpazilaSelect(originSel, '');
+            populateUpazilaSelect(destSel, '');
+            document.getElementById('bus-modal-from').value = '';
+            document.getElementById('bus-modal-to').value = '';
+            document.getElementById('bus-modal-dep').value = '';
+            document.getElementById('bus-modal-arr').value = '';
 
-            // Clear Stoppages & Add default demo stoppages
+            // Stoppages list EMPTY (no demo stops)
             const stopContainer = document.getElementById('bus-modal-stoppages-list');
             if (stopContainer) stopContainer.innerHTML = '';
-            addStoppageRow({
-                upazila: 'Cumilla Adarsha Sadar',
-                name: 'Cumilla (Paduar Bazar Highway Rest)',
-                arrTime: '01:30 AM',
-                depTime: '01:50 AM',
-                halt: '20 Mins',
-                stopType: 'Both (Boarding & Dropping)'
-            });
-            addStoppageRow({
-                upazila: 'Chattogram Sadar',
-                name: 'Chattogram (AK Khan Bus Stand)',
-                arrTime: '04:45 AM',
-                depTime: '05:00 AM',
-                halt: '15 Mins',
-                stopType: 'Both (Boarding & Dropping)'
-            });
 
-            // Seat state
+            // 4. Tab 3: Stage Fares Table - EMPTY
+            const stageTable = document.getElementById('bus-stage-fares-tbody');
+            if (stageTable) {
+                stageTable.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #94a3b8; padding: 1.5rem;">Configure route origin and destination to generate stage fare matrix.</td></tr>';
+            }
+
+            // 5. Tab 4: Seat State - CLEAN DEFAULT
             busSeatState = {
                 preset: '2x2-40',
                 deck: 'lower',
-                seatMap: {
-                    'A1': 'female',
-                    'A2': 'female',
-                    'B1': 'vip',
-                    'B2': 'vip'
-                }
+                seatMap: {}
             };
             const presetSel = document.getElementById('bus-seat-preset-select');
             if (presetSel) presetSel.value = '2x2-40';
             const deckWrap = document.getElementById('bus-deck-toggle-wrap');
             if (deckWrap) deckWrap.style.display = 'none';
+            renderBusSeatMap();
 
-            // Photo Preview
-            document.getElementById('bus-modal-photo-data').value = 'images/operators/bus_ena_sleeper_exact.png';
-            const previewBar = document.getElementById('bus-photo-preview-bar');
-            const previewImg = document.getElementById('bus-modal-photo-preview');
-            const nameEl = document.getElementById('bus-photo-file-name-text');
-            if (previewImg) previewImg.src = 'images/operators/bus_ena_sleeper_exact.png';
-            if (nameEl) nameEl.textContent = 'ena_sleeper.png';
-            if (previewBar) previewBar.style.display = 'flex';
-
-            // Modal Title & Subtitle
+            // Modal Header
             document.getElementById('bus-modal-title').textContent = `Add ${unitLabel} & Trip Schedule`;
             document.getElementById('bus-modal-subtitle').textContent = `Configure fleet identity, intermediate stops, stage pricing & seat layout for ${op.name}`;
 
-            // Reset tab to Tab 1
+            // Reset to Tab 1
             switchBusModalTab('identity');
-            routeChangedFlag = true;
+            routeChangedFlag = false;
 
             modal.classList.add('show');
             modal.style.display = 'flex';
