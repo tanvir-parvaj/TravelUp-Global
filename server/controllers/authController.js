@@ -114,7 +114,7 @@ exports.register = async (req, res) => {
 // Login User
 exports.login = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, password, portal } = req.body;
 
         if (!email || !password) {
             return res.status(400).json({ success: false, message: 'Email and password are required' });
@@ -145,6 +145,24 @@ exports.login = async (req, res) => {
 
         if (!isMatch) {
             return res.status(401).json({ success: false, message: 'Invalid email or password' });
+        }
+
+        // 🔒 Strict Portal & Role Matching Validation
+        const allowedStaffRoles = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
+        const isStaff = allowedStaffRoles.includes(user.role);
+
+        if (portal === 'customer' && isStaff) {
+            return res.status(403).json({
+                success: false,
+                message: '❌ এটি একটি অ্যাডমিনিস্ট্রেটর/স্টাফ অ্যাকাউন্ট। ট্রাভেলার হিসেবে লগইন করতে পারবেন না। অনুগ্রহ করে "Administrator" ট্যাব নির্বাচন করে লগইন করুন।'
+            });
+        }
+
+        if (portal === 'staff' && !isStaff) {
+            return res.status(403).json({
+                success: false,
+                message: '❌ এটি একটি সাধারণ ট্রাভেলার অ্যাকাউন্ট। অ্যাডমিনিস্ট্রেটর প্যানেলে প্রবেশের অনুমতি নেই। অনুগ্রহ করে "Traveler & Tourist" ট্যাব নির্বাচন করুন।'
+            });
         }
 
         const token = jwt.sign(

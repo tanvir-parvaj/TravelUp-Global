@@ -871,6 +871,7 @@
                 <div class="quick-role-strip">
                     <div class="quick-role-title">1-Click Staff Role Test:</div>
                     <div class="role-pills-row">
+                        <button type="button" class="pill-role-test" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;" onclick="quickFillTraveler('user@travelupglobal.com', 'admin123')">🧳 Traveler & Tourist</button>
                         <button type="button" class="pill-role-test" onclick="quickFillAndLogin('admin@travelupglobal.com', 'admin123')">👑 Super Admin</button>
                         <button type="button" class="pill-role-test" onclick="quickFillAndLogin('papelali809@gmail.com', 'admin123')">👑 Tanvir Parvaj</button>
                         <button type="button" class="pill-role-test" onclick="quickFillAndLogin('tanvir.test@travelupglobal.com', 'admin123')">👑 Tanvir (Test)</button>
@@ -1183,13 +1184,20 @@
             handleSignInSubmit();
         }
 
-                // Helper: Execute live preview login when running on GitHub Pages
+        function quickFillTraveler(identifier, pass) {
+            selectSignInRole('customer');
+            document.getElementById('signin-identifier').value = identifier;
+            document.getElementById('signin-password').value = pass;
+            handleSignInSubmit();
+        }
+
+        // Helper: Execute live preview login when running on GitHub Pages
         function executePreviewLogin(identifier, password) {
             const emailLower = (identifier || '').toLowerCase();
             const isAdminEmail = emailLower.includes('admin') || emailLower.includes('tanvir') || emailLower === 'papelali809@gmail.com';
             
             let role = 'customer';
-            let name = identifier.split('@')[0] || 'User';
+            let name = identifier.split('@')[0] || 'Traveler';
             let organization = 'TravelUp Global';
 
             if (isAdminEmail) {
@@ -1208,9 +1216,9 @@
                 role = 'accountant';
                 name = 'Finance Officer';
                 organization = 'TravelUp Accounts';
-            } else if (currentSignInRoleType === 'staff') {
+            } else if (emailLower.includes('staff')) {
                 role = 'admin';
-                name = 'Admin Staff';
+                name = 'Staff Admin';
             }
 
             const previewUser = {
@@ -1241,6 +1249,28 @@
             const allowedStaffRoles = ['admin', 'superadmin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
             const isStaff = allowedStaffRoles.includes(userRole);
 
+            // 🔒 STRICT PORTAL & ROLE VALIDATION
+            // Case 1: If user selected 'customer' (Traveler) tab, but account is staff/admin -> BLOCK!
+            if (currentSignInRoleType === 'customer' && isStaff) {
+                alertBox.className = 'auth-alert-box error';
+                alertBox.innerHTML = '❌ <strong>ভুল পোর্টাল:</strong> এটি একটি অ্যাডমিনিস্ট্রেটর/স্টাফ অ্যাকাউন্ট। ট্রাভেলার হিসেবে লগইন করতে পারবেন না। অনুগ্রহ করে উপরে <strong>"Administrator"</strong> ট্যাব নির্বাচন করে লগইন করুন।';
+                alertBox.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Log In</span> <i class="material-icons">arrow_forward</i>`;
+                return;
+            }
+
+            // Case 2: If user selected 'staff' (Administrator) tab, but account is customer/traveler -> BLOCK!
+            if (currentSignInRoleType === 'staff' && !isStaff) {
+                alertBox.className = 'auth-alert-box error';
+                alertBox.innerHTML = '❌ <strong>প্রবেশ নিষেধ:</strong> এটি একটি সাধারণ ট্রাভেলার অ্যাকাউন্ট। অ্যাডমিনিস্ট্রেটর প্যানেলে প্রবেশের অনুমতি নেই। অনুগ্রহ করে উপরে <strong>"Traveler & Tourist"</strong> ট্যাব নির্বাচন করুন।';
+                alertBox.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Log In</span> <i class="material-icons">arrow_forward</i>`;
+                return;
+            }
+
+            // Valid matching login:
             localStorage.setItem('travelup_token', token);
             localStorage.setItem('travelup_user', JSON.stringify(user));
 
@@ -1248,17 +1278,9 @@
             alertBox.innerHTML = `${isPreview ? '✨ <strong>Live Preview Demo:</strong> ' : ''}Welcome back, ${user.name}! Redirecting...`;
             alertBox.style.display = 'block';
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const wantsPortal = currentSignInRoleType === 'staff' || urlParams.get('portal') === '1';
-
-            if (wantsPortal || isStaff) {
-                if (!isStaff && wantsPortal) {
-                    user.role = 'admin';
-                    localStorage.setItem('travelup_user', JSON.stringify(user));
-                }
+            if (isStaff) {
                 localStorage.setItem('travelup_admin_token', token);
                 localStorage.setItem('travelup_admin_user', JSON.stringify(user));
-
                 setTimeout(() => {
                     window.location.href = 'admin.html';
                 }, 400);
@@ -1302,7 +1324,7 @@
                 const res = await fetch(`${API_BASE}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: identifier, password })
+                    body: JSON.stringify({ email: identifier, password, portal: currentSignInRoleType })
                 });
 
                 const contentType = res.headers.get('content-type') || '';
