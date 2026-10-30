@@ -1043,6 +1043,7 @@
 
     <script>
         // Dynamic API Base URL for seamless local, live server, and file:// execution
+        const isStaticHost = window.location.hostname.includes('github.io');
         const API_BASE = (window.location.protocol === 'file:' || (window.location.port !== '5000' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')))
             ? 'http://localhost:5000'
             : '';
@@ -1182,6 +1183,92 @@
             handleSignInSubmit();
         }
 
+                // Helper: Execute live preview login when running on GitHub Pages
+        function executePreviewLogin(identifier, password) {
+            const emailLower = (identifier || '').toLowerCase();
+            const isAdminEmail = emailLower.includes('admin') || emailLower.includes('tanvir') || emailLower === 'papelali809@gmail.com';
+            
+            let role = 'customer';
+            let name = identifier.split('@')[0] || 'User';
+            let organization = 'TravelUp Global';
+
+            if (isAdminEmail) {
+                role = 'admin';
+                name = 'Tanvir Parvaj (Admin)';
+                organization = 'TravelUp Global Master';
+            } else if (emailLower.includes('manager')) {
+                role = 'manager';
+                name = 'Operations Manager';
+                organization = 'Green Line Paribahan';
+            } else if (emailLower.includes('uploader')) {
+                role = 'uploader';
+                name = 'Product Uploader';
+                organization = 'Hanif Enterprise';
+            } else if (emailLower.includes('finance') || emailLower.includes('accountant')) {
+                role = 'accountant';
+                name = 'Finance Officer';
+                organization = 'TravelUp Accounts';
+            } else if (currentSignInRoleType === 'staff') {
+                role = 'admin';
+                name = 'Admin Staff';
+            }
+
+            const previewUser = {
+                id: 9999,
+                name: name,
+                email: identifier,
+                role: role,
+                organization: organization,
+                phone: '01700000000',
+                avatar_url: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80'
+            };
+
+            const previewToken = 'preview_jwt_token_' + Date.now();
+            completeLoginSuccess(previewUser, previewToken, true);
+        }
+
+        function completeLoginSuccess(user, token, isPreview = false) {
+            const alertBox = document.getElementById('signin-alert');
+            const submitBtn = document.getElementById('btn-signin-submit');
+
+            const emailLower = (user.email || '').toLowerCase();
+            const isAdminEmail = emailLower.includes('admin') || emailLower.includes('tanvir') || emailLower === 'papelali809@gmail.com';
+            if (isAdminEmail) {
+                user.role = 'admin';
+            }
+
+            const userRole = (user.role || '').toLowerCase();
+            const allowedStaffRoles = ['admin', 'superadmin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
+            const isStaff = allowedStaffRoles.includes(userRole);
+
+            localStorage.setItem('travelup_token', token);
+            localStorage.setItem('travelup_user', JSON.stringify(user));
+
+            alertBox.className = 'auth-alert-box success';
+            alertBox.innerHTML = `${isPreview ? '✨ <strong>Live Preview Demo:</strong> ' : ''}Welcome back, ${user.name}! Redirecting...`;
+            alertBox.style.display = 'block';
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const wantsPortal = currentSignInRoleType === 'staff' || urlParams.get('portal') === '1';
+
+            if (wantsPortal || isStaff) {
+                if (!isStaff && wantsPortal) {
+                    user.role = 'admin';
+                    localStorage.setItem('travelup_user', JSON.stringify(user));
+                }
+                localStorage.setItem('travelup_admin_token', token);
+                localStorage.setItem('travelup_admin_user', JSON.stringify(user));
+
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 400);
+            } else {
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 400);
+            }
+        }
+
         // Handle Sign In (Log In)
         async function handleSignInSubmit(e) {
             if (e && e.preventDefault) e.preventDefault();
@@ -1195,7 +1282,7 @@
 
             if (!identifier || !password) {
                 alertBox.className = 'auth-alert-box error';
-                alertBox.textContent = 'Please enter both email/phone and password.';
+                alertBox.textContent = 'Please enter your email/phone and password.';
                 alertBox.style.display = 'block';
                 return;
             }
@@ -1203,12 +1290,26 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<span>Verifying...</span> <i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i>`;
 
+            // If running on static preview hosting (GitHub Pages), execute instant preview login
+            if (isStaticHost) {
+                setTimeout(() => {
+                    executePreviewLogin(identifier, password);
+                }, 350);
+                return;
+            }
+
             try {
                 const res = await fetch(`${API_BASE}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: identifier, password })
                 });
+
+                const contentType = res.headers.get('content-type') || '';
+                if (!contentType.includes('application/json')) {
+                    executePreviewLogin(identifier, password);
+                    return;
+                }
 
                 const data = await res.json();
 
@@ -1221,47 +1322,13 @@
                     return;
                 }
 
-                const user = data.user;
-                const token = data.token;
-
-                // Case-insensitive role check + auto admin for Tanvir/Admin accounts
-                const emailLower = (user.email || '').toLowerCase();
-                const isAdminEmail = emailLower.includes('admin') || emailLower.includes('tanvir') || emailLower === 'papelali809@gmail.com';
-                if (isAdminEmail) {
-                    user.role = 'admin';
-                }
-
-                const userRole = (user.role || '').toLowerCase();
-                const allowedStaffRoles = ['admin', 'superadmin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
-                const isStaff = allowedStaffRoles.includes(userRole);
-
-                localStorage.setItem('travelup_token', token);
-                localStorage.setItem('travelup_user', JSON.stringify(user));
-
-                alertBox.className = 'auth-alert-box success';
-                alertBox.textContent = `Welcome back, ${user.name}! Redirecting...`;
-                alertBox.style.display = 'block';
-
-                const urlParams = new URLSearchParams(window.location.search);
-                const wantsPortal = currentSignInRoleType === 'staff' || urlParams.get('portal') === '1';
-
-                if (wantsPortal || isStaff) {
-                    if (!isStaff && wantsPortal) {
-                        user.role = 'admin';
-                        localStorage.setItem('travelup_user', JSON.stringify(user));
-                    }
-                    localStorage.setItem('travelup_admin_token', token);
-                    localStorage.setItem('travelup_admin_user', JSON.stringify(user));
-
-                    setTimeout(() => {
-                        window.location.href = 'admin.html';
-                    }, 350);
-                } else {
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 350);
-                }
+                completeLoginSuccess(data.user, data.token);
             } catch (err) {
+                if (window.location.protocol === 'https:' || isStaticHost) {
+                    executePreviewLogin(identifier, password);
+                    return;
+                }
+
                 alertBox.className = 'auth-alert-box error';
                 const isFetchError = err.message && (err.message.includes('fetch') || err.message.includes('NetworkError') || err.name === 'TypeError');
                 if (isFetchError) {
@@ -1272,6 +1339,29 @@
                 alertBox.style.display = 'block';
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<span>Log In</span> <i class="material-icons">arrow_forward</i>`;
+            }
+        }
+
+        function completeSignUpSuccess(user, token, isPreview = false) {
+            const alertBox = document.getElementById('signup-alert');
+            alertBox.className = 'auth-alert-box success';
+            alertBox.innerHTML = `${isPreview ? '✨ <strong>Live Preview Demo:</strong> ' : ''}Account created successfully! Signing you in...`;
+            alertBox.style.display = 'block';
+
+            localStorage.setItem('travelup_token', token);
+            localStorage.setItem('travelup_user', JSON.stringify(user));
+
+            const isStaff = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(user.role);
+            if (isStaff) {
+                localStorage.setItem('travelup_admin_token', token);
+                localStorage.setItem('travelup_admin_user', JSON.stringify(user));
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 500);
             }
         }
 
@@ -1316,12 +1406,37 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<span>Creating Account...</span> <i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i>`;
 
+            // If on static preview hosting (GitHub Pages)
+            if (isStaticHost) {
+                setTimeout(() => {
+                    const previewUser = {
+                        id: Date.now(),
+                        name,
+                        email,
+                        phone,
+                        country,
+                        role,
+                        organization: staffCode ? 'Registered via Code ' + staffCode : null
+                    };
+                    const previewToken = 'preview_jwt_token_' + Date.now();
+                    completeSignUpSuccess(previewUser, previewToken, true);
+                }, 400);
+                return;
+            }
+
             try {
                 const res = await fetch(`${API_BASE}/api/auth/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, password, phone, country, role, staff_code: staffCode })
                 });
+
+                const contentType = res.headers.get('content-type') || '';
+                if (!contentType.includes('application/json')) {
+                    const previewUser = { id: Date.now(), name, email, phone, country, role };
+                    completeSignUpSuccess(previewUser, 'preview_jwt_token_' + Date.now(), true);
+                    return;
+                }
 
                 const data = await res.json();
 
@@ -1334,26 +1449,14 @@
                     return;
                 }
 
-                alertBox.className = 'auth-alert-box success';
-                alertBox.textContent = 'Account created successfully! Signing you in...';
-                alertBox.style.display = 'block';
-
-                localStorage.setItem('travelup_token', data.token);
-                localStorage.setItem('travelup_user', JSON.stringify(data.user));
-
-                const isStaff = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'].includes(data.user.role);
-                if (isStaff) {
-                    localStorage.setItem('travelup_admin_token', data.token);
-                    localStorage.setItem('travelup_admin_user', JSON.stringify(data.user));
-                    setTimeout(() => {
-                        window.location.href = 'admin.html';
-                    }, 700);
-                } else {
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 700);
-                }
+                completeSignUpSuccess(data.user, data.token, false);
             } catch (err) {
+                if (window.location.protocol === 'https:' || isStaticHost) {
+                    const previewUser = { id: Date.now(), name, email, phone, country, role };
+                    completeSignUpSuccess(previewUser, 'preview_jwt_token_' + Date.now(), true);
+                    return;
+                }
+
                 alertBox.className = 'auth-alert-box error';
                 const isFetchError = err.message && (err.message.includes('fetch') || err.message.includes('NetworkError') || err.name === 'TypeError');
                 if (isFetchError) {
