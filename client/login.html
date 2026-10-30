@@ -1233,7 +1233,12 @@
                 }
             } catch (err) {
                 alertBox.className = 'auth-alert-box error';
-                alertBox.textContent = err.message || 'Unable to connect to server. Please try again.';
+                const isFetchError = err.message && (err.message.includes('fetch') || err.message.includes('NetworkError') || err.name === 'TypeError');
+                if (isFetchError) {
+                    alertBox.innerHTML = `⚠️ <strong>সার্ভার সংযোগ বিচ্ছিন্ন (Server Offline):</strong> ব্যাকএন্ড সার্ভার চালু নেই। অনুগ্রহ করে প্রজেক্ট ফোল্ডারের <code>start.bat</code> ফাইলে ডাবল ক্লিক করুন অথবা টার্মিনালে <code>node server/server.js</code> রান করুন।`;
+                } else {
+                    alertBox.textContent = err.message || 'Unable to connect to server. Please try again.';
+                }
                 alertBox.style.display = 'block';
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<span>Log In</span> <i class="material-icons">arrow_forward</i>`;
@@ -1312,7 +1317,12 @@
                 }
             } catch (err) {
                 alertBox.className = 'auth-alert-box error';
-                alertBox.textContent = err.message || 'Unable to connect to server. Please try again.';
+                const isFetchError = err.message && (err.message.includes('fetch') || err.message.includes('NetworkError') || err.name === 'TypeError');
+                if (isFetchError) {
+                    alertBox.innerHTML = `⚠️ <strong>সার্ভার সংযোগ বিচ্ছিন্ন (Server Offline):</strong> ব্যাকএন্ড সার্ভার চালু নেই। অনুগ্রহ করে প্রজেক্ট ফোল্ডারের <code>start.bat</code> ফাইলে ডাবল ক্লিক করুন অথবা টার্মিনালে <code>node server/server.js</code> রান করুন।`;
+                } else {
+                    alertBox.textContent = err.message || 'Unable to connect to server. Please try again.';
+                }
                 alertBox.style.display = 'block';
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<span>Create Account</span> <i class="material-icons">arrow_forward</i>`;
