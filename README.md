@@ -1,6 +1,6 @@
 # ✈️ TravelUp Global
 
-> **Next-Generation Global Travel Platform**  
+> **Next-Generation Multimodal Travel & Tourism Platform**  
 > **Course Project:** Markup & Scripting Languages Lab  
 > **Department:** Computer Science & Engineering (CSE), Dhaka International University (DIU)  
 > **Submitted To:** Sajib Bhattacharjee, Lecturer, Department of CSE  
@@ -10,6 +10,18 @@
 > 3. **Fahima Suborna** (Roll: 36)  
 > **Domain:** `travelupglobal.com`  
 > **Database:** Hostinger MySQL (`srv1954.hstgr.io`)  
+
+---
+
+## 🌐 Live Web Preview & Demo Links (যেকোনো ডিভাইস থেকে দেখুন)
+
+প্রকল্পটি GitHub Pages-এর মাধ্যমে অনলাইনে হোস্ট করা রয়েছে। নিচের লিংকগুলো ব্যবহার করে যেকোনো মোবাইল, ট্যাবলেট বা কম্পিউটার থেকে লাইভ প্রিভিউ দেখতে পারবেন:
+
+* 🚀 **Main Portal / Home:** [https://tanvir-parvaj.github.io/TravelUp-Global/](https://tanvir-parvaj.github.io/TravelUp-Global/)
+* 🧭 **Custom Trip & Tour Planner:** [https://tanvir-parvaj.github.io/TravelUp-Global/client/trip-planner.html](https://tanvir-parvaj.github.io/TravelUp-Global/client/trip-planner.html)
+* 🧳 **PC-Builder 5-Step Travel Planner:** [https://tanvir-parvaj.github.io/TravelUp-Global/client/travel-planner.html](https://tanvir-parvaj.github.io/TravelUp-Global/client/travel-planner.html)
+* 💼 **Enterprise Admin Operating System:** [https://tanvir-parvaj.github.io/TravelUp-Global/client/admin.html](https://tanvir-parvaj.github.io/TravelUp-Global/client/admin.html)
+* 🔐 **Secure Sign In & Staff Referral Onboarding:** [https://tanvir-parvaj.github.io/TravelUp-Global/client/login.html](https://tanvir-parvaj.github.io/TravelUp-Global/client/login.html)
 
 ---
 
