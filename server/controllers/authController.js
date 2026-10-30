@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
         }
 
         // Check if user already exists
-        const [existing] = await pool.query('SELECT id FROM users WHERE email = ?', [email]);
+        const [existing] = await pool.query('SELECT id FROM users WHERE email = ?', [email.trim().toLowerCase()]);
         if (existing.length > 0) {
             return res.status(409).json({ success: false, message: 'An account with this email already exists' });
         }
@@ -23,17 +23,70 @@ exports.register = async (req, res) => {
         const allowedRoles = ['customer', 'admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
         let assignedRole = (role && allowedRoles.includes(role)) ? role : 'customer';
 
+        // 🔒 STRICT SECURITY: Admin and staff roles REQUIRE an authorized reference code
+        const isStaffRole = assignedRole !== 'customer';
+        let validatedOrg = null;
+        let matchedInviteId = null;
+
+        if (isStaffRole) {
+            const rawCode = (staff_code || '').trim().toUpperCase();
+            if (!rawCode) {
+                return res.status(403).json({
+                    success: false,
+                    message: 'অ্যাডমিনিস্ট্রেটর বা স্টাফ হিসেবে সাইনআপ করতে বিদ্যমান অ্যাডমিনের বৈধ রেফারেন্স কোড (Authorization Reference Code) আবশ্যক।'
+                });
+            }
+
+            // Check Master Super Admin Code (for initial setup / platform owner / new org license)
+            const masterKey = (process.env.MASTER_ADMIN_KEY || 'TRAVELUP-MASTER-ADMIN-2026').toUpperCase();
+            const isMasterCode = rawCode === masterKey;
+
+            if (!isMasterCode) {
+                // Check in staff_invitations table
+                const [invites] = await pool.query(
+                    `SELECT * FROM staff_invitations 
+                     WHERE UPPER(invite_code) = ? 
+                       AND is_used = 0 
+                       AND (expires_at IS NULL OR expires_at > NOW())
+                     LIMIT 1`,
+                    [rawCode]
+                );
+
+                if (invites.length === 0) {
+                    return res.status(403).json({
+                        success: false,
+                        message: 'রেফারেন্স কোডটি সঠিক নয়, পূর্বে ব্যবহৃত হয়েছে অথবা এর মেয়াদ শেষ হয়ে গেছে। দয়া করে আপনার প্রতিষ্ঠানের অ্যাডমিনিস্ট্রেটরের কাছ থেকে নতুন কোড সংগ্রহ করুন।'
+                    });
+                }
+
+                const invite = invites[0];
+                matchedInviteId = invite.id;
+                if (invite.role) assignedRole = invite.role;
+                if (invite.organization) validatedOrg = invite.organization;
+            }
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const defaultAvatar = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80';
 
         const [result] = await pool.query(
-            `INSERT INTO users (name, email, password, role, phone, preferred_lang, avatar_url) 
-             VALUES (?, ?, ?, ?, ?, ?, ?)`,
-            [name, email, hashedPassword, assignedRole, phone || null, 'en', defaultAvatar]
+            `INSERT INTO users (name, email, password, role, phone, organization, preferred_lang, avatar_url) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            [name, email.trim().toLowerCase(), hashedPassword, assignedRole, phone || null, validatedOrg, 'en', defaultAvatar]
         );
 
+        // Mark invite code as used
+        if (matchedInviteId) {
+            await pool.query(
+                `UPDATE staff_invitations 
+                 SET is_used = 1, status = 'active', email = ?, name = ?, used_by = ? 
+                 WHERE id = ?`,
+                [email.trim().toLowerCase(), name, result.insertId, matchedInviteId]
+            );
+        }
+
         const token = jwt.sign(
-            { id: result.insertId, email, role: assignedRole, name },
+            { id: result.insertId, email: email.trim().toLowerCase(), role: assignedRole, name, organization: validatedOrg },
             JWT_SECRET,
             { expiresIn: '7d' }
         );
@@ -42,7 +95,15 @@ exports.register = async (req, res) => {
             success: true,
             message: 'User registered successfully',
             token,
-            user: { id: result.insertId, name, email, role: assignedRole, phone, avatar_url: defaultAvatar }
+            user: { 
+                id: result.insertId, 
+                name, 
+                email: email.trim().toLowerCase(), 
+                role: assignedRole, 
+                phone, 
+                organization: validatedOrg,
+                avatar_url: defaultAvatar 
+            }
         });
     } catch (error) {
         console.error('Registration Error:', error);

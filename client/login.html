@@ -955,7 +955,7 @@
                             <i class="material-icons input-icon-left" style="color: var(--primary);">badge</i>
                             <select id="signup-role" class="auth-input" style="cursor: pointer; appearance: none; font-weight: 600; padding-left: 2.75rem;" onchange="handleRoleSelectionChange(this.value)">
                                 <option value="customer" selected>Traveler & Tourist</option>
-                                <option value="admin">Administrator</option>
+                                <option value="admin">Administrator / Organization Staff</option>
                             </select>
                             <span class="input-icon-right" style="pointer-events: none;">
                                 <i class="material-icons">expand_more</i>
@@ -963,6 +963,21 @@
                         </div>
                         <div id="role-description-hint" class="input-hint-text" style="color: var(--primary); font-weight: 600; margin: 0.4rem 0 0.4rem 0.25rem;">
                             ✓ Plan trips, search connecting transit routes, and book tour packages.
+                        </div>
+                    </div>
+
+                    <!-- Staff / Admin Authorization Code (Revealed when Admin is chosen) -->
+                    <div id="staff-auth-code-container" style="display: none; margin-bottom: 1.25rem; background: #f0fdf4; border: 1.5px dashed var(--primary); border-radius: 12px; padding: 1.15rem; animation: fadeIn 0.3s ease;">
+                        <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.45rem;">
+                            <span>🔑 Admin Authorization / Reference Code <span style="color: #ef4444;">*</span></span>
+                            <span style="font-size: 0.72rem; color: var(--primary); font-weight: 700;">Required for Admins</span>
+                        </label>
+                        <div class="input-field-wrap">
+                            <i class="material-icons input-icon-left" style="color: var(--primary);">verified_user</i>
+                            <input type="text" id="signup-staff-code" class="auth-input" style="padding-left: 2.75rem; text-transform: uppercase; font-family: monospace; letter-spacing: 2.5px; font-weight: 800; font-size: 1.05rem;" placeholder="e.g. ADM-8K2P">
+                        </div>
+                        <div style="font-size: 0.75rem; color: #475569; line-height: 1.45; margin-top: 0.5rem;">
+                            🛡️ <strong>সিকিউরিটি নোটিশ:</strong> প্রতিষ্ঠানের বিদ্যমান অ্যাডমিনিস্ট্রেটরের প্রোফাইল থেকে প্রাপ্ত সক্রিয় রেফারেন্স কোড দিন। অনুমতিবিহীন বা মেয়াদোত্তীর্ণ কোডে অ্যাডমিন অ্যাকাউন্ট খোলা সম্ভব নয়।
                         </div>
                     </div>
 
@@ -1142,6 +1157,21 @@
             if (hintEl && ROLE_HINTS[role]) {
                 hintEl.textContent = ROLE_HINTS[role];
             }
+
+            const authContainer = document.getElementById('staff-auth-code-container');
+            const authInput = document.getElementById('signup-staff-code');
+            if (authContainer) {
+                if (role === 'admin') {
+                    authContainer.style.display = 'block';
+                    if (authInput) authInput.setAttribute('required', 'true');
+                } else {
+                    authContainer.style.display = 'none';
+                    if (authInput) {
+                        authInput.removeAttribute('required');
+                        authInput.value = '';
+                    }
+                }
+            }
         }
 
         // 1-Click Quick Fill & Login
@@ -1256,10 +1286,18 @@
             const confirmPassword = document.getElementById('signup-confirm-password').value;
             const country = document.getElementById('signup-country').value;
             const role = document.getElementById('signup-role') ? document.getElementById('signup-role').value : 'customer';
+            const staffCode = document.getElementById('signup-staff-code') ? document.getElementById('signup-staff-code').value.trim().toUpperCase() : '';
             const alertBox = document.getElementById('signup-alert');
             const submitBtn = document.getElementById('btn-signup-submit');
 
             alertBox.style.display = 'none';
+
+            if (role === 'admin' && !staffCode) {
+                alertBox.className = 'auth-alert-box error';
+                alertBox.textContent = 'অ্যাডমিনিস্ট্রেটর বা স্টাফ হিসেবে সাইনআপ করতে বিদ্যমান অ্যাডমিনের বৈধ রেফারেন্স কোড দেওয়া আবশ্যক।';
+                alertBox.style.display = 'block';
+                return;
+            }
 
             if (password !== confirmPassword) {
                 alertBox.className = 'auth-alert-box error';
@@ -1282,7 +1320,7 @@
                 const res = await fetch(`${API_BASE}/api/auth/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, password, phone, country, role })
+                    body: JSON.stringify({ name, email, password, phone, country, role, staff_code: staffCode })
                 });
 
                 const data = await res.json();

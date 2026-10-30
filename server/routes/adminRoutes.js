@@ -25,6 +25,9 @@ router.get('/metrics', verifyToken, requireStaff, adminController.getMetrics);
 router.get('/staff', verifyToken, requireSuperAdmin, adminController.getStaffList);
 router.post('/staff/invite', verifyToken, requireSuperAdmin, adminController.inviteOrAssignStaff);
 router.patch('/staff/:id/role', verifyToken, requireSuperAdmin, adminController.updateStaffRole);
+router.post('/staff/generate-code', verifyToken, requireSuperAdmin, adminController.generateInviteCode);
+router.get('/staff/active-codes', verifyToken, requireSuperAdmin, adminController.getInviteCodes);
+router.delete('/staff/code/:id', verifyToken, requireSuperAdmin, adminController.revokeInviteCode);
 
 // 3. Vehicle & Route Management (Admin, Uploader, Moderator)
 router.get('/transit/routes', verifyToken, requireUploaderOrAdmin, adminController.getTransitRoutes);

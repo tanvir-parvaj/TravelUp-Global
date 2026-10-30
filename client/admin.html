@@ -8856,6 +8856,113 @@
 
                 <!-- 4. MEMBERS & ROLES (SUPER ADMIN ONLY) -->
                 <section id="view-staff" class="view-section">
+                    <!-- Dynamic Referral / Authorization Code Generator Card -->
+                    <div class="panel" style="border: 2px solid #00966d; background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);">
+                        <div class="panel-header" style="background: transparent; border-bottom: 1px solid #dcfce7;">
+                            <div class="panel-title" style="color: #0f2942;">
+                                <i class="material-icons" style="color: #00966d;">vpn_key</i>
+                                <span>🔑 Dynamic Admin / Staff Referral Code Generator (অনবোর্ডিং রেফারেন্স কোড জেনারেটর)</span>
+                            </div>
+                            <span class="badge" style="background: #00966d; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;">
+                                Auto-Expiring Security
+                            </span>
+                        </div>
+                        <div class="panel-body">
+                            <p style="font-size: 0.85rem; color: #475569; margin-bottom: 1.25rem; line-height: 1.5;">
+                                নতুন কোনো ব্যক্তি অ্যাডমিনিস্ট্রেটর বা স্টাফ হিসেবে সাইনআপ করতে চাইলে তাকে এখান থেকে একটি সিকিউর ওয়ান-টাইম রেফারেন্স কোড প্রদান করুন। নির্ধারিত সময়ের মধ্যে কোডটি ব্যবহার না করলে তা স্বয়ংক্রিয়ভাবে অকার্যকর হয়ে যাবে।
+                            </p>
+                            
+                            <form id="form-generate-referral" onsubmit="handleGenerateReferralCode(event)">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Assign Operational Role *</label>
+                                        <select id="referral-role" required style="font-weight: 600;">
+                                            <option value="manager" selected>Operations Manager</option>
+                                            <option value="admin">Super Admin / Org Admin</option>
+                                            <option value="uploader">Product & Route Uploader</option>
+                                            <option value="accountant">Finance & Payment Officer</option>
+                                            <option value="support">Customer Support Agent</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Code Validity Window (মেয়াদকাল) *</label>
+                                        <select id="referral-validity" required style="font-weight: 600;">
+                                            <option value="15">15 Minutes (High Security)</option>
+                                            <option value="30" selected>30 Minutes (Recommended)</option>
+                                            <option value="60">1 Hour</option>
+                                            <option value="1440">24 Hours (Full Day)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Organization / Branch Name (Optional)</label>
+                                        <input type="text" id="referral-org" placeholder="e.g. Green Line Paribahan">
+                                    </div>
+
+                                    <div class="form-group" style="display: flex; align-items: flex-end;">
+                                        <button type="submit" class="btn btn-primary" id="btn-generate-code" style="width: 100%; height: 42px; background: #00966d; font-weight: 700;">
+                                            <i class="material-icons">bolt</i> Generate Dynamic Code
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- Live Generated Code Display Box (Hidden by default) -->
+                            <div id="generated-code-box" style="display: none; margin-top: 1.25rem; padding: 1.25rem; background: #ffffff; border: 2px dashed #00966d; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 150, 109, 0.1);">
+                                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+                                    <div>
+                                        <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: #64748b; letter-spacing: 1px;">
+                                            Active Referral Code (নতুন কর্মীকে এই কোডটি দিন)
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.25rem;">
+                                            <span id="display-invite-code" style="font-family: monospace; font-size: 2rem; font-weight: 900; color: #0f2942; letter-spacing: 3px;">
+                                                ---
+                                            </span>
+                                            <button type="button" class="btn btn-outline btn-sm" onclick="copyReferralCode()" style="border-color: #00966d; color: #00966d; font-weight: 700;">
+                                                <i class="material-icons" style="font-size: 1rem;">content_copy</i> Copy
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Time Remaining:</div>
+                                        <div id="referral-countdown" style="font-size: 1.25rem; font-weight: 800; color: #ef4444; font-family: monospace;">
+                                            --:--
+                                        </div>
+                                        <div id="display-invite-role" style="font-size: 0.75rem; color: #00966d; font-weight: 700; margin-top: 2px;">
+                                            Role: Manager
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Active Invite Codes Table -->
+                            <div style="margin-top: 1.75rem;">
+                                <h4 style="font-size: 0.88rem; font-weight: 700; color: #0f2942; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem;">
+                                    <i class="material-icons" style="font-size: 1.1rem; color: #00966d;">history</i>
+                                    Recent Referral Codes
+                                </h4>
+                                <div class="data-table-wrap">
+                                    <table class="data-table" id="invite-codes-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Referral Code</th>
+                                                <th>Assigned Role</th>
+                                                <th>Organization</th>
+                                                <th>Status</th>
+                                                <th>Expires At</th>
+                                                <th>Claimed By</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td colspan="7" style="text-align: center; color: #94a3b8; padding: 1.5rem;">Loading referral codes...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel">
                         <div class="panel-header">
                             <div class="panel-title">
@@ -17334,6 +17441,7 @@
                 if (data.success && data.staff) {
                     cachedStaff = data.staff;
                     renderStaffTable(cachedStaff);
+                    loadActiveInviteCodes();
                 }
             } catch (err) {
                 console.error(err);
@@ -17396,6 +17504,153 @@
                     loadStaff();
                 } else {
                     showToast(data.message || 'Failed to grant access', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        
+        // Dynamic Referral Code Generator Logic
+        let activeReferralTimer = null;
+        let lastGeneratedCode = '';
+
+        async function handleGenerateReferralCode(e) {
+            e.preventDefault();
+            const role = document.getElementById('referral-role').value;
+            const validity_minutes = document.getElementById('referral-validity').value;
+            const organization = document.getElementById('referral-org').value.trim();
+            const btn = document.getElementById('btn-generate-code');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="material-icons" style="animation: spin 1s linear infinite;">refresh</i> Generating...';
+
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/staff/generate-code`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ role, validity_minutes, organization })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast(data.message, 'success');
+                    lastGeneratedCode = data.invite.invite_code;
+                    document.getElementById('display-invite-code').textContent = data.invite.invite_code;
+                    document.getElementById('display-invite-role').textContent = 'Role: ' + data.invite.role.toUpperCase() + (data.invite.organization ? ' (' + data.invite.organization + ')' : ' (Universal)');
+                    document.getElementById('generated-code-box').style.display = 'block';
+
+                    startReferralCountdown(new Date(data.invite.expires_at).getTime());
+                    loadActiveInviteCodes();
+                } else {
+                    showToast(data.message || 'Failed to generate code', 'error');
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="material-icons">bolt</i> Generate Dynamic Code';
+            }
+        }
+
+        function copyReferralCode() {
+            if (!lastGeneratedCode) return;
+            navigator.clipboard.writeText(lastGeneratedCode).then(() => {
+                showToast('Referral Code ' + lastGeneratedCode + ' copied to clipboard!', 'success');
+            }).catch(() => {
+                showToast('Code: ' + lastGeneratedCode, 'info');
+            });
+        }
+
+        function startReferralCountdown(targetTimestamp) {
+            if (activeReferralTimer) clearInterval(activeReferralTimer);
+            const countdownEl = document.getElementById('referral-countdown');
+
+            function update() {
+                const now = Date.now();
+                const diff = targetTimestamp - now;
+                if (diff <= 0) {
+                    countdownEl.textContent = 'EXPIRED';
+                    countdownEl.style.color = '#94a3b8';
+                    clearInterval(activeReferralTimer);
+                    return;
+                }
+                const mins = Math.floor(diff / 60000);
+                const secs = Math.floor((diff % 60000) / 1000);
+                countdownEl.textContent = mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
+                countdownEl.style.color = mins < 5 ? '#ef4444' : '#00966d';
+            }
+
+            update();
+            activeReferralTimer = setInterval(update, 1000);
+        }
+
+        async function loadActiveInviteCodes() {
+            const tbody = document.querySelector('#invite-codes-table tbody');
+            if (!tbody) return;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/staff/active-codes`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!data.success || !data.codes || data.codes.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #94a3b8; padding: 1.5rem;">No active referral codes generated yet.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.codes.map(c => {
+                    let badge = '';
+                    if (c.calculated_status === 'used') {
+                        badge = '<span class="badge" style="background: #e2e8f0; color: #475569; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">Claimed / Used</span>';
+                    } else if (c.calculated_status === 'expired') {
+                        badge = '<span class="badge" style="background: #fee2e2; color: #b91c1c; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">Expired</span>';
+                    } else {
+                        badge = '<span class="badge" style="background: #dcfce7; color: #15803d; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px;">🟢 Active</span>';
+                    }
+
+                    const expiresDate = c.expires_at ? new Date(c.expires_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' }) : 'Never';
+                    const claimedInfo = c.used_by_name ? '<strong>' + c.used_by_name + '</strong><br><small style="color: #64748b;">' + (c.used_by_email || '') + '</small>' : '<span style="color: #94a3b8;">Unclaimed</span>';
+
+                    const canRevoke = c.calculated_status === 'active';
+                    const revokeBtn = canRevoke 
+                        ? '<button class="btn btn-danger btn-sm" onclick="revokeReferralCode(' + c.id + ')" style="padding: 2px 8px; font-size: 0.75rem;">Revoke</button>'
+                        : '<span style="color: #cbd5e1;">-</span>';
+
+                    return `
+                        <tr>
+                            <td><strong style="font-family: monospace; font-size: 0.95rem; letter-spacing: 1px; color: #0f2942;">${c.invite_code}</strong></td>
+                            <td><span style="font-weight: 600; text-transform: capitalize;">${c.role}</span></td>
+                            <td>${c.organization || '<em style="color: #94a3b8;">Universal</em>'}</td>
+                            <td>${badge}</td>
+                            <td><small>${expiresDate}</small></td>
+                            <td>${claimedInfo}</td>
+                            <td>${revokeBtn}</td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function revokeReferralCode(id) {
+            if (!confirm('Are you sure you want to revoke this referral code immediately?')) return;
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/staff/code/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    showToast('Referral code successfully revoked.', 'success');
+                    loadActiveInviteCodes();
+                } else {
+                    showToast(data.message || 'Failed to revoke code', 'error');
                 }
             } catch (err) {
                 showToast(err.message, 'error');

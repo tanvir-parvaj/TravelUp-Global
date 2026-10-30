@@ -147,6 +147,97 @@ exports.updateStaffRole = async (req, res) => {
 };
 
 /**
+ * 2.1 Dynamic Admin / Staff Referral Code Generator
+ */
+exports.generateInviteCode = async (req, res) => {
+    try {
+        const adminId = req.user.id;
+        const { role = 'manager', validity_minutes = 30, organization } = req.body;
+
+        const validRoles = ['admin', 'manager', 'accountant', 'support', 'moderator', 'uploader'];
+        const targetRole = validRoles.includes(role) ? role : 'manager';
+
+        // Retrieve admin's organization if not explicitly supplied
+        let orgName = organization ? organization.trim() : null;
+        if (!orgName) {
+            const [[adminUser]] = await pool.query('SELECT organization FROM users WHERE id = ?', [adminId]);
+            if (adminUser && adminUser.organization) {
+                orgName = adminUser.organization;
+            }
+        }
+
+        // Clean, readable, cryptographically random code (e.g. ADM-8K2P or STF-4M9Y)
+        const prefix = targetRole === 'admin' ? 'ADM' : 'STF';
+        const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
+        const inviteCode = `${prefix}-${randomPart}`;
+
+        const minutes = Math.max(5, Math.min(parseInt(validity_minutes) || 30, 10080)); // 5 mins to 7 days
+        const expiresAt = new Date(Date.now() + minutes * 60 * 1000);
+
+        const [result] = await pool.query(
+            `INSERT INTO staff_invitations 
+             (invite_code, role, invited_by, organization, expires_at, status, is_used) 
+             VALUES (?, ?, ?, ?, ?, 'pending', 0)`,
+            [inviteCode, targetRole, adminId, orgName, expiresAt]
+        );
+
+        return res.status(201).json({
+            success: true,
+            message: `New reference code '${inviteCode}' generated successfully! Valid for ${minutes} minutes.`,
+            invite: {
+                id: result.insertId,
+                invite_code: inviteCode,
+                role: targetRole,
+                organization: orgName,
+                expires_at: expiresAt,
+                validity_minutes: minutes
+            }
+        });
+    } catch (err) {
+        console.error('generateInviteCode error:', err);
+        return res.status(500).json({ success: false, message: 'Failed to generate invite code', error: err.message });
+    }
+};
+
+exports.getInviteCodes = async (req, res) => {
+    try {
+        const [rows] = await pool.query(`
+            SELECT si.id, si.invite_code, si.role, si.organization, si.expires_at, si.is_used, si.status, si.created_at,
+                   u.name AS invited_by_name,
+                   used_user.name AS used_by_name,
+                   used_user.email AS used_by_email,
+                   CASE 
+                       WHEN si.is_used = 1 THEN 'used'
+                       WHEN si.expires_at IS NOT NULL AND si.expires_at < NOW() THEN 'expired'
+                       ELSE 'active'
+                   END AS calculated_status
+            FROM staff_invitations si
+            LEFT JOIN users u ON si.invited_by = u.id
+            LEFT JOIN users used_user ON si.used_by = used_user.id
+            WHERE si.invite_code IS NOT NULL
+            ORDER BY si.created_at DESC
+            LIMIT 50
+        `);
+        return res.json({ success: true, codes: rows });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: 'Failed to load invite codes', error: err.message });
+    }
+};
+
+exports.revokeInviteCode = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await pool.query(
+            `UPDATE staff_invitations SET is_used = 1, status = 'revoked' WHERE id = ?`,
+            [id]
+        );
+        return res.json({ success: true, message: 'Referral code revoked successfully.' });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: 'Failed to revoke code', error: err.message });
+    }
+};
+
+/**
  * 3. Vehicle & Route Management (Product Catalog)
  * Accessible to Admin, Uploader, Moderator
  */
